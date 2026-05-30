@@ -18,7 +18,7 @@ export default function Header({
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-coach-green text-lg font-black text-white shadow-soft ring-4 ring-coach-sky/45">fx</div>
+              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-coach-green text-lg font-black text-white shadow-soft">fx</div>
               <div>
                 <h1 className="text-2xl font-black tracking-tight text-coach-ink dark:text-white sm:text-3xl">Formula Coach</h1>
                 <p className="max-w-2xl text-sm text-black/60 dark:text-white/62">
@@ -29,19 +29,19 @@ export default function Header({
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <label className="cursor-pointer rounded-full border border-coach-line bg-white px-4 py-2 text-sm font-semibold text-coach-ink transition hover:border-coach-aqua dark:border-white/10 dark:bg-white/5 dark:text-white">
+            <label className="cursor-pointer rounded-full border border-coach-line bg-white px-4 py-2 text-sm font-semibold text-coach-ink transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white">
               Import Catalog
               <input type="file" accept="application/json" className="hidden" onChange={onImportCatalog} />
             </label>
             <button
               onClick={onToggleDark}
-              className="rounded-full border border-coach-line bg-white px-4 py-2 text-sm font-semibold text-coach-ink transition hover:border-coach-aqua dark:border-white/10 dark:bg-white/5 dark:text-white"
+              className="rounded-full border border-coach-line bg-white px-4 py-2 text-sm font-semibold text-coach-ink transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white"
             >
               {darkMode ? 'Mode Terang' : 'Mode Gelap'}
             </button>
             <button
               onClick={onReset}
-              className="rounded-full bg-coach-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-coach-clay dark:bg-white dark:text-coach-ink"
+              className="rounded-full bg-coach-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-coach-green dark:bg-white dark:text-coach-ink"
             >
               Reset Data
             </button>

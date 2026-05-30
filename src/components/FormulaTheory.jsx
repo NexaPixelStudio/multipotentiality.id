@@ -1,6 +1,6 @@
 export default function FormulaTheory({ formula, isGeneric }) {
   return (
-    <section className="coach-card-strong rounded-[2rem] p-5 dark:border-white/10 dark:bg-white/[0.055]">
+    <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <div className="flex flex-wrap items-center gap-2">
@@ -13,7 +13,7 @@ export default function FormulaTheory({ formula, isGeneric }) {
         </div>
         <div className="rounded-2xl border border-coach-line bg-coach-beige p-4 dark:border-white/10 dark:bg-black/20 lg:w-[360px]">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-black/40 dark:text-white/45">Syntax</p>
-          <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 text-sm font-bold text-coach-green dark:bg-white/8 dark:text-coach-sky">
+          <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 text-sm font-bold text-coach-green dark:bg-white/8 dark:text-emerald-200">
             {formula.syntax}
           </code>
         </div>
@@ -26,7 +26,7 @@ export default function FormulaTheory({ formula, isGeneric }) {
       </div>
 
       {isGeneric && (
-        <div className="mt-5 rounded-2xl border border-dashed border-coach-aqua/55 bg-coach-sky/25 p-4 text-sm text-coach-green dark:text-coach-sky">
+        <div className="mt-5 rounded-2xl border border-dashed border-coach-green/40 bg-coach-green/8 p-4 text-sm text-coach-green dark:text-emerald-200">
           Latihan detail belum tersedia, akan ditambahkan bertahap. Tapi kamu tetap bisa latihan struktur rumus dasarnya di bawah.
         </div>
       )}
