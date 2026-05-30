@@ -585,6 +585,7 @@ export default function App() {
             cursorPosition={formulaCursor}
             focusTick={formulaFocusTick}
             formulaResult={formulaResult}
+            feedback={feedback}
             showQuestionHelper={showQuestionHelper}
             helperValues={questionHelperValues}
             lookupValue={lookupValue}
@@ -604,9 +605,6 @@ export default function App() {
           />
 
           <div className="flex flex-wrap gap-2">
-            <button onClick={handleCheckAnswer} className="rounded-full bg-coach-green px-5 py-3 text-sm font-black text-white transition hover:bg-coach-ink dark:hover:bg-emerald-600">
-              Cek Jawaban
-            </button>
             <button onClick={handleResetExercise} className="rounded-full border border-coach-line bg-white px-5 py-3 text-sm font-black text-black/60 transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/65">
               Reset Latihan
             </button>

@@ -186,6 +186,7 @@ export default function FormulaBar({
   cursorPosition = 0,
   focusTick = 0,
   formulaResult = null,
+  feedback = null,
   showQuestionHelper = false,
   helperValues = [],
   lookupValue = '',
@@ -321,6 +322,54 @@ export default function FormulaBar({
       : formulaResult?.message || 'Excel akan menampilkan error untuk formula ini.';
 
   const resultIsError = value.trim() && formulaResult && !formulaResult.ok;
+  const hasFormula = Boolean(value.trim());
+  const answerState = !hasFormula ? 'empty' : feedback ? (feedback.correct ? 'correct' : 'wrong') : 'pending';
+
+  const handleManualCheck = () => {
+    const completedValue = autoCloseFormula(value);
+    if (completedValue !== value) {
+      updateValue(completedValue, completedValue.length);
+    }
+    setOpen(false);
+    requestAnimationFrame(() => {
+      onSubmit?.(completedValue);
+    });
+  };
+
+  const renderFormulaStatus = () => {
+    if (answerState === 'empty') return null;
+
+    if (answerState === 'pending') {
+      return (
+        <span
+          title="Formula belum dicek. Tekan Enter atau klik Cek Jawaban."
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-50 text-amber-600 ring-1 ring-amber-200 dark:bg-amber-400/10 dark:text-amber-200 dark:ring-amber-400/20"
+        >
+          <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        </span>
+      );
+    }
+
+    if (answerState === 'correct') {
+      return (
+        <span
+          title="Jawaban sudah benar"
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200 dark:bg-emerald-400/10 dark:text-emerald-200 dark:ring-emerald-400/20"
+        >
+          ✓
+        </span>
+      );
+    }
+
+    return (
+      <span
+        title="Jawaban masih salah"
+        className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-50 text-red-600 ring-1 ring-red-200 dark:bg-red-400/10 dark:text-red-200 dark:ring-red-400/20"
+      >
+        ×
+      </span>
+    );
+  };
 
   return (
     <div className="rounded-[1.5rem] border border-coach-line bg-white p-3 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
@@ -352,6 +401,15 @@ export default function FormulaBar({
                 </button>
               ))}
             </div>
+
+            <button
+              type="button"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={handleManualCheck}
+              className="mt-4 w-full rounded-xl bg-coach-green px-4 py-3 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-coach-ink hover:shadow-md dark:hover:bg-emerald-600"
+            >
+              Cek Jawaban
+            </button>
           </section>
         )}
 
@@ -380,8 +438,12 @@ export default function FormulaBar({
               placeholder={placeholder}
               spellCheck="false"
               autoComplete="off"
-              className="min-h-[46px] w-full rounded-xl border border-coach-line bg-coach-beige px-4 font-mono text-sm font-semibold outline-none transition focus:border-coach-green focus:bg-white focus:ring-2 focus:ring-coach-green/12 dark:border-white/10 dark:bg-black/20 dark:text-white dark:focus:bg-black/30"
+              className="min-h-[46px] w-full rounded-xl border border-coach-line bg-coach-beige py-0 pl-4 pr-12 font-mono text-sm font-semibold outline-none transition focus:border-coach-green focus:bg-white focus:ring-2 focus:ring-coach-green/12 dark:border-white/10 dark:bg-black/20 dark:text-white dark:focus:bg-black/30"
             />
+
+            <div className="pointer-events-none absolute right-3 top-1/2 z-10 -translate-y-1/2 font-black">
+              {renderFormulaStatus()}
+            </div>
 
             {open && suggestions.length > 0 && (
               <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-40 overflow-hidden rounded-2xl border border-coach-green/20 bg-white shadow-[0_18px_40px_rgba(33,115,70,0.16)] dark:border-white/10 dark:bg-[#182018]">
