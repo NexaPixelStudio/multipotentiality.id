@@ -253,7 +253,6 @@ export default function App() {
           <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Soal Latihan</p>
             <h3 className="mt-1 text-2xl font-black text-coach-ink dark:text-white">{exercise.title}</h3>
-            <p className="mt-3 text-base leading-7 text-black/70 dark:text-white/68">{exercise.question}</p>
             <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/65 dark:bg-black/20 dark:text-white/65">
               <span className="font-black text-coach-green dark:text-emerald-300">Coba pikir dulu logikanya: </span>
               {exercise.logicPrompt}
@@ -273,6 +272,21 @@ export default function App() {
             onCellClick={setActiveCell}
             onRangeSelected={handleRangeSelected}
           />
+
+          <section className="rounded-[1.75rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-[0.68rem] font-black uppercase tracking-[0.2em] text-coach-green dark:text-emerald-300">Soal aktif</p>
+                <p className="mt-1 text-base font-black leading-6 text-coach-ink dark:text-white">{exercise.question}</p>
+              </div>
+              <span className="w-fit rounded-full bg-coach-soft px-3 py-1 text-[0.68rem] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+                Ketik rumus di bawah
+              </span>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-black/50 dark:text-white/50">
+              Kamu bisa klik atau drag cell di tabel, range-nya akan masuk ke formula bar.
+            </p>
+          </section>
 
           <FormulaBar
             activeCell={activeCell}
