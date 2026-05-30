@@ -130,7 +130,7 @@ export default function App() {
   const finalFormulaPreview = feedback?.correct ? formulaForSeparator(exercise.expectedFormula, progressState.separatorMode) : null;
 
   return (
-    <div className="min-h-screen bg-coach-beige text-coach-ink transition dark:bg-coach-ink dark:text-white">
+    <div className="coach-shell min-h-screen bg-coach-beige text-coach-ink transition dark:bg-coach-ink dark:text-white">
       <Header
         stats={stats}
         onReset={handleResetAll}
@@ -146,7 +146,7 @@ export default function App() {
       <main className="mx-auto grid max-w-[1500px] gap-5 px-4 py-5 lg:grid-cols-[1fr_420px] lg:px-6">
         <div className="space-y-5">
           <div className="flex items-center justify-between gap-3 lg:hidden">
-            <button onClick={() => setMobileSidebarOpen(true)} className="rounded-full bg-coach-green px-4 py-3 text-sm font-black text-white">
+            <button onClick={() => setMobileSidebarOpen(true)} className="rounded-full bg-coach-green px-4 py-3 text-sm font-black text-white shadow-soft">
               Buka Daftar Rumus
             </button>
             <p className="text-sm font-bold text-black/50 dark:text-white/50">{selectedFormula.name}</p>
@@ -155,16 +155,16 @@ export default function App() {
           <ProgressPanel formula={selectedFormula} formulaProgress={formulaProgress} stats={stats} />
           <FormulaTheory formula={selectedFormula} isGeneric={isGeneric} />
 
-          <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Soal Latihan</p>
+          <section className="coach-card-strong rounded-[2rem] p-5 dark:border-white/10 dark:bg-white/[0.055]">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-coach-sky">Soal Latihan</p>
             <h3 className="mt-1 text-2xl font-black text-coach-ink dark:text-white">{exercise.title}</h3>
             <p className="mt-3 text-base leading-7 text-black/70 dark:text-white/68">{exercise.question}</p>
             <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/65 dark:bg-black/20 dark:text-white/65">
-              <span className="font-black text-coach-green dark:text-emerald-300">Coba pikir dulu logikanya: </span>
+              <span className="font-black text-coach-green dark:text-coach-sky">Coba pikir dulu logikanya: </span>
               {exercise.logicPrompt}
             </div>
             {finalFormulaPreview && (
-              <p className="mt-3 rounded-2xl bg-emerald-50 p-4 text-sm text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+              <p className="mt-3 rounded-2xl bg-coach-sky/25 p-4 text-sm text-coach-green dark:bg-coach-sky/10 dark:text-coach-sky">
                 Rumus final baru muncul setelah benar: <span className="font-mono font-black">{finalFormulaPreview}</span>
               </p>
             )}
@@ -174,10 +174,10 @@ export default function App() {
           <FormulaBar activeCell={activeCell} value={answer} onChange={setAnswer} separatorMode={progressState.separatorMode} />
 
           <div className="flex flex-wrap gap-2">
-            <button onClick={handleCheckAnswer} className="rounded-full bg-coach-green px-5 py-3 text-sm font-black text-white transition hover:bg-coach-ink dark:hover:bg-emerald-600">
+            <button onClick={handleCheckAnswer} className="rounded-full bg-coach-green px-5 py-3 text-sm font-black text-white shadow-soft transition hover:bg-coach-clay dark:hover:bg-coach-clay">
               Cek Jawaban
             </button>
-            <button onClick={handleResetExercise} className="rounded-full border border-coach-line bg-white px-5 py-3 text-sm font-black text-black/60 transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/65">
+            <button onClick={handleResetExercise} className="rounded-full border border-coach-line bg-white px-5 py-3 text-sm font-black text-black/60 transition hover:border-coach-aqua dark:border-white/10 dark:bg-white/5 dark:text-white/65">
               Reset Latihan
             </button>
           </div>

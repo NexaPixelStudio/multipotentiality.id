@@ -4,8 +4,12 @@
 
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #121714;
-  background: #f4efe5;
+  color: #335765;
+  background: #DBE2DC;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -20,10 +24,23 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(182, 217, 224, 0.78), transparent 28%),
+    radial-gradient(circle at 90% 5%, rgba(116, 168, 164, 0.26), transparent 28%),
+    linear-gradient(135deg, #DBE2DC 0%, #f8faf7 48%, #DBE2DC 100%);
 }
 
 button, input, select, textarea {
   font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(116, 168, 164, 0.32);
+  color: #335765;
 }
 
 body::-webkit-scrollbar,
@@ -33,15 +50,77 @@ body::-webkit-scrollbar,
   height: 10px;
 }
 
+body::-webkit-scrollbar-track,
+.formula-scroll::-webkit-scrollbar-track,
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: rgba(219, 226, 220, 0.65);
+}
+
 body::-webkit-scrollbar-thumb,
 .formula-scroll::-webkit-scrollbar-thumb,
 .sidebar-scroll::-webkit-scrollbar-thumb {
-  background: rgba(15, 107, 79, 0.32);
+  background: linear-gradient(180deg, #74A8A4, #335765);
+  border: 2px solid rgba(219, 226, 220, 0.78);
   border-radius: 999px;
+}
+
+.coach-shell {
+  background:
+    linear-gradient(rgba(51, 87, 101, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 87, 101, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 12% 4%, rgba(182, 217, 224, 0.65), transparent 28%),
+    radial-gradient(circle at 86% 6%, rgba(127, 84, 61, 0.13), transparent 25%);
+  background-size: 28px 28px, 28px 28px, auto, auto;
+}
+
+.coach-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(182, 217, 224, 0.95);
+  box-shadow: 0 18px 50px rgba(51, 87, 101, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+}
+
+.coach-card-strong {
+  background: rgba(255, 255, 255, 0.90);
+  border: 1px solid rgba(182, 217, 224, 1);
+  box-shadow: 0 24px 70px rgba(51, 87, 101, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+}
+
+.coach-input {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(182, 217, 224, 1);
+  color: #335765;
+}
+
+.coach-input:focus {
+  border-color: #74A8A4;
+  box-shadow: 0 0 0 4px rgba(116, 168, 164, 0.16);
 }
 
 .sheet-cell {
   min-width: 118px;
+}
+
+.dark body {
+  background: #335765;
+}
+
+.dark .coach-shell {
+  background:
+    linear-gradient(rgba(219, 226, 220, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(219, 226, 220, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 10% 0%, rgba(182, 217, 224, 0.16), transparent 30%),
+    radial-gradient(circle at 86% 8%, rgba(127, 84, 61, 0.20), transparent 28%),
+    #335765;
+  background-size: 28px 28px, 28px 28px, auto, auto, auto;
+}
+
+.dark .coach-card,
+.dark .coach-card-strong {
+  background: rgba(24, 46, 55, 0.68);
+  border-color: rgba(182, 217, 224, 0.18);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 @media (max-width: 768px) {
