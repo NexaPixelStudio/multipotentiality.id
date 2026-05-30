@@ -66,9 +66,9 @@ export default function Header({
 
 function Stat({ label, value }) {
   return (
-    <div className="rounded-2xl border border-coach-line bg-white/74 px-3 py-2 dark:border-white/10 dark:bg-white/5">
-      <p className="text-[11px] uppercase tracking-[0.16em] text-black/45 dark:text-white/45">{label}</p>
-      <p className="text-lg font-black text-coach-ink dark:text-white">{value}</p>
+    <div className="flex min-h-[64px] flex-col items-center justify-center rounded-2xl border border-coach-green/15 bg-coach-greenSoft px-3 py-3 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] transition hover:border-coach-green/28 hover:bg-[#DFF0E6] dark:border-emerald-300/15 dark:bg-emerald-950/35 dark:shadow-none">
+      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-coach-green/60 dark:text-emerald-200/60">{label}</p>
+      <p className="mt-1 text-xl font-black leading-none text-coach-ink dark:text-white">{value}</p>
     </div>
   );
 }
