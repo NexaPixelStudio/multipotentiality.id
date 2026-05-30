@@ -48,6 +48,8 @@ export default function App() {
       .filter((formula) => formula.name?.toUpperCase() !== selectedName)
       .map((formula) => ({
         name: formula.name,
+        syntax: formula.syntax,
+        description: formula.description,
         category: formula.category,
         displayCategory: formula.displayCategory,
         hasExercise: formula.hasExercise
@@ -56,6 +58,8 @@ export default function App() {
     return [
       ...selected.map((formula) => ({
         name: formula.name,
+        syntax: formula.syntax,
+        description: formula.description,
         category: formula.category,
         displayCategory: formula.displayCategory,
         hasExercise: formula.hasExercise

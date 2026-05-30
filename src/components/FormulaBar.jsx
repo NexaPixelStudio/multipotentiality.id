@@ -21,6 +21,121 @@ function dedupeOptions(options = []) {
   });
 }
 
+function findActiveFunction(value = '', cursor = 0) {
+  const before = value.slice(0, cursor);
+  let depth = 0;
+
+  for (let index = before.length - 1; index >= 0; index -= 1) {
+    const char = before[index];
+
+    if (char === ')') {
+      depth += 1;
+      continue;
+    }
+
+    if (char === '(') {
+      if (depth > 0) {
+        depth -= 1;
+        continue;
+      }
+
+      const prefix = before.slice(0, index);
+      const match = prefix.match(/([A-Za-z.][A-Za-z0-9._]*)\s*$/);
+      if (!match) return null;
+
+      const functionName = match[1].toUpperCase();
+      const argsText = before.slice(index + 1);
+      let nested = 0;
+      let argIndex = 0;
+
+      for (const item of argsText) {
+        if (item === '(') nested += 1;
+        if (item === ')') nested = Math.max(0, nested - 1);
+        if ((item === ',' || item === ';') && nested === 0) argIndex += 1;
+      }
+
+      return {
+        name: functionName,
+        argIndex,
+        openIndex: index
+      };
+    }
+  }
+
+  return null;
+}
+
+function splitTopLevel(value = '') {
+  const parts = [];
+  let current = '';
+  let parenDepth = 0;
+  let bracketDepth = 0;
+
+  for (const char of value) {
+    if (char === '(') parenDepth += 1;
+    if (char === ')') parenDepth = Math.max(0, parenDepth - 1);
+    if (char === '[') bracketDepth += 1;
+    if (char === ']') bracketDepth = Math.max(0, bracketDepth - 1);
+
+    if (char === ',' && parenDepth === 0 && bracketDepth === 0) {
+      parts.push(current.trim());
+      current = '';
+      continue;
+    }
+
+    current += char;
+  }
+
+  if (current.trim()) parts.push(current.trim());
+  return parts;
+}
+
+function getSyntaxParts(option, separatorMode = 'id') {
+  const rawSyntax = option?.syntax || `${option?.name || 'FORMULA'}(argument1, [argument2], ...)`;
+  const openIndex = rawSyntax.indexOf('(');
+  const closeIndex = rawSyntax.lastIndexOf(')');
+  const displayName = option?.name || rawSyntax.slice(0, openIndex) || 'FORMULA';
+  const separator = separatorMode === 'id' ? '; ' : ', ';
+
+  if (openIndex === -1 || closeIndex === -1 || closeIndex <= openIndex) {
+    return {
+      name: displayName,
+      args: ['argument1', '[argument2]', '...'],
+      separator
+    };
+  }
+
+  const args = splitTopLevel(rawSyntax.slice(openIndex + 1, closeIndex));
+
+  return {
+    name: rawSyntax.slice(0, openIndex).trim() || displayName,
+    args: args.length ? args : ['argument1', '[argument2]', '...'],
+    separator
+  };
+}
+
+function SignatureTooltip({ signature }) {
+  if (!signature) return null;
+
+  const activeArg = Math.min(signature.argIndex, signature.args.length - 1);
+
+  return (
+    <div className="absolute left-2 top-[calc(100%+6px)] z-30 max-w-[min(680px,calc(100vw-3rem))] rounded-md border border-black/15 bg-white px-3 py-2 text-left font-mono text-[11px] font-semibold text-black shadow-[0_10px_24px_rgba(0,0,0,0.14)] dark:border-white/15 dark:bg-[#111A14] dark:text-white sm:text-xs">
+      <span className="font-black text-coach-green dark:text-emerald-200">{signature.name}</span>
+      <span>(</span>
+      {signature.args.map((arg, index) => (
+        <span key={`${signature.name}-${arg}-${index}`}>
+          {index > 0 && <span className="text-black/35 dark:text-white/35">{signature.separator}</span>}
+          <span className={index === activeArg ? 'rounded bg-coach-greenSoft px-1 py-0.5 font-black text-coach-green dark:bg-emerald-400/15 dark:text-emerald-200' : 'text-black/70 dark:text-white/70'}>
+            {arg}
+          </span>
+        </span>
+      ))}
+      <span>)</span>
+    </div>
+  );
+}
+
 export default function FormulaBar({
   activeCell,
   selectedRange,
@@ -40,17 +155,31 @@ export default function FormulaBar({
 
   const cursor = Math.min(cursorPosition ?? value.length, value.length);
   const fragmentInfo = useMemo(() => getFragment(value, cursor), [value, cursor]);
+  const cleanOptions = useMemo(() => dedupeOptions(formulaOptions), [formulaOptions]);
 
   const suggestions = useMemo(() => {
     if (!fragmentInfo?.fragment) return [];
     const fragment = fragmentInfo.fragment.toUpperCase();
     if (fragment.length < 1) return [];
 
-    const cleanOptions = dedupeOptions(formulaOptions);
     const startsWith = cleanOptions.filter((item) => item.name.toUpperCase().startsWith(fragment));
     const includes = cleanOptions.filter((item) => !item.name.toUpperCase().startsWith(fragment) && item.name.toUpperCase().includes(fragment));
     return [...startsWith, ...includes].slice(0, 8);
-  }, [formulaOptions, fragmentInfo]);
+  }, [cleanOptions, fragmentInfo]);
+
+  const activeSignature = useMemo(() => {
+    const activeFunction = findActiveFunction(value, cursor);
+    if (!activeFunction) return null;
+
+    const option = cleanOptions.find((item) => item.name?.toUpperCase() === activeFunction.name);
+    if (!option) return null;
+
+    const syntax = getSyntaxParts(option, separatorMode);
+    return {
+      ...syntax,
+      argIndex: activeFunction.argIndex
+    };
+  }, [cleanOptions, cursor, separatorMode, value]);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -121,8 +250,8 @@ export default function FormulaBar({
   };
 
   const placeholder = separatorMode === 'id'
-    ? 'Ketik = lalu nama rumus. Contoh: =SUM( lalu drag range di tabel'
-    : 'Type = then formula name. Example: =SUM( then drag a table range';
+    ? 'Ketik = lalu nama rumus. Contoh: =SUMIF( lalu drag range di tabel'
+    : 'Type = then formula name. Example: =SUMIF( then drag a table range';
 
   return (
     <div className="rounded-[1.5rem] border border-coach-line bg-white p-3 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
@@ -162,20 +291,30 @@ export default function FormulaBar({
               <div className="border-b border-coach-line bg-coach-greenSoft px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-coach-green dark:border-white/10 dark:bg-emerald-400/10 dark:text-emerald-200">
                 Tekan Tab untuk pakai rumus
               </div>
-              {suggestions.map((item, index) => (
-                <button
-                  key={`${item.name}-${item.category}-${index}`}
-                  type="button"
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => insertSuggestion(item)}
-                  className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition ${index === activeIndex ? 'bg-coach-green text-white' : 'hover:bg-coach-greenSoft dark:hover:bg-white/8'}`}
-                >
-                  <span className="font-mono text-sm font-black">{item.name}</span>
-                  <span className={`truncate text-xs font-bold ${index === activeIndex ? 'text-white/70' : 'text-black/45 dark:text-white/45'}`}>{item.displayCategory || item.category}</span>
-                </button>
-              ))}
+              {suggestions.map((item, index) => {
+                const syntax = getSyntaxParts(item, separatorMode);
+                return (
+                  <button
+                    key={`${item.name}-${item.category}-${index}`}
+                    type="button"
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => insertSuggestion(item)}
+                    className={`flex w-full items-start justify-between gap-3 px-4 py-3 text-left transition ${index === activeIndex ? 'bg-coach-green text-white' : 'hover:bg-coach-greenSoft dark:hover:bg-white/8'}`}
+                  >
+                    <span>
+                      <span className="block font-mono text-sm font-black">{item.name}</span>
+                      <span className={`mt-0.5 block font-mono text-[11px] font-semibold ${index === activeIndex ? 'text-white/75' : 'text-black/45 dark:text-white/45'}`}>
+                        {syntax.name}({syntax.args.join(syntax.separator)})
+                      </span>
+                    </span>
+                    <span className={`shrink-0 truncate text-xs font-bold ${index === activeIndex ? 'text-white/70' : 'text-black/45 dark:text-white/45'}`}>{item.displayCategory || item.category}</span>
+                  </button>
+                );
+              })}
             </div>
           )}
+
+          {!open && <SignatureTooltip signature={activeSignature} />}
         </div>
       </div>
 
@@ -183,6 +322,11 @@ export default function FormulaBar({
         <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</span>
         <span>Mode: {separatorMode === 'id' ? 'Excel Indonesia pakai titik koma (;)' : 'Excel English pakai koma (,)' }.</span>
         <span>Enter untuk cek jawaban.</span>
+        {activeSignature && (
+          <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+            Argumen aktif: {activeSignature.args[Math.min(activeSignature.argIndex, activeSignature.args.length - 1)]}
+          </span>
+        )}
         {selectedRange && (
           <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
             Range: {selectedRange}
