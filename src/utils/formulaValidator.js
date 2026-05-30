@@ -1,3 +1,4 @@
+import { compareExcelResults, evaluateFormula, formatExcelValue } from './formulaEngine.js';
 const stripSpacesOutsideQuotes = (value = '') => {
   let output = '';
   let inQuote = false;
@@ -134,7 +135,7 @@ const buildWrongFunctionMessage = (root, expected) => {
   return `Nama rumus belum sesuai. Kamu memakai ${root || 'rumus yang belum terbaca'}, sedangkan latihan ini meminta ${expected}.`;
 };
 
-export function validateFormula(answer, exercise, separatorMode = 'id') {
+export function validateFormula(answer, exercise, separatorMode = 'id', table = null) {
   const raw = String(answer || '').trim();
   const details = [];
 
@@ -178,14 +179,9 @@ export function validateFormula(answer, exercise, separatorMode = 'id') {
     };
   }
 
-  if (exercise.formulaName !== 'INDEX MATCH' && root !== expectedRoot) {
-    return {
-      correct: false,
-      title: 'Rumusnya belum cocok dengan soal.',
-      message: buildWrongFunctionMessage(root, expectedRoot),
-      details: [`Rumus yang dipilih: ${root}`, `Rumus yang diminta: ${expectedRoot}`]
-    };
-  }
+  const functionMismatch = exercise.formulaName !== 'INDEX MATCH' && root !== expectedRoot
+    ? buildWrongFunctionMessage(root, expectedRoot)
+    : '';
 
   if (!checkComboFunction(formulaNorm, exercise)) {
     return {
@@ -212,6 +208,43 @@ export function validateFormula(answer, exercise, separatorMode = 'id') {
     };
   }
 
+  if (table) {
+    const answerResult = evaluateFormula(raw, table, separatorMode);
+    const expectedResult = evaluateFormula(exercise.expectedFormula, table, 'en');
+
+    if (!answerResult.ok) {
+      return {
+        correct: false,
+        title: `Formula menghasilkan ${answerResult.error}.`,
+        message: answerResult.message || 'Excel akan membaca formula ini sebagai error. Coba cek nama rumus, referensi, atau tipe datanya.',
+        details: [`Hasil Excel: ${answerResult.error}`]
+      };
+    }
+
+    if (expectedResult.ok && compareExcelResults(answerResult.value, expectedResult.value)) {
+      return {
+        correct: true,
+        title: 'Jawaban kamu benar.',
+        message: 'Jawaban kamu benar. Logikanya sudah tepat.',
+        details: [
+          `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
+          functionMismatch
+            ? `Catatan: hasilnya sudah benar, tapi kamu memakai ${root}. Untuk materi ini, pahami juga versi ${expectedRoot}.`
+            : 'Formula boleh tidak identik 100%, selama hasil dan logikanya sama.'
+        ].filter(Boolean)
+      };
+    }
+  }
+
+  if (functionMismatch) {
+    return {
+      correct: false,
+      title: 'Rumusnya belum cocok dengan soal.',
+      message: functionMismatch,
+      details: [`Rumus yang dipilih: ${root}`, `Rumus yang diminta: ${expectedRoot}`]
+    };
+  }
+
   const answerAsEnglish = formulaForSeparator(raw, 'en');
   const args = splitTopLevelArguments(answerAsEnglish, ',');
   const maxArgs = exercise.argumentCount?.max;
@@ -231,6 +264,51 @@ export function validateFormula(answer, exercise, separatorMode = 'id') {
       title: 'Argumennya kebanyakan.',
       message: `${expectedRoot} di latihan ini cukup ${maxArgs} argumen. Ada bagian yang sepertinya berlebih.`,
       details
+    };
+  }
+
+  if (table) {
+    const answerResult = evaluateFormula(raw, table, separatorMode);
+    const expectedResult = evaluateFormula(exercise.expectedFormula, table, 'en');
+
+    if (!answerResult.ok) {
+      return {
+        correct: false,
+        title: `Formula menghasilkan ${answerResult.error}.`,
+        message: answerResult.message || 'Excel akan membaca formula ini sebagai error. Coba cek nama rumus, referensi, atau tipe datanya.',
+        details: [`Hasil Excel: ${answerResult.error}`]
+      };
+    }
+
+    if (expectedResult.ok && compareExcelResults(answerResult.value, expectedResult.value)) {
+      return {
+        correct: true,
+        title: 'Jawaban kamu benar.',
+        message: 'Jawaban kamu benar. Logikanya sudah tepat.',
+        details: [
+          `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
+          functionMismatch
+            ? `Catatan: hasilnya sudah benar, tapi kamu memakai ${root}. Untuk materi ini, pahami juga versi ${expectedRoot}.`
+            : 'Formula boleh tidak identik 100%, selama hasil dan logikanya sama.'
+        ].filter(Boolean)
+      };
+    }
+
+    if (!functionMismatch && expectedResult.ok) {
+      const expectedDisplay = formatExcelValue(expectedResult.value);
+      const answerDisplay = formatExcelValue(answerResult.value);
+      if (answerDisplay !== expectedDisplay) {
+        // Jangan langsung salah total. Lanjut ke cek detail supaya feedback tetap spesifik.
+      }
+    }
+  }
+
+  if (functionMismatch) {
+    return {
+      correct: false,
+      title: 'Rumusnya belum cocok dengan soal.',
+      message: functionMismatch,
+      details: [`Rumus yang dipilih: ${root}`, `Rumus yang diminta: ${expectedRoot}`]
     };
   }
 
@@ -273,6 +351,23 @@ export function validateFormula(answer, exercise, separatorMode = 'id') {
     };
   }
 
+  if (table) {
+    const answerResult = evaluateFormula(raw, table, separatorMode);
+    const expectedResult = evaluateFormula(exercise.expectedFormula, table, 'en');
+    if (answerResult.ok && expectedResult.ok && !compareExcelResults(answerResult.value, expectedResult.value)) {
+      return {
+        correct: false,
+        title: 'Hasilnya belum sama dengan target.',
+        message: 'Formula kamu sudah bisa dihitung, tapi hasilnya belum sesuai dengan soal.',
+        details: [
+          `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
+          `Target latihan: ${formatExcelValue(expectedResult.value)}`,
+          'Coba cek lagi range, kriteria, atau urutan argumennya.'
+        ]
+      };
+    }
+  }
+
   return {
     correct: true,
     title: 'Jawaban kamu benar.',
@@ -281,7 +376,7 @@ export function validateFormula(answer, exercise, separatorMode = 'id') {
   };
 }
 
-export function validateGenericFormula(answer, formula, separatorMode = 'id') {
+export function validateGenericFormula(answer, formula, separatorMode = 'id', table = null) {
   const raw = String(answer || '').trim();
   if (!raw.startsWith('=')) {
     return { correct: false, title: 'Awal formula belum benar.', message: 'Mulai formula dengan tanda = dulu.' };
@@ -297,6 +392,18 @@ export function validateGenericFormula(answer, formula, separatorMode = 'id') {
   const expectedSeparator = separatorMode === 'id' ? ';' : ',';
   if (hasSeparatorOutsideQuotes(raw, wrongSeparator) && !hasSeparatorOutsideQuotes(raw, expectedSeparator)) {
     return { correct: false, title: 'Separator belum sesuai.', message: separatorMode === 'id' ? 'Gunakan titik koma (;) untuk mode Indonesia.' : 'Gunakan koma (,) untuk mode English.' };
+  }
+  if (table) {
+    const result = evaluateFormula(raw, table, separatorMode);
+    if (!result.ok) {
+      return { correct: false, title: `Formula menghasilkan ${result.error}.`, message: result.message || 'Strukturnya terbaca, tapi Excel akan menampilkan error.' };
+    }
+    return {
+      correct: true,
+      title: 'Struktur formula sudah benar.',
+      message: 'Nama rumus, tanda =, kurung, dan hasil hitungnya sudah aman. Latihan detail rumus ini akan ditambahkan bertahap.',
+      details: [`Hasil formula kamu: ${formatExcelValue(result.value)}`]
+    };
   }
   return { correct: true, title: 'Struktur formula sudah benar.', message: 'Nama rumus, tanda =, dan kurungnya sudah aman. Latihan detail rumus ini akan ditambahkan bertahap.' };
 }

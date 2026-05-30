@@ -11,6 +11,7 @@ import { formulaCatalogFull, importFormulaCatalog } from './data/formulaCatalogF
 import { getCuratedExercise, sharedExerciseTables } from './data/curatedExercises';
 import { createGenericExercise, genericTheoryTable } from './data/exerciseTemplates';
 import { formulaForSeparator, validateFormula, validateGenericFormula } from './utils/formulaValidator';
+import { autoCloseFormula, evaluateFormula } from './utils/formulaEngine';
 import { defaultProgressState, loadProgress, markFormulaAttempt, markFormulaOpened, resetProgress, saveProgress, setPreference } from './utils/localStorage';
 
 export default function App() {
@@ -77,6 +78,11 @@ export default function App() {
     return { total, practice, theory, mastered, percent };
   }, [formulas, progressState.formulas]);
 
+  const formulaResult = useMemo(() => {
+    if (!answer.trim()) return null;
+    return evaluateFormula(answer, table, progressState.separatorMode);
+  }, [answer, progressState.separatorMode, table]);
+
   useEffect(() => {
     document.documentElement.classList.toggle('dark', Boolean(progressState.darkMode));
     saveProgress(progressState);
@@ -109,10 +115,18 @@ export default function App() {
     setLastRangeInsertion(null);
   };
 
-  const handleCheckAnswer = () => {
+  const handleCheckAnswer = (submittedFormula) => {
+    const candidate = typeof submittedFormula === 'string' ? submittedFormula : answer;
+    const completedFormula = autoCloseFormula(candidate);
+
+    if (completedFormula !== answer) {
+      setAnswer(completedFormula);
+      setFormulaCursor(completedFormula.length);
+    }
+
     const result = isGeneric
-      ? validateGenericFormula(answer, selectedFormula, progressState.separatorMode)
-      : validateFormula(answer, exercise, progressState.separatorMode);
+      ? validateGenericFormula(completedFormula, selectedFormula, progressState.separatorMode, table)
+      : validateFormula(completedFormula, exercise, progressState.separatorMode, table);
     setFeedback(result);
     setProgressState((prev) => markFormulaAttempt(prev, selectedFormula.id, result.correct));
   };
@@ -272,6 +286,7 @@ export default function App() {
             onFocusChange={setFormulaInputActive}
             cursorPosition={formulaCursor}
             focusTick={formulaFocusTick}
+            formulaResult={formulaResult}
           />
 
           <div className="flex flex-wrap gap-2">

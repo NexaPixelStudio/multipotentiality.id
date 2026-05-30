@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { autoCloseFormula } from '../utils/formulaEngine.js';
 
 function getFragment(value = '', cursor = 0) {
   const before = value.slice(0, cursor);
@@ -147,7 +148,8 @@ export default function FormulaBar({
   onCursorChange,
   onFocusChange,
   cursorPosition = 0,
-  focusTick = 0
+  focusTick = 0,
+  formulaResult = null
 }) {
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -245,7 +247,11 @@ export default function FormulaBar({
 
     if (event.key === 'Enter') {
       event.preventDefault();
-      onSubmit?.();
+      const completedValue = autoCloseFormula(value);
+      if (completedValue !== value) {
+        updateValue(completedValue, completedValue.length);
+      }
+      onSubmit?.(completedValue);
     }
   };
 
@@ -317,6 +323,22 @@ export default function FormulaBar({
           {!open && <SignatureTooltip signature={activeSignature} />}
         </div>
       </div>
+
+      {formulaResult && (
+        <div className={`mt-3 grid gap-2 rounded-2xl border px-3 py-3 sm:grid-cols-[150px_1fr] sm:items-start ${formulaResult.ok ? 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10' : 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10'}`}>
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-black/45 dark:text-white/45">Hasil formula</p>
+            <p className={`mt-1 font-mono text-base font-black ${formulaResult.ok ? 'text-coach-green dark:text-emerald-200' : 'text-red-600 dark:text-red-200'}`}>
+              {formulaResult.ok ? formulaResult.displayValue || 'Kosong' : formulaResult.error}
+            </p>
+          </div>
+          <p className="text-xs leading-5 text-black/55 dark:text-white/55">
+            {formulaResult.ok
+              ? 'Ini hasil sementara dari rumus yang kamu ketik. Kalau hasilnya sudah sesuai soal, tekan Enter atau klik Cek Jawaban.'
+              : formulaResult.message || 'Excel akan menampilkan error untuk formula ini.'}
+          </p>
+        </div>
+      )}
 
       <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-black/45 dark:text-white/45">
         <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</span>
