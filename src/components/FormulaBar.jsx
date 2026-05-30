@@ -137,8 +137,26 @@ function SignatureTooltip({ signature }) {
   );
 }
 
+function LookupValueSlot({ value, active, onActivate, onChange }) {
+  return (
+    <label className="w-full sm:w-[220px]">
+      <span className="mb-1 block text-[10px] font-black uppercase tracking-[0.18em] text-black/40 dark:text-white/40">Lookup value</span>
+      <input
+        value={value}
+        onChange={(event) => onChange?.(event.target.value)}
+        onFocus={onActivate}
+        onClick={onActivate}
+        placeholder="klik cell, contoh A2"
+        spellCheck="false"
+        autoComplete="off"
+        className={`min-h-[46px] w-full rounded-xl border px-3 py-2 font-mono text-sm font-black outline-none transition ${active ? 'border-coach-green bg-white text-coach-green ring-2 ring-coach-green/15 dark:bg-black/30 dark:text-emerald-200' : 'border-coach-line bg-coach-beige text-black/55 hover:border-coach-green/45 dark:border-white/10 dark:bg-black/20 dark:text-white/70'}`}
+        aria-label="Lookup value"
+      />
+    </label>
+  );
+}
+
 export default function FormulaBar({
-  activeCell,
   selectedRange,
   value,
   onChange,
@@ -149,7 +167,12 @@ export default function FormulaBar({
   onFocusChange,
   cursorPosition = 0,
   focusTick = 0,
-  formulaResult = null
+  formulaResult = null,
+  showLookupValue = false,
+  lookupValue = '',
+  onLookupValueChange,
+  selectionTarget = 'formula',
+  onSelectionTargetChange
 }) {
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -261,13 +284,21 @@ export default function FormulaBar({
 
   return (
     <div className="rounded-[1.5rem] border border-coach-line bg-white p-3 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <div className="flex items-center gap-2">
-          <div className="rounded-xl border border-coach-line bg-coach-beige px-3 py-2 text-sm font-black text-coach-green dark:border-white/10 dark:bg-black/20 dark:text-emerald-200">
-            {activeCell || 'A1'}
-          </div>
-          <div className="rounded-xl bg-coach-ink px-3 py-2 text-sm font-black text-white dark:bg-white dark:text-coach-ink">fx</div>
-        </div>
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
+        {showLookupValue && (
+          <LookupValueSlot
+            value={lookupValue}
+            active={selectionTarget === 'lookup'}
+            onActivate={() => {
+              onSelectionTargetChange?.('lookup');
+              onFocusChange?.(false);
+            }}
+            onChange={(nextValue) => {
+              onLookupValueChange?.(nextValue);
+              onSelectionTargetChange?.('lookup');
+            }}
+          />
+        )}
 
         <div className="relative flex-1">
           <input
@@ -277,10 +308,14 @@ export default function FormulaBar({
               onChange(event.target.value);
               reportCursor(event.target);
             }}
-            onClick={(event) => reportCursor(event.target)}
+            onClick={(event) => {
+              onSelectionTargetChange?.('formula');
+              reportCursor(event.target);
+            }}
             onKeyUp={(event) => reportCursor(event.target)}
             onSelect={(event) => reportCursor(event.target)}
             onFocus={(event) => {
+              onSelectionTargetChange?.('formula');
               onFocusChange?.(true);
               reportCursor(event.target);
             }}
@@ -344,6 +379,11 @@ export default function FormulaBar({
         <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</span>
         <span>Mode: {separatorMode === 'id' ? 'Excel Indonesia pakai titik koma (;)' : 'Excel English pakai koma (,)' }.</span>
         <span>Enter untuk cek jawaban.</span>
+        {showLookupValue && (
+          <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+            {selectionTarget === 'lookup' ? 'Klik cell di tabel untuk isi Lookup value' : 'Klik formula bar untuk masukin range ke rumus'}
+          </span>
+        )}
         {activeSignature && (
           <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
             Argumen aktif: {activeSignature.args[Math.min(activeSignature.argIndex, activeSignature.args.length - 1)]}

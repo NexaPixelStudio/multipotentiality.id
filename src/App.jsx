@@ -27,6 +27,8 @@ export default function App() {
   const [formulaInputActive, setFormulaInputActive] = useState(false);
   const [formulaFocusTick, setFormulaFocusTick] = useState(0);
   const [lastRangeInsertion, setLastRangeInsertion] = useState(null);
+  const [lookupValue, setLookupValue] = useState('');
+  const [selectionTarget, setSelectionTarget] = useState('formula');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const selectedFormula = useMemo(() => {
@@ -41,6 +43,20 @@ export default function App() {
   }, [selectedFormula, curatedExercise]);
 
   const table = isGeneric ? genericTheoryTable : sharedExerciseTables[exercise?.tableKey] || genericTheoryTable;
+  const needsLookupHelper = useMemo(() => {
+    const name = selectedFormula?.name?.toUpperCase() || '';
+    const id = selectedFormula?.id || '';
+    return [
+      'VLOOKUP',
+      'HLOOKUP',
+      'XLOOKUP',
+      'LOOKUP',
+      'MATCH',
+      'XMATCH',
+      'INDEX MATCH'
+    ].includes(name) || ['vlookup', 'hlookup', 'xlookup', 'lookup', 'match', 'xmatch', 'index-match'].includes(id);
+  }, [selectedFormula]);
+
 
   const formulaOptions = useMemo(() => {
     const selected = selectedFormula ? [selectedFormula] : [];
@@ -98,7 +114,16 @@ export default function App() {
     setSelectedRange(null);
     setFormulaCursor(0);
     setLastRangeInsertion(null);
+    setLookupValue('');
+    setSelectionTarget('formula');
   }, [selectedFormula?.id]);
+
+  useEffect(() => {
+    if (!needsLookupHelper) {
+      setLookupValue('');
+      if (selectionTarget === 'lookup') setSelectionTarget('formula');
+    }
+  }, [needsLookupHelper, selectionTarget]);
 
   const updatePreference = (key, value) => {
     setProgressState((prev) => setPreference(prev, key, value));
@@ -132,6 +157,12 @@ export default function App() {
   };
 
   const insertRangeIntoFormula = (rangeRef) => {
+    if (needsLookupHelper && selectionTarget === 'lookup') {
+      setLookupValue(rangeRef);
+      setFeedback(null);
+      return;
+    }
+
     const current = answer || '';
     const trimmed = current.trimStart();
 
@@ -173,6 +204,8 @@ export default function App() {
     setSelectedRange(null);
     setFormulaCursor(0);
     setLastRangeInsertion(null);
+    setLookupValue('');
+    setSelectionTarget('formula');
   };
 
   const handleResetAll = () => {
@@ -186,6 +219,8 @@ export default function App() {
     setSelectedRange(null);
     setFormulaCursor(0);
     setLastRangeInsertion(null);
+    setLookupValue('');
+    setSelectionTarget('formula');
   };
 
   const handleNextFormula = () => {
@@ -289,7 +324,6 @@ export default function App() {
           </section>
 
           <FormulaBar
-            activeCell={activeCell}
             selectedRange={selectedRange}
             value={answer}
             onChange={handleAnswerChange}
@@ -297,10 +331,18 @@ export default function App() {
             separatorMode={progressState.separatorMode}
             formulaOptions={formulaOptions}
             onCursorChange={setFormulaCursor}
-            onFocusChange={setFormulaInputActive}
+            onFocusChange={(isActive) => {
+              setFormulaInputActive(isActive);
+              if (isActive) setSelectionTarget('formula');
+            }}
             cursorPosition={formulaCursor}
             focusTick={formulaFocusTick}
             formulaResult={formulaResult}
+            showLookupValue={needsLookupHelper}
+            lookupValue={lookupValue}
+            onLookupValueChange={setLookupValue}
+            selectionTarget={selectionTarget}
+            onSelectionTargetChange={setSelectionTarget}
           />
 
           <div className="flex flex-wrap gap-2">
