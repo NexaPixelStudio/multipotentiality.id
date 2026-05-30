@@ -63,6 +63,23 @@ body::-webkit-scrollbar-track,
     linear-gradient(180deg, #17211B 0%, #101711 100%);
 }
 
+/*
+  Font scale update:
+  Tailwind sizes are already raised by 1px from tailwind.config.js.
+  These rules cover custom arbitrary sizes like text-[10px], text-[11px], and text-[0.68rem].
+*/
+.text-\[10px\] {
+  font-size: 11px !important;
+}
+
+.text-\[11px\] {
+  font-size: 12px !important;
+}
+
+.text-\[0\.68rem\] {
+  font-size: calc(0.68rem + 1px) !important;
+}
+
 @media (max-width: 768px) {
   .sheet-cell {
     min-width: 105px;
