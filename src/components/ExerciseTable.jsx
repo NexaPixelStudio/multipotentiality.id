@@ -65,6 +65,29 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
 
   const isHighlighted = (ref) => highlightRanges.some((range) => inRange(ref, range));
   const isSelected = (ref) => liveRange ? inRange(ref, liveRange) : false;
+  const lastSheetRow = rows.length + 1;
+  const lastSheetColumn = numberToCol(columns.length || 1);
+
+  const selectColumn = (event, colIndex) => {
+    event.preventDefault();
+    const col = numberToCol(colIndex + 1);
+    const range = `${col}1:${col}${lastSheetRow}`;
+    setIsDragging(false);
+    setSelectionStart(null);
+    setSelectionEnd(null);
+    onCellClick?.(`${col}1`);
+    onRangeSelected?.(range);
+  };
+
+  const selectRow = (event, sheetRow) => {
+    event.preventDefault();
+    const range = `A${sheetRow}:${lastSheetColumn}${sheetRow}`;
+    setIsDragging(false);
+    setSelectionStart(null);
+    setSelectionEnd(null);
+    onCellClick?.(`A${sheetRow}`);
+    onRangeSelected?.(range);
+  };
 
   useEffect(() => {
     if (!isDragging) return undefined;
@@ -117,16 +140,30 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
           <thead>
             <tr>
               <th className="sticky left-0 z-20 min-w-[48px] border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 dark:border-white/10 dark:bg-black/30 dark:text-white/45" />
-              {columns.map((_, index) => (
-                <th key={index} className="sheet-cell border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 dark:border-white/10 dark:bg-black/30 dark:text-white/45">
-                  {letters[index] || `C${index + 1}`}
-                </th>
-              ))}
+              {columns.map((_, index) => {
+                const colName = numberToCol(index + 1);
+                return (
+                  <th
+                    key={colName}
+                    onMouseDown={(event) => selectColumn(event, index)}
+                    title={`Klik untuk pilih ${colName}1:${colName}${lastSheetRow}`}
+                    className="sheet-cell cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
+                  >
+                    {colName}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th className="sticky left-0 z-10 border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 dark:border-white/10 dark:bg-black/30 dark:text-white/45">1</th>
+              <th
+                onMouseDown={(event) => selectRow(event, 1)}
+                title={`Klik untuk pilih A1:${lastSheetColumn}1`}
+                className="sticky left-0 z-10 cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
+              >
+                1
+              </th>
               {columns.map((column, index) => {
                 const ref = `${letters[index]}1`;
                 return (
@@ -148,7 +185,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
               const sheetRow = rowIndex + 2;
               return (
                 <tr key={sheetRow}>
-                  <th className="sticky left-0 z-10 border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 dark:border-white/10 dark:bg-black/30 dark:text-white/45">{sheetRow}</th>
+                  <th
+                    onMouseDown={(event) => selectRow(event, sheetRow)}
+                    title={`Klik untuk pilih A${sheetRow}:${lastSheetColumn}${sheetRow}`}
+                    className="sticky left-0 z-10 cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
+                  >
+                    {sheetRow}
+                  </th>
                   {columns.map((_, colIndex) => {
                     const ref = `${letters[colIndex]}${sheetRow}`;
                     return (
