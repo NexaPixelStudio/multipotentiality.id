@@ -174,6 +174,7 @@ function QuestionValuePanel({ values = [], onInsert }) {
 }
 
 export default function FormulaBar({
+  question = '',
   selectedRange,
   value,
   onChange,
@@ -298,23 +299,57 @@ export default function FormulaBar({
   };
 
   const placeholder = separatorMode === 'id'
-    ? 'Ketik = lalu nama rumus. Contoh: =SUMIF( lalu drag range di tabel'
-    : 'Type = then formula name. Example: =SUMIF( then drag a table range';
+    ? 'Ketik = lalu nama rumus.'
+    : 'Type = then formula name.';
+
+  const resultValue = !value.trim()
+    ? 'Belum ada'
+    : formulaResult?.ok
+      ? formulaResult.displayValue || 'Kosong'
+      : formulaResult?.error || '#VALUE!';
+
+  const resultMessage = !value.trim()
+    ? 'Ketik rumus dulu. Setelah itu hasil sementara akan muncul di sini.'
+    : formulaResult?.ok
+      ? 'Ini hasil sementara dari rumus yang kamu ketik. Kalau sudah sesuai soal, tekan Enter atau klik Cek Jawaban.'
+      : formulaResult?.message || 'Excel akan menampilkan error untuk formula ini.';
+
+  const resultIsError = value.trim() && formulaResult && !formulaResult.ok;
 
   return (
     <div className="rounded-[1.5rem] border border-coach-line bg-white p-3 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
-      {showQuestionHelper && (
-        <QuestionValuePanel
-          values={helperValues}
-          onInsert={(item) => {
-            onLookupValueChange?.(item?.label || item?.insert || '');
-            onSelectionTargetChange?.('formula');
-            onInsertHelperValue?.(item);
-          }}
-        />
-      )}
+      <section className="rounded-2xl border border-coach-green/18 bg-coach-greenSoft/70 px-4 py-3 text-center dark:border-emerald-400/15 dark:bg-emerald-400/10">
+        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-coach-green dark:text-emerald-200">Soal yang diberikan</p>
+        <p className="mx-auto mt-1 max-w-4xl text-sm font-black leading-6 text-coach-ink dark:text-white sm:text-base">{question}</p>
+      </section>
 
-      <div className={showQuestionHelper ? 'relative mt-3' : 'relative'}>
+      <div className={`mt-3 grid gap-2 ${showQuestionHelper ? 'lg:grid-cols-[170px_1fr]' : ''}`}>
+        {showQuestionHelper && (
+          <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-2 dark:border-white/10 dark:bg-black/20">
+            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Value / Criteria</p>
+            <div className="mt-2 flex flex-wrap gap-2 lg:flex-col">
+              {helperValues.map((item, index) => (
+                <button
+                  key={`${item.role}-${item.insert}-${index}`}
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => {
+                    onLookupValueChange?.(item?.label || item?.insert || '');
+                    onSelectionTargetChange?.('formula');
+                    onInsertHelperValue?.(item);
+                  }}
+                  title={item.note || item.insert}
+                  className="rounded-lg border border-coach-green/20 bg-white px-3 py-2 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
+                >
+                  <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
+                  {item.note && <span className="mt-0.5 block truncate text-[10px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div className="relative">
           <input
             ref={inputRef}
             value={value}
@@ -370,43 +405,44 @@ export default function FormulaBar({
           )}
 
           {!open && <SignatureTooltip signature={activeSignature} />}
+        </div>
       </div>
 
-      {formulaResult && (
-        <div className={`mt-3 grid gap-2 rounded-2xl border px-3 py-3 sm:grid-cols-[150px_1fr] sm:items-start ${formulaResult.ok ? 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10' : 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10'}`}>
-          <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-black/45 dark:text-white/45">Hasil formula</p>
-            <p className={`mt-1 font-mono text-base font-black ${formulaResult.ok ? 'text-coach-green dark:text-emerald-200' : 'text-red-600 dark:text-red-200'}`}>
-              {formulaResult.ok ? formulaResult.displayValue || 'Kosong' : formulaResult.error}
-            </p>
+      <div className={`mt-2 grid gap-2 ${showQuestionHelper ? 'lg:grid-cols-[170px_220px_1fr]' : 'lg:grid-cols-[170px_220px_1fr]'}`}>
+        <section className="rounded-xl border border-coach-line bg-white px-3 py-2 dark:border-white/10 dark:bg-black/20">
+          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Instruksi</p>
+          <div className="mt-1 space-y-1 text-[11px] font-semibold leading-5 text-black/50 dark:text-white/50">
+            <p>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</p>
+            <p>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</p>
+            <p>Enter untuk cek jawaban.</p>
           </div>
-          <p className="text-xs leading-5 text-black/55 dark:text-white/55">
-            {formulaResult.ok
-              ? 'Ini hasil sementara dari rumus yang kamu ketik. Kalau hasilnya sudah sesuai soal, tekan Enter atau klik Cek Jawaban.'
-              : formulaResult.message || 'Excel akan menampilkan error untuk formula ini.'}
-          </p>
-        </div>
-      )}
+        </section>
 
-      <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-black/45 dark:text-white/45">
-        <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</span>
-        <span>Mode: {separatorMode === 'id' ? 'Excel Indonesia pakai titik koma (;)' : 'Excel English pakai koma (,)' }.</span>
-        <span>Enter untuk cek jawaban.</span>
-        {showQuestionHelper && (
-          <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            Klik nilai dari soal untuk isi lookup/criteria. Klik atau drag tabel untuk masukin range
-          </span>
-        )}
-        {activeSignature && (
-          <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            Argumen aktif: {activeSignature.args[Math.min(activeSignature.argIndex, activeSignature.args.length - 1)]}
-          </span>
-        )}
-        {selectedRange && (
-          <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            Range: {selectedRange}
-          </span>
-        )}
+        <section className={`rounded-xl border px-3 py-2 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
+          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil jawaban</p>
+          <p className={`mt-1 font-mono text-base font-black ${resultIsError ? 'text-red-600 dark:text-red-200' : 'text-coach-green dark:text-emerald-200'}`}>{resultValue}</p>
+        </section>
+
+        <section className={`rounded-xl border px-3 py-2 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-line bg-coach-beige dark:border-white/10 dark:bg-black/20'}`}>
+          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil sementara</p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-black/55 dark:text-white/55">{resultMessage}</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {showQuestionHelper && (
+              <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>
+            )}
+            <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
+            {activeSignature && (
+              <span className="rounded-full bg-white px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+                Argumen: {activeSignature.args[Math.min(activeSignature.argIndex, activeSignature.args.length - 1)]}
+              </span>
+            )}
+            {selectedRange && (
+              <span className="rounded-full bg-white px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+                Range: {selectedRange}
+              </span>
+            )}
+          </div>
+        </section>
       </div>
     </div>
   );
