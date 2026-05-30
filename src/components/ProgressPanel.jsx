@@ -3,10 +3,10 @@ export default function ProgressPanel({ formula, formulaProgress, stats }) {
   const status = formulaProgress?.status || 'Belum dicoba';
 
   return (
-    <section className="rounded-[1.75rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
+    <section className="coach-card rounded-[1.75rem] p-4 dark:border-white/10 dark:bg-white/[0.055]">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Progress Rumus Ini</p>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-coach-sky">Progress Rumus Ini</p>
           <h3 className="mt-1 text-xl font-black text-coach-ink dark:text-white">{formula.name}</h3>
           <p className="mt-1 text-sm text-black/55 dark:text-white/55">Status: {status} · Percobaan: {attempts}</p>
         </div>

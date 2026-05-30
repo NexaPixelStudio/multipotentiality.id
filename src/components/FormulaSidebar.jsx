@@ -5,7 +5,7 @@ import { getFormulaStatus, searchFormulas } from '../utils/formulaSearch';
 const statusClasses = {
   'Belum dicoba': 'bg-black/5 text-black/45 dark:bg-white/10 dark:text-white/45',
   'Sedang belajar': 'bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-200',
-  Benar: 'bg-coach-green/12 text-coach-green dark:bg-emerald-400/15 dark:text-emerald-200',
+  Benar: 'bg-coach-sky/35 text-coach-green dark:bg-coach-sky/15 dark:text-coach-sky',
   'Perlu ulang': 'bg-rose-100 text-rose-700 dark:bg-rose-400/15 dark:text-rose-200'
 };
 
@@ -28,11 +28,11 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
   }, [filtered]);
 
   const content = (
-    <aside className="flex h-full flex-col rounded-[2rem] border border-coach-line bg-white shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
+    <aside className="flex h-full flex-col coach-card-strong rounded-[2rem] dark:border-white/10 dark:bg-white/[0.055]">
       <div className="border-b border-coach-line p-4 dark:border-white/10">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Formula Library</p>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-coach-sky">Formula Library</p>
             <h2 className="text-lg font-black text-coach-ink dark:text-white">Daftar Rumus</h2>
           </div>
           <button onClick={onClose} className="rounded-full px-3 py-1 text-sm font-bold text-black/50 lg:hidden dark:text-white/60">Tutup</button>
@@ -43,7 +43,7 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Cari SUM, IF, lookup..."
-            className="w-full rounded-2xl border border-coach-line bg-coach-beige px-4 py-3 text-sm outline-none transition focus:border-coach-green dark:border-white/10 dark:bg-black/20 dark:text-white"
+            className="w-full rounded-2xl border border-coach-line bg-coach-beige px-4 py-3 text-sm outline-none transition focus:border-coach-aqua dark:border-white/10 dark:bg-black/20 dark:text-white"
           />
           <div className="grid grid-cols-2 gap-2">
             <select value={category} onChange={(event) => setCategory(event.target.value)} className="rounded-2xl border border-coach-line bg-white px-3 py-2 text-xs font-semibold dark:border-white/10 dark:bg-black/20 dark:text-white">
@@ -86,7 +86,7 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
                     <button
                       key={formula.id}
                       onClick={() => onSelect(formula.id)}
-                      className={`w-full rounded-2xl border p-3 text-left transition hover:border-coach-green hover:bg-coach-green/5 ${selectedId === formula.id ? 'border-coach-green bg-coach-green/10' : 'border-black/6 bg-black/[0.015] dark:border-white/8 dark:bg-white/[0.025]'}`}
+                      className={`w-full rounded-2xl border p-3 text-left transition hover:border-coach-aqua hover:bg-coach-sky/20 ${selectedId === formula.id ? 'border-coach-green bg-coach-sky/35' : 'border-black/6 bg-black/[0.015] dark:border-white/8 dark:bg-white/[0.025]'}`}
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div>
