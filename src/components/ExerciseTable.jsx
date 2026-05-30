@@ -30,10 +30,10 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   const isHighlighted = (ref) => highlightRanges.some((range) => inRange(ref, range));
 
   return (
-    <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
+    <section className="coach-card-strong rounded-[2rem] p-4 dark:border-white/10 dark:bg-white/[0.055]">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Spreadsheet Practice</p>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-coach-sky">Spreadsheet Practice</p>
           <h3 className="text-xl font-black text-coach-ink dark:text-white">{table?.title || 'Data Latihan'}</h3>
           <p className="mt-1 text-sm text-black/55 dark:text-white/55">{table?.description}</p>
         </div>
@@ -90,7 +90,7 @@ function Cell({ refName, value, header, active, highlighted, onClick }) {
     <td
       onClick={() => onClick?.(refName)}
       title={refName}
-      className={`sheet-cell cursor-pointer border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
+      className={`sheet-cell cursor-pointer border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-sky/25 font-black text-coach-ink dark:bg-coach-sky/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-sky/45 ring-1 ring-inset ring-coach-aqua/70 dark:bg-coach-sky/14' : ''} ${active ? 'outline outline-2 outline-coach-aqua' : ''}`}
     >
       <div className="min-h-[20px] truncate">{String(value ?? '')}</div>
     </td>
