@@ -137,22 +137,37 @@ function SignatureTooltip({ signature }) {
   );
 }
 
-function LookupValueSlot({ value, active, onActivate, onChange }) {
+function QuestionValuePanel({ values = [], onInsert }) {
+  if (!values.length) return null;
+
   return (
-    <label className="w-full sm:w-[220px]">
-      <span className="mb-1 block text-[10px] font-black uppercase tracking-[0.18em] text-black/40 dark:text-white/40">Lookup value</span>
-      <input
-        value={value}
-        onChange={(event) => onChange?.(event.target.value)}
-        onFocus={onActivate}
-        onClick={onActivate}
-        placeholder="klik cell, contoh A2"
-        spellCheck="false"
-        autoComplete="off"
-        className={`min-h-[46px] w-full rounded-xl border px-3 py-2 font-mono text-sm font-black outline-none transition ${active ? 'border-coach-green bg-white text-coach-green ring-2 ring-coach-green/15 dark:bg-black/30 dark:text-emerald-200' : 'border-coach-line bg-coach-beige text-black/55 hover:border-coach-green/45 dark:border-white/10 dark:bg-black/20 dark:text-white/70'}`}
-        aria-label="Lookup value"
-      />
-    </label>
+    <aside className="shrink-0 rounded-2xl border border-coach-green/20 bg-coach-greenSoft/80 p-3 dark:border-emerald-400/20 dark:bg-emerald-400/10 sm:w-[210px]">
+      <div className="text-center sm:text-left">
+        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-200">Nilai dari soal</p>
+        <p className="mt-1 text-[11px] font-semibold leading-4 text-black/50 dark:text-white/50">Klik value ini untuk masuk ke rumus.</p>
+      </div>
+
+      <div className="mt-3 grid gap-2">
+        {values.map((item, index) => (
+          <button
+            key={`${item.role}-${item.insert}-${index}`}
+            type="button"
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={() => onInsert?.(item)}
+            title={item.note || item.insert}
+            className="group flex min-h-[46px] items-center justify-between gap-3 rounded-xl border border-coach-green/20 bg-white px-3 py-2 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-black/20"
+          >
+            <span className="min-w-0">
+              <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
+              {item.note && <span className="mt-0.5 block truncate text-[11px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
+            </span>
+            <span className="shrink-0 rounded-full bg-coach-greenSoft px-2 py-1 text-[9px] font-black uppercase tracking-[0.08em] text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+              {item.role?.replace(' value', '') || 'Value'}
+            </span>
+          </button>
+        ))}
+      </div>
+    </aside>
   );
 }
 
@@ -168,9 +183,11 @@ export default function FormulaBar({
   cursorPosition = 0,
   focusTick = 0,
   formulaResult = null,
-  showLookupValue = false,
+  showQuestionHelper = false,
+  helperValues = [],
   lookupValue = '',
   onLookupValueChange,
+  onInsertHelperValue,
   selectionTarget = 'formula',
   onSelectionTargetChange
 }) {
@@ -284,18 +301,14 @@ export default function FormulaBar({
 
   return (
     <div className="rounded-[1.5rem] border border-coach-line bg-white p-3 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
-        {showLookupValue && (
-          <LookupValueSlot
-            value={lookupValue}
-            active={selectionTarget === 'lookup'}
-            onActivate={() => {
-              onSelectionTargetChange?.('lookup');
-              onFocusChange?.(false);
-            }}
-            onChange={(nextValue) => {
-              onLookupValueChange?.(nextValue);
-              onSelectionTargetChange?.('lookup');
+      <div className={showQuestionHelper ? "grid gap-3 lg:grid-cols-[210px_1fr] lg:items-start" : "grid gap-3"}>
+        {showQuestionHelper && (
+          <QuestionValuePanel
+            values={helperValues}
+            onInsert={(item) => {
+              onLookupValueChange?.(item?.label || item?.insert || '');
+              onSelectionTargetChange?.('formula');
+              onInsertHelperValue?.(item);
             }}
           />
         )}
@@ -379,9 +392,9 @@ export default function FormulaBar({
         <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</span>
         <span>Mode: {separatorMode === 'id' ? 'Excel Indonesia pakai titik koma (;)' : 'Excel English pakai koma (,)' }.</span>
         <span>Enter untuk cek jawaban.</span>
-        {showLookupValue && (
+        {showQuestionHelper && (
           <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            {selectionTarget === 'lookup' ? 'Klik cell di tabel untuk isi Lookup value' : 'Klik formula bar untuk masukin range ke rumus'}
+            Klik nilai dari soal untuk isi lookup/criteria, atau klik tabel untuk range
           </span>
         )}
         {activeSignature && (

@@ -14,6 +14,265 @@ import { formulaForSeparator, validateFormula, validateGenericFormula } from './
 import { autoCloseFormula, evaluateFormula } from './utils/formulaEngine';
 import { defaultProgressState, loadProgress, markFormulaAttempt, markFormulaOpened, resetProgress, saveProgress, setPreference } from './utils/localStorage';
 
+
+
+const LOOKUP_FUNCTION_NAMES = new Set(['VLOOKUP', 'HLOOKUP', 'XLOOKUP', 'LOOKUP', 'MATCH', 'XMATCH']);
+const LOOKUP_FUNCTION_IDS = new Set(['vlookup', 'hlookup', 'xlookup', 'lookup', 'match', 'xmatch', 'index-match']);
+const CRITERIA_FUNCTION_NAMES = new Set(['SUMIF', 'SUMIFS', 'COUNTIF', 'COUNTIFS', 'AVERAGEIF', 'AVERAGEIFS', 'FILTER']);
+const CRITERIA_FUNCTION_IDS = new Set(['sumif', 'sumifs', 'countif', 'countifs', 'averageif', 'averageifs', 'filter']);
+const HELPER_FUNCTION_NAMES = new Set([...LOOKUP_FUNCTION_NAMES, ...CRITERIA_FUNCTION_NAMES]);
+const HELPER_FUNCTION_IDS = new Set([...LOOKUP_FUNCTION_IDS, ...CRITERIA_FUNCTION_IDS]);
+
+function getTypedFunctionName(formula = '') {
+  const clean = String(formula || '').trim();
+  const match = clean.match(/^=\s*([A-Za-z.][A-Za-z0-9._]*)\s*\(/);
+  return match ? match[1].toUpperCase() : '';
+}
+
+function splitTopLevelArgs(text = '') {
+  const args = [];
+  let current = '';
+  let depth = 0;
+  let inQuote = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (char === '"' && text[index - 1] !== '\\') inQuote = !inQuote;
+
+    if (!inQuote) {
+      if (char === '(') depth += 1;
+      if (char === ')') depth = Math.max(0, depth - 1);
+      if (char === ',' && depth === 0) {
+        args.push(current.trim());
+        current = '';
+        continue;
+      }
+    }
+
+    current += char;
+  }
+
+  if (current.trim()) args.push(current.trim());
+  return args;
+}
+
+function parseExpectedCall(formula = '') {
+  const clean = String(formula || '').trim().replace(/^=/, '');
+  const openIndex = clean.indexOf('(');
+  if (openIndex === -1 || !clean.endsWith(')')) return null;
+
+  const name = clean.slice(0, openIndex).trim().toUpperCase();
+  const inner = clean.slice(openIndex + 1, -1);
+  return { name, args: splitTopLevelArgs(inner) };
+}
+
+function stripQuotes(value = '') {
+  const text = String(value || '').trim();
+  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) {
+    return text.slice(1, -1);
+  }
+  return text;
+}
+
+function toColName(number = 1) {
+  let value = Number(number) || 1;
+  let output = '';
+  while (value > 0) {
+    const remainder = (value - 1) % 26;
+    output = String.fromCharCode(65 + remainder) + output;
+    value = Math.floor((value - 1) / 26);
+  }
+  return output || 'A';
+}
+
+function getCellValueFromTable(table = {}, ref = '') {
+  const match = String(ref || '').toUpperCase().replace(/\$/g, '').match(/^([A-Z]+)(\d+)$/);
+  if (!match) return null;
+
+  const [, letters, rowText] = match;
+  const colNumber = letters.split('').reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0);
+  const rowNumber = Number(rowText);
+
+  if (rowNumber === 1) return table.columns?.[colNumber - 1] ?? null;
+  return table.rows?.[rowNumber - 2]?.[colNumber - 1] ?? null;
+}
+
+function makeHelperItem(rawValue = '', role = 'Criteria', table = {}) {
+  const raw = String(rawValue || '').trim();
+  if (!raw) return null;
+  if (/^TRUE$|^FALSE$/i.test(raw)) return { label: raw.toUpperCase(), insert: raw.toUpperCase(), role };
+
+  const isQuoted = /^".*"$/.test(raw) || /^'.*'$/.test(raw);
+  const isCell = /^\$?[A-Z]+\$?\d+$/i.test(raw);
+  const isRange = /^\$?[A-Z]+\$?\d+:\$?[A-Z]+\$?\d+$/i.test(raw);
+  const isNumber = /^-?\d+(\.\d+)?$/.test(raw);
+
+  if (isRange) return null;
+
+  if (isCell) {
+    const cleanRef = raw.toUpperCase().replace(/\$/g, '');
+    const cellValue = getCellValueFromTable(table, cleanRef);
+    return {
+      label: cleanRef,
+      insert: cleanRef,
+      role,
+      note: cellValue === null || typeof cellValue === 'undefined' || cellValue === '' ? '' : `isi: ${cellValue}`
+    };
+  }
+
+  if (isQuoted) {
+    const label = stripQuotes(raw);
+    return { label, insert: `"${label}"`, role };
+  }
+
+  if (isNumber) return { label: raw, insert: raw, role };
+
+  return { label: raw, insert: `"${stripQuotes(raw)}"`, role };
+}
+
+function addHelperItem(list, item) {
+  if (!item) return;
+  const key = `${item.role}|${item.insert}`.toUpperCase();
+  if (list.some((existing) => `${existing.role}|${existing.insert}`.toUpperCase() === key)) return;
+  list.push(item);
+}
+
+function extractComparisonValues(formula = '', table = {}) {
+  const values = [];
+  const text = String(formula || '');
+  const comparisons = text.match(/[A-Z]+\d+\s*(?:>=|<=|<>|=|>|<)\s*("[^"]+"|\d+(?:\.\d+)?|TRUE|FALSE)/gi) || [];
+  comparisons.forEach((item) => {
+    const match = item.match(/(?:>=|<=|<>|=|>|<)\s*(.+)$/i);
+    if (match) addHelperItem(values, makeHelperItem(match[1], 'Nilai kondisi', table));
+  });
+  return values;
+}
+
+function getQuestionHelperValues(exercise, table = {}) {
+  const call = parseExpectedCall(exercise?.expectedFormula);
+  const helpers = [];
+
+  if (!call) return helpers;
+
+  const { name, args } = call;
+
+  if (LOOKUP_FUNCTION_NAMES.has(name)) {
+    addHelperItem(helpers, makeHelperItem(args[0], 'Lookup value', table));
+  }
+
+  if (name === 'SUMIF' || name === 'COUNTIF') {
+    addHelperItem(helpers, makeHelperItem(args[1], 'Criteria value', table));
+  }
+
+  if (name === 'AVERAGEIF') {
+    addHelperItem(helpers, makeHelperItem(args[1], 'Criteria value', table));
+  }
+
+  if (name === 'SUMIFS' || name === 'COUNTIFS' || name === 'AVERAGEIFS') {
+    const firstCriteriaIndex = name === 'COUNTIFS' ? 1 : 2;
+    for (let index = firstCriteriaIndex; index < args.length; index += 2) {
+      addHelperItem(helpers, makeHelperItem(args[index], 'Criteria value', table));
+    }
+  }
+
+  if (name === 'FILTER') {
+    const quotedValues = String(exercise?.expectedFormula || '').match(/"[^"]+"/g) || [];
+    quotedValues.forEach((value) => addHelperItem(helpers, makeHelperItem(value, 'Criteria value', table)));
+  }
+
+  extractComparisonValues(exercise?.expectedFormula, table).forEach((value) => addHelperItem(helpers, value));
+
+  return helpers;
+}
+
+function getActiveFunctionArgIndex(formula = '', cursor = formula.length) {
+  const before = String(formula || '').slice(0, cursor);
+  let depth = 0;
+
+  for (let index = before.length - 1; index >= 0; index -= 1) {
+    const char = before[index];
+    if (char === ')') {
+      depth += 1;
+      continue;
+    }
+    if (char !== '(') continue;
+
+    if (depth > 0) {
+      depth -= 1;
+      continue;
+    }
+
+    const prefix = before.slice(0, index);
+    const match = prefix.match(/([A-Za-z.][A-Za-z0-9._]*)\s*$/);
+    if (!match) return null;
+
+    const argsText = before.slice(index + 1);
+    let nested = 0;
+    let argIndex = 0;
+    let inQuote = false;
+
+    for (let argCursor = 0; argCursor < argsText.length; argCursor += 1) {
+      const item = argsText[argCursor];
+      if (item === '"' && argsText[argCursor - 1] !== '\\') inQuote = !inQuote;
+      if (inQuote) continue;
+      if (item === '(') nested += 1;
+      if (item === ')') nested = Math.max(0, nested - 1);
+      if ((item === ',' || item === ';') && nested === 0) argIndex += 1;
+    }
+
+    return { name: match[1].toUpperCase(), argIndex };
+  }
+
+  return null;
+}
+
+function replaceFirstArgument(formula = '', lookupRef = '', separatorMode = 'id') {
+  const ref = String(lookupRef || '').trim();
+  if (!ref) return formula;
+
+  const current = String(formula || '');
+  const match = current.match(/^(\s*=\s*[A-Za-z.][A-Za-z0-9._]*\s*\()/);
+  if (!match) return current;
+
+  const prefix = match[1];
+  const openEnd = prefix.length;
+  const separator = separatorMode === 'id' ? ';' : ',';
+  const rest = current.slice(openEnd);
+  let depth = 0;
+  let inQuote = false;
+
+  for (let index = 0; index < rest.length; index += 1) {
+    const char = rest[index];
+    if (char === '"' && rest[index - 1] !== '\\') inQuote = !inQuote;
+    if (inQuote) continue;
+    if (char === '(') depth += 1;
+    if (char === ')') depth = Math.max(0, depth - 1);
+    if ((char === ';' || char === ',') && depth === 0) {
+      return `${prefix}${ref}${separator}${rest.slice(index + 1)}`;
+    }
+    if (char === ')' && depth === 0) {
+      return `${prefix}${ref}${rest.slice(index)}`;
+    }
+  }
+
+  return `${prefix}${ref}${separator}`;
+}
+
+function insertHelperValueAtCursor(formula = '', helperValue = '', cursor = formula.length, separatorMode = 'id') {
+  const insert = String(helperValue || '').trim();
+  if (!insert) return formula;
+
+  const current = String(formula || '');
+  const activeArg = getActiveFunctionArgIndex(current, cursor);
+
+  if (activeArg && LOOKUP_FUNCTION_NAMES.has(activeArg.name) && activeArg.argIndex === 0) {
+    return replaceFirstArgument(current, insert, separatorMode);
+  }
+
+  const start = Math.min(cursor ?? current.length, current.length);
+  return `${current.slice(0, start)}${insert}${current.slice(start)}`;
+}
+
 export default function App() {
   const [formulas, setFormulas] = useState(formulaCatalogFull);
   const [progressState, setProgressState] = useState(() => loadProgress());
@@ -43,20 +302,16 @@ export default function App() {
   }, [selectedFormula, curatedExercise]);
 
   const table = isGeneric ? genericTheoryTable : sharedExerciseTables[exercise?.tableKey] || genericTheoryTable;
-  const needsLookupHelper = useMemo(() => {
+  const selectedNeedsHelper = useMemo(() => {
     const name = selectedFormula?.name?.toUpperCase() || '';
     const id = selectedFormula?.id || '';
-    return [
-      'VLOOKUP',
-      'HLOOKUP',
-      'XLOOKUP',
-      'LOOKUP',
-      'MATCH',
-      'XMATCH',
-      'INDEX MATCH'
-    ].includes(name) || ['vlookup', 'hlookup', 'xlookup', 'lookup', 'match', 'xmatch', 'index-match'].includes(id);
+    return HELPER_FUNCTION_NAMES.has(name) || HELPER_FUNCTION_IDS.has(id);
   }, [selectedFormula]);
 
+  const typedFunctionName = useMemo(() => getTypedFunctionName(answer), [answer]);
+  const typedNeedsHelper = HELPER_FUNCTION_NAMES.has(typedFunctionName);
+  const questionHelperValues = useMemo(() => getQuestionHelperValues(exercise, table), [exercise, table]);
+  const showQuestionHelper = questionHelperValues.length > 0;
 
   const formulaOptions = useMemo(() => {
     const selected = selectedFormula ? [selectedFormula] : [];
@@ -119,11 +374,11 @@ export default function App() {
   }, [selectedFormula?.id]);
 
   useEffect(() => {
-    if (!needsLookupHelper) {
+    if (!showQuestionHelper) {
       setLookupValue('');
-      if (selectionTarget === 'lookup') setSelectionTarget('formula');
+      if (selectionTarget === 'helper') setSelectionTarget('formula');
     }
-  }, [needsLookupHelper, selectionTarget]);
+  }, [showQuestionHelper, selectionTarget]);
 
   const updatePreference = (key, value) => {
     setProgressState((prev) => setPreference(prev, key, value));
@@ -157,8 +412,14 @@ export default function App() {
   };
 
   const insertRangeIntoFormula = (rangeRef) => {
-    if (needsLookupHelper && selectionTarget === 'lookup') {
+    if (showQuestionHelper && selectionTarget === 'helper') {
+      const nextAnswer = replaceFirstArgument(answer, rangeRef, progressState.separatorMode);
       setLookupValue(rangeRef);
+      if (nextAnswer !== answer) {
+        setAnswer(nextAnswer);
+        setFormulaCursor(nextAnswer.length);
+        setFormulaFocusTick((tick) => tick + 1);
+      }
       setFeedback(null);
       return;
     }
@@ -338,9 +599,20 @@ export default function App() {
             cursorPosition={formulaCursor}
             focusTick={formulaFocusTick}
             formulaResult={formulaResult}
-            showLookupValue={needsLookupHelper}
+            showQuestionHelper={showQuestionHelper}
+            helperValues={questionHelperValues}
             lookupValue={lookupValue}
             onLookupValueChange={setLookupValue}
+            onInsertHelperValue={(item) => {
+              const nextAnswer = insertHelperValueAtCursor(answer, item?.insert, formulaCursor, progressState.separatorMode);
+              setLookupValue(item?.label || item?.insert || '');
+              setAnswer(nextAnswer);
+              setFeedback(null);
+              setFormulaCursor(nextAnswer.length);
+              setLastRangeInsertion(null);
+              setSelectionTarget('formula');
+              setFormulaFocusTick((tick) => tick + 1);
+            }}
             selectionTarget={selectionTarget}
             onSelectionTargetChange={setSelectionTarget}
           />
