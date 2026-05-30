@@ -290,11 +290,17 @@ export default function FormulaBar({
 
     if (event.key === 'Enter') {
       event.preventDefault();
+      event.stopPropagation();
+      setOpen(false);
+
       const completedValue = autoCloseFormula(value);
       if (completedValue !== value) {
         updateValue(completedValue, completedValue.length);
       }
-      onSubmit?.(completedValue);
+
+      requestAnimationFrame(() => {
+        onSubmit?.(completedValue);
+      });
     }
   };
 

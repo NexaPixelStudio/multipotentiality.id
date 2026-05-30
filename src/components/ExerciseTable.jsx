@@ -51,7 +51,7 @@ const inRange = (cellRef, rangeRef) => {
   return cell.col >= minCol && cell.col <= maxCol && cell.row >= minRow && cell.row <= maxRow;
 };
 
-export default function ExerciseTable({ table, highlightRanges = [], activeCell, selectedRange, onCellClick, onRangeSelected }) {
+export default function ExerciseTable({ table, highlightRanges = [], activeCell, onCellClick, onRangeSelected }) {
   const columns = table?.columns || [];
   const rows = table?.rows || [];
   const [selectionStart, setSelectionStart] = useState(null);
@@ -60,9 +60,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   const [selectionMode, setSelectionMode] = useState('cell');
 
   const liveRange = useMemo(() => {
-    if (!selectionStart) return selectedRange;
+    if (!selectionStart) return null;
     return normalizeRange(selectionStart, selectionEnd || selectionStart);
-  }, [selectionStart, selectionEnd, selectedRange]);
+  }, [selectionStart, selectionEnd]);
 
   const isHighlighted = (ref) => highlightRanges.some((range) => inRange(ref, range));
   const isSelected = (ref) => liveRange ? inRange(ref, liveRange) : false;
