@@ -323,11 +323,11 @@ export default function FormulaBar({
         <p className="mx-auto mt-1 max-w-4xl text-sm font-black leading-6 text-coach-ink dark:text-white sm:text-base">{question}</p>
       </section>
 
-      <div className={`mt-3 grid gap-2 ${showQuestionHelper ? 'lg:grid-cols-[170px_1fr]' : ''}`}>
+      <div className={`mt-3 grid gap-3 ${showQuestionHelper ? 'lg:grid-cols-[170px_minmax(0,1fr)_190px]' : 'lg:grid-cols-[minmax(0,1fr)_190px]'}`}>
         {showQuestionHelper && (
-          <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-2 dark:border-white/10 dark:bg-black/20">
+          <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Value / Criteria</p>
-            <div className="mt-2 flex flex-wrap gap-2 lg:flex-col">
+            <div className="mt-2 flex flex-wrap gap-2">
               {helperValues.map((item, index) => (
                 <button
                   key={`${item.role}-${item.insert}-${index}`}
@@ -339,7 +339,7 @@ export default function FormulaBar({
                     onInsertHelperValue?.(item);
                   }}
                   title={item.note || item.insert}
-                  className="rounded-lg border border-coach-green/20 bg-white px-3 py-2 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
+                  className="w-full rounded-lg border border-coach-green/20 bg-white px-3 py-2 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
                 >
                   <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
                   {item.note && <span className="mt-0.5 block truncate text-[10px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
@@ -349,99 +349,91 @@ export default function FormulaBar({
           </section>
         )}
 
-        <div className="relative">
-          <input
-            ref={inputRef}
-            value={value}
-            onChange={(event) => {
-              onChange(event.target.value);
-              reportCursor(event.target);
-            }}
-            onClick={(event) => {
-              onSelectionTargetChange?.('formula');
-              reportCursor(event.target);
-            }}
-            onKeyUp={(event) => reportCursor(event.target)}
-            onSelect={(event) => reportCursor(event.target)}
-            onFocus={(event) => {
-              onSelectionTargetChange?.('formula');
-              onFocusChange?.(true);
-              reportCursor(event.target);
-            }}
-            onBlur={() => onFocusChange?.(false)}
-            onKeyDown={handleKeyDown}
-            placeholder={placeholder}
-            spellCheck="false"
-            autoComplete="off"
-            className="min-h-[46px] w-full rounded-xl border border-coach-line bg-coach-beige px-4 font-mono text-sm font-semibold outline-none transition focus:border-coach-green focus:bg-white focus:ring-2 focus:ring-coach-green/12 dark:border-white/10 dark:bg-black/20 dark:text-white dark:focus:bg-black/30"
-          />
+        <div className="space-y-2">
+          <div className="relative">
+            <input
+              ref={inputRef}
+              value={value}
+              onChange={(event) => {
+                onChange(event.target.value);
+                reportCursor(event.target);
+              }}
+              onClick={(event) => {
+                onSelectionTargetChange?.('formula');
+                reportCursor(event.target);
+              }}
+              onKeyUp={(event) => reportCursor(event.target)}
+              onSelect={(event) => reportCursor(event.target)}
+              onFocus={(event) => {
+                onSelectionTargetChange?.('formula');
+                onFocusChange?.(true);
+                reportCursor(event.target);
+              }}
+              onBlur={() => onFocusChange?.(false)}
+              onKeyDown={handleKeyDown}
+              placeholder={placeholder}
+              spellCheck="false"
+              autoComplete="off"
+              className="min-h-[46px] w-full rounded-xl border border-coach-line bg-coach-beige px-4 font-mono text-sm font-semibold outline-none transition focus:border-coach-green focus:bg-white focus:ring-2 focus:ring-coach-green/12 dark:border-white/10 dark:bg-black/20 dark:text-white dark:focus:bg-black/30"
+            />
 
-          {open && suggestions.length > 0 && (
-            <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-40 overflow-hidden rounded-2xl border border-coach-green/20 bg-white shadow-[0_18px_40px_rgba(33,115,70,0.16)] dark:border-white/10 dark:bg-[#182018]">
-              <div className="border-b border-coach-line bg-coach-greenSoft px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-coach-green dark:border-white/10 dark:bg-emerald-400/10 dark:text-emerald-200">
-                Tekan Tab untuk pakai rumus
-              </div>
-              {suggestions.map((item, index) => {
-                const syntax = getSyntaxParts(item, separatorMode);
-                return (
-                  <button
-                    key={`${item.name}-${item.category}-${index}`}
-                    type="button"
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => insertSuggestion(item)}
-                    className={`flex w-full items-start justify-between gap-3 px-4 py-3 text-left transition ${index === activeIndex ? 'bg-coach-green text-white' : 'hover:bg-coach-greenSoft dark:hover:bg-white/8'}`}
-                  >
-                    <span>
-                      <span className="block font-mono text-sm font-black">{item.name}</span>
-                      <span className={`mt-0.5 block font-mono text-[11px] font-semibold ${index === activeIndex ? 'text-white/75' : 'text-black/45 dark:text-white/45'}`}>
-                        {syntax.name}({syntax.args.join(syntax.separator)})
+            {open && suggestions.length > 0 && (
+              <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-40 overflow-hidden rounded-2xl border border-coach-green/20 bg-white shadow-[0_18px_40px_rgba(33,115,70,0.16)] dark:border-white/10 dark:bg-[#182018]">
+                <div className="border-b border-coach-line bg-coach-greenSoft px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-coach-green dark:border-white/10 dark:bg-emerald-400/10 dark:text-emerald-200">
+                  Tekan Tab untuk pakai rumus
+                </div>
+                {suggestions.map((item, index) => {
+                  const syntax = getSyntaxParts(item, separatorMode);
+                  return (
+                    <button
+                      key={`${item.name}-${item.category}-${index}`}
+                      type="button"
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => insertSuggestion(item)}
+                      className={`flex w-full items-start justify-between gap-3 px-4 py-3 text-left transition ${index === activeIndex ? 'bg-coach-green text-white' : 'hover:bg-coach-greenSoft dark:hover:bg-white/8'}`}
+                    >
+                      <span>
+                        <span className="block font-mono text-sm font-black">{item.name}</span>
+                        <span className={`mt-0.5 block font-mono text-[11px] font-semibold ${index === activeIndex ? 'text-white/75' : 'text-black/45 dark:text-white/45'}`}>
+                          {syntax.name}({syntax.args.join(syntax.separator)})
+                        </span>
                       </span>
-                    </span>
-                    <span className={`shrink-0 truncate text-xs font-bold ${index === activeIndex ? 'text-white/70' : 'text-black/45 dark:text-white/45'}`}>{item.displayCategory || item.category}</span>
-                  </button>
-                );
-              })}
+                      <span className={`shrink-0 truncate text-xs font-bold ${index === activeIndex ? 'text-white/70' : 'text-black/45 dark:text-white/45'}`}>{item.displayCategory || item.category}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {!open && <SignatureTooltip signature={activeSignature} />}
+          </div>
+
+          <section className="rounded-xl border border-coach-line bg-white px-3 py-2 dark:border-white/10 dark:bg-black/20">
+            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Cara mengisi</p>
+            <div className="mt-1 flex flex-wrap gap-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
+              <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
+              <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
+              <span>Enter untuk cek jawaban.</span>
+              {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
+              <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
+              {activeSignature && (
+                <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+                  Argumen: {activeSignature.args[Math.min(activeSignature.argIndex, activeSignature.args.length - 1)]}
+                </span>
+              )}
+              {selectedRange && (
+                <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+                  Range: {selectedRange}
+                </span>
+              )}
             </div>
-          )}
-
-          {!open && <SignatureTooltip signature={activeSignature} />}
+          </section>
         </div>
-      </div>
 
-      <div className={`mt-2 grid gap-2 ${showQuestionHelper ? 'lg:grid-cols-[170px_220px_1fr]' : 'lg:grid-cols-[170px_220px_1fr]'}`}>
-        <section className="rounded-xl border border-coach-line bg-white px-3 py-2 dark:border-white/10 dark:bg-black/20">
-          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Instruksi</p>
-          <div className="mt-1 space-y-1 text-[11px] font-semibold leading-5 text-black/50 dark:text-white/50">
-            <p>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span>.</p>
-            <p>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</p>
-            <p>Enter untuk cek jawaban.</p>
-          </div>
-        </section>
-
-        <section className={`rounded-xl border px-3 py-2 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
+        <section className={`rounded-xl border px-3 py-3 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil jawaban</p>
-          <p className={`mt-1 font-mono text-base font-black ${resultIsError ? 'text-red-600 dark:text-red-200' : 'text-coach-green dark:text-emerald-200'}`}>{resultValue}</p>
-        </section>
-
-        <section className={`rounded-xl border px-3 py-2 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-line bg-coach-beige dark:border-white/10 dark:bg-black/20'}`}>
-          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil sementara</p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-black/55 dark:text-white/55">{resultMessage}</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {showQuestionHelper && (
-              <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>
-            )}
-            <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
-            {activeSignature && (
-              <span className="rounded-full bg-white px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-                Argumen: {activeSignature.args[Math.min(activeSignature.argIndex, activeSignature.args.length - 1)]}
-              </span>
-            )}
-            {selectedRange && (
-              <span className="rounded-full bg-white px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-                Range: {selectedRange}
-              </span>
-            )}
-          </div>
+          <p className={`mt-2 font-mono text-lg font-black ${resultIsError ? 'text-red-600 dark:text-red-200' : 'text-coach-green dark:text-emerald-200'}`}>{resultValue}</p>
+          <p className="mt-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">{resultMessage}</p>
         </section>
       </div>
     </div>
