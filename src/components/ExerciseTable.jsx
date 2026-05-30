@@ -1,11 +1,39 @@
+import { useEffect, useMemo, useState } from 'react';
+
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 const colToNumber = (col = '') => col.split('').reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0);
+
+const numberToCol = (num = 1) => {
+  let col = '';
+  let value = num;
+  while (value > 0) {
+    const remainder = (value - 1) % 26;
+    col = String.fromCharCode(65 + remainder) + col;
+    value = Math.floor((value - 1) / 26);
+  }
+  return col;
+};
 
 const parseCell = (ref = '') => {
   const match = String(ref).toUpperCase().match(/^([A-Z]+)(\d+)$/);
   if (!match) return null;
   return { col: colToNumber(match[1]), row: Number(match[2]) };
+};
+
+const normalizeRange = (startRef, endRef = startRef) => {
+  const start = parseCell(startRef);
+  const end = parseCell(endRef);
+  if (!start || !end) return startRef;
+
+  const minCol = Math.min(start.col, end.col);
+  const maxCol = Math.max(start.col, end.col);
+  const minRow = Math.min(start.row, end.row);
+  const maxRow = Math.max(start.row, end.row);
+  const from = `${numberToCol(minCol)}${minRow}`;
+  const to = `${numberToCol(maxCol)}${maxRow}`;
+
+  return from === to ? from : `${from}:${to}`;
 };
 
 const inRange = (cellRef, rangeRef) => {
@@ -23,11 +51,50 @@ const inRange = (cellRef, rangeRef) => {
   return cell.col >= minCol && cell.col <= maxCol && cell.row >= minRow && cell.row <= maxRow;
 };
 
-export default function ExerciseTable({ table, highlightRanges = [], activeCell, onCellClick }) {
+export default function ExerciseTable({ table, highlightRanges = [], activeCell, selectedRange, onCellClick, onRangeSelected }) {
   const columns = table?.columns || [];
   const rows = table?.rows || [];
+  const [selectionStart, setSelectionStart] = useState(null);
+  const [selectionEnd, setSelectionEnd] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const liveRange = useMemo(() => {
+    if (!selectionStart) return selectedRange;
+    return normalizeRange(selectionStart, selectionEnd || selectionStart);
+  }, [selectionStart, selectionEnd, selectedRange]);
 
   const isHighlighted = (ref) => highlightRanges.some((range) => inRange(ref, range));
+  const isSelected = (ref) => liveRange ? inRange(ref, liveRange) : false;
+
+  useEffect(() => {
+    if (!isDragging) return undefined;
+
+    const finishSelection = () => {
+      if (!selectionStart) return;
+      const finalRange = normalizeRange(selectionStart, selectionEnd || selectionStart);
+      onRangeSelected?.(finalRange);
+      setIsDragging(false);
+      setSelectionStart(null);
+      setSelectionEnd(null);
+    };
+
+    window.addEventListener('mouseup', finishSelection);
+    return () => window.removeEventListener('mouseup', finishSelection);
+  }, [isDragging, selectionStart, selectionEnd, onRangeSelected]);
+
+  const beginSelection = (event, ref) => {
+    event.preventDefault();
+    setSelectionStart(ref);
+    setSelectionEnd(ref);
+    setIsDragging(true);
+    onCellClick?.(ref);
+  };
+
+  const moveSelection = (ref) => {
+    if (!isDragging || !selectionStart) return;
+    setSelectionEnd(ref);
+    onCellClick?.(ref);
+  };
 
   return (
     <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
@@ -37,9 +104,12 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
           <h3 className="text-xl font-black text-coach-ink dark:text-white">{table?.title || 'Data Latihan'}</h3>
           <p className="mt-1 text-sm text-black/55 dark:text-white/55">{table?.description}</p>
         </div>
-        <p className="rounded-full bg-coach-beige px-3 py-2 text-xs font-bold text-black/50 dark:bg-black/20 dark:text-white/55">
-          Klik cell untuk melihat referensi. Aktif: {activeCell || 'A1'}
-        </p>
+        <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-black/50 dark:text-white/55">
+          <span className="rounded-full bg-coach-beige px-3 py-2 dark:bg-black/20">Aktif: {activeCell || 'A1'}</span>
+          <span className="rounded-full bg-coach-greenSoft px-3 py-2 text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
+            Drag cell/range untuk masukin referensi
+          </span>
+        </div>
       </div>
 
       <div className="formula-scroll overflow-auto rounded-2xl border border-coach-line dark:border-white/10">
@@ -60,7 +130,17 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
               {columns.map((column, index) => {
                 const ref = `${letters[index]}1`;
                 return (
-                  <Cell key={ref} refName={ref} value={column} header active={activeCell === ref} highlighted={isHighlighted(ref)} onClick={onCellClick} />
+                  <Cell
+                    key={ref}
+                    refName={ref}
+                    value={column}
+                    header
+                    active={activeCell === ref}
+                    highlighted={isHighlighted(ref)}
+                    selected={isSelected(ref)}
+                    onMouseDown={beginSelection}
+                    onMouseEnter={moveSelection}
+                  />
                 );
               })}
             </tr>
@@ -72,7 +152,16 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                   {columns.map((_, colIndex) => {
                     const ref = `${letters[colIndex]}${sheetRow}`;
                     return (
-                      <Cell key={ref} refName={ref} value={row[colIndex]} active={activeCell === ref} highlighted={isHighlighted(ref)} onClick={onCellClick} />
+                      <Cell
+                        key={ref}
+                        refName={ref}
+                        value={row[colIndex]}
+                        active={activeCell === ref}
+                        highlighted={isHighlighted(ref)}
+                        selected={isSelected(ref)}
+                        onMouseDown={beginSelection}
+                        onMouseEnter={moveSelection}
+                      />
                     );
                   })}
                 </tr>
@@ -85,12 +174,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   );
 }
 
-function Cell({ refName, value, header, active, highlighted, onClick }) {
+function Cell({ refName, value, header, active, highlighted, selected, onMouseDown, onMouseEnter }) {
   return (
     <td
-      onClick={() => onClick?.(refName)}
+      onMouseDown={(event) => onMouseDown?.(event, refName)}
+      onMouseEnter={() => onMouseEnter?.(refName)}
       title={refName}
-      className={`sheet-cell cursor-pointer border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
+      className={`sheet-cell cursor-cell select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
     >
       <div className="min-h-[20px] truncate">{String(value ?? '')}</div>
     </td>

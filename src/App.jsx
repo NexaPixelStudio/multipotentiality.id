@@ -21,6 +21,11 @@ export default function App() {
   const [feedback, setFeedback] = useState(null);
   const [hintIndex, setHintIndex] = useState(-1);
   const [activeCell, setActiveCell] = useState('G2');
+  const [selectedRange, setSelectedRange] = useState(null);
+  const [formulaCursor, setFormulaCursor] = useState(0);
+  const [formulaInputActive, setFormulaInputActive] = useState(false);
+  const [formulaFocusTick, setFormulaFocusTick] = useState(0);
+  const [lastRangeInsertion, setLastRangeInsertion] = useState(null);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const selectedFormula = useMemo(() => {
@@ -35,6 +40,29 @@ export default function App() {
   }, [selectedFormula, curatedExercise]);
 
   const table = isGeneric ? genericTheoryTable : sharedExerciseTables[exercise?.tableKey] || genericTheoryTable;
+
+  const formulaOptions = useMemo(() => {
+    const selected = selectedFormula ? [selectedFormula] : [];
+    const selectedName = selectedFormula?.name?.toUpperCase();
+    const rest = formulas
+      .filter((formula) => formula.name?.toUpperCase() !== selectedName)
+      .map((formula) => ({
+        name: formula.name,
+        category: formula.category,
+        displayCategory: formula.displayCategory,
+        hasExercise: formula.hasExercise
+      }));
+
+    return [
+      ...selected.map((formula) => ({
+        name: formula.name,
+        category: formula.category,
+        displayCategory: formula.displayCategory,
+        hasExercise: formula.hasExercise
+      })),
+      ...rest
+    ];
+  }, [formulas, selectedFormula]);
 
   const stats = useMemo(() => {
     const total = formulas.length;
@@ -57,6 +85,9 @@ export default function App() {
     setFeedback(null);
     setHintIndex(-1);
     setActiveCell(exercise?.activeCell || 'G2');
+    setSelectedRange(null);
+    setFormulaCursor(0);
+    setLastRangeInsertion(null);
   }, [selectedFormula?.id]);
 
   const updatePreference = (key, value) => {
@@ -68,6 +99,12 @@ export default function App() {
     setMobileSidebarOpen(false);
   };
 
+  const handleAnswerChange = (nextValue) => {
+    setAnswer(nextValue);
+    setFeedback(null);
+    setLastRangeInsertion(null);
+  };
+
   const handleCheckAnswer = () => {
     const result = isGeneric
       ? validateGenericFormula(answer, selectedFormula, progressState.separatorMode)
@@ -76,11 +113,48 @@ export default function App() {
     setProgressState((prev) => markFormulaAttempt(prev, selectedFormula.id, result.correct));
   };
 
+  const insertRangeIntoFormula = (rangeRef) => {
+    const current = answer || '';
+    const trimmed = current.trimStart();
+
+    if (!formulaInputActive || !trimmed.startsWith('=')) {
+      return;
+    }
+
+    let start = Math.min(formulaCursor ?? current.length, current.length);
+    let end = start;
+
+    if (
+      lastRangeInsertion &&
+      current.slice(lastRangeInsertion.start, lastRangeInsertion.end) === lastRangeInsertion.value
+    ) {
+      start = lastRangeInsertion.start;
+      end = lastRangeInsertion.end;
+    }
+
+    const nextValue = `${current.slice(0, start)}${rangeRef}${current.slice(end)}`;
+    const nextCursor = start + rangeRef.length;
+
+    setAnswer(nextValue);
+    setFeedback(null);
+    setFormulaCursor(nextCursor);
+    setLastRangeInsertion({ start, end: nextCursor, value: rangeRef });
+    setFormulaFocusTick((tick) => tick + 1);
+  };
+
+  const handleRangeSelected = (rangeRef) => {
+    setSelectedRange(rangeRef);
+    insertRangeIntoFormula(rangeRef);
+  };
+
   const handleResetExercise = () => {
     setAnswer('');
     setFeedback(null);
     setHintIndex(-1);
     setActiveCell(exercise?.activeCell || 'G2');
+    setSelectedRange(null);
+    setFormulaCursor(0);
+    setLastRangeInsertion(null);
   };
 
   const handleResetAll = () => {
@@ -91,6 +165,9 @@ export default function App() {
     setAnswer('');
     setFeedback(null);
     setHintIndex(-1);
+    setSelectedRange(null);
+    setFormulaCursor(0);
+    setLastRangeInsertion(null);
   };
 
   const handleNextFormula = () => {
@@ -170,8 +247,28 @@ export default function App() {
             )}
           </section>
 
-          <ExerciseTable table={table} highlightRanges={exercise.highlightRanges} activeCell={activeCell} onCellClick={setActiveCell} />
-          <FormulaBar activeCell={activeCell} value={answer} onChange={setAnswer} separatorMode={progressState.separatorMode} />
+          <ExerciseTable
+            table={table}
+            highlightRanges={exercise.highlightRanges}
+            activeCell={activeCell}
+            selectedRange={selectedRange}
+            onCellClick={setActiveCell}
+            onRangeSelected={handleRangeSelected}
+          />
+
+          <FormulaBar
+            activeCell={activeCell}
+            selectedRange={selectedRange}
+            value={answer}
+            onChange={handleAnswerChange}
+            onSubmit={handleCheckAnswer}
+            separatorMode={progressState.separatorMode}
+            formulaOptions={formulaOptions}
+            onCursorChange={setFormulaCursor}
+            onFocusChange={setFormulaInputActive}
+            cursorPosition={formulaCursor}
+            focusTick={formulaFocusTick}
+          />
 
           <div className="flex flex-wrap gap-2">
             <button onClick={handleCheckAnswer} className="rounded-full bg-coach-green px-5 py-3 text-sm font-black text-white transition hover:bg-coach-ink dark:hover:bg-emerald-600">
