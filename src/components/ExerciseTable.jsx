@@ -57,6 +57,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   const [selectionStart, setSelectionStart] = useState(null);
   const [selectionEnd, setSelectionEnd] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [selectionMode, setSelectionMode] = useState('cell');
 
   const liveRange = useMemo(() => {
     if (!selectionStart) return selectedRange;
@@ -68,25 +69,36 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   const lastSheetRow = rows.length + 1;
   const lastSheetColumn = numberToCol(columns.length || 1);
 
-  const selectColumn = (event, colIndex) => {
+  const beginColumnSelection = (event, colIndex) => {
     event.preventDefault();
     const col = numberToCol(colIndex + 1);
-    const range = `${col}1:${col}${lastSheetRow}`;
-    setIsDragging(false);
-    setSelectionStart(null);
-    setSelectionEnd(null);
+    setSelectionMode('column');
+    setSelectionStart(`${col}1`);
+    setSelectionEnd(`${col}${lastSheetRow}`);
+    setIsDragging(true);
     onCellClick?.(`${col}1`);
-    onRangeSelected?.(range);
   };
 
-  const selectRow = (event, sheetRow) => {
+  const moveColumnSelection = (colIndex) => {
+    if (!isDragging || selectionMode !== 'column' || !selectionStart) return;
+    const col = numberToCol(colIndex + 1);
+    setSelectionEnd(`${col}${lastSheetRow}`);
+    onCellClick?.(`${col}1`);
+  };
+
+  const beginRowSelection = (event, sheetRow) => {
     event.preventDefault();
-    const range = `A${sheetRow}:${lastSheetColumn}${sheetRow}`;
-    setIsDragging(false);
-    setSelectionStart(null);
-    setSelectionEnd(null);
+    setSelectionMode('row');
+    setSelectionStart(`A${sheetRow}`);
+    setSelectionEnd(`${lastSheetColumn}${sheetRow}`);
+    setIsDragging(true);
     onCellClick?.(`A${sheetRow}`);
-    onRangeSelected?.(range);
+  };
+
+  const moveRowSelection = (sheetRow) => {
+    if (!isDragging || selectionMode !== 'row' || !selectionStart) return;
+    setSelectionEnd(`${lastSheetColumn}${sheetRow}`);
+    onCellClick?.(`A${sheetRow}`);
   };
 
   useEffect(() => {
@@ -99,6 +111,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
       setIsDragging(false);
       setSelectionStart(null);
       setSelectionEnd(null);
+      setSelectionMode('cell');
     };
 
     window.addEventListener('mouseup', finishSelection);
@@ -107,6 +120,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
 
   const beginSelection = (event, ref) => {
     event.preventDefault();
+    setSelectionMode('cell');
     setSelectionStart(ref);
     setSelectionEnd(ref);
     setIsDragging(true);
@@ -114,9 +128,14 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   };
 
   const moveSelection = (ref) => {
-    if (!isDragging || !selectionStart) return;
+    if (!isDragging || selectionMode !== 'cell' || !selectionStart) return;
     setSelectionEnd(ref);
     onCellClick?.(ref);
+  };
+
+  const stopDragging = () => {
+    setIsDragging(false);
+    setSelectionMode('cell');
   };
 
   return (
@@ -130,7 +149,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
         <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-black/50 dark:text-white/55">
           <span className="rounded-full bg-coach-beige px-3 py-2 dark:bg-black/20">Aktif: {activeCell || 'A1'}</span>
           <span className="rounded-full bg-coach-greenSoft px-3 py-2 text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            Drag cell/range untuk masukin referensi
+            Klik/drag cell, header kolom, atau nomor baris
           </span>
         </div>
       </div>
@@ -145,8 +164,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                 return (
                   <th
                     key={colName}
-                    onMouseDown={(event) => selectColumn(event, index)}
-                    title={`Klik untuk pilih ${colName}1:${colName}${lastSheetRow}`}
+                    onMouseDown={(event) => beginColumnSelection(event, index)}
+                    onMouseEnter={() => moveColumnSelection(index)}
+                    title={`Klik atau drag untuk pilih ${colName}1:${colName}${lastSheetRow}`}
                     className="sheet-cell cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
                   >
                     {colName}
@@ -158,8 +178,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
           <tbody>
             <tr>
               <th
-                onMouseDown={(event) => selectRow(event, 1)}
-                title={`Klik untuk pilih A1:${lastSheetColumn}1`}
+                onMouseDown={(event) => beginRowSelection(event, 1)}
+                onMouseEnter={() => moveRowSelection(1)}
+                title={`Klik atau drag untuk pilih A1:${lastSheetColumn}1`}
                 className="sticky left-0 z-10 cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
               >
                 1
@@ -186,8 +207,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
               return (
                 <tr key={sheetRow}>
                   <th
-                    onMouseDown={(event) => selectRow(event, sheetRow)}
-                    title={`Klik untuk pilih A${sheetRow}:${lastSheetColumn}${sheetRow}`}
+                    onMouseDown={(event) => beginRowSelection(event, sheetRow)}
+                    onMouseEnter={() => moveRowSelection(sheetRow)}
+                    title={`Klik atau drag untuk pilih A${sheetRow}:${lastSheetColumn}${sheetRow}`}
                     className="sticky left-0 z-10 cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
                   >
                     {sheetRow}
