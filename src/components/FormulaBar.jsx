@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { autoCloseFormula } from '../utils/formulaEngine.js';
+import { getFormulaLearningContent } from '../data/formulaLearningContent.js';
 
 function getFragment(value = '', cursor = 0) {
   const before = value.slice(0, cursor);
@@ -169,6 +170,7 @@ function getFormulaLogicExplanation({ value = '', cleanOptions = [], activeSigna
   const name = call?.name || activeSignature?.name || '';
   const args = call?.args || [];
   const option = cleanOptions.find((item) => item.name?.toUpperCase() === name);
+  const learning = option ? getFormulaLearningContent(option) : {};
 
   if (!String(value || '').trim()) {
     return 'Ketik rumus dulu. Nanti bagian ini akan jelasin alur berpikir rumusnya, bukan cuma hasil akhirnya.';
@@ -253,6 +255,9 @@ function getFormulaLogicExplanation({ value = '', cleanOptions = [], activeSigna
     if (args.length >= 1) return `${name} membaca range ${a0}, lalu menghitung hasil sesuai fungsi ${name}. Fokusnya pastikan range yang dipilih memang berisi data yang dibutuhkan soal.`;
   }
 
+  if (learning?.simpleLogic) {
+    return learning.analogy ? `${learning.simpleLogic} Analogi gampangnya: ${learning.analogy}` : learning.simpleLogic;
+  }
   if (option?.simpleLogic) return option.simpleLogic;
   if (option?.description) return option.description;
 

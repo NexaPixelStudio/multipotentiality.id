@@ -1,7 +1,9 @@
+import { formulaLearningContent } from './formulaLearningContent.js';
+
 // Data katalog Formula Coach.
 // Kategori dan nama function disiapkan sebagai data lokal supaya komponen UI tidak perlu diubah saat katalog di-update.
 
-export const formulaCatalogFull = [
+const baseFormulaCatalogFull = [
   {
     "id": "detectlanguage",
     "name": "DETECTLANGUAGE",
@@ -11532,6 +11534,11 @@ export const formulaCatalogFull = [
     "hasExercise": false
   }
 ];
+
+export const formulaCatalogFull = baseFormulaCatalogFull.map((formula) => ({
+  ...formula,
+  ...(formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {})
+}));
 
 export const formulaById = Object.fromEntries(formulaCatalogFull.map((formula) => [formula.id, formula]));
 
