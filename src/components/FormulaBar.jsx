@@ -353,6 +353,7 @@ export default function FormulaBar({
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showSignature, setShowSignature] = useState(true);
 
   const cursor = Math.min(cursorPosition ?? value.length, value.length);
   const fragmentInfo = useMemo(() => getFragment(value, cursor), [value, cursor]);
@@ -381,6 +382,10 @@ export default function FormulaBar({
       argIndex: activeFunction.argIndex
     };
   }, [cleanOptions, cursor, separatorMode, value]);
+
+  useEffect(() => {
+    setShowSignature(true);
+  }, [activeSignature?.name]);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -594,11 +599,22 @@ export default function FormulaBar({
               placeholder={placeholder}
               spellCheck="false"
               autoComplete="off"
-              className="min-h-[46px] w-full rounded-xl border border-coach-line bg-coach-beige py-0 pl-4 pr-12 font-mono text-sm font-semibold outline-none transition focus:border-coach-green focus:bg-white focus:ring-2 focus:ring-coach-green/12 dark:border-white/10 dark:bg-black/20 dark:text-white dark:focus:bg-black/30"
+              className="min-h-[46px] w-full rounded-xl border border-coach-line bg-coach-beige py-0 pl-4 pr-28 font-mono text-sm font-semibold outline-none transition focus:border-coach-green focus:bg-white focus:ring-2 focus:ring-coach-green/12 dark:border-white/10 dark:bg-black/20 dark:text-white dark:focus:bg-black/30"
             />
 
-            <div className="pointer-events-none absolute right-3 top-1/2 z-10 -translate-y-1/2 font-black">
-              {renderFormulaStatus()}
+            <div className="absolute right-3 top-1/2 z-10 flex -translate-y-1/2 items-center gap-2 font-black">
+              {activeSignature && (
+                <button
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => setShowSignature((current) => !current)}
+                  title={showSignature ? 'Hide bantuan argumen rumus' : 'Show bantuan argumen rumus'}
+                  className="rounded-full border border-coach-green/20 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.08em] text-coach-green shadow-sm transition hover:border-coach-green hover:bg-coach-greenSoft dark:border-emerald-400/15 dark:bg-black/30 dark:text-emerald-200 dark:hover:bg-emerald-400/10"
+                >
+                  {showSignature ? 'Hide' : 'Show'}
+                </button>
+              )}
+              <span className="pointer-events-none">{renderFormulaStatus()}</span>
             </div>
 
             {open && suggestions.length > 0 && (
@@ -629,7 +645,7 @@ export default function FormulaBar({
               </div>
             )}
 
-            {!open && <SignatureTooltip signature={activeSignature} />}
+            {!open && showSignature && <SignatureTooltip signature={activeSignature} />}
           </div>
 
           <section className="rounded-xl border border-coach-line bg-white px-3 py-2 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
