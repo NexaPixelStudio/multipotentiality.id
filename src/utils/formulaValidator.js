@@ -312,6 +312,16 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
     };
   }
 
+  const exactBeforeDetail = exactFormulaMatch(answerAsEnglish, exercise);
+  if (exactBeforeDetail) {
+    return {
+      correct: true,
+      title: 'Jawaban kamu benar.',
+      message: 'Jawaban kamu benar. Logikanya sudah tepat.',
+      details: ['Formula cocok dengan jawaban utama atau alternatif yang diterima.']
+    };
+  }
+
   const missingRefs = (exercise.requiredRefs || []).filter((ref) => !includesNormalized(formulaNorm, ref));
   if (missingRefs.length) {
     return {

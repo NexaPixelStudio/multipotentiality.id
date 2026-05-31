@@ -658,7 +658,79 @@ export const sharedExerciseTables = {
       ]
     ]
   }
-};
+,
+  "mathNumbers": {
+    "title": "Data Angka",
+    "description": "Pakai tabel ini untuk rumus hitung angka, pembulatan, akar, pangkat, dan operasi matematika lain.",
+    "columns": ["Item", "Nilai", "Pembanding", "Keterangan"],
+    "rows": [["A", 12, 3, "angka contoh"], ["B", 8, 2, "angka contoh"], ["C", 15, 5, "angka contoh"], ["D", 20, 4, "angka contoh"], ["E", 7, 2, "angka contoh"], ["F", 30, 6, "angka contoh"], ["Parameter", 2, 1, "digit/k/step"]]
+  },
+  "statsParameter": {
+    "title": "Parameter Statistik",
+    "description": "Tabel ini khusus untuk rumus statistik dan compatibility. Ambil parameter dari kolom Nilai, jangan pakai tabel siswa kalau argumennya peluang/distribusi.",
+    "columns": ["Parameter", "Nilai", "Keterangan", "Data Aktual", "Data Ekspektasi"],
+    "rows": [["Jumlah gagal", 3, "Banyak gagal sebelum target berhasil tercapai", 82, 80], ["Target berhasil", 5, "Jumlah berhasil yang ingin dicapai", 91, 90], ["Peluang berhasil", 0.4, "Peluang berhasil tiap percobaan", 68, 70], ["Jumlah berhasil", 6, "Jumlah sukses untuk binomial", 77, 75], ["Jumlah percobaan", 10, "Total percobaan", 73, 72], ["Alpha", 8, "Parameter bentuk distribusi", 88, 85], ["Beta", 10, "Parameter bentuk distribusi", 95, 92], ["Nilai x", 42, "Nilai yang sedang diuji", 64, 66], ["Mean", 40, "Rata-rata distribusi", 80, 78], ["Standar deviasi", 1.5, "Sebaran data", 72, 74], ["Cumulative", "TRUE", "TRUE untuk kumulatif, FALSE untuk titik peluang", 86, 84], ["Degree freedom", 10, "Derajat kebebasan", 79, 81], ["Sample success", 4, "Sukses dalam sampel", 58, 60], ["Population success", 8, "Sukses dalam populasi", 90, 88], ["Population size", 20, "Ukuran populasi", 75, 76], ["Tails / type / quart", 2, "Parameter pilihan", 83, 82], ["Lower bound", 0, "Batas bawah", 78, 77], ["Upper bound", 1, "Batas atas", 69, 70]]
+  },
+  "financeParameter": {
+    "title": "Parameter Keuangan",
+    "description": "Tabel ini untuk rumus finansial seperti PMT, FV, PV, NPV, IRR, bunga, depresiasi, dan obligasi.",
+    "columns": ["Tanggal", "Cashflow", "Keterangan", "Parameter", "Nilai"],
+    "rows": [["2026-01-01", -10000000, "Modal awal", "Rate per bulan", 0.0066667], ["2026-02-01", 1800000, "Cashflow bulan 1", "Jumlah periode", 12], ["2026-03-01", 1750000, "Cashflow bulan 2", "Nilai pinjaman / PV", 10000000], ["2026-04-01", 1900000, "Cashflow bulan 3", "Pembayaran / PMT", -900000], ["2026-05-01", 2100000, "Cashflow bulan 4", "Future value / Salvage", 1000000], ["2026-06-01", 2050000, "Cashflow bulan 5", "Life", 5], ["2026-07-01", 2200000, "Cashflow bulan 6", "Type", 0], ["", "", "", "Discount rate", 0.1], ["", "", "", "Periode", 1], ["", "", "", "Start period", 1], ["", "", "", "End period", 12], ["", "", "", "Basis", 0], ["", "", "", "Settlement", "2026-01-01"], ["", "", "", "Maturity", "2026-12-31"], ["", "", "", "Price/par", 100], ["", "", "", "Redemption", 95], ["", "", "", "Frequency", 2], ["", "", "", "Guess/fraction", 1000]]
+  },
+  "engineeringParameter": {
+    "title": "Parameter Teknik",
+    "description": "Tabel ini untuk konversi satuan, biner/desimal/heksadesimal, dan bilangan kompleks.",
+    "columns": ["Item", "Nilai", "Keterangan"],
+    "rows": [["Angka", 10, "Angka utama"], ["Unit asal", "m", "Meter"], ["Unit tujuan", "cm", "Centimeter"], ["Biner", "1010", "Contoh bilangan biner"], ["Kompleks 1", "3+4i", "Bilangan kompleks pertama"], ["Kompleks 2", "2+1i", "Bilangan kompleks kedua"], ["Real", 3, "Bagian real"], ["Imaginary", 4, "Bagian imajiner"], ["Places / n / shift", 2, "Parameter tambahan"]]
+  },
+  "webParameter": {
+    "title": "Data Web",
+    "description": "Tabel ini untuk latihan URL, XML, dan function web. Beberapa hasil asli butuh koneksi internet di Excel.",
+    "columns": ["XML", "XPath", "URL", "Teks URL"],
+    "rows": [["<root><title>Formula Coach</title></root>", "//title", "https://example.com/api", "Formula Coach Excel"], ["<root><city>Jakarta</city></root>", "//city", "https://example.com/data", "Kelas Excel Pemula"]]
+  },
+  "cubeParameter": {
+    "title": "Contoh Cube / Data Model",
+    "description": "Tabel ini untuk latihan struktur rumus Cube. Hasil asli butuh Data Model/OLAP connection di Excel.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [["Connection", "ThisWorkbookDataModel", "Nama koneksi"], ["Member", "[Product].[Category].[Digital]", "Member expression"], ["Set", "[Product].[Category].Members", "Set expression"], ["Rank", 1, "Urutan member"], ["KPI Name", "Sales KPI", "Nama KPI"], ["Property", "Caption", "Properti yang diambil"], ["Measure", "[Measures].[Total Sales]", "Measure cube"]]
+  },
+  "databaseMini": {
+    "title": "Database Mini",
+    "description": "Tabel A-E adalah database. Kolom G-H adalah criteria range untuk function database.",
+    "columns": ["Nama", "Gender", "Kelas", "Nilai", "Status", "", "Status", "Kriteria"],
+    "rows": [["Agus", "Laki-laki", "X-A", 82, "Lulus", "", "Status", "Lulus"], ["Sinta", "Perempuan", "X-A", 91, "Lulus", "", "", ""], ["Budi", "Laki-laki", "X-B", 68, "Tidak Lulus", "", "", ""], ["Nadia", "Perempuan", "X-B", 77, "Lulus", "", "", ""], ["Raka", "Laki-laki", "X-A", 73, "Tidak Lulus", "", "", ""], ["Maya", "Perempuan", "X-C", 88, "Lulus", "", "", ""]]
+  },
+  "informationMixed": {
+    "title": "Data Campuran",
+    "description": "Tabel ini berisi beberapa tipe isi cell untuk latihan rumus Information.",
+    "columns": ["Teks", "Angka", "Boolean", "Kosong", "Error"],
+    "rows": [["Excel", 75, true, "", "#N/A"], ["Formula", 82, false, "", "#VALUE!"], ["Coach", 91, true, "", "#REF!"]]
+  },
+  "textPractice": {
+    "title": "Data Teks",
+    "description": "Tabel ini untuk latihan rumus teks seperti LEFT, RIGHT, MID, FIND, TEXTSPLIT, dan lainnya.",
+    "columns": ["Teks", "Old Text", "New Text", "Delimiter / Cari", "Jumlah", "Start"],
+    "rows": [["INV-2026-001", "INV", "ORDER", "-", 3, 5], ["johanes@example.com", "example", "gmail", "@", 7, 2], ["  Kaos Basic  ", "Kaos", "Produk", " ", 4, 1], ["P-001|Digital|Jakarta", "|", "-", "|", 5, 7]]
+  },
+  "datePractice": {
+    "title": "Data Tanggal & Jam",
+    "description": "Tabel ini untuk latihan tanggal, durasi, workday, month, year, hour, minute, dan second.",
+    "columns": ["Tanggal Text", "Tahun", "Bulan", "Hari", "Libur", "Tanggal Mulai", "Tanggal Selesai", "Jam Text"],
+    "rows": [["2026-05-30", 2026, 5, 30, "2026-06-01", "2026-05-01", "2026-05-30", "13:45:30"], ["2026-06-15", 2026, 6, 15, "2026-06-17", "2026-06-01", "2026-06-15", "09:15:05"], ["2026-07-20", 2026, 7, 20, "2026-07-21", "2026-07-01", "2026-07-20", "18:30:10"]]
+  },
+  "logicalPractice": {
+    "title": "Data Kondisi",
+    "description": "Tabel ini untuk IF, IFS, AND, OR, NOT, IFERROR, SWITCH, dan rumus logika lain.",
+    "columns": ["Nama", "Nilai", "Kehadiran", "Pembayaran", "Status"],
+    "rows": [["Agus", 82, 90, "Lunas", "Lulus"], ["Sinta", 91, 95, "Lunas", "Lulus"], ["Budi", 68, 70, "Belum", "Tidak Lulus"], ["Nadia", 77, 85, "Lunas", "Lulus"]]
+  },
+  "addinParameter": {
+    "title": "Parameter Add-in / User Defined",
+    "description": "Tabel ini untuk rumus add-in lama atau function khusus. Fokus latihan di struktur argumen.",
+    "columns": ["Module", "Procedure", "Type", "Connection", "Query", "Angka", "Source", "Target"],
+    "rows": [["MyAddin.xll", "MyFunction", "BB", "Driver={SQL Server};Server=Demo;", "SELECT * FROM Sales", 10, "EUR", "IDR"]]
+  }};
 
 const rawCuratedExercises = {
   "sum": {

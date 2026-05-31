@@ -11,10 +11,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel DETECTLANGUAGE untuk kebutuhan khusus.",
-    "syntax": "DETECTLANGUAGE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DETECTLANGUAGE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "DETECTLANGUAGE dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "DETECTLANGUAGE(text)",
+    "simpleLogic": "Baca format DETECTLANGUAGE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -25,7 +25,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "groupby",
@@ -33,10 +33,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel GROUPBY untuk kebutuhan khusus.",
-    "syntax": "GROUPBY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GROUPBY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GROUPBY dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "GROUPBY(row_fields, values, function, [field_headers], [total_depth], [sort_order], [filter_array], [field_relationship])",
+    "simpleLogic": "Baca format GROUPBY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -47,7 +47,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "lambda",
@@ -57,8 +57,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Membuat function custom langsung dari formula Excel.",
     "syntax": "LAMBDA([parameter1, parameter2, ...], calculation)",
-    "simpleLogic": "Pahami input utama LAMBDA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format LAMBDA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -80,8 +80,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Menyimpan nilai sementara di dalam formula agar lebih rapi.",
     "syntax": "LET(name1, name_value1, calculation_or_name2, [name_value2], ...)",
-    "simpleLogic": "Pahami input utama LET, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format LET dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -101,10 +101,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel PERCENTOF untuk kebutuhan khusus.",
-    "syntax": "PERCENTOF(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERCENTOF, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERCENTOF dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "PERCENTOF(data_subset, data_all)",
+    "simpleLogic": "Baca format PERCENTOF dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -115,7 +115,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pivotby",
@@ -123,10 +123,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel PIVOTBY untuk kebutuhan khusus.",
-    "syntax": "PIVOTBY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PIVOTBY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PIVOTBY dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "PIVOTBY(row_fields, col_fields, values, function, [field_headers], [row_total_depth], [row_sort_order], [col_total_depth], [col_sort_order], [filter_array], [relative_to])",
+    "simpleLogic": "Baca format PIVOTBY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -137,7 +137,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "regexextract",
@@ -145,10 +145,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel REGEXEXTRACT untuk kebutuhan khusus.",
-    "syntax": "REGEXEXTRACT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama REGEXEXTRACT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "REGEXEXTRACT dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "REGEXEXTRACT(text, pattern, [return_mode], [case_sensitivity])",
+    "simpleLogic": "Baca format REGEXEXTRACT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -159,7 +159,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "regexreplace",
@@ -167,10 +167,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel REGEXREPLACE untuk kebutuhan khusus.",
-    "syntax": "REGEXREPLACE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama REGEXREPLACE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "REGEXREPLACE dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "REGEXREPLACE(text, pattern, replacement, [occurrence], [case_sensitivity])",
+    "simpleLogic": "Baca format REGEXREPLACE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -181,7 +181,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "regextest",
@@ -189,10 +189,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel REGEXTEST untuk kebutuhan khusus.",
-    "syntax": "REGEXTEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama REGEXTEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "REGEXTEST dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "REGEXTEST(text, pattern, [case_sensitivity])",
+    "simpleLogic": "Baca format REGEXTEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -203,7 +203,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "translate",
@@ -211,10 +211,10 @@ const baseFormulaCatalogFull = [
     "category": "Advanced / Professional",
     "displayCategory": "Advanced / Professional",
     "level": "Advanced",
-    "description": "Fungsi Excel TRANSLATE untuk kebutuhan khusus.",
-    "syntax": "TRANSLATE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TRANSLATE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "TRANSLATE dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "TRANSLATE(text, source_language, target_language)",
+    "simpleLogic": "Baca format TRANSLATE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -225,7 +225,7 @@ const baseFormulaCatalogFull = [
       "advanced",
       "advanced-/-professional"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "average",
@@ -235,8 +235,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Menghitung rata-rata angka.",
     "syntax": "AVERAGE(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama AVERAGE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format AVERAGE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -258,7 +258,7 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Menghitung cell yang berisi angka.",
     "syntax": "COUNT(value1, [value2], ...)",
-    "simpleLogic": "Pahami input utama COUNT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "simpleLogic": "Baca format COUNT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Dipakai untuk menghitung jumlah data, data kosong, atau data berdasarkan kondisi.",
     "version": "All supported Excel versions",
     "availability": [
@@ -281,7 +281,7 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Menghitung cell yang terisi, baik angka maupun teks.",
     "syntax": "COUNTA(value1, [value2], ...)",
-    "simpleLogic": "Pahami input utama COUNTA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "simpleLogic": "Baca format COUNTA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Dipakai untuk menghitung jumlah data, data kosong, atau data berdasarkan kondisi.",
     "version": "All supported Excel versions",
     "availability": [
@@ -304,7 +304,7 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Menghitung cell kosong.",
     "syntax": "COUNTBLANK(range)",
-    "simpleLogic": "Pahami input utama COUNTBLANK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "simpleLogic": "Baca format COUNTBLANK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Dipakai untuk menghitung jumlah data, data kosong, atau data berdasarkan kondisi.",
     "version": "All supported Excel versions",
     "availability": [
@@ -325,10 +325,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Basic Calculation",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi LARGE.",
+    "description": "LARGE dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "LARGE(array, k)",
-    "simpleLogic": "Pahami input utama LARGE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format LARGE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -348,10 +348,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Basic Calculation",
     "level": "Basic",
-    "description": "Menghitung analisis statistik memakai fungsi MAX.",
+    "description": "MAX dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "MAX(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama MAX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MAX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -371,10 +371,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Basic Calculation",
     "level": "Basic",
-    "description": "Menghitung analisis statistik memakai fungsi MIN.",
+    "description": "MIN dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "MIN(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama MIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -394,10 +394,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Basic Calculation",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi SMALL.",
+    "description": "SMALL dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "SMALL(array, k)",
-    "simpleLogic": "Pahami input utama SMALL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SMALL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -440,10 +440,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu BETADIST.",
-    "syntax": "BETADIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BETADIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BETADIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "BETADIST(x, alpha, beta, [A], [B])",
+    "simpleLogic": "Baca format BETADIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -453,7 +453,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "betainv",
@@ -461,10 +461,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu BETAINV.",
-    "syntax": "BETAINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BETAINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BETAINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "BETAINV(probability, alpha, beta, [A], [B])",
+    "simpleLogic": "Baca format BETAINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -474,7 +474,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "binomdist",
@@ -482,10 +482,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu BINOMDIST.",
-    "syntax": "BINOMDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BINOMDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BINOMDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "BINOMDIST(number_s, trials, probability_s, cumulative)",
+    "simpleLogic": "Baca format BINOMDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -495,7 +495,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chidist",
@@ -503,10 +503,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu CHIDIST.",
-    "syntax": "CHIDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHIDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHIDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "CHIDIST(x, deg_freedom)",
+    "simpleLogic": "Baca format CHIDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -516,7 +516,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chiinv",
@@ -524,10 +524,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu CHIINV.",
-    "syntax": "CHIINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHIINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHIINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "CHIINV(probability, deg_freedom)",
+    "simpleLogic": "Baca format CHIINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -537,7 +537,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chitest",
@@ -545,10 +545,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu CHITEST.",
-    "syntax": "CHITEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHITEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHITEST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "CHITEST(actual_range, expected_range)",
+    "simpleLogic": "Baca format CHITEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -558,7 +558,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "confidence",
@@ -566,10 +566,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu CONFIDENCE.",
-    "syntax": "CONFIDENCE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CONFIDENCE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CONFIDENCE adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "CONFIDENCE(alpha, standard_dev, size)",
+    "simpleLogic": "Baca format CONFIDENCE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -579,7 +579,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "covar",
@@ -587,10 +587,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu COVAR.",
-    "syntax": "COVAR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COVAR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "COVAR adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "COVAR(array1, array2)",
+    "simpleLogic": "Baca format COVAR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -600,7 +600,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "critbinom",
@@ -608,10 +608,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu CRITBINOM.",
-    "syntax": "CRITBINOM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CRITBINOM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CRITBINOM adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "CRITBINOM(trials, probability_s, alpha)",
+    "simpleLogic": "Baca format CRITBINOM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -621,7 +621,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "expondist",
@@ -629,10 +629,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu EXPONDIST.",
-    "syntax": "EXPONDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EXPONDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "EXPONDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "EXPONDIST(x, lambda, cumulative)",
+    "simpleLogic": "Baca format EXPONDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -642,7 +642,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fdist",
@@ -650,10 +650,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu FDIST.",
-    "syntax": "FDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "FDIST(x, deg_freedom1, deg_freedom2)",
+    "simpleLogic": "Baca format FDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -663,7 +663,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "finv",
@@ -671,10 +671,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu FINV.",
-    "syntax": "FINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "FINV(probability, deg_freedom1, deg_freedom2)",
+    "simpleLogic": "Baca format FINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -684,7 +684,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ftest",
@@ -692,10 +692,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu FTEST.",
-    "syntax": "FTEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FTEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FTEST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "FTEST(array1, array2)",
+    "simpleLogic": "Baca format FTEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -705,7 +705,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gammadist",
@@ -713,10 +713,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu GAMMADIST.",
-    "syntax": "GAMMADIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMADIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMADIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "GAMMADIST(x, alpha, beta, cumulative)",
+    "simpleLogic": "Baca format GAMMADIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -726,7 +726,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gammainv",
@@ -734,10 +734,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu GAMMAINV.",
-    "syntax": "GAMMAINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMAINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMAINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "GAMMAINV(probability, alpha, beta)",
+    "simpleLogic": "Baca format GAMMAINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -747,7 +747,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "hypgeomdist",
@@ -755,10 +755,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu HYPGEOMDIST.",
-    "syntax": "HYPGEOMDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama HYPGEOMDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "HYPGEOMDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "HYPGEOMDIST(sample_s, number_sample, population_s, number_pop)",
+    "simpleLogic": "Baca format HYPGEOMDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -768,7 +768,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "loginv",
@@ -776,10 +776,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu LOGINV.",
-    "syntax": "LOGINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOGINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "LOGINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "LOGINV(probability, mean, standard_dev)",
+    "simpleLogic": "Baca format LOGINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -789,7 +789,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "lognormdist",
@@ -797,10 +797,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu LOGNORMDIST.",
-    "syntax": "LOGNORMDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOGNORMDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "LOGNORMDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "LOGNORMDIST(x, mean, standard_dev)",
+    "simpleLogic": "Baca format LOGNORMDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -810,7 +810,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mode",
@@ -818,10 +818,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Intermediate",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu MODE.",
+    "description": "MODE adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
     "syntax": "MODE(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama MODE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MODE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -840,10 +840,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu NEGBINOMDIST.",
-    "syntax": "NEGBINOMDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NEGBINOMDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NEGBINOMDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "NEGBINOMDIST(number_f, number_s, probability_s)",
+    "simpleLogic": "Baca format NEGBINOMDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -853,7 +853,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "normdist",
@@ -861,10 +861,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu NORMDIST.",
-    "syntax": "NORMDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORMDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORMDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "NORMDIST(x, mean, standard_dev, cumulative)",
+    "simpleLogic": "Baca format NORMDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -874,7 +874,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "norminv",
@@ -882,10 +882,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu NORMINV.",
-    "syntax": "NORMINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORMINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORMINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "NORMINV(probability, mean, standard_dev)",
+    "simpleLogic": "Baca format NORMINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -895,7 +895,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "normsdist",
@@ -903,10 +903,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu NORMSDIST.",
-    "syntax": "NORMSDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORMSDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORMSDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "NORMSDIST(z)",
+    "simpleLogic": "Baca format NORMSDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -916,7 +916,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "normsinv",
@@ -924,10 +924,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu NORMSINV.",
-    "syntax": "NORMSINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORMSINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORMSINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "NORMSINV(probability)",
+    "simpleLogic": "Baca format NORMSINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -937,7 +937,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "percentile",
@@ -945,10 +945,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Advanced",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu PERCENTILE.",
+    "description": "PERCENTILE adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
     "syntax": "PERCENTILE(array, k)",
-    "simpleLogic": "Pahami input utama PERCENTILE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format PERCENTILE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -967,10 +967,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu PERCENTRANK.",
-    "syntax": "PERCENTRANK(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERCENTRANK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERCENTRANK adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "PERCENTRANK(array, x, [significance])",
+    "simpleLogic": "Baca format PERCENTRANK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -980,7 +980,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "poisson",
@@ -988,10 +988,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu POISSON.",
-    "syntax": "POISSON(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama POISSON, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "POISSON adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "POISSON(x, mean, cumulative)",
+    "simpleLogic": "Baca format POISSON dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1001,7 +1001,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "quartile",
@@ -1009,10 +1009,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Advanced",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu QUARTILE.",
+    "description": "QUARTILE adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
     "syntax": "QUARTILE(array, quart)",
-    "simpleLogic": "Pahami input utama QUARTILE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format QUARTILE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1031,10 +1031,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Advanced",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu RANK.",
+    "description": "RANK adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
     "syntax": "RANK(number, ref, [order])",
-    "simpleLogic": "Pahami input utama RANK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format RANK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1053,10 +1053,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu STDEV.",
-    "syntax": "STDEV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama STDEV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "STDEV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "STDEV(number1, [number2], ...)",
+    "simpleLogic": "Baca format STDEV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1066,7 +1066,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "stdevp",
@@ -1074,10 +1074,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu STDEVP.",
-    "syntax": "STDEVP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama STDEVP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "STDEVP adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "STDEVP(number1, [number2], ...)",
+    "simpleLogic": "Baca format STDEVP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1087,7 +1087,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tdist",
@@ -1095,10 +1095,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu TDIST.",
-    "syntax": "TDIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TDIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "TDIST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "TDIST(x, deg_freedom, tails)",
+    "simpleLogic": "Baca format TDIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1108,7 +1108,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tinv",
@@ -1116,10 +1116,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu TINV.",
-    "syntax": "TINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "TINV adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "TINV(probability, deg_freedom)",
+    "simpleLogic": "Baca format TINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1129,7 +1129,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ttest",
@@ -1137,10 +1137,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu TTEST.",
-    "syntax": "TTEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TTEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "TTEST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "TTEST(array1, array2, tails, type)",
+    "simpleLogic": "Baca format TTEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1150,7 +1150,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "var",
@@ -1158,10 +1158,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu VAR.",
-    "syntax": "VAR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama VAR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "VAR adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "VAR(number1, [number2], ...)",
+    "simpleLogic": "Baca format VAR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1171,7 +1171,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "varp",
@@ -1179,10 +1179,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu VARP.",
-    "syntax": "VARP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama VARP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "VARP adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "VARP(number1, [number2], ...)",
+    "simpleLogic": "Baca format VARP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1192,7 +1192,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "weibull",
@@ -1200,10 +1200,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu WEIBULL.",
-    "syntax": "WEIBULL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama WEIBULL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "WEIBULL adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "WEIBULL(x, alpha, beta, cumulative)",
+    "simpleLogic": "Baca format WEIBULL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1213,7 +1213,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ztest",
@@ -1221,10 +1221,10 @@ const baseFormulaCatalogFull = [
     "category": "Compatibility",
     "displayCategory": "Compatibility",
     "level": "Rare / Specialized",
-    "description": "Fungsi lama Excel yang masih tersedia untuk kompatibilitas, yaitu ZTEST.",
-    "syntax": "ZTEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ZTEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "ZTEST adalah rumus lama Excel yang masih dipakai supaya file lama tetap bisa dibuka dan dihitung.",
+    "syntax": "ZTEST(array, x, [sigma])",
+    "simpleLogic": "Baca format ZTEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1234,7 +1234,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "compatibility"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "averageif",
@@ -1245,7 +1245,7 @@ const baseFormulaCatalogFull = [
     "description": "Menghitung rata-rata berdasarkan satu syarat.",
     "syntax": "AVERAGEIF(range, criteria, [average_range])",
     "simpleLogic": "Cek syarat dulu, baru hitung angka yang barisnya memenuhi syarat.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1266,9 +1266,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Conditional Calculation",
     "level": "Intermediate",
     "description": "Menghitung rata-rata berdasarkan banyak syarat.",
-    "syntax": "AVERAGEIFS(average_range, criteria_range1, criteria1, ...)",
+    "syntax": "AVERAGEIFS(average_range, criteria_range1, criteria1, [criteria_range2], [criteria2], ...)",
     "simpleLogic": "Pakai beberapa syarat sekaligus. Baris dihitung kalau semua syarat terpenuhi.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1312,7 +1312,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Conditional Calculation",
     "level": "Intermediate",
     "description": "Menghitung data berdasarkan banyak kriteria.",
-    "syntax": "COUNTIFS(criteria_range1, criteria1, ...)",
+    "syntax": "COUNTIFS(criteria_range1, criteria1, [criteria_range2], [criteria2], ...)",
     "simpleLogic": "Pakai beberapa syarat sekaligus. Baris dihitung kalau semua syarat terpenuhi.",
     "useCase": "Dipakai untuk menghitung jumlah data, data kosong, atau data berdasarkan kondisi.",
     "version": "All supported Excel versions",
@@ -1334,10 +1334,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Conditional Calculation",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MAXIFS.",
-    "syntax": "MAXIFS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MAXIFS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "MAXIFS dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2], [criteria2], ...)",
+    "simpleLogic": "Baca format MAXIFS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1348,7 +1348,7 @@ const baseFormulaCatalogFull = [
       "conditional-calculation",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "minifs",
@@ -1356,10 +1356,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Conditional Calculation",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MINIFS.",
-    "syntax": "MINIFS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MINIFS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "MINIFS dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "MINIFS(min_range, criteria_range1, criteria1, [criteria_range2], [criteria2], ...)",
+    "simpleLogic": "Baca format MINIFS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1370,7 +1370,7 @@ const baseFormulaCatalogFull = [
       "conditional-calculation",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sumif",
@@ -1425,9 +1425,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DAVERAGE.",
-    "syntax": "DAVERAGE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DAVERAGE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DAVERAGE(database, field, criteria)",
+    "simpleLogic": "Baca format DAVERAGE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1437,7 +1437,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dcount",
@@ -1446,9 +1446,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DCOUNT.",
-    "syntax": "DCOUNT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DCOUNT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DCOUNT(database, field, criteria)",
+    "simpleLogic": "Baca format DCOUNT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1458,7 +1458,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dcounta",
@@ -1467,9 +1467,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DCOUNTA.",
-    "syntax": "DCOUNTA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DCOUNTA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DCOUNTA(database, field, criteria)",
+    "simpleLogic": "Baca format DCOUNTA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1479,7 +1479,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dget",
@@ -1488,9 +1488,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DGET.",
-    "syntax": "DGET(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DGET, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DGET(database, field, criteria)",
+    "simpleLogic": "Baca format DGET dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1500,7 +1500,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dmax",
@@ -1509,9 +1509,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DMAX.",
-    "syntax": "DMAX(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DMAX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DMAX(database, field, criteria)",
+    "simpleLogic": "Baca format DMAX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1521,7 +1521,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dmin",
@@ -1530,9 +1530,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DMIN.",
-    "syntax": "DMIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DMIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DMIN(database, field, criteria)",
+    "simpleLogic": "Baca format DMIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1542,7 +1542,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dproduct",
@@ -1551,9 +1551,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DPRODUCT.",
-    "syntax": "DPRODUCT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DPRODUCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DPRODUCT(database, field, criteria)",
+    "simpleLogic": "Baca format DPRODUCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1563,7 +1563,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dstdev",
@@ -1572,9 +1572,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DSTDEV.",
-    "syntax": "DSTDEV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DSTDEV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DSTDEV(database, field, criteria)",
+    "simpleLogic": "Baca format DSTDEV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1584,7 +1584,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dstdevp",
@@ -1593,9 +1593,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DSTDEVP.",
-    "syntax": "DSTDEVP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DSTDEVP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DSTDEVP(database, field, criteria)",
+    "simpleLogic": "Baca format DSTDEVP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1605,7 +1605,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dsum",
@@ -1614,9 +1614,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DSUM.",
-    "syntax": "DSUM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DSUM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DSUM(database, field, criteria)",
+    "simpleLogic": "Baca format DSUM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1626,7 +1626,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dvar",
@@ -1635,9 +1635,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DVAR.",
-    "syntax": "DVAR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DVAR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DVAR(database, field, criteria)",
+    "simpleLogic": "Baca format DVAR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1647,7 +1647,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dvarp",
@@ -1656,9 +1656,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Database",
     "level": "Rare / Specialized",
     "description": "Mengolah tabel database Excel memakai fungsi DVARP.",
-    "syntax": "DVARP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DVARP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DVARP(database, field, criteria)",
+    "simpleLogic": "Baca format DVARP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -1668,7 +1668,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "database"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "date",
@@ -1725,7 +1725,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi DATEVALUE.",
-    "syntax": "DATEVALUE(argument1, [argument2], ...)",
+    "syntax": "DATEVALUE(date_text)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -1739,7 +1739,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "day",
@@ -1796,7 +1796,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi DAYS360.",
-    "syntax": "DAYS360(argument1, [argument2], ...)",
+    "syntax": "DAYS360(serial_number)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -1810,7 +1810,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "edate",
@@ -1891,7 +1891,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi ISOWEEKNUM.",
-    "syntax": "ISOWEEKNUM(argument1, [argument2], ...)",
+    "syntax": "ISOWEEKNUM(serial_number)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -1905,7 +1905,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "minute",
@@ -2082,7 +2082,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi TIMEVALUE.",
-    "syntax": "TIMEVALUE(argument1, [argument2], ...)",
+    "syntax": "TIMEVALUE(serial_number)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -2096,7 +2096,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "today",
@@ -2129,7 +2129,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi WEEKDAY.",
-    "syntax": "WEEKDAY(argument1, [argument2], ...)",
+    "syntax": "WEEKDAY(serial_number)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -2143,7 +2143,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "weeknum",
@@ -2152,7 +2152,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi WEEKNUM.",
-    "syntax": "WEEKNUM(argument1, [argument2], ...)",
+    "syntax": "WEEKNUM(serial_number)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -2166,7 +2166,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "workday",
@@ -2247,7 +2247,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Date & Time",
     "level": "Intermediate",
     "description": "Mengolah tanggal atau waktu menggunakan fungsi YEARFRAC.",
-    "syntax": "YEARFRAC(argument1, [argument2], ...)",
+    "syntax": "YEARFRAC(serial_number)",
     "simpleLogic": "Tanggal di Excel adalah angka seri. Rumus ini membantu mengambil bagian tanggal atau menghitung jarak waktunya.",
     "useCase": "Cocok untuk deadline, masa kerja, umur data, tanggal jatuh tempo, dan jam kerja.",
     "version": "All supported Excel versions",
@@ -2261,7 +2261,7 @@ const baseFormulaCatalogFull = [
       "date-and-time",
       "time"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bycol",
@@ -2269,10 +2269,10 @@ const baseFormulaCatalogFull = [
     "category": "Dynamic Array",
     "displayCategory": "Dynamic Array",
     "level": "Advanced",
-    "description": "Fungsi Excel BYCOL untuk kebutuhan khusus.",
+    "description": "BYCOL dipakai untuk mengolah data sesuai format rumusnya.",
     "syntax": "BYCOL(array, lambda(column))",
-    "simpleLogic": "Pahami input utama BYCOL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format BYCOL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2291,10 +2291,10 @@ const baseFormulaCatalogFull = [
     "category": "Dynamic Array",
     "displayCategory": "Dynamic Array",
     "level": "Advanced",
-    "description": "Fungsi Excel BYROW untuk kebutuhan khusus.",
+    "description": "BYROW dipakai untuk mengolah data sesuai format rumusnya.",
     "syntax": "BYROW(array, lambda(row))",
-    "simpleLogic": "Pahami input utama BYROW, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format BYROW dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2315,8 +2315,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai CHOOSECOLS.",
     "syntax": "CHOOSECOLS(array, col_num1, [col_num2], ...)",
-    "simpleLogic": "Pahami input utama CHOOSECOLS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format CHOOSECOLS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2339,8 +2339,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai CHOOSEROWS.",
     "syntax": "CHOOSEROWS(array, row_num1, [row_num2], ...)",
-    "simpleLogic": "Pahami input utama CHOOSEROWS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format CHOOSEROWS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2363,8 +2363,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai DROP.",
     "syntax": "DROP(array, rows, [columns])",
-    "simpleLogic": "Pahami input utama DROP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format DROP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2386,9 +2386,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai EXPAND.",
-    "syntax": "EXPAND(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EXPAND, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "EXPAND(array, rows, [columns], [pad_with])",
+    "simpleLogic": "Baca format EXPAND dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2400,7 +2400,7 @@ const baseFormulaCatalogFull = [
       "lookup",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "filter",
@@ -2410,8 +2410,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Menyaring data yang memenuhi kondisi.",
     "syntax": "FILTER(array, include, [if_empty])",
-    "simpleLogic": "Pahami input utama FILTER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format FILTER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2434,8 +2434,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai HSTACK.",
     "syntax": "HSTACK(array1, [array2], ...)",
-    "simpleLogic": "Pahami input utama HSTACK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format HSTACK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2456,10 +2456,10 @@ const baseFormulaCatalogFull = [
     "category": "Dynamic Array",
     "displayCategory": "Dynamic Array",
     "level": "Advanced",
-    "description": "Fungsi Excel MAKEARRAY untuk kebutuhan khusus.",
+    "description": "MAKEARRAY dipakai untuk mengolah data sesuai format rumusnya.",
     "syntax": "MAKEARRAY(rows, cols, lambda(row, col))",
-    "simpleLogic": "Pahami input utama MAKEARRAY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MAKEARRAY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2478,10 +2478,10 @@ const baseFormulaCatalogFull = [
     "category": "Dynamic Array",
     "displayCategory": "Dynamic Array",
     "level": "Advanced",
-    "description": "Fungsi Excel MAP untuk kebutuhan khusus.",
+    "description": "MAP dipakai untuk mengolah data sesuai format rumusnya.",
     "syntax": "MAP(array1, lambda_or_array2, [lambda])",
-    "simpleLogic": "Pahami input utama MAP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MAP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2501,9 +2501,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi RANDARRAY.",
-    "syntax": "RANDARRAY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RANDARRAY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "RANDARRAY(value)",
+    "simpleLogic": "Baca format RANDARRAY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2514,7 +2514,7 @@ const baseFormulaCatalogFull = [
       "dynamic-array",
       "math"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "reduce",
@@ -2522,10 +2522,10 @@ const baseFormulaCatalogFull = [
     "category": "Dynamic Array",
     "displayCategory": "Dynamic Array",
     "level": "Advanced",
-    "description": "Fungsi Excel REDUCE untuk kebutuhan khusus.",
+    "description": "REDUCE dipakai untuk mengolah data sesuai format rumusnya.",
     "syntax": "REDUCE([initial_value], array, lambda)",
-    "simpleLogic": "Pahami input utama REDUCE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format REDUCE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2544,10 +2544,10 @@ const baseFormulaCatalogFull = [
     "category": "Dynamic Array",
     "displayCategory": "Dynamic Array",
     "level": "Advanced",
-    "description": "Fungsi Excel SCAN untuk kebutuhan khusus.",
+    "description": "SCAN dipakai untuk mengolah data sesuai format rumusnya.",
     "syntax": "SCAN([initial_value], array, lambda)",
-    "simpleLogic": "Pahami input utama SCAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SCAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2567,9 +2567,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SEQUENCE.",
-    "syntax": "SEQUENCE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SEQUENCE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SEQUENCE(value)",
+    "simpleLogic": "Baca format SEQUENCE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2580,7 +2580,7 @@ const baseFormulaCatalogFull = [
       "dynamic-array",
       "math"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sort",
@@ -2590,8 +2590,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai SORT.",
     "syntax": "SORT(array, [sort_index], [sort_order], [by_col])",
-    "simpleLogic": "Pahami input utama SORT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SORT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2614,8 +2614,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai SORTBY.",
     "syntax": "SORTBY(array, by_array1, [sort_order1], ...)",
-    "simpleLogic": "Pahami input utama SORTBY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SORTBY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2638,8 +2638,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai TAKE.",
     "syntax": "TAKE(array, rows, [columns])",
-    "simpleLogic": "Pahami input utama TAKE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format TAKE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2685,9 +2685,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai TOCOL.",
-    "syntax": "TOCOL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TOCOL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "TOCOL(reference)",
+    "simpleLogic": "Baca format TOCOL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2699,7 +2699,7 @@ const baseFormulaCatalogFull = [
       "lookup",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "torow",
@@ -2708,9 +2708,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai TOROW.",
-    "syntax": "TOROW(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TOROW, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "TOROW(reference)",
+    "simpleLogic": "Baca format TOROW dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2722,7 +2722,7 @@ const baseFormulaCatalogFull = [
       "lookup",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "transpose",
@@ -2732,8 +2732,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai TRANSPOSE.",
     "syntax": "TRANSPOSE(array)",
-    "simpleLogic": "Pahami input utama TRANSPOSE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format TRANSPOSE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2756,8 +2756,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mengambil daftar unik tanpa duplikat.",
     "syntax": "UNIQUE(array, [by_col], [exactly_once])",
-    "simpleLogic": "Pahami input utama UNIQUE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format UNIQUE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2780,8 +2780,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai VSTACK.",
     "syntax": "VSTACK(array1, [array2], ...)",
-    "simpleLogic": "Pahami input utama VSTACK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format VSTACK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2803,9 +2803,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai WRAPCOLS.",
-    "syntax": "WRAPCOLS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama WRAPCOLS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "WRAPCOLS(reference)",
+    "simpleLogic": "Baca format WRAPCOLS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2817,7 +2817,7 @@ const baseFormulaCatalogFull = [
       "lookup",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "wraprows",
@@ -2826,9 +2826,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Dynamic Array",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai WRAPROWS.",
-    "syntax": "WRAPROWS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama WRAPROWS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "WRAPROWS(reference)",
+    "simpleLogic": "Baca format WRAPROWS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2840,7 +2840,7 @@ const baseFormulaCatalogFull = [
       "lookup",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "xlookup",
@@ -2851,7 +2851,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari data lebih fleksibel dari VLOOKUP.",
     "syntax": "XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2875,7 +2875,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari, mengambil, atau membuat referensi data memakai XMATCH.",
     "syntax": "XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "Microsoft 365 / supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2897,9 +2897,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BESSELI.",
-    "syntax": "BESSELI(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BESSELI, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BESSELI(x, n)",
+    "simpleLogic": "Baca format BESSELI dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2909,7 +2909,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "besselj",
@@ -2918,9 +2918,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BESSELJ.",
-    "syntax": "BESSELJ(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BESSELJ, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BESSELJ(number)",
+    "simpleLogic": "Baca format BESSELJ dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2930,7 +2930,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "besselk",
@@ -2939,9 +2939,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BESSELK.",
-    "syntax": "BESSELK(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BESSELK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BESSELK(number)",
+    "simpleLogic": "Baca format BESSELK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2951,7 +2951,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bessely",
@@ -2960,9 +2960,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BESSELY.",
-    "syntax": "BESSELY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BESSELY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BESSELY(number)",
+    "simpleLogic": "Baca format BESSELY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2972,7 +2972,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bin2dec",
@@ -2981,9 +2981,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BIN2DEC.",
-    "syntax": "BIN2DEC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BIN2DEC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BIN2DEC(number)",
+    "simpleLogic": "Baca format BIN2DEC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -2993,7 +2993,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bin2hex",
@@ -3002,9 +3002,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BIN2HEX.",
-    "syntax": "BIN2HEX(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BIN2HEX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BIN2HEX(number)",
+    "simpleLogic": "Baca format BIN2HEX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3014,7 +3014,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bin2oct",
@@ -3023,9 +3023,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BIN2OCT.",
-    "syntax": "BIN2OCT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BIN2OCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BIN2OCT(number)",
+    "simpleLogic": "Baca format BIN2OCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3035,7 +3035,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bitand",
@@ -3044,9 +3044,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BITAND.",
-    "syntax": "BITAND(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BITAND, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BITAND(number)",
+    "simpleLogic": "Baca format BITAND dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3056,7 +3056,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bitlshift",
@@ -3065,9 +3065,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BITLSHIFT.",
-    "syntax": "BITLSHIFT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BITLSHIFT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BITLSHIFT(number)",
+    "simpleLogic": "Baca format BITLSHIFT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3077,7 +3077,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bitor",
@@ -3086,9 +3086,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BITOR.",
-    "syntax": "BITOR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BITOR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BITOR(number)",
+    "simpleLogic": "Baca format BITOR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3098,7 +3098,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bitrshift",
@@ -3107,9 +3107,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BITRSHIFT.",
-    "syntax": "BITRSHIFT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BITRSHIFT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BITRSHIFT(number)",
+    "simpleLogic": "Baca format BITRSHIFT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3119,7 +3119,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bitxor",
@@ -3128,9 +3128,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi BITXOR.",
-    "syntax": "BITXOR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BITXOR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BITXOR(number)",
+    "simpleLogic": "Baca format BITXOR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3140,7 +3140,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "complex",
@@ -3149,9 +3149,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi COMPLEX.",
-    "syntax": "COMPLEX(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COMPLEX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COMPLEX(number)",
+    "simpleLogic": "Baca format COMPLEX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3161,7 +3161,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "convert",
@@ -3170,9 +3170,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi CONVERT.",
-    "syntax": "CONVERT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CONVERT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "CONVERT(number)",
+    "simpleLogic": "Baca format CONVERT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3182,7 +3182,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dec2bin",
@@ -3191,9 +3191,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi DEC2BIN.",
-    "syntax": "DEC2BIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DEC2BIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DEC2BIN(number)",
+    "simpleLogic": "Baca format DEC2BIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3203,7 +3203,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dec2hex",
@@ -3212,9 +3212,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi DEC2HEX.",
-    "syntax": "DEC2HEX(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DEC2HEX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DEC2HEX(number)",
+    "simpleLogic": "Baca format DEC2HEX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3224,7 +3224,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dec2oct",
@@ -3233,9 +3233,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi DEC2OCT.",
-    "syntax": "DEC2OCT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DEC2OCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DEC2OCT(number)",
+    "simpleLogic": "Baca format DEC2OCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3245,7 +3245,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "delta",
@@ -3254,9 +3254,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi DELTA.",
-    "syntax": "DELTA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DELTA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DELTA(number)",
+    "simpleLogic": "Baca format DELTA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3266,7 +3266,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "erf",
@@ -3275,9 +3275,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi ERF.",
-    "syntax": "ERF(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ERF, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ERF(number)",
+    "simpleLogic": "Baca format ERF dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3287,7 +3287,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "erf_precise",
@@ -3296,9 +3296,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi ERF.PRECISE.",
-    "syntax": "ERF.PRECISE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ERF.PRECISE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ERF.PRECISE(number)",
+    "simpleLogic": "Baca format ERF.PRECISE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3308,7 +3308,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "erfc",
@@ -3317,9 +3317,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi ERFC.",
-    "syntax": "ERFC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ERFC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ERFC(number)",
+    "simpleLogic": "Baca format ERFC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3329,7 +3329,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "erfc_precise",
@@ -3338,9 +3338,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi ERFC.PRECISE.",
-    "syntax": "ERFC.PRECISE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ERFC.PRECISE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ERFC.PRECISE(number)",
+    "simpleLogic": "Baca format ERFC.PRECISE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3350,7 +3350,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gestep",
@@ -3359,9 +3359,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi GESTEP.",
-    "syntax": "GESTEP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GESTEP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "GESTEP(number)",
+    "simpleLogic": "Baca format GESTEP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3371,7 +3371,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "hex2bin",
@@ -3380,9 +3380,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi HEX2BIN.",
-    "syntax": "HEX2BIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama HEX2BIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "HEX2BIN(number)",
+    "simpleLogic": "Baca format HEX2BIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3392,7 +3392,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "hex2dec",
@@ -3401,9 +3401,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi HEX2DEC.",
-    "syntax": "HEX2DEC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama HEX2DEC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "HEX2DEC(number)",
+    "simpleLogic": "Baca format HEX2DEC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3413,7 +3413,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "hex2oct",
@@ -3422,9 +3422,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi HEX2OCT.",
-    "syntax": "HEX2OCT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama HEX2OCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "HEX2OCT(number)",
+    "simpleLogic": "Baca format HEX2OCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3434,7 +3434,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imabs",
@@ -3443,9 +3443,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMABS.",
-    "syntax": "IMABS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMABS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMABS(number)",
+    "simpleLogic": "Baca format IMABS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3455,7 +3455,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imaginary",
@@ -3464,9 +3464,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMAGINARY.",
-    "syntax": "IMAGINARY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMAGINARY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMAGINARY(number)",
+    "simpleLogic": "Baca format IMAGINARY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3476,7 +3476,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imargument",
@@ -3485,9 +3485,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMARGUMENT.",
-    "syntax": "IMARGUMENT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMARGUMENT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMARGUMENT(number)",
+    "simpleLogic": "Baca format IMARGUMENT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3497,7 +3497,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imconjugate",
@@ -3506,9 +3506,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMCONJUGATE.",
-    "syntax": "IMCONJUGATE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMCONJUGATE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMCONJUGATE(number)",
+    "simpleLogic": "Baca format IMCONJUGATE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3518,7 +3518,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imcos",
@@ -3527,9 +3527,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMCOS.",
-    "syntax": "IMCOS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMCOS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMCOS(number)",
+    "simpleLogic": "Baca format IMCOS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3539,7 +3539,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imcosh",
@@ -3548,9 +3548,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMCOSH.",
-    "syntax": "IMCOSH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMCOSH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMCOSH(number)",
+    "simpleLogic": "Baca format IMCOSH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3560,7 +3560,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imcot",
@@ -3569,9 +3569,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMCOT.",
-    "syntax": "IMCOT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMCOT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMCOT(number)",
+    "simpleLogic": "Baca format IMCOT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3581,7 +3581,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imcsc",
@@ -3590,9 +3590,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMCSC.",
-    "syntax": "IMCSC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMCSC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMCSC(number)",
+    "simpleLogic": "Baca format IMCSC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3602,7 +3602,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imcsch",
@@ -3611,9 +3611,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMCSCH.",
-    "syntax": "IMCSCH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMCSCH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMCSCH(number)",
+    "simpleLogic": "Baca format IMCSCH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3623,7 +3623,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imdiv",
@@ -3632,9 +3632,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMDIV.",
-    "syntax": "IMDIV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMDIV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMDIV(number)",
+    "simpleLogic": "Baca format IMDIV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3644,7 +3644,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imexp",
@@ -3653,9 +3653,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMEXP.",
-    "syntax": "IMEXP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMEXP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMEXP(number)",
+    "simpleLogic": "Baca format IMEXP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3665,7 +3665,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imln",
@@ -3674,9 +3674,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMLN.",
-    "syntax": "IMLN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMLN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMLN(number)",
+    "simpleLogic": "Baca format IMLN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3686,7 +3686,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imlog10",
@@ -3695,9 +3695,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMLOG10.",
-    "syntax": "IMLOG10(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMLOG10, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMLOG10(number)",
+    "simpleLogic": "Baca format IMLOG10 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3707,7 +3707,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imlog2",
@@ -3716,9 +3716,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMLOG2.",
-    "syntax": "IMLOG2(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMLOG2, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMLOG2(number)",
+    "simpleLogic": "Baca format IMLOG2 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3728,7 +3728,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "impower",
@@ -3737,9 +3737,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMPOWER.",
-    "syntax": "IMPOWER(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMPOWER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMPOWER(number)",
+    "simpleLogic": "Baca format IMPOWER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3749,7 +3749,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "improduct",
@@ -3758,9 +3758,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMPRODUCT.",
-    "syntax": "IMPRODUCT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMPRODUCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMPRODUCT(number)",
+    "simpleLogic": "Baca format IMPRODUCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3770,7 +3770,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imreal",
@@ -3779,9 +3779,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMREAL.",
-    "syntax": "IMREAL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMREAL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMREAL(number)",
+    "simpleLogic": "Baca format IMREAL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3791,7 +3791,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsec",
@@ -3800,9 +3800,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSEC.",
-    "syntax": "IMSEC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSEC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSEC(number)",
+    "simpleLogic": "Baca format IMSEC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3812,7 +3812,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsech",
@@ -3821,9 +3821,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSECH.",
-    "syntax": "IMSECH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSECH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSECH(number)",
+    "simpleLogic": "Baca format IMSECH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3833,7 +3833,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsin",
@@ -3842,9 +3842,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSIN.",
-    "syntax": "IMSIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSIN(number)",
+    "simpleLogic": "Baca format IMSIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3854,7 +3854,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsinh",
@@ -3863,9 +3863,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSINH.",
-    "syntax": "IMSINH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSINH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSINH(number)",
+    "simpleLogic": "Baca format IMSINH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3875,7 +3875,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsqrt",
@@ -3884,9 +3884,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSQRT.",
-    "syntax": "IMSQRT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSQRT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSQRT(number)",
+    "simpleLogic": "Baca format IMSQRT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3896,7 +3896,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsub",
@@ -3905,9 +3905,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSUB.",
-    "syntax": "IMSUB(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSUB, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSUB(number)",
+    "simpleLogic": "Baca format IMSUB dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3917,7 +3917,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imsum",
@@ -3926,9 +3926,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMSUM.",
-    "syntax": "IMSUM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMSUM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMSUM(number)",
+    "simpleLogic": "Baca format IMSUM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3938,7 +3938,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "imtan",
@@ -3947,9 +3947,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi IMTAN.",
-    "syntax": "IMTAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMTAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMTAN(number)",
+    "simpleLogic": "Baca format IMTAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3959,7 +3959,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oct2bin",
@@ -3968,9 +3968,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi OCT2BIN.",
-    "syntax": "OCT2BIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama OCT2BIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "OCT2BIN(number)",
+    "simpleLogic": "Baca format OCT2BIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -3980,7 +3980,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oct2dec",
@@ -3989,9 +3989,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi OCT2DEC.",
-    "syntax": "OCT2DEC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama OCT2DEC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "OCT2DEC(number)",
+    "simpleLogic": "Baca format OCT2DEC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -4001,7 +4001,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oct2hex",
@@ -4010,9 +4010,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Engineering",
     "level": "Rare / Specialized",
     "description": "Mengolah kebutuhan teknis atau engineering memakai fungsi OCT2HEX.",
-    "syntax": "OCT2HEX(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama OCT2HEX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "OCT2HEX(number)",
+    "simpleLogic": "Baca format OCT2HEX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -4022,7 +4022,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "engineering"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "accrint",
@@ -4031,8 +4031,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ACCRINT.",
-    "syntax": "ACCRINT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ACCRINT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ACCRINT(issue, first_interest, settlement, rate, par, frequency, [basis], [calc_method])",
+    "simpleLogic": "Baca format ACCRINT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4044,7 +4044,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "accrintm",
@@ -4053,8 +4053,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ACCRINTM.",
-    "syntax": "ACCRINTM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ACCRINTM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ACCRINTM(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format ACCRINTM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4066,7 +4066,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "amordegrc",
@@ -4075,8 +4075,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi AMORDEGRC.",
-    "syntax": "AMORDEGRC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama AMORDEGRC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "AMORDEGRC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format AMORDEGRC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4088,7 +4088,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "amorlinc",
@@ -4097,8 +4097,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi AMORLINC.",
-    "syntax": "AMORLINC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama AMORLINC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "AMORLINC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format AMORLINC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4110,7 +4110,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "coupdaybs",
@@ -4119,8 +4119,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi COUPDAYBS.",
-    "syntax": "COUPDAYBS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COUPDAYBS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "COUPDAYBS(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format COUPDAYBS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4132,7 +4132,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "coupdays",
@@ -4141,8 +4141,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi COUPDAYS.",
-    "syntax": "COUPDAYS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COUPDAYS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "COUPDAYS(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format COUPDAYS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4154,7 +4154,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "coupdaysnc",
@@ -4163,8 +4163,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi COUPDAYSNC.",
-    "syntax": "COUPDAYSNC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COUPDAYSNC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "COUPDAYSNC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format COUPDAYSNC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4176,7 +4176,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "coupncd",
@@ -4185,8 +4185,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi COUPNCD.",
-    "syntax": "COUPNCD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COUPNCD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "COUPNCD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format COUPNCD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4198,7 +4198,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "coupnum",
@@ -4207,8 +4207,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi COUPNUM.",
-    "syntax": "COUPNUM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COUPNUM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "COUPNUM(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format COUPNUM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4220,7 +4220,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "couppcd",
@@ -4229,8 +4229,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi COUPPCD.",
-    "syntax": "COUPPCD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COUPPCD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "COUPPCD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format COUPPCD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4242,7 +4242,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cumipmt",
@@ -4251,8 +4251,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi CUMIPMT.",
-    "syntax": "CUMIPMT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUMIPMT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "CUMIPMT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format CUMIPMT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4264,7 +4264,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cumprinc",
@@ -4273,8 +4273,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi CUMPRINC.",
-    "syntax": "CUMPRINC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUMPRINC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "CUMPRINC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format CUMPRINC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4286,7 +4286,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "db",
@@ -4295,8 +4295,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi DB.",
-    "syntax": "DB(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DB, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "DB(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format DB dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4308,7 +4308,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ddb",
@@ -4317,8 +4317,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi DDB.",
-    "syntax": "DDB(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DDB, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "DDB(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format DDB dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4330,7 +4330,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "disc",
@@ -4339,8 +4339,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi DISC.",
-    "syntax": "DISC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DISC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "DISC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format DISC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4352,7 +4352,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dollarde",
@@ -4361,8 +4361,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi DOLLARDE.",
-    "syntax": "DOLLARDE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DOLLARDE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "DOLLARDE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format DOLLARDE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4374,7 +4374,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dollarfr",
@@ -4383,8 +4383,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi DOLLARFR.",
-    "syntax": "DOLLARFR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DOLLARFR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "DOLLARFR(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format DOLLARFR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4396,7 +4396,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "duration",
@@ -4405,8 +4405,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi DURATION.",
-    "syntax": "DURATION(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DURATION, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "DURATION(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format DURATION dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4418,7 +4418,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "effect",
@@ -4427,8 +4427,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi EFFECT.",
-    "syntax": "EFFECT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EFFECT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "EFFECT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format EFFECT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4440,7 +4440,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fv",
@@ -4449,8 +4449,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi FV.",
-    "syntax": "FV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "FV(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format FV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4462,7 +4462,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fvschedule",
@@ -4471,8 +4471,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi FVSCHEDULE.",
-    "syntax": "FVSCHEDULE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FVSCHEDULE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "FVSCHEDULE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format FVSCHEDULE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4484,7 +4484,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "intrate",
@@ -4493,8 +4493,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi INTRATE.",
-    "syntax": "INTRATE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama INTRATE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "INTRATE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format INTRATE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4506,7 +4506,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ipmt",
@@ -4515,8 +4515,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi IPMT.",
-    "syntax": "IPMT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IPMT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "IPMT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format IPMT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4528,7 +4528,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "irr",
@@ -4537,8 +4537,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi IRR.",
-    "syntax": "IRR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IRR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "IRR(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format IRR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4550,7 +4550,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ispmt",
@@ -4559,8 +4559,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ISPMT.",
-    "syntax": "ISPMT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISPMT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ISPMT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format ISPMT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4572,7 +4572,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mduration",
@@ -4581,8 +4581,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi MDURATION.",
-    "syntax": "MDURATION(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MDURATION, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "MDURATION(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format MDURATION dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4594,7 +4594,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mirr",
@@ -4603,8 +4603,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi MIRR.",
-    "syntax": "MIRR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MIRR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "MIRR(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format MIRR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4616,7 +4616,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "nominal",
@@ -4625,8 +4625,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi NOMINAL.",
-    "syntax": "NOMINAL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NOMINAL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "NOMINAL(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format NOMINAL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4638,7 +4638,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "nper",
@@ -4647,8 +4647,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi NPER.",
-    "syntax": "NPER(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NPER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "NPER(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format NPER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4660,7 +4660,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "npv",
@@ -4669,8 +4669,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi NPV.",
-    "syntax": "NPV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NPV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "NPV(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format NPV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4682,7 +4682,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oddfprice",
@@ -4691,8 +4691,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ODDFPRICE.",
-    "syntax": "ODDFPRICE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ODDFPRICE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ODDFPRICE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format ODDFPRICE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4704,7 +4704,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oddfyield",
@@ -4713,8 +4713,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ODDFYIELD.",
-    "syntax": "ODDFYIELD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ODDFYIELD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ODDFYIELD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format ODDFYIELD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4726,7 +4726,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oddlprice",
@@ -4735,8 +4735,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ODDLPRICE.",
-    "syntax": "ODDLPRICE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ODDLPRICE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ODDLPRICE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format ODDLPRICE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4748,7 +4748,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "oddlyield",
@@ -4757,8 +4757,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi ODDLYIELD.",
-    "syntax": "ODDLYIELD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ODDLYIELD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "ODDLYIELD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format ODDLYIELD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4770,7 +4770,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pduration",
@@ -4779,8 +4779,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PDURATION.",
-    "syntax": "PDURATION(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PDURATION, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PDURATION(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PDURATION dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4792,7 +4792,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pmt",
@@ -4801,8 +4801,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PMT.",
-    "syntax": "PMT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PMT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PMT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PMT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4814,7 +4814,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ppmt",
@@ -4823,8 +4823,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PPMT.",
-    "syntax": "PPMT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PPMT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PPMT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PPMT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4836,7 +4836,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "price",
@@ -4845,8 +4845,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PRICE.",
-    "syntax": "PRICE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PRICE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PRICE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PRICE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4858,7 +4858,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pricedisc",
@@ -4867,8 +4867,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PRICEDISC.",
-    "syntax": "PRICEDISC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PRICEDISC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PRICEDISC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PRICEDISC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4880,7 +4880,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pricemat",
@@ -4889,8 +4889,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PRICEMAT.",
-    "syntax": "PRICEMAT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PRICEMAT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PRICEMAT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PRICEMAT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4902,7 +4902,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pv",
@@ -4911,8 +4911,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi PV.",
-    "syntax": "PV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "PV(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format PV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4924,7 +4924,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "rate",
@@ -4933,8 +4933,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi RATE.",
-    "syntax": "RATE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RATE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "RATE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format RATE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4946,7 +4946,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "received",
@@ -4955,8 +4955,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi RECEIVED.",
-    "syntax": "RECEIVED(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RECEIVED, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "RECEIVED(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format RECEIVED dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4968,7 +4968,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "rri",
@@ -4977,8 +4977,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi RRI.",
-    "syntax": "RRI(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RRI, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "RRI(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format RRI dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -4990,7 +4990,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sln",
@@ -4999,8 +4999,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi SLN.",
-    "syntax": "SLN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SLN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "SLN(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format SLN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5012,7 +5012,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "syd",
@@ -5021,8 +5021,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi SYD.",
-    "syntax": "SYD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SYD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "SYD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format SYD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5034,7 +5034,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tbilleq",
@@ -5043,8 +5043,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi TBILLEQ.",
-    "syntax": "TBILLEQ(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TBILLEQ, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "TBILLEQ(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format TBILLEQ dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5056,7 +5056,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tbillprice",
@@ -5065,8 +5065,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi TBILLPRICE.",
-    "syntax": "TBILLPRICE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TBILLPRICE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "TBILLPRICE(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format TBILLPRICE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5078,7 +5078,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tbillyield",
@@ -5087,8 +5087,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi TBILLYIELD.",
-    "syntax": "TBILLYIELD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TBILLYIELD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "TBILLYIELD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format TBILLYIELD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5100,7 +5100,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "vdb",
@@ -5109,8 +5109,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi VDB.",
-    "syntax": "VDB(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama VDB, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "VDB(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format VDB dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5122,7 +5122,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "xirr",
@@ -5131,8 +5131,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi XIRR.",
-    "syntax": "XIRR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama XIRR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "XIRR(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format XIRR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5144,7 +5144,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "xnpv",
@@ -5153,8 +5153,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi XNPV.",
-    "syntax": "XNPV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama XNPV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "XNPV(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format XNPV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5166,7 +5166,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "yield",
@@ -5175,8 +5175,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi YIELD.",
-    "syntax": "YIELD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama YIELD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "YIELD(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format YIELD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5188,7 +5188,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "yielddisc",
@@ -5197,8 +5197,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi YIELDDISC.",
-    "syntax": "YIELDDISC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama YIELDDISC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "YIELDDISC(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format YIELDDISC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5210,7 +5210,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "yieldmat",
@@ -5219,8 +5219,8 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Financial",
     "level": "Rare / Specialized",
     "description": "Menghitung kebutuhan finansial memakai fungsi YIELDMAT.",
-    "syntax": "YIELDMAT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama YIELDMAT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
+    "syntax": "YIELDMAT(rate, nper, pv, [fv], [type])",
+    "simpleLogic": "Baca format YIELDMAT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
     "useCase": "Cocok untuk pinjaman, investasi, bunga, depresiasi, dan perhitungan keuangan.",
     "version": "All supported Excel versions",
     "availability": [
@@ -5232,7 +5232,7 @@ const baseFormulaCatalogFull = [
       "finance",
       "financial"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cell",
@@ -5242,8 +5242,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Mengecek informasi cell, error, atau tipe data memakai CELL.",
     "syntax": "CELL(info_type, [reference])",
-    "simpleLogic": "Pahami input utama CELL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format CELL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5264,9 +5264,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ERROR.TYPE.",
-    "syntax": "ERROR.TYPE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ERROR.TYPE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ERROR.TYPE(error_val)",
+    "simpleLogic": "Baca format ERROR.TYPE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5277,7 +5277,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "info",
@@ -5286,9 +5286,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai INFO.",
-    "syntax": "INFO(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama INFO, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "INFO(value)",
+    "simpleLogic": "Baca format INFO dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5299,7 +5299,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "isblank",
@@ -5309,8 +5309,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISBLANK.",
     "syntax": "ISBLANK(value)",
-    "simpleLogic": "Pahami input utama ISBLANK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ISBLANK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5331,9 +5331,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISERR.",
-    "syntax": "ISERR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISERR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISERR(value)",
+    "simpleLogic": "Baca format ISERR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5344,7 +5344,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "iserror",
@@ -5354,8 +5354,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISERROR.",
     "syntax": "ISERROR(value)",
-    "simpleLogic": "Pahami input utama ISERROR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ISERROR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5376,9 +5376,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISEVEN.",
-    "syntax": "ISEVEN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISEVEN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISEVEN(value)",
+    "simpleLogic": "Baca format ISEVEN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5389,7 +5389,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "isformula",
@@ -5399,8 +5399,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISFORMULA.",
     "syntax": "ISFORMULA(reference)",
-    "simpleLogic": "Pahami input utama ISFORMULA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ISFORMULA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5421,9 +5421,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISLOGICAL.",
-    "syntax": "ISLOGICAL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISLOGICAL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISLOGICAL(value)",
+    "simpleLogic": "Baca format ISLOGICAL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5434,7 +5434,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "isna",
@@ -5444,8 +5444,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISNA.",
     "syntax": "ISNA(value)",
-    "simpleLogic": "Pahami input utama ISNA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ISNA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5466,9 +5466,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISNONTEXT.",
-    "syntax": "ISNONTEXT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISNONTEXT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISNONTEXT(value)",
+    "simpleLogic": "Baca format ISNONTEXT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5479,7 +5479,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "isnumber",
@@ -5489,8 +5489,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISNUMBER.",
     "syntax": "ISNUMBER(value)",
-    "simpleLogic": "Pahami input utama ISNUMBER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ISNUMBER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5511,9 +5511,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISODD.",
-    "syntax": "ISODD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISODD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISODD(value)",
+    "simpleLogic": "Baca format ISODD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5524,7 +5524,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "isomitted",
@@ -5533,9 +5533,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISOMITTED.",
-    "syntax": "ISOMITTED(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISOMITTED, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISOMITTED(value)",
+    "simpleLogic": "Baca format ISOMITTED dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5546,7 +5546,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "isref",
@@ -5555,9 +5555,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISREF.",
-    "syntax": "ISREF(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISREF, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISREF(value)",
+    "simpleLogic": "Baca format ISREF dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5568,7 +5568,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "istext",
@@ -5578,8 +5578,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mengecek informasi cell, error, atau tipe data memakai ISTEXT.",
     "syntax": "ISTEXT(value)",
-    "simpleLogic": "Pahami input utama ISTEXT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ISTEXT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5601,8 +5601,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Mengecek informasi cell, error, atau tipe data memakai N.",
     "syntax": "N(value)",
-    "simpleLogic": "Pahami input utama N, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format N dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5623,9 +5623,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai NA.",
-    "syntax": "NA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "NA(value)",
+    "simpleLogic": "Baca format NA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5636,7 +5636,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sheet",
@@ -5645,9 +5645,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai SHEET.",
-    "syntax": "SHEET(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SHEET, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SHEET(value)",
+    "simpleLogic": "Baca format SHEET dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5658,7 +5658,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sheets",
@@ -5667,9 +5667,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Information",
     "level": "Intermediate",
     "description": "Mengecek informasi cell, error, atau tipe data memakai SHEETS.",
-    "syntax": "SHEETS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SHEETS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SHEETS(value)",
+    "simpleLogic": "Baca format SHEETS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5680,7 +5680,7 @@ const baseFormulaCatalogFull = [
       "info",
       "information"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "type",
@@ -5690,8 +5690,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Mengecek informasi cell, error, atau tipe data memakai TYPE.",
     "syntax": "TYPE(value)",
-    "simpleLogic": "Pahami input utama TYPE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format TYPE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5714,7 +5714,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi AND.",
     "syntax": "AND(logical1, [logical2], ...)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5737,7 +5737,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi FALSE.",
     "syntax": "FALSE()",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5760,7 +5760,7 @@ const baseFormulaCatalogFull = [
     "description": "Membuat keputusan berdasarkan kondisi tertentu.",
     "syntax": "IF(logical_test, value_if_true, value_if_false)",
     "simpleLogic": "Kalau ada kondisi, tentukan hasil saat kondisi benar dan hasil saat kondisi salah.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5783,7 +5783,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi IFERROR.",
     "syntax": "IFERROR(value, value_if_error)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5806,7 +5806,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi IFNA.",
     "syntax": "IFNA(value, value_if_na)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5829,7 +5829,7 @@ const baseFormulaCatalogFull = [
     "description": "Menguji beberapa kondisi tanpa IF bertingkat panjang.",
     "syntax": "IFS(logical_test1, value_if_true1, ...)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5852,7 +5852,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi NOT.",
     "syntax": "NOT(logical)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5875,7 +5875,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi OR.",
     "syntax": "OR(logical1, [logical2], ...)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5898,7 +5898,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi SWITCH.",
     "syntax": "SWITCH(expression, value1, result1, [default_or_value2], [result2], ...)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5921,7 +5921,7 @@ const baseFormulaCatalogFull = [
     "description": "Membantu membuat logika keputusan menggunakan fungsi TRUE.",
     "syntax": "TRUE()",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5942,9 +5942,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Logical",
     "level": "Intermediate",
     "description": "Membantu membuat logika keputusan menggunakan fungsi XOR.",
-    "syntax": "XOR(argument1, [argument2], ...)",
+    "syntax": "XOR(value)",
     "simpleLogic": "Pikirkan seperti pertanyaan ya/tidak. Hasil logika menentukan langkah berikutnya.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5955,7 +5955,7 @@ const baseFormulaCatalogFull = [
       "logic",
       "logical"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "address",
@@ -5965,8 +5965,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai ADDRESS.",
     "syntax": "ADDRESS(row_num, column_num, [abs_num], [a1], [sheet_text])",
-    "simpleLogic": "Pahami input utama ADDRESS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ADDRESS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -5988,9 +5988,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Lookup & Reference",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai AREAS.",
-    "syntax": "AREAS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama AREAS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "AREAS(reference)",
+    "simpleLogic": "Baca format AREAS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6002,7 +6002,7 @@ const baseFormulaCatalogFull = [
       "lookup-and-reference",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "choose",
@@ -6012,8 +6012,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai CHOOSE.",
     "syntax": "CHOOSE(index_num, value1, [value2], ...)",
-    "simpleLogic": "Pahami input utama CHOOSE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format CHOOSE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6036,8 +6036,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mencari, mengambil, atau membuat referensi data memakai COLUMN.",
     "syntax": "COLUMN([reference])",
-    "simpleLogic": "Pahami input utama COLUMN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format COLUMN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6060,8 +6060,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mencari, mengambil, atau membuat referensi data memakai COLUMNS.",
     "syntax": "COLUMNS(array)",
-    "simpleLogic": "Pahami input utama COLUMNS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format COLUMNS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6084,8 +6084,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Mencari, mengambil, atau membuat referensi data memakai FORMULATEXT.",
     "syntax": "FORMULATEXT(reference)",
-    "simpleLogic": "Pahami input utama FORMULATEXT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format FORMULATEXT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6107,9 +6107,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Lookup & Reference",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai GETPIVOTDATA.",
-    "syntax": "GETPIVOTDATA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GETPIVOTDATA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "GETPIVOTDATA(reference)",
+    "simpleLogic": "Baca format GETPIVOTDATA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6121,7 +6121,7 @@ const baseFormulaCatalogFull = [
       "lookup-and-reference",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "hlookup",
@@ -6132,7 +6132,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari, mengambil, atau membuat referensi data memakai HLOOKUP.",
     "syntax": "HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6155,8 +6155,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai HYPERLINK.",
     "syntax": "HYPERLINK(link_location, [friendly_name])",
-    "simpleLogic": "Pahami input utama HYPERLINK, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format HYPERLINK dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6178,9 +6178,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Lookup & Reference",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai IMAGE.",
-    "syntax": "IMAGE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama IMAGE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "IMAGE(reference)",
+    "simpleLogic": "Baca format IMAGE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6192,7 +6192,7 @@ const baseFormulaCatalogFull = [
       "lookup-and-reference",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "index",
@@ -6203,7 +6203,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari, mengambil, atau membuat referensi data memakai INDEX.",
     "syntax": "INDEX(array, row_num, [column_num])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6227,7 +6227,7 @@ const baseFormulaCatalogFull = [
     "description": "Mengambil data dengan gabungan posisi baris dan kolom.",
     "syntax": "INDEX(return_range, MATCH(lookup_value, lookup_range, 0))",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6250,8 +6250,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Mencari, mengambil, atau membuat referensi data memakai INDIRECT.",
     "syntax": "INDIRECT(ref_text, [a1])",
-    "simpleLogic": "Pahami input utama INDIRECT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format INDIRECT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6275,7 +6275,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari, mengambil, atau membuat referensi data memakai LOOKUP.",
     "syntax": "LOOKUP(lookup_value, lookup_vector, [result_vector])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6299,7 +6299,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari, mengambil, atau membuat referensi data memakai MATCH.",
     "syntax": "MATCH(lookup_value, lookup_array, [match_type])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6322,8 +6322,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Mencari, mengambil, atau membuat referensi data memakai OFFSET.",
     "syntax": "OFFSET(reference, rows, cols, [height], [width])",
-    "simpleLogic": "Pahami input utama OFFSET, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format OFFSET dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6346,8 +6346,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mencari, mengambil, atau membuat referensi data memakai ROW.",
     "syntax": "ROW([reference])",
-    "simpleLogic": "Pahami input utama ROW, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ROW dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6370,8 +6370,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Mencari, mengambil, atau membuat referensi data memakai ROWS.",
     "syntax": "ROWS(array)",
-    "simpleLogic": "Pahami input utama ROWS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ROWS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6393,9 +6393,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Lookup & Reference",
     "level": "Intermediate",
     "description": "Mencari, mengambil, atau membuat referensi data memakai RTD.",
-    "syntax": "RTD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RTD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "RTD(reference)",
+    "simpleLogic": "Baca format RTD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6407,7 +6407,7 @@ const baseFormulaCatalogFull = [
       "lookup-and-reference",
       "reference"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "vlookup",
@@ -6418,7 +6418,7 @@ const baseFormulaCatalogFull = [
     "description": "Mencari data secara vertikal berdasarkan nilai kunci.",
     "syntax": "VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])",
     "simpleLogic": "Cari kunci data dulu, lalu ambil nilai yang sejajar dengan kunci tersebut.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6441,8 +6441,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Melakukan perhitungan matematika memakai fungsi ABS.",
     "syntax": "ABS(number)",
-    "simpleLogic": "Pahami input utama ABS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ABS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6463,9 +6463,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ACOS.",
-    "syntax": "ACOS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ACOS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ACOS(value)",
+    "simpleLogic": "Baca format ACOS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6476,7 +6476,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "acosh",
@@ -6485,9 +6485,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ACOSH.",
-    "syntax": "ACOSH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ACOSH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ACOSH(value)",
+    "simpleLogic": "Baca format ACOSH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6498,7 +6498,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "acot",
@@ -6507,9 +6507,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ACOT.",
-    "syntax": "ACOT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ACOT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ACOT(value)",
+    "simpleLogic": "Baca format ACOT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6520,7 +6520,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "acoth",
@@ -6529,9 +6529,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ACOTH.",
-    "syntax": "ACOTH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ACOTH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ACOTH(value)",
+    "simpleLogic": "Baca format ACOTH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6542,7 +6542,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "aggregate",
@@ -6552,8 +6552,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Melakukan perhitungan matematika memakai fungsi AGGREGATE.",
     "syntax": "AGGREGATE(function_num, options, ref1, [ref2], ...)",
-    "simpleLogic": "Pahami input utama AGGREGATE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format AGGREGATE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6574,9 +6574,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ARABIC.",
-    "syntax": "ARABIC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ARABIC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ARABIC(value)",
+    "simpleLogic": "Baca format ARABIC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6587,7 +6587,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "asin",
@@ -6596,9 +6596,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ASIN.",
-    "syntax": "ASIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ASIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ASIN(value)",
+    "simpleLogic": "Baca format ASIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6609,7 +6609,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "asinh",
@@ -6618,9 +6618,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ASINH.",
-    "syntax": "ASINH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ASINH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ASINH(value)",
+    "simpleLogic": "Baca format ASINH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6631,7 +6631,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "atan",
@@ -6640,9 +6640,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ATAN.",
-    "syntax": "ATAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ATAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ATAN(value)",
+    "simpleLogic": "Baca format ATAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6653,7 +6653,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "atan2",
@@ -6662,9 +6662,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ATAN2.",
-    "syntax": "ATAN2(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ATAN2, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ATAN2(value)",
+    "simpleLogic": "Baca format ATAN2 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6675,7 +6675,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "atanh",
@@ -6684,9 +6684,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ATANH.",
-    "syntax": "ATANH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ATANH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ATANH(value)",
+    "simpleLogic": "Baca format ATANH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6697,7 +6697,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "base",
@@ -6706,9 +6706,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi BASE.",
-    "syntax": "BASE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BASE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "BASE(value)",
+    "simpleLogic": "Baca format BASE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6719,7 +6719,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ceiling",
@@ -6729,8 +6729,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi CEILING.",
     "syntax": "CEILING(number, significance)",
-    "simpleLogic": "Pahami input utama CEILING, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format CEILING dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6751,9 +6751,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi CEILING.MATH.",
-    "syntax": "CEILING.MATH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CEILING.MATH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "CEILING.MATH(value)",
+    "simpleLogic": "Baca format CEILING.MATH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6764,7 +6764,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ceiling_precise",
@@ -6773,9 +6773,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi CEILING.PRECISE.",
-    "syntax": "CEILING.PRECISE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CEILING.PRECISE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "CEILING.PRECISE(value)",
+    "simpleLogic": "Baca format CEILING.PRECISE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6786,7 +6786,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "combin",
@@ -6795,9 +6795,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi COMBIN.",
-    "syntax": "COMBIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COMBIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COMBIN(value)",
+    "simpleLogic": "Baca format COMBIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6808,7 +6808,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "combina",
@@ -6817,9 +6817,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi COMBINA.",
-    "syntax": "COMBINA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COMBINA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COMBINA(value)",
+    "simpleLogic": "Baca format COMBINA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6830,7 +6830,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cos",
@@ -6839,9 +6839,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi COS.",
-    "syntax": "COS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COS(value)",
+    "simpleLogic": "Baca format COS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6852,7 +6852,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cosh",
@@ -6861,9 +6861,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi COSH.",
-    "syntax": "COSH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COSH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COSH(value)",
+    "simpleLogic": "Baca format COSH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6874,7 +6874,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cot",
@@ -6883,9 +6883,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi COT.",
-    "syntax": "COT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COT(value)",
+    "simpleLogic": "Baca format COT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6896,7 +6896,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "coth",
@@ -6905,9 +6905,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi COTH.",
-    "syntax": "COTH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COTH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "COTH(value)",
+    "simpleLogic": "Baca format COTH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6918,7 +6918,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "csc",
@@ -6927,9 +6927,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi CSC.",
-    "syntax": "CSC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CSC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "CSC(value)",
+    "simpleLogic": "Baca format CSC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6940,7 +6940,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "csch",
@@ -6949,9 +6949,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi CSCH.",
-    "syntax": "CSCH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CSCH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "CSCH(value)",
+    "simpleLogic": "Baca format CSCH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6962,7 +6962,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "decimal",
@@ -6971,9 +6971,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi DECIMAL.",
-    "syntax": "DECIMAL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DECIMAL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DECIMAL(value)",
+    "simpleLogic": "Baca format DECIMAL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -6984,7 +6984,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "degrees",
@@ -6993,9 +6993,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi DEGREES.",
-    "syntax": "DEGREES(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DEGREES, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "DEGREES(value)",
+    "simpleLogic": "Baca format DEGREES dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7006,7 +7006,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "even",
@@ -7015,9 +7015,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi EVEN.",
-    "syntax": "EVEN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EVEN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "EVEN(value)",
+    "simpleLogic": "Baca format EVEN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7028,7 +7028,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "exp",
@@ -7037,9 +7037,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi EXP.",
-    "syntax": "EXP(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EXP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "EXP(value)",
+    "simpleLogic": "Baca format EXP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7050,7 +7050,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fact",
@@ -7059,9 +7059,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi FACT.",
-    "syntax": "FACT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FACT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "FACT(value)",
+    "simpleLogic": "Baca format FACT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7072,7 +7072,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "factdouble",
@@ -7081,9 +7081,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi FACTDOUBLE.",
-    "syntax": "FACTDOUBLE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FACTDOUBLE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "FACTDOUBLE(value)",
+    "simpleLogic": "Baca format FACTDOUBLE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7094,7 +7094,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "floor",
@@ -7104,8 +7104,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi FLOOR.",
     "syntax": "FLOOR(number, significance)",
-    "simpleLogic": "Pahami input utama FLOOR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format FLOOR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7126,9 +7126,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi FLOOR.MATH.",
-    "syntax": "FLOOR.MATH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FLOOR.MATH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "FLOOR.MATH(value)",
+    "simpleLogic": "Baca format FLOOR.MATH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7139,7 +7139,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "floor_precise",
@@ -7148,9 +7148,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi FLOOR.PRECISE.",
-    "syntax": "FLOOR.PRECISE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FLOOR.PRECISE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "FLOOR.PRECISE(value)",
+    "simpleLogic": "Baca format FLOOR.PRECISE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7161,7 +7161,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gcd",
@@ -7170,9 +7170,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi GCD.",
-    "syntax": "GCD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GCD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "GCD(value)",
+    "simpleLogic": "Baca format GCD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7183,7 +7183,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "int",
@@ -7193,8 +7193,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Melakukan perhitungan matematika memakai fungsi INT.",
     "syntax": "INT(number)",
-    "simpleLogic": "Pahami input utama INT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format INT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7215,9 +7215,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ISO.CEILING.",
-    "syntax": "ISO.CEILING(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ISO.CEILING, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ISO.CEILING(value)",
+    "simpleLogic": "Baca format ISO.CEILING dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7228,7 +7228,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "lcm",
@@ -7237,9 +7237,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi LCM.",
-    "syntax": "LCM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LCM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "LCM(value)",
+    "simpleLogic": "Baca format LCM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7250,7 +7250,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "ln",
@@ -7259,9 +7259,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi LN.",
-    "syntax": "LN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "LN(value)",
+    "simpleLogic": "Baca format LN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7272,7 +7272,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "log",
@@ -7281,9 +7281,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi LOG.",
-    "syntax": "LOG(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOG, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "LOG(value)",
+    "simpleLogic": "Baca format LOG dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7294,7 +7294,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "log10",
@@ -7303,9 +7303,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi LOG10.",
-    "syntax": "LOG10(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOG10, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "LOG10(value)",
+    "simpleLogic": "Baca format LOG10 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7316,7 +7316,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mdeterm",
@@ -7325,9 +7325,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi MDETERM.",
-    "syntax": "MDETERM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MDETERM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "MDETERM(value)",
+    "simpleLogic": "Baca format MDETERM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7338,7 +7338,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "minverse",
@@ -7347,9 +7347,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi MINVERSE.",
-    "syntax": "MINVERSE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MINVERSE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "MINVERSE(value)",
+    "simpleLogic": "Baca format MINVERSE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7360,7 +7360,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mmult",
@@ -7369,9 +7369,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi MMULT.",
-    "syntax": "MMULT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MMULT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "MMULT(value)",
+    "simpleLogic": "Baca format MMULT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7382,7 +7382,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mod",
@@ -7392,8 +7392,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Melakukan perhitungan matematika memakai fungsi MOD.",
     "syntax": "MOD(number, divisor)",
-    "simpleLogic": "Pahami input utama MOD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MOD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7414,9 +7414,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi MROUND.",
-    "syntax": "MROUND(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MROUND, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "MROUND(value)",
+    "simpleLogic": "Baca format MROUND dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7427,7 +7427,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "multinomial",
@@ -7436,9 +7436,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi MULTINOMIAL.",
-    "syntax": "MULTINOMIAL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MULTINOMIAL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "MULTINOMIAL(value)",
+    "simpleLogic": "Baca format MULTINOMIAL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7449,7 +7449,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "munit",
@@ -7458,9 +7458,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi MUNIT.",
-    "syntax": "MUNIT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MUNIT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "MUNIT(value)",
+    "simpleLogic": "Baca format MUNIT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7471,7 +7471,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "odd",
@@ -7480,9 +7480,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ODD.",
-    "syntax": "ODD(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ODD, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ODD(value)",
+    "simpleLogic": "Baca format ODD dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7493,7 +7493,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pi",
@@ -7502,9 +7502,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi PI.",
-    "syntax": "PI(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PI, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "PI(value)",
+    "simpleLogic": "Baca format PI dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7515,7 +7515,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "power",
@@ -7525,8 +7525,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi POWER.",
     "syntax": "POWER(number, power)",
-    "simpleLogic": "Pahami input utama POWER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format POWER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7547,9 +7547,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi PRODUCT.",
-    "syntax": "PRODUCT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PRODUCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "PRODUCT(value)",
+    "simpleLogic": "Baca format PRODUCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7560,7 +7560,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "quotient",
@@ -7569,9 +7569,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi QUOTIENT.",
-    "syntax": "QUOTIENT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama QUOTIENT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "QUOTIENT(value)",
+    "simpleLogic": "Baca format QUOTIENT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7582,7 +7582,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "radians",
@@ -7591,9 +7591,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi RADIANS.",
-    "syntax": "RADIANS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RADIANS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "RADIANS(value)",
+    "simpleLogic": "Baca format RADIANS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7604,7 +7604,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "rand",
@@ -7614,8 +7614,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi RAND.",
     "syntax": "RAND()",
-    "simpleLogic": "Pahami input utama RAND, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format RAND dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7637,8 +7637,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi RANDBETWEEN.",
     "syntax": "RANDBETWEEN(bottom, top)",
-    "simpleLogic": "Pahami input utama RANDBETWEEN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format RANDBETWEEN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7659,9 +7659,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ROMAN.",
-    "syntax": "ROMAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ROMAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ROMAN(value)",
+    "simpleLogic": "Baca format ROMAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7672,7 +7672,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "round",
@@ -7682,8 +7682,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Melakukan perhitungan matematika memakai fungsi ROUND.",
     "syntax": "ROUND(number, num_digits)",
-    "simpleLogic": "Pahami input utama ROUND, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ROUND dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7705,8 +7705,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ROUNDDOWN.",
     "syntax": "ROUNDDOWN(number, num_digits)",
-    "simpleLogic": "Pahami input utama ROUNDDOWN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ROUNDDOWN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7728,8 +7728,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi ROUNDUP.",
     "syntax": "ROUNDUP(number, num_digits)",
-    "simpleLogic": "Pahami input utama ROUNDUP, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format ROUNDUP dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7750,9 +7750,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SEC.",
-    "syntax": "SEC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SEC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SEC(value)",
+    "simpleLogic": "Baca format SEC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7763,7 +7763,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sech",
@@ -7772,9 +7772,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SECH.",
-    "syntax": "SECH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SECH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SECH(value)",
+    "simpleLogic": "Baca format SECH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7785,7 +7785,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "seriessum",
@@ -7794,9 +7794,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SERIESSUM.",
-    "syntax": "SERIESSUM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SERIESSUM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SERIESSUM(value)",
+    "simpleLogic": "Baca format SERIESSUM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7807,7 +7807,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sign",
@@ -7816,9 +7816,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SIGN.",
-    "syntax": "SIGN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SIGN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SIGN(value)",
+    "simpleLogic": "Baca format SIGN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7829,7 +7829,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sin",
@@ -7838,9 +7838,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SIN.",
-    "syntax": "SIN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SIN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SIN(value)",
+    "simpleLogic": "Baca format SIN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7851,7 +7851,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sinh",
@@ -7860,9 +7860,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SINH.",
-    "syntax": "SINH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SINH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SINH(value)",
+    "simpleLogic": "Baca format SINH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7873,7 +7873,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sqrt",
@@ -7883,8 +7883,8 @@ const baseFormulaCatalogFull = [
     "level": "Basic",
     "description": "Melakukan perhitungan matematika memakai fungsi SQRT.",
     "syntax": "SQRT(number)",
-    "simpleLogic": "Pahami input utama SQRT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SQRT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7905,9 +7905,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SQRTPI.",
-    "syntax": "SQRTPI(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SQRTPI, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SQRTPI(value)",
+    "simpleLogic": "Baca format SQRTPI dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7918,7 +7918,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "subtotal",
@@ -7928,8 +7928,8 @@ const baseFormulaCatalogFull = [
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SUBTOTAL.",
     "syntax": "SUBTOTAL(function_num, ref1, [ref2], ...)",
-    "simpleLogic": "Pahami input utama SUBTOTAL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SUBTOTAL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7951,8 +7951,8 @@ const baseFormulaCatalogFull = [
     "level": "Advanced",
     "description": "Melakukan perhitungan matematika memakai fungsi SUMPRODUCT.",
     "syntax": "SUMPRODUCT(array1, [array2], ...)",
-    "simpleLogic": "Pahami input utama SUMPRODUCT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format SUMPRODUCT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7973,9 +7973,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SUMSQ.",
-    "syntax": "SUMSQ(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SUMSQ, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SUMSQ(value)",
+    "simpleLogic": "Baca format SUMSQ dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -7986,7 +7986,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sumx2my2",
@@ -7995,9 +7995,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SUMX2MY2.",
-    "syntax": "SUMX2MY2(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SUMX2MY2, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SUMX2MY2(value)",
+    "simpleLogic": "Baca format SUMX2MY2 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8008,7 +8008,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sumx2py2",
@@ -8017,9 +8017,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SUMX2PY2.",
-    "syntax": "SUMX2PY2(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SUMX2PY2, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SUMX2PY2(value)",
+    "simpleLogic": "Baca format SUMX2PY2 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8030,7 +8030,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sumxmy2",
@@ -8039,9 +8039,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi SUMXMY2.",
-    "syntax": "SUMXMY2(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SUMXMY2, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "SUMXMY2(value)",
+    "simpleLogic": "Baca format SUMXMY2 dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8052,7 +8052,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tan",
@@ -8061,9 +8061,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi TAN.",
-    "syntax": "TAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "TAN(value)",
+    "simpleLogic": "Baca format TAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8074,7 +8074,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "tanh",
@@ -8083,9 +8083,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi TANH.",
-    "syntax": "TANH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TANH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "TANH(value)",
+    "simpleLogic": "Baca format TANH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8096,7 +8096,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "trunc",
@@ -8105,9 +8105,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Math & Trigonometry",
     "level": "Intermediate",
     "description": "Melakukan perhitungan matematika memakai fungsi TRUNC.",
-    "syntax": "TRUNC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TRUNC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "TRUNC(value)",
+    "simpleLogic": "Baca format TRUNC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8118,7 +8118,7 @@ const baseFormulaCatalogFull = [
       "math",
       "math-and-trigonometry"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "call",
@@ -8126,10 +8126,10 @@ const baseFormulaCatalogFull = [
     "category": "Add-in / User Defined",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CALL untuk kebutuhan khusus.",
-    "syntax": "CALL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CALL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CALL dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CALL(module_text, procedure, type_text, [argument1], ...)",
+    "simpleLogic": "Baca format CALL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8140,7 +8140,7 @@ const baseFormulaCatalogFull = [
       "add-in",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cubekpimember",
@@ -8148,10 +8148,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBEKPIMEMBER untuk kebutuhan khusus.",
-    "syntax": "CUBEKPIMEMBER(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBEKPIMEMBER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBEKPIMEMBER dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBEKPIMEMBER(connection, kpi_name, kpi_property, [caption])",
+    "simpleLogic": "Baca format CUBEKPIMEMBER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8162,7 +8162,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cubemember",
@@ -8170,10 +8170,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBEMEMBER untuk kebutuhan khusus.",
-    "syntax": "CUBEMEMBER(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBEMEMBER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBEMEMBER dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBEMEMBER(connection, member_expression)",
+    "simpleLogic": "Baca format CUBEMEMBER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8184,7 +8184,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cubememberproperty",
@@ -8192,10 +8192,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBEMEMBERPROPERTY untuk kebutuhan khusus.",
-    "syntax": "CUBEMEMBERPROPERTY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBEMEMBERPROPERTY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBEMEMBERPROPERTY dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBEMEMBERPROPERTY(connection, member_expression)",
+    "simpleLogic": "Baca format CUBEMEMBERPROPERTY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8206,7 +8206,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cuberankedmember",
@@ -8214,10 +8214,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBERANKEDMEMBER untuk kebutuhan khusus.",
-    "syntax": "CUBERANKEDMEMBER(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBERANKEDMEMBER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBERANKEDMEMBER dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBERANKEDMEMBER(connection, member_expression)",
+    "simpleLogic": "Baca format CUBERANKEDMEMBER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8228,7 +8228,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cubeset",
@@ -8236,10 +8236,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBESET untuk kebutuhan khusus.",
-    "syntax": "CUBESET(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBESET, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBESET dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBESET(connection, member_expression)",
+    "simpleLogic": "Baca format CUBESET dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8250,7 +8250,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cubesetcount",
@@ -8258,10 +8258,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBESETCOUNT untuk kebutuhan khusus.",
-    "syntax": "CUBESETCOUNT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBESETCOUNT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBESETCOUNT dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBESETCOUNT(connection, member_expression)",
+    "simpleLogic": "Baca format CUBESETCOUNT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8272,7 +8272,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "cubevalue",
@@ -8280,10 +8280,10 @@ const baseFormulaCatalogFull = [
     "category": "Cube",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel CUBEVALUE untuk kebutuhan khusus.",
-    "syntax": "CUBEVALUE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CUBEVALUE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CUBEVALUE dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "CUBEVALUE(connection, member_expression)",
+    "simpleLogic": "Baca format CUBEVALUE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8294,7 +8294,7 @@ const baseFormulaCatalogFull = [
       "cube",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "euroconvert",
@@ -8302,10 +8302,10 @@ const baseFormulaCatalogFull = [
     "category": "Add-in / User Defined",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel EUROCONVERT untuk kebutuhan khusus.",
-    "syntax": "EUROCONVERT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EUROCONVERT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "EUROCONVERT dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "EUROCONVERT(value)",
+    "simpleLogic": "Baca format EUROCONVERT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8316,7 +8316,7 @@ const baseFormulaCatalogFull = [
       "add-in",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "register_id",
@@ -8324,10 +8324,10 @@ const baseFormulaCatalogFull = [
     "category": "Add-in / User Defined",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel REGISTER.ID untuk kebutuhan khusus.",
-    "syntax": "REGISTER.ID(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama REGISTER.ID, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "REGISTER.ID dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "REGISTER.ID(value)",
+    "simpleLogic": "Baca format REGISTER.ID dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8338,7 +8338,7 @@ const baseFormulaCatalogFull = [
       "add-in",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "sql_request",
@@ -8346,10 +8346,10 @@ const baseFormulaCatalogFull = [
     "category": "Add-in / User Defined",
     "displayCategory": "Rare / Specialized",
     "level": "Rare / Specialized",
-    "description": "Fungsi Excel SQL.REQUEST untuk kebutuhan khusus.",
-    "syntax": "SQL.REQUEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SQL.REQUEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "SQL.REQUEST dipakai untuk mengolah data sesuai format rumusnya.",
+    "syntax": "SQL.REQUEST(value)",
+    "simpleLogic": "Baca format SQL.REQUEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8360,7 +8360,7 @@ const baseFormulaCatalogFull = [
       "add-in",
       "rare-/-specialized"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "avedev",
@@ -8368,10 +8368,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi AVEDEV.",
-    "syntax": "AVEDEV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama AVEDEV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "AVEDEV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "AVEDEV(number1, [number2], ...)",
+    "simpleLogic": "Baca format AVEDEV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8382,7 +8382,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "averagea",
@@ -8390,10 +8390,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi AVERAGEA.",
-    "syntax": "AVERAGEA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama AVERAGEA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "AVERAGEA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "AVERAGEA(number1, [number2], ...)",
+    "simpleLogic": "Baca format AVERAGEA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8404,7 +8404,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "beta_dist",
@@ -8412,10 +8412,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi BETA.DIST.",
-    "syntax": "BETA.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BETA.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BETA.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "BETA.DIST(x, alpha, beta, cumulative, [A], [B])",
+    "simpleLogic": "Baca format BETA.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8426,7 +8426,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "beta_inv",
@@ -8434,10 +8434,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi BETA.INV.",
-    "syntax": "BETA.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BETA.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BETA.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "BETA.INV(probability, alpha, beta, [A], [B])",
+    "simpleLogic": "Baca format BETA.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8448,7 +8448,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "binom_dist",
@@ -8456,10 +8456,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi BINOM.DIST.",
-    "syntax": "BINOM.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BINOM.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BINOM.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "BINOM.DIST(number_s, trials, probability_s, cumulative)",
+    "simpleLogic": "Baca format BINOM.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8470,7 +8470,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "binom_dist_range",
@@ -8478,10 +8478,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi BINOM.DIST.RANGE.",
-    "syntax": "BINOM.DIST.RANGE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BINOM.DIST.RANGE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BINOM.DIST.RANGE dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "BINOM.DIST.RANGE(trials, probability_s, number_s, [number_s2])",
+    "simpleLogic": "Baca format BINOM.DIST.RANGE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8492,7 +8492,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "binom_inv",
@@ -8500,10 +8500,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi BINOM.INV.",
-    "syntax": "BINOM.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama BINOM.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "BINOM.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "BINOM.INV(trials, probability_s, alpha)",
+    "simpleLogic": "Baca format BINOM.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8514,7 +8514,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chisq_dist",
@@ -8522,10 +8522,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CHISQ.DIST.",
-    "syntax": "CHISQ.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHISQ.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHISQ.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CHISQ.DIST(x, deg_freedom, cumulative)",
+    "simpleLogic": "Baca format CHISQ.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8536,7 +8536,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chisq_dist_rt",
@@ -8544,10 +8544,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CHISQ.DIST.RT.",
-    "syntax": "CHISQ.DIST.RT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHISQ.DIST.RT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHISQ.DIST.RT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CHISQ.DIST.RT(x, deg_freedom)",
+    "simpleLogic": "Baca format CHISQ.DIST.RT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8558,7 +8558,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chisq_inv",
@@ -8566,10 +8566,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CHISQ.INV.",
-    "syntax": "CHISQ.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHISQ.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHISQ.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CHISQ.INV(probability, deg_freedom)",
+    "simpleLogic": "Baca format CHISQ.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8580,7 +8580,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chisq_inv_rt",
@@ -8588,10 +8588,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CHISQ.INV.RT.",
-    "syntax": "CHISQ.INV.RT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHISQ.INV.RT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHISQ.INV.RT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CHISQ.INV.RT(probability, deg_freedom)",
+    "simpleLogic": "Baca format CHISQ.INV.RT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8602,7 +8602,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "chisq_test",
@@ -8610,10 +8610,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CHISQ.TEST.",
-    "syntax": "CHISQ.TEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CHISQ.TEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CHISQ.TEST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CHISQ.TEST(actual_range, expected_range)",
+    "simpleLogic": "Baca format CHISQ.TEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8624,7 +8624,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "confidence_norm",
@@ -8632,10 +8632,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CONFIDENCE.NORM.",
-    "syntax": "CONFIDENCE.NORM(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CONFIDENCE.NORM, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CONFIDENCE.NORM dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CONFIDENCE.NORM(alpha, standard_dev, size)",
+    "simpleLogic": "Baca format CONFIDENCE.NORM dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8646,7 +8646,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "confidence_t",
@@ -8654,10 +8654,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CONFIDENCE.T.",
-    "syntax": "CONFIDENCE.T(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CONFIDENCE.T, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CONFIDENCE.T dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CONFIDENCE.T(alpha, standard_dev, size)",
+    "simpleLogic": "Baca format CONFIDENCE.T dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8668,7 +8668,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "correl",
@@ -8676,10 +8676,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi CORREL.",
-    "syntax": "CORREL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama CORREL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "CORREL dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "CORREL(array1, array2)",
+    "simpleLogic": "Baca format CORREL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8690,7 +8690,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "covariance_p",
@@ -8698,10 +8698,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi COVARIANCE.P.",
-    "syntax": "COVARIANCE.P(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COVARIANCE.P, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "COVARIANCE.P dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "COVARIANCE.P(array1, array2)",
+    "simpleLogic": "Baca format COVARIANCE.P dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8712,7 +8712,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "covariance_s",
@@ -8720,10 +8720,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi COVARIANCE.S.",
-    "syntax": "COVARIANCE.S(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama COVARIANCE.S, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "COVARIANCE.S dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "COVARIANCE.S(array1, array2)",
+    "simpleLogic": "Baca format COVARIANCE.S dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8734,7 +8734,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "devsq",
@@ -8742,10 +8742,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi DEVSQ.",
-    "syntax": "DEVSQ(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama DEVSQ, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "DEVSQ dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "DEVSQ(number1, [number2], ...)",
+    "simpleLogic": "Baca format DEVSQ dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8756,7 +8756,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "expon_dist",
@@ -8764,10 +8764,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi EXPON.DIST.",
-    "syntax": "EXPON.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama EXPON.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "EXPON.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "EXPON.DIST(x, lambda, cumulative)",
+    "simpleLogic": "Baca format EXPON.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8778,7 +8778,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "f_dist",
@@ -8786,10 +8786,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi F.DIST.",
-    "syntax": "F.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama F.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "F.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "F.DIST(x, deg_freedom1, deg_freedom2, cumulative)",
+    "simpleLogic": "Baca format F.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8800,7 +8800,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "f_dist_rt",
@@ -8808,10 +8808,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi F.DIST.RT.",
-    "syntax": "F.DIST.RT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama F.DIST.RT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "F.DIST.RT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "F.DIST.RT(x, deg_freedom1, deg_freedom2)",
+    "simpleLogic": "Baca format F.DIST.RT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8822,7 +8822,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "f_inv",
@@ -8830,10 +8830,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi F.INV.",
-    "syntax": "F.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama F.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "F.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "F.INV(probability, deg_freedom1, deg_freedom2)",
+    "simpleLogic": "Baca format F.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8844,7 +8844,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "f_inv_rt",
@@ -8852,10 +8852,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi F.INV.RT.",
-    "syntax": "F.INV.RT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama F.INV.RT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "F.INV.RT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "F.INV.RT(probability, deg_freedom1, deg_freedom2)",
+    "simpleLogic": "Baca format F.INV.RT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8866,7 +8866,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "f_test",
@@ -8874,10 +8874,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi F.TEST.",
-    "syntax": "F.TEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama F.TEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "F.TEST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "F.TEST(array1, array2)",
+    "simpleLogic": "Baca format F.TEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8888,7 +8888,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fisher",
@@ -8896,10 +8896,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FISHER.",
-    "syntax": "FISHER(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FISHER, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FISHER dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FISHER(number1, [number2], ...)",
+    "simpleLogic": "Baca format FISHER dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8910,7 +8910,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fisherinv",
@@ -8918,10 +8918,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FISHERINV.",
-    "syntax": "FISHERINV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FISHERINV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FISHERINV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FISHERINV(number1, [number2], ...)",
+    "simpleLogic": "Baca format FISHERINV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8932,7 +8932,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "forecast",
@@ -8940,10 +8940,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi FORECAST.",
+    "description": "FORECAST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "FORECAST(x, known_y's, known_x's)",
-    "simpleLogic": "Pahami input utama FORECAST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format FORECAST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8963,10 +8963,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FORECAST.ETS.",
-    "syntax": "FORECAST.ETS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FORECAST.ETS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FORECAST.ETS dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FORECAST.ETS(target_date, values, timeline, [seasonality], [data_completion], [aggregation])",
+    "simpleLogic": "Baca format FORECAST.ETS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8977,7 +8977,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "forecast_ets_confint",
@@ -8985,10 +8985,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FORECAST.ETS.CONFINT.",
-    "syntax": "FORECAST.ETS.CONFINT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FORECAST.ETS.CONFINT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FORECAST.ETS.CONFINT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FORECAST.ETS.CONFINT(target_date, values, timeline, [confidence_level], [seasonality], [data_completion], [aggregation])",
+    "simpleLogic": "Baca format FORECAST.ETS.CONFINT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -8999,7 +8999,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "forecast_ets_seasonality",
@@ -9007,10 +9007,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FORECAST.ETS.SEASONALITY.",
-    "syntax": "FORECAST.ETS.SEASONALITY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FORECAST.ETS.SEASONALITY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FORECAST.ETS.SEASONALITY dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FORECAST.ETS.SEASONALITY(values, timeline, [data_completion], [aggregation])",
+    "simpleLogic": "Baca format FORECAST.ETS.SEASONALITY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9021,7 +9021,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "forecast_ets_stat",
@@ -9029,10 +9029,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FORECAST.ETS.STAT.",
-    "syntax": "FORECAST.ETS.STAT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FORECAST.ETS.STAT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FORECAST.ETS.STAT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FORECAST.ETS.STAT(values, timeline, statistic_type, [seasonality], [data_completion], [aggregation])",
+    "simpleLogic": "Baca format FORECAST.ETS.STAT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9043,7 +9043,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "forecast_linear",
@@ -9051,10 +9051,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FORECAST.LINEAR.",
-    "syntax": "FORECAST.LINEAR(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FORECAST.LINEAR, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FORECAST.LINEAR dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FORECAST.LINEAR(number1, [number2], ...)",
+    "simpleLogic": "Baca format FORECAST.LINEAR dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9065,7 +9065,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "frequency",
@@ -9073,10 +9073,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi FREQUENCY.",
-    "syntax": "FREQUENCY(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FREQUENCY, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "FREQUENCY dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "FREQUENCY(data_array, bins_array)",
+    "simpleLogic": "Baca format FREQUENCY dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9087,7 +9087,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gamma",
@@ -9095,10 +9095,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GAMMA.",
-    "syntax": "GAMMA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GAMMA(number1, [number2], ...)",
+    "simpleLogic": "Baca format GAMMA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9109,7 +9109,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gamma_dist",
@@ -9117,10 +9117,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GAMMA.DIST.",
-    "syntax": "GAMMA.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMA.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMA.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GAMMA.DIST(x, alpha, beta, cumulative)",
+    "simpleLogic": "Baca format GAMMA.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9131,7 +9131,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gamma_inv",
@@ -9139,10 +9139,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GAMMA.INV.",
-    "syntax": "GAMMA.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMA.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMA.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GAMMA.INV(probability, alpha, beta)",
+    "simpleLogic": "Baca format GAMMA.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9153,7 +9153,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gammaln",
@@ -9161,10 +9161,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GAMMALN.",
-    "syntax": "GAMMALN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMALN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMALN dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GAMMALN(number1, [number2], ...)",
+    "simpleLogic": "Baca format GAMMALN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9175,7 +9175,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gammaln_precise",
@@ -9183,10 +9183,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GAMMALN.PRECISE.",
-    "syntax": "GAMMALN.PRECISE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAMMALN.PRECISE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAMMALN.PRECISE dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GAMMALN.PRECISE(number1, [number2], ...)",
+    "simpleLogic": "Baca format GAMMALN.PRECISE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9197,7 +9197,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "gauss",
@@ -9205,10 +9205,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GAUSS.",
-    "syntax": "GAUSS(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GAUSS, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GAUSS dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GAUSS(number1, [number2], ...)",
+    "simpleLogic": "Baca format GAUSS dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9219,7 +9219,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "geomean",
@@ -9227,10 +9227,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GEOMEAN.",
-    "syntax": "GEOMEAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GEOMEAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GEOMEAN dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GEOMEAN(number1, [number2], ...)",
+    "simpleLogic": "Baca format GEOMEAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9241,7 +9241,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "growth",
@@ -9249,10 +9249,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi GROWTH.",
-    "syntax": "GROWTH(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama GROWTH, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "GROWTH dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "GROWTH(number1, [number2], ...)",
+    "simpleLogic": "Baca format GROWTH dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9263,7 +9263,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "harmean",
@@ -9271,10 +9271,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi HARMEAN.",
-    "syntax": "HARMEAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama HARMEAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "HARMEAN dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "HARMEAN(number1, [number2], ...)",
+    "simpleLogic": "Baca format HARMEAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9285,7 +9285,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "hypgeom_dist",
@@ -9293,10 +9293,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi HYPGEOM.DIST.",
-    "syntax": "HYPGEOM.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama HYPGEOM.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "HYPGEOM.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "HYPGEOM.DIST(sample_s, number_sample, population_s, number_pop, cumulative)",
+    "simpleLogic": "Baca format HYPGEOM.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9307,7 +9307,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "intercept",
@@ -9315,10 +9315,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi INTERCEPT.",
-    "syntax": "INTERCEPT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama INTERCEPT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "INTERCEPT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "INTERCEPT(number1, [number2], ...)",
+    "simpleLogic": "Baca format INTERCEPT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9329,7 +9329,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "kurt",
@@ -9337,10 +9337,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi KURT.",
-    "syntax": "KURT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama KURT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "KURT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "KURT(number1, [number2], ...)",
+    "simpleLogic": "Baca format KURT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9351,7 +9351,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "linest",
@@ -9359,10 +9359,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi LINEST.",
-    "syntax": "LINEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LINEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "LINEST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "LINEST(number1, [number2], ...)",
+    "simpleLogic": "Baca format LINEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9373,7 +9373,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "logest",
@@ -9381,10 +9381,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi LOGEST.",
-    "syntax": "LOGEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOGEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "LOGEST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "LOGEST(number1, [number2], ...)",
+    "simpleLogic": "Baca format LOGEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9395,7 +9395,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "lognorm_dist",
@@ -9403,10 +9403,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi LOGNORM.DIST.",
-    "syntax": "LOGNORM.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOGNORM.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "LOGNORM.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "LOGNORM.DIST(x, mean, standard_dev, cumulative)",
+    "simpleLogic": "Baca format LOGNORM.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9417,7 +9417,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "lognorm_inv",
@@ -9425,10 +9425,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi LOGNORM.INV.",
-    "syntax": "LOGNORM.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama LOGNORM.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "LOGNORM.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "LOGNORM.INV(probability, mean, standard_dev)",
+    "simpleLogic": "Baca format LOGNORM.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9439,7 +9439,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "maxa",
@@ -9447,10 +9447,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MAXA.",
-    "syntax": "MAXA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MAXA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "MAXA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "MAXA(number1, [number2], ...)",
+    "simpleLogic": "Baca format MAXA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9461,7 +9461,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "median",
@@ -9469,10 +9469,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MEDIAN.",
+    "description": "MEDIAN dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "MEDIAN(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama MEDIAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format MEDIAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9492,10 +9492,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MINA.",
-    "syntax": "MINA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MINA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "MINA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "MINA(number1, [number2], ...)",
+    "simpleLogic": "Baca format MINA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9506,7 +9506,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mode_mult",
@@ -9514,10 +9514,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MODE.MULT.",
-    "syntax": "MODE.MULT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MODE.MULT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "MODE.MULT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "MODE.MULT(number1, [number2], ...)",
+    "simpleLogic": "Baca format MODE.MULT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9528,7 +9528,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "mode_sngl",
@@ -9536,10 +9536,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi MODE.SNGL.",
-    "syntax": "MODE.SNGL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama MODE.SNGL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "MODE.SNGL dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "MODE.SNGL(number1, [number2], ...)",
+    "simpleLogic": "Baca format MODE.SNGL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9550,7 +9550,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "negbinom_dist",
@@ -9558,10 +9558,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi NEGBINOM.DIST.",
-    "syntax": "NEGBINOM.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NEGBINOM.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NEGBINOM.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "NEGBINOM.DIST(number_f, number_s, probability_s, cumulative)",
+    "simpleLogic": "Baca format NEGBINOM.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9572,7 +9572,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "norm_dist",
@@ -9580,10 +9580,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi NORM.DIST.",
-    "syntax": "NORM.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORM.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORM.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "NORM.DIST(x, mean, standard_dev, cumulative)",
+    "simpleLogic": "Baca format NORM.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9594,7 +9594,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "norm_inv",
@@ -9602,10 +9602,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi NORM.INV.",
-    "syntax": "NORM.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORM.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORM.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "NORM.INV(probability, mean, standard_dev)",
+    "simpleLogic": "Baca format NORM.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9616,7 +9616,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "norm_s_dist",
@@ -9624,10 +9624,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi NORM.S.DIST.",
-    "syntax": "NORM.S.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORM.S.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORM.S.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "NORM.S.DIST(z, cumulative)",
+    "simpleLogic": "Baca format NORM.S.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9638,7 +9638,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "norm_s_inv",
@@ -9646,10 +9646,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi NORM.S.INV.",
-    "syntax": "NORM.S.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama NORM.S.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "NORM.S.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "NORM.S.INV(probability)",
+    "simpleLogic": "Baca format NORM.S.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9660,7 +9660,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "pearson",
@@ -9668,10 +9668,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PEARSON.",
-    "syntax": "PEARSON(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PEARSON, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PEARSON dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PEARSON(number1, [number2], ...)",
+    "simpleLogic": "Baca format PEARSON dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9682,7 +9682,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "percentile_exc",
@@ -9690,10 +9690,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PERCENTILE.EXC.",
-    "syntax": "PERCENTILE.EXC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERCENTILE.EXC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERCENTILE.EXC dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PERCENTILE.EXC(array, k)",
+    "simpleLogic": "Baca format PERCENTILE.EXC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9704,7 +9704,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "percentile_inc",
@@ -9712,10 +9712,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PERCENTILE.INC.",
-    "syntax": "PERCENTILE.INC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERCENTILE.INC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERCENTILE.INC dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PERCENTILE.INC(array, k)",
+    "simpleLogic": "Baca format PERCENTILE.INC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9726,7 +9726,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "percentrank_exc",
@@ -9734,10 +9734,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PERCENTRANK.EXC.",
-    "syntax": "PERCENTRANK.EXC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERCENTRANK.EXC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERCENTRANK.EXC dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PERCENTRANK.EXC(array, x, [significance])",
+    "simpleLogic": "Baca format PERCENTRANK.EXC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9748,7 +9748,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "percentrank_inc",
@@ -9756,10 +9756,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PERCENTRANK.INC.",
-    "syntax": "PERCENTRANK.INC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERCENTRANK.INC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERCENTRANK.INC dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PERCENTRANK.INC(array, x, [significance])",
+    "simpleLogic": "Baca format PERCENTRANK.INC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9770,7 +9770,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "permut",
@@ -9778,10 +9778,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PERMUT.",
-    "syntax": "PERMUT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERMUT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERMUT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PERMUT(number1, [number2], ...)",
+    "simpleLogic": "Baca format PERMUT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9792,7 +9792,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "permutationa",
@@ -9800,10 +9800,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PERMUTATIONA.",
-    "syntax": "PERMUTATIONA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PERMUTATIONA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PERMUTATIONA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PERMUTATIONA(number1, [number2], ...)",
+    "simpleLogic": "Baca format PERMUTATIONA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9814,7 +9814,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "phi",
@@ -9822,10 +9822,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PHI.",
-    "syntax": "PHI(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PHI, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PHI dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PHI(number1, [number2], ...)",
+    "simpleLogic": "Baca format PHI dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9836,7 +9836,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "poisson_dist",
@@ -9844,10 +9844,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi POISSON.DIST.",
-    "syntax": "POISSON.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama POISSON.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "POISSON.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "POISSON.DIST(x, mean, cumulative)",
+    "simpleLogic": "Baca format POISSON.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9858,7 +9858,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "prob",
@@ -9866,10 +9866,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi PROB.",
-    "syntax": "PROB(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama PROB, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "PROB dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "PROB(x_range, prob_range, [lower_limit], [upper_limit])",
+    "simpleLogic": "Baca format PROB dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9880,7 +9880,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "quartile_exc",
@@ -9888,10 +9888,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi QUARTILE.EXC.",
-    "syntax": "QUARTILE.EXC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama QUARTILE.EXC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "QUARTILE.EXC dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "QUARTILE.EXC(array, quart)",
+    "simpleLogic": "Baca format QUARTILE.EXC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9902,7 +9902,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "quartile_inc",
@@ -9910,10 +9910,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi QUARTILE.INC.",
-    "syntax": "QUARTILE.INC(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama QUARTILE.INC, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "QUARTILE.INC dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "QUARTILE.INC(array, quart)",
+    "simpleLogic": "Baca format QUARTILE.INC dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9924,7 +9924,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "rank_avg",
@@ -9932,10 +9932,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi RANK.AVG.",
-    "syntax": "RANK.AVG(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RANK.AVG, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "RANK.AVG dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "RANK.AVG(number, ref, [order])",
+    "simpleLogic": "Baca format RANK.AVG dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9946,7 +9946,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "rank_eq",
@@ -9954,10 +9954,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi RANK.EQ.",
+    "description": "RANK.EQ dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "RANK.EQ(number, ref, [order])",
-    "simpleLogic": "Pahami input utama RANK.EQ, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format RANK.EQ dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9977,10 +9977,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi RSQ.",
-    "syntax": "RSQ(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama RSQ, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "RSQ dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "RSQ(number1, [number2], ...)",
+    "simpleLogic": "Baca format RSQ dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -9991,7 +9991,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "skew",
@@ -9999,10 +9999,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi SKEW.",
-    "syntax": "SKEW(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SKEW, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "SKEW dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "SKEW(number1, [number2], ...)",
+    "simpleLogic": "Baca format SKEW dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10013,7 +10013,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "skew_p",
@@ -10021,10 +10021,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi SKEW.P.",
-    "syntax": "SKEW.P(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SKEW.P, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "SKEW.P dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "SKEW.P(number1, [number2], ...)",
+    "simpleLogic": "Baca format SKEW.P dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10035,7 +10035,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "slope",
@@ -10043,10 +10043,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi SLOPE.",
-    "syntax": "SLOPE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama SLOPE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "SLOPE dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "SLOPE(number1, [number2], ...)",
+    "simpleLogic": "Baca format SLOPE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10057,7 +10057,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "standardize",
@@ -10065,10 +10065,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi STANDARDIZE.",
-    "syntax": "STANDARDIZE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama STANDARDIZE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "STANDARDIZE dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "STANDARDIZE(x, mean, standard_dev)",
+    "simpleLogic": "Baca format STANDARDIZE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10079,7 +10079,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "stdev_p",
@@ -10087,10 +10087,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi STDEV.P.",
+    "description": "STDEV.P dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "STDEV.P(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama STDEV.P, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format STDEV.P dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10110,10 +10110,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi STDEV.S.",
+    "description": "STDEV.S dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "STDEV.S(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama STDEV.S, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format STDEV.S dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10133,10 +10133,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi STDEVA.",
-    "syntax": "STDEVA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama STDEVA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "STDEVA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "STDEVA(number1, [number2], ...)",
+    "simpleLogic": "Baca format STDEVA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10147,7 +10147,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "stdevpa",
@@ -10155,10 +10155,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi STDEVPA.",
-    "syntax": "STDEVPA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama STDEVPA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "STDEVPA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "STDEVPA(number1, [number2], ...)",
+    "simpleLogic": "Baca format STDEVPA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10169,7 +10169,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "steyx",
@@ -10177,10 +10177,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi STEYX.",
-    "syntax": "STEYX(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama STEYX, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "STEYX dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "STEYX(number1, [number2], ...)",
+    "simpleLogic": "Baca format STEYX dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10191,7 +10191,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "t_dist",
@@ -10199,10 +10199,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi T.DIST.",
-    "syntax": "T.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama T.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "T.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "T.DIST(x, deg_freedom, cumulative)",
+    "simpleLogic": "Baca format T.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10213,7 +10213,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "t_dist_2t",
@@ -10221,10 +10221,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi T.DIST.2T.",
-    "syntax": "T.DIST.2T(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama T.DIST.2T, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "T.DIST.2T dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "T.DIST.2T(x, deg_freedom)",
+    "simpleLogic": "Baca format T.DIST.2T dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10235,7 +10235,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "t_dist_rt",
@@ -10243,10 +10243,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi T.DIST.RT.",
-    "syntax": "T.DIST.RT(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama T.DIST.RT, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "T.DIST.RT dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "T.DIST.RT(x, deg_freedom)",
+    "simpleLogic": "Baca format T.DIST.RT dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10257,7 +10257,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "t_inv",
@@ -10265,10 +10265,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi T.INV.",
-    "syntax": "T.INV(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama T.INV, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "T.INV dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "T.INV(probability, deg_freedom)",
+    "simpleLogic": "Baca format T.INV dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10279,7 +10279,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "t_inv_2t",
@@ -10287,10 +10287,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi T.INV.2T.",
-    "syntax": "T.INV.2T(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama T.INV.2T, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "T.INV.2T dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "T.INV.2T(probability, deg_freedom)",
+    "simpleLogic": "Baca format T.INV.2T dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10301,7 +10301,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "t_test",
@@ -10309,10 +10309,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi T.TEST.",
-    "syntax": "T.TEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama T.TEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "T.TEST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "T.TEST(array1, array2, tails, type)",
+    "simpleLogic": "Baca format T.TEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10323,7 +10323,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "trend",
@@ -10331,10 +10331,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi TREND.",
+    "description": "TREND dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "TREND(known_y's, [known_x's], [new_x's], [const])",
-    "simpleLogic": "Pahami input utama TREND, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format TREND dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10354,10 +10354,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi TRIMMEAN.",
-    "syntax": "TRIMMEAN(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama TRIMMEAN, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "TRIMMEAN dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "TRIMMEAN(number1, [number2], ...)",
+    "simpleLogic": "Baca format TRIMMEAN dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10368,7 +10368,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "var_p",
@@ -10376,10 +10376,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi VAR.P.",
+    "description": "VAR.P dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "VAR.P(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama VAR.P, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format VAR.P dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10399,10 +10399,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Advanced",
-    "description": "Menghitung analisis statistik memakai fungsi VAR.S.",
+    "description": "VAR.S dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
     "syntax": "VAR.S(number1, [number2], ...)",
-    "simpleLogic": "Pahami input utama VAR.S, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "simpleLogic": "Baca format VAR.S dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10422,10 +10422,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi VARA.",
-    "syntax": "VARA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama VARA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "VARA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "VARA(number1, [number2], ...)",
+    "simpleLogic": "Baca format VARA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10436,7 +10436,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "varpa",
@@ -10444,10 +10444,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi VARPA.",
-    "syntax": "VARPA(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama VARPA, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "VARPA dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "VARPA(number1, [number2], ...)",
+    "simpleLogic": "Baca format VARPA dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10458,7 +10458,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "weibull_dist",
@@ -10466,10 +10466,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi WEIBULL.DIST.",
-    "syntax": "WEIBULL.DIST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama WEIBULL.DIST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "WEIBULL.DIST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "WEIBULL.DIST(x, alpha, beta, cumulative)",
+    "simpleLogic": "Baca format WEIBULL.DIST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10480,7 +10480,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "z_test",
@@ -10488,10 +10488,10 @@ const baseFormulaCatalogFull = [
     "category": "Statistical",
     "displayCategory": "Statistical",
     "level": "Intermediate",
-    "description": "Menghitung analisis statistik memakai fungsi Z.TEST.",
-    "syntax": "Z.TEST(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama Z.TEST, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "description": "Z.TEST dipakai untuk membaca pola angka, peluang, sebaran, ranking, atau ringkasan statistik.",
+    "syntax": "Z.TEST(array, x, [sigma])",
+    "simpleLogic": "Baca format Z.TEST dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -10502,7 +10502,7 @@ const baseFormulaCatalogFull = [
       "statistical",
       "statistics"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "arraytotext",
@@ -10511,7 +10511,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi ARRAYTOTEXT.",
-    "syntax": "ARRAYTOTEXT(argument1, [argument2], ...)",
+    "syntax": "ARRAYTOTEXT(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10524,7 +10524,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "asc",
@@ -10533,7 +10533,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi ASC.",
-    "syntax": "ASC(argument1, [argument2], ...)",
+    "syntax": "ASC(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10546,7 +10546,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "bahttext",
@@ -10555,7 +10555,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi BAHTTEXT.",
-    "syntax": "BAHTTEXT(argument1, [argument2], ...)",
+    "syntax": "BAHTTEXT(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10568,7 +10568,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "char",
@@ -10577,7 +10577,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi CHAR.",
-    "syntax": "CHAR(argument1, [argument2], ...)",
+    "syntax": "CHAR(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10590,7 +10590,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "clean",
@@ -10622,7 +10622,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi CODE.",
-    "syntax": "CODE(argument1, [argument2], ...)",
+    "syntax": "CODE(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10635,7 +10635,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "concat",
@@ -10690,7 +10690,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi DBCS.",
-    "syntax": "DBCS(argument1, [argument2], ...)",
+    "syntax": "DBCS(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10703,7 +10703,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "dollar",
@@ -10712,7 +10712,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi DOLLAR.",
-    "syntax": "DOLLAR(argument1, [argument2], ...)",
+    "syntax": "DOLLAR(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10725,7 +10725,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "exact",
@@ -10734,7 +10734,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi EXACT.",
-    "syntax": "EXACT(argument1, [argument2], ...)",
+    "syntax": "EXACT(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10747,7 +10747,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "find",
@@ -10779,7 +10779,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi FINDB.",
-    "syntax": "FINDB(argument1, [argument2], ...)",
+    "syntax": "FINDB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10792,7 +10792,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "fixed",
@@ -10801,7 +10801,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi FIXED.",
-    "syntax": "FIXED(argument1, [argument2], ...)",
+    "syntax": "FIXED(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10814,7 +10814,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "left",
@@ -10846,7 +10846,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi LEFTB.",
-    "syntax": "LEFTB(argument1, [argument2], ...)",
+    "syntax": "LEFTB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10859,7 +10859,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "len",
@@ -10891,7 +10891,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi LENB.",
-    "syntax": "LENB(argument1, [argument2], ...)",
+    "syntax": "LENB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10904,7 +10904,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "lower",
@@ -10959,7 +10959,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi MIDB.",
-    "syntax": "MIDB(argument1, [argument2], ...)",
+    "syntax": "MIDB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -10972,7 +10972,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "numbervalue",
@@ -11004,7 +11004,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi PHONETIC.",
-    "syntax": "PHONETIC(argument1, [argument2], ...)",
+    "syntax": "PHONETIC(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11017,7 +11017,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "proper",
@@ -11072,7 +11072,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi REPLACEB.",
-    "syntax": "REPLACEB(argument1, [argument2], ...)",
+    "syntax": "REPLACEB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11085,7 +11085,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "rept",
@@ -11094,7 +11094,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi REPT.",
-    "syntax": "REPT(argument1, [argument2], ...)",
+    "syntax": "REPT(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11107,7 +11107,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "right",
@@ -11139,7 +11139,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi RIGHTB.",
-    "syntax": "RIGHTB(argument1, [argument2], ...)",
+    "syntax": "RIGHTB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11152,7 +11152,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "search",
@@ -11184,7 +11184,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi SEARCHB.",
-    "syntax": "SEARCHB(argument1, [argument2], ...)",
+    "syntax": "SEARCHB(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11197,7 +11197,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "substitute",
@@ -11229,7 +11229,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi T.",
-    "syntax": "T(argument1, [argument2], ...)",
+    "syntax": "T(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11242,7 +11242,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "text",
@@ -11366,7 +11366,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi UNICHAR.",
-    "syntax": "UNICHAR(argument1, [argument2], ...)",
+    "syntax": "UNICHAR(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11379,7 +11379,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "unicode",
@@ -11388,7 +11388,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi UNICODE.",
-    "syntax": "UNICODE(argument1, [argument2], ...)",
+    "syntax": "UNICODE(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11401,7 +11401,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "upper",
@@ -11456,7 +11456,7 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Text",
     "level": "Intermediate",
     "description": "Mengolah teks menggunakan fungsi VALUETOTEXT.",
-    "syntax": "VALUETOTEXT(argument1, [argument2], ...)",
+    "syntax": "VALUETOTEXT(text)",
     "simpleLogic": "Anggap teks seperti bahan mentah. Rumus ini membantu mengambil, membersihkan, atau mengubah bentuknya.",
     "useCase": "Cocok untuk membersihkan nama, kode produk, invoice, email, dan data teks lain.",
     "version": "All supported Excel versions",
@@ -11469,7 +11469,7 @@ const baseFormulaCatalogFull = [
       "cleaning",
       "text"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "encodeurl",
@@ -11478,9 +11478,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Web",
     "level": "Intermediate",
     "description": "Mengolah data web, URL, atau XML memakai fungsi ENCODEURL.",
-    "syntax": "ENCODEURL(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama ENCODEURL, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "ENCODEURL(text)",
+    "simpleLogic": "Baca format ENCODEURL dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -11490,7 +11490,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "web"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "filterxml",
@@ -11499,9 +11499,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Web",
     "level": "Intermediate",
     "description": "Mengolah data web, URL, atau XML memakai fungsi FILTERXML.",
-    "syntax": "FILTERXML(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama FILTERXML, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "FILTERXML(url)",
+    "simpleLogic": "Baca format FILTERXML dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -11511,7 +11511,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "web"
     ],
-    "hasExercise": false
+    "hasExercise": true
   },
   {
     "id": "webservice",
@@ -11520,9 +11520,9 @@ const baseFormulaCatalogFull = [
     "displayCategory": "Web",
     "level": "Intermediate",
     "description": "Mengolah data web, URL, atau XML memakai fungsi WEBSERVICE.",
-    "syntax": "WEBSERVICE(argument1, [argument2], ...)",
-    "simpleLogic": "Pahami input utama WEBSERVICE, lalu cocokkan dengan hasil yang ingin kamu ambil.",
-    "useCase": "Dipakai saat kebutuhan datanya cocok dengan fungsi dan format rumus ini.",
+    "syntax": "WEBSERVICE(url)",
+    "simpleLogic": "Baca format WEBSERVICE dari kiri ke kanan, lalu isi argumen memakai data yang sesuai dari tabel latihan.",
+    "useCase": "Dipakai saat kamu butuh hasil yang sesuai dengan jenis data dan argumen pada format rumus ini.",
     "version": "All supported Excel versions",
     "availability": [
       "Excel Desktop",
@@ -11532,7 +11532,7 @@ const baseFormulaCatalogFull = [
     "tags": [
       "web"
     ],
-    "hasExercise": false
+    "hasExercise": true
   }
 ];
 
