@@ -539,11 +539,11 @@ export default function FormulaBar({
         <p className="mx-auto mt-1 max-w-4xl text-sm font-black leading-6 text-coach-ink dark:text-white sm:text-base">{question}</p>
       </section>
 
-      <div className={`mt-3 grid gap-3 ${showQuestionHelper ? 'lg:grid-cols-[170px_minmax(0,1fr)_190px]' : 'lg:grid-cols-[minmax(0,1fr)_190px]'}`}>
+      <div className={`mt-3 grid items-start gap-3 ${showQuestionHelper ? 'lg:grid-cols-[175px_minmax(0,1fr)_185px]' : 'lg:grid-cols-[minmax(0,1fr)_185px]'}`}>
         {showQuestionHelper && (
-          <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
+          <section className="flex h-full flex-col rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Value / Criteria</p>
-            <div className="mt-2 flex flex-wrap gap-2">
+            <div className="mt-2 flex flex-1 flex-wrap content-start gap-2">
               {helperValues.map((item, index) => (
                 <button
                   key={`${item.role}-${item.insert}-${index}`}
@@ -574,7 +574,7 @@ export default function FormulaBar({
           </section>
         )}
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <div className="relative">
             <input
               ref={inputRef}
@@ -648,7 +648,7 @@ export default function FormulaBar({
             {!open && showSignature && <SignatureTooltip signature={activeSignature} />}
           </div>
 
-          <section className="rounded-xl border border-coach-line bg-white px-3 py-2 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
+          <section className="rounded-xl border border-coach-line bg-white px-4 py-3 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Penjelasan Logika Rumus</p>
             <div className="mt-2 space-y-2 text-xs font-semibold leading-5 text-black/60 dark:text-white/60">
               <p><span className="font-black text-coach-green dark:text-emerald-200">Analogi Rumus:</span> {logicExplanation.analogy}</p>
@@ -663,7 +663,7 @@ export default function FormulaBar({
             </div>
           </section>
 
-          <section className="rounded-xl border border-coach-line bg-white px-3 py-2 dark:border-white/10 dark:bg-black/20">
+          <section className="rounded-xl border border-coach-line bg-white px-4 py-3 dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Cara mengisi</p>
             <div className="mt-1 flex flex-wrap gap-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
               <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
@@ -675,7 +675,7 @@ export default function FormulaBar({
           </section>
         </div>
 
-        <section className={`rounded-xl border px-3 py-3 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
+        <section className={`min-h-[100%] rounded-xl border px-4 py-3 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
           <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil jawaban</p>
           <p className={`mt-2 font-mono text-lg font-black ${resultIsError ? 'text-red-600 dark:text-red-200' : 'text-coach-green dark:text-emerald-200'}`}>{resultValue}</p>
           <p className="mt-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">{resultMessage}</p>
