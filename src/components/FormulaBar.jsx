@@ -168,8 +168,11 @@ function cleanArgLabel(value = '') {
 
 function makeLogicPayload({ logic, name = '', learning = {}, option = null }) {
   const fallbackExample = option?.syntax ? `=${option.syntax}` : '';
+  const fallbackUseCase = option?.useCase || option?.description || 'Dipakai saat kamu perlu mengolah data sesuai tujuan soal dan format rumus yang sedang dipelajari.';
+
   return {
     name,
+    useCase: learning.useCase || fallbackUseCase,
     logic: logic || learning.simpleLogic || 'Pahami dulu data mana yang diproses, syaratnya apa, lalu hasil apa yang ingin keluar.',
     analogy: learning.analogy || 'Anggap rumus ini seperti alat kecil di Excel. Kalau bahan masuknya benar, hasilnya akan keluar sesuai kebutuhan.',
     exampleFormula: learning.exampleFormula || fallbackExample,
@@ -626,6 +629,7 @@ export default function FormulaBar({
           <section className="rounded-xl border border-coach-line bg-white px-4 py-3 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Penjelasan Logika Rumus</p>
             <div className="mt-2 space-y-2 text-xs font-semibold leading-5 text-black/60 dark:text-white/60">
+              <p><span className="font-black text-coach-green dark:text-emerald-200">Kapan Rumus Dipakai?</span> {logicExplanation.useCase}</p>
               <p><span className="font-black text-coach-green dark:text-emerald-200">Analogi Rumus:</span> {logicExplanation.analogy}</p>
               <p><span className="font-black text-coach-green dark:text-emerald-200">Logika:</span> {logicExplanation.logic}</p>
               {logicExplanation.exampleFormula && (
