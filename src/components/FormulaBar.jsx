@@ -539,41 +539,7 @@ export default function FormulaBar({
         <p className="mx-auto mt-1 max-w-4xl text-sm font-black leading-6 text-coach-ink dark:text-white sm:text-base">{question}</p>
       </section>
 
-      <div className={`mt-3 grid items-start gap-3 ${showQuestionHelper ? 'lg:grid-cols-[175px_minmax(0,1fr)_185px]' : 'lg:grid-cols-[minmax(0,1fr)_185px]'}`}>
-        {showQuestionHelper && (
-          <section className="flex h-full flex-col rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Value / Criteria</p>
-            <div className="mt-2 flex flex-1 flex-wrap content-start gap-2">
-              {helperValues.map((item, index) => (
-                <button
-                  key={`${item.role}-${item.insert}-${index}`}
-                  type="button"
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => {
-                    onLookupValueChange?.(item?.label || item?.insert || '');
-                    onSelectionTargetChange?.('formula');
-                    onInsertHelperValue?.(item);
-                  }}
-                  title={item.note || item.insert}
-                  className="w-full rounded-lg border border-coach-green/20 bg-white px-3 py-2 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
-                >
-                  <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
-                  {item.note && <span className="mt-0.5 block truncate text-[10px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
-                </button>
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={handleManualCheck}
-              className="mt-4 w-full rounded-xl bg-coach-green px-4 py-3 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-coach-ink hover:shadow-md dark:hover:bg-emerald-600"
-            >
-              Cek Jawaban
-            </button>
-          </section>
-        )}
-
+      <div className="mt-3 grid items-start gap-3 lg:grid-cols-[minmax(0,1fr)_205px]">
         <div className="space-y-3">
           <div className="relative">
             <input
@@ -675,11 +641,50 @@ export default function FormulaBar({
           </section>
         </div>
 
-        <section className={`min-h-[100%] rounded-xl border px-4 py-3 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
-          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil jawaban</p>
-          <p className={`mt-2 font-mono text-lg font-black ${resultIsError ? 'text-red-600 dark:text-red-200' : 'text-coach-green dark:text-emerald-200'}`}>{resultValue}</p>
-          <p className="mt-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">{resultMessage}</p>
-        </section>
+        <aside className="space-y-3">
+          <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
+            <div className="space-y-2">
+              {showQuestionHelper && helperValues.length > 0 ? helperValues.map((item, index) => (
+                <button
+                  key={`${item.role}-${item.insert}-${index}`}
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => {
+                    onLookupValueChange?.(item?.label || item?.insert || '');
+                    onSelectionTargetChange?.('formula');
+                    onInsertHelperValue?.(item);
+                  }}
+                  title={item.note || item.insert}
+                  className="w-full rounded-lg border border-coach-green/20 bg-white px-3 py-2 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
+                >
+                  <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
+                  {item.note && <span className="mt-0.5 block truncate text-[10px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
+                </button>
+              )) : (
+                <div className="rounded-lg border border-coach-green/15 bg-white px-3 py-2 text-[11px] font-semibold text-black/45 dark:border-emerald-400/10 dark:bg-white/5 dark:text-white/45">
+                  Tidak ada value khusus.
+                </div>
+              )}
+            </div>
+
+            <p className="mt-3 text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Value / Criteria</p>
+
+            <button
+              type="button"
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={handleManualCheck}
+              className="mt-3 w-full rounded-xl bg-coach-green px-4 py-3 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-coach-ink hover:shadow-md dark:hover:bg-emerald-600"
+            >
+              Cek Jawaban
+            </button>
+          </section>
+
+          <section className={`rounded-xl border px-4 py-3 ${resultIsError ? 'border-red-200 bg-red-50 dark:border-red-400/20 dark:bg-red-400/10' : 'border-coach-green/18 bg-coach-greenSoft/70 dark:border-emerald-400/15 dark:bg-emerald-400/10'}`}>
+            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-black/45 dark:text-white/45">Hasil jawaban</p>
+            <p className={`mt-2 font-mono text-lg font-black ${resultIsError ? 'text-red-600 dark:text-red-200' : 'text-coach-green dark:text-emerald-200'}`}>{resultValue}</p>
+            <p className="mt-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">{resultMessage}</p>
+          </section>
+        </aside>
       </div>
     </div>
   );
