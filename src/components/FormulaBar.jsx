@@ -165,6 +165,18 @@ function cleanArgLabel(value = '') {
   return text.length > 28 ? `${text.slice(0, 28)}...` : text;
 }
 
+
+function makeLogicPayload({ logic, name = '', learning = {}, option = null }) {
+  const fallbackExample = option?.syntax ? `=${option.syntax}` : '';
+  return {
+    name,
+    logic: logic || learning.simpleLogic || 'Pahami dulu data mana yang diproses, syaratnya apa, lalu hasil apa yang ingin keluar.',
+    analogy: learning.analogy || 'Anggap rumus ini seperti alat kecil di Excel. Kalau bahan masuknya benar, hasilnya akan keluar sesuai kebutuhan.',
+    exampleFormula: learning.exampleFormula || fallbackExample,
+    exampleMeaning: learning.exampleMeaning || learning.simpleExample || 'Ini contoh pola rumus. Sesuaikan cell, range, dan kriteria dengan soal yang sedang kamu kerjakan.'
+  };
+}
+
 function getFormulaLogicExplanation({ value = '', cleanOptions = [], activeSignature = null }) {
   const call = parseFormulaCall(value);
   const name = call?.name || activeSignature?.name || '';
@@ -173,11 +185,21 @@ function getFormulaLogicExplanation({ value = '', cleanOptions = [], activeSigna
   const learning = option ? getFormulaLearningContent(option) : {};
 
   if (!String(value || '').trim()) {
-    return 'Ketik rumus dulu. Nanti bagian ini akan jelasin alur berpikir rumusnya, bukan cuma hasil akhirnya.';
+    return makeLogicPayload({
+      logic: 'Ketik rumus dulu. Nanti bagian ini akan jelasin alur berpikir rumusnya, bukan cuma hasil akhirnya.',
+      name,
+      learning,
+      option
+    });
   }
 
   if (!name) {
-    return 'Mulai dari tanda =, lalu pilih nama rumus yang cocok dengan soal. Setelah itu tentukan range, criteria, atau lookup value sesuai kebutuhan.';
+    return makeLogicPayload({
+      logic: 'Mulai dari tanda =, lalu pilih nama rumus yang cocok dengan soal. Setelah itu tentukan range, criteria, atau lookup value sesuai kebutuhan.',
+      name,
+      learning,
+      option
+    });
   }
 
   const a0 = cleanArgLabel(args[0]);
@@ -185,83 +207,67 @@ function getFormulaLogicExplanation({ value = '', cleanOptions = [], activeSigna
   const a2 = cleanArgLabel(args[2]);
   const a3 = cleanArgLabel(args[3]);
   const a4 = cleanArgLabel(args[4]);
+  let logic = learning.simpleLogic;
 
   if (name === 'SUMIFS') {
-    if (args.length >= 5) return `SUMIFS menjumlahkan ${a0}, tapi hanya baris yang memenuhi semua syarat. Syarat pertama dicek di ${a1} dengan nilai ${a2}, lalu syarat kedua dicek di ${a3} dengan nilai ${a4}.`;
-    return 'SUMIFS dipakai untuk menjumlahkan angka dengan banyak syarat. Urutannya: range yang dijumlahkan, range syarat pertama, nilai syarat pertama, lalu pasangan syarat berikutnya.';
+    logic = args.length >= 5
+      ? `SUMIFS menjumlahkan ${a0}, tapi hanya baris yang memenuhi semua syarat. Syarat pertama dicek di ${a1} dengan nilai ${a2}, lalu syarat kedua dicek di ${a3} dengan nilai ${a4}.`
+      : 'SUMIFS dipakai untuk menjumlahkan angka dengan banyak syarat. Urutannya: range yang dijumlahkan, range syarat pertama, nilai syarat pertama, lalu pasangan syarat berikutnya.';
+  } else if (name === 'SUMIF') {
+    logic = args.length >= 3
+      ? `SUMIF mengecek ${a0}, mencari data yang sesuai dengan ${a1}, lalu menjumlahkan angka dari ${a2}.`
+      : 'SUMIF dipakai untuk menjumlahkan angka berdasarkan 1 syarat. Tentukan dulu range yang dicek, kriterianya, lalu range angka yang mau dijumlahkan.';
+  } else if (name === 'COUNTIFS') {
+    logic = args.length >= 4
+      ? `COUNTIFS menghitung jumlah baris yang lolos banyak syarat. Syarat pertama dicek di ${a0} dengan nilai ${a1}, lalu syarat kedua dicek di ${a2} dengan nilai ${a3}.`
+      : 'COUNTIFS dipakai untuk menghitung data yang memenuhi lebih dari 1 syarat. Isinya berpasangan: range syarat, lalu nilai syarat.';
+  } else if (name === 'COUNTIF') {
+    logic = args.length >= 2
+      ? `COUNTIF mengecek ${a0}, lalu menghitung berapa cell yang isinya sesuai dengan ${a1}.`
+      : 'COUNTIF dipakai untuk menghitung data berdasarkan 1 syarat. Tentukan range yang dicek, lalu tulis kriteria yang dicari.';
+  } else if (name === 'AVERAGEIFS') {
+    logic = args.length >= 5
+      ? `AVERAGEIFS menghitung rata-rata dari ${a0}, tapi hanya untuk baris yang memenuhi semua syarat, termasuk ${a2} di ${a1} dan ${a4} di ${a3}.`
+      : 'AVERAGEIFS dipakai untuk mencari rata-rata dengan banyak syarat. Range rata-rata ditulis dulu, lalu pasangan range syarat dan nilai syarat.';
+  } else if (name === 'AVERAGEIF') {
+    logic = args.length >= 3
+      ? `AVERAGEIF mengecek ${a0}, mencari data yang sesuai dengan ${a1}, lalu menghitung rata-rata angka dari ${a2}.`
+      : 'AVERAGEIF dipakai untuk mencari rata-rata berdasarkan 1 syarat. Tentukan range syarat, kriteria, lalu range angka yang mau dirata-ratakan.';
+  } else if (name === 'VLOOKUP') {
+    logic = args.length >= 4
+      ? `VLOOKUP mencari ${a0} di kolom pertama dari ${a1}. Kalau ketemu, Excel mengambil data dari kolom ke-${a2}. Angka ${a3} menentukan exact match atau approximate match.`
+      : 'VLOOKUP butuh nilai yang dicari, table array, nomor kolom hasil, dan jenis pencarian. Lookup value harus ada di kolom pertama table array.';
+  } else if (name === 'HLOOKUP') {
+    logic = args.length >= 4
+      ? `HLOOKUP mencari ${a0} di baris pertama dari ${a1}. Kalau ketemu, Excel mengambil data dari baris ke-${a2}.`
+      : 'HLOOKUP mirip VLOOKUP, tapi arah pencariannya horizontal. Nilai yang dicari harus ada di baris pertama table array.';
+  } else if (name === 'XLOOKUP') {
+    logic = args.length >= 3
+      ? `XLOOKUP mencari ${a0} di ${a1}, lalu mengambil hasil yang sejajar dari ${a2}.`
+      : 'XLOOKUP butuh lookup value, lookup array, dan return array. Ini lebih fleksibel daripada VLOOKUP karena hasilnya bisa di kanan, kiri, atas, atau bawah.';
+  } else if (name === 'INDEX') {
+    logic = args.length >= 3
+      ? `INDEX mengambil data dari ${a0} pada baris ke-${a1} dan kolom ke-${a2}.`
+      : 'INDEX mengambil isi berdasarkan posisi baris dan kolom dalam range.';
+  } else if (name === 'MATCH' || name === 'XMATCH') {
+    logic = args.length >= 2
+      ? `${name} mencari ${a0} di ${a1}, lalu mengembalikan posisinya dalam daftar.`
+      : `${name} dipakai untuk mencari posisi sebuah nilai dalam satu range.`;
+  } else if (name === 'IF') {
+    logic = args.length >= 3
+      ? `IF mengecek ${a0}. Kalau kondisi itu benar, hasilnya ${a1}. Kalau salah, hasilnya ${a2}.`
+      : 'IF butuh 3 bagian: kondisi, hasil kalau benar, dan hasil kalau salah.';
+  } else if (name === 'IFS') {
+    logic = 'IFS mengecek kondisi dari kiri ke kanan. Kondisi pertama yang TRUE akan dipakai sebagai hasil. Cocok untuk grade, level, atau status bertingkat.';
+  } else if (name === 'FILTER') {
+    logic = args.length >= 2
+      ? `FILTER mengambil baris dari ${a0} yang lolos kondisi ${a1}. Baris yang tidak lolos tidak ditampilkan.`
+      : 'FILTER menampilkan data yang memenuhi syarat, seperti menyaring tabel.';
+  } else if (['SUM', 'AVERAGE', 'MIN', 'MAX', 'COUNT', 'COUNTA'].includes(name)) {
+    logic = `${name} membaca range ${a0 || 'yang dipilih'} lalu mengeluarkan hasil sesuai fungsi ${name}.`;
   }
 
-  if (name === 'SUMIF') {
-    if (args.length >= 3) return `SUMIF mengecek ${a0}, mencari data yang sesuai dengan ${a1}, lalu menjumlahkan angka dari ${a2}.`;
-    return 'SUMIF dipakai untuk menjumlahkan angka berdasarkan 1 syarat. Tentukan dulu range yang dicek, kriterianya, lalu range angka yang mau dijumlahkan.';
-  }
-
-  if (name === 'COUNTIFS') {
-    if (args.length >= 4) return `COUNTIFS menghitung jumlah baris yang lolos banyak syarat. Syarat pertama dicek di ${a0} dengan nilai ${a1}, lalu syarat kedua dicek di ${a2} dengan nilai ${a3}.`;
-    return 'COUNTIFS dipakai untuk menghitung data yang memenuhi lebih dari 1 syarat. Isinya berpasangan: range syarat, lalu nilai syarat.';
-  }
-
-  if (name === 'COUNTIF') {
-    if (args.length >= 2) return `COUNTIF mengecek ${a0}, lalu menghitung berapa cell yang isinya sesuai dengan ${a1}.`;
-    return 'COUNTIF dipakai untuk menghitung data berdasarkan 1 syarat. Tentukan range yang dicek, lalu tulis kriteria yang dicari.';
-  }
-
-  if (name === 'AVERAGEIFS') {
-    if (args.length >= 5) return `AVERAGEIFS menghitung rata-rata dari ${a0}, tapi hanya untuk baris yang memenuhi semua syarat, termasuk ${a2} di ${a1} dan ${a4} di ${a3}.`;
-    return 'AVERAGEIFS dipakai untuk mencari rata-rata dengan banyak syarat. Range rata-rata ditulis dulu, lalu pasangan range syarat dan nilai syarat.';
-  }
-
-  if (name === 'AVERAGEIF') {
-    if (args.length >= 3) return `AVERAGEIF mengecek ${a0}, mencari data yang sesuai dengan ${a1}, lalu menghitung rata-rata angka dari ${a2}.`;
-    return 'AVERAGEIF dipakai untuk mencari rata-rata berdasarkan 1 syarat. Tentukan range syarat, kriteria, lalu range angka yang mau dirata-ratakan.';
-  }
-
-  if (name === 'VLOOKUP') {
-    if (args.length >= 4) return `VLOOKUP mencari ${a0} di kolom pertama dari ${a1}. Kalau ketemu, Excel mengambil data dari kolom ke-${a2}. Angka ${a3} berarti cara pencariannya exact atau approximate.`;
-    return 'VLOOKUP dipakai untuk mencari nilai secara vertikal. Logikanya: cari lookup value di kolom pertama tabel, lalu ambil hasil dari nomor kolom yang kamu tentukan.';
-  }
-
-  if (name === 'HLOOKUP') {
-    if (args.length >= 4) return `HLOOKUP mencari ${a0} di baris pertama dari ${a1}. Kalau ketemu, Excel mengambil data dari baris ke-${a2}.`;
-    return 'HLOOKUP dipakai untuk mencari nilai secara horizontal. Cari value di baris pertama tabel, lalu ambil hasil dari nomor baris yang diminta.';
-  }
-
-  if (name === 'XLOOKUP') {
-    if (args.length >= 3) return `XLOOKUP mencari ${a0} di ${a1}, lalu mengambil hasil sejajar dari ${a2}. Ini lebih fleksibel daripada VLOOKUP karena lookup range dan hasilnya bisa dipisah.`;
-    return 'XLOOKUP mencari satu nilai di lookup array, lalu mengembalikan hasil dari return array yang posisinya sejajar.';
-  }
-
-  if (name === 'INDEX') {
-    if (args.length >= 2) return `INDEX mengambil isi dari ${a0} berdasarkan posisi baris ${a1}${args[2] ? ` dan kolom ${a2}` : ''}. Jadi fokusnya bukan mencari teks, tapi mengambil berdasarkan posisi.`;
-    return 'INDEX dipakai untuk mengambil data dari range berdasarkan nomor baris dan nomor kolom.';
-  }
-
-  if (name === 'MATCH' || name === 'XMATCH') {
-    if (args.length >= 2) return `${name} mencari posisi ${a0} di dalam ${a1}. Hasilnya bukan isi cell, tapi nomor posisi data yang cocok.`;
-    return `${name} dipakai untuk mencari posisi data dalam sebuah range.`;
-  }
-
-  if (name === 'IF') {
-    if (args.length >= 3) return `IF mengecek kondisi ${a0}. Kalau hasilnya benar, Excel menampilkan ${a1}. Kalau salah, Excel menampilkan ${a2}.`;
-    return 'IF itu logikanya JIKA. Tentukan kondisi dulu, lalu isi hasil jika benar dan hasil jika salah.';
-  }
-
-  if (name === 'FILTER') {
-    if (args.length >= 2) return `FILTER mengambil data dari ${a0}, tapi hanya baris yang lolos kondisi di ${a1}.`;
-    return 'FILTER dipakai untuk menampilkan data yang memenuhi syarat tertentu secara otomatis.';
-  }
-
-  if (['SUM', 'AVERAGE', 'MIN', 'MAX', 'COUNT', 'COUNTA'].includes(name)) {
-    if (args.length >= 1) return `${name} membaca range ${a0}, lalu menghitung hasil sesuai fungsi ${name}. Fokusnya pastikan range yang dipilih memang berisi data yang dibutuhkan soal.`;
-  }
-
-  if (learning?.simpleLogic) {
-    return learning.analogy ? `${learning.simpleLogic} Analogi gampangnya: ${learning.analogy}` : learning.simpleLogic;
-  }
-  if (option?.simpleLogic) return option.simpleLogic;
-  if (option?.description) return option.description;
-
-  return `${name} sudah terbaca. Sekarang cek lagi urutan argumennya: value/range pertama, lalu argumen berikutnya sesuai tooltip rumus yang muncul.`;
+  return makeLogicPayload({ logic, name, learning, option });
 }
 
 function SignatureTooltip({ signature }) {
@@ -628,7 +634,17 @@ export default function FormulaBar({
 
           <section className="rounded-xl border border-coach-line bg-white px-3 py-2 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Penjelasan Logika Rumus</p>
-            <p className="mt-1 text-xs font-semibold leading-5 text-black/60 dark:text-white/60">{logicExplanation}</p>
+            <div className="mt-2 space-y-2 text-xs font-semibold leading-5 text-black/60 dark:text-white/60">
+              <p><span className="font-black text-coach-green dark:text-emerald-200">Analogi Rumus:</span> {logicExplanation.analogy}</p>
+              <p><span className="font-black text-coach-green dark:text-emerald-200">Logika:</span> {logicExplanation.logic}</p>
+              {logicExplanation.exampleFormula && (
+                <div className="rounded-xl border border-coach-green/15 bg-white px-3 py-2 dark:border-emerald-400/10 dark:bg-black/20">
+                  <span className="font-black text-coach-green dark:text-emerald-200">Contoh:</span>{' '}
+                  <code className="font-mono font-black text-coach-ink dark:text-white">{logicExplanation.exampleFormula}</code>
+                  {logicExplanation.exampleMeaning && <p className="mt-1 text-[11px] font-semibold text-black/45 dark:text-white/45">{logicExplanation.exampleMeaning}</p>}
+                </div>
+              )}
+            </div>
           </section>
 
           <section className="rounded-xl border border-coach-line bg-white px-3 py-2 dark:border-white/10 dark:bg-black/20">

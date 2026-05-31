@@ -33,14 +33,14 @@ export default function FormulaTheory({ formula, isGeneric }) {
       <div className="mt-6 grid gap-3 md:grid-cols-3">
         <InfoCard title="Kapan dipakai?" text={useCase} />
         <InfoCard title="Logika sederhananya" text={simpleLogic} />
-        <InfoCard title="Analogi ringan" text={analogy} />
+        <InfoCard title="Analogi Rumus" text={analogy} />
       </div>
 
       {(exampleFormula || exampleMeaning || beginnerTip) && (
         <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
           {exampleFormula && (
             <div className="rounded-2xl border border-coach-green/20 bg-coach-greenSoft/70 p-4 dark:border-emerald-400/15 dark:bg-emerald-400/10">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Contoh paling gampang</p>
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Contoh Rumus</p>
               <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 font-mono text-sm font-black text-coach-green dark:bg-black/20 dark:text-emerald-200">
                 {exampleFormula}
               </code>
