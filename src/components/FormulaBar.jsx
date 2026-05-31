@@ -631,12 +631,16 @@ export default function FormulaBar({
 
           <section className="rounded-xl border border-coach-line bg-white px-4 py-3 dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Cara mengisi</p>
-            <div className="mt-1 flex flex-wrap gap-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
-              <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
-              <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
-              <span>Enter untuk cek jawaban.</span>
-              {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
-              <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
+            <div className="mt-1 space-y-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
+              <div className="flex flex-wrap gap-2">
+                <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
+                <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
+                <span>Enter untuk cek jawaban.</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
+                <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
+              </div>
             </div>
           </section>
         </div>
