@@ -666,10 +666,93 @@ export const sharedExerciseTables = {
     "rows": [["A", 12, 3, "angka contoh"], ["B", 8, 2, "angka contoh"], ["C", 15, 5, "angka contoh"], ["D", 20, 4, "angka contoh"], ["E", 7, 2, "angka contoh"], ["F", 30, 6, "angka contoh"], ["Parameter", 2, 1, "digit/k/step"]]
   },
   "statsParameter": {
-    "title": "Parameter Statistik",
-    "description": "Tabel ini khusus untuk rumus statistik dan compatibility. Ambil parameter dari kolom Nilai, jangan pakai tabel siswa kalau argumennya peluang/distribusi.",
-    "columns": ["Parameter", "Nilai", "Keterangan", "Data Aktual", "Data Ekspektasi"],
-    "rows": [["Jumlah gagal", 3, "Banyak gagal sebelum target berhasil tercapai", 82, 80], ["Target berhasil", 5, "Jumlah berhasil yang ingin dicapai", 91, 90], ["Peluang berhasil", 0.4, "Peluang berhasil tiap percobaan", 68, 70], ["Jumlah berhasil", 6, "Jumlah sukses untuk binomial", 77, 75], ["Jumlah percobaan", 10, "Total percobaan", 73, 72], ["Alpha", 8, "Parameter bentuk distribusi", 88, 85], ["Beta", 10, "Parameter bentuk distribusi", 95, 92], ["Nilai x", 42, "Nilai yang sedang diuji", 64, 66], ["Mean", 40, "Rata-rata distribusi", 80, 78], ["Standar deviasi", 1.5, "Sebaran data", 72, 74], ["Cumulative", "TRUE", "TRUE untuk kumulatif, FALSE untuk titik peluang", 86, 84], ["Degree freedom", 10, "Derajat kebebasan", 79, 81], ["Sample success", 4, "Sukses dalam sampel", 58, 60], ["Population success", 8, "Sukses dalam populasi", 90, 88], ["Population size", 20, "Ukuran populasi", 75, 76], ["Tails / type / quart", 2, "Parameter pilihan", 83, 82], ["Lower bound", 0, "Batas bawah", 78, 77], ["Upper bound", 1, "Batas atas", 69, 70]]
+    "title": "Parameter Statistik Ringkas",
+    "description": "Tabel ringkas untuk rumus statistik umum. Kalau rumus butuh parameter khusus, website akan pakai tabel yang lebih spesifik.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [
+      ["Nilai utama / x", 42, "Angka yang sedang diuji"],
+      ["Pembanding / target", 40, "Nilai pembanding atau rata-rata"],
+      ["Peluang", 0.4, "Peluang dalam bentuk desimal"],
+      ["Jumlah percobaan", 10, "Total percobaan"],
+      ["Mode kumulatif", "TRUE", "TRUE untuk kumulatif, FALSE untuk titik peluang"]
+    ]
+  },
+  "statsNegBinom": {
+    "title": "Parameter Negative Binomial",
+    "description": "Tabel ini dibuat khusus untuk NEGBINOMDIST / NEGBINOM.DIST. Cukup pakai parameter yang memang diminta rumus.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [
+      ["Jumlah gagal", 3, "Banyak gagal sebelum target berhasil tercapai"],
+      ["Target berhasil", 5, "Jumlah berhasil yang ingin dicapai"],
+      ["Peluang berhasil", 0.4, "Peluang berhasil tiap percobaan"],
+      ["Cumulative", "FALSE", "FALSE untuk peluang tepat, TRUE untuk kumulatif"]
+    ]
+  },
+  "statsBinom": {
+    "title": "Parameter Binomial",
+    "description": "Tabel ini untuk BINOM.DIST, BINOMDIST, BINOM.INV, CRITBINOM, dan HYPGEOM.DIST.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [
+      ["Jumlah berhasil", 6, "Jumlah sukses yang ingin dihitung"],
+      ["Jumlah percobaan", 10, "Total percobaan"],
+      ["Peluang berhasil", 0.4, "Peluang sukses tiap percobaan"],
+      ["Cumulative", "FALSE", "FALSE untuk peluang tepat, TRUE untuk kumulatif"],
+      ["Jumlah sukses kedua", 8, "Batas atas untuk range binomial"],
+      ["Sukses sampel", 4, "Sukses yang diambil dari sampel"],
+      ["Ukuran sampel", 8, "Jumlah data dalam sampel"],
+      ["Sukses populasi", 20, "Jumlah sukses dalam populasi"],
+      ["Ukuran populasi", 30, "Total populasi"],
+      ["Alpha", 0.8, "Batas peluang untuk mencari nilai"]
+    ]
+  },
+  "statsNormal": {
+    "title": "Parameter Distribusi Normal",
+    "description": "Tabel ini untuk NORM.DIST, NORM.INV, NORM.S.DIST, NORM.S.INV, STANDARDIZE, dan versi compatibility-nya.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [
+      ["Nilai x", 42, "Nilai yang sedang diuji"],
+      ["Mean", 40, "Rata-rata distribusi"],
+      ["Standar deviasi", 1.5, "Ukuran sebaran data"],
+      ["Cumulative", "TRUE", "TRUE untuk kumulatif"],
+      ["Probability", 0.8, "Peluang untuk rumus inverse"],
+      ["Z-score", 1.25, "Nilai standar normal"]
+    ]
+  },
+  "statsBetaGamma": {
+    "title": "Parameter Beta, Gamma, Weibull, Exponential",
+    "description": "Tabel ini untuk rumus distribusi yang memakai x/probability, alpha, beta, batas bawah, dan batas atas.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [
+      ["Nilai x / probability", 0.5, "Nilai utama yang dihitung"],
+      ["Alpha", 8, "Parameter bentuk distribusi"],
+      ["Beta", 10, "Parameter bentuk distribusi"],
+      ["Cumulative", "TRUE", "TRUE untuk kumulatif"],
+      ["Lower bound", 0, "Batas bawah"],
+      ["Upper bound", 1, "Batas atas"]
+    ]
+  },
+  "statsFreedom": {
+    "title": "Parameter Uji Statistik",
+    "description": "Tabel ini untuk rumus distribusi Chi-square, F, dan T yang butuh degree of freedom.",
+    "columns": ["Parameter", "Nilai", "Keterangan"],
+    "rows": [
+      ["Nilai x / probability", 2.1, "Nilai uji atau probability"],
+      ["Degree freedom 1", 10, "Derajat kebebasan pertama"],
+      ["Degree freedom 2", 12, "Derajat kebebasan kedua jika dibutuhkan"],
+      ["Tails / cumulative", 2, "Parameter pilihan, misalnya 1/2 atau TRUE/FALSE"]
+    ]
+  },
+  "statsActualExpected": {
+    "title": "Data Aktual vs Ekspektasi",
+    "description": "Tabel ini untuk CHITEST / CHISQ.TEST. Datanya dibuat ringkas agar fokus ke range aktual dan ekspektasi.",
+    "columns": ["Data Aktual", "Data Ekspektasi"],
+    "rows": [[82, 80], [91, 90], [68, 70], [77, 75], [73, 72]]
+  },
+  "statsSeriesCompact": {
+    "title": "Data Statistik Ringkas",
+    "description": "Tabel ini untuk AVERAGE, STDEV, VAR, RANK, PERCENTILE, QUARTILE, CORREL, dan rumus statistik berbasis range.",
+    "columns": ["Data A", "Data B", "Keterangan"],
+    "rows": [[82, 80, "Data 1"], [91, 90, "Data 2"], [68, 70, "Data 3"], [77, 75, "Data 4"], [73, 72, "Data 5"], [88, 85, "Data 6"], [95, 92, "Data 7"], [64, 66, "Data 8"], [2, "", "Parameter k / quart / order"]]
   },
   "financeParameter": {
     "title": "Parameter Keuangan",

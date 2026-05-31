@@ -168,7 +168,9 @@ const tableByCategory = {
 };
 
 const tableFriendlyName = {
-  textPractice: 'Data Teks', datePractice: 'Data Tanggal & Jam', logicalPractice: 'Data Kondisi', lookup: 'Master Produk', dynamic: 'Data Produk Dinamis', mathNumbers: 'Data Angka', statsParameter: 'Parameter Statistik', financeParameter: 'Parameter Keuangan', informationMixed: 'Data Campuran', engineeringParameter: 'Parameter Teknik', databaseMini: 'Database Mini', webParameter: 'Data Web', cubeParameter: 'Contoh Cube/Data Model', addinParameter: 'Parameter Add-in'
+  textPractice: 'Data Teks', datePractice: 'Data Tanggal & Jam', logicalPractice: 'Data Kondisi', lookup: 'Master Produk', dynamic: 'Data Produk Dinamis', mathNumbers: 'Data Angka',
+  statsParameter: 'Parameter Statistik Ringkas', statsNegBinom: 'Parameter Negative Binomial', statsBinom: 'Parameter Binomial', statsNormal: 'Parameter Normal', statsBetaGamma: 'Parameter Beta/Gamma', statsFreedom: 'Parameter Uji Statistik', statsActualExpected: 'Data Aktual vs Ekspektasi', statsSeriesCompact: 'Data Statistik Ringkas',
+  financeParameter: 'Parameter Keuangan', informationMixed: 'Data Campuran', engineeringParameter: 'Parameter Teknik', databaseMini: 'Database Mini', webParameter: 'Data Web', cubeParameter: 'Contoh Cube/Data Model', addinParameter: 'Parameter Add-in'
 };
 
 const cellValue = {
@@ -179,12 +181,18 @@ const cellValue = {
 };
 
 const specialPractice = {
-  NEGBINOMDIST: { tableKey: 'statsParameter', refs: ['B2','B3','B4'], hardcodes: ['3','5','0.4'], question: 'Hitung peluang 3 gagal terjadi sebelum target 5 berhasil, dengan peluang berhasil 40%.', logic: 'Ambil jumlah gagal, target berhasil, dan peluang berhasil dari tabel parameter statistik.' },
-  'NEGBINOM.DIST': { tableKey: 'statsParameter', refs: ['B2','B3','B4','B12'], hardcodes: ['3','5','0.4','FALSE'], question: 'Hitung peluang negative binomial dari parameter statistik. Pakai mode tidak kumulatif.', logic: 'Ambil jumlah gagal, target berhasil, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
-  BINOMDIST: { tableKey: 'statsParameter', refs: ['B5','B6','B4','B12'], hardcodes: ['6','10','0.4','FALSE'], question: 'Hitung peluang mendapat 6 berhasil dari 10 percobaan dengan peluang berhasil 40%.', logic: 'Ambil jumlah berhasil, jumlah percobaan, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
-  'BINOM.DIST': { tableKey: 'statsParameter', refs: ['B5','B6','B4','B12'], hardcodes: ['6','10','0.4','FALSE'], question: 'Hitung peluang binomial untuk 6 berhasil dari 10 percobaan.', logic: 'Ambil jumlah berhasil, jumlah percobaan, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
-  'NORM.DIST': { tableKey: 'statsParameter', refs: ['B9','B10','B11','B12'], hardcodes: ['42','40','1.5','TRUE'], question: 'Hitung distribusi normal untuk x 42, rata-rata 40, dan standar deviasi 1,5.', logic: 'Ambil nilai x, mean, standar deviasi, lalu tentukan kumulatif atau tidak.' },
-  NORMDIST: { tableKey: 'statsParameter', refs: ['B9','B10','B11','B12'], hardcodes: ['42','40','1.5','TRUE'], question: 'Hitung distribusi normal versi lama untuk parameter yang tersedia.', logic: 'Rumus lama ini tetap memakai x, mean, standar deviasi, dan pilihan kumulatif.' },
+  NEGBINOMDIST: { tableKey: 'statsNegBinom', refs: ['B2','B3','B4'], hardcodes: ['3','5','0.4'], question: 'Hitung peluang 3 gagal terjadi sebelum target 5 berhasil, dengan peluang berhasil 40%.', logic: 'Ambil jumlah gagal, target berhasil, dan peluang berhasil. Tabelnya sengaja ringkas karena rumus ini hanya butuh tiga input.' },
+  'NEGBINOM.DIST': { tableKey: 'statsNegBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['3','5','0.4','FALSE'], question: 'Hitung peluang negative binomial. Pakai mode tidak kumulatif dari parameter yang tersedia.', logic: 'Ambil jumlah gagal, target berhasil, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
+  BINOMDIST: { tableKey: 'statsBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['6','10','0.4','FALSE'], question: 'Hitung peluang mendapat 6 berhasil dari 10 percobaan dengan peluang berhasil 40%.', logic: 'Ambil jumlah berhasil, jumlah percobaan, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
+  'BINOM.DIST': { tableKey: 'statsBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['6','10','0.4','FALSE'], question: 'Hitung peluang binomial untuk 6 berhasil dari 10 percobaan.', logic: 'Ambil jumlah berhasil, jumlah percobaan, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
+  'NORM.DIST': { tableKey: 'statsNormal', refs: ['B2','B3','B4','B5'], hardcodes: ['42','40','1.5','TRUE'], question: 'Hitung distribusi normal untuk x 42, rata-rata 40, dan standar deviasi 1,5.', logic: 'Ambil nilai x, mean, standar deviasi, lalu tentukan kumulatif atau tidak.' },
+  NORMDIST: { tableKey: 'statsNormal', refs: ['B2','B3','B4','B5'], hardcodes: ['42','40','1.5','TRUE'], question: 'Hitung distribusi normal versi lama untuk parameter yang tersedia.', logic: 'Rumus lama ini tetap memakai x, mean, standar deviasi, dan pilihan kumulatif.' },
+  'NORM.INV': { tableKey: 'statsNormal', refs: ['B6','B3','B4'], hardcodes: ['0.8','40','1.5'], question: 'Cari nilai dari peluang 80% pada distribusi normal.', logic: 'Ambil probability, mean, dan standar deviasi dari tabel normal.' },
+  NORMINV: { tableKey: 'statsNormal', refs: ['B6','B3','B4'], hardcodes: ['0.8','40','1.5'], question: 'Cari nilai dari peluang 80% pada distribusi normal versi lama.', logic: 'Ambil probability, mean, dan standar deviasi dari tabel normal.' },
+  'NORM.S.DIST': { tableKey: 'statsNormal', refs: ['B7','B5'], hardcodes: ['1.25','TRUE'], question: 'Hitung distribusi normal standar untuk z-score 1,25.', logic: 'Ambil z-score dan pilihan kumulatif dari tabel.' },
+  NORMSDIST: { tableKey: 'statsNormal', refs: ['B7'], hardcodes: ['1.25'], question: 'Hitung distribusi normal standar versi lama untuk z-score 1,25.', logic: 'Ambil z-score dari tabel.' },
+  'NORM.S.INV': { tableKey: 'statsNormal', refs: ['B6'], hardcodes: ['0.8'], question: 'Cari z-score dari peluang 80%.', logic: 'Ambil probability dari tabel.' },
+  NORMSINV: { tableKey: 'statsNormal', refs: ['B6'], hardcodes: ['0.8'], question: 'Cari z-score dari peluang 80% versi lama.', logic: 'Ambil probability dari tabel.' },
   PMT: { tableKey: 'financeParameter', refs: ['F2','F3','F4'], hardcodes: ['8%/12','12','10000000'], question: 'Hitung estimasi cicilan bulanan dari pinjaman 10.000.000 selama 12 bulan dengan bunga bulanan di F2.', logic: 'Ambil rate per bulan, jumlah periode, dan nilai pinjaman.' },
   FV: { tableKey: 'financeParameter', refs: ['F2','F3','F5'], hardcodes: ['8%/12','12','-900000'], question: 'Hitung nilai masa depan dari setoran bulanan 900.000 selama 12 bulan.', logic: 'Ambil rate, periode, dan pembayaran berkala.' },
   PV: { tableKey: 'financeParameter', refs: ['F2','F3','F5'], hardcodes: ['8%/12','12','-900000'], question: 'Hitung nilai sekarang dari pembayaran bulanan 900.000 selama 12 bulan.', logic: 'Ambil rate, periode, dan pembayaran berkala.' },
@@ -198,6 +206,13 @@ const statisticalSeries = new Set(['AVERAGE','COUNT','COUNTA','COUNTBLANK','LARG
 const criteriaFunctions = new Set(['SUMIF','SUMIFS','COUNTIF','COUNTIFS','AVERAGEIF','AVERAGEIFS','MAXIFS','MINIFS']);
 const lookupFunctions = new Set(['VLOOKUP','HLOOKUP','XLOOKUP','LOOKUP','MATCH','XMATCH','INDEX','INDEX MATCH']);
 const dbFunctions = new Set(['DAVERAGE','DCOUNT','DCOUNTA','DGET','DMAX','DMIN','DPRODUCT','DSTDEV','DSTDEVP','DSUM','DVAR','DVARP']);
+
+const actualExpectedFunctions = new Set(['CHITEST','CHISQ.TEST']);
+const pairedSeriesFunctions = new Set(['CORREL','COVAR','COVARIANCE.P','COVARIANCE.S','FTEST','F.TEST','TTEST','T.TEST','ZTEST']);
+const binomFamilyFunctions = new Set(['BINOMDIST','BINOM.DIST','BINOM.DIST.RANGE','BINOM.INV','CRITBINOM','HYPGEOMDIST','HYPGEOM.DIST']);
+const normalFamilyFunctions = new Set(['NORMDIST','NORM.DIST','NORMINV','NORM.INV','NORMSDIST','NORM.S.DIST','NORMSINV','NORM.S.INV','STANDARDIZE','LOGNORMDIST','LOGNORM.DIST','LOGINV','LOGNORM.INV']);
+const betaGammaFunctions = new Set(['BETADIST','BETA.DIST','BETAINV','BETA.INV','GAMMADIST','GAMMA.DIST','GAMMAINV','GAMMA.INV','WEIBULL','WEIBULL.DIST','EXPONDIST','EXPON.DIST','POISSON','POISSON.DIST','PROB']);
+const freedomTestFunctions = new Set(['CHIDIST','CHISQ.DIST','CHISQ.DIST.RT','CHIINV','CHISQ.INV','CHISQ.INV.RT','FDIST','F.DIST','F.DIST.RT','FINV','F.INV','F.INV.RT','TDIST','T.DIST','T.DIST.2T','T.DIST.RT','TINV','T.INV','T.INV.2T']);
 
 const rootFormatArgs = (format = '') => {
   const open = String(format).indexOf('(');
@@ -414,7 +429,82 @@ const mapAddinToken = (token) => {
   return 'A2';
 };
 
+
+const mapStatsSeriesToken = (token) => {
+  const t = normalizeToken(token);
+  if (/array2|known_x|prob_range|bins_array/.test(t)) return 'B2:B8';
+  if (/array|known_y|values|data_array|number1|ref/.test(t)) return 'A2:A8';
+  if (/number|x/.test(t)) return 'A4';
+  if (/k|quart|alpha|significance|order|sigma/.test(t)) return 'B9';
+  return 'A2:A8';
+};
+
+const mapStatsActualExpectedToken = (token) => {
+  const t = normalizeToken(token);
+  if (/expected/.test(t)) return 'B2:B6';
+  if (/actual|array|values|number1|ref/.test(t)) return 'A2:A6';
+  return 'A2:A6';
+};
+
+const mapStatsBinomToken = (token) => {
+  const t = normalizeToken(token);
+  if (/number_s2/.test(t)) return 'B6';
+  if (/sample_s/.test(t)) return 'B7';
+  if (/number_sample/.test(t)) return 'B8';
+  if (/population_s/.test(t)) return 'B9';
+  if (/number_pop/.test(t)) return 'B10';
+  if (/number_s/.test(t)) return 'B2';
+  if (/trials/.test(t)) return 'B3';
+  if (/probability_s|probability/.test(t)) return 'B4';
+  if (/cumulative/.test(t)) return 'B5';
+  if (/alpha/.test(t)) return 'B11';
+  return 'B2';
+};
+
+const mapStatsNormalToken = (token) => {
+  const t = normalizeToken(token);
+  if (/probability/.test(t)) return 'B6';
+  if (/z/.test(t)) return 'B7';
+  if (/x/.test(t)) return 'B2';
+  if (/mean/.test(t)) return 'B3';
+  if (/standard|sigma/.test(t)) return 'B4';
+  if (/cumulative/.test(t)) return 'B5';
+  return 'B2';
+};
+
+const mapStatsBetaGammaToken = (token) => {
+  const t = normalizeToken(token);
+  if (/probability/.test(t)) return 'B2';
+  if (/x|lambda|mean/.test(t)) return 'B2';
+  if (/alpha/.test(t)) return 'B3';
+  if (/beta/.test(t)) return 'B4';
+  if (/cumulative/.test(t)) return 'B5';
+  if (/lower|a/.test(t)) return 'B6';
+  if (/upper|b/.test(t)) return 'B7';
+  if (/prob_range/.test(t)) return 'B2:B6';
+  if (/x_range/.test(t)) return 'A2:A6';
+  return 'B2';
+};
+
+const mapStatsFreedomToken = (token) => {
+  const t = normalizeToken(token);
+  if (/probability/.test(t)) return 'B2';
+  if (/x/.test(t)) return 'B2';
+  if (/deg_freedom1/.test(t)) return 'B3';
+  if (/deg_freedom2/.test(t)) return 'B4';
+  if (/deg_freedom/.test(t)) return 'B3';
+  if (/tails|type|cumulative/.test(t)) return 'B5';
+  return 'B2';
+};
+
 const mapperByTable = {
+  statsNegBinom: mapStatsToken,
+  statsBinom: mapStatsBinomToken,
+  statsNormal: mapStatsNormalToken,
+  statsBetaGamma: mapStatsBetaGammaToken,
+  statsFreedom: mapStatsFreedomToken,
+  statsActualExpected: mapStatsActualExpectedToken,
+  statsSeriesCompact: mapStatsSeriesToken,
   statsParameter: mapStatsToken,
   financeParameter: mapFinanceToken,
   engineeringParameter: mapEngineeringToken,
@@ -434,6 +524,13 @@ const mapperByTable = {
 const tableForFormula = (formula) => {
   const name = upper(formula.name);
   if (specialPractice[name]?.tableKey) return specialPractice[name].tableKey;
+  if (actualExpectedFunctions.has(name)) return 'statsActualExpected';
+  if (pairedSeriesFunctions.has(name)) return 'statsSeriesCompact';
+  if (binomFamilyFunctions.has(name)) return 'statsBinom';
+  if (normalFamilyFunctions.has(name)) return 'statsNormal';
+  if (betaGammaFunctions.has(name)) return 'statsBetaGamma';
+  if (freedomTestFunctions.has(name)) return 'statsFreedom';
+  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return 'statsSeriesCompact';
   if (criteriaFunctions.has(name)) return 'sales';
   if (lookupFunctions.has(name)) return name === 'HLOOKUP' ? 'lookupHorizontal' : 'lookup';
   if (dbFunctions.has(name)) return 'databaseMini';
@@ -441,16 +538,22 @@ const tableForFormula = (formula) => {
   return tableByCategory[formula.category] || 'addinParameter';
 };
 
-const hardcodeForRef = (ref) => {
+const cellValueByTable = {
+  statsNegBinom: { B2: 3, B3: 5, B4: 0.4, B5: 'FALSE' },
+  statsBinom: { B2: 6, B3: 10, B4: 0.4, B5: 'FALSE', B6: 8, B7: 4, B8: 8, B9: 20, B10: 30, B11: 0.8 },
+  statsNormal: { B2: 42, B3: 40, B4: 1.5, B5: 'TRUE', B6: 0.8, B7: 1.25 },
+  statsBetaGamma: { B2: 0.5, B3: 8, B4: 10, B5: 'TRUE', B6: 0, B7: 1 },
+  statsFreedom: { B2: 2.1, B3: 10, B4: 12, B5: 2 },
+  statsSeriesCompact: { A4: 77, B9: 2 },
+  statsActualExpected: {},
+};
+
+const hardcodeForRef = (ref, tableKey = '') => {
   if (/^".*"$/.test(ref) || /^(TRUE|FALSE|SUM|LAMBDA|total)$/i.test(ref)) return ref;
   if (/^\d+(\.\d+)?%?/.test(ref)) return ref;
-  if (cellValue[ref] !== undefined) {
-    const v = cellValue[ref];
-    return typeof v === 'string' && !/^(TRUE|FALSE)$/i.test(v) ? `"${v}"` : String(v);
-  }
-  if (/^D2:D16|^B2:B8/.test(ref)) return ref;
-  if (ref === 'E2:E16') return ref;
-  if (ref === 'A1:E8' || ref === 'G1:G2' || ref === 'A2:E13') return ref;
+  const scoped = cellValueByTable[tableKey] || {};
+  const v = scoped[ref] !== undefined ? scoped[ref] : cellValue[ref];
+  if (v !== undefined) return typeof v === 'string' && !/^(TRUE|FALSE)$/i.test(v) ? `"${v}"` : String(v);
   if (ref.includes(':')) return ref;
   return ref;
 };
@@ -472,7 +575,8 @@ const formulaExpression = (formula, refs = refsFromFormat(formula)) => `=${formu
 const acceptedHardcode = (formula, refs = refsFromFormat(formula)) => {
   const special = specialPractice[upper(formula.name)];
   if (special?.hardcodes) return [`=${formula.name}(${special.hardcodes.join(',')})`];
-  const hard = refs.map(hardcodeForRef);
+  const tableKey = tableForFormula(formula);
+  const hard = refs.map((ref) => hardcodeForRef(ref, tableKey));
   return hard.some((v, i) => v !== refs[i]) ? [`=${formula.name}(${hard.join(',')})`] : [];
 };
 
@@ -545,7 +649,7 @@ export function generateDetailedExerciseForFormula(formula) {
     formulaName: formula.name,
     title: `Latihan ${formula.name}`,
     tableKey,
-    activeCell: tableKey === 'lookup' ? 'B2' : tableKey === 'statsParameter' ? 'C2' : 'G2',
+    activeCell: tableKey === 'lookup' ? 'B2' : tableKey.startsWith('stats') ? 'C2' : 'G2',
     question: makeQuestion(formula, refs),
     logicPrompt: makeLogic(formula, refs),
     expectedFormula,
