@@ -658,7 +658,7 @@ export const sharedExerciseTables = {
   }
 };
 
-export const curatedExercises = {
+const rawCuratedExercises = {
   "sum": {
     "id": "sum",
     "formulaName": "SUM",
@@ -7043,5 +7043,145 @@ export const curatedExercises = {
     "nextUseCase": "Coba ulang konsep yang sama ke data lain, misalnya data penjualan, stok, atau nilai siswa."
   }
 };
+
+const extractMainRefs = (exercise = {}) => {
+  const refs = [...(exercise.requiredRefs || []), ...(exercise.highlightRanges || [])]
+    .filter(Boolean)
+    .filter((item, index, array) => array.indexOf(item) === index);
+  return refs;
+};
+
+const formulaFriendlyNames = {
+  SUM: 'menjumlahkan angka',
+  SUMIF: 'menjumlahkan angka dengan 1 syarat',
+  SUMIFS: 'menjumlahkan angka dengan beberapa syarat',
+  COUNT: 'menghitung cell berisi angka',
+  COUNTA: 'menghitung cell yang terisi',
+  COUNTBLANK: 'menghitung cell kosong',
+  COUNTIF: 'menghitung data dengan 1 syarat',
+  COUNTIFS: 'menghitung data dengan beberapa syarat',
+  AVERAGE: 'menghitung rata-rata',
+  AVERAGEIF: 'menghitung rata-rata dengan 1 syarat',
+  AVERAGEIFS: 'menghitung rata-rata dengan beberapa syarat',
+  IF: 'membuat hasil berdasarkan kondisi',
+  IFS: 'mengecek beberapa kondisi berurutan',
+  VLOOKUP: 'mencari data secara vertikal',
+  HLOOKUP: 'mencari data secara horizontal',
+  XLOOKUP: 'mencari data dan mengambil hasil sejajar',
+  INDEX: 'mengambil data berdasarkan posisi',
+  MATCH: 'mencari posisi data',
+  XMATCH: 'mencari posisi data versi modern',
+  FILTER: 'menyaring tabel berdasarkan syarat',
+  UNIQUE: 'mengambil data unik',
+  SORT: 'mengurutkan data',
+  TEXT: 'mengubah tampilan angka menjadi teks berformat'
+};
+
+const buildBetterHints = (exercise = {}) => {
+  const refs = extractMainRefs(exercise);
+  const texts = exercise.requiredTexts || [];
+  const name = exercise.formulaName;
+  const hints = [
+    `Baca dulu soalnya. Hasil akhirnya adalah: ${exercise.question}`,
+    `Pilih rumus ${name} karena tugasnya untuk ${formulaFriendlyNames[name] || 'mengolah data sesuai soal'}.`
+  ];
+
+  if (refs.length) hints.push(`Cari data yang dipakai di tabel. Range/cell pentingnya: ${refs.join(', ')}.`);
+  if (texts.length) hints.push(`Value/kriteria yang harus masuk: ${texts.join(', ')}.`);
+
+  hints.push('Isi argumen satu per satu dari kiri ke kanan. Jangan loncat dulu ke jawaban final.');
+  hints.push('Cek lagi separatornya: mode Indonesia pakai titik koma (;), mode English pakai koma (,).');
+  return hints;
+};
+
+const buildFormulaParts = (exercise = {}) => {
+  const refs = extractMainRefs(exercise);
+  const texts = exercise.requiredTexts || [];
+  const parts = [
+    `${exercise.formulaName} adalah rumus utama yang dipakai untuk soal ini.`,
+    refs.length ? `Range/cell yang dipakai: ${refs.join(', ')}.` : 'Rumus ini fokus ke struktur argumen yang benar.',
+  ];
+  if (texts.length) parts.push(`Value/kriteria dari soal: ${texts.join(', ')}.`);
+  parts.push('Kalau hasilnya sudah sama dengan target, artinya alur rumusnya sudah benar.');
+  return parts;
+};
+
+const buildCommonMistakes = (exercise = {}) => {
+  const refs = extractMainRefs(exercise);
+  const texts = exercise.requiredTexts || [];
+  return [
+    'Lupa tanda = di awal rumus.',
+    refs.length ? `Range/cell meleset. Cek lagi ${refs.join(', ')}.` : 'Argumen belum mengikuti format rumus.',
+    texts.length ? `Value/kriteria belum lengkap. Cek lagi ${texts.join(', ')}.` : 'Urutan argumen belum tepat.',
+    'Separator tidak sesuai mode Excel Indonesia atau English.',
+    'Kurung buka dan kurung tutup belum seimbang.'
+  ];
+};
+
+const exercisePatches = {
+  let: {
+    question: 'Buat nama sementara total untuk SUM(D2:D16), lalu tampilkan totalnya.',
+    expectedFormula: '=LET(total,SUM(D2:D16),total)',
+    requiredRefs: ['D2:D16'],
+    requiredTexts: ['total'],
+    highlightRanges: ['D2:D16'],
+    successExplanation: 'Nah, ini tepat. LET menyimpan SUM(D2:D16) ke nama total, lalu menampilkan total itu lagi.'
+  },
+  vlookup: {
+    question: 'Ambil Master Nama untuk Kode Produk di A2 dari master produk.',
+    expectedFormula: '=VLOOKUP(A2,E2:I8,2,0)',
+    requiredRefs: ['A2', 'E2:I8'],
+    requiredTexts: ['2', '0']
+  },
+  hlookup: {
+    question: 'Ambil harga produk P-003 dari tabel master horizontal.',
+    requiredTexts: ['P-003']
+  },
+  sumifs: {
+    question: 'Jumlahkan Total Penjualan untuk kategori Digital di kota Jakarta.',
+    requiredTexts: ['Digital', 'Jakarta']
+  },
+  countifs: {
+    requiredTexts: ['Perempuan', 'X-A']
+  },
+  averageifs: {
+    requiredTexts: ['Perempuan', 'X-A']
+  }
+};
+
+const normalizeExercise = (exercise = {}) => {
+  const patch = exercisePatches[exercise.id] || {};
+  const merged = { ...exercise, ...patch };
+  const refs = extractMainRefs(merged);
+  const texts = merged.requiredTexts || [];
+  const action = formulaFriendlyNames[merged.formulaName] || 'menjawab soal ini';
+
+  return {
+    ...merged,
+    title: merged.title || `Latihan ${merged.formulaName}`,
+    logicPrompt: merged.logicPrompt && !/Coba pikir dulu input apa yang diminta/i.test(merged.logicPrompt)
+      ? merged.logicPrompt
+      : `Rumus ${merged.formulaName} dipakai untuk ${action}. Tentukan data yang dipakai, lalu isi argumennya sesuai arah soal.`,
+    hints: buildBetterHints(merged),
+    successExplanation: merged.successExplanation && !/sudah dipakai sesuai konteks soal/i.test(merged.successExplanation)
+      ? merged.successExplanation
+      : `Nah, ini baru tepat. ${merged.formulaName} sudah mengambil data yang sesuai dengan soal, jadi hasilnya nyambung dengan tabel latihan.`,
+    formulaParts: buildFormulaParts(merged),
+    commonMistakes: buildCommonMistakes(merged),
+    nextUseCase: merged.nextUseCase && !/Coba ulang konsep yang sama/i.test(merged.nextUseCase)
+      ? merged.nextUseCase
+      : `Pakai pola yang sama saat kamu butuh ${action} di data lain.`,
+    audit: {
+      refsChecked: refs,
+      criteriaChecked: texts,
+      expectedFormulaChecked: Boolean(merged.expectedFormula),
+      note: 'Dinormalisasi oleh audit Formula Coach agar soal, hint, range, dan expected formula lebih konsisten.'
+    }
+  };
+};
+
+export const curatedExercises = Object.fromEntries(
+  Object.entries(rawCuratedExercises).map(([key, exercise]) => [key, normalizeExercise(exercise)])
+);
 
 export const getCuratedExercise = (formulaId) => curatedExercises[formulaId] || null;

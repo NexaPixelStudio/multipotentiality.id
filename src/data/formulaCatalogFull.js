@@ -1,4 +1,5 @@
 import { formulaLearningContent } from './formulaLearningContent.js';
+import { normalizeFormulaRecord } from './formulaAuditRules.js';
 
 // Data katalog Formula Coach.
 // Kategori dan nama function disiapkan sebagai data lokal supaya komponen UI tidak perlu diubah saat katalog di-update.
@@ -11535,7 +11536,7 @@ const baseFormulaCatalogFull = [
   }
 ];
 
-export const formulaCatalogFull = baseFormulaCatalogFull.map((formula) => ({
+export const formulaCatalogFull = baseFormulaCatalogFull.map((formula) => normalizeFormulaRecord({
   ...formula,
   ...(formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {})
 }));
@@ -11551,7 +11552,7 @@ export const formulasByCategory = formulaCatalogFull.reduce((acc, formula) => {
 
 export function importFormulaCatalog(nextCatalog = []) {
   if (!Array.isArray(nextCatalog)) return formulaCatalogFull;
-  return nextCatalog.filter(Boolean).map((item) => ({
+  return nextCatalog.filter(Boolean).map((item) => normalizeFormulaRecord({
     id: item.id,
     name: item.name,
     category: item.category || 'Add-in / User Defined',

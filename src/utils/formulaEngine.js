@@ -299,6 +299,11 @@ function evaluateExpression(expr, ctx) {
   if (/^-?\d+(\.\d+)?$/.test(raw)) return Number(raw);
   if (/^#(N\/A|VALUE!|REF!|NAME\?|NUM!|DIV\/0!)$/i.test(raw)) return raw.toUpperCase();
 
+  const variableName = raw.toUpperCase();
+  if (/^[A-Z_][A-Z0-9._]*$/i.test(raw) && ctx.vars?.has(variableName)) {
+    return ctx.vars.get(variableName);
+  }
+
   const comparison = findTopLevelComparison(raw);
   if (comparison) {
     const left = evaluateExpression(comparison.left, ctx);
@@ -657,7 +662,16 @@ function evaluateFunction(name, argExprs, ctx) {
       return intercept + slope * x;
     }
     // Newer formula demos. We keep these lightweight so the UI can still show a result instead of feeling broken.
-    case 'LET': return arg(argExprs.length - 1);
+    case 'LET': {
+      const localVars = new Map(ctx.vars || []);
+      for (let i = 0; i < argExprs.length - 1; i += 2) {
+        const varName = String(argExprs[i] || '').trim().replace(/^['"]|['"]$/g, '').toUpperCase();
+        if (!varName || i + 1 >= argExprs.length) throw new Error(ERROR_CODES.value);
+        const varValue = evaluateExpression(argExprs[i + 1], { ...ctx, vars: localVars });
+        localVars.set(varName, varValue);
+      }
+      return evaluateExpression(argExprs[argExprs.length - 1], { ...ctx, vars: localVars });
+    }
     case 'LAMBDA': return '[LAMBDA siap dipakai]';
     case 'MAP': return flatArg(0).map((item) => Number(item) * 2);
     case 'REDUCE': return flatArg(1).reduce((sum, item) => sum + (Number(item) || 0), Number(arg(0) || 0));
@@ -677,7 +691,7 @@ export function evaluateFormula(formula = '', table = {}, separatorMode = 'id') 
   if (!raw.startsWith('=')) return errorResult(ERROR_CODES.value, 'Formula harus diawali tanda =.');
   try {
     const sheet = buildSheet(table);
-    const value = evaluateExpression(raw.slice(1), { sheet, table });
+    const value = evaluateExpression(raw.slice(1), { sheet, table, vars: new Map() });
     if (isErrorValue(value)) return errorResult(value, `Formula menghasilkan ${value}.`);
     return okResult(value, normalizedFormula);
   } catch (error) {

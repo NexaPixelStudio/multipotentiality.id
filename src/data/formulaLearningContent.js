@@ -1,3 +1,5 @@
+import { buildBeginnerLearningContent } from './formulaAuditRules.js';
+
 // Konten belajar Formula Coach.
 // Semua penjelasan sengaja dibuat dengan bahasa awam: fungsi, logika, analogi, contoh rumus, dan maksud contohnya.
 
@@ -5206,5 +5208,6 @@ export const formulaLearningContent = {
 
 export function getFormulaLearningContent(formula = {}) {
   if (!formula) return {};
-  return formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
+  const saved = formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
+  return buildBeginnerLearningContent({ ...saved, ...formula });
 }
