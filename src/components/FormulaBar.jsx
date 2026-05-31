@@ -328,6 +328,14 @@ function QuestionValuePanel({ values = [], onInsert }) {
   );
 }
 
+
+function getHelperInfoText(item = {}) {
+  const role = item?.role || 'Value';
+  const label = item?.label || item?.insert || 'value';
+  const note = item?.note ? `${item.note}. ` : '';
+  return `${role} ini diambil dari soal. Klik value ini kalau kamu mau memasukkannya ke rumus. ${note}Kalau soal butuh criteria atau lookup value, value ini yang biasanya dipakai.`.trim();
+}
+
 export default function FormulaBar({
   question = '',
   selectedRange,
@@ -354,6 +362,7 @@ export default function FormulaBar({
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showSignature, setShowSignature] = useState(true);
+  const [openInfoKey, setOpenInfoKey] = useState(null);
 
   const cursor = Math.min(cursorPosition ?? value.length, value.length);
   const fragmentInfo = useMemo(() => getFragment(value, cursor), [value, cursor]);
@@ -631,16 +640,12 @@ export default function FormulaBar({
 
           <section className="rounded-xl border border-coach-line bg-white px-4 py-3 dark:border-white/10 dark:bg-black/20">
             <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Cara mengisi</p>
-            <div className="mt-1 space-y-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
-              <div className="flex flex-wrap gap-2">
-                <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
-                <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
-                <span>Enter untuk cek jawaban.</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
-                <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
-              </div>
+            <div className="mt-1 flex flex-wrap gap-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
+              <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
+              <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
+              <span>Enter untuk cek jawaban.</span>
+              {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
+              <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
             </div>
           </section>
         </div>
@@ -648,23 +653,45 @@ export default function FormulaBar({
         <aside className="space-y-3">
           <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
             <div className="space-y-2">
-              {showQuestionHelper && helperValues.length > 0 ? helperValues.map((item, index) => (
-                <button
-                  key={`${item.role}-${item.insert}-${index}`}
-                  type="button"
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => {
-                    onLookupValueChange?.(item?.label || item?.insert || '');
-                    onSelectionTargetChange?.('formula');
-                    onInsertHelperValue?.(item);
-                  }}
-                  title={item.note || item.insert}
-                  className="w-full rounded-lg border border-coach-green/20 bg-white px-3 py-2 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
-                >
-                  <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
-                  {item.note && <span className="mt-0.5 block truncate text-[10px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
-                </button>
-              )) : (
+              {showQuestionHelper && helperValues.length > 0 ? helperValues.map((item, index) => {
+                const infoKey = `${item.role}-${item.insert}-${index}`;
+                const isInfoOpen = openInfoKey === infoKey;
+
+                return (
+                  <div key={infoKey} className="relative">
+                    <button
+                      type="button"
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => {
+                        onLookupValueChange?.(item?.label || item?.insert || '');
+                        onSelectionTargetChange?.('formula');
+                        onInsertHelperValue?.(item);
+                      }}
+                      title={item.note || item.insert}
+                      className="w-full rounded-lg border border-coach-green/20 bg-white px-3 py-2 pr-10 text-left transition hover:-translate-y-0.5 hover:border-coach-green hover:shadow-md dark:border-emerald-400/15 dark:bg-white/5"
+                    >
+                      <span className="block truncate font-mono text-sm font-black text-coach-green dark:text-emerald-200">{item.label}</span>
+                      {item.note && <span className="mt-0.5 block truncate text-[10px] font-semibold text-black/45 dark:text-white/45">{item.note}</span>}
+                    </button>
+
+                    <button
+                      type="button"
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => setOpenInfoKey((current) => current === infoKey ? null : infoKey)}
+                      title="Lihat penjelasan value ini"
+                      className="absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-coach-green/20 bg-coach-greenSoft text-[11px] font-black text-coach-green transition hover:border-coach-green hover:bg-white dark:border-emerald-400/15 dark:bg-emerald-400/10 dark:text-emerald-200"
+                    >
+                      ⓘ
+                    </button>
+
+                    {isInfoOpen && (
+                      <div className="mt-2 rounded-lg border border-coach-green/15 bg-white px-3 py-2 text-[11px] font-semibold leading-5 text-black/55 shadow-sm dark:border-emerald-400/10 dark:bg-black/20 dark:text-white/60">
+                        {getHelperInfoText(item)}
+                      </div>
+                    )}
+                  </div>
+                );
+              }) : (
                 <div className="rounded-lg border border-coach-green/15 bg-white px-3 py-2 text-[11px] font-semibold text-black/45 dark:border-emerald-400/10 dark:bg-white/5 dark:text-white/45">
                   Tidak ada value khusus.
                 </div>
