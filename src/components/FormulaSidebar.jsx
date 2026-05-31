@@ -321,7 +321,7 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
 
   return (
     <>
-      <div className="hidden h-[calc(100vh-145px)] lg:block">{content}</div>
+      <div className="hidden h-[calc(100vh-72px)] min-h-[720px] lg:sticky lg:top-4 lg:block">{content}</div>
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-black/40 p-3 lg:hidden" onClick={onClose}>
           <div className="ml-auto h-full max-w-[440px]" onClick={(event) => event.stopPropagation()}>{content}</div>
