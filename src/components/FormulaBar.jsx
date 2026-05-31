@@ -671,11 +671,6 @@ export default function FormulaBar({
               <span>Enter untuk cek jawaban.</span>
               {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
               <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
-              {selectedRange && (
-                <span className="rounded-full bg-coach-greenSoft px-2 py-1 font-mono text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-                  Range: {selectedRange}
-                </span>
-              )}
             </div>
           </section>
         </div>
