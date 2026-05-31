@@ -685,8 +685,11 @@ export default function FormulaBar({
                     </button>
 
                     {isInfoOpen && (
-                      <div className="mt-2 rounded-lg border border-coach-green/15 bg-white px-3 py-2 text-[11px] font-semibold leading-5 text-black/55 shadow-sm dark:border-emerald-400/10 dark:bg-black/20 dark:text-white/60">
-                        {getHelperInfoText(item)}
+                      <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 rounded-xl border border-coach-green/15 bg-white px-3 py-2 text-[11px] font-semibold leading-5 text-black/55 shadow-[0_16px_34px_rgba(33,115,70,0.16)] dark:border-emerald-400/10 dark:bg-[#111A14] dark:text-white/60 lg:right-full lg:top-0 lg:mr-2">
+                        <div className="absolute -top-1.5 right-5 h-3 w-3 rotate-45 border-l border-t border-coach-green/15 bg-white dark:border-emerald-400/10 dark:bg-[#111A14] lg:left-auto lg:right-[-6px] lg:top-4 lg:border-b lg:border-l-0 lg:border-r lg:border-t-0" />
+                        <div className="relative">
+                          {getHelperInfoText(item)}
+                        </div>
                       </div>
                     )}
                   </div>
