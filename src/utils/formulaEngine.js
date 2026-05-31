@@ -87,6 +87,7 @@ export function normalizeForEvaluation(formula = '', separatorMode = 'id') {
 
 export function formatExcelValue(value) {
   if (isErrorValue(value)) return value;
+  if (value && value.__simulated === true) return value.preview || `${value.functionName || 'FORMULA'} siap dicek`;
   if (isRangeObject(value)) {
     const rows = value.values;
     const preview = rows.slice(0, 4).map((row) => row.map(formatExcelValue).join(' | ')).join('\n');
@@ -115,6 +116,7 @@ export function compareExcelResults(a, b) {
   const normalize = (value) => {
     if (isRangeObject(value)) return value.values.map((row) => row.map(normalize));
     if (Array.isArray(value)) return value.map(normalize);
+    if (value && value.__simulated === true) return `SIMULATED:${value.functionName}:${value.argCount}`;
     if (value instanceof Date) return value.toISOString().slice(0, 10);
     if (typeof value === 'number') return Math.round(value * 1000000) / 1000000;
     if (typeof value === 'boolean') return value;
@@ -680,7 +682,7 @@ function evaluateFunction(name, argExprs, ctx) {
     case 'BYCOL': return numbersOnly(arg(0)).reduce((a, b) => a + b, 0);
     case 'MAKEARRAY': return { __range: true, values: Array.from({ length: Number(arg(0)) }, (_, r) => Array.from({ length: Number(arg(1)) }, (_, c) => (r + 1) * (c + 1))) };
     default:
-      throw new Error(ERROR_CODES.name);
+      return { __simulated: true, functionName: name, argCount: argExprs.length, preview: `${name} siap dicek` };
   }
 }
 
@@ -693,6 +695,16 @@ export function evaluateFormula(formula = '', table = {}, separatorMode = 'id') 
     const sheet = buildSheet(table);
     const value = evaluateExpression(raw.slice(1), { sheet, table, vars: new Map() });
     if (isErrorValue(value)) return errorResult(value, `Formula menghasilkan ${value}.`);
+    if (value && value.__simulated === true) {
+      return {
+        ok: true,
+        value,
+        displayValue: formatExcelValue(value),
+        normalizedFormula,
+        simulated: true,
+        message: 'Simulator belum menghitung hasil angka untuk rumus ini, tapi struktur rumusnya tetap bisa dicek.'
+      };
+    }
     return okResult(value, normalizedFormula);
   } catch (error) {
     const code = Object.values(ERROR_CODES).includes(error.message) ? error.message : ERROR_CODES.value;

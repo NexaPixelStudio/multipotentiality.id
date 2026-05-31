@@ -221,7 +221,7 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
       };
     }
 
-    if (expectedResult.ok && compareExcelResults(answerResult.value, expectedResult.value)) {
+    if (expectedResult.ok && !answerResult.simulated && !expectedResult.simulated && compareExcelResults(answerResult.value, expectedResult.value)) {
       return {
         correct: true,
         title: 'Jawaban kamu benar.',
@@ -280,7 +280,7 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
       };
     }
 
-    if (expectedResult.ok && compareExcelResults(answerResult.value, expectedResult.value)) {
+    if (expectedResult.ok && !answerResult.simulated && !expectedResult.simulated && compareExcelResults(answerResult.value, expectedResult.value)) {
       return {
         correct: true,
         title: 'Jawaban kamu benar.',
@@ -354,7 +354,7 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
   if (table) {
     const answerResult = evaluateFormula(raw, table, separatorMode);
     const expectedResult = evaluateFormula(exercise.expectedFormula, table, 'en');
-    if (answerResult.ok && expectedResult.ok && !compareExcelResults(answerResult.value, expectedResult.value)) {
+    if (answerResult.ok && expectedResult.ok && !answerResult.simulated && !expectedResult.simulated && !compareExcelResults(answerResult.value, expectedResult.value)) {
       return {
         correct: false,
         title: 'Hasilnya belum sama dengan target.',
@@ -401,9 +401,9 @@ export function validateGenericFormula(answer, formula, separatorMode = 'id', ta
     return {
       correct: true,
       title: 'Struktur formula sudah benar.',
-      message: 'Nama rumus, tanda =, kurung, dan hasil hitungnya sudah aman. Latihan detail rumus ini akan ditambahkan bertahap.',
+      message: 'Nama rumus, tanda =, kurung, dan struktur dasarnya sudah aman.',
       details: [`Hasil formula kamu: ${formatExcelValue(result.value)}`]
     };
   }
-  return { correct: true, title: 'Struktur formula sudah benar.', message: 'Nama rumus, tanda =, dan kurungnya sudah aman. Latihan detail rumus ini akan ditambahkan bertahap.' };
+  return { correct: true, title: 'Struktur formula sudah benar.', message: 'Nama rumus, tanda =, dan kurungnya sudah aman.' };
 }

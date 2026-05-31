@@ -57,7 +57,7 @@ export default function FormulaTheory({ formula, isGeneric }) {
 
       {isGeneric && (
         <div className="mt-5 rounded-2xl border border-dashed border-coach-green/40 bg-coach-green/8 p-4 text-sm text-coach-green dark:text-emerald-200">
-          Latihan detail belum tersedia, akan ditambahkan bertahap. Tapi kamu tetap bisa latihan struktur rumus dasarnya di bawah.
+          Latihan untuk rumus ini sudah tersedia. Fokus dulu ke arah mengisi dan struktur rumusnya.
         </div>
       )}
     </section>

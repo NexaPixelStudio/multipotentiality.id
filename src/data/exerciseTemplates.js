@@ -20,7 +20,7 @@ export function createGenericExercise(formula) {
       'Isi argumen sesuai format. Tidak perlu sempurna, yang penting strukturnya mendekati.',
       'Tutup kurung di akhir formula.'
     ],
-    successExplanation: `Struktur dasar ${formula.name} sudah benar. Latihan detail untuk rumus ini akan ditambahkan bertahap.`,
+    successExplanation: `Struktur dasar ${formula.name} sudah benar. Struktur dasar rumus ini sudah benar.`,
     formulaParts: [
       `${formula.name} adalah nama function.`,
       'Bagian di dalam kurung adalah argumen yang diproses function.',

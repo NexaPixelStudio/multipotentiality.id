@@ -11536,10 +11536,16 @@ const baseFormulaCatalogFull = [
   }
 ];
 
-export const formulaCatalogFull = baseFormulaCatalogFull.map((formula) => normalizeFormulaRecord({
-  ...formula,
-  ...(formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {})
-}));
+export const formulaCatalogFull = baseFormulaCatalogFull.map((formula) => {
+  const learning = formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
+  const nextTags = Array.from(new Set([...(formula.tags || []), 'practice']));
+  return normalizeFormulaRecord({
+    ...formula,
+    ...learning,
+    hasExercise: true,
+    tags: nextTags
+  });
+});
 
 export const formulaById = Object.fromEntries(formulaCatalogFull.map((formula) => [formula.id, formula]));
 
@@ -11565,6 +11571,6 @@ export function importFormulaCatalog(nextCatalog = []) {
     version: item.version || 'Microsoft 365 / supported Excel versions',
     availability: item.availability || ['Excel Desktop', 'Excel Web', 'Microsoft 365'],
     tags: item.tags || [],
-    hasExercise: Boolean(item.hasExercise)
+    hasExercise: true
   }));
 }

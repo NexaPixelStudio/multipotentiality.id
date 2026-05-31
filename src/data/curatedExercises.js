@@ -1,3 +1,5 @@
+import { formulaCatalogFull } from './formulaCatalogFull.js';
+import { generateDetailedExerciseForFormula } from './formulaPracticeFactory.js';
 // Curated exercise bank untuk rumus populer.
 // Expected formula disimpan dalam separator English (,). UI akan mengubah tampilannya sesuai mode Indonesia/English.
 
@@ -7180,8 +7182,17 @@ const normalizeExercise = (exercise = {}) => {
   };
 };
 
-export const curatedExercises = Object.fromEntries(
+const normalizedManualExercises = Object.fromEntries(
   Object.entries(rawCuratedExercises).map(([key, exercise]) => [key, normalizeExercise(exercise)])
 );
+
+const generatedExercises = Object.fromEntries(
+  formulaCatalogFull.map((formula) => [formula.id, normalizeExercise(generateDetailedExerciseForFormula(formula))])
+);
+
+export const curatedExercises = {
+  ...generatedExercises,
+  ...normalizedManualExercises
+};
 
 export const getCuratedExercise = (formulaId) => curatedExercises[formulaId] || null;
