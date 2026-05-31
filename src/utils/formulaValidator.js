@@ -254,7 +254,7 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
       correct: false,
       title: 'Argumennya belum lengkap.',
       message: `${expectedRoot} di latihan ini butuh minimal ${minArgs} bagian argumen. Kamu baru mengisi ${args.length}.`,
-      details: ['Cek lagi syntax dan urutan argumennya.']
+      details: ['Cek lagi format dan urutan argumennya.']
     };
   }
 

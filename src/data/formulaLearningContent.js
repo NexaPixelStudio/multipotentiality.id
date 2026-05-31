@@ -197,9 +197,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan BETADIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan BETADIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=BETADIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan BETADIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan BETADIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BETAINV": {
@@ -207,9 +207,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan BETAINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan BETAINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=BETAINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan BETAINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan BETAINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BINOMDIST": {
@@ -217,9 +217,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan BINOMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan BINOMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=BINOMDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan BINOMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan BINOMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CHIDIST": {
@@ -227,9 +227,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan CHIDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan CHIDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=CHIDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan CHIDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan CHIDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CHIINV": {
@@ -237,9 +237,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan CHIINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan CHIINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=CHIINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan CHIINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan CHIINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CHITEST": {
@@ -247,9 +247,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan CHITEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan CHITEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=CHITEST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan CHITEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan CHITEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CONFIDENCE": {
@@ -257,9 +257,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan CONFIDENCE compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan CONFIDENCE compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=CONFIDENCE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan CONFIDENCE compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan CONFIDENCE compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COVAR": {
@@ -267,9 +267,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan COVAR compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan COVAR compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=COVAR(D2:D16)",
-    "exampleMeaning": "Contoh pola penggunaan COVAR compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan COVAR compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CRITBINOM": {
@@ -277,9 +277,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan CRITBINOM compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan CRITBINOM compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=CRITBINOM(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan CRITBINOM compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan CRITBINOM compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "EXPONDIST": {
@@ -287,9 +287,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan EXPONDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan EXPONDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=EXPONDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan EXPONDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan EXPONDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FDIST": {
@@ -297,9 +297,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan FDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan FDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=FDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan FDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan FDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FINV": {
@@ -307,9 +307,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan FINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan FINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=FINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan FINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan FINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FTEST": {
@@ -317,9 +317,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan FTEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan FTEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=FTEST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan FTEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan FTEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "GAMMADIST": {
@@ -327,9 +327,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan GAMMADIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan GAMMADIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=GAMMADIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan GAMMADIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan GAMMADIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "GAMMAINV": {
@@ -337,9 +337,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan GAMMAINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan GAMMAINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=GAMMAINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan GAMMAINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan GAMMAINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HYPGEOMDIST": {
@@ -347,9 +347,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan HYPGEOMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan HYPGEOMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=HYPGEOMDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan HYPGEOMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan HYPGEOMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LOGINV": {
@@ -357,9 +357,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan LOGINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan LOGINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=LOGINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan LOGINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan LOGINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LOGNORMDIST": {
@@ -367,9 +367,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan LOGNORMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan LOGNORMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=LOGNORMDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan LOGNORMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan LOGNORMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MODE": {
@@ -387,9 +387,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan NEGBINOMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan NEGBINOMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=NEGBINOMDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan NEGBINOMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan NEGBINOMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NORMDIST": {
@@ -397,9 +397,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan NORMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan NORMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=NORMDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan NORMDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan NORMDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NORMINV": {
@@ -407,9 +407,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan NORMINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan NORMINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=NORMINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan NORMINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan NORMINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NORMSDIST": {
@@ -417,9 +417,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan NORMSDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan NORMSDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=NORMSDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan NORMSDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan NORMSDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NORMSINV": {
@@ -427,9 +427,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan NORMSINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan NORMSINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=NORMSINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan NORMSINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan NORMSINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PERCENTILE": {
@@ -447,9 +447,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan PERCENTRANK compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan PERCENTRANK compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=PERCENTRANK(D2:D16)",
-    "exampleMeaning": "Contoh pola penggunaan PERCENTRANK compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan PERCENTRANK compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "POISSON": {
@@ -457,9 +457,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan POISSON compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan POISSON compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=POISSON(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan POISSON compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan POISSON compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "QUARTILE": {
@@ -487,9 +487,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola STDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax STDEV.",
+    "simpleExample": "Contoh pola STDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format STDEV.",
     "exampleFormula": "=STDEV(D2:D16)",
-    "exampleMeaning": "Contoh pola STDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax STDEV.",
+    "exampleMeaning": "Contoh pola STDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format STDEV.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "STDEVP": {
@@ -497,9 +497,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data jika datanya dianggap seluruh populasi.",
     "useCase": "Untuk analisis data lengkap, bukan sampel.",
     "analogy": "Kayak mengukur variasi semua cabang, bukan sebagian cabang.",
-    "simpleExample": "Contoh pola STDEVP. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti syntax STDEVP.",
+    "simpleExample": "Contoh pola STDEVP. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti format STDEVP.",
     "exampleFormula": "=STDEVP(D2:D16)",
-    "exampleMeaning": "Contoh pola STDEVP. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti syntax STDEVP.",
+    "exampleMeaning": "Contoh pola STDEVP. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti format STDEVP.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TDIST": {
@@ -507,9 +507,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan TDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan TDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=TDIST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan TDIST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan TDIST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TINV": {
@@ -517,9 +517,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan TINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan TINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=TINV(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan TINV compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan TINV compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TTEST": {
@@ -527,9 +527,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan TTEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan TTEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=TTEST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan TTEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan TTEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "VAR": {
@@ -537,9 +537,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data dalam bentuk kuadrat selisih dari rata-rata.",
     "useCase": "Untuk analisis statistik sampel.",
     "analogy": "Kayak mengukur seberapa jauh data menyebar dari tengahnya.",
-    "simpleExample": "Contoh pola VAR. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti syntax VAR.",
+    "simpleExample": "Contoh pola VAR. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti format VAR.",
     "exampleFormula": "=VAR(D2:D16)",
-    "exampleMeaning": "Contoh pola VAR. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti syntax VAR.",
+    "exampleMeaning": "Contoh pola VAR. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti format VAR.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "VARP": {
@@ -547,9 +547,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data jika datanya seluruh populasi.",
     "useCase": "Untuk analisis statistik data lengkap.",
     "analogy": "Kayak mengukur penyebaran semua data, bukan contoh data saja.",
-    "simpleExample": "Contoh pola VARP. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti syntax VARP.",
+    "simpleExample": "Contoh pola VARP. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti format VARP.",
     "exampleFormula": "=VARP(D2:D16)",
-    "exampleMeaning": "Contoh pola VARP. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti syntax VARP.",
+    "exampleMeaning": "Contoh pola VARP. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti format VARP.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "WEIBULL": {
@@ -557,9 +557,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan WEIBULL compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan WEIBULL compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=WEIBULL(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan WEIBULL compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan WEIBULL compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ZTEST": {
@@ -567,9 +567,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjalankan perhitungan statistik versi lama. Untuk file baru, biasanya ada versi baru dengan nama bertitik yang lebih disarankan.",
     "useCase": "Saat membuka atau merawat file Excel lama.",
     "analogy": "Kayak adaptor charger lama: masih bisa dipakai supaya perangkat lama tetap nyala.",
-    "simpleExample": "Contoh pola penggunaan ZTEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "simpleExample": "Contoh pola penggunaan ZTEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "exampleFormula": "=ZTEST(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola penggunaan ZTEST compatibility. Ganti range dan argumen sesuai syntax rumusnya.",
+    "exampleMeaning": "Contoh pola penggunaan ZTEST compatibility. Ganti range dan argumen sesuai format rumusnya.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "AVERAGEIF": {
@@ -617,9 +617,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel hanya menjumlahkan baris yang lolos semua syarat, bukan salah satu saja.",
     "useCase": "Untuk total penjualan kategori tertentu di kota tertentu, bulan tertentu, atau sales tertentu.",
     "analogy": "Kayak filter pesanan: ambil yang kategori Digital dan kota Jakarta, baru total penjualannya dijumlahkan.",
-    "simpleExample": "Contoh pola MAXIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti syntax MAXIFS.",
+    "simpleExample": "Contoh pola MAXIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti format MAXIFS.",
     "exampleFormula": "=MAXIFS(D2:D16)",
-    "exampleMeaning": "Contoh pola MAXIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti syntax MAXIFS.",
+    "exampleMeaning": "Contoh pola MAXIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti format MAXIFS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MINIFS": {
@@ -627,9 +627,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel hanya menjumlahkan baris yang lolos semua syarat, bukan salah satu saja.",
     "useCase": "Untuk total penjualan kategori tertentu di kota tertentu, bulan tertentu, atau sales tertentu.",
     "analogy": "Kayak filter pesanan: ambil yang kategori Digital dan kota Jakarta, baru total penjualannya dijumlahkan.",
-    "simpleExample": "Contoh pola MINIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti syntax MINIFS.",
+    "simpleExample": "Contoh pola MINIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti format MINIFS.",
     "exampleFormula": "=MINIFS(D2:D16)",
-    "exampleMeaning": "Contoh pola MINIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti syntax MINIFS.",
+    "exampleMeaning": "Contoh pola MINIFS. Prinsipnya mirip SUMIFS, tapi nama function dan detail argumennya mengikuti format MINIFS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SUMIF": {
@@ -797,9 +797,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menggabungkan angka tahun, bulan, dan hari menjadi satu tanggal valid.",
     "useCase": "Untuk membuat tanggal dari kolom terpisah.",
     "analogy": "Kayak merakit tanggal dari 3 bahan: tahun, bulan, hari.",
-    "simpleExample": "Contoh pola DATEVALUE. Prinsipnya mirip DATE, tapi nama function dan detail argumennya mengikuti syntax DATEVALUE.",
+    "simpleExample": "Contoh pola DATEVALUE. Prinsipnya mirip DATE, tapi nama function dan detail argumennya mengikuti format DATEVALUE.",
     "exampleFormula": "=DATEVALUE(A2)",
-    "exampleMeaning": "Contoh pola DATEVALUE. Prinsipnya mirip DATE, tapi nama function dan detail argumennya mengikuti syntax DATEVALUE.",
+    "exampleMeaning": "Contoh pola DATEVALUE. Prinsipnya mirip DATE, tapi nama function dan detail argumennya mengikuti format DATEVALUE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DAY": {
@@ -827,9 +827,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengurangi tanggal akhir dengan tanggal awal.",
     "useCase": "Untuk durasi proyek, lama pengiriman, atau masa sewa.",
     "analogy": "Kayak menghitung jarak hari dari tanggal masuk sampai tanggal keluar.",
-    "simpleExample": "Contoh pola DAYS360. Prinsipnya mirip DAYS, tapi nama function dan detail argumennya mengikuti syntax DAYS360.",
+    "simpleExample": "Contoh pola DAYS360. Prinsipnya mirip DAYS, tapi nama function dan detail argumennya mengikuti format DAYS360.",
     "exampleFormula": "=DAYS360(A2)",
-    "exampleMeaning": "Contoh pola DAYS360. Prinsipnya mirip DAYS, tapi nama function dan detail argumennya mengikuti syntax DAYS360.",
+    "exampleMeaning": "Contoh pola DAYS360. Prinsipnya mirip DAYS, tapi nama function dan detail argumennya mengikuti format DAYS360.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "EDATE": {
@@ -867,9 +867,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca tanggal lalu mengambil bagian harinya saja.",
     "useCase": "Untuk mengetahui tanggal berapa dari sebuah date.",
     "analogy": "Kayak mengambil angka 30 dari 30 Mei 2026.",
-    "simpleExample": "Contoh pola ISOWEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti syntax ISOWEEKNUM.",
+    "simpleExample": "Contoh pola ISOWEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti format ISOWEEKNUM.",
     "exampleFormula": "=ISOWEEKNUM(A2)",
-    "exampleMeaning": "Contoh pola ISOWEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti syntax ISOWEEKNUM.",
+    "exampleMeaning": "Contoh pola ISOWEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti format ISOWEEKNUM.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MINUTE": {
@@ -947,9 +947,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menggabungkan angka jam, menit, dan detik menjadi nilai waktu.",
     "useCase": "Untuk membuat jam dari kolom terpisah.",
     "analogy": "Kayak merakit jam dari 3 bahan: jam, menit, detik.",
-    "simpleExample": "Contoh pola TIMEVALUE. Prinsipnya mirip TIME, tapi nama function dan detail argumennya mengikuti syntax TIMEVALUE.",
+    "simpleExample": "Contoh pola TIMEVALUE. Prinsipnya mirip TIME, tapi nama function dan detail argumennya mengikuti format TIMEVALUE.",
     "exampleFormula": "=TIMEVALUE(A2)",
-    "exampleMeaning": "Contoh pola TIMEVALUE. Prinsipnya mirip TIME, tapi nama function dan detail argumennya mengikuti syntax TIMEVALUE.",
+    "exampleMeaning": "Contoh pola TIMEVALUE. Prinsipnya mirip TIME, tapi nama function dan detail argumennya mengikuti format TIMEVALUE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TODAY": {
@@ -967,9 +967,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca tanggal lalu mengambil bagian harinya saja.",
     "useCase": "Untuk mengetahui tanggal berapa dari sebuah date.",
     "analogy": "Kayak mengambil angka 30 dari 30 Mei 2026.",
-    "simpleExample": "Contoh pola WEEKDAY. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti syntax WEEKDAY.",
+    "simpleExample": "Contoh pola WEEKDAY. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti format WEEKDAY.",
     "exampleFormula": "=WEEKDAY(A2)",
-    "exampleMeaning": "Contoh pola WEEKDAY. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti syntax WEEKDAY.",
+    "exampleMeaning": "Contoh pola WEEKDAY. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti format WEEKDAY.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "WEEKNUM": {
@@ -977,9 +977,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca tanggal lalu mengambil bagian harinya saja.",
     "useCase": "Untuk mengetahui tanggal berapa dari sebuah date.",
     "analogy": "Kayak mengambil angka 30 dari 30 Mei 2026.",
-    "simpleExample": "Contoh pola WEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti syntax WEEKNUM.",
+    "simpleExample": "Contoh pola WEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti format WEEKNUM.",
     "exampleFormula": "=WEEKNUM(A2)",
-    "exampleMeaning": "Contoh pola WEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti syntax WEEKNUM.",
+    "exampleMeaning": "Contoh pola WEEKNUM. Prinsipnya mirip DAY, tapi nama function dan detail argumennya mengikuti format WEEKNUM.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "WORKDAY": {
@@ -1017,9 +1017,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung jarak antara dua tanggal dalam hari, bulan, atau tahun.",
     "useCase": "Untuk umur, masa kerja, atau durasi membership.",
     "analogy": "Kayak menghitung sudah berapa lama seseorang bekerja.",
-    "simpleExample": "Contoh pola YEARFRAC. Prinsipnya mirip DATEDIF, tapi nama function dan detail argumennya mengikuti syntax YEARFRAC.",
+    "simpleExample": "Contoh pola YEARFRAC. Prinsipnya mirip DATEDIF, tapi nama function dan detail argumennya mengikuti format YEARFRAC.",
     "exampleFormula": "=YEARFRAC(A2)",
-    "exampleMeaning": "Contoh pola YEARFRAC. Prinsipnya mirip DATEDIF, tapi nama function dan detail argumennya mengikuti syntax YEARFRAC.",
+    "exampleMeaning": "Contoh pola YEARFRAC. Prinsipnya mirip DATEDIF, tapi nama function dan detail argumennya mengikuti format YEARFRAC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BYCOL": {
@@ -1077,9 +1077,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Kamu tentukan berapa data yang mau diambil.",
     "useCase": "Untuk ambil top 5, data awal, atau data akhir.",
     "analogy": "Kayak mengambil 5 lembar paling atas dari tumpukan kertas.",
-    "simpleExample": "Contoh pola EXPAND. Prinsipnya mirip TAKE, tapi nama function dan detail argumennya mengikuti syntax EXPAND.",
+    "simpleExample": "Contoh pola EXPAND. Prinsipnya mirip TAKE, tapi nama function dan detail argumennya mengikuti format EXPAND.",
     "exampleFormula": "=EXPAND(A2:A10)",
-    "exampleMeaning": "Contoh pola EXPAND. Prinsipnya mirip TAKE, tapi nama function dan detail argumennya mengikuti syntax EXPAND.",
+    "exampleMeaning": "Contoh pola EXPAND. Prinsipnya mirip TAKE, tapi nama function dan detail argumennya mengikuti format EXPAND.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FILTER": {
@@ -1127,9 +1127,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghasilkan angka random yang berubah saat sheet dihitung ulang.",
     "useCase": "Untuk simulasi atau data dummy.",
     "analogy": "Kayak mengambil angka acak dari mesin undian.",
-    "simpleExample": "Contoh pola RANDARRAY. Prinsipnya mirip RAND, tapi nama function dan detail argumennya mengikuti syntax RANDARRAY.",
+    "simpleExample": "Contoh pola RANDARRAY. Prinsipnya mirip RAND, tapi nama function dan detail argumennya mengikuti format RANDARRAY.",
     "exampleFormula": "=RANDARRAY(A2:A10)",
-    "exampleMeaning": "Contoh pola RANDARRAY. Prinsipnya mirip RAND, tapi nama function dan detail argumennya mengikuti syntax RANDARRAY.",
+    "exampleMeaning": "Contoh pola RANDARRAY. Prinsipnya mirip RAND, tapi nama function dan detail argumennya mengikuti format RANDARRAY.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "REDUCE": {
@@ -1157,9 +1157,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung berapa baris yang ada di range.",
     "useCase": "Untuk ukuran tabel dinamis.",
     "analogy": "Kayak menghitung jumlah tingkat dalam rak.",
-    "simpleExample": "Contoh pola SEQUENCE. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti syntax SEQUENCE.",
+    "simpleExample": "Contoh pola SEQUENCE. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti format SEQUENCE.",
     "exampleFormula": "=SEQUENCE(A2:A10)",
-    "exampleMeaning": "Contoh pola SEQUENCE. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti syntax SEQUENCE.",
+    "exampleMeaning": "Contoh pola SEQUENCE. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti format SEQUENCE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SORT": {
@@ -1207,9 +1207,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Data yang tadinya turun ke bawah bisa jadi melebar ke samping, atau sebaliknya.",
     "useCase": "Untuk mengubah baris jadi kolom atau kolom jadi baris.",
     "analogy": "Kayak memutar tabel 90 derajat.",
-    "simpleExample": "Contoh pola TOCOL. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax TOCOL.",
+    "simpleExample": "Contoh pola TOCOL. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format TOCOL.",
     "exampleFormula": "=TOCOL(A2:A10)",
-    "exampleMeaning": "Contoh pola TOCOL. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax TOCOL.",
+    "exampleMeaning": "Contoh pola TOCOL. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format TOCOL.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TOROW": {
@@ -1217,9 +1217,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Data yang tadinya turun ke bawah bisa jadi melebar ke samping, atau sebaliknya.",
     "useCase": "Untuk mengubah baris jadi kolom atau kolom jadi baris.",
     "analogy": "Kayak memutar tabel 90 derajat.",
-    "simpleExample": "Contoh pola TOROW. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax TOROW.",
+    "simpleExample": "Contoh pola TOROW. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format TOROW.",
     "exampleFormula": "=TOROW(A2:A10)",
-    "exampleMeaning": "Contoh pola TOROW. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax TOROW.",
+    "exampleMeaning": "Contoh pola TOROW. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format TOROW.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TRANSPOSE": {
@@ -1257,9 +1257,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Data yang tadinya turun ke bawah bisa jadi melebar ke samping, atau sebaliknya.",
     "useCase": "Untuk mengubah baris jadi kolom atau kolom jadi baris.",
     "analogy": "Kayak memutar tabel 90 derajat.",
-    "simpleExample": "Contoh pola WRAPCOLS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax WRAPCOLS.",
+    "simpleExample": "Contoh pola WRAPCOLS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format WRAPCOLS.",
     "exampleFormula": "=WRAPCOLS(A2:A10)",
-    "exampleMeaning": "Contoh pola WRAPCOLS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax WRAPCOLS.",
+    "exampleMeaning": "Contoh pola WRAPCOLS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format WRAPCOLS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "WRAPROWS": {
@@ -1267,9 +1267,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Data yang tadinya turun ke bawah bisa jadi melebar ke samping, atau sebaliknya.",
     "useCase": "Untuk mengubah baris jadi kolom atau kolom jadi baris.",
     "analogy": "Kayak memutar tabel 90 derajat.",
-    "simpleExample": "Contoh pola WRAPROWS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax WRAPROWS.",
+    "simpleExample": "Contoh pola WRAPROWS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format WRAPROWS.",
     "exampleFormula": "=WRAPROWS(A2:A10)",
-    "exampleMeaning": "Contoh pola WRAPROWS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti syntax WRAPROWS.",
+    "exampleMeaning": "Contoh pola WRAPROWS. Prinsipnya mirip TRANSPOSE, tapi nama function dan detail argumennya mengikuti format WRAPROWS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "XLOOKUP": {
@@ -1297,9 +1297,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BESSELI engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BESSELI engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BESSELI(1;2)",
-    "exampleMeaning": "Contoh pola BESSELI engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BESSELI engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BESSELJ": {
@@ -1307,9 +1307,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BESSELJ engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BESSELJ engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BESSELJ(1;2)",
-    "exampleMeaning": "Contoh pola BESSELJ engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BESSELJ engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BESSELK": {
@@ -1317,9 +1317,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BESSELK engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BESSELK engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BESSELK(1;2)",
-    "exampleMeaning": "Contoh pola BESSELK engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BESSELK engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BESSELY": {
@@ -1327,9 +1327,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BESSELY engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BESSELY engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BESSELY(1;2)",
-    "exampleMeaning": "Contoh pola BESSELY engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BESSELY engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BIN2DEC": {
@@ -1337,9 +1337,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BIN2DEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BIN2DEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BIN2DEC(1010)",
-    "exampleMeaning": "Contoh pola BIN2DEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BIN2DEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BIN2HEX": {
@@ -1347,9 +1347,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BIN2HEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BIN2HEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BIN2HEX(1010)",
-    "exampleMeaning": "Contoh pola BIN2HEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BIN2HEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BIN2OCT": {
@@ -1357,9 +1357,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BIN2OCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BIN2OCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BIN2OCT(1010)",
-    "exampleMeaning": "Contoh pola BIN2OCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BIN2OCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BITAND": {
@@ -1367,9 +1367,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BITAND engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BITAND engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BITAND(5;3)",
-    "exampleMeaning": "Contoh pola BITAND engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BITAND engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BITLSHIFT": {
@@ -1377,9 +1377,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BITLSHIFT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BITLSHIFT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BITLSHIFT(5;1)",
-    "exampleMeaning": "Contoh pola BITLSHIFT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BITLSHIFT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BITOR": {
@@ -1387,9 +1387,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BITOR engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BITOR engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BITOR(5;3)",
-    "exampleMeaning": "Contoh pola BITOR engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BITOR engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BITRSHIFT": {
@@ -1397,9 +1397,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BITRSHIFT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BITRSHIFT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BITRSHIFT(5;1)",
-    "exampleMeaning": "Contoh pola BITRSHIFT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BITRSHIFT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BITXOR": {
@@ -1407,9 +1407,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola BITXOR engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola BITXOR engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=BITXOR(5;3)",
-    "exampleMeaning": "Contoh pola BITXOR engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola BITXOR engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COMPLEX": {
@@ -1417,9 +1417,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola COMPLEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola COMPLEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=COMPLEX(3;4)",
-    "exampleMeaning": "Contoh pola COMPLEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola COMPLEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CONVERT": {
@@ -1427,9 +1427,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola CONVERT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola CONVERT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=CONVERT(10;\"m\";\"cm\")",
-    "exampleMeaning": "Contoh pola CONVERT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola CONVERT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DEC2BIN": {
@@ -1437,9 +1437,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola DEC2BIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola DEC2BIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=DEC2BIN(10)",
-    "exampleMeaning": "Contoh pola DEC2BIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola DEC2BIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DEC2HEX": {
@@ -1447,9 +1447,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola DEC2HEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola DEC2HEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=DEC2HEX(10)",
-    "exampleMeaning": "Contoh pola DEC2HEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola DEC2HEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DEC2OCT": {
@@ -1457,9 +1457,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola DEC2OCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola DEC2OCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=DEC2OCT(10)",
-    "exampleMeaning": "Contoh pola DEC2OCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola DEC2OCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DELTA": {
@@ -1467,9 +1467,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola DELTA engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola DELTA engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=DELTA(A2;10)",
-    "exampleMeaning": "Contoh pola DELTA engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola DELTA engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ERF": {
@@ -1477,9 +1477,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola ERF engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola ERF engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=ERF(1)",
-    "exampleMeaning": "Contoh pola ERF engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola ERF engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ERF.PRECISE": {
@@ -1487,9 +1487,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola ERF.PRECISE engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola ERF.PRECISE engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=ERF.PRECISE(1)",
-    "exampleMeaning": "Contoh pola ERF.PRECISE engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola ERF.PRECISE engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ERFC": {
@@ -1497,9 +1497,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola ERFC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola ERFC engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=ERFC(1)",
-    "exampleMeaning": "Contoh pola ERFC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola ERFC engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ERFC.PRECISE": {
@@ -1507,9 +1507,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola ERFC.PRECISE engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola ERFC.PRECISE engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=ERFC.PRECISE(1)",
-    "exampleMeaning": "Contoh pola ERFC.PRECISE engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola ERFC.PRECISE engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "GESTEP": {
@@ -1517,9 +1517,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola GESTEP engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola GESTEP engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=GESTEP(A2;10)",
-    "exampleMeaning": "Contoh pola GESTEP engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola GESTEP engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HEX2BIN": {
@@ -1527,9 +1527,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola HEX2BIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola HEX2BIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=HEX2BIN(\"A\")",
-    "exampleMeaning": "Contoh pola HEX2BIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola HEX2BIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HEX2DEC": {
@@ -1537,9 +1537,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola HEX2DEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola HEX2DEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=HEX2DEC(\"A\")",
-    "exampleMeaning": "Contoh pola HEX2DEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola HEX2DEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HEX2OCT": {
@@ -1547,9 +1547,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola HEX2OCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola HEX2OCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=HEX2OCT(\"A\")",
-    "exampleMeaning": "Contoh pola HEX2OCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola HEX2OCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMABS": {
@@ -1557,9 +1557,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMABS engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMABS engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMABS(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMABS engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMABS engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMAGINARY": {
@@ -1567,9 +1567,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMAGINARY engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMAGINARY engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMAGINARY(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMAGINARY engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMAGINARY engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMARGUMENT": {
@@ -1577,9 +1577,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMARGUMENT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMARGUMENT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMARGUMENT(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMARGUMENT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMARGUMENT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMCONJUGATE": {
@@ -1587,9 +1587,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMCONJUGATE engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMCONJUGATE engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMCONJUGATE(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMCONJUGATE engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMCONJUGATE engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMCOS": {
@@ -1597,9 +1597,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMCOS engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMCOS engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMCOS(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMCOS engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMCOS engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMCOSH": {
@@ -1607,9 +1607,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMCOSH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMCOSH engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMCOSH(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMCOSH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMCOSH engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMCOT": {
@@ -1617,9 +1617,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMCOT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMCOT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMCOT(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMCOT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMCOT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMCSC": {
@@ -1627,9 +1627,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMCSC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMCSC engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMCSC(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMCSC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMCSC engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMCSCH": {
@@ -1637,9 +1637,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMCSCH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMCSCH engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMCSCH(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMCSCH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMCSCH engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMDIV": {
@@ -1647,9 +1647,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMDIV engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMDIV engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMDIV(\"3+4i\";\"1+2i\")",
-    "exampleMeaning": "Contoh pola IMDIV engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMDIV engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMEXP": {
@@ -1657,9 +1657,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMEXP engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMEXP engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMEXP(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMEXP engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMEXP engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMLN": {
@@ -1667,9 +1667,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMLN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMLN engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMLN(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMLN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMLN engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMLOG10": {
@@ -1677,9 +1677,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMLOG10 engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMLOG10 engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMLOG10(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMLOG10 engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMLOG10 engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMLOG2": {
@@ -1687,9 +1687,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMLOG2 engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMLOG2 engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMLOG2(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMLOG2 engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMLOG2 engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMPOWER": {
@@ -1697,9 +1697,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMPOWER engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMPOWER engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMPOWER(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMPOWER engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMPOWER engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMPRODUCT": {
@@ -1707,9 +1707,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMPRODUCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMPRODUCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMPRODUCT(\"3+4i\";\"1+2i\")",
-    "exampleMeaning": "Contoh pola IMPRODUCT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMPRODUCT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMREAL": {
@@ -1717,9 +1717,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMREAL engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMREAL engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMREAL(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMREAL engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMREAL engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSEC": {
@@ -1727,9 +1727,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSEC(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMSEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSECH": {
@@ -1737,9 +1737,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSECH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSECH engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSECH(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMSECH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSECH engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSIN": {
@@ -1747,9 +1747,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSIN(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMSIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSINH": {
@@ -1757,9 +1757,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSINH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSINH engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSINH(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMSINH engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSINH engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSQRT": {
@@ -1767,9 +1767,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSQRT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSQRT engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSQRT(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMSQRT engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSQRT engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSUB": {
@@ -1777,9 +1777,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSUB engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSUB engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSUB(\"3+4i\";\"1+2i\")",
-    "exampleMeaning": "Contoh pola IMSUB engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSUB engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMSUM": {
@@ -1787,9 +1787,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMSUM engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMSUM engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMSUM(\"3+4i\";\"1+2i\")",
-    "exampleMeaning": "Contoh pola IMSUM engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMSUM engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IMTAN": {
@@ -1797,9 +1797,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola IMTAN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola IMTAN engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=IMTAN(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMTAN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola IMTAN engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "OCT2BIN": {
@@ -1807,9 +1807,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola OCT2BIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola OCT2BIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=OCT2BIN(12)",
-    "exampleMeaning": "Contoh pola OCT2BIN engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola OCT2BIN engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "OCT2DEC": {
@@ -1817,9 +1817,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola OCT2DEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola OCT2DEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=OCT2DEC(12)",
-    "exampleMeaning": "Contoh pola OCT2DEC engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola OCT2DEC engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "OCT2HEX": {
@@ -1827,9 +1827,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memakai rumus teknis sesuai input angka yang diberikan.",
     "useCase": "Untuk engineering, konversi satuan, binary/hex, dan bilangan kompleks.",
     "analogy": "Kayak kalkulator teknik di dalam Excel.",
-    "simpleExample": "Contoh pola OCT2HEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "simpleExample": "Contoh pola OCT2HEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "exampleFormula": "=OCT2HEX(12)",
-    "exampleMeaning": "Contoh pola OCT2HEX engineering. Sesuaikan input angka/satuan sesuai syntax.",
+    "exampleMeaning": "Contoh pola OCT2HEX engineering. Sesuaikan input angka/satuan sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ACCRINT": {
@@ -1837,9 +1837,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ACCRINT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ACCRINT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ACCRINT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ACCRINT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ACCRINT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ACCRINTM": {
@@ -1847,9 +1847,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ACCRINTM financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ACCRINTM financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ACCRINTM(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ACCRINTM financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ACCRINTM financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "AMORDEGRC": {
@@ -1857,9 +1857,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola AMORDEGRC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola AMORDEGRC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=AMORDEGRC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola AMORDEGRC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola AMORDEGRC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "AMORLINC": {
@@ -1867,9 +1867,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola AMORLINC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola AMORLINC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=AMORLINC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola AMORLINC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola AMORLINC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COUPDAYBS": {
@@ -1877,9 +1877,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola COUPDAYBS financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola COUPDAYBS financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=COUPDAYBS(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola COUPDAYBS financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola COUPDAYBS financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COUPDAYS": {
@@ -1887,9 +1887,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola COUPDAYS financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola COUPDAYS financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=COUPDAYS(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola COUPDAYS financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola COUPDAYS financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COUPDAYSNC": {
@@ -1897,9 +1897,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola COUPDAYSNC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola COUPDAYSNC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=COUPDAYSNC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola COUPDAYSNC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola COUPDAYSNC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COUPNCD": {
@@ -1907,9 +1907,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola COUPNCD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola COUPNCD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=COUPNCD(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola COUPNCD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola COUPNCD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COUPNUM": {
@@ -1917,9 +1917,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola COUPNUM financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola COUPNUM financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=COUPNUM(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola COUPNUM financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola COUPNUM financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COUPPCD": {
@@ -1927,9 +1927,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola COUPPCD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola COUPPCD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=COUPPCD(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola COUPPCD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola COUPPCD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CUMIPMT": {
@@ -1937,9 +1937,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola CUMIPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola CUMIPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=CUMIPMT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola CUMIPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola CUMIPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CUMPRINC": {
@@ -1947,9 +1947,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola CUMPRINC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola CUMPRINC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=CUMPRINC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola CUMPRINC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola CUMPRINC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DB": {
@@ -1957,9 +1957,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola DB financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola DB financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=DB(100000;20000;5)",
-    "exampleMeaning": "Contoh pola DB financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola DB financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DDB": {
@@ -1967,9 +1967,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola DDB financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola DDB financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=DDB(100000;20000;5)",
-    "exampleMeaning": "Contoh pola DDB financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola DDB financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DISC": {
@@ -1977,9 +1977,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola DISC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola DISC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=DISC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola DISC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola DISC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DOLLARDE": {
@@ -1987,9 +1987,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola DOLLARDE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola DOLLARDE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=DOLLARDE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola DOLLARDE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola DOLLARDE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DOLLARFR": {
@@ -1997,9 +1997,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola DOLLARFR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola DOLLARFR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=DOLLARFR(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola DOLLARFR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola DOLLARFR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DURATION": {
@@ -2007,9 +2007,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola DURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola DURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=DURATION(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola DURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola DURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "EFFECT": {
@@ -2017,9 +2017,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola EFFECT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola EFFECT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=EFFECT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola EFFECT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola EFFECT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FV": {
@@ -2027,9 +2027,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola FV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola FV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=FV(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola FV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola FV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FVSCHEDULE": {
@@ -2037,9 +2037,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola FVSCHEDULE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola FVSCHEDULE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=FVSCHEDULE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola FVSCHEDULE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola FVSCHEDULE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "INTRATE": {
@@ -2047,9 +2047,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola INTRATE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola INTRATE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=INTRATE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola INTRATE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola INTRATE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IPMT": {
@@ -2057,9 +2057,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola IPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola IPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=IPMT(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola IPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola IPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "IRR": {
@@ -2067,9 +2067,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola IRR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola IRR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=IRR(A2:A6)",
-    "exampleMeaning": "Contoh pola IRR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola IRR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISPMT": {
@@ -2077,9 +2077,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ISPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ISPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ISPMT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ISPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ISPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MDURATION": {
@@ -2087,9 +2087,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola MDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola MDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=MDURATION(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola MDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola MDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MIRR": {
@@ -2097,9 +2097,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola MIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola MIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=MIRR(A2:A6)",
-    "exampleMeaning": "Contoh pola MIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola MIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NOMINAL": {
@@ -2107,9 +2107,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola NOMINAL financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola NOMINAL financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=NOMINAL(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola NOMINAL financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola NOMINAL financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NPER": {
@@ -2117,9 +2117,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola NPER financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola NPER financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=NPER(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola NPER financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola NPER financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NPV": {
@@ -2127,9 +2127,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola NPV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola NPV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=NPV(A2:A6)",
-    "exampleMeaning": "Contoh pola NPV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola NPV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ODDFPRICE": {
@@ -2137,9 +2137,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ODDFPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ODDFPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ODDFPRICE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ODDFPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ODDFPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ODDFYIELD": {
@@ -2147,9 +2147,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ODDFYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ODDFYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ODDFYIELD(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ODDFYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ODDFYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ODDLPRICE": {
@@ -2157,9 +2157,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ODDLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ODDLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ODDLPRICE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ODDLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ODDLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ODDLYIELD": {
@@ -2167,9 +2167,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola ODDLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola ODDLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=ODDLYIELD(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola ODDLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola ODDLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PDURATION": {
@@ -2177,9 +2177,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PDURATION(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola PDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PDURATION financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PMT": {
@@ -2187,9 +2187,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PMT(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola PMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PPMT": {
@@ -2197,9 +2197,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PPMT(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola PPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PPMT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PRICE": {
@@ -2207,9 +2207,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PRICE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola PRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PRICEDISC": {
@@ -2217,9 +2217,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PRICEDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PRICEDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PRICEDISC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola PRICEDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PRICEDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PRICEMAT": {
@@ -2227,9 +2227,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PRICEMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PRICEMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PRICEMAT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola PRICEMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PRICEMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PV": {
@@ -2237,9 +2237,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola PV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola PV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=PV(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola PV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola PV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "RATE": {
@@ -2247,9 +2247,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola RATE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola RATE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=RATE(5%/12;60;100000)",
-    "exampleMeaning": "Contoh pola RATE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola RATE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "RECEIVED": {
@@ -2257,9 +2257,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola RECEIVED financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola RECEIVED financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=RECEIVED(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola RECEIVED financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola RECEIVED financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "RRI": {
@@ -2267,9 +2267,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola RRI financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola RRI financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=RRI(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola RRI financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola RRI financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SLN": {
@@ -2277,9 +2277,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola SLN financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola SLN financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=SLN(100000;20000;5)",
-    "exampleMeaning": "Contoh pola SLN financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola SLN financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SYD": {
@@ -2287,9 +2287,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola SYD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola SYD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=SYD(100000;20000;5)",
-    "exampleMeaning": "Contoh pola SYD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola SYD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TBILLEQ": {
@@ -2297,9 +2297,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola TBILLEQ financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola TBILLEQ financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=TBILLEQ(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola TBILLEQ financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola TBILLEQ financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TBILLPRICE": {
@@ -2307,9 +2307,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola TBILLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola TBILLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=TBILLPRICE(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola TBILLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola TBILLPRICE financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TBILLYIELD": {
@@ -2317,9 +2317,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola TBILLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola TBILLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=TBILLYIELD(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola TBILLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola TBILLYIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "VDB": {
@@ -2327,9 +2327,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola VDB financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola VDB financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=VDB(100000;20000;5)",
-    "exampleMeaning": "Contoh pola VDB financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola VDB financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "XIRR": {
@@ -2337,9 +2337,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola XIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola XIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=XIRR(A2:A6)",
-    "exampleMeaning": "Contoh pola XIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola XIRR financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "XNPV": {
@@ -2347,9 +2347,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola XNPV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola XNPV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=XNPV(A2:A6)",
-    "exampleMeaning": "Contoh pola XNPV financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola XNPV financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "YIELD": {
@@ -2357,9 +2357,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola YIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola YIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=YIELD(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola YIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola YIELD financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "YIELDDISC": {
@@ -2367,9 +2367,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola YIELDDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola YIELDDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=YIELDDISC(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola YIELDDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola YIELDDISC financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "YIELDMAT": {
@@ -2377,9 +2377,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung bunga, cicilan, nilai sekarang, nilai masa depan, atau yield berdasarkan input finansial.",
     "useCase": "Untuk cicilan, investasi, obligasi, depresiasi, dan analisis keuangan.",
     "analogy": "Kayak kalkulator finance: masukkan bunga, periode, dan nilai uang, lalu keluar hasilnya.",
-    "simpleExample": "Contoh pola YIELDMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "simpleExample": "Contoh pola YIELDMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "exampleFormula": "=YIELDMAT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola YIELDMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai syntax.",
+    "exampleMeaning": "Contoh pola YIELDMAT financial. Sesuaikan rate, periode, dan nilai uang sesuai format.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CELL": {
@@ -2397,9 +2397,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Jika hasilnya error apa pun, output TRUE.",
     "useCase": "Untuk membuat kontrol error.",
     "analogy": "Kayak alarm yang menyala kalau ada masalah di rumus.",
-    "simpleExample": "Contoh pola ERROR.TYPE. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti syntax ERROR.TYPE.",
+    "simpleExample": "Contoh pola ERROR.TYPE. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti format ERROR.TYPE.",
     "exampleFormula": "=ERROR.TYPE(A2)",
-    "exampleMeaning": "Contoh pola ERROR.TYPE. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti syntax ERROR.TYPE.",
+    "exampleMeaning": "Contoh pola ERROR.TYPE. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti format ERROR.TYPE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "INFO": {
@@ -2407,9 +2407,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel bisa memberi info seperti alamat, format, atau nama file dari cell.",
     "useCase": "Untuk audit workbook dan informasi cell.",
     "analogy": "Kayak kartu identitas untuk sebuah cell.",
-    "simpleExample": "Contoh pola INFO. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti syntax INFO.",
+    "simpleExample": "Contoh pola INFO. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti format INFO.",
     "exampleFormula": "=INFO(A2)",
-    "exampleMeaning": "Contoh pola INFO. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti syntax INFO.",
+    "exampleMeaning": "Contoh pola INFO. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti format INFO.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISBLANK": {
@@ -2427,9 +2427,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Jika hasilnya error apa pun, output TRUE.",
     "useCase": "Untuk membuat kontrol error.",
     "analogy": "Kayak alarm yang menyala kalau ada masalah di rumus.",
-    "simpleExample": "Contoh pola ISERR. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti syntax ISERR.",
+    "simpleExample": "Contoh pola ISERR. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti format ISERR.",
     "exampleFormula": "=ISERR(A2)",
-    "exampleMeaning": "Contoh pola ISERR. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti syntax ISERR.",
+    "exampleMeaning": "Contoh pola ISERR. Prinsipnya mirip ISERROR, tapi nama function dan detail argumennya mengikuti format ISERR.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISERROR": {
@@ -2447,9 +2447,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat apakah value bisa dianggap angka.",
     "useCase": "Untuk validasi input angka.",
     "analogy": "Kayak petugas yang mengecek apakah isinya benar-benar angka.",
-    "simpleExample": "Contoh pola ISEVEN. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti syntax ISEVEN.",
+    "simpleExample": "Contoh pola ISEVEN. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti format ISEVEN.",
     "exampleFormula": "=ISEVEN(A2)",
-    "exampleMeaning": "Contoh pola ISEVEN. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti syntax ISEVEN.",
+    "exampleMeaning": "Contoh pola ISEVEN. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti format ISEVEN.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISFORMULA": {
@@ -2467,9 +2467,9 @@ export const formulaLearningContent = {
     "simpleLogic": "TRUE berarti kondisi benar atau aktif.",
     "useCase": "Untuk rumus logika, default condition, atau argumen tertentu.",
     "analogy": "Kayak jawaban Ya dalam bahasa Excel.",
-    "simpleExample": "Contoh pola ISLOGICAL. Prinsipnya mirip TRUE, tapi nama function dan detail argumennya mengikuti syntax ISLOGICAL.",
+    "simpleExample": "Contoh pola ISLOGICAL. Prinsipnya mirip TRUE, tapi nama function dan detail argumennya mengikuti format ISLOGICAL.",
     "exampleFormula": "=ISLOGICAL(A2)",
-    "exampleMeaning": "Contoh pola ISLOGICAL. Prinsipnya mirip TRUE, tapi nama function dan detail argumennya mengikuti syntax ISLOGICAL.",
+    "exampleMeaning": "Contoh pola ISLOGICAL. Prinsipnya mirip TRUE, tapi nama function dan detail argumennya mengikuti format ISLOGICAL.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISNA": {
@@ -2487,9 +2487,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat apakah value berupa tulisan.",
     "useCase": "Untuk validasi nama, kode, atau label.",
     "analogy": "Kayak petugas yang mengecek apakah isinya tulisan.",
-    "simpleExample": "Contoh pola ISNONTEXT. Prinsipnya mirip ISTEXT, tapi nama function dan detail argumennya mengikuti syntax ISNONTEXT.",
+    "simpleExample": "Contoh pola ISNONTEXT. Prinsipnya mirip ISTEXT, tapi nama function dan detail argumennya mengikuti format ISNONTEXT.",
     "exampleFormula": "=ISNONTEXT(A2)",
-    "exampleMeaning": "Contoh pola ISNONTEXT. Prinsipnya mirip ISTEXT, tapi nama function dan detail argumennya mengikuti syntax ISNONTEXT.",
+    "exampleMeaning": "Contoh pola ISNONTEXT. Prinsipnya mirip ISTEXT, tapi nama function dan detail argumennya mengikuti format ISNONTEXT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISNUMBER": {
@@ -2507,9 +2507,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat apakah value bisa dianggap angka.",
     "useCase": "Untuk validasi input angka.",
     "analogy": "Kayak petugas yang mengecek apakah isinya benar-benar angka.",
-    "simpleExample": "Contoh pola ISODD. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti syntax ISODD.",
+    "simpleExample": "Contoh pola ISODD. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti format ISODD.",
     "exampleFormula": "=ISODD(A2)",
-    "exampleMeaning": "Contoh pola ISODD. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti syntax ISODD.",
+    "exampleMeaning": "Contoh pola ISODD. Prinsipnya mirip ISNUMBER, tapi nama function dan detail argumennya mengikuti format ISODD.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISOMITTED": {
@@ -2517,9 +2517,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Jika cell belum ada isi, hasilnya TRUE. Kalau ada isi, FALSE.",
     "useCase": "Untuk validasi data wajib isi.",
     "analogy": "Kayak mengecek apakah kotak masih kosong.",
-    "simpleExample": "Contoh pola ISOMITTED. Prinsipnya mirip ISBLANK, tapi nama function dan detail argumennya mengikuti syntax ISOMITTED.",
+    "simpleExample": "Contoh pola ISOMITTED. Prinsipnya mirip ISBLANK, tapi nama function dan detail argumennya mengikuti format ISOMITTED.",
     "exampleFormula": "=ISOMITTED(A2)",
-    "exampleMeaning": "Contoh pola ISOMITTED. Prinsipnya mirip ISBLANK, tapi nama function dan detail argumennya mengikuti syntax ISOMITTED.",
+    "exampleMeaning": "Contoh pola ISOMITTED. Prinsipnya mirip ISBLANK, tapi nama function dan detail argumennya mengikuti format ISOMITTED.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISREF": {
@@ -2527,9 +2527,9 @@ export const formulaLearningContent = {
     "simpleLogic": "TRUE jika cell tersebut punya rumus.",
     "useCase": "Untuk audit file Excel.",
     "analogy": "Kayak mengecek apakah cell bekerja sendiri atau cuma berisi angka biasa.",
-    "simpleExample": "Contoh pola ISREF. Prinsipnya mirip ISFORMULA, tapi nama function dan detail argumennya mengikuti syntax ISREF.",
+    "simpleExample": "Contoh pola ISREF. Prinsipnya mirip ISFORMULA, tapi nama function dan detail argumennya mengikuti format ISREF.",
     "exampleFormula": "=ISREF(A2)",
-    "exampleMeaning": "Contoh pola ISREF. Prinsipnya mirip ISFORMULA, tapi nama function dan detail argumennya mengikuti syntax ISREF.",
+    "exampleMeaning": "Contoh pola ISREF. Prinsipnya mirip ISFORMULA, tapi nama function dan detail argumennya mengikuti format ISREF.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ISTEXT": {
@@ -2557,9 +2557,9 @@ export const formulaLearningContent = {
     "simpleLogic": "TRUE jika value adalah error #N/A.",
     "useCase": "Untuk lookup yang datanya tidak ditemukan.",
     "analogy": "Kayak alarm khusus untuk status data tidak ada.",
-    "simpleExample": "Contoh pola NA. Prinsipnya mirip ISNA, tapi nama function dan detail argumennya mengikuti syntax NA.",
+    "simpleExample": "Contoh pola NA. Prinsipnya mirip ISNA, tapi nama function dan detail argumennya mengikuti format NA.",
     "exampleFormula": "=NA(A2)",
-    "exampleMeaning": "Contoh pola NA. Prinsipnya mirip ISNA, tapi nama function dan detail argumennya mengikuti syntax NA.",
+    "exampleMeaning": "Contoh pola NA. Prinsipnya mirip ISNA, tapi nama function dan detail argumennya mengikuti format NA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SHEET": {
@@ -2567,9 +2567,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel bisa memberi info seperti alamat, format, atau nama file dari cell.",
     "useCase": "Untuk audit workbook dan informasi cell.",
     "analogy": "Kayak kartu identitas untuk sebuah cell.",
-    "simpleExample": "Contoh pola SHEET. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti syntax SHEET.",
+    "simpleExample": "Contoh pola SHEET. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti format SHEET.",
     "exampleFormula": "=SHEET(A2)",
-    "exampleMeaning": "Contoh pola SHEET. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti syntax SHEET.",
+    "exampleMeaning": "Contoh pola SHEET. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti format SHEET.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SHEETS": {
@@ -2577,9 +2577,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel bisa memberi info seperti alamat, format, atau nama file dari cell.",
     "useCase": "Untuk audit workbook dan informasi cell.",
     "analogy": "Kayak kartu identitas untuk sebuah cell.",
-    "simpleExample": "Contoh pola SHEETS. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti syntax SHEETS.",
+    "simpleExample": "Contoh pola SHEETS. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti format SHEETS.",
     "exampleFormula": "=SHEETS(A2)",
-    "exampleMeaning": "Contoh pola SHEETS. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti syntax SHEETS.",
+    "exampleMeaning": "Contoh pola SHEETS. Prinsipnya mirip CELL, tapi nama function dan detail argumennya mengikuti format SHEETS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TYPE": {
@@ -2717,9 +2717,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung berapa baris yang ada di range.",
     "useCase": "Untuk ukuran tabel dinamis.",
     "analogy": "Kayak menghitung jumlah tingkat dalam rak.",
-    "simpleExample": "Contoh pola AREAS. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti syntax AREAS.",
+    "simpleExample": "Contoh pola AREAS. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti format AREAS.",
     "exampleFormula": "=AREAS(A2:A10)",
-    "exampleMeaning": "Contoh pola AREAS. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti syntax AREAS.",
+    "exampleMeaning": "Contoh pola AREAS. Prinsipnya mirip ROWS, tapi nama function dan detail argumennya mengikuti format AREAS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CHOOSE": {
@@ -2767,9 +2767,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mencari lookup value di kolom pertama table array, lalu mengambil isi dari kolom ke-n pada baris yang sama.",
     "useCase": "Untuk ambil nama produk, harga, kategori, atau data master berdasarkan kode.",
     "analogy": "Kayak mencari kode barang di daftar harga, lalu mengambil nama atau harganya.",
-    "simpleExample": "Contoh pola GETPIVOTDATA. Prinsipnya mirip VLOOKUP, tapi nama function dan detail argumennya mengikuti syntax GETPIVOTDATA.",
+    "simpleExample": "Contoh pola GETPIVOTDATA. Prinsipnya mirip VLOOKUP, tapi nama function dan detail argumennya mengikuti format GETPIVOTDATA.",
     "exampleFormula": "=GETPIVOTDATA(A2:A10)",
-    "exampleMeaning": "Contoh pola GETPIVOTDATA. Prinsipnya mirip VLOOKUP, tapi nama function dan detail argumennya mengikuti syntax GETPIVOTDATA.",
+    "exampleMeaning": "Contoh pola GETPIVOTDATA. Prinsipnya mirip VLOOKUP, tapi nama function dan detail argumennya mengikuti format GETPIVOTDATA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HLOOKUP": {
@@ -2797,9 +2797,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menampilkan teks yang jika diklik membuka alamat/link tertentu.",
     "useCase": "Untuk link invoice, file, website, atau email.",
     "analogy": "Kayak membuat tombol jalan pintas ke alamat web.",
-    "simpleExample": "Contoh pola IMAGE. Prinsipnya mirip HYPERLINK, tapi nama function dan detail argumennya mengikuti syntax IMAGE.",
+    "simpleExample": "Contoh pola IMAGE. Prinsipnya mirip HYPERLINK, tapi nama function dan detail argumennya mengikuti format IMAGE.",
     "exampleFormula": "=IMAGE(\"3+4i\")",
-    "exampleMeaning": "Contoh pola IMAGE. Prinsipnya mirip HYPERLINK, tapi nama function dan detail argumennya mengikuti syntax IMAGE.",
+    "exampleMeaning": "Contoh pola IMAGE. Prinsipnya mirip HYPERLINK, tapi nama function dan detail argumennya mengikuti format IMAGE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "INDEX": {
@@ -3047,9 +3047,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menaikkan angka ke kelipatan yang kamu tentukan.",
     "useCase": "Untuk pembulatan packing, harga, atau kapasitas.",
     "analogy": "Kayak harga 12.300 dibulatkan ke kelipatan 500 terdekat ke atas.",
-    "simpleExample": "Contoh pola CEILING.MATH. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti syntax CEILING.MATH.",
+    "simpleExample": "Contoh pola CEILING.MATH. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti format CEILING.MATH.",
     "exampleFormula": "=CEILING.MATH(A2:A10)",
-    "exampleMeaning": "Contoh pola CEILING.MATH. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti syntax CEILING.MATH.",
+    "exampleMeaning": "Contoh pola CEILING.MATH. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti format CEILING.MATH.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CEILING.PRECISE": {
@@ -3057,9 +3057,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menaikkan angka ke kelipatan yang kamu tentukan.",
     "useCase": "Untuk pembulatan packing, harga, atau kapasitas.",
     "analogy": "Kayak harga 12.300 dibulatkan ke kelipatan 500 terdekat ke atas.",
-    "simpleExample": "Contoh pola CEILING.PRECISE. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti syntax CEILING.PRECISE.",
+    "simpleExample": "Contoh pola CEILING.PRECISE. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti format CEILING.PRECISE.",
     "exampleFormula": "=CEILING.PRECISE(A2:A10)",
-    "exampleMeaning": "Contoh pola CEILING.PRECISE. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti syntax CEILING.PRECISE.",
+    "exampleMeaning": "Contoh pola CEILING.PRECISE. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti format CEILING.PRECISE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COMBIN": {
@@ -3217,9 +3217,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menurunkan angka ke kelipatan yang kamu tentukan.",
     "useCase": "Untuk pembulatan bawah ke kelipatan tertentu.",
     "analogy": "Kayak memotong angka ke kelipatan 500 di bawahnya.",
-    "simpleExample": "Contoh pola FLOOR.MATH. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti syntax FLOOR.MATH.",
+    "simpleExample": "Contoh pola FLOOR.MATH. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti format FLOOR.MATH.",
     "exampleFormula": "=FLOOR.MATH(A2:A10)",
-    "exampleMeaning": "Contoh pola FLOOR.MATH. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti syntax FLOOR.MATH.",
+    "exampleMeaning": "Contoh pola FLOOR.MATH. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti format FLOOR.MATH.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FLOOR.PRECISE": {
@@ -3227,9 +3227,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menurunkan angka ke kelipatan yang kamu tentukan.",
     "useCase": "Untuk pembulatan bawah ke kelipatan tertentu.",
     "analogy": "Kayak memotong angka ke kelipatan 500 di bawahnya.",
-    "simpleExample": "Contoh pola FLOOR.PRECISE. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti syntax FLOOR.PRECISE.",
+    "simpleExample": "Contoh pola FLOOR.PRECISE. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti format FLOOR.PRECISE.",
     "exampleFormula": "=FLOOR.PRECISE(A2:A10)",
-    "exampleMeaning": "Contoh pola FLOOR.PRECISE. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti syntax FLOOR.PRECISE.",
+    "exampleMeaning": "Contoh pola FLOOR.PRECISE. Prinsipnya mirip FLOOR, tapi nama function dan detail argumennya mengikuti format FLOOR.PRECISE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "GCD": {
@@ -3257,9 +3257,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menaikkan angka ke kelipatan yang kamu tentukan.",
     "useCase": "Untuk pembulatan packing, harga, atau kapasitas.",
     "analogy": "Kayak harga 12.300 dibulatkan ke kelipatan 500 terdekat ke atas.",
-    "simpleExample": "Contoh pola ISO.CEILING. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti syntax ISO.CEILING.",
+    "simpleExample": "Contoh pola ISO.CEILING. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti format ISO.CEILING.",
     "exampleFormula": "=ISO.CEILING(A2:A10)",
-    "exampleMeaning": "Contoh pola ISO.CEILING. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti syntax ISO.CEILING.",
+    "exampleMeaning": "Contoh pola ISO.CEILING. Prinsipnya mirip CEILING, tapi nama function dan detail argumennya mengikuti format ISO.CEILING.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LCM": {
@@ -3777,9 +3777,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola AVEDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax AVEDEV.",
+    "simpleExample": "Contoh pola AVEDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format AVEDEV.",
     "exampleFormula": "=AVEDEV(D2:D16)",
-    "exampleMeaning": "Contoh pola AVEDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax AVEDEV.",
+    "exampleMeaning": "Contoh pola AVEDEV. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format AVEDEV.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "AVERAGEA": {
@@ -3787,9 +3787,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjumlahkan semua angka, lalu membaginya dengan jumlah data angka.",
     "useCase": "Untuk rata-rata nilai, rata-rata penjualan, rata-rata harga, atau rata-rata durasi.",
     "analogy": "Kayak cari nilai rata-rata kelas. Semua nilai dijumlahkan lalu dibagi jumlah siswa.",
-    "simpleExample": "Contoh pola AVERAGEA. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax AVERAGEA.",
+    "simpleExample": "Contoh pola AVERAGEA. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format AVERAGEA.",
     "exampleFormula": "=AVERAGEA(D2:D16)",
-    "exampleMeaning": "Contoh pola AVERAGEA. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax AVERAGEA.",
+    "exampleMeaning": "Contoh pola AVERAGEA. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format AVERAGEA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BETA.DIST": {
@@ -3917,9 +3917,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola CORREL. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax CORREL.",
+    "simpleExample": "Contoh pola CORREL. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format CORREL.",
     "exampleFormula": "=CORREL(D2:D16)",
-    "exampleMeaning": "Contoh pola CORREL. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax CORREL.",
+    "exampleMeaning": "Contoh pola CORREL. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format CORREL.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "COVARIANCE.P": {
@@ -3947,9 +3947,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data dalam bentuk kuadrat selisih dari rata-rata.",
     "useCase": "Untuk analisis statistik sampel.",
     "analogy": "Kayak mengukur seberapa jauh data menyebar dari tengahnya.",
-    "simpleExample": "Contoh pola DEVSQ. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti syntax DEVSQ.",
+    "simpleExample": "Contoh pola DEVSQ. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti format DEVSQ.",
     "exampleFormula": "=DEVSQ(D2:D16)",
-    "exampleMeaning": "Contoh pola DEVSQ. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti syntax DEVSQ.",
+    "exampleMeaning": "Contoh pola DEVSQ. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti format DEVSQ.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "EXPON.DIST": {
@@ -4047,9 +4047,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat hubungan data X dan Y, lalu menebak nilai Y untuk X baru.",
     "useCase": "Untuk prediksi sales, demand, atau tren sederhana.",
     "analogy": "Kayak menebak penjualan bulan depan dari pola bulan sebelumnya.",
-    "simpleExample": "Contoh pola FORECAST.ETS. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.",
+    "simpleExample": "Contoh pola FORECAST.ETS. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.",
     "exampleFormula": "=FORECAST.ETS(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola FORECAST.ETS. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.",
+    "exampleMeaning": "Contoh pola FORECAST.ETS. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FORECAST.ETS.CONFINT": {
@@ -4057,9 +4057,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat hubungan data X dan Y, lalu menebak nilai Y untuk X baru.",
     "useCase": "Untuk prediksi sales, demand, atau tren sederhana.",
     "analogy": "Kayak menebak penjualan bulan depan dari pola bulan sebelumnya.",
-    "simpleExample": "Contoh pola FORECAST.ETS.CONFINT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.CONFINT.",
+    "simpleExample": "Contoh pola FORECAST.ETS.CONFINT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.CONFINT.",
     "exampleFormula": "=FORECAST.ETS.CONFINT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola FORECAST.ETS.CONFINT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.CONFINT.",
+    "exampleMeaning": "Contoh pola FORECAST.ETS.CONFINT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.CONFINT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FORECAST.ETS.SEASONALITY": {
@@ -4067,9 +4067,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat hubungan data X dan Y, lalu menebak nilai Y untuk X baru.",
     "useCase": "Untuk prediksi sales, demand, atau tren sederhana.",
     "analogy": "Kayak menebak penjualan bulan depan dari pola bulan sebelumnya.",
-    "simpleExample": "Contoh pola FORECAST.ETS.SEASONALITY. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.SEASONALITY.",
+    "simpleExample": "Contoh pola FORECAST.ETS.SEASONALITY. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.SEASONALITY.",
     "exampleFormula": "=FORECAST.ETS.SEASONALITY(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola FORECAST.ETS.SEASONALITY. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.SEASONALITY.",
+    "exampleMeaning": "Contoh pola FORECAST.ETS.SEASONALITY. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.SEASONALITY.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FORECAST.ETS.STAT": {
@@ -4077,9 +4077,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat hubungan data X dan Y, lalu menebak nilai Y untuk X baru.",
     "useCase": "Untuk prediksi sales, demand, atau tren sederhana.",
     "analogy": "Kayak menebak penjualan bulan depan dari pola bulan sebelumnya.",
-    "simpleExample": "Contoh pola FORECAST.ETS.STAT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.STAT.",
+    "simpleExample": "Contoh pola FORECAST.ETS.STAT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.STAT.",
     "exampleFormula": "=FORECAST.ETS.STAT(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola FORECAST.ETS.STAT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.ETS.STAT.",
+    "exampleMeaning": "Contoh pola FORECAST.ETS.STAT. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.ETS.STAT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FORECAST.LINEAR": {
@@ -4087,9 +4087,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat hubungan data X dan Y, lalu menebak nilai Y untuk X baru.",
     "useCase": "Untuk prediksi sales, demand, atau tren sederhana.",
     "analogy": "Kayak menebak penjualan bulan depan dari pola bulan sebelumnya.",
-    "simpleExample": "Contoh pola FORECAST.LINEAR. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.LINEAR.",
+    "simpleExample": "Contoh pola FORECAST.LINEAR. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.LINEAR.",
     "exampleFormula": "=FORECAST.LINEAR(A2;B2;C2)",
-    "exampleMeaning": "Contoh pola FORECAST.LINEAR. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti syntax FORECAST.LINEAR.",
+    "exampleMeaning": "Contoh pola FORECAST.LINEAR. Prinsipnya mirip FORECAST, tapi nama function dan detail argumennya mengikuti format FORECAST.LINEAR.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FREQUENCY": {
@@ -4097,9 +4097,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung baris yang memenuhi semua syarat sekaligus.",
     "useCase": "Untuk menghitung data kategori Digital di kota Jakarta, atau siswa kelas 10A yang Lulus.",
     "analogy": "Kayak menghitung tamu yang pakai baju hitam dan membawa undangan. Dua syarat harus lolos.",
-    "simpleExample": "Contoh pola FREQUENCY. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti syntax FREQUENCY.",
+    "simpleExample": "Contoh pola FREQUENCY. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti format FREQUENCY.",
     "exampleFormula": "=FREQUENCY(D2:D16)",
-    "exampleMeaning": "Contoh pola FREQUENCY. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti syntax FREQUENCY.",
+    "exampleMeaning": "Contoh pola FREQUENCY. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti format FREQUENCY.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "GAMMA": {
@@ -4167,9 +4167,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjumlahkan semua angka, lalu membaginya dengan jumlah data angka.",
     "useCase": "Untuk rata-rata nilai, rata-rata penjualan, rata-rata harga, atau rata-rata durasi.",
     "analogy": "Kayak cari nilai rata-rata kelas. Semua nilai dijumlahkan lalu dibagi jumlah siswa.",
-    "simpleExample": "Contoh pola GEOMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax GEOMEAN.",
+    "simpleExample": "Contoh pola GEOMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format GEOMEAN.",
     "exampleFormula": "=GEOMEAN(D2:D16)",
-    "exampleMeaning": "Contoh pola GEOMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax GEOMEAN.",
+    "exampleMeaning": "Contoh pola GEOMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format GEOMEAN.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "GROWTH": {
@@ -4177,9 +4177,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola GROWTH. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax GROWTH.",
+    "simpleExample": "Contoh pola GROWTH. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format GROWTH.",
     "exampleFormula": "=GROWTH(D2:D16)",
-    "exampleMeaning": "Contoh pola GROWTH. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax GROWTH.",
+    "exampleMeaning": "Contoh pola GROWTH. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format GROWTH.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HARMEAN": {
@@ -4187,9 +4187,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjumlahkan semua angka, lalu membaginya dengan jumlah data angka.",
     "useCase": "Untuk rata-rata nilai, rata-rata penjualan, rata-rata harga, atau rata-rata durasi.",
     "analogy": "Kayak cari nilai rata-rata kelas. Semua nilai dijumlahkan lalu dibagi jumlah siswa.",
-    "simpleExample": "Contoh pola HARMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax HARMEAN.",
+    "simpleExample": "Contoh pola HARMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format HARMEAN.",
     "exampleFormula": "=HARMEAN(D2:D16)",
-    "exampleMeaning": "Contoh pola HARMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax HARMEAN.",
+    "exampleMeaning": "Contoh pola HARMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format HARMEAN.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "HYPGEOM.DIST": {
@@ -4207,9 +4207,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola INTERCEPT. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax INTERCEPT.",
+    "simpleExample": "Contoh pola INTERCEPT. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format INTERCEPT.",
     "exampleFormula": "=INTERCEPT(D2:D16)",
-    "exampleMeaning": "Contoh pola INTERCEPT. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax INTERCEPT.",
+    "exampleMeaning": "Contoh pola INTERCEPT. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format INTERCEPT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "KURT": {
@@ -4217,9 +4217,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola KURT. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax KURT.",
+    "simpleExample": "Contoh pola KURT. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format KURT.",
     "exampleFormula": "=KURT(D2:D16)",
-    "exampleMeaning": "Contoh pola KURT. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax KURT.",
+    "exampleMeaning": "Contoh pola KURT. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format KURT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LINEST": {
@@ -4227,9 +4227,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola LINEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax LINEST.",
+    "simpleExample": "Contoh pola LINEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format LINEST.",
     "exampleFormula": "=LINEST(D2:D16)",
-    "exampleMeaning": "Contoh pola LINEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax LINEST.",
+    "exampleMeaning": "Contoh pola LINEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format LINEST.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LOGEST": {
@@ -4237,9 +4237,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola LOGEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax LOGEST.",
+    "simpleExample": "Contoh pola LOGEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format LOGEST.",
     "exampleFormula": "=LOGEST(D2:D16)",
-    "exampleMeaning": "Contoh pola LOGEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax LOGEST.",
+    "exampleMeaning": "Contoh pola LOGEST. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format LOGEST.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LOGNORM.DIST": {
@@ -4267,9 +4267,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat semua angka, lalu memilih nilai tertinggi.",
     "useCase": "Untuk nilai tertinggi, stok terbesar, atau penjualan terbesar.",
     "analogy": "Kayak mencari juara 1 dari daftar nilai.",
-    "simpleExample": "Contoh pola MAXA. Prinsipnya mirip MAX, tapi nama function dan detail argumennya mengikuti syntax MAXA.",
+    "simpleExample": "Contoh pola MAXA. Prinsipnya mirip MAX, tapi nama function dan detail argumennya mengikuti format MAXA.",
     "exampleFormula": "=MAXA(D2:D16)",
-    "exampleMeaning": "Contoh pola MAXA. Prinsipnya mirip MAX, tapi nama function dan detail argumennya mengikuti syntax MAXA.",
+    "exampleMeaning": "Contoh pola MAXA. Prinsipnya mirip MAX, tapi nama function dan detail argumennya mengikuti format MAXA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MEDIAN": {
@@ -4287,9 +4287,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat semua angka, lalu memilih nilai terendah.",
     "useCase": "Untuk nilai terendah, harga termurah, stok paling sedikit, atau durasi paling cepat.",
     "analogy": "Kayak mencari juara dengan waktu lari paling cepat.",
-    "simpleExample": "Contoh pola MINA. Prinsipnya mirip MIN, tapi nama function dan detail argumennya mengikuti syntax MINA.",
+    "simpleExample": "Contoh pola MINA. Prinsipnya mirip MIN, tapi nama function dan detail argumennya mengikuti format MINA.",
     "exampleFormula": "=MINA(D2:D16)",
-    "exampleMeaning": "Contoh pola MINA. Prinsipnya mirip MIN, tapi nama function dan detail argumennya mengikuti syntax MINA.",
+    "exampleMeaning": "Contoh pola MINA. Prinsipnya mirip MIN, tapi nama function dan detail argumennya mengikuti format MINA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MODE.MULT": {
@@ -4297,9 +4297,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mencari angka yang frekuensinya paling banyak.",
     "useCase": "Untuk melihat pilihan atau nilai yang paling umum.",
     "analogy": "Kayak mencari jawaban yang paling banyak dipilih.",
-    "simpleExample": "Contoh pola MODE.MULT. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti syntax MODE.MULT.",
+    "simpleExample": "Contoh pola MODE.MULT. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti format MODE.MULT.",
     "exampleFormula": "=MODE.MULT(D2:D16)",
-    "exampleMeaning": "Contoh pola MODE.MULT. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti syntax MODE.MULT.",
+    "exampleMeaning": "Contoh pola MODE.MULT. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti format MODE.MULT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "MODE.SNGL": {
@@ -4307,9 +4307,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mencari angka yang frekuensinya paling banyak.",
     "useCase": "Untuk melihat pilihan atau nilai yang paling umum.",
     "analogy": "Kayak mencari jawaban yang paling banyak dipilih.",
-    "simpleExample": "Contoh pola MODE.SNGL. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti syntax MODE.SNGL.",
+    "simpleExample": "Contoh pola MODE.SNGL. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti format MODE.SNGL.",
     "exampleFormula": "=MODE.SNGL(D2:D16)",
-    "exampleMeaning": "Contoh pola MODE.SNGL. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti syntax MODE.SNGL.",
+    "exampleMeaning": "Contoh pola MODE.SNGL. Prinsipnya mirip MODE, tapi nama function dan detail argumennya mengikuti format MODE.SNGL.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NEGBINOM.DIST": {
@@ -4367,9 +4367,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola PEARSON. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax PEARSON.",
+    "simpleExample": "Contoh pola PEARSON. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format PEARSON.",
     "exampleFormula": "=PEARSON(D2:D16)",
-    "exampleMeaning": "Contoh pola PEARSON. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax PEARSON.",
+    "exampleMeaning": "Contoh pola PEARSON. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format PEARSON.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PERCENTILE.EXC": {
@@ -4377,9 +4377,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengurutkan data lalu mengambil nilai di posisi persen tertentu.",
     "useCase": "Untuk batas top 25%, median, atau threshold.",
     "analogy": "Kayak mencari nilai yang berada di posisi 90% dari antrean data.",
-    "simpleExample": "Contoh pola PERCENTILE.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTILE.EXC.",
+    "simpleExample": "Contoh pola PERCENTILE.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTILE.EXC.",
     "exampleFormula": "=PERCENTILE.EXC(D2:D16)",
-    "exampleMeaning": "Contoh pola PERCENTILE.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTILE.EXC.",
+    "exampleMeaning": "Contoh pola PERCENTILE.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTILE.EXC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PERCENTILE.INC": {
@@ -4387,9 +4387,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengurutkan data lalu mengambil nilai di posisi persen tertentu.",
     "useCase": "Untuk batas top 25%, median, atau threshold.",
     "analogy": "Kayak mencari nilai yang berada di posisi 90% dari antrean data.",
-    "simpleExample": "Contoh pola PERCENTILE.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTILE.INC.",
+    "simpleExample": "Contoh pola PERCENTILE.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTILE.INC.",
     "exampleFormula": "=PERCENTILE.INC(D2:D16)",
-    "exampleMeaning": "Contoh pola PERCENTILE.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTILE.INC.",
+    "exampleMeaning": "Contoh pola PERCENTILE.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTILE.INC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PERCENTRANK.EXC": {
@@ -4397,9 +4397,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengurutkan data lalu mengambil nilai di posisi persen tertentu.",
     "useCase": "Untuk batas top 25%, median, atau threshold.",
     "analogy": "Kayak mencari nilai yang berada di posisi 90% dari antrean data.",
-    "simpleExample": "Contoh pola PERCENTRANK.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTRANK.EXC.",
+    "simpleExample": "Contoh pola PERCENTRANK.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTRANK.EXC.",
     "exampleFormula": "=PERCENTRANK.EXC(D2:D16)",
-    "exampleMeaning": "Contoh pola PERCENTRANK.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTRANK.EXC.",
+    "exampleMeaning": "Contoh pola PERCENTRANK.EXC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTRANK.EXC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PERCENTRANK.INC": {
@@ -4407,9 +4407,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengurutkan data lalu mengambil nilai di posisi persen tertentu.",
     "useCase": "Untuk batas top 25%, median, atau threshold.",
     "analogy": "Kayak mencari nilai yang berada di posisi 90% dari antrean data.",
-    "simpleExample": "Contoh pola PERCENTRANK.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTRANK.INC.",
+    "simpleExample": "Contoh pola PERCENTRANK.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTRANK.INC.",
     "exampleFormula": "=PERCENTRANK.INC(D2:D16)",
-    "exampleMeaning": "Contoh pola PERCENTRANK.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti syntax PERCENTRANK.INC.",
+    "exampleMeaning": "Contoh pola PERCENTRANK.INC. Prinsipnya mirip PERCENTILE, tapi nama function dan detail argumennya mengikuti format PERCENTRANK.INC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "PERMUT": {
@@ -4457,9 +4457,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung baris yang memenuhi semua syarat sekaligus.",
     "useCase": "Untuk menghitung data kategori Digital di kota Jakarta, atau siswa kelas 10A yang Lulus.",
     "analogy": "Kayak menghitung tamu yang pakai baju hitam dan membawa undangan. Dua syarat harus lolos.",
-    "simpleExample": "Contoh pola PROB. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti syntax PROB.",
+    "simpleExample": "Contoh pola PROB. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti format PROB.",
     "exampleFormula": "=PROB(D2:D16)",
-    "exampleMeaning": "Contoh pola PROB. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti syntax PROB.",
+    "exampleMeaning": "Contoh pola PROB. Prinsipnya mirip COUNTIFS, tapi nama function dan detail argumennya mengikuti format PROB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "QUARTILE.EXC": {
@@ -4467,9 +4467,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengambil batas Q1, Q2, atau Q3 dari data.",
     "useCase": "Untuk melihat sebaran data per kuartal statistik.",
     "analogy": "Kayak membagi antrean nilai menjadi empat kelompok.",
-    "simpleExample": "Contoh pola QUARTILE.EXC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti syntax QUARTILE.EXC.",
+    "simpleExample": "Contoh pola QUARTILE.EXC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti format QUARTILE.EXC.",
     "exampleFormula": "=QUARTILE.EXC(D2:D16)",
-    "exampleMeaning": "Contoh pola QUARTILE.EXC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti syntax QUARTILE.EXC.",
+    "exampleMeaning": "Contoh pola QUARTILE.EXC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti format QUARTILE.EXC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "QUARTILE.INC": {
@@ -4477,9 +4477,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengambil batas Q1, Q2, atau Q3 dari data.",
     "useCase": "Untuk melihat sebaran data per kuartal statistik.",
     "analogy": "Kayak membagi antrean nilai menjadi empat kelompok.",
-    "simpleExample": "Contoh pola QUARTILE.INC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti syntax QUARTILE.INC.",
+    "simpleExample": "Contoh pola QUARTILE.INC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti format QUARTILE.INC.",
     "exampleFormula": "=QUARTILE.INC(D2:D16)",
-    "exampleMeaning": "Contoh pola QUARTILE.INC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti syntax QUARTILE.INC.",
+    "exampleMeaning": "Contoh pola QUARTILE.INC. Prinsipnya mirip QUARTILE, tapi nama function dan detail argumennya mengikuti format QUARTILE.INC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "RANK.AVG": {
@@ -4487,9 +4487,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel melihat posisi sebuah angka dibanding angka lain.",
     "useCase": "Untuk ranking nilai, sales, atau performa.",
     "analogy": "Kayak menentukan peringkat siswa dari daftar nilai.",
-    "simpleExample": "Contoh pola RANK.AVG. Prinsipnya mirip RANK, tapi nama function dan detail argumennya mengikuti syntax RANK.AVG.",
+    "simpleExample": "Contoh pola RANK.AVG. Prinsipnya mirip RANK, tapi nama function dan detail argumennya mengikuti format RANK.AVG.",
     "exampleFormula": "=RANK.AVG(D2:D16)",
-    "exampleMeaning": "Contoh pola RANK.AVG. Prinsipnya mirip RANK, tapi nama function dan detail argumennya mengikuti syntax RANK.AVG.",
+    "exampleMeaning": "Contoh pola RANK.AVG. Prinsipnya mirip RANK, tapi nama function dan detail argumennya mengikuti format RANK.AVG.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "RANK.EQ": {
@@ -4507,9 +4507,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola RSQ. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax RSQ.",
+    "simpleExample": "Contoh pola RSQ. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format RSQ.",
     "exampleFormula": "=RSQ(D2:D16)",
-    "exampleMeaning": "Contoh pola RSQ. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax RSQ.",
+    "exampleMeaning": "Contoh pola RSQ. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format RSQ.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SKEW": {
@@ -4517,9 +4517,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola SKEW. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax SKEW.",
+    "simpleExample": "Contoh pola SKEW. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format SKEW.",
     "exampleFormula": "=SKEW(D2:D16)",
-    "exampleMeaning": "Contoh pola SKEW. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax SKEW.",
+    "exampleMeaning": "Contoh pola SKEW. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format SKEW.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SKEW.P": {
@@ -4527,9 +4527,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola SKEW.P. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax SKEW.P.",
+    "simpleExample": "Contoh pola SKEW.P. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format SKEW.P.",
     "exampleFormula": "=SKEW.P(D2:D16)",
-    "exampleMeaning": "Contoh pola SKEW.P. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax SKEW.P.",
+    "exampleMeaning": "Contoh pola SKEW.P. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format SKEW.P.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SLOPE": {
@@ -4537,9 +4537,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola SLOPE. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax SLOPE.",
+    "simpleExample": "Contoh pola SLOPE. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format SLOPE.",
     "exampleFormula": "=SLOPE(D2:D16)",
-    "exampleMeaning": "Contoh pola SLOPE. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax SLOPE.",
+    "exampleMeaning": "Contoh pola SLOPE. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format SLOPE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "STANDARDIZE": {
@@ -4547,9 +4547,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola STANDARDIZE. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax STANDARDIZE.",
+    "simpleExample": "Contoh pola STANDARDIZE. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format STANDARDIZE.",
     "exampleFormula": "=STANDARDIZE(D2:D16)",
-    "exampleMeaning": "Contoh pola STANDARDIZE. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax STANDARDIZE.",
+    "exampleMeaning": "Contoh pola STANDARDIZE. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format STANDARDIZE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "STDEV.P": {
@@ -4577,9 +4577,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur seberapa menyebar data dari rata-ratanya.",
     "useCase": "Untuk analisis sampel data.",
     "analogy": "Kayak melihat apakah nilai kelas rapat atau sangat menyebar.",
-    "simpleExample": "Contoh pola STDEVA. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax STDEVA.",
+    "simpleExample": "Contoh pola STDEVA. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format STDEVA.",
     "exampleFormula": "=STDEVA(D2:D16)",
-    "exampleMeaning": "Contoh pola STDEVA. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti syntax STDEVA.",
+    "exampleMeaning": "Contoh pola STDEVA. Prinsipnya mirip STDEV.S, tapi nama function dan detail argumennya mengikuti format STDEVA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "STDEVPA": {
@@ -4587,9 +4587,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data jika datanya dianggap seluruh populasi.",
     "useCase": "Untuk analisis data lengkap, bukan sampel.",
     "analogy": "Kayak mengukur variasi semua cabang, bukan sebagian cabang.",
-    "simpleExample": "Contoh pola STDEVPA. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti syntax STDEVPA.",
+    "simpleExample": "Contoh pola STDEVPA. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti format STDEVPA.",
     "exampleFormula": "=STDEVPA(D2:D16)",
-    "exampleMeaning": "Contoh pola STDEVPA. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti syntax STDEVPA.",
+    "exampleMeaning": "Contoh pola STDEVPA. Prinsipnya mirip STDEV.P, tapi nama function dan detail argumennya mengikuti format STDEVPA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "STEYX": {
@@ -4597,9 +4597,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membaca pola data lama lalu membuat prediksi yang mengikuti garis tren.",
     "useCase": "Untuk membuat proyeksi data.",
     "analogy": "Kayak menarik garis arah dari data lama lalu meneruskannya.",
-    "simpleExample": "Contoh pola STEYX. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax STEYX.",
+    "simpleExample": "Contoh pola STEYX. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format STEYX.",
     "exampleFormula": "=STEYX(D2:D16)",
-    "exampleMeaning": "Contoh pola STEYX. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti syntax STEYX.",
+    "exampleMeaning": "Contoh pola STEYX. Prinsipnya mirip TREND, tapi nama function dan detail argumennya mengikuti format STEYX.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "T.DIST": {
@@ -4677,9 +4677,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menjumlahkan semua angka, lalu membaginya dengan jumlah data angka.",
     "useCase": "Untuk rata-rata nilai, rata-rata penjualan, rata-rata harga, atau rata-rata durasi.",
     "analogy": "Kayak cari nilai rata-rata kelas. Semua nilai dijumlahkan lalu dibagi jumlah siswa.",
-    "simpleExample": "Contoh pola TRIMMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax TRIMMEAN.",
+    "simpleExample": "Contoh pola TRIMMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format TRIMMEAN.",
     "exampleFormula": "=TRIMMEAN(D2:D16)",
-    "exampleMeaning": "Contoh pola TRIMMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti syntax TRIMMEAN.",
+    "exampleMeaning": "Contoh pola TRIMMEAN. Prinsipnya mirip AVERAGE, tapi nama function dan detail argumennya mengikuti format TRIMMEAN.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "VAR.P": {
@@ -4707,9 +4707,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data dalam bentuk kuadrat selisih dari rata-rata.",
     "useCase": "Untuk analisis statistik sampel.",
     "analogy": "Kayak mengukur seberapa jauh data menyebar dari tengahnya.",
-    "simpleExample": "Contoh pola VARA. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti syntax VARA.",
+    "simpleExample": "Contoh pola VARA. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti format VARA.",
     "exampleFormula": "=VARA(D2:D16)",
-    "exampleMeaning": "Contoh pola VARA. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti syntax VARA.",
+    "exampleMeaning": "Contoh pola VARA. Prinsipnya mirip VAR.S, tapi nama function dan detail argumennya mengikuti format VARA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "VARPA": {
@@ -4717,9 +4717,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengukur sebaran data jika datanya seluruh populasi.",
     "useCase": "Untuk analisis statistik data lengkap.",
     "analogy": "Kayak mengukur penyebaran semua data, bukan contoh data saja.",
-    "simpleExample": "Contoh pola VARPA. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti syntax VARPA.",
+    "simpleExample": "Contoh pola VARPA. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti format VARPA.",
     "exampleFormula": "=VARPA(D2:D16)",
-    "exampleMeaning": "Contoh pola VARPA. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti syntax VARPA.",
+    "exampleMeaning": "Contoh pola VARPA. Prinsipnya mirip VAR.P, tapi nama function dan detail argumennya mengikuti format VARPA.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "WEIBULL.DIST": {
@@ -4747,9 +4747,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menyambung banyak teks dan menyisipkan delimiter di antaranya.",
     "useCase": "Untuk gabung list nama, tag, atau alamat dengan koma.",
     "analogy": "Kayak menyusun daftar nama lalu diberi koma otomatis.",
-    "simpleExample": "Contoh pola ARRAYTOTEXT. Prinsipnya mirip TEXTJOIN, tapi nama function dan detail argumennya mengikuti syntax ARRAYTOTEXT.",
+    "simpleExample": "Contoh pola ARRAYTOTEXT. Prinsipnya mirip TEXTJOIN, tapi nama function dan detail argumennya mengikuti format ARRAYTOTEXT.",
     "exampleFormula": "=ARRAYTOTEXT(A2)",
-    "exampleMeaning": "Contoh pola ARRAYTOTEXT. Prinsipnya mirip TEXTJOIN, tapi nama function dan detail argumennya mengikuti syntax ARRAYTOTEXT.",
+    "exampleMeaning": "Contoh pola ARRAYTOTEXT. Prinsipnya mirip TEXTJOIN, tapi nama function dan detail argumennya mengikuti format ARRAYTOTEXT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ASC": {
@@ -4757,9 +4757,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membuat semua huruf menjadi uppercase.",
     "useCase": "Untuk kode produk, kode kota, atau format tegas.",
     "analogy": "Kayak menyuruh semua huruf bicara keras.",
-    "simpleExample": "Contoh pola ASC. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti syntax ASC.",
+    "simpleExample": "Contoh pola ASC. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti format ASC.",
     "exampleFormula": "=ASC(A2)",
-    "exampleMeaning": "Contoh pola ASC. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti syntax ASC.",
+    "exampleMeaning": "Contoh pola ASC. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti format ASC.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "BAHTTEXT": {
@@ -4777,9 +4777,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola CHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax CHAR.",
+    "simpleExample": "Contoh pola CHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format CHAR.",
     "exampleFormula": "=CHAR(A2)",
-    "exampleMeaning": "Contoh pola CHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax CHAR.",
+    "exampleMeaning": "Contoh pola CHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format CHAR.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CLEAN": {
@@ -4797,9 +4797,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola CODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax CODE.",
+    "simpleExample": "Contoh pola CODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format CODE.",
     "exampleFormula": "=CODE(A2)",
-    "exampleMeaning": "Contoh pola CODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax CODE.",
+    "exampleMeaning": "Contoh pola CODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format CODE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "CONCAT": {
@@ -4817,9 +4817,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menempelkan isi beberapa cell menjadi satu teks.",
     "useCase": "Untuk gabung nama depan dan belakang, kode, atau alamat.",
     "analogy": "Kayak menyambung beberapa potongan kata menjadi satu kalimat.",
-    "simpleExample": "Contoh pola CONCATENATE. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti syntax CONCATENATE.",
+    "simpleExample": "Contoh pola CONCATENATE. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti format CONCATENATE.",
     "exampleFormula": "=CONCATENATE(A2)",
-    "exampleMeaning": "Contoh pola CONCATENATE. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti syntax CONCATENATE.",
+    "exampleMeaning": "Contoh pola CONCATENATE. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti format CONCATENATE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DBCS": {
@@ -4827,9 +4827,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel membuat semua huruf menjadi uppercase.",
     "useCase": "Untuk kode produk, kode kota, atau format tegas.",
     "analogy": "Kayak menyuruh semua huruf bicara keras.",
-    "simpleExample": "Contoh pola DBCS. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti syntax DBCS.",
+    "simpleExample": "Contoh pola DBCS. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti format DBCS.",
     "exampleFormula": "=DBCS(A2)",
-    "exampleMeaning": "Contoh pola DBCS. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti syntax DBCS.",
+    "exampleMeaning": "Contoh pola DBCS. Prinsipnya mirip UPPER, tapi nama function dan detail argumennya mengikuti format DBCS.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "DOLLAR": {
@@ -4837,9 +4837,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola DOLLAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax DOLLAR.",
+    "simpleExample": "Contoh pola DOLLAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format DOLLAR.",
     "exampleFormula": "=DOLLAR(A2)",
-    "exampleMeaning": "Contoh pola DOLLAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax DOLLAR.",
+    "exampleMeaning": "Contoh pola DOLLAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format DOLLAR.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "EXACT": {
@@ -4847,9 +4847,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengecek satu kondisi. Kalau benar, keluarkan hasil A. Kalau salah, keluarkan hasil B.",
     "useCase": "Untuk status Lulus/Tidak Lulus, Bonus/Tidak Bonus, atau Aman/Tidak Aman.",
     "analogy": "Kayak aturan sederhana: kalau nilai minimal 75 maka Lulus, kalau tidak maka Tidak Lulus.",
-    "simpleExample": "Contoh pola EXACT. Prinsipnya mirip IF, tapi nama function dan detail argumennya mengikuti syntax EXACT.",
+    "simpleExample": "Contoh pola EXACT. Prinsipnya mirip IF, tapi nama function dan detail argumennya mengikuti format EXACT.",
     "exampleFormula": "=EXACT(A2)",
-    "exampleMeaning": "Contoh pola EXACT. Prinsipnya mirip IF, tapi nama function dan detail argumennya mengikuti syntax EXACT.",
+    "exampleMeaning": "Contoh pola EXACT. Prinsipnya mirip IF, tapi nama function dan detail argumennya mengikuti format EXACT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FIND": {
@@ -4867,9 +4867,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel memberi tahu teks yang dicari mulai di karakter ke berapa.",
     "useCase": "Untuk menemukan posisi simbol atau kata tertentu.",
     "analogy": "Kayak mencari posisi huruf tertentu di kalimat, tapi A dan a dianggap beda.",
-    "simpleExample": "Contoh pola FINDB. Prinsipnya mirip FIND, tapi nama function dan detail argumennya mengikuti syntax FINDB.",
+    "simpleExample": "Contoh pola FINDB. Prinsipnya mirip FIND, tapi nama function dan detail argumennya mengikuti format FINDB.",
     "exampleFormula": "=FINDB(A2)",
-    "exampleMeaning": "Contoh pola FINDB. Prinsipnya mirip FIND, tapi nama function dan detail argumennya mengikuti syntax FINDB.",
+    "exampleMeaning": "Contoh pola FINDB. Prinsipnya mirip FIND, tapi nama function dan detail argumennya mengikuti format FINDB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "FIXED": {
@@ -4877,9 +4877,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola FIXED. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax FIXED.",
+    "simpleExample": "Contoh pola FIXED. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format FIXED.",
     "exampleFormula": "=FIXED(A2)",
-    "exampleMeaning": "Contoh pola FIXED. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax FIXED.",
+    "exampleMeaning": "Contoh pola FIXED. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format FIXED.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LEFT": {
@@ -4897,9 +4897,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengambil beberapa huruf pertama dari sebuah teks.",
     "useCase": "Untuk mengambil kode depan, inisial, atau prefix.",
     "analogy": "Kayak menggunting bagian awal tulisan.",
-    "simpleExample": "Contoh pola LEFTB. Prinsipnya mirip LEFT, tapi nama function dan detail argumennya mengikuti syntax LEFTB.",
+    "simpleExample": "Contoh pola LEFTB. Prinsipnya mirip LEFT, tapi nama function dan detail argumennya mengikuti format LEFTB.",
     "exampleFormula": "=LEFTB(A2)",
-    "exampleMeaning": "Contoh pola LEFTB. Prinsipnya mirip LEFT, tapi nama function dan detail argumennya mengikuti syntax LEFTB.",
+    "exampleMeaning": "Contoh pola LEFTB. Prinsipnya mirip LEFT, tapi nama function dan detail argumennya mengikuti format LEFTB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LEN": {
@@ -4917,9 +4917,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menghitung semua huruf, angka, spasi, dan simbol dalam teks.",
     "useCase": "Untuk cek panjang kode, nomor invoice, atau validasi input.",
     "analogy": "Kayak menghitung jumlah huruf dalam nama.",
-    "simpleExample": "Contoh pola LENB. Prinsipnya mirip LEN, tapi nama function dan detail argumennya mengikuti syntax LENB.",
+    "simpleExample": "Contoh pola LENB. Prinsipnya mirip LEN, tapi nama function dan detail argumennya mengikuti format LENB.",
     "exampleFormula": "=LENB(A2)",
-    "exampleMeaning": "Contoh pola LENB. Prinsipnya mirip LEN, tapi nama function dan detail argumennya mengikuti syntax LENB.",
+    "exampleMeaning": "Contoh pola LENB. Prinsipnya mirip LEN, tapi nama function dan detail argumennya mengikuti format LENB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "LOWER": {
@@ -4947,9 +4947,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mulai dari posisi tertentu lalu mengambil sejumlah karakter.",
     "useCase": "Untuk mengambil bagian tengah kode produk atau invoice.",
     "analogy": "Kayak mengambil potongan teks dari tengah kalimat.",
-    "simpleExample": "Contoh pola MIDB. Prinsipnya mirip MID, tapi nama function dan detail argumennya mengikuti syntax MIDB.",
+    "simpleExample": "Contoh pola MIDB. Prinsipnya mirip MID, tapi nama function dan detail argumennya mengikuti format MIDB.",
     "exampleFormula": "=MIDB(A2)",
-    "exampleMeaning": "Contoh pola MIDB. Prinsipnya mirip MID, tapi nama function dan detail argumennya mengikuti syntax MIDB.",
+    "exampleMeaning": "Contoh pola MIDB. Prinsipnya mirip MID, tapi nama function dan detail argumennya mengikuti format MIDB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "NUMBERVALUE": {
@@ -4997,9 +4997,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mulai dari posisi tertentu, menghapus sejumlah karakter, lalu menggantinya.",
     "useCase": "Untuk mengganti bagian kode atau nomor.",
     "analogy": "Kayak menimpa bagian tengah nomor seri.",
-    "simpleExample": "Contoh pola REPLACEB. Prinsipnya mirip REPLACE, tapi nama function dan detail argumennya mengikuti syntax REPLACEB.",
+    "simpleExample": "Contoh pola REPLACEB. Prinsipnya mirip REPLACE, tapi nama function dan detail argumennya mengikuti format REPLACEB.",
     "exampleFormula": "=REPLACEB(A2)",
-    "exampleMeaning": "Contoh pola REPLACEB. Prinsipnya mirip REPLACE, tapi nama function dan detail argumennya mengikuti syntax REPLACEB.",
+    "exampleMeaning": "Contoh pola REPLACEB. Prinsipnya mirip REPLACE, tapi nama function dan detail argumennya mengikuti format REPLACEB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "REPT": {
@@ -5007,9 +5007,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel menempelkan isi beberapa cell menjadi satu teks.",
     "useCase": "Untuk gabung nama depan dan belakang, kode, atau alamat.",
     "analogy": "Kayak menyambung beberapa potongan kata menjadi satu kalimat.",
-    "simpleExample": "Contoh pola REPT. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti syntax REPT.",
+    "simpleExample": "Contoh pola REPT. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti format REPT.",
     "exampleFormula": "=REPT(A2)",
-    "exampleMeaning": "Contoh pola REPT. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti syntax REPT.",
+    "exampleMeaning": "Contoh pola REPT. Prinsipnya mirip CONCAT, tapi nama function dan detail argumennya mengikuti format REPT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "RIGHT": {
@@ -5027,9 +5027,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mengambil beberapa huruf terakhir dari sebuah teks.",
     "useCase": "Untuk mengambil kode belakang, nomor akhir, atau suffix.",
     "analogy": "Kayak menggunting bagian akhir tulisan.",
-    "simpleExample": "Contoh pola RIGHTB. Prinsipnya mirip RIGHT, tapi nama function dan detail argumennya mengikuti syntax RIGHTB.",
+    "simpleExample": "Contoh pola RIGHTB. Prinsipnya mirip RIGHT, tapi nama function dan detail argumennya mengikuti format RIGHTB.",
     "exampleFormula": "=RIGHTB(A2)",
-    "exampleMeaning": "Contoh pola RIGHTB. Prinsipnya mirip RIGHT, tapi nama function dan detail argumennya mengikuti syntax RIGHTB.",
+    "exampleMeaning": "Contoh pola RIGHTB. Prinsipnya mirip RIGHT, tapi nama function dan detail argumennya mengikuti format RIGHTB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SEARCH": {
@@ -5047,9 +5047,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel mencari teks dan memberi tahu posisinya.",
     "useCase": "Untuk mencari kata atau simbol dengan lebih santai.",
     "analogy": "Kayak fitur find biasa yang tidak peduli huruf besar/kecil.",
-    "simpleExample": "Contoh pola SEARCHB. Prinsipnya mirip SEARCH, tapi nama function dan detail argumennya mengikuti syntax SEARCHB.",
+    "simpleExample": "Contoh pola SEARCHB. Prinsipnya mirip SEARCH, tapi nama function dan detail argumennya mengikuti format SEARCHB.",
     "exampleFormula": "=SEARCHB(A2)",
-    "exampleMeaning": "Contoh pola SEARCHB. Prinsipnya mirip SEARCH, tapi nama function dan detail argumennya mengikuti syntax SEARCHB.",
+    "exampleMeaning": "Contoh pola SEARCHB. Prinsipnya mirip SEARCH, tapi nama function dan detail argumennya mengikuti format SEARCHB.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "SUBSTITUTE": {
@@ -5067,9 +5067,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola T. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax T.",
+    "simpleExample": "Contoh pola T. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format T.",
     "exampleFormula": "=T(A2)",
-    "exampleMeaning": "Contoh pola T. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax T.",
+    "exampleMeaning": "Contoh pola T. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format T.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "TEXT": {
@@ -5127,9 +5127,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola UNICHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax UNICHAR.",
+    "simpleExample": "Contoh pola UNICHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format UNICHAR.",
     "exampleFormula": "=UNICHAR(A2)",
-    "exampleMeaning": "Contoh pola UNICHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax UNICHAR.",
+    "exampleMeaning": "Contoh pola UNICHAR. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format UNICHAR.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "UNICODE": {
@@ -5137,9 +5137,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola UNICODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax UNICODE.",
+    "simpleExample": "Contoh pola UNICODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format UNICODE.",
     "exampleFormula": "=UNICODE(A2)",
-    "exampleMeaning": "Contoh pola UNICODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax UNICODE.",
+    "exampleMeaning": "Contoh pola UNICODE. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format UNICODE.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "UPPER": {
@@ -5167,9 +5167,9 @@ export const formulaLearningContent = {
     "simpleLogic": "Excel tetap memakai nilainya, tapi menampilkan bentuk teks sesuai format yang kamu pilih.",
     "useCase": "Untuk format tanggal, rupiah, persen, atau kode.",
     "analogy": "Kayak memberi baju format ke angka agar tampil lebih rapi.",
-    "simpleExample": "Contoh pola VALUETOTEXT. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax VALUETOTEXT.",
+    "simpleExample": "Contoh pola VALUETOTEXT. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format VALUETOTEXT.",
     "exampleFormula": "=VALUETOTEXT(A2)",
-    "exampleMeaning": "Contoh pola VALUETOTEXT. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti syntax VALUETOTEXT.",
+    "exampleMeaning": "Contoh pola VALUETOTEXT. Prinsipnya mirip TEXT, tapi nama function dan detail argumennya mengikuti format VALUETOTEXT.",
     "beginnerTip": "Jangan mulai dari hafalan. Baca soalnya, tentukan bagian yang dicari, pilih range/cell yang tepat, lalu susun argumennya pelan-pelan."
   },
   "ENCODEURL": {

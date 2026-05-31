@@ -666,7 +666,7 @@ export const curatedExercises = {
     "tableKey": "sales",
     "activeCell": "B2",
     "question": "Hitung total penjualan dari kolom Total Penjualan.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh SUM, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh SUM, lalu susun argumennya sesuai format.",
     "expectedFormula": "=SUM(E2:E16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -686,14 +686,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2:E16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "SUM sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "SUM adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:E16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -710,7 +710,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung rata-rata nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh AVERAGE, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh AVERAGE, lalu susun argumennya sesuai format.",
     "expectedFormula": "=AVERAGE(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -730,14 +730,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "AVERAGE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "AVERAGE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -754,7 +754,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung berapa banyak nilai angka di kolom Nilai.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh COUNT, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh COUNT, lalu susun argumennya sesuai format.",
     "expectedFormula": "=COUNT(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -774,14 +774,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "COUNT sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "COUNT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -798,7 +798,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung berapa banyak nama siswa yang terisi.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh COUNTA, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh COUNTA, lalu susun argumennya sesuai format.",
     "expectedFormula": "=COUNTA(A2:A16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -818,14 +818,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2:A16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "COUNTA sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "COUNTA adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2:A16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -842,7 +842,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung berapa cell kosong di kolom Status.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh COUNTBLANK, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh COUNTBLANK, lalu susun argumennya sesuai format.",
     "expectedFormula": "=COUNTBLANK(E2:E16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -862,14 +862,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2:E16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "COUNTBLANK sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "COUNTBLANK adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:E16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -886,7 +886,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari nilai paling kecil.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MIN, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MIN, lalu susun argumennya sesuai format.",
     "expectedFormula": "=MIN(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -906,14 +906,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "MIN sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "MIN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -930,7 +930,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari nilai paling besar.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MAX, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MAX, lalu susun argumennya sesuai format.",
     "expectedFormula": "=MAX(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -950,14 +950,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "MAX sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "MAX adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -974,7 +974,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari nilai terbesar ke-2.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh LARGE, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh LARGE, lalu susun argumennya sesuai format.",
     "expectedFormula": "=LARGE(D2:D16,2)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -994,14 +994,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "LARGE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "LARGE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1018,7 +1018,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari nilai terkecil ke-2.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh SMALL, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh SMALL, lalu susun argumennya sesuai format.",
     "expectedFormula": "=SMALL(D2:D16,2)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1038,14 +1038,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "SMALL sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "SMALL adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1062,7 +1062,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari nilai tengah dari data nilai.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MEDIAN, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MEDIAN, lalu susun argumennya sesuai format.",
     "expectedFormula": "=MEDIAN(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1082,14 +1082,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "MEDIAN sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "MEDIAN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1106,7 +1106,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari nilai yang paling sering muncul.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MODE, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh MODE, lalu susun argumennya sesuai format.",
     "expectedFormula": "=MODE(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1126,14 +1126,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "MODE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "MODE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1150,7 +1150,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung standar deviasi sampel dari nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh STDEV.S, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh STDEV.S, lalu susun argumennya sesuai format.",
     "expectedFormula": "=STDEV.S(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1170,14 +1170,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "STDEV.S sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "STDEV.S adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1194,7 +1194,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung standar deviasi populasi dari nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh STDEV.P, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh STDEV.P, lalu susun argumennya sesuai format.",
     "expectedFormula": "=STDEV.P(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1214,14 +1214,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "STDEV.P sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "STDEV.P adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1238,7 +1238,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung varians sampel dari nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh VAR.S, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh VAR.S, lalu susun argumennya sesuai format.",
     "expectedFormula": "=VAR.S(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1258,14 +1258,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "VAR.S sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "VAR.S adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1282,7 +1282,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Hitung varians populasi dari nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh VAR.P, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh VAR.P, lalu susun argumennya sesuai format.",
     "expectedFormula": "=VAR.P(D2:D16)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1302,14 +1302,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "VAR.P sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "VAR.P adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1326,7 +1326,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari ranking nilai Agus dibanding semua siswa, nilai besar ranking atas.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh RANK, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh RANK, lalu susun argumennya sesuai format.",
     "expectedFormula": "=RANK(D2,D2:D16,0)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1348,14 +1348,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2, D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "RANK sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "RANK adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2, D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1372,7 +1372,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari ranking nilai Agus dengan RANK.EQ.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh RANK.EQ, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh RANK.EQ, lalu susun argumennya sesuai format.",
     "expectedFormula": "=RANK.EQ(D2,D2:D16,0)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1394,14 +1394,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2, D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "RANK.EQ sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "RANK.EQ adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2, D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1418,7 +1418,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari percentile 90% dari nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh PERCENTILE, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh PERCENTILE, lalu susun argumennya sesuai format.",
     "expectedFormula": "=PERCENTILE(D2:D16,0.9)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1438,14 +1438,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "PERCENTILE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "PERCENTILE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1462,7 +1462,7 @@ export const curatedExercises = {
     "tableKey": "students",
     "activeCell": "B2",
     "question": "Cari kuartil pertama dari nilai siswa.",
-    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh QUARTILE, lalu susun argumennya sesuai syntax.",
+    "logicPrompt": "Coba pikir dulu input apa yang diminta oleh QUARTILE, lalu susun argumennya sesuai format.",
     "expectedFormula": "=QUARTILE(D2:D16,1)",
     "acceptedFormulas": [],
     "requiredRefs": [
@@ -1482,14 +1482,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "QUARTILE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "QUARTILE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1538,7 +1538,7 @@ export const curatedExercises = {
       "SUMIF adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B16, E2:E16.",
       "Kriteria/parameter penting: Digital.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1590,7 +1590,7 @@ export const curatedExercises = {
       "SUMIFS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:E16, B2:B16, C2:C16.",
       "Kriteria/parameter penting: Digital, Jakarta.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1639,7 +1639,7 @@ export const curatedExercises = {
       "AVERAGEIF adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B16, D2:D16.",
       "Kriteria/parameter penting: Perempuan.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1691,7 +1691,7 @@ export const curatedExercises = {
       "AVERAGEIFS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16, B2:B16, C2:C16.",
       "Kriteria/parameter penting: Perempuan, X-A.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1738,7 +1738,7 @@ export const curatedExercises = {
       "COUNTIF adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B16.",
       "Kriteria/parameter penting: Perempuan.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1788,7 +1788,7 @@ export const curatedExercises = {
       "COUNTIFS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B16, C2:C16.",
       "Kriteria/parameter penting: Perempuan, X-A.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1837,7 +1837,7 @@ export const curatedExercises = {
       "IF adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: 75, Lulus, Tidak Lulus.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1888,7 +1888,7 @@ export const curatedExercises = {
       "IFS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: 90, 75, A, B, C.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1938,7 +1938,7 @@ export const curatedExercises = {
       "AND adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2, E2.",
       "Kriteria/parameter penting: 75, Lulus.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -1988,7 +1988,7 @@ export const curatedExercises = {
       "OR adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2, C2.",
       "Kriteria/parameter penting: 75, X-A.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2035,7 +2035,7 @@ export const curatedExercises = {
       "NOT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
       "Kriteria/parameter penting: Lulus.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2082,7 +2082,7 @@ export const curatedExercises = {
       "IFERROR adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
       "Kriteria/parameter penting: Cek formula.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2133,7 +2133,7 @@ export const curatedExercises = {
       "IFNA adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:E8, F2:F8.",
       "Kriteria/parameter penting: P-010, Tidak ditemukan.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2184,7 +2184,7 @@ export const curatedExercises = {
       "SWITCH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2.",
       "Kriteria/parameter penting: X-A, Kelas A, X-B, Kelas B, Lainnya.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2217,13 +2217,13 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Cari kolom atau range yang jadi bahan utama.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "TRUE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "TRUE adalah fungsi utama yang dipakai sesuai soal.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2256,13 +2256,13 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Cari kolom atau range yang jadi bahan utama.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "FALSE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "FALSE adalah fungsi utama yang dipakai sesuai soal.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2311,7 +2311,7 @@ export const curatedExercises = {
       "VLOOKUP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, E2:I8.",
       "Kriteria/parameter penting: FALSE.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2359,7 +2359,7 @@ export const curatedExercises = {
       "HLOOKUP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:H4.",
       "Kriteria/parameter penting: P-003, FALSE.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2410,7 +2410,7 @@ export const curatedExercises = {
       "XLOOKUP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, E2:E8, F2:F8.",
       "Kriteria/parameter penting: Tidak ada.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2459,7 +2459,7 @@ export const curatedExercises = {
       "LOOKUP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:E8, F2:F8.",
       "Kriteria/parameter penting: P-003.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2506,7 +2506,7 @@ export const curatedExercises = {
       "INDEX adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: F2:F8.",
       "Kriteria/parameter penting: 3.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2555,7 +2555,7 @@ export const curatedExercises = {
       "MATCH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, E2:E8.",
       "Kriteria/parameter penting: 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2607,7 +2607,7 @@ export const curatedExercises = {
       "INDEX MATCH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: F2:F8, A2, E2:E8.",
       "Kriteria/parameter penting: 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2646,14 +2646,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2, E2:E8.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "XMATCH sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "XMATCH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, E2:E8.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2704,7 +2704,7 @@ export const curatedExercises = {
       "CHOOSE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: F2, G2, H2.",
       "Kriteria/parameter penting: 2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2741,14 +2741,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ROW sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ROW adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2785,14 +2785,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: G2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "COLUMN sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "COLUMN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: G2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2829,14 +2829,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2:I8.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ROWS sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ROWS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:I8.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2873,14 +2873,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2:I8.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "COLUMNS sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "COLUMNS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2:I8.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2923,7 +2923,7 @@ export const curatedExercises = {
     "formulaParts": [
       "ADDRESS adalah fungsi utama yang dipakai sesuai soal.",
       "Kriteria/parameter penting: 2, 7.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -2965,7 +2965,7 @@ export const curatedExercises = {
     "formulaParts": [
       "INDIRECT adalah fungsi utama yang dipakai sesuai soal.",
       "Kriteria/parameter penting: G2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3013,7 +3013,7 @@ export const curatedExercises = {
       "OFFSET adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
       "Kriteria/parameter penting: 2, 1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3050,14 +3050,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "FORMULATEXT sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "FORMULATEXT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3104,7 +3104,7 @@ export const curatedExercises = {
       "HYPERLINK adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: F2.",
       "Kriteria/parameter penting: Buka Link.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3153,7 +3153,7 @@ export const curatedExercises = {
       "FILTER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2:E16, C2:C16.",
       "Kriteria/parameter penting: Jakarta.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3201,7 +3201,7 @@ export const curatedExercises = {
       "SORT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2:E16.",
       "Kriteria/parameter penting: 4, -1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3250,7 +3250,7 @@ export const curatedExercises = {
       "SORTBY adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2:E16, D2:D16.",
       "Kriteria/parameter penting: -1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3287,14 +3287,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2:B16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "UNIQUE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "UNIQUE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3331,14 +3331,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A1:E1.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "TRANSPOSE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "TRANSPOSE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:E1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3386,7 +3386,7 @@ export const curatedExercises = {
       "CHOOSECOLS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:E16.",
       "Kriteria/parameter penting: 1, 4.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3435,7 +3435,7 @@ export const curatedExercises = {
       "CHOOSEROWS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:E16.",
       "Kriteria/parameter penting: 1, 2, 3.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3482,7 +3482,7 @@ export const curatedExercises = {
       "TAKE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:E16.",
       "Kriteria/parameter penting: 5.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3529,7 +3529,7 @@ export const curatedExercises = {
       "DROP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:E16.",
       "Kriteria/parameter penting: 1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3568,14 +3568,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A1:E8, A9:E16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "VSTACK sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "VSTACK adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:E8, A9:E16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3614,14 +3614,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A1:B16, D1:E16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "HSTACK sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "HSTACK adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A1:B16, D1:E16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3668,7 +3668,7 @@ export const curatedExercises = {
       "TEXT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2.",
       "Kriteria/parameter penting: 0000.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3715,7 +3715,7 @@ export const curatedExercises = {
       "LEFT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 3.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3762,7 +3762,7 @@ export const curatedExercises = {
       "RIGHT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2.",
       "Kriteria/parameter penting: 2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3810,7 +3810,7 @@ export const curatedExercises = {
       "MID adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 5, 3.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3847,14 +3847,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "LEN sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "LEN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3891,14 +3891,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "TRIM sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "TRIM adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3935,14 +3935,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "CLEAN sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "CLEAN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -3979,14 +3979,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "LOWER sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "LOWER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4023,14 +4023,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "UPPER sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "UPPER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4067,14 +4067,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "PROPER sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "PROPER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4123,7 +4123,7 @@ export const curatedExercises = {
       "CONCAT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, B2.",
       "Kriteria/parameter penting:  - .",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4172,7 +4172,7 @@ export const curatedExercises = {
       "CONCATENATE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, B2.",
       "Kriteria/parameter penting:  - .",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4221,7 +4221,7 @@ export const curatedExercises = {
       "TEXTJOIN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2, B2.",
       "Kriteria/parameter penting: TRUE.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4268,7 +4268,7 @@ export const curatedExercises = {
       "TEXTSPLIT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: @.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4315,7 +4315,7 @@ export const curatedExercises = {
       "TEXTBEFORE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: @.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4362,7 +4362,7 @@ export const curatedExercises = {
       "TEXTAFTER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: @.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4409,7 +4409,7 @@ export const curatedExercises = {
       "FIND adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: @.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4456,7 +4456,7 @@ export const curatedExercises = {
       "SEARCH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: gmail.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4504,7 +4504,7 @@ export const curatedExercises = {
       "SUBSTITUTE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: gmail.com, outlook.com.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4553,7 +4553,7 @@ export const curatedExercises = {
       "REPLACE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 1, 3, SKU.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4590,14 +4590,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: C2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "VALUE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "VALUE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4634,14 +4634,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: C2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "NUMBERVALUE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "NUMBERVALUE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4685,7 +4685,7 @@ export const curatedExercises = {
     "formulaParts": [
       "DATE adalah fungsi utama yang dipakai sesuai soal.",
       "Kriteria/parameter penting: 2026, 5, 30.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4722,14 +4722,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "DAY sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "DAY adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4766,14 +4766,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "MONTH sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "MONTH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4810,14 +4810,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "YEAR sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "YEAR adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4850,13 +4850,13 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Cari kolom atau range yang jadi bahan utama.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "TODAY sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "TODAY adalah fungsi utama yang dipakai sesuai soal.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4889,13 +4889,13 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Cari kolom atau range yang jadi bahan utama.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "NOW sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "NOW adalah fungsi utama yang dipakai sesuai soal.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4944,7 +4944,7 @@ export const curatedExercises = {
       "DATEDIF adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2, C2.",
       "Kriteria/parameter penting: d.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -4983,14 +4983,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: C2, B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "DAYS sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "DAYS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2, B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5029,14 +5029,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2, D2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "NETWORKDAYS sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "NETWORKDAYS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2, D2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5085,7 +5085,7 @@ export const curatedExercises = {
       "NETWORKDAYS.INTL adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2, D2.",
       "Kriteria/parameter penting: 1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5132,7 +5132,7 @@ export const curatedExercises = {
       "WORKDAY adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 5.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5180,7 +5180,7 @@ export const curatedExercises = {
       "WORKDAY.INTL adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 5, 1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5227,7 +5227,7 @@ export const curatedExercises = {
       "EDATE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 1.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5274,7 +5274,7 @@ export const curatedExercises = {
       "EOMONTH adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5311,14 +5311,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "HOUR sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "HOUR adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5355,14 +5355,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "MINUTE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "MINUTE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5399,14 +5399,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "SECOND sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "SECOND adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5450,7 +5450,7 @@ export const curatedExercises = {
     "formulaParts": [
       "TIME adalah fungsi utama yang dipakai sesuai soal.",
       "Kriteria/parameter penting: 9, 30, 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5487,14 +5487,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ABS sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ABS adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5541,7 +5541,7 @@ export const curatedExercises = {
       "ROUND adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5588,7 +5588,7 @@ export const curatedExercises = {
       "ROUNDUP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5635,7 +5635,7 @@ export const curatedExercises = {
       "ROUNDDOWN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 0.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5672,14 +5672,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "INT sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "INT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5726,7 +5726,7 @@ export const curatedExercises = {
       "MOD adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 3.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5773,7 +5773,7 @@ export const curatedExercises = {
       "CEILING adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 50.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5820,7 +5820,7 @@ export const curatedExercises = {
       "FLOOR adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
       "Kriteria/parameter penting: 50.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5867,7 +5867,7 @@ export const curatedExercises = {
       "POWER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
       "Kriteria/parameter penting: 2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5904,14 +5904,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "SQRT sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "SQRT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5944,13 +5944,13 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Cari kolom atau range yang jadi bahan utama.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "RAND sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "RAND adalah fungsi utama yang dipakai sesuai soal.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -5993,7 +5993,7 @@ export const curatedExercises = {
     "formulaParts": [
       "RANDBETWEEN adalah fungsi utama yang dipakai sesuai soal.",
       "Kriteria/parameter penting: 1, 100.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6040,7 +6040,7 @@ export const curatedExercises = {
       "SUBTOTAL adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B6.",
       "Kriteria/parameter penting: 9.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6088,7 +6088,7 @@ export const curatedExercises = {
       "AGGREGATE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B6.",
       "Kriteria/parameter penting: 9, 6.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6127,14 +6127,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2:D16, E2:E16.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "SUMPRODUCT sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "SUMPRODUCT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16, E2:E16.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6183,7 +6183,7 @@ export const curatedExercises = {
       "LET adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
       "Kriteria/parameter penting: total.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6233,7 +6233,7 @@ export const curatedExercises = {
       "LAMBDA adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
       "Kriteria/parameter penting: x, 10.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6284,7 +6284,7 @@ export const curatedExercises = {
       "MAP adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
       "Kriteria/parameter penting: LAMBDA, x, 2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6336,7 +6336,7 @@ export const curatedExercises = {
       "REDUCE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
       "Kriteria/parameter penting: 0, LAMBDA, a, b.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6388,7 +6388,7 @@ export const curatedExercises = {
       "SCAN adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
       "Kriteria/parameter penting: 0, LAMBDA, a, b.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6439,7 +6439,7 @@ export const curatedExercises = {
       "BYROW adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:D16.",
       "Kriteria/parameter penting: LAMBDA, row, 2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6490,7 +6490,7 @@ export const curatedExercises = {
       "BYCOL adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2:E16.",
       "Kriteria/parameter penting: LAMBDA, col, SUM.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6537,7 +6537,7 @@ export const curatedExercises = {
     "formulaParts": [
       "MAKEARRAY adalah fungsi utama yang dipakai sesuai soal.",
       "Kriteria/parameter penting: 3, LAMBDA, r, c.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6574,14 +6574,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: C2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ISBLANK sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ISBLANK adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: C2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6618,14 +6618,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ISNUMBER sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ISNUMBER adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6662,14 +6662,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ISTEXT sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ISTEXT adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6706,14 +6706,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ISERROR sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ISERROR adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6750,14 +6750,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: D2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ISNA sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ISNA adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: D2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6794,14 +6794,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: E2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "ISFORMULA sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "ISFORMULA adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: E2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6838,14 +6838,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "TYPE sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "TYPE adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6882,14 +6882,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A2.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "N sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "N adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6936,7 +6936,7 @@ export const curatedExercises = {
       "CELL adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A2.",
       "Kriteria/parameter penting: address.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -6977,14 +6977,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: A7, B2:B6, A2:A6.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "FORECAST sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "FORECAST adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: A7, B2:B6, A2:A6.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
@@ -7025,14 +7025,14 @@ export const curatedExercises = {
     "hints": [
       "Tentukan dulu hasil akhir yang diminta soal.",
       "Range yang perlu kamu perhatikan: B2:B6, A2:A6, A7.",
-      "Cocokkan urutan argumen dengan syntax rumusnya.",
+      "Cocokkan urutan argumen dengan format rumusnya.",
       "Cek separator sesuai mode Excel yang kamu pilih."
     ],
     "successExplanation": "TREND sudah dipakai sesuai konteks soal. Range, kriteria, dan struktur argumennya sudah nyambung.",
     "formulaParts": [
       "TREND adalah fungsi utama yang dipakai sesuai soal.",
       "Range/cell penting: B2:B6, A2:A6, A7.",
-      "Urutan argumen harus mengikuti syntax, jangan cuma hafal bentuk rumusnya."
+      "Urutan argumen harus mengikuti format, jangan cuma hafal bentuk rumusnya."
     ],
     "commonMistakes": [
       "Lupa tanda = di awal rumus.",
