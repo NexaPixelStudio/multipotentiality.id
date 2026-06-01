@@ -7,7 +7,6 @@ export default function HintBox({ hints = [], mode, hintIndex, onNextHint, onRes
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Petunjuk Bertahap</p>
-          <h3 className="text-lg font-black text-coach-ink dark:text-white">Jangan hafalin dulu, pahami dulu alurnya.</h3>
         </div>
         <div className="flex gap-2">
           <button
