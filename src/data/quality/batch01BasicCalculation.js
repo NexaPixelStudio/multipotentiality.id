@@ -62,21 +62,21 @@ const salesTable = {
 };
 
 const formulaMeta = {
-  sum: { name: 'SUM', format: '=SUM(number1; [number2]; ...)' },
-  average: { name: 'AVERAGE', format: '=AVERAGE(number1; [number2]; ...)' },
-  count: { name: 'COUNT', format: '=COUNT(value1; [value2]; ...)' },
-  counta: { name: 'COUNTA', format: '=COUNTA(value1; [value2]; ...)' },
+  sum: { name: 'SUM', format: '=SUM(number1; [number2]; ..)' },
+  average: { name: 'AVERAGE', format: '=AVERAGE(number1; [number2]; ..)' },
+  count: { name: 'COUNT', format: '=COUNT(value1; [value2]; ..)' },
+  counta: { name: 'COUNTA', format: '=COUNTA(value1; [value2]; ..)' },
   countblank: { name: 'COUNTBLANK', format: '=COUNTBLANK(range)' },
-  min: { name: 'MIN', format: '=MIN(number1; [number2]; ...)' },
-  max: { name: 'MAX', format: '=MAX(number1; [number2]; ...)' },
+  min: { name: 'MIN', format: '=MIN(number1; [number2]; ..)' },
+  max: { name: 'MAX', format: '=MAX(number1; [number2]; ..)' },
   large: { name: 'LARGE', format: '=LARGE(array; k)' },
   small: { name: 'SMALL', format: '=SMALL(array; k)' },
   sumif: { name: 'SUMIF', format: '=SUMIF(range; criteria; [sum_range])' },
-  sumifs: { name: 'SUMIFS', format: '=SUMIFS(sum_range; criteria_range1; criteria1; [criteria_range2]; [criteria2]; ...)' },
+  sumifs: { name: 'SUMIFS', format: '=SUMIFS(sum_range; criteria_range1; criteria1; [criteria_range2]; [criteria2]; ..)' },
   averageif: { name: 'AVERAGEIF', format: '=AVERAGEIF(range; criteria; [average_range])' },
-  averageifs: { name: 'AVERAGEIFS', format: '=AVERAGEIFS(average_range; criteria_range1; criteria1; [criteria_range2]; [criteria2]; ...)' },
+  averageifs: { name: 'AVERAGEIFS', format: '=AVERAGEIFS(average_range; criteria_range1; criteria1; [criteria_range2]; [criteria2]; ..)' },
   countif: { name: 'COUNTIF', format: '=COUNTIF(range; criteria)' },
-  countifs: { name: 'COUNTIFS', format: '=COUNTIFS(criteria_range1; criteria1; [criteria_range2]; [criteria2]; ...)' }
+  countifs: { name: 'COUNTIFS', format: '=COUNTIFS(criteria_range1; criteria1; [criteria_range2]; [criteria2]; ..)' }
 };
 
 const labelByIndex = ['Dasar', 'Range Lain', 'Syarat', 'Multi Data', 'Validasi', 'Tantangan'];
@@ -141,7 +141,7 @@ function buildLogicPrompt(id, config = {}) {
     if (refs.length > 1) {
       return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk menjumlahkan angka. Pilih ${refs.join(' dan ')} karena dua range itu sama-sama menjadi angka yang harus ditotal. Jangan pilih kolom lain yang tidak diminta soal.`;
     }
-    return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk menjumlahkan angka. Pilih ${firstRef} karena range itu berisi angka yang perlu ditotal. Jangan ikutkan header tabel atau range di luar data yang ditanya.`;
+    return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk menjumlahkan angka. Pilih ${firstRef} karena range itu berisi angka yang perlu ditotal.`;
   }
 
   if (id === 'average') {
@@ -153,7 +153,7 @@ function buildLogicPrompt(id, config = {}) {
   }
 
   if (id === 'max') {
-    return `Pertanyaan ini meminta ${question}. ${functionName} mencari angka paling besar dari range yang dipilih. Pilih ${firstRef} karena range itu berisi angka yang sedang dibandingkan. Jangan pilih header atau kolom yang bukan bagian dari pertanyaan.`;
+    return `Pertanyaan ini meminta ${question}. ${functionName} mencari angka paling besar dari range yang dipilih. Pilih ${firstRef} karena range itu berisi angka yang sedang dibandingkan.`;
   }
 
   if (id === 'large' || id === 'small') {
@@ -265,7 +265,7 @@ function makeExercise(id, levelIndex, config) {
 
 const nRangeHints = (goal, range, extra = '') => [
   `Hint 1: Soalnya mencari ${goal}. Jadi yang perlu kamu cari dulu adalah kolom angka yang relevan, bukan semua kolom di tabel.`,
-  `Hint 2: Select ${range} karena range itu berisi angka yang diminta soal. Jangan ikutkan header di baris 1.`,
+  `Hint 2: Select ${range} karena range itu berisi angka yang diminta soal.`,
   `Hint 3: Masukkan range itu sebagai argumen utama. Untuk data yang berurutan, satu range sudah cukup.`,
   extra || 'Hint 4: Cek lagi apakah range yang kamu pilih benar-benar menjawab pertanyaan, bukan hanya terlihat berisi angka.',
   'Hint 5: Setelah range masuk, tutup kurung dan tekan Enter untuk cek hasilnya.'
@@ -331,7 +331,7 @@ const exercises = {
   large: [
     { title: 'Dasar', question: 'Berapa penjualan terbesar ke-2 dari seluruh bulan?', logic: 'LARGE mencari angka terbesar berdasarkan urutan. Angka k menentukan peringkat terbesar yang dicari.', expectedFormula: '=LARGE(B2:B13,2)', hints: ['Hint 1: Soalnya mencari penjualan terbesar ke-2, bukan nilai terbesar pertama.', 'Hint 2: Select B2:B13 sebagai range penjualan.', 'Hint 3: Masukkan 2 sebagai k karena yang diminta peringkat terbesar ke-2.', 'Hint 4: Urutan LARGE adalah array dulu, lalu k.', 'Hint 5: Jangan memakai MAX, karena MAX hanya mencari terbesar pertama.'] },
     { title: 'Qty', question: 'Berapa Qty Order terbesar ke-3?', logic: 'Gunakan LARGE pada kolom Qty Order dan isi k dengan 3.', expectedFormula: '=LARGE(C2:C13,3)', hints: ['Hint 1: Soal mencari Qty Order terbesar ke-3.', 'Hint 2: Select C2:C13 sebagai range Qty Order.', 'Hint 3: Masukkan 3 sebagai k.', 'Hint 4: LARGE membaca k sebagai peringkat dari yang paling besar.', 'Hint 5: Jangan pilih kolom Penjualan karena yang ditanya Qty Order.'] },
-    { title: 'Biaya', question: 'Berapa biaya operasional terbesar ke-2?', logic: 'Gunakan LARGE pada kolom Biaya Operasional.', expectedFormula: '=LARGE(D2:D13,2)', hints: ['Hint 1: Soal mencari biaya operasional terbesar ke-2.', 'Hint 2: Select D2:D13.', 'Hint 3: Masukkan 2 sebagai peringkat terbesar.', 'Hint 4: Urutannya array, lalu k.', 'Hint 5: Jangan ikutkan header Biaya Operasional.'] },
+    { title: 'Biaya', question: 'Berapa biaya operasional terbesar ke-2?', logic: 'Gunakan LARGE pada kolom Biaya Operasional.', expectedFormula: '=LARGE(D2:D13,2)', hints: ['Hint 1: Soal mencari biaya operasional terbesar ke-2.', 'Hint 2: Select D2:D13.', 'Hint 3: Masukkan 2 sebagai peringkat terbesar.', 'Hint 4: Urutannya array, lalu k.', 'Hint 5: Gunakan hanya range data biaya operasional yang diminta soal.'] },
     { title: 'Rating', question: 'Berapa rating tertinggi ke-3?', logic: 'Rating tertinggi ke-3 berarti pakai LARGE pada kolom Rating dengan k 3.', expectedFormula: '=LARGE(E2:E13,3)', hints: ['Hint 1: Soal mencari rating tertinggi ke-3.', 'Hint 2: Select E2:E13 sebagai range rating.', 'Hint 3: Masukkan 3 sebagai k.', 'Hint 4: LARGE mengurutkan dari terbesar.', 'Hint 5: Pastikan tidak memakai SMALL karena arahnya berbeda.'] },
     { title: 'Semester 1', question: 'Berapa penjualan terbesar ke-2 dari Januari sampai Juni?', logic: 'Range hanya semester 1, lalu k bernilai 2.', expectedFormula: '=LARGE(B2:B7,2)', hints: ['Hint 1: Fokus hanya Januari sampai Juni.', 'Hint 2: Select B2:B7.', 'Hint 3: Masukkan 2 karena diminta terbesar ke-2.', 'Hint 4: Jangan pilih B2:B13 karena itu seluruh tahun.', 'Hint 5: Cek urutan array dan k.'] },
     { title: 'Tantangan', question: 'Berapa penjualan terbesar ke-4 dari seluruh bulan?', logic: 'Gunakan range seluruh penjualan dengan k 4.', expectedFormula: '=LARGE(B2:B13,4)', hints: ['Hint 1: Soal mencari peringkat terbesar ke-4.', 'Hint 2: Select B2:B13.', 'Hint 3: Masukkan 4 sebagai k.', 'Hint 4: LARGE cocok untuk mencari peringkat dari angka terbesar.', 'Hint 5: Kalau memakai MAX, hasilnya hanya terbesar pertama.'] }
@@ -339,7 +339,7 @@ const exercises = {
   small: [
     { title: 'Dasar', question: 'Berapa penjualan terkecil ke-2 dari seluruh bulan?', logic: 'SMALL mencari angka terkecil berdasarkan urutan. Angka k menentukan peringkat terkecil yang dicari.', expectedFormula: '=SMALL(B2:B13,2)', hints: ['Hint 1: Soalnya mencari penjualan terkecil ke-2.', 'Hint 2: Select B2:B13 sebagai range penjualan.', 'Hint 3: Masukkan 2 sebagai k.', 'Hint 4: SMALL membaca k dari yang paling kecil.', 'Hint 5: Jangan memakai MIN karena MIN hanya mencari terkecil pertama.'] },
     { title: 'Qty', question: 'Berapa Qty Order terkecil ke-3?', logic: 'Gunakan SMALL pada kolom Qty Order dan isi k dengan 3.', expectedFormula: '=SMALL(C2:C13,3)', hints: ['Hint 1: Soal mencari Qty Order terkecil ke-3.', 'Hint 2: Select C2:C13.', 'Hint 3: Masukkan 3 sebagai k.', 'Hint 4: SMALL mengurutkan dari terkecil.', 'Hint 5: Jangan pilih kolom Penjualan karena yang ditanya Qty Order.'] },
-    { title: 'Biaya', question: 'Berapa biaya operasional terkecil ke-2?', logic: 'Gunakan SMALL pada kolom Biaya Operasional.', expectedFormula: '=SMALL(D2:D13,2)', hints: ['Hint 1: Soal mencari biaya operasional terkecil ke-2.', 'Hint 2: Select D2:D13.', 'Hint 3: Masukkan 2 sebagai k.', 'Hint 4: Urutannya array, lalu k.', 'Hint 5: Jangan ikutkan header.'] },
+    { title: 'Biaya', question: 'Berapa biaya operasional terkecil ke-2?', logic: 'Gunakan SMALL pada kolom Biaya Operasional.', expectedFormula: '=SMALL(D2:D13,2)', hints: ['Hint 1: Soal mencari biaya operasional terkecil ke-2.', 'Hint 2: Select D2:D13.', 'Hint 3: Masukkan 2 sebagai k.', 'Hint 4: Urutannya array, lalu k.', 'Hint 5: Gunakan hanya range data yang diminta soal.'] },
     { title: 'Rating', question: 'Berapa rating terendah ke-3?', logic: 'Rating terendah ke-3 berarti pakai SMALL pada kolom Rating dengan k 3.', expectedFormula: '=SMALL(E2:E13,3)', hints: ['Hint 1: Soal mencari rating terendah ke-3.', 'Hint 2: Select E2:E13.', 'Hint 3: Masukkan 3 sebagai k.', 'Hint 4: SMALL mengurutkan dari terkecil.', 'Hint 5: Pastikan tidak memakai LARGE.'] },
     { title: 'Semester 1', question: 'Berapa penjualan terkecil ke-2 dari Januari sampai Juni?', logic: 'Range hanya semester 1, lalu k bernilai 2.', expectedFormula: '=SMALL(B2:B7,2)', hints: ['Hint 1: Fokus hanya Januari sampai Juni.', 'Hint 2: Select B2:B7.', 'Hint 3: Masukkan 2 karena diminta terkecil ke-2.', 'Hint 4: Jangan pilih seluruh tahun.', 'Hint 5: Cek urutan array dan k.'] },
     { title: 'Tantangan', question: 'Berapa penjualan terkecil ke-4 dari seluruh bulan?', logic: 'Gunakan range seluruh penjualan dengan k 4.', expectedFormula: '=SMALL(B2:B13,4)', hints: ['Hint 1: Soal mencari peringkat terkecil ke-4.', 'Hint 2: Select B2:B13.', 'Hint 3: Masukkan 4 sebagai k.', 'Hint 4: SMALL cocok untuk mencari peringkat dari angka terkecil.', 'Hint 5: Kalau memakai MIN, hasilnya hanya terkecil pertama.'] }
