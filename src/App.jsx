@@ -527,6 +527,14 @@ export default function App() {
     return evaluateFormula(answer, table, progressState.separatorMode);
   }, [answer, progressState.separatorMode, table]);
 
+  const liveCellValues = useMemo(() => {
+    const targetCell = exercise?.activeCell || activeCell;
+    if (!answer.trim() || !targetCell || !formulaResult) return {};
+    return {
+      [String(targetCell).toUpperCase()]: formulaResult.displayValue ?? formulaResult.value ?? ''
+    };
+  }, [activeCell, answer, exercise?.activeCell, formulaResult]);
+
   useEffect(() => {
     document.documentElement.classList.toggle('dark', Boolean(progressState.darkMode));
     saveProgress(progressState);
@@ -813,7 +821,8 @@ export default function App() {
           <ExerciseTable
             table={table}
             highlightRanges={exercise.highlightRanges}
-            activeCell={activeCell}
+            activeCell={exercise?.activeCell || activeCell}
+            cellValues={liveCellValues}
             selectedRange={selectedRange}
             onCellClick={setActiveCell}
             onRangeSelected={handleRangeSelected}

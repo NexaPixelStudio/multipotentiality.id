@@ -984,88 +984,88 @@ const financeScenarios = [
 
 
 const ifPracticeRows = [
-  ['Agus', 75, 90, 'Lunas', ''],
-  ['Sinta', 88, 95, 'Lunas', ''],
-  ['Budi', 65, 80, 'Belum', ''],
-  ['Nadia', 92, 98, 'Lunas', ''],
-  ['Raka', 70, 60, 'Belum', ''],
-  ['Maya', 84, 72, 'Lunas', '']
+  ['Agus', 75, 'Laki-laki', ''],
+  ['Sinta', 88, 'Perempuan', ''],
+  ['Budi', 65, 'Laki-laki', ''],
+  ['Nadia', 92, 'Perempuan', ''],
+  ['Raka', 70, 'Laki-laki', ''],
+  ['Maya', 84, 'Perempuan', '']
 ];
 
 const ifLevelScenarios = [
   {
     label: 'Basic',
-    activeCell: 'E2',
+    activeCell: 'D2',
     sourceCell: 'B2',
     conditionText: 'Nilai Agus di B2 lebih besar atau sama dengan 75',
     criteriaValue: '75',
     trueResult: 'Lulus',
     falseResult: 'Tidak Lulus',
     expectedFormula: '=IF(B2>=75,"Lulus","Tidak Lulus")',
-    question: 'Di cell E2, buat status Agus: jika Nilai di B2 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
+    question: 'Di cell D2, buat Status Agus: jika Nilai di B2 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
   },
   {
     label: 'Nilai Tinggi',
-    activeCell: 'E3',
+    activeCell: 'D3',
     sourceCell: 'B3',
     conditionText: 'Nilai Sinta di B3 lebih besar atau sama dengan 90',
     criteriaValue: '90',
     trueResult: 'Nilai Tinggi',
     falseResult: 'Nilai Standar',
     expectedFormula: '=IF(B3>=90,"Nilai Tinggi","Nilai Standar")',
-    question: 'Di cell E3, buat status Sinta: jika Nilai di B3 >= 90 maka hasilnya Nilai Tinggi, jika tidak maka Nilai Standar.'
+    question: 'Di cell D3, buat Status Sinta: jika Nilai di B3 >= 90 maka hasilnya Nilai Tinggi, jika tidak maka Nilai Standar.'
   },
   {
-    label: 'Kehadiran',
-    activeCell: 'E4',
-    sourceCell: 'C4',
-    conditionText: 'Kehadiran Budi di C4 lebih besar atau sama dengan 80',
-    criteriaValue: '80',
-    trueResult: 'Hadir Baik',
-    falseResult: 'Kurang Hadir',
-    expectedFormula: '=IF(C4>=80,"Hadir Baik","Kurang Hadir")',
-    question: 'Di cell E4, buat status Budi: jika Kehadiran di C4 >= 80 maka hasilnya Hadir Baik, jika tidak maka Kurang Hadir.'
+    label: 'Belum Lulus',
+    activeCell: 'D4',
+    sourceCell: 'B4',
+    conditionText: 'Nilai Budi di B4 lebih besar atau sama dengan 75',
+    criteriaValue: '75',
+    trueResult: 'Lulus',
+    falseResult: 'Tidak Lulus',
+    expectedFormula: '=IF(B4>=75,"Lulus","Tidak Lulus")',
+    question: 'Di cell D4, buat Status Budi: jika Nilai di B4 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
   },
   {
-    label: 'Pembayaran',
-    activeCell: 'E5',
-    sourceCell: 'D5',
-    conditionText: 'Pembayaran Nadia di D5 sama dengan Lunas',
-    criteriaValue: 'Lunas',
-    trueResult: 'Boleh Ikut',
-    falseResult: 'Tahan Dulu',
-    expectedFormula: '=IF(D5="Lunas","Boleh Ikut","Tahan Dulu")',
-    question: 'Di cell E5, buat status Nadia: jika Pembayaran di D5 = Lunas maka hasilnya Boleh Ikut, jika tidak maka Tahan Dulu.'
+    label: 'Perlu Apresiasi',
+    activeCell: 'D5',
+    sourceCell: 'B5',
+    conditionText: 'Nilai Nadia di B5 lebih besar atau sama dengan 90',
+    criteriaValue: '90',
+    trueResult: 'Apresiasi',
+    falseResult: 'Standar',
+    expectedFormula: '=IF(B5>=90,"Apresiasi","Standar")',
+    question: 'Di cell D5, buat Status Nadia: jika Nilai di B5 >= 90 maka hasilnya Apresiasi, jika tidak maka Standar.'
   },
   {
     label: 'Remedial',
-    activeCell: 'E6',
+    activeCell: 'D6',
     sourceCell: 'B6',
     conditionText: 'Nilai Raka di B6 lebih kecil dari 75',
     criteriaValue: '75',
     trueResult: 'Remedial',
     falseResult: 'Aman',
     expectedFormula: '=IF(B6<75,"Remedial","Aman")',
-    question: 'Di cell E6, buat status Raka: jika Nilai di B6 < 75 maka hasilnya Remedial, jika tidak maka Aman.'
+    question: 'Di cell D6, buat Status Raka: jika Nilai di B6 < 75 maka hasilnya Remedial, jika tidak maka Aman.'
   },
   {
-    label: 'Follow Up',
-    activeCell: 'E7',
-    sourceCell: 'C7',
-    conditionText: 'Kehadiran Maya di C7 lebih kecil dari 75',
+    label: 'Status Kelulusan',
+    activeCell: 'D7',
+    sourceCell: 'B7',
+    conditionText: 'Nilai Maya di B7 lebih besar atau sama dengan 75',
     criteriaValue: '75',
-    trueResult: 'Follow Up',
-    falseResult: 'Aman',
-    expectedFormula: '=IF(C7<75,"Follow Up","Aman")',
-    question: 'Di cell E7, buat status Maya: jika Kehadiran di C7 < 75 maka hasilnya Follow Up, jika tidak maka Aman.'
+    trueResult: 'Lulus',
+    falseResult: 'Tidak Lulus',
+    expectedFormula: '=IF(B7>=75,"Lulus","Tidak Lulus")',
+    question: 'Di cell D7, buat Status Maya: jika Nilai di B7 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
   }
 ];
 
 function makeIfPracticeTable() {
   return {
     title: 'Data Status Siswa',
-    description: 'Pakai kolom B, C, atau D sebagai kondisi. Kolom E adalah tempat menulis hasil IF sesuai baris yang diminta soal.',
-    columns: ['Nama', 'Nilai', 'Kehadiran', 'Pembayaran', 'Hasil IF'],
+    description: 'Kolom D adalah tempat hasil rumus IF. Pakai kolom B sebagai kondisi nilai, lalu hasilnya masuk ke kolom Status sesuai baris yang diminta soal.',
+    columns: ['Nama', 'Nilai', 'Jenis Kelamin', 'Status'],
     rows: ifPracticeRows
   };
 }
