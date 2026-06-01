@@ -582,6 +582,13 @@ export default function App() {
                 <h3 className="mt-1 text-xl font-black">Level {exerciseIndex + 1} dari {exerciseCount}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={handleResetExercise}
+                  className="rounded-full border border-coach-line bg-white px-4 py-2 text-xs font-black text-black/60 transition hover:border-coach-green hover:text-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/65 dark:hover:text-emerald-200"
+                >
+                  Reset Latihan
+                </button>
                 {Array.from({ length: exerciseCount }, (_, index) => (
                   <button
                     key={index}
@@ -656,12 +663,6 @@ export default function App() {
             selectionTarget={selectionTarget}
             onSelectionTargetChange={setSelectionTarget}
           />
-
-          <div className="flex flex-wrap gap-2">
-            <button onClick={handleResetExercise} className="rounded-full border border-coach-line bg-white px-5 py-3 text-sm font-black text-black/60 transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/65">
-              Reset Latihan
-            </button>
-          </div>
 
           <HintBox
             hints={exercise.hints}
