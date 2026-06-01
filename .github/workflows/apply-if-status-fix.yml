@@ -2,10 +2,10 @@ name: Apply IF status table fix
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - .github/workflows/apply-if-status-fix.yml
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - name: Apply IF table and live output fix
+      - name: Patch source files
         run: |
           python3 <<'PY'
           from pathlib import Path
@@ -29,162 +29,64 @@ jobs:
 
           factory_path = Path('src/data/formulaPracticeFactory.js')
           factory = factory_path.read_text()
-          if_section = '''const ifPracticeRows = [
+
+          rows_old = """const ifPracticeRows = [
+            ['Agus', 75, 90, 'Lunas', ''],
+            ['Sinta', 88, 95, 'Lunas', ''],
+            ['Budi', 65, 80, 'Belum', ''],
+            ['Nadia', 92, 98, 'Lunas', ''],
+            ['Raka', 70, 60, 'Belum', ''],
+            ['Maya', 84, 72, 'Lunas', '']
+          ];"""
+          rows_new = """const ifPracticeRows = [
             ['Agus', 75, 'Laki-laki', ''],
             ['Sinta', 88, 'Perempuan', ''],
             ['Budi', 65, 'Laki-laki', ''],
             ['Nadia', 92, 'Perempuan', ''],
             ['Raka', 70, 'Laki-laki', ''],
             ['Maya', 84, 'Perempuan', '']
-          ];
+          ];"""
+          factory = factory.replace(rows_old, rows_new)
 
-          const ifLevelScenarios = [
-            {
-              label: 'Basic',
-              activeCell: 'D2',
-              sourceCell: 'B2',
-              conditionText: 'Nilai Agus di B2 lebih besar atau sama dengan 75',
-              criteriaValue: '75',
-              trueResult: 'Lulus',
-              falseResult: 'Tidak Lulus',
-              expectedFormula: '=IF(B2>=75,"Lulus","Tidak Lulus")',
-              question: 'Di cell D2, buat Status Agus: jika Nilai di B2 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
-            },
-            {
-              label: 'Nilai Tinggi',
-              activeCell: 'D3',
-              sourceCell: 'B3',
-              conditionText: 'Nilai Sinta di B3 lebih besar atau sama dengan 90',
-              criteriaValue: '90',
-              trueResult: 'Nilai Tinggi',
-              falseResult: 'Nilai Standar',
-              expectedFormula: '=IF(B3>=90,"Nilai Tinggi","Nilai Standar")',
-              question: 'Di cell D3, buat Status Sinta: jika Nilai di B3 >= 90 maka hasilnya Nilai Tinggi, jika tidak maka Nilai Standar.'
-            },
-            {
-              label: 'Belum Lulus',
-              activeCell: 'D4',
-              sourceCell: 'B4',
-              conditionText: 'Nilai Budi di B4 lebih besar atau sama dengan 75',
-              criteriaValue: '75',
-              trueResult: 'Lulus',
-              falseResult: 'Tidak Lulus',
-              expectedFormula: '=IF(B4>=75,"Lulus","Tidak Lulus")',
-              question: 'Di cell D4, buat Status Budi: jika Nilai di B4 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
-            },
-            {
-              label: 'Perlu Apresiasi',
-              activeCell: 'D5',
-              sourceCell: 'B5',
-              conditionText: 'Nilai Nadia di B5 lebih besar atau sama dengan 90',
-              criteriaValue: '90',
-              trueResult: 'Apresiasi',
-              falseResult: 'Standar',
-              expectedFormula: '=IF(B5>=90,"Apresiasi","Standar")',
-              question: 'Di cell D5, buat Status Nadia: jika Nilai di B5 >= 90 maka hasilnya Apresiasi, jika tidak maka Standar.'
-            },
-            {
-              label: 'Remedial',
-              activeCell: 'D6',
-              sourceCell: 'B6',
-              conditionText: 'Nilai Raka di B6 lebih kecil dari 75',
-              criteriaValue: '75',
-              trueResult: 'Remedial',
-              falseResult: 'Aman',
-              expectedFormula: '=IF(B6<75,"Remedial","Aman")',
-              question: 'Di cell D6, buat Status Raka: jika Nilai di B6 < 75 maka hasilnya Remedial, jika tidak maka Aman.'
-            },
-            {
-              label: 'Status Kelulusan',
-              activeCell: 'D7',
-              sourceCell: 'B7',
-              conditionText: 'Nilai Maya di B7 lebih besar atau sama dengan 75',
-              criteriaValue: '75',
-              trueResult: 'Lulus',
-              falseResult: 'Tidak Lulus',
-              expectedFormula: '=IF(B7>=75,"Lulus","Tidak Lulus")',
-              question: 'Di cell D7, buat Status Maya: jika Nilai di B7 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
-            }
-          ];
-
-          function makeIfPracticeTable() {
-            return {
-              title: 'Data Status Siswa',
-              description: 'Kolom D adalah tempat hasil rumus IF. Pakai kolom B sebagai kondisi nilai, lalu hasilnya masuk ke kolom Status sesuai baris yang diminta soal.',
-              columns: ['Nama', 'Nilai', 'Jenis Kelamin', 'Status'],
-              rows: ifPracticeRows
-            };
+          replacements = {
+            "activeCell: 'E2'": "activeCell: 'D2'",
+            "activeCell: 'E3'": "activeCell: 'D3'",
+            "activeCell: 'E4'": "activeCell: 'D4'",
+            "activeCell: 'E5'": "activeCell: 'D5'",
+            "activeCell: 'E6'": "activeCell: 'D6'",
+            "activeCell: 'E7'": "activeCell: 'D7'",
+            "sourceCell: 'C4'": "sourceCell: 'B4'",
+            "sourceCell: 'D5'": "sourceCell: 'B5'",
+            "sourceCell: 'C7'": "sourceCell: 'B7'",
+            "conditionText: 'Kehadiran Budi di C4 lebih besar atau sama dengan 80'": "conditionText: 'Nilai Budi di B4 lebih besar atau sama dengan 75'",
+            "criteriaValue: '80'": "criteriaValue: '75'",
+            "trueResult: 'Hadir Baik'": "trueResult: 'Lulus'",
+            "falseResult: 'Kurang Hadir'": "falseResult: 'Tidak Lulus'",
+            "expectedFormula: '=IF(C4>=80,\"Hadir Baik\",\"Kurang Hadir\")'": "expectedFormula: '=IF(B4>=75,\"Lulus\",\"Tidak Lulus\")'",
+            "question: 'Di cell E4, buat status Budi: jika Kehadiran di C4 >= 80 maka hasilnya Hadir Baik, jika tidak maka Kurang Hadir.'": "question: 'Di cell D4, buat Status Budi: jika Nilai di B4 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'",
+            "label: 'Kehadiran'": "label: 'Belum Lulus'",
+            "label: 'Pembayaran'": "label: 'Perlu Apresiasi'",
+            "conditionText: 'Pembayaran Nadia di D5 sama dengan Lunas'": "conditionText: 'Nilai Nadia di B5 lebih besar atau sama dengan 90'",
+            "criteriaValue: 'Lunas'": "criteriaValue: '90'",
+            "trueResult: 'Boleh Ikut'": "trueResult: 'Apresiasi'",
+            "falseResult: 'Tahan Dulu'": "falseResult: 'Standar'",
+            "expectedFormula: '=IF(D5=\"Lunas\",\"Boleh Ikut\",\"Tahan Dulu\")'": "expectedFormula: '=IF(B5>=90,\"Apresiasi\",\"Standar\")'",
+            "question: 'Di cell E5, buat status Nadia: jika Pembayaran di D5 = Lunas maka hasilnya Boleh Ikut, jika tidak maka Tahan Dulu.'": "question: 'Di cell D5, buat Status Nadia: jika Nilai di B5 >= 90 maka hasilnya Apresiasi, jika tidak maka Standar.'",
+            "question: 'Di cell E2, buat status Agus": "question: 'Di cell D2, buat Status Agus",
+            "question: 'Di cell E3, buat status Sinta": "question: 'Di cell D3, buat Status Sinta",
+            "question: 'Di cell E6, buat status Raka": "question: 'Di cell D6, buat Status Raka",
+            "conditionText: 'Kehadiran Maya di C7 lebih kecil dari 75'": "conditionText: 'Nilai Maya di B7 lebih besar atau sama dengan 75'",
+            "trueResult: 'Follow Up'": "trueResult: 'Lulus'",
+            "falseResult: 'Aman'": "falseResult: 'Tidak Lulus'",
+            "expectedFormula: '=IF(C7<75,\"Follow Up\",\"Aman\")'": "expectedFormula: '=IF(B7>=75,\"Lulus\",\"Tidak Lulus\")'",
+            "question: 'Di cell E7, buat status Maya: jika Kehadiran di C7 < 75 maka hasilnya Follow Up, jika tidak maka Aman.'": "question: 'Di cell D7, buat Status Maya: jika Nilai di B7 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'",
+            "label: 'Follow Up'": "label: 'Status Kelulusan'",
+            "description: 'Pakai kolom B, C, atau D sebagai kondisi. Kolom E adalah tempat menulis hasil IF sesuai baris yang diminta soal.'": "description: 'Kolom D adalah tempat hasil rumus IF. Pakai kolom B sebagai kondisi nilai, lalu hasilnya masuk ke kolom Status sesuai baris yang diminta soal.'",
+            "columns: ['Nama', 'Nilai', 'Kehadiran', 'Pembayaran', 'Hasil IF']": "columns: ['Nama', 'Nilai', 'Jenis Kelamin', 'Status']"
           }
-
-          function makeIfTieredExercise(formula, variantIndex = 0, base = {}) {
-            const scenario = ifLevelScenarios[variantIndex % ifLevelScenarios.length];
-            const requiredRefs = [scenario.sourceCell];
-            const requiredTexts = [scenario.trueResult, scenario.falseResult];
-            return {
-              ...base,
-              id: `${formula.id}__level_${variantIndex + 1}`,
-              baseFormulaId: formula.id,
-              formulaName: formula.name,
-              title: `Latihan ${variantIndex + 1}: ${scenario.label}`,
-              levelIndex: variantIndex,
-              levelLabel: scenario.label,
-              tableKey: 'logicalPractice',
-              table: makeIfPracticeTable(),
-              activeCell: scenario.activeCell,
-              question: scenario.question,
-              logicPrompt: `IF di latihan ini mengecek kondisi: ${scenario.conditionText}. Kalau kondisi benar, hasilnya “${scenario.trueResult}”. Kalau kondisi salah, hasilnya “${scenario.falseResult}”. Urutannya: kondisi, hasil jika benar, hasil jika salah.`,
-              expectedFormula: scenario.expectedFormula,
-              acceptedFormulas: [scenario.expectedFormula.replace(/,/g, ';')],
-              requiredRefs,
-              requiredTexts,
-              criteriaValue: scenario.criteriaValue,
-              conditionText: scenario.conditionText,
-              trueResult: scenario.trueResult,
-              falseResult: scenario.falseResult,
-              argumentCount: { min: 3, max: 3 },
-              highlightRanges: requiredRefs,
-              allowedFunctions: [formula.name],
-              hints: [
-                `Tulis rumus di ${scenario.activeCell}, bukan di cell sumber datanya.`,
-                `Argumen pertama adalah kondisi: ${scenario.conditionText}.`,
-                `Jika kondisi benar, hasilnya “${scenario.trueResult}”.`,
-                `Jika kondisi salah, hasilnya “${scenario.falseResult}”.`,
-                'Susun IF dengan urutan: kondisi, value jika benar, value jika salah.'
-              ],
-              successExplanation: `Tepat. Rumus IF sudah mengecek ${scenario.sourceCell}, lalu mengeluarkan hasil sesuai kondisi yang diminta soal.`,
-              formulaParts: [
-                'IF adalah function utama untuk membuat keputusan sederhana.',
-                `Kondisi yang diuji: ${scenario.conditionText}.`,
-                `Value jika benar: ${scenario.trueResult}.`,
-                `Value jika salah: ${scenario.falseResult}.`
-              ],
-              commonMistakes: [
-                'Menulis angka 75 saja, padahal IF harus diawali =IF dan punya tiga argumen.',
-                `Memilih cell hasil ${scenario.activeCell} sebagai kondisi, padahal kondisi harus mengambil ${scenario.sourceCell}.`,
-                'Menukar posisi hasil benar dan hasil salah.',
-                'Lupa tanda kutip untuk hasil berupa teks.',
-                'Separator atau kurung penutup belum benar.'
-              ],
-              nextUseCase: 'Pakai pola IF ini untuk membuat status lulus, follow up, pembayaran, prioritas, atau keputusan sederhana lainnya.',
-              audit: {
-                ...(base.audit || {}),
-                tiered: true,
-                levelIndex: variantIndex,
-                expectedFormula: scenario.expectedFormula,
-                tableKey: 'logicalPractice',
-                refs: requiredRefs,
-                requiredRefs,
-                requiredTexts,
-                tableRows: ifPracticeRows.length,
-                note: 'IF dibuat manual agar soal, table, clue, active cell, dan expected formula saling nyambung.'
-              }
-            };
-          }
-          '''
-          factory_new = re.sub(r"const ifPracticeRows = \[[\s\S]*?\nfunction makeCompactTable", if_section + "\n\nfunction makeCompactTable", factory, count=1)
-          if factory_new == factory:
-            raise SystemExit('IF factory section was not updated')
-          factory_path.write_text(factory_new)
+          for old, new in replacements.items():
+            factory = factory.replace(old, new)
+          factory_path.write_text(factory)
 
           app_path = Path('src/App.jsx')
           app = app_path.read_text()
@@ -204,19 +106,14 @@ jobs:
           """
           if 'const liveCellValues = useMemo' not in app:
             if formula_block not in app:
-              raise SystemExit('formulaResult block not found in App.jsx')
+              raise SystemExit('formulaResult block not found')
             app = app.replace(formula_block, live_block, 1)
           app = app.replace('            activeCell={activeCell}\n            selectedRange={selectedRange}\n', '            activeCell={exercise?.activeCell || activeCell}\n            cellValues={liveCellValues}\n            selectedRange={selectedRange}\n', 1)
           app_path.write_text(app)
 
           table_path = Path('src/components/ExerciseTable.jsx')
           table = table_path.read_text()
-          table = re.sub(
-            r"export default function ExerciseTable\(\{ table, highlightRanges = \[\], activeCell, (?:cellValues = \{\}, )?onCellClick, onRangeSelected \}\)",
-            "export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected })",
-            table,
-            count=1
-          )
+          table = re.sub(r"export default function ExerciseTable\(\{ table, highlightRanges = \[\], activeCell, (?:cellValues = \{\}, )?onCellClick, onRangeSelected \}\)", "export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected })", table, count=1)
           table = table.replace('value={column}', 'value={cellValues[ref] ?? column}', 1)
           table = table.replace('value={row[colIndex]}', 'value={cellValues[ref] ?? row[colIndex]}', 1)
           table_path.write_text(table)
@@ -230,7 +127,7 @@ jobs:
       - name: Commit fix
         run: |
           if git diff --quiet; then
-            echo "No source changes to commit."
+            echo "No source changes."
             exit 0
           fi
           git config user.name "chatgpt-fix-bot"
