@@ -1,9 +1,16 @@
 import { getFormulaLearningContent } from '../data/formulaLearningContent.js';
 
-function displayFormat(format = '') {
-  const raw = String(format || '').trim();
-  const withEquals = raw.startsWith('=') ? raw : `=${raw}`;
-  return withEquals.replace(/,\s*/g, '; ');
+function displayFormat(value = '') {
+  const text = String(value || '').trim();
+  const withEquals = text.startsWith('=') ? text : `=${text}`;
+  let output = '';
+  let inQuote = false;
+  for (let i = 0; i < withEquals.length; i += 1) {
+    const char = withEquals[i];
+    if (char === '"' && withEquals[i - 1] !== '\\') inQuote = !inQuote;
+    output += !inQuote && char === ',' ? ';' : char;
+  }
+  return output;
 }
 
 export default function FormulaTheory({ formula, isGeneric }) {
@@ -47,10 +54,10 @@ export default function FormulaTheory({ formula, isGeneric }) {
           {exampleFormula && (
             <div className="rounded-2xl border border-coach-green/20 bg-coach-greenSoft/70 p-4 dark:border-emerald-400/15 dark:bg-emerald-400/10">
               <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Contoh Rumus</p>
-              <p className="mt-1 text-xs font-semibold text-black/45 dark:text-white/45">Ini contoh penggunaan, bukan jawaban latihan.</p>
               <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 font-mono text-sm font-black text-coach-green dark:bg-black/20 dark:text-emerald-200">
                 {exampleFormula}
               </code>
+              <p className="mt-2 text-[11px] font-bold text-coach-green/70 dark:text-emerald-200/70">Ini contoh penggunaan, bukan jawaban latihan.</p>
             </div>
           )}
 

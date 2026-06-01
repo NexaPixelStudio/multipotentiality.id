@@ -483,15 +483,19 @@ export default function FormulaBar({
 
   const resultValue = !value.trim()
     ? 'Belum ada'
-    : formulaResult?.ok
-      ? formulaResult.displayValue || 'Kosong'
-      : formulaResult?.error || '#VALUE!';
+    : formulaResult?.structureOnly
+      ? 'Struktur valid'
+      : formulaResult?.ok
+        ? formulaResult.displayValue || 'Kosong'
+        : formulaResult?.error || '#VALUE!';
 
   const resultMessage = !value.trim()
     ? 'Ketik rumus dulu. Setelah itu hasil sementara akan muncul di sini.'
-    : formulaResult?.ok
-      ? 'Ini hasil sementara dari rumus yang kamu ketik. Kalau sudah sesuai soal, tekan Enter atau klik Cek Jawaban.'
-      : formulaResult?.message || 'Excel akan menampilkan error untuk formula ini.';
+    : formulaResult?.structureOnly
+      ? 'Struktur rumus terbaca. Hasil asli untuk function ini perlu dicek langsung di Excel, jadi website tidak menampilkan angka palsu.'
+      : formulaResult?.ok
+        ? 'Ini hasil sementara dari rumus yang kamu ketik. Kalau sudah sesuai soal, tekan Enter atau klik Cek Jawaban.'
+        : formulaResult?.message || 'Excel akan menampilkan error untuk formula ini.';
 
   const resultIsError = value.trim() && formulaResult && !formulaResult.ok;
   const hasFormula = Boolean(value.trim());

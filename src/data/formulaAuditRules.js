@@ -1,4 +1,3 @@
-import { formatOverrides as practiceFormatOverrides } from './formulaPracticeFactory.js';
 // Formula Coach audit helpers.
 // File ini sengaja dibuat terpisah supaya data katalog bisa dinormalisasi tanpa mengubah komponen UI.
 
@@ -134,17 +133,147 @@ const humanCategoryCopy = {
 };
 
 export const verifiedFormatOverrides = {
-  ...practiceFormatOverrides,
+  // Advanced / Professional
   DETECTLANGUAGE: 'DETECTLANGUAGE(text)',
-  TRANSLATE: 'TRANSLATE(text, [source_language], [target_language])',
+  GROUPBY: 'GROUPBY(row_fields, values, function, [field_headers], [total_depth], [sort_order], [filter_array], [field_relationship])',
+  LAMBDA: 'LAMBDA([parameter1, parameter2, ...], calculation)',
+  LET: 'LET(name1, name_value1, calculation_or_name2, [name_value2], ...)',
+  PERCENTOF: 'PERCENTOF(data_subset, data_all)',
+  PIVOTBY: 'PIVOTBY(row_fields, col_fields, values, function, [field_headers], [row_total_depth], [row_sort_order], [col_total_depth], [col_sort_order], [filter_array], [relative_to])',
   REGEXEXTRACT: 'REGEXEXTRACT(text, pattern, [return_mode], [case_sensitivity])',
   REGEXREPLACE: 'REGEXREPLACE(text, pattern, replacement, [occurrence], [case_sensitivity])',
   REGEXTEST: 'REGEXTEST(text, pattern, [case_sensitivity])',
-  GROUPBY: 'GROUPBY(row_fields, values, function, [field_headers], [total_depth], [sort_order], [filter_array], [field_relationship])',
-  PIVOTBY: 'PIVOTBY(row_fields, col_fields, values, function, [field_headers], [row_total_depth], [row_sort_order], [col_total_depth], [col_sort_order], [filter_array], [relative_to])',
+  TRANSLATE: 'TRANSLATE(text, source_language, target_language)',
 
-  // Text
-  ARRAYTOTEXT: 'ARRAYTOTEXT(array, [format])', ASC: 'ASC(text)', BAHTTEXT: 'BAHTTEXT(number)', CHAR: 'CHAR(number)', CLEAN: 'CLEAN(text)', CODE: 'CODE(text)', CONCAT: 'CONCAT(text1, [text2], ...)', CONCATENATE: 'CONCATENATE(text1, [text2], ...)', DBCS: 'DBCS(text)', DOLLAR: 'DOLLAR(number, [decimals])', EXACT: 'EXACT(text1, text2)', FIND: 'FIND(find_text, within_text, [start_num])', FINDB: 'FINDB(find_text, within_text, [start_num])', FIXED: 'FIXED(number, [decimals], [no_commas])', LEFT: 'LEFT(text, [num_chars])', LEFTB: 'LEFTB(text, [num_bytes])', LEN: 'LEN(text)', LENB: 'LENB(text)', LOWER: 'LOWER(text)', MID: 'MID(text, start_num, num_chars)', MIDB: 'MIDB(text, start_num, num_bytes)', NUMBERVALUE: 'NUMBERVALUE(text, [decimal_separator], [group_separator])', PHONETIC: 'PHONETIC(reference)', PROPER: 'PROPER(text)', REPLACE: 'REPLACE(old_text, start_num, num_chars, new_text)', REPLACEB: 'REPLACEB(old_text, start_num, num_bytes, new_text)', REPT: 'REPT(text, number_times)', RIGHT: 'RIGHT(text, [num_chars])', RIGHTB: 'RIGHTB(text, [num_bytes])', SEARCH: 'SEARCH(find_text, within_text, [start_num])', SEARCHB: 'SEARCHB(find_text, within_text, [start_num])', SUBSTITUTE: 'SUBSTITUTE(text, old_text, new_text, [instance_num])', T: 'T(value)', TEXT: 'TEXT(value, format_text)', TEXTAFTER: 'TEXTAFTER(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found])', TEXTBEFORE: 'TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found])', TEXTJOIN: 'TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)', TEXTSPLIT: 'TEXTSPLIT(text, col_delimiter, [row_delimiter], [ignore_empty], [match_mode], [pad_with])', TRIM: 'TRIM(text)', UNICHAR: 'UNICHAR(number)', UNICODE: 'UNICODE(text)', UPPER: 'UPPER(text)', VALUE: 'VALUE(text)', VALUETOTEXT: 'VALUETOTEXT(value, [format])',
+  // Compatibility / Statistical old names
+  BETADIST: 'BETADIST(x, alpha, beta, [A], [B])',
+  BETAINV: 'BETAINV(probability, alpha, beta, [A], [B])',
+  BINOMDIST: 'BINOMDIST(number_s, trials, probability_s, cumulative)',
+  CHIDIST: 'CHIDIST(x, deg_freedom)',
+  CHIINV: 'CHIINV(probability, deg_freedom)',
+  CHITEST: 'CHITEST(actual_range, expected_range)',
+  CONFIDENCE: 'CONFIDENCE(alpha, standard_dev, size)',
+  COVAR: 'COVAR(array1, array2)',
+  CRITBINOM: 'CRITBINOM(trials, probability_s, alpha)',
+  EXPONDIST: 'EXPONDIST(x, lambda, cumulative)',
+  FDIST: 'FDIST(x, deg_freedom1, deg_freedom2)',
+  FINV: 'FINV(probability, deg_freedom1, deg_freedom2)',
+  FTEST: 'FTEST(array1, array2)',
+  GAMMADIST: 'GAMMADIST(x, alpha, beta, cumulative)',
+  GAMMAINV: 'GAMMAINV(probability, alpha, beta)',
+  HYPGEOMDIST: 'HYPGEOMDIST(sample_s, number_sample, population_s, number_pop)',
+  LOGINV: 'LOGINV(probability, mean, standard_dev)',
+  LOGNORMDIST: 'LOGNORMDIST(x, mean, standard_dev)',
+  NEGBINOMDIST: 'NEGBINOMDIST(number_f, number_s, probability_s)',
+  NORMDIST: 'NORMDIST(x, mean, standard_dev, cumulative)',
+  NORMINV: 'NORMINV(probability, mean, standard_dev)',
+  NORMSDIST: 'NORMSDIST(z)',
+  NORMSINV: 'NORMSINV(probability)',
+  PERCENTILE: 'PERCENTILE(array, k)',
+  PERCENTRANK: 'PERCENTRANK(array, x, [significance])',
+  POISSON: 'POISSON(x, mean, cumulative)',
+  QUARTILE: 'QUARTILE(array, quart)',
+  RANK: 'RANK(number, ref, [order])',
+  STDEV: 'STDEV(number1, [number2], ...)',
+  STDEVP: 'STDEVP(number1, [number2], ...)',
+  TDIST: 'TDIST(x, deg_freedom, tails)',
+  TINV: 'TINV(probability, deg_freedom)',
+  TTEST: 'TTEST(array1, array2, tails, type)',
+  VAR: 'VAR(number1, [number2], ...)',
+  VARP: 'VARP(number1, [number2], ...)',
+  WEIBULL: 'WEIBULL(x, alpha, beta, cumulative)',
+  ZTEST: 'ZTEST(array, x, [sigma])',
+
+  // Statistical newer names
+  'AVERAGEIF': 'AVERAGEIF(range, criteria, [average_range])',
+  'AVERAGEIFS': 'AVERAGEIFS(average_range, criteria_range1, criteria1, [criteria_range2], [criteria2], ...)',
+  'COUNTIF': 'COUNTIF(range, criteria)',
+  'COUNTIFS': 'COUNTIFS(criteria_range1, criteria1, [criteria_range2], [criteria2], ...)',
+  'MAXIFS': 'MAXIFS(max_range, criteria_range1, criteria1, [criteria_range2], [criteria2], ...)',
+  'MINIFS': 'MINIFS(min_range, criteria_range1, criteria1, [criteria_range2], [criteria2], ...)',
+  'BETA.DIST': 'BETA.DIST(x, alpha, beta, cumulative, [A], [B])',
+  'BETA.INV': 'BETA.INV(probability, alpha, beta, [A], [B])',
+  'BINOM.DIST': 'BINOM.DIST(number_s, trials, probability_s, cumulative)',
+  'BINOM.DIST.RANGE': 'BINOM.DIST.RANGE(trials, probability_s, number_s, [number_s2])',
+  'BINOM.INV': 'BINOM.INV(trials, probability_s, alpha)',
+  'CHISQ.DIST': 'CHISQ.DIST(x, deg_freedom, cumulative)',
+  'CHISQ.DIST.RT': 'CHISQ.DIST.RT(x, deg_freedom)',
+  'CHISQ.INV': 'CHISQ.INV(probability, deg_freedom)',
+  'CHISQ.INV.RT': 'CHISQ.INV.RT(probability, deg_freedom)',
+  'CHISQ.TEST': 'CHISQ.TEST(actual_range, expected_range)',
+  'CONFIDENCE.NORM': 'CONFIDENCE.NORM(alpha, standard_dev, size)',
+  'CONFIDENCE.T': 'CONFIDENCE.T(alpha, standard_dev, size)',
+  'CORREL': 'CORREL(array1, array2)',
+  'COVARIANCE.P': 'COVARIANCE.P(array1, array2)',
+  'COVARIANCE.S': 'COVARIANCE.S(array1, array2)',
+  'EXPON.DIST': 'EXPON.DIST(x, lambda, cumulative)',
+  'F.DIST': 'F.DIST(x, deg_freedom1, deg_freedom2, cumulative)',
+  'F.DIST.RT': 'F.DIST.RT(x, deg_freedom1, deg_freedom2)',
+  'F.INV': 'F.INV(probability, deg_freedom1, deg_freedom2)',
+  'F.INV.RT': 'F.INV.RT(probability, deg_freedom1, deg_freedom2)',
+  'F.TEST': 'F.TEST(array1, array2)',
+  'FORECAST': 'FORECAST(x, known_y\'s, known_x\'s)',
+  'FORECAST.ETS': 'FORECAST.ETS(target_date, values, timeline, [seasonality], [data_completion], [aggregation])',
+  'FORECAST.ETS.CONFINT': 'FORECAST.ETS.CONFINT(target_date, values, timeline, [confidence_level], [seasonality], [data_completion], [aggregation])',
+  'FORECAST.ETS.SEASONALITY': 'FORECAST.ETS.SEASONALITY(values, timeline, [data_completion], [aggregation])',
+  'FORECAST.ETS.STAT': 'FORECAST.ETS.STAT(values, timeline, statistic_type, [seasonality], [data_completion], [aggregation])',
+  'FORECAST.LINEAR': 'FORECAST.LINEAR(x, known_y\'s, known_x\'s)',
+  'FREQUENCY': 'FREQUENCY(data_array, bins_array)',
+  'GAMMA.DIST': 'GAMMA.DIST(x, alpha, beta, cumulative)',
+  'GAMMA.INV': 'GAMMA.INV(probability, alpha, beta)',
+  'HYPGEOM.DIST': 'HYPGEOM.DIST(sample_s, number_sample, population_s, number_pop, cumulative)',
+  'LOGNORM.DIST': 'LOGNORM.DIST(x, mean, standard_dev, cumulative)',
+  'LOGNORM.INV': 'LOGNORM.INV(probability, mean, standard_dev)',
+  'MODE.MULT': 'MODE.MULT(number1, [number2], ...)',
+  'MODE.SNGL': 'MODE.SNGL(number1, [number2], ...)',
+  'NEGBINOM.DIST': 'NEGBINOM.DIST(number_f, number_s, probability_s, cumulative)',
+  'NORM.DIST': 'NORM.DIST(x, mean, standard_dev, cumulative)',
+  'NORM.INV': 'NORM.INV(probability, mean, standard_dev)',
+  'NORM.S.DIST': 'NORM.S.DIST(z, cumulative)',
+  'NORM.S.INV': 'NORM.S.INV(probability)',
+  'PERCENTILE.EXC': 'PERCENTILE.EXC(array, k)',
+  'PERCENTILE.INC': 'PERCENTILE.INC(array, k)',
+  'PERCENTRANK.EXC': 'PERCENTRANK.EXC(array, x, [significance])',
+  'PERCENTRANK.INC': 'PERCENTRANK.INC(array, x, [significance])',
+  'POISSON.DIST': 'POISSON.DIST(x, mean, cumulative)',
+  'PROB': 'PROB(x_range, prob_range, [lower_limit], [upper_limit])',
+  'QUARTILE.EXC': 'QUARTILE.EXC(array, quart)',
+  'QUARTILE.INC': 'QUARTILE.INC(array, quart)',
+  'RANK.AVG': 'RANK.AVG(number, ref, [order])',
+  'RANK.EQ': 'RANK.EQ(number, ref, [order])',
+  'STANDARDIZE': 'STANDARDIZE(x, mean, standard_dev)',
+  'T.DIST': 'T.DIST(x, deg_freedom, cumulative)',
+  'T.DIST.2T': 'T.DIST.2T(x, deg_freedom)',
+  'T.DIST.RT': 'T.DIST.RT(x, deg_freedom)',
+  'T.INV': 'T.INV(probability, deg_freedom)',
+  'T.INV.2T': 'T.INV.2T(probability, deg_freedom)',
+  'T.TEST': 'T.TEST(array1, array2, tails, type)',
+  'WEIBULL.DIST': 'WEIBULL.DIST(x, alpha, beta, cumulative)',
+  'Z.TEST': 'Z.TEST(array, x, [sigma])',
+
+  // Database
+  DAVERAGE: 'DAVERAGE(database, field, criteria)', DCOUNT: 'DCOUNT(database, field, criteria)', DCOUNTA: 'DCOUNTA(database, field, criteria)', DGET: 'DGET(database, field, criteria)', DMAX: 'DMAX(database, field, criteria)', DMIN: 'DMIN(database, field, criteria)', DPRODUCT: 'DPRODUCT(database, field, criteria)', DSTDEV: 'DSTDEV(database, field, criteria)', DSTDEVP: 'DSTDEVP(database, field, criteria)', DSUM: 'DSUM(database, field, criteria)', DVAR: 'DVAR(database, field, criteria)', DVARP: 'DVARP(database, field, criteria)',
+
+  // Date/time
+  DATEVALUE: 'DATEVALUE(date_text)', DAYS360: 'DAYS360(start_date, end_date, [method])', ISOWEEKNUM: 'ISOWEEKNUM(date)', TIMEVALUE: 'TIMEVALUE(time_text)', WEEKDAY: 'WEEKDAY(serial_number, [return_type])', WEEKNUM: 'WEEKNUM(serial_number, [return_type])', YEARFRAC: 'YEARFRAC(start_date, end_date, [basis])',
+
+  // Lookup/reference and dynamic
+  EXPAND: 'EXPAND(array, rows, [columns], [pad_with])', RANDARRAY: 'RANDARRAY([rows], [columns], [min], [max], [whole_number])', SEQUENCE: 'SEQUENCE(rows, [columns], [start], [step])', TOCOL: 'TOCOL(array, [ignore], [scan_by_column])', TOROW: 'TOROW(array, [ignore], [scan_by_column])', WRAPCOLS: 'WRAPCOLS(vector, wrap_count, [pad_with])', WRAPROWS: 'WRAPROWS(vector, wrap_count, [pad_with])',
+  XLOOKUP: 'XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])', XMATCH: 'XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])', HLOOKUP: 'HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])', VLOOKUP: 'VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])', LOOKUP: 'LOOKUP(lookup_value, lookup_vector, [result_vector])', MATCH: 'MATCH(lookup_value, lookup_array, [match_type])', INDEX: 'INDEX(array, row_num, [column_num])', OFFSET: 'OFFSET(reference, rows, cols, [height], [width])', INDIRECT: 'INDIRECT(ref_text, [a1])', ADDRESS: 'ADDRESS(row_num, column_num, [abs_num], [a1], [sheet_text])', CHOOSE: 'CHOOSE(index_num, value1, [value2], ...)',
+
+  // Engineering
+  BESSELI: 'BESSELI(x, n)', BESSELJ: 'BESSELJ(x, n)', BESSELK: 'BESSELK(x, n)', BESSELY: 'BESSELY(x, n)', BIN2DEC: 'BIN2DEC(number)', BIN2HEX: 'BIN2HEX(number, [places])', BIN2OCT: 'BIN2OCT(number, [places])', BITAND: 'BITAND(number1, number2)', BITLSHIFT: 'BITLSHIFT(number, shift_amount)', BITOR: 'BITOR(number1, number2)', BITRSHIFT: 'BITRSHIFT(number, shift_amount)', BITXOR: 'BITXOR(number1, number2)', COMPLEX: 'COMPLEX(real_num, i_num, [suffix])', CONVERT: 'CONVERT(number, from_unit, to_unit)', DEC2BIN: 'DEC2BIN(number, [places])', DEC2HEX: 'DEC2HEX(number, [places])', DEC2OCT: 'DEC2OCT(number, [places])', DELTA: 'DELTA(number1, [number2])', ERF: 'ERF(lower_limit, [upper_limit])', 'ERF.PRECISE': 'ERF.PRECISE(x)', ERFC: 'ERFC(x)', 'ERFC.PRECISE': 'ERFC.PRECISE(x)', GESTEP: 'GESTEP(number, [step])', HEX2BIN: 'HEX2BIN(number, [places])', HEX2DEC: 'HEX2DEC(number)', HEX2OCT: 'HEX2OCT(number, [places])', IMABS: 'IMABS(inumber)', IMAGINARY: 'IMAGINARY(inumber)', IMARGUMENT: 'IMARGUMENT(inumber)', IMCONJUGATE: 'IMCONJUGATE(inumber)', IMCOS: 'IMCOS(inumber)', IMCOSH: 'IMCOSH(inumber)', IMCOT: 'IMCOT(inumber)', IMCSC: 'IMCSC(inumber)', IMCSCH: 'IMCSCH(inumber)', IMDIV: 'IMDIV(inumber1, inumber2)', IMEXP: 'IMEXP(inumber)', IMLN: 'IMLN(inumber)', IMLOG10: 'IMLOG10(inumber)', IMLOG2: 'IMLOG2(inumber)', IMPOWER: 'IMPOWER(inumber, number)', IMPRODUCT: 'IMPRODUCT(inumber1, [inumber2], ...)', IMREAL: 'IMREAL(inumber)', IMSEC: 'IMSEC(inumber)', IMSECH: 'IMSECH(inumber)', IMSIN: 'IMSIN(inumber)', IMSINH: 'IMSINH(inumber)', IMSQRT: 'IMSQRT(inumber)', IMSUB: 'IMSUB(inumber1, inumber2)', IMSUM: 'IMSUM(inumber1, [inumber2], ...)', IMTAN: 'IMTAN(inumber)', OCT2BIN: 'OCT2BIN(number, [places])', OCT2DEC: 'OCT2DEC(number)', OCT2HEX: 'OCT2HEX(number, [places])',
+
+  // Financial
+  ACCRINT: 'ACCRINT(issue, first_interest, settlement, rate, par, frequency, [basis], [calc_method])', ACCRINTM: 'ACCRINTM(issue, settlement, rate, par, [basis])', AMORDEGRC: 'AMORDEGRC(cost, date_purchased, first_period, salvage, period, rate, [basis])', AMORLINC: 'AMORLINC(cost, date_purchased, first_period, salvage, period, rate, [basis])', COUPDAYBS: 'COUPDAYBS(settlement, maturity, frequency, [basis])', COUPDAYS: 'COUPDAYS(settlement, maturity, frequency, [basis])', COUPDAYSNC: 'COUPDAYSNC(settlement, maturity, frequency, [basis])', COUPNCD: 'COUPNCD(settlement, maturity, frequency, [basis])', COUPNUM: 'COUPNUM(settlement, maturity, frequency, [basis])', COUPPCD: 'COUPPCD(settlement, maturity, frequency, [basis])', CUMIPMT: 'CUMIPMT(rate, nper, pv, start_period, end_period, type)', CUMPRINC: 'CUMPRINC(rate, nper, pv, start_period, end_period, type)', DB: 'DB(cost, salvage, life, period, [month])', DDB: 'DDB(cost, salvage, life, period, [factor])', DISC: 'DISC(settlement, maturity, pr, redemption, [basis])', DOLLARDE: 'DOLLARDE(fractional_dollar, fraction)', DOLLARFR: 'DOLLARFR(decimal_dollar, fraction)', DURATION: 'DURATION(settlement, maturity, coupon, yld, frequency, [basis])', EFFECT: 'EFFECT(nominal_rate, npery)', FV: 'FV(rate, nper, pmt, [pv], [type])', FVSCHEDULE: 'FVSCHEDULE(principal, schedule)', INTRATE: 'INTRATE(settlement, maturity, investment, redemption, [basis])', IPMT: 'IPMT(rate, per, nper, pv, [fv], [type])', IRR: 'IRR(values, [guess])', ISPMT: 'ISPMT(rate, per, nper, pv)', MDURATION: 'MDURATION(settlement, maturity, coupon, yld, frequency, [basis])', MIRR: 'MIRR(values, finance_rate, reinvest_rate)', NOMINAL: 'NOMINAL(effect_rate, npery)', NPER: 'NPER(rate, pmt, pv, [fv], [type])', NPV: 'NPV(rate, value1, [value2], ...)', PDURATION: 'PDURATION(rate, pv, fv)', PMT: 'PMT(rate, nper, pv, [fv], [type])', PPMT: 'PPMT(rate, per, nper, pv, [fv], [type])', PV: 'PV(rate, nper, pmt, [fv], [type])', RATE: 'RATE(nper, pmt, pv, [fv], [type], [guess])', RRI: 'RRI(nper, pv, fv)', SLN: 'SLN(cost, salvage, life)', SYD: 'SYD(cost, salvage, life, per)', VDB: 'VDB(cost, salvage, life, start_period, end_period, [factor], [no_switch])', XIRR: 'XIRR(values, dates, [guess])', XNPV: 'XNPV(rate, values, dates)',
+
+  // Information
+  'ERROR.TYPE': 'ERROR.TYPE(error_val)', INFO: 'INFO(type_text)', ISERR: 'ISERR(value)', ISEVEN: 'ISEVEN(number)', ISLOGICAL: 'ISLOGICAL(value)', ISNONTEXT: 'ISNONTEXT(value)', ISODD: 'ISODD(number)', ISOMITTED: 'ISOMITTED(argument)', ISREF: 'ISREF(value)', NA: 'NA()', SHEET: 'SHEET([value])', SHEETS: 'SHEETS([reference])', TYPE: 'TYPE(value)',
+
+  // Web / Cube / Add-in
+  ENCODEURL: 'ENCODEURL(text)', FILTERXML: 'FILTERXML(xml, xpath)', WEBSERVICE: 'WEBSERVICE(url)',
+  CUBEKPIMEMBER: 'CUBEKPIMEMBER(connection, kpi_name, kpi_property, [caption])', CUBEMEMBER: 'CUBEMEMBER(connection, member_expression, [caption])', CUBEMEMBERPROPERTY: 'CUBEMEMBERPROPERTY(connection, member_expression, property)', CUBERANKEDMEMBER: 'CUBERANKEDMEMBER(connection, set_expression, rank, [caption])', CUBESET: 'CUBESET(connection, set_expression, [caption], [sort_order], [sort_by])', CUBESETCOUNT: 'CUBESETCOUNT(set)', CUBEVALUE: 'CUBEVALUE(connection, [member_expression1], [member_expression2], ...)',
+  CALL: 'CALL(module_text, procedure, type_text, [argument1], ...)', EUROCONVERT: 'EUROCONVERT(number, source, target, [full_precision], [triangulation_precision])', 'REGISTER.ID': 'REGISTER.ID(module_text, procedure, [type_text])', 'SQL.REQUEST': 'SQL.REQUEST(connection_string, output_ref, driver_prompt, query_text, col_names_logical)'
 };
 
 export const functionExamples = {
@@ -185,6 +314,13 @@ export const functionExamples = {
   }
 };
 
+Object.assign(verifiedFormatOverrides, {
+  XOR: 'XOR(logical1, [logical2], ...)',
+  ACOS: 'ACOS(number)', ACOSH: 'ACOSH(number)', ACOT: 'ACOT(number)', ACOTH: 'ACOTH(number)', ARABIC: 'ARABIC(text)', ASIN: 'ASIN(number)', ASINH: 'ASINH(number)', ATAN: 'ATAN(number)', ATAN2: 'ATAN2(x_num, y_num)', ATANH: 'ATANH(number)', BASE: 'BASE(number, radix, [min_length])',
+  'CEILING.MATH': 'CEILING.MATH(number, [significance], [mode])', 'CEILING.PRECISE': 'CEILING.PRECISE(number, [significance])', COMBIN: 'COMBIN(number, number_chosen)', COMBINA: 'COMBINA(number, number_chosen)', COS: 'COS(number)', COSH: 'COSH(number)', COT: 'COT(number)', COTH: 'COTH(number)', CSC: 'CSC(number)', CSCH: 'CSCH(number)', DECIMAL: 'DECIMAL(text, radix)', DEGREES: 'DEGREES(angle)', EVEN: 'EVEN(number)', EXP: 'EXP(number)', FACT: 'FACT(number)', FACTDOUBLE: 'FACTDOUBLE(number)', 'FLOOR.MATH': 'FLOOR.MATH(number, [significance], [mode])', 'FLOOR.PRECISE': 'FLOOR.PRECISE(number, [significance])', GCD: 'GCD(number1, [number2], ...)', 'ISO.CEILING': 'ISO.CEILING(number, [significance])', LCM: 'LCM(number1, [number2], ...)', LN: 'LN(number)', LOG: 'LOG(number, [base])', LOG10: 'LOG10(number)', MDETERM: 'MDETERM(array)', MINVERSE: 'MINVERSE(array)', MMULT: 'MMULT(array1, array2)', MROUND: 'MROUND(number, multiple)', MULTINOMIAL: 'MULTINOMIAL(number1, [number2], ...)', MUNIT: 'MUNIT(dimension)', ODD: 'ODD(number)', PI: 'PI()', PRODUCT: 'PRODUCT(number1, [number2], ...)', QUOTIENT: 'QUOTIENT(numerator, denominator)', RADIANS: 'RADIANS(angle)', ROMAN: 'ROMAN(number, [form])', SEC: 'SEC(number)', SECH: 'SECH(number)', SERIESSUM: 'SERIESSUM(x, n, m, coefficients)', SIGN: 'SIGN(number)', SIN: 'SIN(number)', SINH: 'SINH(number)', SQRTPI: 'SQRTPI(number)', SUMSQ: 'SUMSQ(number1, [number2], ...)', SUMX2MY2: 'SUMX2MY2(array_x, array_y)', SUMX2PY2: 'SUMX2PY2(array_x, array_y)', SUMXMY2: 'SUMXMY2(array_x, array_y)', TAN: 'TAN(number)', TANH: 'TANH(number)', TRUNC: 'TRUNC(number, [num_digits])',
+  ARRAYTOTEXT: 'ARRAYTOTEXT(array, [format])', ASC: 'ASC(text)', BAHTTEXT: 'BAHTTEXT(number)', CHAR: 'CHAR(number)', CODE: 'CODE(text)', DBCS: 'DBCS(text)', DOLLAR: 'DOLLAR(number, [decimals])', EXACT: 'EXACT(text1, text2)', FINDB: 'FINDB(find_text, within_text, [start_num])', FIXED: 'FIXED(number, [decimals], [no_commas])', LEFTB: 'LEFTB(text, [num_bytes])', LENB: 'LENB(text)', MIDB: 'MIDB(text, start_num, num_bytes)', PHONETIC: 'PHONETIC(reference)', REPLACEB: 'REPLACEB(old_text, start_num, num_bytes, new_text)', REPT: 'REPT(text, number_times)', RIGHTB: 'RIGHTB(text, [num_bytes])', SEARCHB: 'SEARCHB(find_text, within_text, [start_num])', T: 'T(value)', UNICHAR: 'UNICHAR(number)', UNICODE: 'UNICODE(text)', VALUETOTEXT: 'VALUETOTEXT(value, [format])'
+});
+
 const categoryFallback = (category = '') => humanCategoryCopy[category] || humanCategoryCopy['Advanced / Professional'];
 
 export function isGenericFormat(format = '') {
@@ -192,329 +328,155 @@ export function isGenericFormat(format = '') {
 }
 
 
-const teachingExampleOverrides = {
-  SUM: ['=SUM(E2:E20)', 'Menjumlahkan semua angka penjualan dari E2 sampai E20.'],
-  AVERAGE: ['=AVERAGE(E2:E20)', 'Menghitung rata-rata angka dari E2 sampai E20.'],
-  MIN: ['=MIN(E2:E20)', 'Mengambil angka paling kecil dari E2 sampai E20.'],
-  MAX: ['=MAX(E2:E20)', 'Mengambil angka paling besar dari E2 sampai E20.'],
-  COUNT: ['=COUNT(E2:E20)', 'Menghitung berapa cell di E2:E20 yang berisi angka.'],
-  COUNTA: ['=COUNTA(A2:A20)', 'Menghitung berapa cell di A2:A20 yang terisi, baik angka maupun teks.'],
-  COUNTBLANK: ['=COUNTBLANK(A2:A20)', 'Menghitung berapa cell kosong di A2:A20.'],
-  LARGE: ['=LARGE(E2:E20;2)', 'Mengambil angka terbesar ke-2 dari E2 sampai E20.'],
-  SMALL: ['=SMALL(E2:E20;2)', 'Mengambil angka terkecil ke-2 dari E2 sampai E20.'],
+const withIdSeparator = (formula = '') => String(formula || '').replace(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/g, ';');
 
-  SUMIF: ['=SUMIF(B2:B20;"Digital";E2:E20)', 'Menjumlahkan nilai di E2:E20 hanya untuk baris yang kategorinya Digital di B2:B20.'],
-  SUMIFS: ['=SUMIFS(E2:E20;B2:B20;"Digital";C2:C20;"Jakarta")', 'Menjumlahkan nilai di E2:E20 hanya untuk kategori Digital dan kota Jakarta.'],
-  AVERAGEIF: ['=AVERAGEIF(B2:B20;"Digital";E2:E20)', 'Menghitung rata-rata nilai di E2:E20 hanya untuk baris yang kategorinya Digital.'],
-  AVERAGEIFS: ['=AVERAGEIFS(E2:E20;B2:B20;"Digital";C2:C20;"Jakarta")', 'Menghitung rata-rata nilai untuk data kategori Digital di kota Jakarta.'],
-  COUNTIF: ['=COUNTIF(B2:B20;"Digital")', 'Menghitung berapa kali kategori Digital muncul di B2:B20.'],
-  COUNTIFS: ['=COUNTIFS(B2:B20;"Digital";C2:C20;"Jakarta")', 'Menghitung jumlah baris yang kategorinya Digital dan kotanya Jakarta.'],
-  MAXIFS: ['=MAXIFS(E2:E20;B2:B20;"Digital")', 'Mengambil nilai terbesar dari E2:E20 untuk kategori Digital.'],
-  MINIFS: ['=MINIFS(E2:E20;B2:B20;"Digital")', 'Mengambil nilai terkecil dari E2:E20 untuk kategori Digital.'],
-
-  IF: ['=IF(D2>=75;"Lulus";"Tidak Lulus")', 'Mengecek nilai D2. Kalau minimal 75 hasilnya Lulus, kalau tidak hasilnya Tidak Lulus.'],
-  IFS: ['=IFS(D2>=90;"A";D2>=75;"B";TRUE;"C")', 'Mengecek beberapa kondisi nilai dari atas ke bawah sampai menemukan kondisi yang cocok.'],
-  AND: ['=AND(D2>=75;E2="Lunas")', 'Menghasilkan TRUE kalau nilai minimal 75 dan status pembayaran Lunas.'],
-  OR: ['=OR(D2>=75;E2="Lunas")', 'Menghasilkan TRUE kalau salah satu kondisi terpenuhi.'],
-  NOT: ['=NOT(D2="Lunas")', 'Membalik hasil logika. Kalau D2 bukan Lunas, hasilnya TRUE.'],
-  IFERROR: ['=IFERROR(VLOOKUP(A2;E2:F20;2;FALSE);"Tidak ditemukan")', 'Menampilkan Tidak ditemukan kalau VLOOKUP menghasilkan error.'],
-  IFNA: ['=IFNA(XLOOKUP(A2;E2:E20;F2:F20);"Tidak ditemukan")', 'Menampilkan Tidak ditemukan kalau XLOOKUP menghasilkan #N/A.'],
-  SWITCH: ['=SWITCH(B2;"A";"Prioritas";"B";"Normal";"Lainnya")', 'Mengubah kode di B2 menjadi label yang lebih mudah dibaca.'],
-  TRUE: ['=TRUE()', 'Menghasilkan nilai logika TRUE.'],
-  FALSE: ['=FALSE()', 'Menghasilkan nilai logika FALSE.'],
-
-  VLOOKUP: ['=VLOOKUP(A2;E2:H20;2;FALSE)', 'Mencari kode di A2 pada kolom pertama tabel E2:H20, lalu mengambil hasil dari kolom ke-2.'],
-  HLOOKUP: ['=HLOOKUP(B1;B1:H4;3;FALSE)', 'Mencari value di B1 pada baris pertama tabel B1:H4, lalu mengambil hasil dari baris ke-3.'],
-  XLOOKUP: ['=XLOOKUP(A2;E2:E20;F2:F20;"Tidak ditemukan")', 'Mencari A2 di E2:E20, lalu mengambil hasil sejajar dari F2:F20.'],
-  LOOKUP: ['=LOOKUP(A2;E2:E20;F2:F20)', 'Mencari A2 di E2:E20, lalu mengambil hasil sejajar dari F2:F20.'],
-  MATCH: ['=MATCH(A2;E2:E20;0)', 'Mencari posisi A2 di dalam E2:E20 dengan match exact.'],
-  XMATCH: ['=XMATCH(A2;E2:E20;0)', 'Mencari posisi A2 di dalam E2:E20 dengan match exact versi modern.'],
-  INDEX: ['=INDEX(F2:F20;MATCH(A2;E2:E20;0))', 'Mengambil isi dari F2:F20 pada posisi kode A2 yang ditemukan di E2:E20.'],
-  CHOOSE: ['=CHOOSE(2;"Basic";"Premium";"Pro")', 'Memilih item ke-2 dari daftar pilihan, hasilnya Premium.'],
-
-  LEFT: ['=LEFT(A2;3)', 'Mengambil 3 karakter pertama dari teks di A2.'],
-  RIGHT: ['=RIGHT(A2;4)', 'Mengambil 4 karakter terakhir dari teks di A2.'],
-  MID: ['=MID(A2;4;5)', 'Mengambil 5 karakter dari teks A2, mulai karakter ke-4.'],
-  LEN: ['=LEN(A2)', 'Menghitung jumlah karakter di A2.'],
-  TRIM: ['=TRIM(A2)', 'Membersihkan spasi berlebih di teks A2.'],
-  CLEAN: ['=CLEAN(A2)', 'Membersihkan karakter tidak terlihat dari teks A2.'],
-  LOWER: ['=LOWER(A2)', 'Mengubah teks A2 menjadi huruf kecil.'],
-  UPPER: ['=UPPER(A2)', 'Mengubah teks A2 menjadi huruf besar.'],
-  PROPER: ['=PROPER(A2)', 'Membuat huruf awal tiap kata di A2 menjadi kapital.'],
-  CONCAT: ['=CONCAT(A2;" ";B2)', 'Menggabungkan isi A2, spasi, dan B2.'],
-  CONCATENATE: ['=CONCATENATE(A2;" ";B2)', 'Menggabungkan isi A2, spasi, dan B2 memakai rumus lama.'],
-  TEXTJOIN: ['=TEXTJOIN(", ";TRUE;A2:A5)', 'Menggabungkan teks dari A2:A5 dengan pemisah koma dan mengabaikan cell kosong.'],
-  TEXTSPLIT: ['=TEXTSPLIT(A2;"-")', 'Memecah teks A2 menjadi beberapa bagian berdasarkan tanda minus.'],
-  TEXTBEFORE: ['=TEXTBEFORE(A2;"-")', 'Mengambil teks sebelum tanda minus pertama di A2.'],
-  TEXTAFTER: ['=TEXTAFTER(A2;"-")', 'Mengambil teks setelah tanda minus pertama di A2.'],
-  FIND: ['=FIND("@";A2)', 'Mencari posisi tanda @ di dalam teks A2, case-sensitive.'],
-  SEARCH: ['=SEARCH("jakarta";A2)', 'Mencari posisi kata jakarta di A2, tidak peduli huruf besar/kecil.'],
-  SUBSTITUTE: ['=SUBSTITUTE(A2;"lama";"baru")', 'Mengganti kata lama menjadi baru di teks A2.'],
-  REPLACE: ['=REPLACE(A2;1;3;"INV")', 'Mengganti 3 karakter pertama di A2 menjadi INV.'],
-  VALUE: ['=VALUE(A2)', 'Mengubah teks angka di A2 menjadi angka asli.'],
-  NUMBERVALUE: ['=NUMBERVALUE(A2;",";".")', 'Mengubah teks angka dengan format separator tertentu menjadi angka asli.'],
-  TEXT: ['=TEXT(E2;"Rp #,##0")', 'Mengubah angka di E2 menjadi teks dengan format rupiah.'],
-
-  DATE: ['=DATE(2026;5;30)', 'Membuat tanggal dari tahun 2026, bulan 5, dan tanggal 30.'],
-  DAY: ['=DAY(B2)', 'Mengambil angka tanggal dari date di B2.'],
-  MONTH: ['=MONTH(B2)', 'Mengambil angka bulan dari date di B2.'],
-  YEAR: ['=YEAR(B2)', 'Mengambil tahun dari date di B2.'],
-  TODAY: ['=TODAY()', 'Menghasilkan tanggal hari ini.'],
-  NOW: ['=NOW()', 'Menghasilkan tanggal dan jam saat ini.'],
-  DATEDIF: ['=DATEDIF(B2;C2;"d")', 'Menghitung selisih hari antara tanggal B2 dan C2.'],
-  DAYS: ['=DAYS(C2;B2)', 'Menghitung jumlah hari dari B2 sampai C2.'],
-  NETWORKDAYS: ['=NETWORKDAYS(B2;C2;E2:E5)', 'Menghitung hari kerja dari B2 sampai C2, dikurangi tanggal libur di E2:E5.'],
-  'NETWORKDAYS.INTL': ['=NETWORKDAYS.INTL(B2;C2;1;E2:E5)', 'Menghitung hari kerja dengan pola weekend dan daftar libur khusus.'],
-  WORKDAY: ['=WORKDAY(B2;10;E2:E5)', 'Mengambil tanggal 10 hari kerja setelah tanggal B2.'],
-  'WORKDAY.INTL': ['=WORKDAY.INTL(B2;10;1;E2:E5)', 'Mengambil tanggal kerja berikutnya dengan pola weekend khusus.'],
-  EDATE: ['=EDATE(B2;3)', 'Mengambil tanggal 3 bulan setelah B2.'],
-  EOMONTH: ['=EOMONTH(B2;0)', 'Mengambil tanggal akhir bulan dari tanggal B2.'],
-  HOUR: ['=HOUR(D2)', 'Mengambil jam dari waktu di D2.'],
-  MINUTE: ['=MINUTE(D2)', 'Mengambil menit dari waktu di D2.'],
-  SECOND: ['=SECOND(D2)', 'Mengambil detik dari waktu di D2.'],
-  TIME: ['=TIME(8;30;0)', 'Membuat waktu jam 08:30:00.'],
-
-  FILTER: ['=FILTER(A2:E20;B2:B20="Digital";"Tidak ada data")', 'Menampilkan baris A2:E20 yang kategorinya Digital.'],
-  SORT: ['=SORT(A2:E20;5;-1)', 'Mengurutkan tabel A2:E20 berdasarkan kolom ke-5 dari terbesar ke terkecil.'],
-  SORTBY: ['=SORTBY(A2:E20;E2:E20;-1)', 'Mengurutkan tabel A2:E20 berdasarkan nilai di E2:E20 dari terbesar ke terkecil.'],
-  UNIQUE: ['=UNIQUE(B2:B20)', 'Menampilkan daftar kategori unik dari B2:B20.'],
-  TRANSPOSE: ['=TRANSPOSE(A2:E2)', 'Mengubah data horizontal A2:E2 menjadi vertikal.'],
-  TAKE: ['=TAKE(A2:E20;5)', 'Mengambil 5 baris pertama dari A2:E20.'],
-  DROP: ['=DROP(A2:E20;1)', 'Membuang 1 baris pertama dari A2:E20.'],
-  VSTACK: ['=VSTACK(A2:E10;A11:E20)', 'Menggabungkan dua tabel secara vertikal.'],
-  HSTACK: ['=HSTACK(A2:B20;D2:E20)', 'Menggabungkan dua range secara horizontal.'],
-  CHOOSECOLS: ['=CHOOSECOLS(A2:E20;1;3;5)', 'Mengambil kolom ke-1, ke-3, dan ke-5 dari A2:E20.'],
-  CHOOSEROWS: ['=CHOOSEROWS(A2:E20;1;3;5)', 'Mengambil baris ke-1, ke-3, dan ke-5 dari A2:E20.'],
-
-  SUBTOTAL: ['=SUBTOTAL(9;E2:E20)', 'Menjumlahkan E2:E20 dengan mode SUBTOTAL SUM.'],
-  AGGREGATE: ['=AGGREGATE(9;6;E2:E20)', 'Menjumlahkan E2:E20 sambil mengabaikan error.'],
-  SUMPRODUCT: ['=SUMPRODUCT(D2:D20;E2:E20)', 'Mengalikan Qty dan Harga per baris, lalu menjumlahkan hasilnya.'],
-  LET: ['=LET(total;SUM(E2:E20);total)', 'Menyimpan hasil SUM(E2:E20) dengan nama total, lalu menampilkan total itu.'],
-  LAMBDA: ['=LAMBDA(x;x*10)(5)', 'Membuat function kecil yang mengalikan input dengan 10, lalu menjalankannya untuk angka 5.'],
-
-  CUBEVALUE: ['=CUBEVALUE("ThisWorkbookDataModel";"[Measures].[Total Sales]")', 'Mengambil nilai Total Sales dari Data Model workbook.'],
-  CUBEMEMBER: ['=CUBEMEMBER("ThisWorkbookDataModel";"[Product].[Category].[Digital]")', 'Mengambil member kategori Digital dari Data Model.'],
-  CUBESET: ['=CUBESET("ThisWorkbookDataModel";"[Product].[Category].Members")', 'Membuat set dari daftar kategori produk di Data Model.'],
-  CUBESETCOUNT: ['=CUBESETCOUNT(A2)', 'Menghitung jumlah item di set Cube yang ada di A2.'],
-
-  NEGBINOMDIST: ['=NEGBINOMDIST(3;5;0.4)', 'Menghitung peluang 3 kali gagal sebelum 5 kali berhasil, dengan peluang berhasil 0.4.'],
-  'BINOM.DIST': ['=BINOM.DIST(6;10;0.4;FALSE)', 'Menghitung peluang tepat 6 sukses dari 10 percobaan dengan peluang sukses 0.4.'],
-  BINOMDIST: ['=BINOMDIST(6;10;0.4;FALSE)', 'Versi lama dari BINOM.DIST untuk menghitung peluang binomial.'],
-  'NORM.DIST': ['=NORM.DIST(42;40;1.5;TRUE)', 'Menghitung distribusi normal kumulatif untuk nilai 42 dengan mean 40 dan standar deviasi 1.5.'],
-  NORMDIST: ['=NORMDIST(42;40;1.5;TRUE)', 'Versi lama dari NORM.DIST.'],
-  'NORM.INV': ['=NORM.INV(0.8;40;1.5)', 'Mengambil nilai x dari peluang 0.8 pada distribusi normal.'],
-  NORMINV: ['=NORMINV(0.8;40;1.5)', 'Versi lama dari NORM.INV.'],
-
-  PMT: ['=PMT(8%/12;12;-10000000)', 'Menghitung estimasi cicilan bulanan untuk pinjaman 10 juta selama 12 bulan.'],
-  FV: ['=FV(8%/12;12;-900000)', 'Menghitung nilai masa depan dari setoran 900.000 per bulan.'],
-  PV: ['=PV(8%/12;12;-900000)', 'Menghitung nilai sekarang dari pembayaran 900.000 per bulan.'],
-  RATE: ['=RATE(12;-900000;10000000)', 'Menghitung estimasi bunga per periode dari data cicilan.'],
-  NPER: ['=NPER(8%/12;-900000;10000000)', 'Menghitung jumlah periode untuk melunasi pinjaman.'],
-
-  CONVERT: ['=CONVERT(10;"m";"cm")', 'Mengubah 10 meter menjadi centimeter.'],
-  ENCODEURL: ['=ENCODEURL("Formula Coach Excel")', 'Mengubah teks agar aman dipakai sebagai bagian URL.'],
-  FILTERXML: ['=FILTERXML("<root><title>Formula Coach</title></root>";"//title")', 'Mengambil isi title dari teks XML sederhana.'],
-  WEBSERVICE: ['=WEBSERVICE("https://example.com/api")', 'Contoh struktur WEBSERVICE. Hasil asli bergantung koneksi web dan URL yang dipakai.']
+const exampleOverrides = {
+  SUM: '=SUM(E2:E20)',
+  AVERAGE: '=AVERAGE(E2:E20)',
+  MIN: '=MIN(E2:E20)',
+  MAX: '=MAX(E2:E20)',
+  COUNT: '=COUNT(E2:E20)',
+  COUNTA: '=COUNTA(A2:A20)',
+  COUNTBLANK: '=COUNTBLANK(B2:B20)',
+  COUNTIF: '=COUNTIF(B2:B20;"Digital")',
+  COUNTIFS: '=COUNTIFS(B2:B20;"Digital";C2:C20;"Jakarta")',
+  SUMIF: '=SUMIF(B2:B20;"Digital";E2:E20)',
+  SUMIFS: '=SUMIFS(E2:E20;B2:B20;"Digital";C2:C20;"Jakarta")',
+  AVERAGEIF: '=AVERAGEIF(B2:B20;"Digital";E2:E20)',
+  AVERAGEIFS: '=AVERAGEIFS(E2:E20;B2:B20;"Digital";C2:C20;"Jakarta")',
+  IF: '=IF(D2>=75;"Lulus";"Tidak Lulus")',
+  IFS: '=IFS(D2>=90;"A";D2>=75;"B";TRUE;"C")',
+  AND: '=AND(D2>=75;E2="Lunas")',
+  OR: '=OR(B2="Digital";C2="Jakarta")',
+  NOT: '=NOT(ISBLANK(A2))',
+  IFERROR: '=IFERROR(VLOOKUP(A2;E2:H20;2;FALSE);"Tidak ditemukan")',
+  IFNA: '=IFNA(XLOOKUP(A2;E2:E20;F2:F20);"Tidak ditemukan")',
+  VLOOKUP: '=VLOOKUP(A2;E2:H20;2;FALSE)',
+  HLOOKUP: '=HLOOKUP(B1;A1:E5;3;FALSE)',
+  XLOOKUP: '=XLOOKUP(A2;E2:E20;F2:F20;"Tidak ditemukan")',
+  LOOKUP: '=LOOKUP(A2;E2:E20;F2:F20)',
+  MATCH: '=MATCH(A2;E2:E20;0)',
+  XMATCH: '=XMATCH(A2;E2:E20;0)',
+  INDEX: '=INDEX(E2:H20;3;2)',
+  FILTER: '=FILTER(A2:E20;B2:B20="Digital")',
+  SORT: '=SORT(A2:E20;4;-1)',
+  UNIQUE: '=UNIQUE(B2:B20)',
+  TEXT: '=TEXT(E2;"Rp #,##0")',
+  LEFT: '=LEFT(A2;3)',
+  RIGHT: '=RIGHT(A2;4)',
+  MID: '=MID(A2;2;3)',
+  LEN: '=LEN(A2)',
+  TRIM: '=TRIM(A2)',
+  LOWER: '=LOWER(A2)',
+  UPPER: '=UPPER(A2)',
+  PROPER: '=PROPER(A2)',
+  CONCAT: '=CONCAT(A2;" - ";B2)',
+  TEXTJOIN: '=TEXTJOIN(", ";TRUE;A2:A5)',
+  DATE: '=DATE(2026;1;15)',
+  DAY: '=DAY(A2)',
+  MONTH: '=MONTH(A2)',
+  YEAR: '=YEAR(A2)',
+  TODAY: '=TODAY()',
+  NOW: '=NOW()',
+  DATEDIF: '=DATEDIF(A2;B2;"d")',
+  DAYS: '=DAYS(B2;A2)',
+  NETWORKDAYS: '=NETWORKDAYS(A2;B2)',
+  WORKDAY: '=WORKDAY(A2;5)',
+  EDATE: '=EDATE(A2;3)',
+  EOMONTH: '=EOMONTH(A2;0)',
+  ABS: '=ABS(B2)',
+  ROUND: '=ROUND(B2;2)',
+  ROUNDUP: '=ROUNDUP(B2;0)',
+  ROUNDDOWN: '=ROUNDDOWN(B2;0)',
+  INT: '=INT(B2)',
+  MOD: '=MOD(B2;3)',
+  POWER: '=POWER(B2;2)',
+  SQRT: '=SQRT(B2)',
+  SUBTOTAL: '=SUBTOTAL(9;E2:E20)',
+  SUMPRODUCT: '=SUMPRODUCT(D2:D20;E2:E20)',
+  NEGBINOMDIST: '=NEGBINOMDIST(3;5;0.4)',
+  'NEGBINOM.DIST': '=NEGBINOM.DIST(3;5;0.4;FALSE)',
+  BINOMDIST: '=BINOMDIST(6;10;0.4;FALSE)',
+  'BINOM.DIST': '=BINOM.DIST(6;10;0.4;FALSE)',
+  NORMDIST: '=NORMDIST(42;40;1.5;TRUE)',
+  'NORM.DIST': '=NORM.DIST(42;40;1.5;TRUE)',
+  PMT: '=PMT(8%/12;12;10000000)',
+  FV: '=FV(8%/12;12;-900000)',
+  PV: '=PV(8%/12;12;-900000)',
+  CONVERT: '=CONVERT(10;"m";"cm")',
+  ENCODEURL: '=ENCODEURL("Formula Coach Excel")',
+  FILTERXML: '=FILTERXML("<root><title>Formula Coach</title></root>";"//title")'
 };
 
-function splitFormatArguments(format = '') {
+const buildExampleFromFormat = (formula = {}, format = '') => {
+  const name = formula.name || 'FORMULA';
+  if (exampleOverrides[name]) return exampleOverrides[name];
+  const category = formula.category || formula.displayCategory || '';
   const open = String(format).indexOf('(');
   const close = String(format).lastIndexOf(')');
-  if (open < 0 || close < open) return [];
-  const inner = String(format).slice(open + 1, close);
-  const result = [];
-  let current = '';
-  let depth = 0;
-  for (const char of inner) {
-    if (char === '(') depth += 1;
-    if (char === ')') depth = Math.max(0, depth - 1);
-    if (char === ',' && depth === 0) {
-      if (current.trim()) result.push(current.trim());
-      current = '';
-      continue;
-    }
-    current += char;
-  }
-  if (current.trim()) result.push(current.trim());
-  return result;
-}
+  if (open < 0 || close < open) return categoryFallback(category).sample;
+  const args = String(format).slice(open + 1, close).split(',').map((arg) => arg.trim()).filter(Boolean);
+  const cleaned = args.filter((arg) => !/^\[.*\]$/.test(arg)).slice(0, 4);
+  const mapArg = (arg) => {
+    const t = String(arg).replace(/[\[\]]/g, '').toLowerCase();
+    if (/sum_range|average_range|max_range|min_range|values|known_y|return_array/.test(t)) return 'E2:E20';
+    if (/criteria_range|lookup_array|lookup_vector|range/.test(t)) return 'B2:B20';
+    if (/criteria/.test(t)) return '"Digital"';
+    if (/lookup_value|value|text|number|x|z|probability|alpha|rate/.test(t)) return 'A2';
+    if (/array|ref|database/.test(t)) return 'A2:E20';
+    if (/table_array/.test(t)) return 'E2:H20';
+    if (/col_index/.test(t)) return '2';
+    if (/row_index/.test(t)) return '3';
+    if (/cumulative|range_lookup/.test(t)) return 'FALSE';
+    if (/start_date/.test(t)) return 'A2';
+    if (/end_date/.test(t)) return 'B2';
+    if (/year/.test(t)) return '2026';
+    if (/month/.test(t)) return '1';
+    if (/day/.test(t)) return '15';
+    return 'A2';
+  };
+  const mapped = cleaned.length ? cleaned.map(mapArg) : [];
+  if (!mapped.length) return `=${name}()`;
+  return `=${name}(${mapped.join(';')})`;
+};
 
-function normalizeArgName(arg = '') {
-  return String(arg).replace(/[\[\]]/g, '').replace(/\.\.\./g, '').trim().toLowerCase();
-}
 
-function shouldUseOptionalArg(name, arg) {
-  const n = String(name).toUpperCase();
-  const a = normalizeArgName(arg);
-  if (['VLOOKUP', 'HLOOKUP', 'XLOOKUP', 'NETWORKDAYS', 'NETWORKDAYS.INTL', 'WORKDAY', 'WORKDAY.INTL', 'SUBTOTAL', 'AGGREGATE'].includes(n)) return true;
-  if (/if_not_found|range_lookup|match_mode|search_mode|holidays|weekend|function_num|options/.test(a)) return true;
-  return false;
-}
-
-function exampleArgValue(arg = '', formula = {}) {
-  const name = String(formula.name || '').toUpperCase();
-  const category = formula.category || '';
-  const a = normalizeArgName(arg);
-
-  if (/lookup_value/.test(a)) return 'A2';
-  if (/lookup_array|lookup_vector/.test(a)) return 'E2:E20';
-  if (/return_array|result_vector/.test(a)) return 'F2:F20';
-  if (/table_array/.test(a)) return 'E2:H20';
-  if (/col_index/.test(a)) return '2';
-  if (/row_index/.test(a)) return '3';
-  if (/range_lookup/.test(a)) return 'FALSE';
-  if (/match_mode|match_type/.test(a)) return '0';
-  if (/search_mode/.test(a)) return '1';
-
-  if (/sum_range|average_range|max_range|min_range/.test(a)) return 'E2:E20';
-  if (/criteria_range/.test(a)) return /2/.test(a) ? 'C2:C20' : 'B2:B20';
-  if (/criteria/.test(a)) return /2/.test(a) ? '"Jakarta"' : '"Digital"';
-  if (/range/.test(a) && /if/.test(name)) return 'B2:B20';
-
-  if (/logical_test|condition/.test(a)) return 'D2>=75';
-  if (/value_if_true|result_if_true/.test(a)) return '"Lulus"';
-  if (/value_if_false|result_if_false/.test(a)) return '"Tidak Lulus"';
-  if (/logical/.test(a)) return 'D2>=75';
-
-  if (/start_date/.test(a)) return 'B2';
-  if (/end_date/.test(a)) return 'C2';
-  if (/holidays/.test(a)) return 'E2:E5';
-  if (/weekend/.test(a)) return '1';
-  if (/year/.test(a)) return '2026';
-  if (/month/.test(a)) return '5';
-  if (/day/.test(a)) return '30';
-  if (/hour/.test(a)) return '8';
-  if (/minute/.test(a)) return '30';
-  if (/second/.test(a)) return '0';
-  if (/serial_number|date_text|time_text/.test(a)) return /time/.test(a) ? 'D2' : 'B2';
-  if (/months|days/.test(a)) return '3';
-
-  if (/find_text|old_text|delimiter|col_delimiter|row_delimiter/.test(a)) return '"-"';
-  if (/new_text|replacement/.test(a)) return '"Baru"';
-  if (/text1/.test(a)) return 'A2';
-  if (/text2/.test(a)) return 'B2';
-  if (/text|within_text/.test(a)) return 'A2';
-  if (/start_num/.test(a)) return '4';
-  if (/num_chars|num_bytes|number_times|decimals/.test(a)) return '3';
-  if (/format_text/.test(a)) return '"Rp #,##0"';
-
-  if (/row_fields/.test(a)) return 'B2:B20';
-  if (/col_fields/.test(a)) return 'C2:C20';
-  if (/function/.test(a)) return 'SUM';
-  if (/values/.test(a)) return 'E2:E20';
-  if (category === 'Engineering') {
-    if (/number1/.test(a)) return '6';
-    if (/number2/.test(a)) return '3';
-    if (/^n$|order/.test(a)) return '2';
-    if (/places|shift_amount|step/.test(a)) return '2';
-    if (/number|x|lower_limit|upper_limit/.test(a)) return '10';
-  }
-
-  if (/array1/.test(a)) return 'D2:D20';
-  if (/array2/.test(a)) return 'E2:E20';
-  if (/array|ref|reference|number1|value1/.test(a)) {
-    if (category === 'Text') return 'A2:A10';
-    if (category === 'Lookup and Reference') return 'A2:E20';
-    return 'E2:E20';
-  }
-  if (/number2|value2/.test(a)) return 'B2';
-  if (/number_times|decimals/.test(a)) return '3';
-  if (/number|x|z/.test(a)) return '42';
-  if (/k|quart|num_digits|significance|multiple|rows|columns|height|width|step|start/.test(a)) return '2';
-
-  if (/rate/.test(a)) return '8%/12';
-  if (/nper|per|period/.test(a)) return '12';
-  if (/pmt/.test(a)) return '-900000';
-  if (/pv/.test(a)) return '10000000';
-  if (/fv/.test(a)) return '0';
-  if (/type|basis|method/.test(a)) return '0';
-
-  if (/probability_s|probability|alpha/.test(a)) return '0.4';
-  if (/number_f/.test(a)) return '3';
-  if (/number_s|sample_s|success/.test(a)) return '5';
-  if (/trials|deg_freedom|size|number_sample|number_pop/.test(a)) return '10';
-  if (/mean|standard_dev|sigma|lambda|beta/.test(a)) return /standard|sigma/.test(a) ? '1.5' : '40';
-  if (/cumulative/.test(a)) return 'TRUE';
-
-  if (/from_unit/.test(a)) return '"m"';
-  if (/to_unit/.test(a)) return '"cm"';
-  if (/unit/.test(a)) return '"m"';
-  if (/real_num/.test(a)) return '3';
-  if (/^i_num$|imag_num/.test(a)) return '4';
-  if (/inumber|complex/.test(a)) return '"3+4i"';
-  if (/suffix/.test(a)) return '"i"';
-
-  if (/url/.test(a)) return '"https://example.com/api"';
-  if (/xml/.test(a)) return '"<root><title>Formula Coach</title></root>"';
-  if (/xpath/.test(a)) return '"//title"';
-
-  if (/connection/.test(a)) return '"ThisWorkbookDataModel"';
-  if (/member|set|measure|tuple/.test(a)) return '"[Measures].[Total Sales]"';
-  if (/caption/.test(a)) return '"Total Sales"';
-
-  if (/function/.test(a)) return 'SUM';
-  if (/lambda/.test(a)) return 'LAMBDA(x;x*2)';
-  if (/name1/.test(a)) return 'total';
-  if (/name_value/.test(a)) return 'SUM(E2:E20)';
-  if (/calculation/.test(a)) return 'total';
-
-  return category === 'Text' ? 'A2' : 'E2:E20';
-}
-
-function buildTeachingExample(formula = {}) {
-  const name = String(formula.name || '').toUpperCase();
-  const override = teachingExampleOverrides[name];
-  if (override) {
-    return { exampleFormula: override[0], exampleMeaning: override[1] };
-  }
-
-  const syntax = formula.syntax || `${formula.name || 'FORMULA'}(value)`;
-  const args = splitFormatArguments(syntax);
-  const argsToUse = args
-    .filter((arg) => !/^\s*\.\.\.\s*$/.test(arg))
-    .filter((arg) => !/^\[.*\]$/.test(arg) || shouldUseOptionalArg(name, arg))
-    .slice(0, 6);
-
-  const values = argsToUse.map((arg) => exampleArgValue(arg, formula));
-  const formulaName = formula.name || String(syntax).split('(')[0] || 'FORMULA';
-  const exampleFormula = values.length ? `=${formulaName}(${values.join(';')})` : `=${formulaName}()`;
-
-  let exampleMeaning = `Contoh ini menunjukkan cara mengisi ${formulaName} dengan argumen yang sesuai format, bukan jawaban latihan.`;
-  if (formula.category === 'Text') exampleMeaning = `Contoh ini mengolah teks dari cell atau range yang dipilih.`;
-  if (formula.category === 'Date and Time') exampleMeaning = `Contoh ini mengolah tanggal atau waktu memakai input yang sesuai format.`;
-  if (formula.category === 'Financial') exampleMeaning = `Contoh ini memakai angka keuangan seperti bunga, periode, pembayaran, atau nilai pinjaman.`;
-  if (formula.category === 'Statistical' || formula.category === 'Compatibility') exampleMeaning = `Contoh ini memakai angka statistik yang sesuai dengan argumen ${formulaName}.`;
-  if (formula.category === 'Engineering') exampleMeaning = `Contoh ini memakai input teknik seperti angka, satuan, bilangan biner, atau bilangan kompleks.`;
-  if (formula.category === 'Lookup and Reference') exampleMeaning = `Contoh ini mencari data dari tabel referensi, lalu mengambil hasil yang sejajar.`;
-  if (formula.category === 'Database') exampleMeaning = `Contoh ini memakai database kecil, field, dan area kriteria.`;
-  if (formula.category === 'Web') exampleMeaning = `Contoh ini memakai URL atau XML sebagai bahan latihan struktur rumus.`;
-  if (formula.category === 'Cube') exampleMeaning = `Contoh ini menunjukkan struktur rumus Cube. Hasil asli butuh Data Model atau koneksi Cube.`;
-
-  return { exampleFormula, exampleMeaning };
-}
+const buildExampleMeaning = (formula = {}) => {
+  const name = formula.name || '';
+  if (['SUMIF','COUNTIF','AVERAGEIF'].includes(name)) return 'Contoh ini memakai satu syarat. Excel mengecek kategori Digital, lalu menghitung bagian angka yang sesuai.';
+  if (['SUMIFS','COUNTIFS','AVERAGEIFS'].includes(name)) return 'Contoh ini memakai lebih dari satu syarat, misalnya kategori Digital dan kota Jakarta.';
+  if (['VLOOKUP','HLOOKUP','XLOOKUP','LOOKUP','MATCH','XMATCH','INDEX'].includes(name)) return 'Contoh ini mengambil data dari tabel referensi memakai nilai pencarian yang sudah ada.';
+  if (['LEFT','RIGHT','MID','LEN','TRIM','LOWER','UPPER','PROPER','CONCAT','CONCATENATE','TEXTJOIN','TEXTSPLIT','TEXTBEFORE','TEXTAFTER','FIND','SEARCH','SUBSTITUTE','REPLACE','TEXT'].includes(name)) return 'Contoh ini mengolah teks, kode, nama, atau format tampilan dari cell.';
+  if (['DATE','DAY','MONTH','YEAR','TODAY','NOW','DATEDIF','DAYS','NETWORKDAYS','WORKDAY','EDATE','EOMONTH','TIME','HOUR','MINUTE','SECOND'].includes(name)) return 'Contoh ini memakai data tanggal atau waktu yang umum dipakai di laporan kerja.';
+  if (['NEGBINOMDIST','NEGBINOM.DIST','BINOMDIST','BINOM.DIST','NORMDIST','NORM.DIST','NORMINV','NORM.INV','POISSON','POISSON.DIST'].includes(name)) return 'Contoh ini memakai parameter statistik yang sesuai dengan argumen rumusnya.';
+  if (['PMT','FV','PV','NPER','RATE','NPV','IRR'].includes(name)) return 'Contoh ini memakai parameter keuangan seperti bunga, periode, pembayaran, atau nilai pinjaman.';
+  if (formula.category === 'Math and Trigonometry') return 'Contoh ini menghitung angka dari cell atau range angka.';
+  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return 'Contoh ini memakai range atau parameter statistik yang sesuai dengan jenis rumusnya.';
+  if (formula.category === 'Text') return 'Contoh ini mengolah teks dari cell.';
+  if (formula.category === 'Date and Time') return 'Contoh ini mengolah tanggal atau jam.';
+  return categoryFallback(formula.category || formula.displayCategory).meaning;
+};
 
 export function buildBeginnerLearningContent(formula = {}) {
   const name = formula.name || 'FORMULA';
   const copy = categoryFallback(formula.category || formula.displayCategory);
   const specific = functionExamples[name] || {};
-  const generatedExample = buildTeachingExample(formula);
   const genericFormat = isGenericFormat(formula.syntax);
-  const baseExample = specific.exampleFormula || generatedExample.exampleFormula || copy.sample;
-  const baseMeaning = specific.exampleMeaning || generatedExample.exampleMeaning || copy.meaning;
+  const baseExample = specific.exampleFormula || buildExampleFromFormat(formula, formula.syntax || '') || formula.exampleFormula;
 
   return {
     description: formula.description && !/untuk kebutuhan khusus|berdasarkan parameter tertentu/i.test(formula.description)
       ? formula.description
       : copy.description(name),
-    simpleLogic: specific.simpleLogic || (formula.simpleLogic && !/Pahami input utama|Baca format .* lalu isi rumus dari kiri ke kanan/i.test(formula.simpleLogic))
+    simpleLogic: specific.simpleLogic || formula.simpleLogic && !/Pahami input utama/i.test(formula.simpleLogic)
       ? (specific.simpleLogic || formula.simpleLogic)
       : copy.logic,
-    useCase: formula.useCase && !/kebutuhan datanya cocok|sesuai dengan jenis data dan argumen pada format rumus ini/i.test(formula.useCase) ? formula.useCase : copy.useCase,
+    useCase: formula.useCase && !/kebutuhan datanya cocok/i.test(formula.useCase) ? formula.useCase : copy.useCase,
     analogy: specific.analogy || formula.analogy || copy.analogy,
-    simpleExample: baseMeaning,
+    simpleExample: specific.exampleMeaning || buildExampleMeaning(formula) || formula.simpleExample || formula.exampleMeaning || copy.meaning,
     exampleFormula: baseExample,
-    exampleMeaning: baseMeaning,
-    beginnerTip: 'Contoh di atas hanya contoh penggunaan rumus, bukan jawaban latihan. Untuk latihan, tetap baca soal dan ambil data dari tabel yang sedang aktif.',
+    exampleMeaning: specific.exampleMeaning || buildExampleMeaning(formula) || formula.exampleMeaning || formula.simpleExample || copy.meaning,
+    beginnerTip: 'Jangan hafalin dulu. Baca soalnya, cari data yang dipakai, tentukan syaratnya, baru susun rumusnya pelan-pelan.',
     auditStatus: genericFormat ? 'needs-manual-format-check' : 'checked-basic',
     auditNote: genericFormat
       ? 'Format detail belum diverifikasi di source, jadi dipakai sebagai theory-only sampai format resmi dicek.'

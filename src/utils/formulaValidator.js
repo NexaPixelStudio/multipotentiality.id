@@ -221,13 +221,13 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
       };
     }
 
-    if (expectedResult.ok && !answerResult.simulated && !expectedResult.simulated && compareExcelResults(answerResult.value, expectedResult.value)) {
+    if (expectedResult.ok && !answerResult.structureOnly && !expectedResult.structureOnly && compareExcelResults(answerResult.value, expectedResult.value)) {
       return {
         correct: true,
         title: 'Jawaban kamu benar.',
         message: 'Jawaban kamu benar. Logikanya sudah tepat.',
         details: [
-          `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
+          answerResult.structureOnly ? 'Struktur rumus valid. Hasil asli perlu dicek di Excel.' : `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
           functionMismatch
             ? `Catatan: hasilnya sudah benar, tapi kamu memakai ${root}. Untuk materi ini, pahami juga versi ${expectedRoot}.`
             : 'Formula boleh tidak identik 100%, selama hasil dan logikanya sama.'
@@ -280,13 +280,13 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
       };
     }
 
-    if (expectedResult.ok && !answerResult.simulated && !expectedResult.simulated && compareExcelResults(answerResult.value, expectedResult.value)) {
+    if (expectedResult.ok && !answerResult.structureOnly && !expectedResult.structureOnly && compareExcelResults(answerResult.value, expectedResult.value)) {
       return {
         correct: true,
         title: 'Jawaban kamu benar.',
         message: 'Jawaban kamu benar. Logikanya sudah tepat.',
         details: [
-          `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
+          answerResult.structureOnly ? 'Struktur rumus valid. Hasil asli perlu dicek di Excel.' : `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
           functionMismatch
             ? `Catatan: hasilnya sudah benar, tapi kamu memakai ${root}. Untuk materi ini, pahami juga versi ${expectedRoot}.`
             : 'Formula boleh tidak identik 100%, selama hasil dan logikanya sama.'
@@ -364,14 +364,14 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
   if (table) {
     const answerResult = evaluateFormula(raw, table, separatorMode);
     const expectedResult = evaluateFormula(exercise.expectedFormula, table, 'en');
-    if (answerResult.ok && expectedResult.ok && !answerResult.simulated && !expectedResult.simulated && !compareExcelResults(answerResult.value, expectedResult.value)) {
+    if (answerResult.ok && expectedResult.ok && !answerResult.structureOnly && !expectedResult.structureOnly && !compareExcelResults(answerResult.value, expectedResult.value)) {
       return {
         correct: false,
         title: 'Hasilnya belum sama dengan target.',
         message: 'Formula kamu sudah bisa dihitung, tapi hasilnya belum sesuai dengan soal.',
         details: [
-          `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
-          `Target latihan: ${formatExcelValue(expectedResult.value)}`,
+          answerResult.structureOnly ? 'Struktur rumus valid. Hasil asli perlu dicek di Excel.' : `Hasil formula kamu: ${formatExcelValue(answerResult.value)}`,
+          expectedResult.structureOnly ? 'Target latihan divalidasi dari struktur dan argumen.' : `Target latihan: ${formatExcelValue(expectedResult.value)}`,
           'Coba cek lagi range, kriteria, atau urutan argumennya.'
         ]
       };
@@ -412,7 +412,7 @@ export function validateGenericFormula(answer, formula, separatorMode = 'id', ta
       correct: true,
       title: 'Struktur formula sudah benar.',
       message: 'Nama rumus, tanda =, kurung, dan struktur dasarnya sudah aman.',
-      details: [`Hasil formula kamu: ${formatExcelValue(result.value)}`]
+      details: [result.structureOnly ? 'Struktur rumus valid. Hasil asli perlu dicek di Excel.' : `Hasil formula kamu: ${formatExcelValue(result.value)}`]
     };
   }
   return { correct: true, title: 'Struktur formula sudah benar.', message: 'Nama rumus, tanda =, dan kurungnya sudah aman.' };

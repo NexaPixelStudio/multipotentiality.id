@@ -87,7 +87,7 @@ export function normalizeForEvaluation(formula = '', separatorMode = 'id') {
 
 export function formatExcelValue(value) {
   if (isErrorValue(value)) return value;
-  if (value && value.__simulated === true) return value.preview || `${value.functionName || 'FORMULA'} siap dicek`;
+  if (value && value.__structureOnly === true) return value.preview || 'Struktur valid';
   if (isRangeObject(value)) {
     const rows = value.values;
     const preview = rows.slice(0, 4).map((row) => row.map(formatExcelValue).join(' | ')).join('\n');
@@ -116,7 +116,7 @@ export function compareExcelResults(a, b) {
   const normalize = (value) => {
     if (isRangeObject(value)) return value.values.map((row) => row.map(normalize));
     if (Array.isArray(value)) return value.map(normalize);
-    if (value && value.__simulated === true) return `SIMULATED:${value.functionName}:${value.argCount}`;
+    if (value && value.__structureOnly === true) return `STRUCTURE:${value.functionName}:${value.argCount}`;
     if (value instanceof Date) return value.toISOString().slice(0, 10);
     if (typeof value === 'number') return Math.round(value * 1000000) / 1000000;
     if (typeof value === 'boolean') return value;
@@ -280,6 +280,81 @@ const businessDays = (start, end) => {
   return count;
 };
 
+
+const factorial = (value) => {
+  const n = Math.floor(Number(value));
+  if (!Number.isFinite(n) || n < 0) throw new Error(ERROR_CODES.num);
+  let result = 1;
+  for (let i = 2; i <= n; i += 1) result *= i;
+  return result;
+};
+
+const factDouble = (value) => {
+  const n = Math.floor(Number(value));
+  if (!Number.isFinite(n) || n < -1) throw new Error(ERROR_CODES.num);
+  if (n <= 0) return 1;
+  let result = 1;
+  for (let i = n; i > 1; i -= 2) result *= i;
+  return result;
+};
+
+const combination = (nValue, kValue) => {
+  const n = Math.floor(Number(nValue));
+  const k = Math.floor(Number(kValue));
+  if (!Number.isFinite(n) || !Number.isFinite(k) || n < 0 || k < 0 || k > n) throw new Error(ERROR_CODES.num);
+  const m = Math.min(k, n - k);
+  let result = 1;
+  for (let i = 1; i <= m; i += 1) result = (result * (n - m + i)) / i;
+  return result;
+};
+
+const permutation = (nValue, kValue) => {
+  const n = Math.floor(Number(nValue));
+  const k = Math.floor(Number(kValue));
+  if (!Number.isFinite(n) || !Number.isFinite(k) || n < 0 || k < 0 || k > n) throw new Error(ERROR_CODES.num);
+  let result = 1;
+  for (let i = 0; i < k; i += 1) result *= (n - i);
+  return result;
+};
+
+const erfApprox = (xValue) => {
+  const x = Number(xValue);
+  const sign = x < 0 ? -1 : 1;
+  const abs = Math.abs(x);
+  const t = 1 / (1 + 0.3275911 * abs);
+  const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-abs * abs);
+  return sign * y;
+};
+
+const normalCdf = (x) => 0.5 * (1 + erfApprox(Number(x) / Math.SQRT2));
+const normalPdf = (x) => Math.exp(-0.5 * Number(x) ** 2) / Math.sqrt(2 * Math.PI);
+
+const inverseNormal = (pValue) => {
+  const p = Number(pValue);
+  if (!(p > 0 && p < 1)) throw new Error(ERROR_CODES.num);
+  // Peter John Acklam approximation, accurate enough for learning feedback.
+  const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+  const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+  const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+  const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+  const plow = 0.02425;
+  const phigh = 1 - plow;
+  if (p < plow) {
+    const q = Math.sqrt(-2 * Math.log(p));
+    return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+  if (p > phigh) {
+    const q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+  const q = p - 0.5;
+  const r = q * q;
+  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+};
+
+const binomProb = (successes, trials, probability) => combination(trials, successes) * (probability ** successes) * ((1 - probability) ** (trials - successes));
+const poissonProb = (x, mean) => (Math.exp(-mean) * (mean ** x)) / factorial(x);
+
 const workday = (start, days) => {
   const cursor = new Date(start);
   let remaining = Math.abs(Number(days));
@@ -372,18 +447,22 @@ function evaluateFunction(name, argExprs, ctx) {
       nums(0).forEach((n) => counts.set(n, (counts.get(n) || 0) + 1));
       return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? ERROR_CODES.na;
     }
+    case 'STDEV':
+    case 'STDEVP':
     case 'STDEV.S':
     case 'STDEV.P': {
       const values = nums(0);
       const mean = values.reduce((a, b) => a + b, 0) / values.length;
-      const divisor = name === 'STDEV.S' ? values.length - 1 : values.length;
+      const divisor = (name === 'STDEV.S' || name === 'STDEV') ? values.length - 1 : values.length;
       return Math.sqrt(values.reduce((sum, item) => sum + (item - mean) ** 2, 0) / divisor);
     }
+    case 'VAR':
+    case 'VARP':
     case 'VAR.S':
     case 'VAR.P': {
       const values = nums(0);
       const mean = values.reduce((a, b) => a + b, 0) / values.length;
-      const divisor = name === 'VAR.S' ? values.length - 1 : values.length;
+      const divisor = (name === 'VAR.S' || name === 'VAR') ? values.length - 1 : values.length;
       return values.reduce((sum, item) => sum + (item - mean) ** 2, 0) / divisor;
     }
     case 'PERCENTILE': {
@@ -663,6 +742,73 @@ function evaluateFunction(name, argExprs, ctx) {
       const intercept = yMean - slope * xMean;
       return intercept + slope * x;
     }
+
+    case 'COMBIN': return combination(numberValue(arg(0)), numberValue(arg(1)));
+    case 'COMBINA': return combination(numberValue(arg(0)) + numberValue(arg(1)) - 1, numberValue(arg(1)));
+    case 'PERMUT': return permutation(numberValue(arg(0)), numberValue(arg(1)));
+    case 'PERMUTATIONA': return numberValue(arg(0)) ** numberValue(arg(1));
+    case 'FACT': return factorial(numberValue(arg(0)));
+    case 'FACTDOUBLE': return factDouble(numberValue(arg(0)));
+    case 'PRODUCT': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((a, b) => a * b, 1);
+    case 'SUMSQ': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((sum, item) => sum + item ** 2, 0);
+    case 'QUOTIENT': return Math.trunc(numberValue(arg(0)) / numberValue(arg(1)));
+    case 'SIGN': return Math.sign(numberValue(arg(0)));
+    case 'PI': return Math.PI;
+    case 'EXP': return Math.exp(numberValue(arg(0)));
+    case 'LN': return Math.log(numberValue(arg(0)));
+    case 'LOG': return Math.log(numberValue(arg(0))) / Math.log(argExprs[1] ? numberValue(arg(1)) : 10);
+    case 'LOG10': return Math.log10(numberValue(arg(0)));
+    case 'RADIANS': return numberValue(arg(0)) * Math.PI / 180;
+    case 'DEGREES': return numberValue(arg(0)) * 180 / Math.PI;
+    case 'SIN': return Math.sin(numberValue(arg(0)));
+    case 'COS': return Math.cos(numberValue(arg(0)));
+    case 'TAN': return Math.tan(numberValue(arg(0)));
+    case 'ASIN': return Math.asin(numberValue(arg(0)));
+    case 'ACOS': return Math.acos(numberValue(arg(0)));
+    case 'ATAN': return Math.atan(numberValue(arg(0)));
+    case 'ATAN2': return Math.atan2(numberValue(arg(1)), numberValue(arg(0)));
+    case 'SINH': return Math.sinh(numberValue(arg(0)));
+    case 'COSH': return Math.cosh(numberValue(arg(0)));
+    case 'TANH': return Math.tanh(numberValue(arg(0)));
+    case 'SQRTPI': return Math.sqrt(numberValue(arg(0)) * Math.PI);
+    case 'MROUND': return Math.round(numberValue(arg(0)) / numberValue(arg(1))) * numberValue(arg(1));
+    case 'TRUNC': { const factor = 10 ** Number(argExprs[1] ? arg(1) : 0); return Math.trunc(numberValue(arg(0)) * factor) / factor; }
+    case 'EVEN': { const v = numberValue(arg(0)); return Math.sign(v || 1) * Math.ceil(Math.abs(v) / 2) * 2; }
+    case 'ODD': { const v = numberValue(arg(0)); return Math.sign(v || 1) * (Math.floor((Math.abs(v) + 1) / 2) * 2 - 1); }
+    case 'GCD': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((a, b) => { let x=Math.abs(a), y=Math.abs(b); while(y){ [x,y]=[y,x%y]; } return x; });
+    case 'LCM': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((a, b) => { let x=Math.abs(a), y=Math.abs(b), t=x; while(y){ [x,y]=[y,x%y]; } return Math.abs(a*b)/(x||1); }, 1);
+    case 'BINOMDIST':
+    case 'BINOM.DIST': { const k=numberValue(arg(0)), n=numberValue(arg(1)), p=numberValue(arg(2)); const cumulative=Boolean(arg(3)); return cumulative ? Array.from({length: Math.floor(k)+1}, (_,i)=>binomProb(i,n,p)).reduce((a,b)=>a+b,0) : binomProb(k,n,p); }
+    case 'BINOM.DIST.RANGE': { const n=numberValue(arg(0)), p=numberValue(arg(1)), start=numberValue(arg(2)), end=argExprs[3] ? numberValue(arg(3)) : start; return Array.from({length: Math.floor(end-start)+1}, (_,i)=>binomProb(start+i,n,p)).reduce((a,b)=>a+b,0); }
+    case 'BINOM.INV':
+    case 'CRITBINOM': { const n=numberValue(arg(0)), p=numberValue(arg(1)), alpha=numberValue(arg(2)); let total=0; for(let i=0;i<=n;i+=1){ total += binomProb(i,n,p); if(total >= alpha) return i; } return n; }
+    case 'NEGBINOMDIST':
+    case 'NEGBINOM.DIST': { const f=numberValue(arg(0)), s=numberValue(arg(1)), p=numberValue(arg(2)); const prob=(fail)=>combination(fail+s-1, fail) * (p ** s) * ((1-p) ** fail); const cumulative=name==='NEGBINOM.DIST' && Boolean(arg(3)); return cumulative ? Array.from({length: Math.floor(f)+1}, (_,i)=>prob(i)).reduce((a,b)=>a+b,0) : prob(f); }
+    case 'POISSON':
+    case 'POISSON.DIST': { const x=numberValue(arg(0)), mean=numberValue(arg(1)), cumulative=Boolean(arg(2)); return cumulative ? Array.from({length: Math.floor(x)+1}, (_,i)=>poissonProb(i,mean)).reduce((a,b)=>a+b,0) : poissonProb(x,mean); }
+    case 'NORMDIST':
+    case 'NORM.DIST': { const x=numberValue(arg(0)), mean=numberValue(arg(1)), sd=numberValue(arg(2)); if(sd<=0) throw new Error(ERROR_CODES.num); const z=(x-mean)/sd; return Boolean(arg(3)) ? normalCdf(z) : normalPdf(z)/sd; }
+    case 'NORMSDIST': return normalCdf(numberValue(arg(0)));
+    case 'NORM.S.DIST': return Boolean(arg(1)) ? normalCdf(numberValue(arg(0))) : normalPdf(numberValue(arg(0)));
+    case 'NORMINV':
+    case 'NORM.INV': return numberValue(arg(1)) + numberValue(arg(2)) * inverseNormal(numberValue(arg(0)));
+    case 'NORMSINV':
+    case 'NORM.S.INV': return inverseNormal(numberValue(arg(0)));
+    case 'STANDARDIZE': return (numberValue(arg(0)) - numberValue(arg(1))) / numberValue(arg(2));
+    case 'LOGNORMDIST': return normalCdf((Math.log(numberValue(arg(0))) - numberValue(arg(1))) / numberValue(arg(2)));
+    case 'LOGNORM.DIST': { const x=numberValue(arg(0)), mean=numberValue(arg(1)), sd=numberValue(arg(2)); const z=(Math.log(x)-mean)/sd; return Boolean(arg(3)) ? normalCdf(z) : Math.exp(-0.5*z*z)/(x*sd*Math.sqrt(2*Math.PI)); }
+    case 'LOGINV':
+    case 'LOGNORM.INV': return Math.exp(numberValue(arg(1)) + numberValue(arg(2)) * inverseNormal(numberValue(arg(0))));
+    case 'CONFIDENCE':
+    case 'CONFIDENCE.NORM': return Math.abs(inverseNormal(numberValue(arg(0))/2)) * numberValue(arg(1)) / Math.sqrt(numberValue(arg(2)));
+    case 'COVAR':
+    case 'COVARIANCE.P':
+    case 'COVARIANCE.S': { const x=nums(0), y=nums(1); const n=Math.min(x.length,y.length); const xm=x.reduce((a,b)=>a+b,0)/n, ym=y.reduce((a,b)=>a+b,0)/n; const div=name.endsWith('.S') ? n-1 : n; return x.slice(0,n).reduce((sum,item,i)=>sum+(item-xm)*(y[i]-ym),0)/div; }
+    case 'CORREL':
+    case 'PEARSON': { const cov=evaluateFunction('COVARIANCE.P', argExprs, ctx); const sx=evaluateFunction('STDEV.P',[argExprs[0]],ctx), sy=evaluateFunction('STDEV.P',[argExprs[1]],ctx); return cov/(sx*sy); }
+    case 'RANK.AVG':
+    case 'RANK.EQ':
+    case 'RANK': { const value = numberValue(arg(0)); const order = Number(argExprs[2] ? arg(2) : 0); const values = nums(1).sort((a, b) => order ? a - b : b - a); const matches=values.map((item,i)=>item===value?i+1:null).filter(Boolean); return matches.length ? (name==='RANK.AVG' ? matches.reduce((a,b)=>a+b,0)/matches.length : matches[0]) : ERROR_CODES.na; }
     // Newer formula demos. We keep these lightweight so the UI can still show a result instead of feeling broken.
     case 'LET': {
       const localVars = new Map(ctx.vars || []);
@@ -674,7 +820,7 @@ function evaluateFunction(name, argExprs, ctx) {
       }
       return evaluateExpression(argExprs[argExprs.length - 1], { ...ctx, vars: localVars });
     }
-    case 'LAMBDA': return '[LAMBDA siap dipakai]';
+    case 'LAMBDA': return '[Struktur LAMBDA valid]';
     case 'MAP': return flatArg(0).map((item) => Number(item) * 2);
     case 'REDUCE': return flatArg(1).reduce((sum, item) => sum + (Number(item) || 0), Number(arg(0) || 0));
     case 'SCAN': { let total = Number(arg(0) || 0); return flatArg(1).map((item) => { total += Number(item) || 0; return total; }); }
@@ -682,7 +828,7 @@ function evaluateFunction(name, argExprs, ctx) {
     case 'BYCOL': return numbersOnly(arg(0)).reduce((a, b) => a + b, 0);
     case 'MAKEARRAY': return { __range: true, values: Array.from({ length: Number(arg(0)) }, (_, r) => Array.from({ length: Number(arg(1)) }, (_, c) => (r + 1) * (c + 1))) };
     default:
-      return { __simulated: true, functionName: name, argCount: argExprs.length, preview: `${name} siap dicek` };
+      return { __structureOnly: true, functionName: name, argCount: argExprs.length, preview: 'Struktur valid' };
   }
 }
 
@@ -695,14 +841,14 @@ export function evaluateFormula(formula = '', table = {}, separatorMode = 'id') 
     const sheet = buildSheet(table);
     const value = evaluateExpression(raw.slice(1), { sheet, table, vars: new Map() });
     if (isErrorValue(value)) return errorResult(value, `Formula menghasilkan ${value}.`);
-    if (value && value.__simulated === true) {
+    if (value && value.__structureOnly === true) {
       return {
-        ok: true,
+        ok: 'structure',
         value,
-        displayValue: formatExcelValue(value),
+        displayValue: 'Struktur valid',
         normalizedFormula,
-        simulated: true,
-        message: 'Simulator belum menghitung hasil angka untuk rumus ini, tapi struktur rumusnya tetap bisa dicek.'
+        structureOnly: true,
+        message: 'Struktur rumus valid. Hasil asli untuk function ini perlu dicek langsung di Excel.'
       };
     }
     return okResult(value, normalizedFormula);
