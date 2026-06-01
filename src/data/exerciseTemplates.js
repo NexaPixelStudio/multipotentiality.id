@@ -6,7 +6,7 @@ export function createGenericExercise(formula) {
     formulaName: formula.name,
     title: `Latihan dasar ${formula.name}`,
     activeCell: 'C2',
-    question: `Coba tulis formula ${formula.name} sederhana berdasarkan format yang tersedia. Fokus dulu ke struktur, bukan hasil angka final.`,
+    question: `Bagaimana cara menulis struktur dasar ${formula.name} berdasarkan format yang tersedia?`,
     logicPrompt: formula.simpleLogic,
     expectedFormula: `=${formula.name}(${sampleRef})`,
     acceptedFormulas: [],

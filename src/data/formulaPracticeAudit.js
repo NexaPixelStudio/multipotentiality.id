@@ -47,6 +47,11 @@ const valueTokensLookSafe = (exercise) => {
   return tokens.every((value) => String(value || '').trim().length > 0);
 };
 
+const questionLooksLikeQuestion = (exercise) => {
+  const q = String(exercise?.question || '').trim();
+  return q.length > 12 && /[?？]$/.test(q) && !/^(Basic|Criteria|Multi-condition|Reference|Mixed input|Challenge)\s*:/i.test(q);
+};
+
 export function auditFormulaPractice() {
   const issues = [];
   const rows = formulaCatalogFull.map((formula) => {
@@ -59,6 +64,7 @@ export function auditFormulaPractice() {
       expectedFormulaExists: Boolean(exercise?.expectedFormula),
       expectedFormulaMatchesName: Boolean(exercise && formulaStartsCorrect(formula, exercise)),
       questionExists: Boolean(exercise?.question && exercise.question.length > 12),
+      questionIsNaturalQuestion: Boolean(exercise && questionLooksLikeQuestion(exercise)),
       hintsExist: Boolean(Array.isArray(exercise?.hints) && exercise.hints.length >= 4),
       requiredRefsSafe: Boolean(!exercise || requiredRefsLookSafe(exercise)),
       requiredTextsSafe: Boolean(!exercise || valueTokensLookSafe(exercise)),

@@ -7239,7 +7239,7 @@ const buildBetterHints = (exercise = {}) => {
   const texts = exercise.requiredTexts || [];
   const name = exercise.formulaName;
   const hints = [
-    `Baca dulu soalnya. Hasil akhirnya adalah: ${exercise.question}`,
+    `Baca dulu pertanyaannya: ${ensureQuestionText(exercise.question)}`,
     `Pilih rumus ${name} karena tugasnya untuk ${formulaFriendlyNames[name] || 'mengolah data sesuai soal'}.`
   ];
 
@@ -7276,9 +7276,26 @@ const buildCommonMistakes = (exercise = {}) => {
   ];
 };
 
+const ensureQuestionText = (question = '', fallback = 'Apa hasil dari latihan ini?') => {
+  let value = String(question || fallback).trim();
+  value = value.replace(/^(Basic|Criteria|Multi-condition|Reference|Mixed input|Challenge)\s*:\s*/i, '');
+  value = value.replace(/[.。]+$/, '');
+
+  if (/^Jumlahkan\s+/i.test(value)) value = value.replace(/^Jumlahkan\s+/i, 'Berapa total ');
+  if (/^Hitung\s+/i.test(value)) value = value.replace(/^Hitung\s+/i, 'Berapa hasil ');
+  if (/^Cari\s+/i.test(value)) value = value.replace(/^Cari\s+/i, 'Berapa nilai ');
+  if (/^Ambil\s+/i.test(value)) value = value.replace(/^Ambil\s+/i, 'Apa hasil yang diambil untuk ');
+  if (/^Gunakan\s+/i.test(value)) value = value.replace(/^Gunakan\s+/i, 'Apa hasil dari ');
+  if (/^Buat\s+/i.test(value)) value = value.replace(/^Buat\s+/i, 'Bagaimana cara membuat ');
+  if (/^Ubah\s+/i.test(value)) value = value.replace(/^Ubah\s+/i, 'Apa hasil perubahan ');
+  if (/^Coba\s+/i.test(value)) value = value.replace(/^Coba\s+/i, 'Bagaimana struktur ');
+
+  return /[?？]$/.test(value) ? value : `${value}?`;
+};
+
 const exercisePatches = {
   let: {
-    question: 'Buat nama sementara total untuk SUM(D2:D16), lalu tampilkan totalnya.',
+    question: 'Bagaimana cara membuat nama sementara total untuk SUM(D2:D16), lalu menampilkan totalnya?',
     expectedFormula: '=LET(total,SUM(D2:D16),total)',
     requiredRefs: ['D2:D16'],
     requiredTexts: ['total'],
@@ -7286,17 +7303,17 @@ const exercisePatches = {
     successExplanation: 'Nah, ini tepat. LET menyimpan SUM(D2:D16) ke nama total, lalu menampilkan total itu lagi.'
   },
   vlookup: {
-    question: 'Ambil Master Nama untuk Kode Produk di A2 dari master produk.',
+    question: 'Apa Master Nama untuk Kode Produk di A2 dari master produk?',
     expectedFormula: '=VLOOKUP(A2,E2:I8,2,0)',
     requiredRefs: ['A2', 'E2:I8'],
     requiredTexts: ['2', '0']
   },
   hlookup: {
-    question: 'Ambil harga produk P-003 dari tabel master horizontal.',
+    question: 'Berapa harga produk P-003 dari tabel master horizontal?',
     requiredTexts: ['P-003']
   },
   sumifs: {
-    question: 'Jumlahkan Total Penjualan untuk kategori Digital di kota Jakarta.',
+    question: 'Berapa total penjualan untuk kategori Digital di kota Jakarta?',
     requiredTexts: ['Digital', 'Jakarta']
   },
   countifs: {
@@ -7317,6 +7334,7 @@ const normalizeExercise = (exercise = {}) => {
   return {
     ...merged,
     title: merged.title || `Latihan ${merged.formulaName}`,
+    question: ensureQuestionText(merged.question, `Apa hasil ${merged.formulaName} dari data latihan yang tersedia?`),
     logicPrompt: merged.logicPrompt && !/Coba pikir dulu input apa yang diminta/i.test(merged.logicPrompt)
       ? merged.logicPrompt
       : `Rumus ${merged.formulaName} dipakai untuk ${action}. Tentukan data yang dipakai, lalu isi argumennya sesuai arah soal.`,

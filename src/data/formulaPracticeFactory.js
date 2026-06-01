@@ -612,19 +612,67 @@ const actionByCategory = (formula) => {
   return `mencoba struktur dasar ${formula.name}`;
 };
 
-const makeQuestion = (formula, refs) => {
-  const name = upper(formula.name);
-  if (specialPractice[name]?.question) return specialPractice[name].question;
-  if (criteriaFunctions.has(name)) return `${formula.name} data penjualan dengan kriteria yang tersedia di tabel. Pastikan value yang dipakai memang ada di kolom kategori/kota.`;
-  if (lookupFunctions.has(name)) return `${formula.name}: ambil data produk dari master menggunakan lookup value yang tersedia di tabel.`;
-  if (dbFunctions.has(name)) return `${formula.name}: hitung kolom Nilai dari database mini untuk kriteria Status = Lulus.`;
-  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `Gunakan ${formula.name} dengan parameter statistik yang sudah disiapkan di tabel. Ambil argumennya dari cell yang tersedia.`;
-  if (formula.category === 'Financial') return `Gunakan ${formula.name} dengan parameter keuangan di tabel. Ambil rate, periode, nilai pinjaman, atau cashflow sesuai format rumus.`;
-  if (formula.category === 'Engineering') return `Gunakan ${formula.name} dengan parameter teknik yang tersedia. Ambil angka/unit/bilangan kompleks dari tabel.`;
-  if (formula.category === 'Web') return `Gunakan ${formula.name} dengan contoh data web di tabel.`;
-  if (formula.category === 'Cube') return `Gunakan ${formula.name} dengan contoh connection/member dari tabel cube.`;
-  return `Gunakan ${formula.name} untuk ${actionByCategory(formula)}. Ambil data dari ${tableFriendlyName[tableForFormula(formula)] || 'tabel latihan'}.`;
+const ensureQuestionMark = (text = '') => {
+  const value = String(text || '').trim().replace(/[.。]+$/, '');
+  return /[?？]$/.test(value) ? value : `${value}?`;
 };
+
+const makeBasicQuestion = (formula, refs = []) => {
+  const name = upper(formula.name);
+  if (specialPractice[name]?.question) {
+    const raw = specialPractice[name].question
+      .replace(/^Hitung\s+/i, 'Berapa hasil ')
+      .replace(/^Cari\s+/i, 'Berapa nilai ')
+      .replace(/^Ambil\s+/i, 'Apa hasil yang diambil dari ')
+      .replace(/^Ubah\s+/i, 'Apa hasil perubahan ')
+      .replace(/^Coba struktur\s+/i, 'Bagaimana struktur ');
+    return ensureQuestionMark(raw);
+  }
+
+  if (name === 'SUM') return 'Berapa total keseluruhan dari kolom Angka pada tabel?';
+  if (name === 'AVERAGE') return 'Berapa rata-rata angka dari range yang ditentukan pada tabel?';
+  if (name === 'MIN') return 'Berapa nilai terkecil dari range angka pada tabel?';
+  if (name === 'MAX') return 'Berapa nilai terbesar dari range angka pada tabel?';
+  if (name === 'COUNT') return 'Berapa banyak cell berisi angka pada range yang ditentukan?';
+  if (name === 'COUNTA') return 'Berapa banyak cell yang berisi data pada tabel campuran?';
+  if (name === 'COUNTBLANK') return 'Berapa banyak cell kosong pada tabel campuran?';
+
+  if (criteriaFunctions.has(name)) {
+    if (name === 'COUNTIF') return 'Berapa jumlah data penjualan yang memenuhi satu kriteria pada tabel?';
+    if (name === 'COUNTIFS') return 'Berapa jumlah data penjualan yang memenuhi dua kriteria sekaligus?';
+    if (name === 'SUMIF') return 'Berapa total penjualan untuk satu kriteria yang tersedia pada tabel?';
+    if (name === 'SUMIFS') return 'Berapa total penjualan untuk kombinasi kategori dan kota yang tersedia pada tabel?';
+    if (name === 'AVERAGEIF') return 'Berapa rata-rata nilai penjualan untuk satu kriteria yang tersedia pada tabel?';
+    if (name === 'AVERAGEIFS') return 'Berapa rata-rata nilai penjualan untuk dua kriteria sekaligus?';
+    if (name === 'MAXIFS') return 'Berapa nilai penjualan terbesar yang memenuhi kriteria pada tabel?';
+    if (name === 'MINIFS') return 'Berapa nilai penjualan terkecil yang memenuhi kriteria pada tabel?';
+  }
+
+  if (lookupFunctions.has(name)) {
+    if (name === 'VLOOKUP') return 'Apa data produk yang ditemukan dari master produk berdasarkan kode pada tabel transaksi?';
+    if (name === 'HLOOKUP') return 'Apa data produk yang ditemukan dari tabel master horizontal berdasarkan kode produk?';
+    if (name === 'XLOOKUP') return 'Apa nilai yang perlu diambil dari tabel master berdasarkan lookup value yang tersedia?';
+    if (name === 'MATCH' || name === 'XMATCH') return 'Di posisi ke berapa lookup value ditemukan pada kolom master?';
+    if (name === 'INDEX') return 'Apa nilai yang muncul dari perpotongan baris dan kolom pada tabel referensi?';
+    if (name === 'INDEX MATCH') return 'Apa nilai yang diambil saat INDEX digabung dengan MATCH pada tabel master?';
+    return `Apa hasil pencarian ${formula.name} dari tabel referensi yang tersedia?`;
+  }
+
+  if (dbFunctions.has(name)) return `Berapa hasil ${formula.name} dari database mini berdasarkan kriteria yang tersedia?`;
+  if (formula.category === 'Financial') return `Berapa hasil perhitungan ${formula.name} dari parameter keuangan pada tabel?`;
+  if (formula.category === 'Engineering') return `Apa hasil ${formula.name} dari parameter teknik yang tersedia pada tabel?`;
+  if (formula.category === 'Web') return `Apa hasil atau struktur ${formula.name} dari contoh data web/XML yang tersedia?`;
+  if (formula.category === 'Cube') return `Bagaimana struktur ${formula.name} yang benar untuk contoh connection/member pada tabel?`;
+  if (formula.category === 'Text') return `Apa hasil ${formula.name} saat diterapkan pada teks yang tersedia di tabel?`;
+  if (formula.category === 'Date and Time') return `Apa hasil ${formula.name} dari tanggal atau jam yang tersedia di tabel?`;
+  if (formula.category === 'Logical') return `Apa hasil keputusan ${formula.name} dari kondisi yang tersedia di tabel?`;
+  if (formula.category === 'Information') return `Apa hasil pengecekan ${formula.name} terhadap isi cell pada tabel campuran?`;
+  if (formula.category === 'Dynamic Array') return `Apa hasil array dari ${formula.name} berdasarkan data latihan yang tersedia?`;
+  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `Berapa hasil ${formula.name} dari parameter statistik yang relevan pada tabel?`;
+  return `Apa hasil ${formula.name} dari data latihan yang sudah disiapkan?`;
+};
+
+const makeQuestion = (formula, refs) => makeBasicQuestion(formula, refs);
 
 const makeLogic = (formula, refs) => {
   const name = upper(formula.name);
@@ -910,19 +958,90 @@ function makeVariantRefs(formula, variantIndex = 0) {
 function makeVariantQuestion(formula, refs, variantIndex = 0) {
   const name = upper(formula.name);
   const n = variantIndex % 6;
-  if (name === 'SUM') return `${variantLabels[n]}: jumlahkan angka dari range yang tersedia di tabel. Gunakan satu range yang jelas, bukan cell satu per satu.`;
-  if (singleRangeFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} pada satu range angka yang sesuai di tabel.`;
-  if (criteriaFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} untuk menghitung data penjualan dengan syarat ${salesScenarios[n].label}.`;
-  if (lookupFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} untuk mengambil ${lookupScenarios[n].label} dari tabel master.`;
-  if (name === 'NEGBINOMDIST' || name === 'NEGBINOM.DIST') return `${variantLabels[n]}: hitung peluang negative binomial dari parameter ringkas di tabel.`;
-  if (formula.category === 'Financial') return `${variantLabels[n]}: gunakan ${formula.name} dari parameter keuangan yang tersedia.`;
-  if (formula.category === 'Text') return `${variantLabels[n]}: gunakan ${formula.name} untuk mengolah teks dari tabel latihan.`;
-  if (formula.category === 'Date and Time') return `${variantLabels[n]}: gunakan ${formula.name} untuk mengolah tanggal atau jam dari tabel.`;
-  if (formula.category === 'Logical') return `${variantLabels[n]}: gunakan ${formula.name} untuk membaca kondisi dan menghasilkan keputusan.`;
-  if (name === 'COUNTA') return `${variantLabels[n]}: hitung jumlah cell yang berisi data pada tabel campuran.`;
-  if (name === 'COUNTBLANK') return `${variantLabels[n]}: hitung jumlah cell kosong pada tabel campuran.`;
-  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `${variantLabels[n]}: gunakan ${formula.name} dengan parameter statistik yang relevan, bukan tabel umum yang tidak nyambung.`;
-  return `${variantLabels[n]}: gunakan ${formula.name} dengan data latihan yang sudah disiapkan.`;
+  const sales = salesScenarios[n];
+  const lookup = lookupScenarios[n];
+  const neg = statNegBinomScenarios[n];
+  const finance = financeScenarios[n];
+
+  if (name === 'SUM') {
+    if (n === 0) return 'Berapa total keseluruhan dari kolom Angka pada tabel?';
+    if (n === 1) return 'Berapa total keseluruhan dari kolom Pembanding pada tabel?';
+    if (n === 2) return 'Berapa total gabungan dari kolom Angka dan Pembanding pada tabel?';
+    if (n === 3) return 'Berapa total angka utama dari Data 1 sampai Data 7?';
+    if (n === 4) return 'Berapa total pembanding dari Data 1 sampai Data 7?';
+    return 'Berapa total kolom Angka jika header ikut terseleksi bersama datanya?';
+  }
+
+  if (singleRangeFunctions.has(name)) {
+    if (/AVERAGE|AVEDEV|GEOMEAN|HARMEAN|TRIMMEAN/.test(name)) return `Berapa hasil rata-rata atau ukuran tengah dari range ${refs[0] || 'angka'} pada tabel?`;
+    if (/MAX/.test(name)) return `Berapa nilai terbesar dari range ${refs[0] || 'angka'} pada tabel?`;
+    if (/MIN/.test(name)) return `Berapa nilai terkecil dari range ${refs[0] || 'angka'} pada tabel?`;
+    if (/COUNT/.test(name)) return `Berapa jumlah data yang bisa dihitung dari range ${refs[0] || 'yang tersedia'}?`;
+    if (/STDEV|VAR|DEVSQ|KURT|SKEW/.test(name)) return `Berapa hasil analisis sebaran data dari range ${refs[0] || 'angka'} pada tabel?`;
+    return `Berapa hasil ${formula.name} dari range ${refs[0] || 'angka'} pada tabel?`;
+  }
+
+  if (criteriaFunctions.has(name)) {
+    if (name === 'COUNTIF') return `Berapa jumlah data penjualan untuk ${sales.label}?`;
+    if (name === 'COUNTIFS') return `Berapa jumlah data penjualan untuk ${sales.label} dan ${sales.criteria2.replaceAll('"', '')}?`;
+    if (name === 'SUMIF') return `Berapa total penjualan untuk ${sales.label}?`;
+    if (name === 'SUMIFS') return `Berapa total penjualan untuk ${sales.label} dan ${sales.criteria2.replaceAll('"', '')}?`;
+    if (name === 'AVERAGEIF') return `Berapa rata-rata penjualan untuk ${sales.label}?`;
+    if (name === 'AVERAGEIFS') return `Berapa rata-rata penjualan untuk ${sales.label} dan ${sales.criteria2.replaceAll('"', '')}?`;
+    if (name === 'MAXIFS') return `Berapa nilai penjualan terbesar untuk ${sales.label} dan ${sales.criteria2.replaceAll('"', '')}?`;
+    if (name === 'MINIFS') return `Berapa nilai penjualan terkecil untuk ${sales.label} dan ${sales.criteria2.replaceAll('"', '')}?`;
+  }
+
+  if (lookupFunctions.has(name)) {
+    if (name === 'MATCH' || name === 'XMATCH') return `Di posisi ke berapa kode ${lookup.hard.replaceAll('"', '')} ditemukan pada kolom master?`;
+    if (name === 'INDEX') return `Apa nilai yang muncul dari tabel master pada baris ${(n % 6) + 1} dan kolom ${lookup.col}?`;
+    if (name === 'INDEX MATCH') return `Apa nilai yang diambil dari return range setelah kode ${lookup.hard.replaceAll('"', '')} ditemukan?`;
+    return `Apa ${lookup.label} dari tabel master?`;
+  }
+
+  if (name === 'NEGBINOMDIST' || name === 'NEGBINOM.DIST') return `Berapa peluang ${neg.f} gagal terjadi sebelum target ${neg.s} berhasil, dengan peluang berhasil ${Math.round(neg.p * 100)}%?`;
+  if (formula.category === 'Financial') return `Berapa hasil ${formula.name} jika rate ${finance.rate}, periode ${finance.nper}, dan nilai utama ${finance.pv} digunakan dari tabel?`;
+  if (formula.category === 'Text') {
+    if (['LEFT','LEFTB','RIGHT','RIGHTB','MID','MIDB'].includes(name)) return `Apa potongan teks yang keluar dari data teks utama pada tabel?`;
+    if (name === 'LEN' || name === 'LENB') return `Berapa jumlah karakter dari teks utama pada tabel?`;
+    if (['LOWER','UPPER','PROPER','TRIM','CLEAN'].includes(name)) return `Apa hasil teks setelah dirapikan atau diubah format hurufnya?`;
+    if (['CONCAT','CONCATENATE','TEXTJOIN'].includes(name)) return `Apa hasil gabungan teks dari beberapa cell pada tabel?`;
+    if (['TEXTSPLIT','TEXTBEFORE','TEXTAFTER'].includes(name)) return `Apa bagian teks yang diambil setelah teks dipisahkan dengan pemisah yang tersedia?`;
+    if (['FIND','FINDB','SEARCH','SEARCHB'].includes(name)) return `Di posisi ke berapa teks yang dicari muncul pada teks utama?`;
+    if (['SUBSTITUTE','REPLACE','REPLACEB'].includes(name)) return `Apa hasil teks setelah bagian tertentu diganti?`;
+    if (['VALUE','NUMBERVALUE'].includes(name)) return `Berapa hasil angka setelah teks angka dikonversi?`;
+    return `Apa hasil ${formula.name} saat diterapkan pada teks utama di tabel?`;
+  }
+  if (formula.category === 'Date and Time') {
+    if (name === 'DATE') return `Tanggal apa yang terbentuk dari Year, Month, dan Day pada tabel?`;
+    if (['DAY','MONTH','YEAR','HOUR','MINUTE','SECOND'].includes(name)) return `Angka apa yang diambil dari tanggal atau jam pada tabel?`;
+    if (['DAYS','DATEDIF','NETWORKDAYS','NETWORKDAYS.INTL','WORKDAY','WORKDAY.INTL'].includes(name)) return `Berapa selisih atau hari kerja dari tanggal yang tersedia pada tabel?`;
+    if (['EDATE','EOMONTH'].includes(name)) return `Tanggal apa yang keluar setelah tanggal awal digeser sesuai jumlah bulan pada tabel?`;
+    if (['TODAY','NOW'].includes(name)) return `Apa hasil tanggal atau waktu saat ini dari ${formula.name}?`;
+    return `Apa hasil ${formula.name} dari tanggal atau jam pada baris yang tersedia di tabel?`;
+  }
+  if (formula.category === 'Logical') {
+    if (name === 'IF') return `Apa status yang keluar jika nilai pada tabel diuji dengan batas kelulusan?`;
+    if (name === 'IFS') return `Kategori nilai apa yang keluar saat beberapa batas nilai diuji berurutan?`;
+    if (name === 'AND') return `Apakah semua kondisi pada baris yang diuji bernilai benar?`;
+    if (name === 'OR') return `Apakah minimal satu kondisi pada baris yang diuji bernilai benar?`;
+    if (name === 'NOT') return `Apa hasil kebalikan dari kondisi yang diuji pada tabel?`;
+    if (name === 'IFERROR') return `Apa hasil pengganti yang muncul jika perhitungan menghasilkan error?`;
+    if (name === 'IFNA') return `Apa hasil pengganti yang muncul jika data lookup tidak ditemukan?`;
+    return `Apa hasil keputusan ${formula.name} jika kondisi pada tabel diuji?`;
+  }
+  if (name === 'COUNTA') return `Berapa banyak cell yang berisi data pada tabel campuran?`;
+  if (name === 'COUNTBLANK') return `Berapa banyak cell kosong pada tabel campuran?`;
+  if (formula.category === 'Engineering') return `Apa hasil ${formula.name} dari parameter teknik pada tabel?`;
+  if (formula.category === 'Web') return `Apa hasil atau struktur ${formula.name} dari data web/XML pada tabel?`;
+  if (formula.category === 'Cube') return `Bagaimana struktur ${formula.name} untuk connection/member pada tabel?`;
+  if (formula.category === 'Database') return `Berapa hasil ${formula.name} dari database mini berdasarkan kriteria yang tersedia?`;
+  if (formula.category === 'Information') return `Apa hasil pengecekan ${formula.name} pada data campuran di tabel?`;
+  if (formula.category === 'Dynamic Array') return `Apa hasil array dari ${formula.name} berdasarkan data latihan yang tersedia?`;
+  if (formula.category === 'Advanced / Professional') return `Apa hasil pengolahan ${formula.name} dari data latihan yang tersedia?`;
+  if (formula.category === 'Add-in / User Defined') return `Bagaimana struktur ${formula.name} yang benar berdasarkan parameter add-in pada tabel?`;
+  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `Berapa hasil ${formula.name} dari parameter statistik yang relevan pada tabel?`;
+  return `Apa hasil ${formula.name} dari data latihan yang sudah disiapkan?`;
 }
 
 function makeTieredExercise(formula, variantIndex = 0) {
