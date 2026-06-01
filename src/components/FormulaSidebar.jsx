@@ -189,7 +189,6 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
       <div className="border-b border-coach-line p-4 dark:border-white/10">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Formula Library</p>
             <h2 className="text-lg font-black text-coach-ink dark:text-white">Daftar Rumus</h2>
           </div>
           <button onClick={onClose} className="rounded-full px-3 py-1 text-sm font-bold text-black/50 lg:hidden dark:text-white/60">Tutup</button>
@@ -225,10 +224,7 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
               Punya latihan
             </label>
           </div>
-          <div className="flex items-center justify-between gap-2 text-xs text-black/45 dark:text-white/45">
-            <span>{filtered.length} rumus ditemukan</span>
-            <span>Klik kategori → family → rumus</span>
-          </div>
+
         </div>
       </div>
 
