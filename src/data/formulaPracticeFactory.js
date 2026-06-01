@@ -213,6 +213,7 @@ const binomFamilyFunctions = new Set(['BINOMDIST','BINOM.DIST','BINOM.DIST.RANGE
 const normalFamilyFunctions = new Set(['NORMDIST','NORM.DIST','NORMINV','NORM.INV','NORMSDIST','NORM.S.DIST','NORMSINV','NORM.S.INV','STANDARDIZE','LOGNORMDIST','LOGNORM.DIST','LOGINV','LOGNORM.INV']);
 const betaGammaFunctions = new Set(['BETADIST','BETA.DIST','BETAINV','BETA.INV','GAMMADIST','GAMMA.DIST','GAMMAINV','GAMMA.INV','WEIBULL','WEIBULL.DIST','EXPONDIST','EXPON.DIST','POISSON','POISSON.DIST','PROB']);
 const freedomTestFunctions = new Set(['CHIDIST','CHISQ.DIST','CHISQ.DIST.RT','CHIINV','CHISQ.INV','CHISQ.INV.RT','FDIST','F.DIST','F.DIST.RT','FINV','F.INV','F.INV.RT','TDIST','T.DIST','T.DIST.2T','T.DIST.RT','TINV','T.INV','T.INV.2T']);
+const confidenceFunctions = new Set(['CONFIDENCE','CONFIDENCE.NORM','CONFIDENCE.T']);
 
 const rootFormatArgs = (format = '') => {
   const open = String(format).indexOf('(');
@@ -263,52 +264,50 @@ const mapStatsToken = (token) => {
 
 const mapFinanceToken = (token) => {
   const t = normalizeToken(token);
-  if (/values|cash/.test(t)) return 'D2:D7';
+  if (/values|cash/.test(t)) return 'B2:B7';
   if (/dates/.test(t)) return 'A2:A7';
-  if (/rate|coupon|yld|finance_rate|reinvest_rate|effect_rate|nominal_rate/.test(t)) return 'F2';
-  if (/nper|npery|life|frequency/.test(t)) return 'F3';
-  if (/pv|principal|investment/.test(t)) return 'F4';
-  if (/pmt/.test(t)) return 'F5';
-  if (/fv|redemption/.test(t)) return 'F6';
-  if (/type|basis|calc_method|no_switch/.test(t)) return 'F7';
-  if (/cost|price|pr\b/.test(t)) return 'F8';
-  if (/salvage/.test(t)) return 'F9';
-  if (/period|per\b|start_period|end_period|month/.test(t)) return 'F11';
-  if (/settlement|issue|date_purchased|first_period|first_interest/.test(t)) return 'F15';
-  if (/maturity/.test(t)) return 'F16';
-  if (/par|guess|fraction/.test(t)) return 'F20';
-  return 'F2';
+  if (/rate|coupon|yld|finance_rate|reinvest_rate|effect_rate|nominal_rate/.test(t)) return 'B2';
+  if (/nper|npery|life|frequency/.test(t)) return 'B3';
+  if (/pv|principal|investment/.test(t)) return 'B4';
+  if (/pmt/.test(t)) return 'B5';
+  if (/fv|redemption/.test(t)) return 'B6';
+  if (/type|basis|calc_method|no_switch/.test(t)) return 'B7';
+  if (/cost|price|pr\b/.test(t)) return 'B4';
+  if (/salvage/.test(t)) return 'B6';
+  if (/period|per\b|start_period|end_period|month/.test(t)) return 'B3';
+  if (/settlement|issue|date_purchased|first_period|first_interest/.test(t)) return 'B2';
+  if (/maturity/.test(t)) return 'B3';
+  if (/par|guess|fraction/.test(t)) return 'B6';
+  return 'B2';
 };
-
 const mapEngineeringToken = (token) => {
   const t = normalizeToken(token);
-  if (/from_unit/.test(t)) return 'J3';
-  if (/to_unit/.test(t)) return 'J4';
-  if (/number1|number2/.test(t)) return /2/.test(t) ? 'J10' : 'J2';
-  if (/places|n\b|step|shift/.test(t)) return 'J10';
-  if (/inumber1|im_num1/.test(t)) return 'J6';
-  if (/inumber2|im_num2/.test(t)) return 'J7';
-  if (/inumber/.test(t)) return 'J6';
-  if (/real/.test(t)) return 'J8';
-  if (/i_num|imaginary/.test(t)) return 'J9';
+  if (/from_unit/.test(t)) return 'B3';
+  if (/to_unit/.test(t)) return 'B4';
+  if (/number1|number2/.test(t)) return /2/.test(t) ? 'B10' : 'B2';
+  if (/places|n\b|step|shift/.test(t)) return 'B10';
+  if (/inumber1|im_num1/.test(t)) return 'B6';
+  if (/inumber2|im_num2/.test(t)) return 'B7';
+  if (/inumber/.test(t)) return 'B6';
+  if (/real/.test(t)) return 'B8';
+  if (/i_num|imaginary/.test(t)) return 'B9';
   if (/suffix/.test(t)) return '"i"';
-  if (/number/.test(t)) return 'J2';
-  if (/x|lower|upper/.test(t)) return 'J2';
-  return 'J2';
+  if (/number/.test(t)) return 'B2';
+  if (/x|lower|upper/.test(t)) return 'B2';
+  return 'B2';
 };
-
 const mapTextToken = (token) => {
   const t = normalizeToken(token);
   if (/text1|text2|value1|array/.test(t)) return 'A2:A5';
-  if (/text|within_text|old_text|number|value/.test(t)) return 'A2';
-  if (/find_text|delimiter|match_end|instance_num/.test(t)) return 'D2';
-  if (/num_chars|start_num|num_bytes/.test(t)) return 'E2';
-  if (/new_text|replacement/.test(t)) return 'C2';
+  if (/within_text/.test(t)) return 'B2';
+  if (/old_text|find_text|delimiter|match_end|instance_num/.test(t)) return 'D2';
+  if (/start_num|start/.test(t)) return 'E2';
+  if (/num_chars|num_bytes/.test(t)) return 'F2';
+  if (/new_text|replacement/.test(t)) return 'G2';
   if (/format_text/.test(t)) return '"Rp #,##0"';
-  if (/delimiter/.test(t)) return 'D2';
+  if (/text|number|value/.test(t)) return 'A2';
   return 'A2';
 };
-
 const mapDateToken = (token) => {
   const t = normalizeToken(token);
   if (/year/.test(t)) return 'B2';
@@ -338,12 +337,11 @@ const mapInfoToken = (token) => {
 
 const mapDbToken = (token) => {
   const t = normalizeToken(token);
-  if (/database/.test(t)) return 'A1:E8';
+  if (/database/.test(t)) return 'A1:E6';
   if (/field/.test(t)) return '"Nilai"';
   if (/criteria/.test(t)) return 'G1:G2';
-  return 'A1:E8';
+  return 'A1:E6';
 };
-
 const mapLookupToken = (token, name) => {
   const t = normalizeToken(token);
   if (/lookup_value/.test(t)) return 'A2';
@@ -526,17 +524,27 @@ const mapperByTable = {
 const tableForFormula = (formula) => {
   const name = upper(formula.name);
   if (specialPractice[name]?.tableKey) return specialPractice[name].tableKey;
+
+  // Urutan ini sengaja dibuat ketat.
+  // Beberapa function criteria seperti AVERAGEIF/COUNTIF ada di kategori Statistical,
+  // tapi latihan mereka harus pakai tabel penjualan yang punya kolom kriteria dan nilai.
+  if (criteriaFunctions.has(name)) return 'sales';
+  if (lookupFunctions.has(name)) return name === 'HLOOKUP' ? 'lookupHorizontal' : 'lookup';
+  if (dbFunctions.has(name)) return 'databaseMini';
+
+  if (name === 'SUM' || name === 'PRODUCT' || name === 'SUMSQ' || name === 'SUMX2MY2' || name === 'SUMX2PY2' || name === 'SUMXMY2') return 'mathNumbers';
+  if (name === 'COUNTBLANK' || name === 'COUNTA' || name === 'ISBLANK' || name === 'ISTEXT' || name === 'ISNUMBER' || name === 'ISERROR' || name === 'ISNA' || name === 'ISFORMULA' || name === 'TYPE' || name === 'N' || name === 'CELL') return 'informationMixed';
+
+  if (confidenceFunctions.has(name)) return 'statsNormal';
   if (actualExpectedFunctions.has(name)) return 'statsActualExpected';
   if (pairedSeriesFunctions.has(name)) return 'statsSeriesCompact';
   if (binomFamilyFunctions.has(name)) return 'statsBinom';
   if (normalFamilyFunctions.has(name)) return 'statsNormal';
   if (betaGammaFunctions.has(name)) return 'statsBetaGamma';
   if (freedomTestFunctions.has(name)) return 'statsFreedom';
+  if (statisticalSeries.has(name)) return 'statsSeriesCompact';
   if (formula.category === 'Statistical' || formula.category === 'Compatibility') return 'statsSeriesCompact';
-  if (criteriaFunctions.has(name)) return 'sales';
-  if (lookupFunctions.has(name)) return name === 'HLOOKUP' ? 'lookupHorizontal' : 'lookup';
-  if (dbFunctions.has(name)) return 'databaseMini';
-  if (statisticalSeries.has(name)) return 'students';
+
   return tableByCategory[formula.category] || 'addinParameter';
 };
 
@@ -566,7 +574,7 @@ const refsFromFormat = (formula) => {
   if (special) return special.refs;
   const format = auditedFormat(formula);
   const args = rootFormatArgs(format);
-  const required = args.filter((arg) => !/^\[.*\]$/.test(arg));
+  const required = args.filter((arg) => !/^\[.*\]$/.test(arg) && !/^\.\.\.$/.test(arg) && !/argument\d*/i.test(arg));
   const limited = (required.length ? required : args.slice(0, 1)).slice(0, 5);
   const tableKey = tableForFormula(formula);
   const mapper = mapperByTable[tableKey] || mapDynamicToken;
@@ -754,7 +762,7 @@ function makeCompactTable(tableKey, variantIndex = 0) {
   }
   if (tableKey === 'statsBinom') {
     const s = statNegBinomScenarios[n];
-    return { title: `Parameter Binomial ${n + 1}`, description: 'Tabel ringkas untuk latihan binomial.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Jumlah berhasil', Math.max(1, s.s - 1), 'Jumlah sukses yang ingin dihitung'], ['Jumlah percobaan', s.s + s.f, 'Total percobaan'], ['Peluang berhasil', s.p, 'Peluang sukses tiap percobaan'], ['Cumulative', s.cumulative, 'TRUE kumulatif, FALSE peluang tepat']] };
+    return { title: `Parameter Binomial ${n + 1}`, description: 'Tabel ringkas untuk latihan binomial dan hypergeometric.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Jumlah berhasil', Math.max(1, s.s - 1), 'Jumlah sukses yang ingin dihitung'], ['Jumlah percobaan', s.s + s.f, 'Total percobaan'], ['Peluang berhasil', s.p, 'Peluang sukses tiap percobaan'], ['Cumulative', s.cumulative, 'TRUE kumulatif, FALSE peluang tepat'], ['Jumlah sukses kedua', Math.max(2, s.s), 'Batas atas jumlah sukses'], ['Sample success', 4, 'Sukses dalam sampel'], ['Number sample', 8, 'Ukuran sampel'], ['Population success', 20, 'Jumlah sukses di populasi'], ['Number population', 30, 'Ukuran populasi'], ['Alpha', 0.8, 'Parameter peluang inverse']] };
   }
   if (tableKey === 'statsNormal') {
     const rows = [[42,40,1.5,'TRUE',0.8,1.25],[38,35,2,'TRUE',0.75,0.9],[100,95,8,'FALSE',0.6,1.1],[70,75,5,'TRUE',0.85,1.35],[10,12,1.2,'FALSE',0.5,0],[55,50,6,'TRUE',0.95,1.65]][n];
@@ -769,7 +777,7 @@ function makeCompactTable(tableKey, variantIndex = 0) {
     return { title: `Data Aktual vs Ekspektasi ${n + 1}`, description: 'Data kecil untuk membandingkan hasil aktual dan ekspektasi.', columns: ['Data Aktual', 'Data Ekspektasi'], rows: [[82+offset,80+offset],[91-offset,90-offset],[68+offset,70+offset],[77,75],[73,72]] };
   }
   if (tableKey === 'statsSeriesCompact' || tableKey === 'students') {
-    return { title: `Data Nilai Ringkas ${n + 1}`, description: 'Data angka ringkas untuk latihan statistik dan hitung dasar.', columns: ['Nilai A', 'Nilai B', 'Kategori'], rows: [[82+n,80,'A'],[91,90+n,'B'],[68+n,70,'A'],[77,75+n,'B'],[73+n,72,'A'],[88,85+n,'B'],[95,92,'A']] };
+    return { title: `Data Nilai Ringkas ${n + 1}`, description: 'Data angka ringkas untuk latihan statistik dan hitung dasar.', columns: ['Nilai A', 'Nilai B', 'Kategori'], rows: [[82+n,80,'A'],[91,90+n,'B'],[68+n,70,'A'],[77,75+n,'B'],[73+n,72,'A'],[88,85+n,'B'],[95,92,'A'],[64+n,66,'B'],[80,78+n,'A']] };
   }
   if (tableKey === 'financeParameter') {
     const s = financeScenarios[n];
@@ -779,8 +787,8 @@ function makeCompactTable(tableKey, variantIndex = 0) {
     return { title: `Parameter Teknik ${n + 1}`, description: 'Data singkat untuk konversi, angka basis, atau bilangan kompleks.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Angka', 10+n, 'Angka utama'], ['From unit', 'm', 'Unit asal'], ['To unit', n % 2 ? 'km' : 'cm', 'Unit tujuan'], ['Binary', '1010', 'Bilangan biner'], ['Complex 1', '3+4i', 'Bilangan kompleks pertama'], ['Complex 2', '2+1i', 'Bilangan kompleks kedua'], ['Real', 3+n, 'Bagian real'], ['Imaginary', 4, 'Bagian imajiner'], ['Places', 2, 'Jumlah digit']] };
   }
   if (tableKey === 'textPractice') {
-    const rows = [['Agus Saputra','INV-2026-001','agus@email.com','-'],['Sinta Lestari','PRD-DIG-002','sinta@email.com',' '],['Budi Santoso','ORD-7788-JKT','budi@email.com','/'],['Nadia Putri','SKU-FSN-045','nadia@email.com','_']];
-    return { title: `Data Teks ${n + 1}`, description: 'Data teks untuk latihan nama, kode, invoice, dan email.', columns: ['Teks Utama', 'Kode / Invoice', 'Email', 'Pemisah'], rows };
+    const rows = [['Agus Saputra','INV-2026-001','agus@email.com','-',2,4,'COACH'],['Sinta Lestari','PRD-DIG-002','sinta@email.com',' ',1,5,'EXCEL'],['Budi Santoso','ORD-7788-JKT','budi@email.com','/',5,3,'DATA'],['Nadia Putri','SKU-FSN-045','nadia@email.com','_',3,4,'FORMULA']];
+    return { title: `Data Teks ${n + 1}`, description: 'Data teks untuk latihan nama, kode, invoice, dan email.', columns: ['Teks Utama', 'Kode / Invoice', 'Email', 'Pemisah', 'Start', 'Jumlah', 'Pengganti'], rows };
   }
   if (tableKey === 'datePractice') {
     return { title: `Data Tanggal & Jam ${n + 1}`, description: 'Data tanggal dan jam untuk latihan date/time.', columns: ['Tanggal Teks', 'Year', 'Month', 'Day', 'Holiday'], rows: [['2026-01-15',2026,1,15,'2026-01-01'],['2026-02-20',2026,2,20,'2026-03-11'],['2026-05-10',2026,5,10,'2026-05-01'],['08:30',8,30,0,'2026-12-25'],['17:45',17,45,0,'']] };
@@ -818,11 +826,29 @@ function makeCompactTable(tableKey, variantIndex = 0) {
   return { title: `Data Latihan ${n + 1}`, description: 'Data fallback agar latihan tetap punya tabel yang jelas.', columns: ['Item', 'Nilai', 'Keterangan'], rows: [['Input 1', 10, 'Data utama'], ['Input 2', 20, 'Data tambahan'], ['Input 3', 30, 'Data pembanding']] };
 }
 
+
+const singleRangeFunctions = new Set([
+  'SUM','AVERAGE','AVERAGEA','COUNT','MAX','MAXA','MIN','MINA','MEDIAN','MODE','MODE.SNGL','MODE.MULT',
+  'STDEV','STDEVP','STDEV.S','STDEV.P','STDEVA','STDEVPA','VAR','VARP','VAR.S','VAR.P','VARA','VARPA',
+  'AVEDEV','DEVSQ','GEOMEAN','HARMEAN','KURT','SKEW','SKEW.P','TRIMMEAN','PRODUCT','SUMSQ'
+]);
+
+const mathRangeByLevel = ['B2:B10', 'C2:C10', 'B2:C10', 'B2:B8', 'C2:C8', 'B1:B10'];
+const statsRangeByLevel = ['A2:A8', 'B2:B8', 'A2:B8', 'A2:A6', 'B2:B6', 'A1:A8'];
+
 function makeVariantRefs(formula, variantIndex = 0) {
   const name = upper(formula.name);
   const tableKey = tableForFormula(formula);
   const n = variantIndex % 6;
   const baseRefs = refsFromFormat(formula);
+
+  if (name === 'SUM') return [mathRangeByLevel[n]];
+  if (confidenceFunctions.has(name)) return ['B6', 'B4', 'B3'];
+  if (name === 'EUROCONVERT') return ['F2', '"EUR"', '"DEM"'];
+  if (['PRODUCT','SUMSQ'].includes(name)) return [mathRangeByLevel[n]];
+  if (singleRangeFunctions.has(name)) return [statsRangeByLevel[n]];
+  if (name === 'COUNTBLANK') return ['B2:B6'];
+  if (name === 'COUNTA') return ['A2:C6'];
 
   if (name === 'CHOOSEROWS') return ['A1:I8', '1', '2'];
   if (name === 'CHOOSECOLS') return ['A1:I8', '1', '2'];
@@ -884,6 +910,8 @@ function makeVariantRefs(formula, variantIndex = 0) {
 function makeVariantQuestion(formula, refs, variantIndex = 0) {
   const name = upper(formula.name);
   const n = variantIndex % 6;
+  if (name === 'SUM') return `${variantLabels[n]}: jumlahkan angka dari range yang tersedia di tabel. Gunakan satu range yang jelas, bukan cell satu per satu.`;
+  if (singleRangeFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} pada satu range angka yang sesuai di tabel.`;
   if (criteriaFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} untuk menghitung data penjualan dengan syarat ${salesScenarios[n].label}.`;
   if (lookupFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} untuk mengambil ${lookupScenarios[n].label} dari tabel master.`;
   if (name === 'NEGBINOMDIST' || name === 'NEGBINOM.DIST') return `${variantLabels[n]}: hitung peluang negative binomial dari parameter ringkas di tabel.`;
@@ -891,6 +919,8 @@ function makeVariantQuestion(formula, refs, variantIndex = 0) {
   if (formula.category === 'Text') return `${variantLabels[n]}: gunakan ${formula.name} untuk mengolah teks dari tabel latihan.`;
   if (formula.category === 'Date and Time') return `${variantLabels[n]}: gunakan ${formula.name} untuk mengolah tanggal atau jam dari tabel.`;
   if (formula.category === 'Logical') return `${variantLabels[n]}: gunakan ${formula.name} untuk membaca kondisi dan menghasilkan keputusan.`;
+  if (name === 'COUNTA') return `${variantLabels[n]}: hitung jumlah cell yang berisi data pada tabel campuran.`;
+  if (name === 'COUNTBLANK') return `${variantLabels[n]}: hitung jumlah cell kosong pada tabel campuran.`;
   if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `${variantLabels[n]}: gunakan ${formula.name} dengan parameter statistik yang relevan, bukan tabel umum yang tidak nyambung.`;
   return `${variantLabels[n]}: gunakan ${formula.name} dengan data latihan yang sudah disiapkan.`;
 }
