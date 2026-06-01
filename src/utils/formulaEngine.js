@@ -44,7 +44,22 @@ const flatten = (value) => {
   return [value];
 };
 
-const numbersOnly = (value) => flatten(value).map((item) => Number(item)).filter((item) => Number.isFinite(item));
+const isNumericValue = (value) => {
+  if (isBlank(value) || typeof value === 'boolean') return false;
+  if (value instanceof Date) return true;
+  if (typeof value === 'number') return Number.isFinite(value);
+  return false;
+};
+
+const numberFromExcelValue = (value) => {
+  if (value instanceof Date) return value.getTime();
+  return Number(value);
+};
+
+const numbersOnly = (value) => flatten(value)
+  .filter(isNumericValue)
+  .map(numberFromExcelValue)
+  .filter((item) => Number.isFinite(item));
 const textValue = (value) => {
   if (isRangeObject(value)) return String(flatten(value)[0] ?? '');
   if (Array.isArray(value)) return String(value.flat(Infinity)[0] ?? '');
