@@ -116,15 +116,108 @@ function tableFor(id) {
   return numberTable;
 }
 
+
+const cleanQuestionText = (question = '') => String(question || '')
+  .replace(/\?+$/g, '')
+  .trim()
+  .replace(/^Berapa\s+/i, 'berapa ')
+  .replace(/^Apa\s+/i, 'apa ');
+
+const cleanParam = (value = '') => String(value || '')
+  .trim()
+  .replace(/^"|"$/g, '')
+  .replace(/^“|”$/g, '');
+
+function buildLogicPrompt(id, config = {}) {
+  const args = splitArgs(config.expectedFormula);
+  const { refs, texts } = argInfo(config.expectedFormula);
+  const question = cleanQuestionText(config.question);
+  const functionName = formulaMeta[id]?.name || String(id || '').toUpperCase();
+  const firstRef = refs[0] || 'range yang sesuai';
+  const secondRef = refs[1] || '';
+  const thirdRef = refs[2] || '';
+
+  if (id === 'sum') {
+    if (refs.length > 1) {
+      return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk menjumlahkan angka. Pilih ${refs.join(' dan ')} karena dua range itu sama-sama menjadi angka yang harus ditotal. Jangan pilih kolom lain yang tidak diminta soal.`;
+    }
+    return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk menjumlahkan angka. Pilih ${firstRef} karena range itu berisi angka yang perlu ditotal. Jangan ikutkan header tabel atau range di luar data yang ditanya.`;
+  }
+
+  if (id === 'average') {
+    return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk mencari rata-rata. Pilih ${firstRef} karena range itu berisi angka yang ingin dirata-ratakan. Jangan pilih seluruh tabel, cukup kolom atau baris angka yang sesuai dengan soal.`;
+  }
+
+  if (id === 'min') {
+    return `Pertanyaan ini meminta ${question}. ${functionName} mencari angka paling kecil dari range yang dipilih. Pilih ${firstRef} karena range itu berisi angka yang sedang dibandingkan. Kalau range-nya salah, nilai terkecil yang keluar juga akan salah.`;
+  }
+
+  if (id === 'max') {
+    return `Pertanyaan ini meminta ${question}. ${functionName} mencari angka paling besar dari range yang dipilih. Pilih ${firstRef} karena range itu berisi angka yang sedang dibandingkan. Jangan pilih header atau kolom yang bukan bagian dari pertanyaan.`;
+  }
+
+  if (id === 'large' || id === 'small') {
+    const direction = id === 'large' ? 'terbesar' : 'terkecil';
+    const opposite = id === 'large' ? 'MAX hanya mengambil terbesar pertama' : 'MIN hanya mengambil terkecil pertama';
+    const k = args[1] || 'k';
+    return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk mencari angka ${direction} berdasarkan urutan tertentu. Pilih ${firstRef} sebagai range angka, lalu masukkan ${k} sebagai urutan/peringkat yang dicari. Jangan pakai ${id === 'large' ? 'MAX' : 'MIN'} kalau yang diminta bukan peringkat pertama, karena ${opposite}.`;
+  }
+
+  if (id === 'count') {
+    return `Pertanyaan ini meminta ${question}. ${functionName} menghitung berapa cell yang berisi angka, bukan menjumlahkan nilainya. Pilih ${refs.join(' dan ') || firstRef} sesuai area yang ditanya. Teks dan cell kosong tidak ikut dihitung.`;
+  }
+
+  if (id === 'counta') {
+    return `Pertanyaan ini meminta ${question}. ${functionName} menghitung cell yang terisi, baik angka maupun teks. Pilih ${firstRef} karena area itu yang ingin dicek. Cell kosong tidak ikut dihitung.`;
+  }
+
+  if (id === 'countblank') {
+    return `Pertanyaan ini meminta ${question}. ${functionName} menghitung cell kosong pada range yang dipilih. Pilih ${firstRef} karena area itu yang ingin dicek kosongnya. Cell yang berisi teks atau angka tidak ikut dihitung.`;
+  }
+
+  if (id === 'countif') {
+    const criteriaRange = args[0] || firstRef;
+    const criteria = cleanParam(args[1] || texts[0] || 'kriteria dari soal');
+    return `Pertanyaan ini meminta ${question}. ${functionName} dipakai untuk menghitung data yang cocok dengan satu kriteria. Pilih ${criteriaRange} sebagai range yang dicek, lalu pakai kriteria ${criteria}. Karena rumus ini hanya menghitung jumlah baris yang cocok, tidak perlu range angka hasil.`;
+  }
+
+  if (id === 'sumif' || id === 'averageif') {
+    const criteriaRange = args[0] || firstRef;
+    const criteria = cleanParam(args[1] || texts[0] || 'kriteria dari soal');
+    const valueRange = args[2] || secondRef || 'range angka hasil';
+    const action = id === 'sumif' ? 'menjumlahkan' : 'mencari rata-rata dari';
+    const outputName = id === 'sumif' ? 'angka yang dijumlahkan' : 'angka yang dirata-ratakan';
+    return `Pertanyaan ini meminta ${question}. ${functionName} bekerja dengan satu syarat. Pertama, pilih ${criteriaRange} sebagai tempat Excel mencari kriteria ${criteria}. Setelah barisnya cocok, Excel akan ${action} ${valueRange} sebagai ${outputName}. Urutannya harus range kriteria, kriteria, lalu range angka.`;
+  }
+
+  if (id === 'countifs') {
+    const cRange1 = args[0] || firstRef;
+    const c1 = cleanParam(args[1] || 'kriteria pertama');
+    const cRange2 = args[2] || secondRef || 'range kriteria kedua';
+    const c2 = cleanParam(args[3] || 'kriteria kedua');
+    return `Pertanyaan ini meminta ${question}. ${functionName} menghitung baris yang memenuhi lebih dari satu syarat. Cek ${cRange1} dengan kriteria ${c1}, lalu cek ${cRange2} dengan kriteria ${c2}. Baris baru dihitung kalau semua syarat terpenuhi.`;
+  }
+
+  if (id === 'sumifs' || id === 'averageifs') {
+    const resultRange = args[0] || firstRef;
+    const cRange1 = args[1] || secondRef || 'range kriteria pertama';
+    const c1 = cleanParam(args[2] || 'kriteria pertama');
+    const cRange2 = args[3] || thirdRef || 'range kriteria kedua';
+    const c2 = cleanParam(args[4] || 'kriteria kedua');
+    const action = id === 'sumifs' ? 'menjumlahkan' : 'menghitung rata-rata dari';
+    return `Pertanyaan ini meminta ${question}. ${functionName} memakai beberapa syarat. Mulai dari ${resultRange} sebagai angka yang akan dihitung. Lalu cek ${cRange1} dengan kriteria ${c1} dan ${cRange2} dengan kriteria ${c2}. Excel hanya akan ${action} baris yang lolos semua syarat.`;
+  }
+
+  return `${config.logic || ''} Range yang dipakai pada latihan ini adalah ${refs.join(' dan ') || 'range yang sesuai dengan soal'}. Baca pertanyaannya, cari kolom yang sesuai, lalu masukkan argumen sesuai urutan format ${functionName}.`.trim();
+}
+
 function makeExercise(id, levelIndex, config) {
   const meta = formulaMeta[id];
   const { refs, texts } = argInfo(config.expectedFormula);
   const table = config.table || tableFor(id);
   const title = `Latihan ${levelIndex + 1}: ${config.title || labelByIndex[levelIndex]}`;
   const activeCell = config.activeCell || 'G2';
-  const logicPrompt = String(config.logic || '').trim().length >= 120
-    ? String(config.logic || '').trim()
-    : `${String(config.logic || '').trim()} Langkah berpikirnya: baca dulu apa yang ditanya, cocokkan dengan judul kolom di tabel, lalu pilih range/cell yang benar-benar mewakili data itu.`.trim();
+  const logicPrompt = buildLogicPrompt(id, config);
 
   return {
     id: `${id}__batch_basic_${levelIndex + 1}`,
