@@ -1,6 +1,6 @@
 import { formulaForSeparator } from '../utils/formulaValidator';
 
-export default function FeedbackBox({ feedback, exercise, separatorMode, isCorrect, onNext }) {
+export default function FeedbackBox({ feedback, exercise, separatorMode, isCorrect, onNext, nextLabel = 'Lanjut ke rumus berikutnya' }) {
   if (!feedback) {
     return (
       <section className="rounded-[1.75rem] border border-dashed border-coach-line bg-white/65 p-4 text-sm text-black/50 dark:border-white/10 dark:bg-white/[0.035] dark:text-white/50">
@@ -45,7 +45,7 @@ export default function FeedbackBox({ feedback, exercise, separatorMode, isCorre
           </div>
 
           <button onClick={onNext} className="rounded-full bg-coach-ink px-5 py-3 text-sm font-black text-white transition hover:bg-coach-green dark:bg-white dark:text-coach-ink">
-            Lanjut ke rumus berikutnya
+            {nextLabel}
           </button>
         </div>
       )}

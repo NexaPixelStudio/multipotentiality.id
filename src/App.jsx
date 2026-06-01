@@ -548,6 +548,7 @@ export default function App() {
 
   const formulaProgress = progressState.formulas?.[selectedFormula.id] || {};
   const finalFormulaPreview = feedback?.correct ? formulaForSeparator(exercise.expectedFormula, progressState.separatorMode) : null;
+  const nextFeedbackLabel = exerciseIndex < exerciseCount - 1 ? `Lanjut ke Latihan ${exerciseIndex + 2}` : 'Lanjut ke rumus berikutnya';
 
   return (
     <div className="min-h-screen bg-coach-beige text-coach-ink transition dark:bg-coach-ink dark:text-white">
@@ -672,7 +673,7 @@ export default function App() {
             onResetHints={() => setHintIndex(-1)}
           />
 
-          <FeedbackBox feedback={feedback} exercise={exercise} separatorMode={progressState.separatorMode} isCorrect={feedback?.correct} onNext={handleNextExerciseStep} />
+          <FeedbackBox feedback={feedback} exercise={exercise} separatorMode={progressState.separatorMode} isCorrect={feedback?.correct} onNext={handleNextExerciseStep} nextLabel={nextFeedbackLabel} />
         </div>
 
         <FormulaSidebar
