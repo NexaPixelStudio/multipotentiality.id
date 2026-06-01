@@ -13,6 +13,7 @@ import { createGenericExercise, genericTheoryTable } from './data/exerciseTempla
 import { formulaForSeparator, validateFormula, validateGenericFormula } from './utils/formulaValidator';
 import { autoCloseFormula, evaluateFormula } from './utils/formulaEngine';
 import { defaultProgressState, loadProgress, markFormulaAttempt, markFormulaOpened, resetProgress, saveProgress, setPreference } from './utils/localStorage';
+import { displayCategories } from './data/formulaCategories';
 
 
 
@@ -273,6 +274,124 @@ function insertHelperValueAtCursor(formula = '', helperValue = '', cursor = form
   return `${current.slice(0, start)}${insert}${current.slice(start)}`;
 }
 
+const navigationFamilyOrder = [
+  'SUM Family',
+  'COUNT Family',
+  'AVERAGE Family',
+  'MIN / MAX Family',
+  'IF Family',
+  'Logical Test Family',
+  'LOOKUP Family',
+  'INDEX MATCH Family',
+  'Reference Family',
+  'Text Extract Family',
+  'Text Clean Family',
+  'Text Join Family',
+  'Text Search Family',
+  'Date Family',
+  'Time Family',
+  'Dynamic Filter Family',
+  'Dynamic Sort Family',
+  'Dynamic Stack Family',
+  'Dynamic Transform Family',
+  'Round Family',
+  'Random Family',
+  'Power Family',
+  'Subtotal Family',
+  'Error Check Family',
+  'Cell Info Family',
+  'Forecast Family',
+  'Rank & Percentile Family'
+];
+
+function getNavigationFamily(formula) {
+  const name = formula?.name?.toUpperCase?.() || '';
+  const category = formula?.category || formula?.displayCategory || '';
+
+  if (/^SUM(IF|IFS|PRODUCT)?$/.test(name) || ['SUBTOTAL', 'AGGREGATE'].includes(name)) return 'SUM Family';
+  if (/^COUNT/.test(name)) return 'COUNT Family';
+  if (/^AVERAGE/.test(name)) return 'AVERAGE Family';
+  if (['MIN', 'MAX', 'LARGE', 'SMALL'].includes(name)) return 'MIN / MAX Family';
+
+  if (['IF', 'IFS', 'IFERROR', 'IFNA', 'SWITCH', 'TRUE', 'FALSE'].includes(name)) return 'IF Family';
+  if (['AND', 'OR', 'NOT', 'XOR'].includes(name)) return 'Logical Test Family';
+
+  if (['VLOOKUP', 'HLOOKUP', 'XLOOKUP', 'LOOKUP'].includes(name)) return 'LOOKUP Family';
+  if (['INDEX', 'MATCH', 'XMATCH', 'INDEX MATCH'].includes(name)) return 'INDEX MATCH Family';
+  if (['ROW', 'ROWS', 'COLUMN', 'COLUMNS', 'ADDRESS', 'INDIRECT', 'OFFSET', 'FORMULATEXT', 'HYPERLINK', 'CHOOSE', 'CHOOSECOLS', 'CHOOSEROWS', 'AREAS'].includes(name)) return 'Reference Family';
+
+  if (['LEFT', 'RIGHT', 'MID', 'TEXTBEFORE', 'TEXTAFTER', 'TEXTSPLIT'].includes(name)) return 'Text Extract Family';
+  if (['TRIM', 'CLEAN', 'LOWER', 'UPPER', 'PROPER', 'LEN', 'VALUE', 'NUMBERVALUE', 'TEXT', 'DOLLAR', 'FIXED'].includes(name)) return 'Text Clean Family';
+  if (['CONCAT', 'CONCATENATE', 'TEXTJOIN', 'REPT', 'UNICHAR', 'CHAR'].includes(name)) return 'Text Join Family';
+  if (['FIND', 'SEARCH', 'SUBSTITUTE', 'REPLACE', 'EXACT'].includes(name)) return 'Text Search Family';
+
+  if (['DATE', 'DAY', 'MONTH', 'YEAR', 'TODAY', 'DATEDIF', 'DAYS', 'NETWORKDAYS', 'NETWORKDAYS.INTL', 'WORKDAY', 'WORKDAY.INTL', 'EDATE', 'EOMONTH', 'WEEKDAY', 'WEEKNUM', 'ISOWEEKNUM', 'YEARFRAC'].includes(name)) return 'Date Family';
+  if (['NOW', 'HOUR', 'MINUTE', 'SECOND', 'TIME', 'TIMEVALUE'].includes(name)) return 'Time Family';
+
+  if (['FILTER', 'UNIQUE'].includes(name)) return 'Dynamic Filter Family';
+  if (['SORT', 'SORTBY'].includes(name)) return 'Dynamic Sort Family';
+  if (['VSTACK', 'HSTACK', 'EXPAND', 'WRAPROWS', 'WRAPCOLS'].includes(name)) return 'Dynamic Stack Family';
+  if (['TRANSPOSE', 'TAKE', 'DROP', 'TOCOL', 'TOROW', 'MAKEARRAY', 'MAP', 'REDUCE', 'SCAN', 'BYROW', 'BYCOL'].includes(name)) return 'Dynamic Transform Family';
+
+  if (['ROUND', 'ROUNDUP', 'ROUNDDOWN', 'MROUND', 'INT', 'MOD', 'CEILING', 'CEILING.MATH', 'FLOOR', 'FLOOR.MATH', 'ABS', 'SIGN', 'TRUNC'].includes(name)) return 'Round Family';
+  if (['RAND', 'RANDBETWEEN', 'RANDARRAY'].includes(name)) return 'Random Family';
+  if (['POWER', 'SQRT', 'SQRTPI', 'EXP', 'LN', 'LOG', 'LOG10'].includes(name)) return 'Power Family';
+  if (['SUBTOTAL', 'AGGREGATE', 'SUMPRODUCT'].includes(name)) return 'Subtotal Family';
+
+  if (/^IS/.test(name) || ['TYPE', 'N', 'NA', 'ERROR.TYPE'].includes(name)) return 'Error Check Family';
+  if (['CELL', 'INFO', 'SHEET', 'SHEETS'].includes(name)) return 'Cell Info Family';
+
+  if (['FORECAST', 'FORECAST.LINEAR', 'TREND', 'GROWTH', 'LINEST', 'LOGEST'].includes(name)) return 'Forecast Family';
+  if (/^(RANK|PERCENTILE|QUARTILE|MEDIAN|MODE|STDEV|VAR)/.test(name)) return 'Rank & Percentile Family';
+
+  if (category === 'Financial') {
+    if (/^(PV|FV|PMT|RATE|NPER|IPMT|PPMT)/.test(name)) return 'Loan & Investment Family';
+    if (/^(NPV|IRR|MIRR|XIRR|XNPV)/.test(name)) return 'Cashflow Family';
+    if (/^(DB|DDB|SLN|SYD|VDB|AMOR)/.test(name)) return 'Depreciation Family';
+    return 'Financial Family';
+  }
+
+  if (category === 'Engineering') {
+    if (/CONVERT/.test(name)) return 'Conversion Family';
+    if (/^(BIN|DEC|HEX|OCT)/.test(name)) return 'Number Base Family';
+    if (/^IM/.test(name) || name.includes('COMPLEX')) return 'Complex Number Family';
+    return 'Engineering Family';
+  }
+
+  if (category === 'Database') return 'Database Family';
+  if (category === 'Web') return 'Web Family';
+  if (category === 'Cube') return 'Cube Family';
+  if (category === 'Compatibility') return 'Legacy Compatibility Family';
+  if (category === 'Advanced / Professional') return 'Professional Formula Family';
+  if (category === 'Rare / Specialized') return 'Specialized Family';
+
+  const baseName = name.split('.')[0].split(/[^A-Z0-9]+/)[0];
+  return `${baseName} Family`;
+}
+
+function getNavigationFamilyIndex(familyName) {
+  const index = navigationFamilyOrder.indexOf(familyName);
+  return index === -1 ? 999 : index;
+}
+
+function getNavigationCategoryIndex(categoryName) {
+  const index = displayCategories.indexOf(categoryName);
+  return index === -1 ? 999 : index;
+}
+
+function getFormulaNavigationList(formulas = []) {
+  const originalIndex = new Map(formulas.map((formula, index) => [formula.id, index]));
+  return [...formulas].sort((a, b) => {
+    const categoryDiff = getNavigationCategoryIndex(a.displayCategory) - getNavigationCategoryIndex(b.displayCategory);
+    if (categoryDiff) return categoryDiff;
+
+    const familyDiff = getNavigationFamilyIndex(getNavigationFamily(a)) - getNavigationFamilyIndex(getNavigationFamily(b));
+    if (familyDiff) return familyDiff;
+
+    return (originalIndex.get(a.id) ?? 0) - (originalIndex.get(b.id) ?? 0);
+  });
+}
+
 export default function App() {
   const [formulas, setFormulas] = useState(formulaCatalogFull);
   const [progressState, setProgressState] = useState(() => loadProgress());
@@ -505,8 +624,13 @@ export default function App() {
   };
 
   const handleNextFormula = () => {
-    const index = formulas.findIndex((formula) => formula.id === selectedFormula.id);
-    const next = formulas[index + 1] || formulas[0];
+    const navigationList = getFormulaNavigationList(formulas);
+    const index = navigationList.findIndex((formula) => formula.id === selectedFormula.id);
+    const safeIndex = index === -1 ? 0 : index;
+    const next = navigationList[safeIndex + 1] || navigationList[0];
+
+    if (!next) return;
+
     setSelectedId(next.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
