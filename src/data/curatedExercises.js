@@ -1,5 +1,6 @@
 import { formulaCatalogFull } from './formulaCatalogFull.js';
 import { generateDetailedExerciseForFormula, generateTieredExercisesForFormula } from './formulaPracticeFactory.js';
+import { batch01BasicCalculationExercises, batch01BasicCalculationLevels } from './quality/batch01BasicCalculation.js';
 // Curated exercise bank untuk rumus populer.
 // Expected formula disimpan dalam separator English (,). UI akan mengubah tampilannya sesuai mode Indonesia/English.
 
@@ -7715,11 +7716,12 @@ const generatedExerciseLevels = Object.fromEntries(
 
 export const curatedExercises = {
   ...generatedExercises,
-  ...normalizedManualExercises
+  ...normalizedManualExercises,
+  ...batch01BasicCalculationExercises
 };
 
 export const curatedExerciseLevels = Object.fromEntries(
-  formulaCatalogFull.map((formula) => [formula.id, generatedExerciseLevels[formula.id] || []])
+  formulaCatalogFull.map((formula) => [formula.id, batch01BasicCalculationLevels[formula.id] || generatedExerciseLevels[formula.id] || []])
 );
 
 export const getCuratedExercise = (formulaId) => curatedExercises[formulaId] || null;
