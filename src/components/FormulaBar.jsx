@@ -360,7 +360,14 @@ export default function FormulaBar({
   onLookupValueChange,
   onInsertHelperValue,
   selectionTarget = 'formula',
-  onSelectionTargetChange
+  onSelectionTargetChange,
+  learningMode = 'guided',
+  showLogicPanel = true,
+  showLogicExample = true,
+  showValueHelper = true,
+  enableFormulaAssist = true,
+  showLiveResult = true,
+  showRangeTips = true
 }) {
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -373,6 +380,7 @@ export default function FormulaBar({
   const cleanOptions = useMemo(() => dedupeOptions(formulaOptions), [formulaOptions]);
 
   const suggestions = useMemo(() => {
+    if (!enableFormulaAssist) return [];
     if (!fragmentInfo?.fragment) return [];
     const fragment = fragmentInfo.fragment.toUpperCase();
     if (fragment.length < 1) return [];
@@ -380,9 +388,10 @@ export default function FormulaBar({
     const startsWith = cleanOptions.filter((item) => item.name.toUpperCase().startsWith(fragment));
     const includes = cleanOptions.filter((item) => !item.name.toUpperCase().startsWith(fragment) && item.name.toUpperCase().includes(fragment));
     return [...startsWith, ...includes].slice(0, 8);
-  }, [cleanOptions, fragmentInfo]);
+  }, [cleanOptions, enableFormulaAssist, fragmentInfo]);
 
   const activeSignature = useMemo(() => {
+    if (!enableFormulaAssist) return null;
     const activeFunction = findActiveFunction(value, cursor);
     if (!activeFunction) return null;
 
@@ -394,7 +403,7 @@ export default function FormulaBar({
       ...syntax,
       argIndex: activeFunction.argIndex
     };
-  }, [cleanOptions, cursor, separatorMode, value]);
+  }, [cleanOptions, cursor, enableFormulaAssist, separatorMode, value]);
 
   useEffect(() => {
     setShowSignature(true);
@@ -506,6 +515,8 @@ export default function FormulaBar({
   const hasFormula = Boolean(value.trim());
   const answerState = !hasFormula ? 'empty' : feedback ? (feedback.correct ? 'correct' : 'wrong') : 'pending';
   const logicExplanation = getFormulaLogicExplanation({ value, cleanOptions, activeSignature });
+  const canShowQuestionHelper = showValueHelper && showQuestionHelper && helperValues.length > 0;
+  const isChallengeMode = learningMode === 'challenge';
   const typedFunctionName = findActiveFunction(value, cursor)?.name || (value.trim().match(/^=\s*([A-Za-z.][A-Za-z0-9._]*)/)?.[1] || '');
   const specialEnvironment = formulaResult?.environment || getExcelSpecialEnvironment(typedFunctionName);
 
@@ -665,8 +676,9 @@ export default function FormulaBar({
               <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
               <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
               <span>Enter untuk cek jawaban.</span>
-              {showQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
-              <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>
+              {canShowQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
+              {showRangeTips && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>}
+              {isChallengeMode && <span>Mode challenge: bantuan disembunyikan.</span>}
             </div>
           </section>
         </div>
@@ -674,7 +686,7 @@ export default function FormulaBar({
         <aside className="space-y-3">
           <section className="rounded-xl border border-coach-line bg-coach-beige px-3 py-3 dark:border-white/10 dark:bg-black/20">
             <div className="space-y-2">
-              {showQuestionHelper && helperValues.length > 0 ? helperValues.map((item, index) => {
+              {canShowQuestionHelper ? helperValues.map((item, index) => {
                 const infoKey = `${item.role}-${item.insert}-${index}`;
                 const isInfoOpen = openInfoKey === infoKey;
 
@@ -717,7 +729,7 @@ export default function FormulaBar({
                 );
               }) : (
                 <div className="rounded-lg border border-coach-green/15 bg-white px-3 py-2 text-[11px] font-semibold text-black/45 dark:border-emerald-400/10 dark:bg-white/5 dark:text-white/45">
-                  Tidak ada value khusus.
+                  {isChallengeMode ? 'Value helper disembunyikan di Challenge Mode.' : 'Tidak ada value khusus.'}
                 </div>
               )}
             </div>

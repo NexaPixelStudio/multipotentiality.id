@@ -392,6 +392,52 @@ function getFormulaNavigationList(formulas = []) {
   });
 }
 
+function getLearningModeConfig(mode = 'guided') {
+  const normalized = ['guided', 'practice', 'challenge'].includes(mode) ? mode : 'guided';
+
+  const config = {
+    guided: {
+      id: 'guided',
+      title: 'Guided Mode',
+      description: 'Bantuan paling lengkap. Cocok untuk rumus baru atau saat user masih belajar alurnya.',
+      showLogicPanel: true,
+      showLogicExample: true,
+      showValueHelper: true,
+      enableFormulaAssist: true,
+      showLiveResult: true,
+      showRangeTips: true,
+      hintLimit: Infinity
+    },
+    practice: {
+      id: 'practice',
+      title: 'Practice Mode',
+      description: 'Bantuan lebih sedikit. User tetap dapat arah utama, tapi contoh dan hint dibuat lebih terbatas.',
+      showLogicPanel: true,
+      showLogicExample: false,
+      showValueHelper: true,
+      enableFormulaAssist: true,
+      showLiveResult: true,
+      showRangeTips: true,
+      hintLimit: 2
+    },
+    challenge: {
+      id: 'challenge',
+      title: 'Challenge Mode',
+      description: 'Mode tanpa bantuan utama. User menjawab dari soal dan tabel saja, seperti ujian kecil.',
+      showLogicPanel: false,
+      showLogicExample: false,
+      showValueHelper: false,
+      enableFormulaAssist: false,
+      showLiveResult: false,
+      showRangeTips: false,
+      hintLimit: 0
+    }
+  };
+
+  return config[normalized];
+}
+
+
 export default function App() {
   const [formulas, setFormulas] = useState(formulaCatalogFull);
   const [progressState, setProgressState] = useState(() => loadProgress());
@@ -425,6 +471,8 @@ export default function App() {
     return curatedExercise || createGenericExercise(selectedFormula);
   }, [selectedFormula, curatedExercise]);
   const exerciseCount = curatedExercises.length || 1;
+  const learningMode = progressState.lastMode || 'guided';
+  const modeConfig = useMemo(() => getLearningModeConfig(learningMode), [learningMode]);
 
   const table = exercise?.table || (isGeneric ? genericTheoryTable : sharedExerciseTables[exercise?.tableKey] || genericTheoryTable);
   const selectedNeedsHelper = useMemo(() => {
@@ -436,7 +484,7 @@ export default function App() {
   const typedFunctionName = useMemo(() => getTypedFunctionName(answer), [answer]);
   const typedNeedsHelper = HELPER_FUNCTION_NAMES.has(typedFunctionName);
   const questionHelperValues = useMemo(() => getQuestionHelperValues(exercise, table), [exercise, table]);
-  const showQuestionHelper = questionHelperValues.length > 0;
+  const showQuestionHelper = modeConfig.showValueHelper && questionHelperValues.length > 0;
 
   const formulaOptions = useMemo(() => {
     const selected = selectedFormula ? [selectedFormula] : [];
@@ -521,6 +569,12 @@ export default function App() {
 
   const updatePreference = (key, value) => {
     setProgressState((prev) => setPreference(prev, key, value));
+  };
+
+  const handleLearningModeChange = (value) => {
+    updatePreference('lastMode', value);
+    setHintIndex(-1);
+    setFeedback(null);
   };
 
   const handleSelectFormula = (formulaId) => {
@@ -645,7 +699,9 @@ export default function App() {
   };
 
   const handleNextHint = () => {
-    const limit = progressState.lastMode === 'guided' ? exercise.hints.length : progressState.lastMode === 'practice' ? Math.min(2, exercise.hints.length) : 0;
+    const rawLimit = modeConfig.hintLimit === Infinity ? exercise.hints.length : modeConfig.hintLimit;
+    const limit = Math.min(rawLimit, exercise.hints.length);
+    if (limit <= 0) return;
     setHintIndex((prev) => Math.min(prev + 1, limit - 1));
   };
 
@@ -683,8 +739,8 @@ export default function App() {
         onToggleDark={() => updatePreference('darkMode', !progressState.darkMode)}
         separatorMode={progressState.separatorMode}
         onSeparatorChange={(value) => updatePreference('separatorMode', value)}
-        learningMode={progressState.lastMode}
-        onLearningModeChange={(value) => updatePreference('lastMode', value)}
+        learningMode={learningMode}
+        onLearningModeChange={handleLearningModeChange}
         onImportCatalog={handleImportCatalog}
       />
 
@@ -729,15 +785,24 @@ export default function App() {
             <p className="mt-3 text-sm font-semibold leading-6 text-black/55 dark:text-white/55">
               Setiap level memakai soal, logika, dan arah penyelesaian yang berbeda. Selesaikan bertahap sebelum lanjut ke rumus berikutnya.
             </p>
+            <div className="mt-3 rounded-2xl border border-coach-green/15 bg-coach-greenSoft px-4 py-3 text-sm leading-6 text-black/60 dark:border-emerald-400/10 dark:bg-emerald-400/10 dark:text-white/65">
+              <span className="font-black text-coach-green dark:text-emerald-200">{modeConfig.title}: </span>{modeConfig.description}
+            </div>
           </section>
 
           <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Soal Latihan</p>
             <h3 className="mt-1 text-2xl font-black text-coach-ink dark:text-white">{exercise.title}</h3>
-            <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/65 dark:bg-black/20 dark:text-white/65">
-              <span className="font-black text-coach-green dark:text-emerald-300">Coba pikir dulu logikanya: </span>
-              {exercise.logicPrompt}
-            </div>
+            {learningMode !== 'challenge' ? (
+              <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/65 dark:bg-black/20 dark:text-white/65">
+                <span className="font-black text-coach-green dark:text-emerald-300">{learningMode === 'guided' ? 'Coba pikir dulu logikanya: ' : 'Arah singkat: '}</span>
+                {learningMode === 'guided' ? exercise.logicPrompt : 'Baca pertanyaannya, cari data yang relevan di tabel, lalu susun rumusnya tanpa melihat contoh rumus.'}
+              </div>
+            ) : (
+              <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/55 dark:bg-black/20 dark:text-white/55">
+                Challenge Mode aktif. Arah penyelesaian disembunyikan agar kamu benar-benar latihan dari soal dan tabel.
+              </div>
+            )}
             {finalFormulaPreview && (
               <p className="mt-3 rounded-2xl bg-emerald-50 p-4 text-sm text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
                 Rumus final baru muncul setelah benar: <span className="font-mono font-black">{finalFormulaPreview}</span>
@@ -787,6 +852,13 @@ export default function App() {
             }}
             selectionTarget={selectionTarget}
             onSelectionTargetChange={setSelectionTarget}
+            learningMode={learningMode}
+            showLogicPanel={modeConfig.showLogicPanel}
+            showLogicExample={modeConfig.showLogicExample}
+            showValueHelper={modeConfig.showValueHelper}
+            enableFormulaAssist={modeConfig.enableFormulaAssist}
+            showLiveResult={modeConfig.showLiveResult}
+            showRangeTips={modeConfig.showRangeTips}
           />
 
           <HintBox
