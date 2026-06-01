@@ -7278,6 +7278,58 @@ const describeQuestionGoal = (question = '') => {
 const rangeLabel = (ref = '') => String(ref || '').includes(':') ? 'range' : 'cell';
 const quotedValue = (value = '') => value ? `“${cleanToken(value)}”` : 'value dari soal';
 
+const buildLogicPrompt = (exercise = {}) => {
+  const refs = extractMainRefs(exercise);
+  const texts = uniqueList(exercise.requiredTexts || []);
+  const name = upperName(exercise.formulaName);
+  const tableKey = exercise.tableKey || '';
+  const ref1 = first(refs) || 'data pertama yang diminta soal';
+  const ref2 = second(refs) || 'data kedua yang diminta soal';
+  const ref3 = third(refs) || 'data hasil/angka yang diminta soal';
+  const ref4 = fourth(refs) || 'kriteria kedua dari soal';
+  const text1 = cleanToken(first(texts));
+  const text2 = cleanToken(second(texts));
+  const criteria1 = quotedValue(text1);
+  const criteria2 = quotedValue(text2);
+
+  if (name === 'COUNTIF') return `COUNTIF dipakai untuk menghitung jumlah data dengan satu syarat. Pilih range kriteria (${ref1}), lalu isi kriteria ${criteria1}. Karena hasilnya hanya jumlah data yang cocok, tidak perlu range angka tambahan.`;
+  if (name === 'SUMIF') return `SUMIF dipakai untuk menjumlahkan angka dengan satu syarat. Pertama pilih range kriteria (${ref1}) untuk mencari ${criteria1}, lalu pilih range angka (${ref3}) yang akan dijumlahkan dari baris yang cocok.`;
+  if (name === 'AVERAGEIF') return `AVERAGEIF dipakai untuk mencari rata-rata dengan satu syarat. Pertama pilih range kriteria (${ref1}) untuk mencari ${criteria1}, lalu pilih range angka (${ref3}) yang akan dihitung rata-ratanya.`;
+  if (name === 'COUNTIFS') return `COUNTIFS menghitung jumlah data yang memenuhi beberapa syarat sekaligus. Setiap syarat harus berpasangan: range kriteria lalu kriterianya. Di soal ini cek ${criteria1} pada ${ref1}, lalu ${criteria2} pada ${ref3}.`;
+  if (['SUMIFS','AVERAGEIFS','MAXIFS','MINIFS'].includes(name)) {
+    const action = name === 'SUMIFS' ? 'menjumlahkan' : name === 'AVERAGEIFS' ? 'menghitung rata-rata' : name === 'MAXIFS' ? 'mencari nilai terbesar' : 'mencari nilai terkecil';
+    return `${name} dipakai untuk ${action} angka dengan lebih dari satu syarat. Mulai dari range angka hasil (${ref1}), lalu isi pasangan range kriteria dan kriteria: ${ref2} dengan ${criteria1}, kemudian ${ref4} dengan ${criteria2}.`;
+  }
+
+  if (name === 'VLOOKUP') return `VLOOKUP mencari data dari tabel master secara vertikal. Mulai dari lookup value (${ref1}), pilih table array (${ref2}), lalu tentukan nomor kolom hasil dari dalam table array.`;
+  if (name === 'HLOOKUP') return `HLOOKUP mencari data dari tabel master secara horizontal. Mulai dari lookup value (${ref1}), pilih table array (${ref2}), lalu tentukan nomor baris hasil dari dalam table array.`;
+  if (name === 'XLOOKUP') return `XLOOKUP membaca tiga bagian utama: value yang dicari (${ref1}), range tempat mencari value (${ref2}), dan range hasil yang ingin dikembalikan (${ref3}). Lookup array dan return array harus sejajar.`;
+  if (['MATCH','XMATCH'].includes(name)) return `${name} mencari posisi data, bukan mengambil isi data. Tentukan value yang dicari (${ref1}), lalu pilih lookup array (${ref2}) sebagai tempat mencari posisinya.`;
+  if (name === 'INDEX') return `INDEX mengambil nilai dari titik tertentu di dalam range. Pilih array utama (${ref1}), lalu isi nomor baris dan nomor kolom jika diminta.`;
+  if (name === 'INDEX MATCH') return `INDEX MATCH bekerja dua tahap: MATCH mencari posisi lookup value, lalu INDEX mengambil hasil dari posisi itu. Pastikan return range sejajar dengan lookup range.`;
+
+  if (['SUM','AVERAGE','MIN','MAX'].includes(name)) {
+    const action = name === 'SUM' ? 'menjumlahkan seluruh angka' : name === 'AVERAGE' ? 'menghitung rata-rata' : name === 'MIN' ? 'mencari angka terkecil' : 'mencari angka terbesar';
+    return `${name} dipakai untuk ${action} dari range yang dipilih. Fokusnya adalah memilih range angka yang benar (${ref1}), bukan mengetik angka satu per satu.`;
+  }
+  if (['COUNT','COUNTA','COUNTBLANK'].includes(name)) {
+    const action = name === 'COUNT' ? 'cell yang berisi angka' : name === 'COUNTA' ? 'cell yang terisi' : 'cell yang kosong';
+    return `${name} dipakai untuk menghitung ${action}. Pilih range yang ingin dicek (${ref1}), lalu pastikan jenis data di range itu sesuai dengan pertanyaan.`;
+  }
+  if (logicalFormulaNames.has(name)) return `${name} dipakai untuk membaca kondisi atau keputusan. Tentukan kondisi/value logika dari soal, lalu isi hasil atau pengecekan sesuai urutan format rumus.`;
+  if (textFormulaNames.has(name)) return `${name} dipakai untuk mengolah teks. Tentukan teks utama terlebih dahulu (${ref1}), lalu isi parameter tambahan seperti posisi, jumlah karakter, teks yang dicari, atau teks pengganti.`;
+  if (dateFormulaNames.has(name)) return `${name} bekerja dengan tanggal atau jam. Pilih tanggal/jam utama (${ref1}), lalu isi parameter tambahan seperti tanggal akhir, jumlah hari, jumlah bulan, atau tipe hitung jika diminta.`;
+  if (dynamicFormulaNames.has(name)) return `${name} menghasilkan output array. Pilih array utama (${ref1}), lalu tentukan kondisi, urutan, jumlah baris/kolom, atau parameter array lain sesuai soal.`;
+  if (dbFormulaNames.has(name)) return `${name} selalu butuh database lengkap, field/kolom, dan criteria. Pilih ketiga bagian itu agar Excel tahu data mana yang harus difilter dan dihitung.`;
+  if (financeFormulaNames.has(name) || tableKey === 'financeParameter') return `${name} memakai parameter keuangan seperti rate, nper, pv, pmt, fv, atau type. Isi parameter sesuai urutan format dan perhatikan tanda minus untuk arus kas keluar.`;
+  if (statFormulaNames.has(name) || /stats/i.test(tableKey)) return `${name} memakai parameter statistik. Ambil parameter dari tabel sesuai urutan format, bukan dari tabel umum yang tidak berhubungan.`;
+  if (tableKey === 'engineeringParameter') return `${name} memakai parameter teknik seperti angka, unit, basis bilangan, atau bilangan kompleks. Tentukan jenis inputnya dulu, lalu ambil cell yang sesuai.`;
+  if (tableKey === 'webParameter') return `${name} memakai data web, URL, XML, atau teks yang dibuat aman untuk URL. Pilih input dari tabel, lalu susun sesuai format rumus.`;
+  if (tableKey === 'cubeParameter') return `${name} butuh connection dan member/set expression. Di website ini yang dilatih adalah struktur argumen karena hasil asli butuh Data Model/OLAP Excel.`;
+  if (tableKey === 'informationMixed') return `${name} mengecek isi cell, misalnya kosong, angka, teks, error, formula, atau tipe data. Pilih cell yang ingin dicek, lalu gunakan rumus pengecekan yang sesuai.`;
+  return `${name} dipakai untuk menjawab pertanyaan dari tabel latihan. Tentukan hasil yang diminta, pilih input utama (${ref1}), lalu isi argumen sesuai urutan format.`;
+};
+
 const buildBetterHints = (exercise = {}) => {
   const refs = extractMainRefs(exercise);
   const texts = uniqueList(exercise.requiredTexts || []);
@@ -7295,7 +7347,7 @@ const buildBetterHints = (exercise = {}) => {
   const text2 = cleanToken(second(texts));
   const text3 = cleanToken(third(texts));
 
-  addBaseHint(hints, `Soalnya adalah: ${question} Artinya, rumus harus menghasilkan ${goal}.`);
+  addBaseHint(hints, `Soalnya mencari ${goal}. Baca pertanyaannya: ${question}`);
 
   if (mathFormulaNames.has(name) || ['SUM','AVERAGE','MIN','MAX','COUNT','COUNTA','COUNTBLANK'].includes(name)) {
     if (['SUM','AVERAGE','MIN','MAX'].includes(name)) {
@@ -7630,9 +7682,7 @@ const normalizeExercise = (exercise = {}) => {
     ...merged,
     title: merged.title || `Latihan ${merged.formulaName}`,
     question: ensureQuestionText(merged.question, `Apa hasil ${merged.formulaName} dari data latihan yang tersedia?`),
-    logicPrompt: merged.logicPrompt && !/Coba pikir dulu input apa yang diminta/i.test(merged.logicPrompt)
-      ? merged.logicPrompt
-      : `Rumus ${merged.formulaName} dipakai untuk ${action}. Tentukan data yang dipakai, lalu isi argumennya sesuai arah soal.`,
+    logicPrompt: buildLogicPrompt(merged),
     hints: buildBetterHints(merged),
     successExplanation: merged.successExplanation && !/sudah dipakai sesuai konteks soal/i.test(merged.successExplanation)
       ? merged.successExplanation

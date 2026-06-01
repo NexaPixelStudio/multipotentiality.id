@@ -795,7 +795,7 @@ export default function App() {
             <h3 className="mt-1 text-2xl font-black text-coach-ink dark:text-white">{exercise.title}</h3>
             {learningMode !== 'challenge' ? (
               <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/65 dark:bg-black/20 dark:text-white/65">
-                <span className="font-black text-coach-green dark:text-emerald-300">{learningMode === 'guided' ? 'Coba pikir dulu logikanya: ' : 'Arah singkat: '}</span>
+                <span className="font-black text-coach-green dark:text-emerald-300">{learningMode === 'guided' ? 'Logika rumusnya: ' : 'Arah singkat: '}</span>
                 {learningMode === 'guided' ? exercise.logicPrompt : 'Baca pertanyaannya, cari data yang relevan di tabel, lalu susun rumusnya tanpa melihat contoh rumus.'}
               </div>
             ) : (

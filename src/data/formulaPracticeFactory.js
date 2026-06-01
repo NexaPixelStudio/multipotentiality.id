@@ -674,11 +674,79 @@ const makeBasicQuestion = (formula, refs = []) => {
 
 const makeQuestion = (formula, refs) => makeBasicQuestion(formula, refs);
 
-const makeLogic = (formula, refs) => {
+const makeLogic = (formula, refs = [], texts = []) => {
   const name = upper(formula.name);
+  const category = formula.category;
+  const ref1 = refs[0] || 'data pertama yang diminta soal';
+  const ref2 = refs[1] || 'data kedua yang diminta soal';
+  const ref3 = refs[2] || 'data hasil/angka yang diminta soal';
+  const ref4 = refs[3] || 'kriteria kedua dari soal';
+  const text1 = String(texts?.[0] || '').replace(/^"|"$/g, '').trim();
+  const text2 = String(texts?.[1] || '').replace(/^"|"$/g, '').trim();
+  const criteria1 = text1 ? `“${text1}”` : 'kriteria dari soal';
+  const criteria2 = text2 ? `“${text2}”` : 'kriteria kedua dari soal';
+
   if (specialPractice[name]?.logic) return specialPractice[name].logic;
-  const refText = refs.length ? ` Di latihan ini, bagian pentingnya adalah ${refs.join(', ')}.` : '';
-  return `Baca format dari kiri ke kanan. Isi argumen pertama dulu, lalu lanjut ke argumen berikutnya.${refText}`;
+
+  if (name === 'COUNTIF') {
+    return `COUNTIF dipakai saat soal meminta jumlah data dengan satu syarat. Pilih range yang berisi data kriteria (${ref1}), lalu isi kriteria ${criteria1}. Karena hanya menghitung baris yang cocok, rumus ini tidak butuh range angka hasil.`;
+  }
+  if (name === 'SUMIF') {
+    return `SUMIF dipakai saat soal meminta total angka dengan satu syarat. Pertama pilih range kriteria (${ref1}) untuk mencari ${criteria1}, lalu pilih range angka (${ref3}) yang akan dijumlahkan dari baris yang cocok.`;
+  }
+  if (name === 'AVERAGEIF') {
+    return `AVERAGEIF dipakai saat soal meminta rata-rata dengan satu syarat. Pertama pilih range kriteria (${ref1}) untuk mencari ${criteria1}, lalu pilih range angka (${ref3}) yang akan dihitung rata-ratanya dari baris yang cocok.`;
+  }
+  if (name === 'COUNTIFS') {
+    return `COUNTIFS dipakai saat soal meminta jumlah data dengan beberapa syarat sekaligus. Setiap syarat harus berpasangan: range kriteria lalu kriterianya. Di latihan ini cek ${criteria1} pada ${ref1}, lalu ${criteria2} pada ${ref3}.`;
+  }
+  if (['SUMIFS', 'AVERAGEIFS', 'MAXIFS', 'MINIFS'].includes(name)) {
+    const action = name === 'SUMIFS' ? 'menjumlahkan' : name === 'AVERAGEIFS' ? 'menghitung rata-rata' : name === 'MAXIFS' ? 'mencari nilai terbesar' : 'mencari nilai terkecil';
+    return `${name} dipakai untuk ${action} angka dengan beberapa syarat. Mulai dari range angka hasil (${ref1}), lalu isi pasangan syarat: range kriteria pertama (${ref2}) dengan ${criteria1}, kemudian range kriteria berikutnya (${ref4}) dengan ${criteria2}.`;
+  }
+
+  if (name === 'VLOOKUP') {
+    return `VLOOKUP mencari data secara vertikal. Mulai dari lookup value (${ref1}), pilih table array (${ref2}), lalu tentukan nomor kolom hasil dari dalam table array. Untuk kode produk atau ID, gunakan exact match agar hasil tidak meleset.`;
+  }
+  if (name === 'HLOOKUP') {
+    return `HLOOKUP mencari data secara horizontal. Mulai dari lookup value (${ref1}), pilih table array (${ref2}), lalu tentukan nomor baris hasil dari dalam table array. Lookup value harus berada di baris pertama range tersebut.`;
+  }
+  if (name === 'XLOOKUP') {
+    return `XLOOKUP membaca tiga bagian utama: value yang dicari (${ref1}), range tempat mencari value tersebut (${ref2}), lalu range hasil yang ingin dikembalikan (${ref3}). Lookup array dan return array harus sejajar.`;
+  }
+  if (['MATCH', 'XMATCH'].includes(name)) {
+    return `${name} tidak mengambil isi data, tetapi mencari posisi data dalam range. Tentukan value yang dicari (${ref1}), lalu pilih lookup array (${ref2}) sebagai tempat Excel mencari posisi value tersebut.`;
+  }
+  if (name === 'INDEX') {
+    return `INDEX mengambil nilai dari titik tertentu di dalam range. Pilih array utama (${ref1}), lalu tentukan nomor baris dan nomor kolom jika dibutuhkan. Hasilnya berasal dari perpotongan baris dan kolom itu.`;
+  }
+
+  if (['SUM', 'AVERAGE', 'MIN', 'MAX'].includes(name)) {
+    const action = name === 'SUM' ? 'menjumlahkan semua angka' : name === 'AVERAGE' ? 'menghitung rata-rata angka' : name === 'MIN' ? 'mencari angka terkecil' : 'mencari angka terbesar';
+    return `${name} dipakai untuk ${action} dari range yang dipilih. Fokusnya adalah memilih range angka yang benar, misalnya ${ref1}. Kalau data berurutan, satu range sudah cukup dan tidak perlu mengetik cell satu per satu.`;
+  }
+  if (['COUNT', 'COUNTA', 'COUNTBLANK'].includes(name)) {
+    const meaning = name === 'COUNT' ? 'cell yang berisi angka' : name === 'COUNTA' ? 'cell yang terisi, baik angka maupun teks' : 'cell yang benar-benar kosong';
+    return `${name} dipakai untuk menghitung ${meaning}. Pilih range yang ingin dicek (${ref1}), lalu pastikan jenis data di range itu sesuai dengan yang diminta soal.`;
+  }
+  if (name === 'IF') {
+    return `IF bekerja seperti keputusan sederhana: cek kondisi terlebih dahulu, lalu keluarkan hasil jika kondisi benar dan hasil lain jika kondisi salah. Urutannya selalu kondisi, hasil jika benar, lalu hasil jika salah.`;
+  }
+  if (name === 'IFS') {
+    return `IFS mengecek beberapa kondisi dari kiri ke kanan. Setiap kondisi harus langsung dipasangkan dengan hasilnya. Kondisi pertama yang benar akan menjadi hasil akhir, jadi urutan kondisi sangat berpengaruh.`;
+  }
+
+  if (category === 'Text') return `${name} mengolah teks. Tentukan teks utama terlebih dahulu (${ref1}), lalu isi parameter tambahan seperti jumlah karakter, posisi, teks yang dicari, atau teks pengganti sesuai format rumus.`;
+  if (category === 'Date and Time') return `${name} bekerja dengan tanggal atau jam. Pilih tanggal/jam utama (${ref1}), lalu isi parameter tambahan seperti tanggal akhir, jumlah hari/bulan, atau tipe perhitungan jika diminta.`;
+  if (category === 'Financial') return `${name} memakai parameter keuangan. Baca tabel dari atas ke bawah, lalu isi bagian seperti rate, periode, nilai pinjaman, pembayaran, atau nilai akhir sesuai urutan format. Perhatikan tanda minus untuk arus kas keluar.`;
+  if (category === 'Statistical' || category === 'Compatibility') return `${name} memakai parameter statistik. Ambil parameter dari tabel sesuai urutan format, misalnya jumlah kejadian, peluang, rata-rata, standar deviasi, atau range data. Jangan memakai tabel umum jika argumennya adalah parameter statistik.`;
+  if (category === 'Engineering') return `${name} memakai parameter teknik seperti angka, unit, basis bilangan, atau bilangan kompleks. Tentukan dulu jenis input yang diminta, lalu ambil cell/range yang sesuai dari tabel.`;
+  if (category === 'Web') return `${name} memakai data web, URL, XML, atau teks yang perlu dibuat aman untuk URL. Pilih input yang relevan dari tabel, lalu susun argumen sesuai jenis data web yang diminta.`;
+  if (category === 'Cube') return `${name} butuh connection dan member/set expression dari Data Model atau OLAP. Di website ini yang dilatih adalah struktur argumennya, jadi pilih connection/member dari tabel dan susun sesuai format.`;
+  if (category === 'Database') return `${name} selalu memakai tiga bagian utama: database lengkap, field/kolom yang dihitung, dan criteria. Pilih ketiganya dari tabel agar Excel tahu data mana yang harus difilter dan dihitung.`;
+  if (category === 'Information') return `${name} mengecek kondisi isi cell, misalnya kosong, angka, teks, error, formula, atau tipe data. Pilih cell yang ingin dicek, lalu pastikan rumusnya sesuai jenis pengecekan.`;
+  if (category === 'Dynamic Array') return `${name} menghasilkan data yang bisa melebar ke beberapa cell. Tentukan array utama terlebih dahulu (${ref1}), lalu isi kondisi, urutan, jumlah baris/kolom, atau parameter array lain sesuai soal.`;
+  return `${name} dipakai untuk menjawab soal berdasarkan data latihan. Tentukan hasil yang diminta, pilih input utama dari tabel (${ref1}), lalu susun argumen mengikuti urutan format rumus.`;
 };
 
 const cleanHintToken = (value = '') => String(value || '').replace(/^"|"$/g, '').trim();
@@ -715,7 +783,7 @@ const makeHints = (formula, refs = [], texts = []) => {
   const text1 = cleanHintToken(texts[0]);
   const text2 = cleanHintToken(texts[1]);
 
-  add(`Pahami dulu tujuan soalnya: rumus ini harus menghasilkan ${hintQuestionGoal(formula)}, bukan sekadar menyalin format.`);
+  add(`Soalnya mencari ${hintQuestionGoal(formula)}. Baca tabel dulu, lalu tentukan range/cell mana yang menjadi bahan hitung atau bahan pengecekan.`);
 
   if (criteriaFunctions.has(name)) {
     if (name === 'COUNTIF') {
@@ -831,7 +899,7 @@ export function generateDetailedExerciseForFormula(formula) {
     tableKey,
     activeCell: tableKey === 'lookup' ? 'B2' : tableKey.startsWith('stats') ? 'C2' : 'G2',
     question: makeQuestion(formula, refs),
-    logicPrompt: makeLogic(formula, refs),
+    logicPrompt: makeLogic(formula, refs, requiredTexts),
     expectedFormula,
     acceptedFormulas,
     requiredRefs,
@@ -1191,7 +1259,7 @@ function makeTieredExercise(formula, variantIndex = 0) {
     table,
     activeCell: requiredRefs[0]?.split(':')[0] || base.activeCell || 'G2',
     question: makeVariantQuestion(formula, refs, variantIndex),
-    logicPrompt: `${makeLogic(formula, refs)} Latihan ini sengaja dibuat beda dari level sebelumnya agar kamu tidak cuma menghafal satu jawaban.`,
+    logicPrompt: `${makeLogic(formula, refs, requiredTexts)} Perhatikan data pada level ini karena range atau kriterianya bisa berbeda dari latihan sebelumnya.`,
     expectedFormula,
     acceptedFormulas,
     requiredRefs,
