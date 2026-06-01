@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { autoCloseFormula } from '../utils/formulaEngine.js';
 import { getFormulaLearningContent } from '../data/formulaLearningContent.js';
+import { getExcelSpecialEnvironment } from '../data/excelSpecialEnvironment.js';
 
 function getFragment(value = '', cursor = 0) {
   const before = value.slice(0, cursor);
@@ -483,16 +484,20 @@ export default function FormulaBar({
 
   const resultValue = !value.trim()
     ? 'Belum ada'
-    : formulaResult?.structureOnly
-      ? 'Struktur valid'
+    : formulaResult?.specialEnvironment
+      ? (formulaResult.displayValue || formulaResult.environment?.resultLabel || 'Butuh Excel')
+      : formulaResult?.structureOnly
+        ? 'Struktur valid'
       : formulaResult?.ok
         ? formulaResult.displayValue || 'Kosong'
         : formulaResult?.error || '#VALUE!';
 
   const resultMessage = !value.trim()
     ? 'Ketik rumus dulu. Setelah itu hasil sementara akan muncul di sini.'
-    : formulaResult?.structureOnly
-      ? 'Struktur rumus terbaca. Hasil asli untuk function ini perlu dicek langsung di Excel, jadi website tidak menampilkan angka palsu.'
+    : formulaResult?.specialEnvironment
+      ? (formulaResult.message || 'Struktur rumus valid, tapi hasil aslinya butuh environment Excel khusus. Website tidak menampilkan angka palsu.')
+      : formulaResult?.structureOnly
+        ? 'Struktur rumus terbaca. Hasil asli untuk function ini perlu dicek langsung di Excel, jadi website tidak menampilkan angka palsu.'
       : formulaResult?.ok
         ? 'Ini hasil sementara dari rumus yang kamu ketik. Kalau sudah sesuai soal, tekan Enter atau klik Cek Jawaban.'
         : formulaResult?.message || 'Excel akan menampilkan error untuk formula ini.';
@@ -501,6 +506,8 @@ export default function FormulaBar({
   const hasFormula = Boolean(value.trim());
   const answerState = !hasFormula ? 'empty' : feedback ? (feedback.correct ? 'correct' : 'wrong') : 'pending';
   const logicExplanation = getFormulaLogicExplanation({ value, cleanOptions, activeSignature });
+  const typedFunctionName = findActiveFunction(value, cursor)?.name || (value.trim().match(/^=\s*([A-Za-z.][A-Za-z0-9._]*)/)?.[1] || '');
+  const specialEnvironment = formulaResult?.environment || getExcelSpecialEnvironment(typedFunctionName);
 
   const handleManualCheck = () => {
     const completedValue = autoCloseFormula(value);
@@ -641,6 +648,12 @@ export default function FormulaBar({
                   <span className="font-black text-coach-green dark:text-emerald-200">Contoh:</span>{' '}
                   <code className="font-mono font-black text-coach-ink dark:text-white">{logicExplanation.exampleFormula}</code>
                   {logicExplanation.exampleMeaning && <p className="mt-1 text-[11px] font-semibold text-black/45 dark:text-white/45">{logicExplanation.exampleMeaning}</p>}
+                </div>
+              )}
+              {specialEnvironment && (
+                <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] leading-5 text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-100">
+                  <p><span className="font-black">Environment Excel Khusus:</span> {specialEnvironment.label}</p>
+                  <p className="mt-1">{specialEnvironment.description}</p>
                 </div>
               )}
             </div>

@@ -1,3 +1,4 @@
+import { makeSpecialEnvironmentResult } from '../data/excelSpecialEnvironment.js';
 const ERROR_CODES = {
   name: '#NAME?',
   value: '#VALUE!',
@@ -87,6 +88,7 @@ export function normalizeForEvaluation(formula = '', separatorMode = 'id') {
 
 export function formatExcelValue(value) {
   if (isErrorValue(value)) return value;
+  if (value && value.__specialEnvironment === true) return value.preview || value.environment?.resultLabel || 'Butuh Excel';
   if (value && value.__structureOnly === true) return value.preview || 'Struktur valid';
   if (isRangeObject(value)) {
     const rows = value.values;
@@ -116,6 +118,7 @@ export function compareExcelResults(a, b) {
   const normalize = (value) => {
     if (isRangeObject(value)) return value.values.map((row) => row.map(normalize));
     if (Array.isArray(value)) return value.map(normalize);
+    if (value && value.__specialEnvironment === true) return `ENV:${value.functionName}:${value.environment?.id || 'special'}:${value.argCount}`;
     if (value && value.__structureOnly === true) return `STRUCTURE:${value.functionName}:${value.argCount}`;
     if (value instanceof Date) return value.toISOString().slice(0, 10);
     if (typeof value === 'number') return Math.round(value * 1000000) / 1000000;
@@ -827,8 +830,11 @@ function evaluateFunction(name, argExprs, ctx) {
     case 'BYROW': return flatArg(0).map((item) => Number(item) * 2);
     case 'BYCOL': return numbersOnly(arg(0)).reduce((a, b) => a + b, 0);
     case 'MAKEARRAY': return { __range: true, values: Array.from({ length: Number(arg(0)) }, (_, r) => Array.from({ length: Number(arg(1)) }, (_, c) => (r + 1) * (c + 1))) };
-    default:
+    default: {
+      const specialEnvironmentResult = makeSpecialEnvironmentResult(name, argExprs.length);
+      if (specialEnvironmentResult) return specialEnvironmentResult;
       return { __structureOnly: true, functionName: name, argCount: argExprs.length, preview: 'Struktur valid' };
+    }
   }
 }
 
@@ -842,6 +848,18 @@ export function evaluateFormula(formula = '', table = {}, separatorMode = 'id') 
     const value = evaluateExpression(raw.slice(1), { sheet, table, vars: new Map() });
     if (isErrorValue(value)) return errorResult(value, `Formula menghasilkan ${value}.`);
     if (value && value.__structureOnly === true) {
+      if (value.__specialEnvironment === true) {
+        return {
+          ok: 'environment',
+          value,
+          displayValue: value.environment?.resultLabel || value.preview || 'Butuh Excel',
+          normalizedFormula,
+          structureOnly: true,
+          specialEnvironment: true,
+          environment: value.environment,
+          message: value.environment?.description || 'Struktur rumus valid. Hasil asli perlu dicek di environment Excel yang sesuai.'
+        };
+      }
       return {
         ok: 'structure',
         value,

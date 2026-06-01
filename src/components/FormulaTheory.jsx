@@ -1,4 +1,5 @@
 import { getFormulaLearningContent } from '../data/formulaLearningContent.js';
+import { getExcelSpecialEnvironment } from '../data/excelSpecialEnvironment.js';
 
 function displayFormat(value = '') {
   const text = String(value || '').trim();
@@ -22,6 +23,7 @@ export default function FormulaTheory({ formula, isGeneric }) {
   const exampleFormula = learning.exampleFormula;
   const exampleMeaning = learning.exampleMeaning || learning.simpleExample;
   const beginnerTip = learning.beginnerTip;
+  const specialEnvironment = getExcelSpecialEnvironment(formula);
 
   return (
     <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
@@ -66,6 +68,17 @@ export default function FormulaTheory({ formula, isGeneric }) {
             {exampleMeaning && <p className="mt-2 text-sm leading-6 text-black/65 dark:text-white/65">{exampleMeaning}</p>}
             {beginnerTip && <p className="mt-2 rounded-xl bg-white px-3 py-2 text-xs font-semibold leading-5 text-black/55 dark:bg-white/8 dark:text-white/60">{beginnerTip}</p>}
           </div>
+        </div>
+      )}
+
+      {specialEnvironment && (
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-100">
+          <p className="text-xs font-black uppercase tracking-[0.16em]">Environment Excel Khusus</p>
+          <p className="mt-2 font-bold">{specialEnvironment.label}</p>
+          <p className="mt-1">{specialEnvironment.description}</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {specialEnvironment.requirements.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </div>
       )}
 

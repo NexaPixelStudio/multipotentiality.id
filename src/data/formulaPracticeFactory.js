@@ -1,3 +1,4 @@
+import { getExcelSpecialEnvironment } from './excelSpecialEnvironment.js';
 // Formula Coach aligned practice generator.
 // Audit goal: setiap rumus punya latihan yang tabel, soal, hint, dan expected answer-nya nyambung.
 // Catatan: key internal masih bernama `syntax` di katalog agar komponen lama tetap aman, tetapi UI menampilkannya sebagai "Format".
@@ -188,6 +189,13 @@ const cellValue = {
 };
 
 const specialPractice = {
+  CUBEMEMBER: { tableKey: 'cubeParameter', refs: ['B2','B3','"Demo Member"'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].[Digital]"','"Demo Member"'], question: 'Buat member cube dari connection dan member expression yang tersedia.', logic: 'Ambil nama connection, lalu isi member expression. Caption boleh dipakai sebagai nama tampilan.' },
+  CUBEVALUE: { tableKey: 'cubeParameter', refs: ['B2','B3','B8'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].[Digital]"','"[Measures].[Total Sales]"'], question: 'Susun CUBEVALUE untuk mengambil nilai measure dari kategori Digital.', logic: 'CUBEVALUE butuh connection, member expression, dan measure. Hasil asli baru keluar kalau workbook punya Data Model/Cube.' },
+  CUBESET: { tableKey: 'cubeParameter', refs: ['B2','B4','"Daftar Kategori"'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].Members"','"Daftar Kategori"'], question: 'Buat set cube dari daftar kategori yang tersedia di Data Model.', logic: 'CUBESET menyimpan kumpulan member. Isi connection, set expression, lalu caption jika perlu.' },
+  CUBESETCOUNT: { tableKey: 'cubeParameter', refs: ['B4'], hardcodes: ['"[Product].[Category].Members"'], question: 'Hitung jumlah item dalam set cube yang tersedia.', logic: 'CUBESETCOUNT hanya butuh set expression atau hasil CUBESET.' },
+  CUBERANKEDMEMBER: { tableKey: 'cubeParameter', refs: ['B2','B4','B5','"Top Member"'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].Members"','1','"Top Member"'], question: 'Ambil member urutan pertama dari set cube.', logic: 'Isi connection, set expression, rank, lalu caption jika perlu.' },
+  CUBEMEMBERPROPERTY: { tableKey: 'cubeParameter', refs: ['B2','B3','B7'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].[Digital]"','"Caption"'], question: 'Ambil property Caption dari member cube kategori Digital.', logic: 'Isi connection, member expression, lalu nama property yang ingin diambil.' },
+  CUBEKPIMEMBER: { tableKey: 'cubeParameter', refs: ['B2','B6','B7','"KPI Demo"'], hardcodes: ['"ThisWorkbookDataModel"','"Sales KPI"','"Caption"','"KPI Demo"'], question: 'Buat KPI member dari nama KPI dan property yang tersedia.', logic: 'Isi connection, KPI name, KPI property, dan caption jika perlu.' },
   NEGBINOMDIST: { tableKey: 'statsNegBinom', refs: ['B2','B3','B4'], hardcodes: ['3','5','0.4'], question: 'Hitung peluang 3 gagal terjadi sebelum target 5 berhasil, dengan peluang berhasil 40%.', logic: 'Ambil jumlah gagal, target berhasil, dan peluang berhasil. Tabelnya sengaja ringkas karena rumus ini hanya butuh tiga input.' },
   'NEGBINOM.DIST': { tableKey: 'statsNegBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['3','5','0.4','FALSE'], question: 'Hitung peluang negative binomial. Pakai mode tidak kumulatif dari parameter yang tersedia.', logic: 'Ambil jumlah gagal, target berhasil, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
   CONFIDENCE: { tableKey: 'statsBetaGamma', refs: ['B2','B3','B4'], hardcodes: ['0.5','8','10'], question: 'Hitung confidence interval dengan alpha, standar deviasi, dan ukuran sampel dari tabel.', logic: 'Ambil alpha, standar deviasi, dan size. Ketiganya harus angka tunggal, bukan range.' },
@@ -623,6 +631,8 @@ const makeQuestion = (formula, refs) => {
   if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `Gunakan ${formula.name} dengan parameter statistik yang sudah disiapkan di tabel. Ambil argumennya dari cell yang tersedia.`;
   if (formula.category === 'Financial') return `Gunakan ${formula.name} dengan parameter keuangan di tabel. Ambil rate, periode, nilai pinjaman, atau cashflow sesuai format rumus.`;
   if (formula.category === 'Engineering') return `Gunakan ${formula.name} dengan parameter teknik yang tersedia. Ambil angka/unit/bilangan kompleks dari tabel.`;
+  const environment = getExcelSpecialEnvironment(formula);
+  if (environment) return `Gunakan ${formula.name} untuk latihan struktur argumen. Rumus ini butuh ${environment.shortLabel.toLowerCase()}, jadi hasil finalnya perlu dicek di Excel yang punya environment tersebut.`;
   if (formula.category === 'Web') return `Gunakan ${formula.name} dengan contoh data web di tabel.`;
   if (formula.category === 'Cube') return `Gunakan ${formula.name} dengan contoh connection/member dari tabel cube.`;
   return `Gunakan ${formula.name} untuk ${actionByCategory(formula)}. Ambil data dari ${tableFriendlyName[tableForFormula(formula)] || 'tabel latihan'}.`;
@@ -631,6 +641,8 @@ const makeQuestion = (formula, refs) => {
 const makeLogic = (formula, refs) => {
   const name = upper(formula.name);
   if (specialPractice[name]?.logic) return specialPractice[name].logic;
+  const environment = getExcelSpecialEnvironment(formula);
+  if (environment) return `Susun argumen sesuai format ${formula.name}. Website mengecek urutan argumen dan referensi datanya, sementara hasil asli perlu dihitung di ${environment.label}.`;
   const refText = refs.length ? ` Di latihan ini, bagian pentingnya adalah ${refs.join(', ')}.` : '';
   return `Baca format dari kiri ke kanan. Isi argumen pertama dulu, lalu lanjut ke argumen berikutnya.${refText}`;
 };
@@ -655,6 +667,7 @@ export function generateDetailedExerciseForFormula(formula) {
   const tableKey = tableForFormula(formula);
   const minArgs = Math.max(0, refs.length);
   const format = auditedFormat(formula);
+  const specialEnvironment = getExcelSpecialEnvironment(formula);
 
   return {
     id: formula.id,
@@ -695,7 +708,8 @@ export function generateDetailedExerciseForFormula(formula) {
       format,
       expectedFormula,
       acceptedFormulas,
-      note: 'Latihan dibuat dari mapping kategori + format rumus. Tabel, soal, hint, dan expected answer dibuat saling nyambung.'
+      note: specialEnvironment ? `Latihan memakai mode environment khusus: ${specialEnvironment.label}. Hasil tidak dipalsukan di browser.` : 'Latihan dibuat dari mapping kategori + format rumus. Tabel, soal, hint, dan expected answer dibuat saling nyambung.',
+      specialEnvironment: specialEnvironment ? specialEnvironment.id : null
     }
   };
 }
