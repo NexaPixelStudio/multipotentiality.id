@@ -189,7 +189,7 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
       <div className="border-b border-coach-line p-4 dark:border-white/10">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <h2 className="text-lg font-black text-coach-ink dark:text-white">Daftar Rumus</h2>
+            <h2 className="text-lg font-black text-coach-green dark:text-emerald-300">Daftar Rumus</h2>
           </div>
           <button onClick={onClose} className="rounded-full px-3 py-1 text-sm font-bold text-black/50 lg:hidden dark:text-white/60">Tutup</button>
         </div>
