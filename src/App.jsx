@@ -8,7 +8,7 @@ import FormulaBar from './components/FormulaBar';
 import HintBox from './components/HintBox';
 import FeedbackBox from './components/FeedbackBox';
 import { formulaCatalogFull, importFormulaCatalog } from './data/formulaCatalogFull';
-import { getCuratedExercise, sharedExerciseTables } from './data/curatedExercises';
+import { getCuratedExercise, getCuratedExercises, sharedExerciseTables } from './data/curatedExercises';
 import { createGenericExercise, genericTheoryTable } from './data/exerciseTemplates';
 import { formulaForSeparator, validateFormula, validateGenericFormula } from './utils/formulaValidator';
 import { autoCloseFormula, evaluateFormula } from './utils/formulaEngine';
@@ -289,19 +289,25 @@ export default function App() {
   const [lookupValue, setLookupValue] = useState('');
   const [selectionTarget, setSelectionTarget] = useState('formula');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [exerciseIndex, setExerciseIndex] = useState(0);
 
   const selectedFormula = useMemo(() => {
     return formulas.find((formula) => formula.id === selectedId) || formulas[0];
   }, [formulas, selectedId]);
 
-  const curatedExercise = selectedFormula?.hasExercise ? getCuratedExercise(selectedFormula.id) : null;
+  const curatedExercises = useMemo(() => {
+    if (!selectedFormula?.hasExercise) return [];
+    return getCuratedExercises(selectedFormula.id);
+  }, [selectedFormula?.id, selectedFormula?.hasExercise]);
+  const curatedExercise = curatedExercises[exerciseIndex] || curatedExercises[0] || (selectedFormula?.hasExercise ? getCuratedExercise(selectedFormula.id) : null);
   const isGeneric = !curatedExercise;
   const exercise = useMemo(() => {
     if (!selectedFormula) return null;
     return curatedExercise || createGenericExercise(selectedFormula);
   }, [selectedFormula, curatedExercise]);
+  const exerciseCount = curatedExercises.length || 1;
 
-  const table = isGeneric ? genericTheoryTable : sharedExerciseTables[exercise?.tableKey] || genericTheoryTable;
+  const table = exercise?.table || (isGeneric ? genericTheoryTable : sharedExerciseTables[exercise?.tableKey] || genericTheoryTable);
   const selectedNeedsHelper = useMemo(() => {
     const name = selectedFormula?.name?.toUpperCase() || '';
     const id = selectedFormula?.id || '';
@@ -371,6 +377,7 @@ export default function App() {
     setLastRangeInsertion(null);
     setLookupValue('');
     setSelectionTarget('formula');
+    setExerciseIndex(0);
   }, [selectedFormula?.id]);
 
   useEffect(() => {
@@ -379,6 +386,19 @@ export default function App() {
       if (selectionTarget === 'helper') setSelectionTarget('formula');
     }
   }, [showQuestionHelper, selectionTarget]);
+
+  useEffect(() => {
+    if (!selectedFormula || !exercise) return;
+    setAnswer('');
+    setFeedback(null);
+    setHintIndex(-1);
+    setActiveCell(exercise?.activeCell || 'G2');
+    setSelectedRange(null);
+    setFormulaCursor(0);
+    setLastRangeInsertion(null);
+    setLookupValue('');
+    setSelectionTarget('formula');
+  }, [exerciseIndex]);
 
   const updatePreference = (key, value) => {
     setProgressState((prev) => setPreference(prev, key, value));
@@ -491,6 +511,15 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNextExerciseStep = () => {
+    if (exerciseIndex < exerciseCount - 1) {
+      setExerciseIndex((index) => index + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    handleNextFormula();
+  };
+
   const handleNextHint = () => {
     const limit = progressState.lastMode === 'guided' ? exercise.hints.length : progressState.lastMode === 'practice' ? Math.min(2, exercise.hints.length) : 0;
     setHintIndex((prev) => Math.min(prev + 1, limit - 1));
@@ -545,6 +574,30 @@ export default function App() {
 
           <ProgressPanel formula={selectedFormula} formulaProgress={formulaProgress} stats={stats} />
           <FormulaTheory formula={selectedFormula} isGeneric={isGeneric} />
+
+          <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Latihan Bertingkat</p>
+                <h3 className="mt-1 text-xl font-black">Level {exerciseIndex + 1} dari {exerciseCount}</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {Array.from({ length: exerciseCount }, (_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => setExerciseIndex(index)}
+                    className={`rounded-full px-4 py-2 text-xs font-black transition ${index === exerciseIndex ? 'bg-coach-green text-white shadow-sm' : 'border border-coach-line bg-coach-beige text-black/55 hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/60'}`}
+                  >
+                    Latihan {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <p className="mt-3 text-sm font-semibold leading-6 text-black/55 dark:text-white/55">
+              Setiap level memakai soal, logika, dan arah penyelesaian yang berbeda. Selesaikan bertahap sebelum lanjut ke rumus berikutnya.
+            </p>
+          </section>
 
           <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Soal Latihan</p>
@@ -618,7 +671,7 @@ export default function App() {
             onResetHints={() => setHintIndex(-1)}
           />
 
-          <FeedbackBox feedback={feedback} exercise={exercise} separatorMode={progressState.separatorMode} isCorrect={feedback?.correct} onNext={handleNextFormula} />
+          <FeedbackBox feedback={feedback} exercise={exercise} separatorMode={progressState.separatorMode} isCorrect={feedback?.correct} onNext={handleNextExerciseStep} />
         </div>
 
         <FormulaSidebar

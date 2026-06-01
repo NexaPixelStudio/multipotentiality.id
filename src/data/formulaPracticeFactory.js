@@ -1,4 +1,3 @@
-import { getExcelSpecialEnvironment } from './excelSpecialEnvironment.js';
 // Formula Coach aligned practice generator.
 // Audit goal: setiap rumus punya latihan yang tabel, soal, hint, dan expected answer-nya nyambung.
 // Catatan: key internal masih bernama `syntax` di katalog agar komponen lama tetap aman, tetapi UI menampilkannya sebagai "Format".
@@ -149,13 +148,6 @@ const formatOverrides = {
   CALL: 'CALL(module_text, procedure, type_text, [argument1], ...)', EUROCONVERT: 'EUROCONVERT(number, source, target, [full_precision], [triangulation_precision])', 'REGISTER.ID': 'REGISTER.ID(module_text, procedure, [type_text])', 'SQL.REQUEST': 'SQL.REQUEST(connection_string, output_ref, driver_prompt, query_text, col_names_logical)'
 };
 
-Object.assign(formatOverrides, {
-  XOR: 'XOR(logical1, [logical2], ...)',
-  ACOS: 'ACOS(number)', ACOSH: 'ACOSH(number)', ACOT: 'ACOT(number)', ACOTH: 'ACOTH(number)', ARABIC: 'ARABIC(text)', ASIN: 'ASIN(number)', ASINH: 'ASINH(number)', ATAN: 'ATAN(number)', ATAN2: 'ATAN2(x_num, y_num)', ATANH: 'ATANH(number)', BASE: 'BASE(number, radix, [min_length])',
-  'CEILING.MATH': 'CEILING.MATH(number, [significance], [mode])', 'CEILING.PRECISE': 'CEILING.PRECISE(number, [significance])', COMBIN: 'COMBIN(number, number_chosen)', COMBINA: 'COMBINA(number, number_chosen)', COS: 'COS(number)', COSH: 'COSH(number)', COT: 'COT(number)', COTH: 'COTH(number)', CSC: 'CSC(number)', CSCH: 'CSCH(number)', DECIMAL: 'DECIMAL(text, radix)', DEGREES: 'DEGREES(angle)', EVEN: 'EVEN(number)', EXP: 'EXP(number)', FACT: 'FACT(number)', FACTDOUBLE: 'FACTDOUBLE(number)', 'FLOOR.MATH': 'FLOOR.MATH(number, [significance], [mode])', 'FLOOR.PRECISE': 'FLOOR.PRECISE(number, [significance])', GCD: 'GCD(number1, [number2], ...)', 'ISO.CEILING': 'ISO.CEILING(number, [significance])', LCM: 'LCM(number1, [number2], ...)', LN: 'LN(number)', LOG: 'LOG(number, [base])', LOG10: 'LOG10(number)', MDETERM: 'MDETERM(array)', MINVERSE: 'MINVERSE(array)', MMULT: 'MMULT(array1, array2)', MROUND: 'MROUND(number, multiple)', MULTINOMIAL: 'MULTINOMIAL(number1, [number2], ...)', MUNIT: 'MUNIT(dimension)', ODD: 'ODD(number)', PI: 'PI()', PRODUCT: 'PRODUCT(number1, [number2], ...)', QUOTIENT: 'QUOTIENT(numerator, denominator)', RADIANS: 'RADIANS(angle)', ROMAN: 'ROMAN(number, [form])', SEC: 'SEC(number)', SECH: 'SECH(number)', SERIESSUM: 'SERIESSUM(x, n, m, coefficients)', SIGN: 'SIGN(number)', SIN: 'SIN(number)', SINH: 'SINH(number)', SQRTPI: 'SQRTPI(number)', SUMSQ: 'SUMSQ(number1, [number2], ...)', SUMX2MY2: 'SUMX2MY2(array_x, array_y)', SUMX2PY2: 'SUMX2PY2(array_x, array_y)', SUMXMY2: 'SUMXMY2(array_x, array_y)', TAN: 'TAN(number)', TANH: 'TANH(number)', TRUNC: 'TRUNC(number, [num_digits])',
-  ARRAYTOTEXT: 'ARRAYTOTEXT(array, [format])', ASC: 'ASC(text)', BAHTTEXT: 'BAHTTEXT(number)', CHAR: 'CHAR(number)', CODE: 'CODE(text)', DBCS: 'DBCS(text)', DOLLAR: 'DOLLAR(number, [decimals])', EXACT: 'EXACT(text1, text2)', FINDB: 'FINDB(find_text, within_text, [start_num])', FIXED: 'FIXED(number, [decimals], [no_commas])', LEFTB: 'LEFTB(text, [num_bytes])', LENB: 'LENB(text)', MIDB: 'MIDB(text, start_num, num_bytes)', PHONETIC: 'PHONETIC(reference)', REPLACEB: 'REPLACEB(old_text, start_num, num_bytes, new_text)', REPT: 'REPT(text, number_times)', RIGHTB: 'RIGHTB(text, [num_bytes])', SEARCHB: 'SEARCHB(find_text, within_text, [start_num])', T: 'T(value)', UNICHAR: 'UNICHAR(number)', UNICODE: 'UNICODE(text)', VALUETOTEXT: 'VALUETOTEXT(value, [format])'
-});
-
 const tableByCategory = {
   'Text': 'textPractice',
   'Date and Time': 'datePractice',
@@ -189,18 +181,8 @@ const cellValue = {
 };
 
 const specialPractice = {
-  CUBEMEMBER: { tableKey: 'cubeParameter', refs: ['B2','B3','"Demo Member"'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].[Digital]"','"Demo Member"'], question: 'Buat member cube dari connection dan member expression yang tersedia.', logic: 'Ambil nama connection, lalu isi member expression. Caption boleh dipakai sebagai nama tampilan.' },
-  CUBEVALUE: { tableKey: 'cubeParameter', refs: ['B2','B3','B8'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].[Digital]"','"[Measures].[Total Sales]"'], question: 'Susun CUBEVALUE untuk mengambil nilai measure dari kategori Digital.', logic: 'CUBEVALUE butuh connection, member expression, dan measure. Hasil asli baru keluar kalau workbook punya Data Model/Cube.' },
-  CUBESET: { tableKey: 'cubeParameter', refs: ['B2','B4','"Daftar Kategori"'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].Members"','"Daftar Kategori"'], question: 'Buat set cube dari daftar kategori yang tersedia di Data Model.', logic: 'CUBESET menyimpan kumpulan member. Isi connection, set expression, lalu caption jika perlu.' },
-  CUBESETCOUNT: { tableKey: 'cubeParameter', refs: ['B4'], hardcodes: ['"[Product].[Category].Members"'], question: 'Hitung jumlah item dalam set cube yang tersedia.', logic: 'CUBESETCOUNT hanya butuh set expression atau hasil CUBESET.' },
-  CUBERANKEDMEMBER: { tableKey: 'cubeParameter', refs: ['B2','B4','B5','"Top Member"'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].Members"','1','"Top Member"'], question: 'Ambil member urutan pertama dari set cube.', logic: 'Isi connection, set expression, rank, lalu caption jika perlu.' },
-  CUBEMEMBERPROPERTY: { tableKey: 'cubeParameter', refs: ['B2','B3','B7'], hardcodes: ['"ThisWorkbookDataModel"','"[Product].[Category].[Digital]"','"Caption"'], question: 'Ambil property Caption dari member cube kategori Digital.', logic: 'Isi connection, member expression, lalu nama property yang ingin diambil.' },
-  CUBEKPIMEMBER: { tableKey: 'cubeParameter', refs: ['B2','B6','B7','"KPI Demo"'], hardcodes: ['"ThisWorkbookDataModel"','"Sales KPI"','"Caption"','"KPI Demo"'], question: 'Buat KPI member dari nama KPI dan property yang tersedia.', logic: 'Isi connection, KPI name, KPI property, dan caption jika perlu.' },
   NEGBINOMDIST: { tableKey: 'statsNegBinom', refs: ['B2','B3','B4'], hardcodes: ['3','5','0.4'], question: 'Hitung peluang 3 gagal terjadi sebelum target 5 berhasil, dengan peluang berhasil 40%.', logic: 'Ambil jumlah gagal, target berhasil, dan peluang berhasil. Tabelnya sengaja ringkas karena rumus ini hanya butuh tiga input.' },
   'NEGBINOM.DIST': { tableKey: 'statsNegBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['3','5','0.4','FALSE'], question: 'Hitung peluang negative binomial. Pakai mode tidak kumulatif dari parameter yang tersedia.', logic: 'Ambil jumlah gagal, target berhasil, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
-  CONFIDENCE: { tableKey: 'statsBetaGamma', refs: ['B2','B3','B4'], hardcodes: ['0.5','8','10'], question: 'Hitung confidence interval dengan alpha, standar deviasi, dan ukuran sampel dari tabel.', logic: 'Ambil alpha, standar deviasi, dan size. Ketiganya harus angka tunggal, bukan range.' },
-  'CONFIDENCE.NORM': { tableKey: 'statsBetaGamma', refs: ['B2','B3','B4'], hardcodes: ['0.5','8','10'], question: 'Hitung confidence interval normal dengan alpha, standar deviasi, dan ukuran sampel dari tabel.', logic: 'Ambil alpha, standar deviasi, dan size. Ketiganya harus angka tunggal, bukan range.' },
-  'CONFIDENCE.T': { tableKey: 'statsBetaGamma', refs: ['B2','B3','B4'], hardcodes: ['0.5','8','10'], question: 'Hitung confidence interval T dengan alpha, standar deviasi, dan ukuran sampel dari tabel.', logic: 'Ambil alpha, standar deviasi, dan size. Ketiganya harus angka tunggal, bukan range.' },
   BINOMDIST: { tableKey: 'statsBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['6','10','0.4','FALSE'], question: 'Hitung peluang mendapat 6 berhasil dari 10 percobaan dengan peluang berhasil 40%.', logic: 'Ambil jumlah berhasil, jumlah percobaan, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
   'BINOM.DIST': { tableKey: 'statsBinom', refs: ['B2','B3','B4','B5'], hardcodes: ['6','10','0.4','FALSE'], question: 'Hitung peluang binomial untuk 6 berhasil dari 10 percobaan.', logic: 'Ambil jumlah berhasil, jumlah percobaan, peluang berhasil, lalu pilih TRUE/FALSE untuk kumulatif.' },
   'NORM.DIST': { tableKey: 'statsNormal', refs: ['B2','B3','B4','B5'], hardcodes: ['42','40','1.5','TRUE'], question: 'Hitung distribusi normal untuk x 42, rata-rata 40, dan standar deviasi 1,5.', logic: 'Ambil nilai x, mean, standar deviasi, lalu tentukan kumulatif atau tidak.' },
@@ -390,11 +372,11 @@ const mapMathToken = (token) => {
   if (/sum_range/.test(t)) return 'E2:E16';
   if (/criteria_range|range/.test(t)) return 'B2:B16';
   if (/criteria/.test(t)) return '"Digital"';
-  if (/array_x|array1|array|values?|ref|coefficients/.test(t)) return 'B2:B8';
-  if (/array_y|array2/.test(t)) return 'C2:C8';
-  if (/number1|numerator|x_num|number|angle|x/.test(t)) return 'B2';
-  if (/number2|number_chosen|denominator|y_num|multiple|base|radix|dimension|form|n|m/.test(t)) return 'C2';
-  if (/num_digits|significance|k|quart|rows|columns|step|start|mode|min_length/.test(t)) return 'B9';
+  if (/number2|divisor|denominator/.test(t)) return 'B3';
+  if (/num_digits|significance|multiple|k|quart|rows|columns|step|start/.test(t)) return 'B9';
+  if (/array|values?|ref/.test(t)) return 'B2:B8';
+  if (/^numbers$/.test(t)) return 'B2:B8';
+  if (/number1|number|value/.test(t)) return 'B2';
   return 'B2';
 };
 
@@ -404,8 +386,8 @@ const mapDynamicToken = (token) => {
   if (/col_fields/.test(t)) return 'C2:C13';
   if (/values/.test(t)) return 'D2:D13';
   if (/function/.test(t)) return 'SUM';
+  if (/row_num|col_num|row_number|column_number|rows|columns|wrap_count/.test(t)) return '2';
   if (/array|data|vector/.test(t)) return 'A2:E13';
-  if (/rows|columns|wrap_count/.test(t)) return '3';
   if (/lambda|calculation/.test(t)) return 'LAMBDA(x,x*2)';
   if (/name1/.test(t)) return 'total';
   if (/name_value/.test(t)) return 'SUM(D2:D13)';
@@ -631,8 +613,6 @@ const makeQuestion = (formula, refs) => {
   if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `Gunakan ${formula.name} dengan parameter statistik yang sudah disiapkan di tabel. Ambil argumennya dari cell yang tersedia.`;
   if (formula.category === 'Financial') return `Gunakan ${formula.name} dengan parameter keuangan di tabel. Ambil rate, periode, nilai pinjaman, atau cashflow sesuai format rumus.`;
   if (formula.category === 'Engineering') return `Gunakan ${formula.name} dengan parameter teknik yang tersedia. Ambil angka/unit/bilangan kompleks dari tabel.`;
-  const environment = getExcelSpecialEnvironment(formula);
-  if (environment) return `Gunakan ${formula.name} untuk latihan struktur argumen. Rumus ini butuh ${environment.shortLabel.toLowerCase()}, jadi hasil finalnya perlu dicek di Excel yang punya environment tersebut.`;
   if (formula.category === 'Web') return `Gunakan ${formula.name} dengan contoh data web di tabel.`;
   if (formula.category === 'Cube') return `Gunakan ${formula.name} dengan contoh connection/member dari tabel cube.`;
   return `Gunakan ${formula.name} untuk ${actionByCategory(formula)}. Ambil data dari ${tableFriendlyName[tableForFormula(formula)] || 'tabel latihan'}.`;
@@ -641,8 +621,6 @@ const makeQuestion = (formula, refs) => {
 const makeLogic = (formula, refs) => {
   const name = upper(formula.name);
   if (specialPractice[name]?.logic) return specialPractice[name].logic;
-  const environment = getExcelSpecialEnvironment(formula);
-  if (environment) return `Susun argumen sesuai format ${formula.name}. Website mengecek urutan argumen dan referensi datanya, sementara hasil asli perlu dihitung di ${environment.label}.`;
   const refText = refs.length ? ` Di latihan ini, bagian pentingnya adalah ${refs.join(', ')}.` : '';
   return `Baca format dari kiri ke kanan. Isi argumen pertama dulu, lalu lanjut ke argumen berikutnya.${refText}`;
 };
@@ -667,7 +645,6 @@ export function generateDetailedExerciseForFormula(formula) {
   const tableKey = tableForFormula(formula);
   const minArgs = Math.max(0, refs.length);
   const format = auditedFormat(formula);
-  const specialEnvironment = getExcelSpecialEnvironment(formula);
 
   return {
     id: formula.id,
@@ -708,10 +685,289 @@ export function generateDetailedExerciseForFormula(formula) {
       format,
       expectedFormula,
       acceptedFormulas,
-      note: specialEnvironment ? `Latihan memakai mode environment khusus: ${specialEnvironment.label}. Hasil tidak dipalsukan di browser.` : 'Latihan dibuat dari mapping kategori + format rumus. Tabel, soal, hint, dan expected answer dibuat saling nyambung.',
-      specialEnvironment: specialEnvironment ? specialEnvironment.id : null
+      note: 'Latihan dibuat dari mapping kategori + format rumus. Tabel, soal, hint, dan expected answer dibuat saling nyambung.'
     }
   };
+}
+
+
+const variantLabels = [
+  'Basic',
+  'Criteria',
+  'Multi-condition',
+  'Reference',
+  'Mixed input',
+  'Challenge'
+];
+
+const salesScenarios = [
+  { label: 'kategori Digital', criteria1: '"Digital"', criteria2: '"Jakarta"', range: 'B2:B16', secondRange: 'C2:C16', valueRange: 'E2:E16', altValueRange: 'D2:D16' },
+  { label: 'kategori Fashion', criteria1: '"Fashion"', criteria2: '"Bandung"', range: 'B2:B16', secondRange: 'C2:C16', valueRange: 'E2:E16', altValueRange: 'D2:D16' },
+  { label: 'kota Jakarta', criteria1: '"Jakarta"', criteria2: '"Digital"', range: 'C2:C16', secondRange: 'B2:B16', valueRange: 'E2:E16', altValueRange: 'D2:D16' },
+  { label: 'kota Surabaya', criteria1: '"Surabaya"', criteria2: '"Fashion"', range: 'C2:C16', secondRange: 'B2:B16', valueRange: 'E2:E16', altValueRange: 'D2:D16' },
+  { label: 'kategori Education', criteria1: '"Education"', criteria2: '"Jakarta"', range: 'B2:B16', secondRange: 'C2:C16', valueRange: 'D2:D16', altValueRange: 'E2:E16' },
+  { label: 'qty lebih dari 10', criteria1: '">10"', criteria2: '"Digital"', range: 'D2:D16', secondRange: 'B2:B16', valueRange: 'E2:E16', altValueRange: 'D2:D16' }
+];
+
+const lookupScenarios = [
+  { lookup: 'A2', hard: '"P-001"', table: 'E2:I8', col: '2', hRow: '3', returnRange: 'F2:F8', label: 'nama produk P-001' },
+  { lookup: 'A3', hard: '"P-003"', table: 'E2:I8', col: '3', hRow: '4', returnRange: 'G2:G8', label: 'harga produk P-003' },
+  { lookup: 'A4', hard: '"P-005"', table: 'E2:I8', col: '4', hRow: '5', returnRange: 'H2:H8', label: 'kategori produk P-005' },
+  { lookup: 'A5', hard: '"P-002"', table: 'E2:I8', col: '5', hRow: '5', returnRange: 'I2:I8', label: 'stok produk P-002' },
+  { lookup: 'A6', hard: '"P-004"', table: 'E2:I8', col: '2', hRow: '3', returnRange: 'F2:F8', label: 'nama produk P-004' },
+  { lookup: 'A7', hard: '"P-006"', table: 'E2:I8', col: '3', hRow: '4', returnRange: 'G2:G8', label: 'harga produk P-006' }
+];
+
+const statNegBinomScenarios = [
+  { f: 3, s: 5, p: 0.4, cumulative: 'FALSE' },
+  { f: 2, s: 4, p: 0.35, cumulative: 'FALSE' },
+  { f: 4, s: 6, p: 0.5, cumulative: 'TRUE' },
+  { f: 1, s: 3, p: 0.25, cumulative: 'FALSE' },
+  { f: 5, s: 7, p: 0.45, cumulative: 'TRUE' },
+  { f: 6, s: 8, p: 0.6, cumulative: 'FALSE' }
+];
+
+const financeScenarios = [
+  { rate: 0.0066667, nper: 12, pv: 10000000, pmt: -900000, fv: 1000000, type: 0 },
+  { rate: 0.0075, nper: 24, pv: 15000000, pmt: -750000, fv: 2000000, type: 0 },
+  { rate: 0.005, nper: 18, pv: 8000000, pmt: -500000, fv: 1500000, type: 1 },
+  { rate: 0.01, nper: 10, pv: 12000000, pmt: -1000000, fv: 0, type: 0 },
+  { rate: 0.004, nper: 36, pv: 20000000, pmt: -650000, fv: 3000000, type: 1 },
+  { rate: 0.008, nper: 15, pv: 5000000, pmt: -400000, fv: 0, type: 0 }
+];
+
+function makeCompactTable(tableKey, variantIndex = 0) {
+  const n = variantIndex % 6;
+  if (tableKey === 'statsNegBinom') {
+    const s = statNegBinomScenarios[n];
+    return {
+      title: `Parameter Negative Binomial ${n + 1}`,
+      description: 'Tabel ini hanya berisi parameter yang memang dibutuhkan rumus negative binomial.',
+      columns: ['Parameter', 'Nilai', 'Keterangan'],
+      rows: [
+        ['Jumlah gagal', s.f, 'Banyak gagal sebelum target berhasil tercapai'],
+        ['Target berhasil', s.s, 'Jumlah berhasil yang ingin dicapai'],
+        ['Peluang berhasil', s.p, 'Peluang berhasil tiap percobaan'],
+        ['Cumulative', s.cumulative, 'TRUE untuk kumulatif, FALSE untuk titik peluang']
+      ]
+    };
+  }
+  if (tableKey === 'statsBinom') {
+    const s = statNegBinomScenarios[n];
+    return { title: `Parameter Binomial ${n + 1}`, description: 'Tabel ringkas untuk latihan binomial.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Jumlah berhasil', Math.max(1, s.s - 1), 'Jumlah sukses yang ingin dihitung'], ['Jumlah percobaan', s.s + s.f, 'Total percobaan'], ['Peluang berhasil', s.p, 'Peluang sukses tiap percobaan'], ['Cumulative', s.cumulative, 'TRUE kumulatif, FALSE peluang tepat']] };
+  }
+  if (tableKey === 'statsNormal') {
+    const rows = [[42,40,1.5,'TRUE',0.8,1.25],[38,35,2,'TRUE',0.75,0.9],[100,95,8,'FALSE',0.6,1.1],[70,75,5,'TRUE',0.85,1.35],[10,12,1.2,'FALSE',0.5,0],[55,50,6,'TRUE',0.95,1.65]][n];
+    return { title: `Parameter Normal ${n + 1}`, description: 'Tabel ringkas untuk distribusi normal.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Nilai x', rows[0], 'Nilai yang sedang diuji'], ['Mean', rows[1], 'Rata-rata distribusi'], ['Standar deviasi', rows[2], 'Sebaran data'], ['Cumulative', rows[3], 'TRUE kumulatif, FALSE titik peluang'], ['Probability', rows[4], 'Peluang untuk rumus inverse'], ['Z-score', rows[5], 'Nilai z untuk normal standar']] };
+  }
+  if (tableKey === 'statsBetaGamma' || tableKey === 'statsFreedom' || tableKey === 'statsParameter') {
+    const a = [[0.5,8,10,'TRUE',0,1,2],[0.25,3,6,'FALSE',0,1,1],[0.75,5,9,'TRUE',0,1,2],[1.2,10,12,'FALSE',0,2,1],[2.1,7,11,'TRUE',1,3,2],[0.9,4,8,'FALSE',0,1,1]][n];
+    return { title: `Parameter Statistik ${n + 1}`, description: 'Parameter statistik dibuat ringkas agar tidak over.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Nilai x / probability', a[0], 'Nilai utama yang diuji'], ['Alpha / df 1', a[1], 'Parameter distribusi atau derajat bebas pertama'], ['Beta / df 2', a[2], 'Parameter distribusi atau derajat bebas kedua'], ['Cumulative / tails', a[3], 'Pilihan kumulatif atau sisi uji'], ['Lower bound', a[4], 'Batas bawah'], ['Upper bound', a[5], 'Batas atas'], ['Type / order', a[6], 'Parameter pilihan tambahan']] };
+  }
+  if (tableKey === 'statsActualExpected') {
+    const offset = n * 2;
+    return { title: `Data Aktual vs Ekspektasi ${n + 1}`, description: 'Data kecil untuk membandingkan hasil aktual dan ekspektasi.', columns: ['Data Aktual', 'Data Ekspektasi'], rows: [[82+offset,80+offset],[91-offset,90-offset],[68+offset,70+offset],[77,75],[73,72]] };
+  }
+  if (tableKey === 'statsSeriesCompact' || tableKey === 'students') {
+    return { title: `Data Nilai Ringkas ${n + 1}`, description: 'Data angka ringkas untuk latihan statistik dan hitung dasar.', columns: ['Nilai A', 'Nilai B', 'Kategori'], rows: [[82+n,80,'A'],[91,90+n,'B'],[68+n,70,'A'],[77,75+n,'B'],[73+n,72,'A'],[88,85+n,'B'],[95,92,'A']] };
+  }
+  if (tableKey === 'financeParameter') {
+    const s = financeScenarios[n];
+    return { title: `Parameter Keuangan ${n + 1}`, description: 'Tabel ringkas untuk rumus keuangan.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Rate', s.rate, 'Bunga per periode'], ['Nper', s.nper, 'Jumlah periode'], ['PV', s.pv, 'Nilai sekarang / pinjaman'], ['PMT', s.pmt, 'Pembayaran berkala'], ['FV', s.fv, 'Nilai masa depan'], ['Type', s.type, '0 akhir periode, 1 awal periode']] };
+  }
+  if (tableKey === 'engineeringParameter') {
+    return { title: `Parameter Teknik ${n + 1}`, description: 'Data singkat untuk konversi, angka basis, atau bilangan kompleks.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Angka', 10+n, 'Angka utama'], ['From unit', 'm', 'Unit asal'], ['To unit', n % 2 ? 'km' : 'cm', 'Unit tujuan'], ['Binary', '1010', 'Bilangan biner'], ['Complex 1', '3+4i', 'Bilangan kompleks pertama'], ['Complex 2', '2+1i', 'Bilangan kompleks kedua'], ['Real', 3+n, 'Bagian real'], ['Imaginary', 4, 'Bagian imajiner'], ['Places', 2, 'Jumlah digit']] };
+  }
+  if (tableKey === 'textPractice') {
+    const rows = [['Agus Saputra','INV-2026-001','agus@email.com','-'],['Sinta Lestari','PRD-DIG-002','sinta@email.com',' '],['Budi Santoso','ORD-7788-JKT','budi@email.com','/'],['Nadia Putri','SKU-FSN-045','nadia@email.com','_']];
+    return { title: `Data Teks ${n + 1}`, description: 'Data teks untuk latihan nama, kode, invoice, dan email.', columns: ['Teks Utama', 'Kode / Invoice', 'Email', 'Pemisah'], rows };
+  }
+  if (tableKey === 'datePractice') {
+    return { title: `Data Tanggal & Jam ${n + 1}`, description: 'Data tanggal dan jam untuk latihan date/time.', columns: ['Tanggal Teks', 'Year', 'Month', 'Day', 'Holiday'], rows: [['2026-01-15',2026,1,15,'2026-01-01'],['2026-02-20',2026,2,20,'2026-03-11'],['2026-05-10',2026,5,10,'2026-05-01'],['08:30',8,30,0,'2026-12-25'],['17:45',17,45,0,'']] };
+  }
+  if (tableKey === 'logicalPractice') {
+    return { title: `Data Kondisi ${n + 1}`, description: 'Data untuk latihan kondisi benar/salah.', columns: ['Nama', 'Nilai', 'Kehadiran', 'Pembayaran', 'Status'], rows: [['Agus',75+n,90,'Lunas',''],['Sinta',88,95,'Lunas',''],['Budi',65,80,'Belum',''],['Nadia',92,98,'Lunas',''],['Raka',70,60,'Belum','']] };
+  }
+  if (tableKey === 'databaseMini') {
+    return { title: `Database Mini ${n + 1}`, description: 'Database kecil dengan area kriteria di kolom G.', columns: ['Nama', 'Kelas', 'Kategori', 'Nilai', 'Status', '', 'Status'], rows: [['Agus','X-A','Digital',82,'Lulus','','Lulus'],['Sinta','X-B','Fashion',91,'Lulus','',''],['Budi','X-A','Digital',68,'Tidak Lulus','',''],['Nadia','X-C','Education',77,'Lulus','',''],['Raka','X-B','Digital',73,'Tidak Lulus','','']] };
+  }
+  if (tableKey === 'webParameter') {
+    return { title: `Data Web/XML ${n + 1}`, description: 'Data contoh untuk URL, XML, dan encoding.', columns: ['XML', 'XPath', 'URL', 'Teks URL'], rows: [['<root><title>Formula Coach</title></root>','//title','https://example.com/api','Formula Coach Excel'],['<root><city>Jakarta</city></root>','//city','https://example.com/data','Belajar Rumus Excel']] };
+  }
+  if (tableKey === 'cubeParameter') {
+    return { title: `Contoh Cube/Data Model ${n + 1}`, description: 'Contoh argumen Cube. Hasil asli butuh Data Model/OLAP di Excel.', columns: ['Parameter', 'Nilai', 'Keterangan'], rows: [['Connection','ThisWorkbookDataModel','Nama koneksi'],['Member','[Products].[Category].[Digital]','Member expression'],['Set','[Products].[Category].Members','Set expression'],['Rank',1,'Urutan member'],['KPI','[Measures].[Sales]','Measure/KPI'],['Property','CAPTION','Properti member']] };
+  }
+  if (tableKey === 'addinParameter') {
+    return { title: `Parameter Add-in ${n + 1}`, description: 'Contoh struktur untuk rumus add-in atau user defined.', columns: ['Module', 'Procedure', 'Type', 'Connection', 'Query', 'Number'], rows: [['MyAddin.xll','MyFunction','1','DSN=Demo','SELECT * FROM Sales',100],['FinanceAddin.xll','RateCalc','2','DSN=Finance','SELECT Rate',250]] };
+  }
+  if (tableKey === 'mathNumbers') {
+    return { title: `Data Angka ${n + 1}`, description: 'Data angka ringkas untuk latihan math, pembulatan, pangkat, dan akar.', columns: ['Item', 'Angka', 'Pembanding'], rows: [['Data 1', 12.75 + n, 3], ['Data 2', -8.4 - n, 2], ['Data 3', 16 + n, 4], ['Data 4', 25, 5], ['Data 5', 7.5, 2], ['Data 6', 100, 10], ['Data 7', 64, 8], ['Digit / Kelipatan', 2, 5], ['Batas', 10, 2]] };
+  }
+  if (tableKey === 'sales' || tableKey === 'dynamic') {
+    return { title: `Data Penjualan ${n + 1}`, description: 'Data latihan ringkas untuk angka, kategori, kota, qty, dan revenue.', columns: ['Produk', 'Kategori', 'Kota', 'Qty', 'Total Penjualan'], rows: [['Kaos Basic','Fashion','Jakarta',12+n,600000],['Ebook Excel','Digital','Bandung',8,400000],['Template CV','Digital','Jakarta',15,750000],['Topi Denim','Fashion','Surabaya',5,250000],['Preset Foto','Digital','Jakarta',20,1000000],['Hoodie','Fashion','Bandung',7,700000],['Kelas Excel','Education','Jakarta',10,1500000],['Sticker Pack','Digital','Surabaya',18,270000],['Totebag','Fashion','Jakarta',9,315000],['Mini Course','Education','Bandung',6,900000],['Mockup Pack','Digital','Jakarta',14,560000],['Jaket Coach','Fashion','Surabaya',4,800000],['Prompt AI','Digital','Jakarta',25,625000],['Webinar','Education','Jakarta',11,1100000],['Notebook','Stationery','Bandung',30,450000]] };
+  }
+  if (tableKey === 'lookup') {
+    return { title: `Master Produk ${n + 1}`, description: 'Kolom A-C adalah transaksi. Kolom E-I adalah master produk.', columns: ['Kode Produk', 'Nama Produk', 'Qty', '', 'Master Kode', 'Master Nama', 'Harga', 'Kategori', 'Stok'], rows: [['P-001','',3,'','P-001','Kaos Basic',50000,'Fashion',120],['P-003','',2,'','P-002','Ebook Excel',50000,'Digital',999],['P-005','',5,'','P-003','Template CV',50000,'Digital',888],['P-002','',1,'','P-004','Topi Denim',50000,'Fashion',80],['P-004','',4,'','P-005','Preset Foto',50000,'Digital',777],['P-006','',2,'','P-006','Hoodie',100000,'Fashion',60],['P-007','',1,'','P-007','Kelas Excel',150000,'Education',40]] };
+  }
+  if (tableKey === 'lookupHorizontal') {
+    return { title: `Master Produk Horizontal ${n + 1}`, description: 'Tabel horizontal untuk latihan HLOOKUP.', columns: ['Field', 'P-001', 'P-002', 'P-003', 'P-004', 'P-005', 'P-006', 'P-007'], rows: [['Nama Produk','Kaos Basic','Ebook Excel','Template CV','Topi Denim','Preset Foto','Hoodie','Kelas Excel'],['Harga',50000,50000,50000,50000,50000,100000,150000],['Kategori','Fashion','Digital','Digital','Fashion','Digital','Fashion','Education'],['Stok',120,999,888,80,777,60,40]] };
+  }
+  if (tableKey === 'informationMixed') {
+    return { title: `Data Campuran ${n + 1}`, description: 'Data berisi angka, teks, kosong, error, dan formula contoh.', columns: ['Data', 'Nilai', 'Keterangan'], rows: [['Angka',123,'Tipe number'],['Teks','Formula Coach','Tipe text'],['Kosong','','Cell kosong'],['Error','#N/A','Contoh error'],['Formula','=SUM(B2:B2)','Contoh formula']] };
+  }
+  return { title: `Data Latihan ${n + 1}`, description: 'Data fallback agar latihan tetap punya tabel yang jelas.', columns: ['Item', 'Nilai', 'Keterangan'], rows: [['Input 1', 10, 'Data utama'], ['Input 2', 20, 'Data tambahan'], ['Input 3', 30, 'Data pembanding']] };
+}
+
+function makeVariantRefs(formula, variantIndex = 0) {
+  const name = upper(formula.name);
+  const tableKey = tableForFormula(formula);
+  const n = variantIndex % 6;
+  const baseRefs = refsFromFormat(formula);
+
+  if (name === 'CHOOSEROWS') return ['A1:I8', '1', '2'];
+  if (name === 'CHOOSECOLS') return ['A1:I8', '1', '2'];
+
+  if (name === 'INDEX MATCH') {
+    const s = lookupScenarios[n];
+    return [s.returnRange, 'MATCH(' + s.lookup + ',E2:E8,0)'];
+  }
+  if (name === 'OFFSET') return ['A1', String((n % 3) + 1), String(n % 2), '3', '2'];
+  if (name === 'CELL') return ['"address"', 'A2'];
+
+  if (criteriaFunctions.has(name)) {
+    const s = salesScenarios[n];
+    if (name === 'COUNTIF') return [s.range, s.criteria1];
+    if (name === 'SUMIF') return [s.range, s.criteria1, s.valueRange];
+    if (name === 'AVERAGEIF') return [s.range, s.criteria1, s.valueRange];
+    if (name === 'COUNTIFS') return [s.range, s.criteria1, s.secondRange, s.criteria2];
+    if (name === 'SUMIFS' || name === 'AVERAGEIFS' || name === 'MAXIFS' || name === 'MINIFS') return [s.valueRange, s.range, s.criteria1, s.secondRange, s.criteria2];
+  }
+
+  if (lookupFunctions.has(name)) {
+    const s = lookupScenarios[n];
+    if (name === 'VLOOKUP') return [s.lookup, s.table, s.col, 'FALSE'];
+    if (name === 'HLOOKUP') return [s.hard, 'A1:H5', s.hRow, 'FALSE'];
+    if (name === 'XLOOKUP') return [s.lookup, 'E2:E8', s.returnRange, '"Tidak ditemukan"', '0', '1'];
+    if (name === 'LOOKUP') return [s.lookup, 'E2:E8', s.returnRange];
+    if (name === 'MATCH' || name === 'XMATCH') return [s.lookup, 'E2:E8', '0'];
+    if (name === 'INDEX') return ['E2:I8', String((n % 6) + 1), s.col];
+  }
+
+  if (name === 'IF') return [`B${2 + (n % 5)}>=75`, '"Lulus"', '"Tidak Lulus"'];
+  if (name === 'IFS') return [`B${2 + (n % 5)}>=90`, '"A"', `B${2 + (n % 5)}>=75`, '"B"', 'TRUE', '"C"'];
+  if (name === 'AND') return [`B${2 + (n % 5)}>=75`, `C${2 + (n % 5)}>=80`];
+  if (name === 'OR') return [`B${2 + (n % 5)}>=75`, `D${2 + (n % 5)}="Lunas"`];
+  if (name === 'NOT') return [`D${2 + (n % 5)}="Lunas"`];
+  if (name === 'IFERROR') return [`100/(B${2 + (n % 5)}-75)`, '"Cek pembagi"'];
+  if (name === 'IFNA') return ['VLOOKUP("P-999",E2:I8,2,FALSE)', '"Tidak ada"'];
+  if (name === 'SWITCH') return [`D${2 + (n % 5)}`, '"Lunas"', '"OK"', '"Belum"', '"Follow up"', '"Cek"'];
+
+  if (name === 'NEGBINOMDIST') return ['B2', 'B3', 'B4'];
+  if (name === 'NEGBINOM.DIST') return ['B2', 'B3', 'B4', 'B5'];
+
+  if (tableKey === 'financeParameter') {
+    if (['PMT','FV','PV','RATE','NPER'].includes(name)) return ['B2','B3','B4','B5','B6','B7'].slice(0, Math.max(3, Math.min(baseRefs.length || 3, 6)));
+  }
+
+  if (tableKey === 'engineeringParameter') {
+    const mapper = ['B2','B3','B4','B5','B6','B7','B8','B9','B10'];
+    return baseRefs.map((_, i) => mapper[i] || 'B2');
+  }
+
+  if (tableKey.startsWith('stats')) {
+    return baseRefs.map((ref, i) => ref || `B${2 + i}`);
+  }
+
+  return baseRefs;
+}
+
+function makeVariantQuestion(formula, refs, variantIndex = 0) {
+  const name = upper(formula.name);
+  const n = variantIndex % 6;
+  if (criteriaFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} untuk menghitung data penjualan dengan syarat ${salesScenarios[n].label}.`;
+  if (lookupFunctions.has(name)) return `${variantLabels[n]}: gunakan ${formula.name} untuk mengambil ${lookupScenarios[n].label} dari tabel master.`;
+  if (name === 'NEGBINOMDIST' || name === 'NEGBINOM.DIST') return `${variantLabels[n]}: hitung peluang negative binomial dari parameter ringkas di tabel.`;
+  if (formula.category === 'Financial') return `${variantLabels[n]}: gunakan ${formula.name} dari parameter keuangan yang tersedia.`;
+  if (formula.category === 'Text') return `${variantLabels[n]}: gunakan ${formula.name} untuk mengolah teks dari tabel latihan.`;
+  if (formula.category === 'Date and Time') return `${variantLabels[n]}: gunakan ${formula.name} untuk mengolah tanggal atau jam dari tabel.`;
+  if (formula.category === 'Logical') return `${variantLabels[n]}: gunakan ${formula.name} untuk membaca kondisi dan menghasilkan keputusan.`;
+  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return `${variantLabels[n]}: gunakan ${formula.name} dengan parameter statistik yang relevan, bukan tabel umum yang tidak nyambung.`;
+  return `${variantLabels[n]}: gunakan ${formula.name} dengan data latihan yang sudah disiapkan.`;
+}
+
+function makeTieredExercise(formula, variantIndex = 0) {
+  const base = generateDetailedExerciseForFormula(formula);
+  const name = upper(formula.name);
+  const tableKey = tableForFormula(formula);
+  const refs = makeVariantRefs(formula, variantIndex);
+  const expectedFormula = name === 'INDEX MATCH'
+    ? `=INDEX(${refs[0]},${refs[1]})`
+    : formulaExpression(formula, refs);
+  const acceptedFormulas = name === 'INDEX MATCH' ? [] : acceptedHardcode(formula, refs);
+  const requiredRefs = requiredRefsFromArgs(refs);
+  const requiredTexts = requiredTextsFromArgs(refs);
+  const table = makeCompactTable(tableKey, variantIndex);
+
+  return {
+    ...base,
+    id: `${formula.id}__level_${variantIndex + 1}`,
+    baseFormulaId: formula.id,
+    formulaName: formula.name,
+    title: `Latihan ${variantIndex + 1}: ${variantLabels[variantIndex % 6]}`,
+    levelIndex: variantIndex,
+    levelLabel: variantLabels[variantIndex % 6],
+    tableKey,
+    table,
+    activeCell: requiredRefs[0]?.split(':')[0] || base.activeCell || 'G2',
+    question: makeVariantQuestion(formula, refs, variantIndex),
+    logicPrompt: `${makeLogic(formula, refs)} Latihan ini sengaja dibuat beda dari level sebelumnya agar kamu tidak cuma menghafal satu jawaban.`,
+    expectedFormula,
+    acceptedFormulas,
+    requiredRefs,
+    requiredTexts,
+    argumentCount: { min: refs.length, max: null },
+    highlightRanges: requiredRefs,
+    allowedFunctions: [formula.name],
+    hints: [
+      `Level ${variantIndex + 1}: pahami dulu apa yang diminta soal, jangan langsung ketik rumus final.`,
+      refs[0] ? `Argumen pertama mengarah ke ${refs[0]}. Cari posisinya di tabel.` : `Tentukan input pertama untuk ${formula.name}.`,
+      refs.length > 1 ? `Argumen berikutnya: ${refs.slice(1).join(', ')}.` : 'Kalau argumennya hanya satu, pastikan datanya sesuai jenis rumus.',
+      requiredTexts.length ? `Value/kriteria yang dipakai: ${requiredTexts.join(', ')}. Pastikan ada di tabel.` : 'Kalau ada parameter TRUE/FALSE, angka, atau pilihan lain, ikuti kebutuhan format rumus.',
+      'Baru setelah itu cek separator, urutan argumen, dan kurung penutup.'
+    ],
+    successExplanation: `Tepat. Kamu menyelesaikan level ${variantIndex + 1} untuk ${formula.name} dengan data yang sesuai konteks latihan.`,
+    formulaParts: [
+      `${formula.name} adalah function utama untuk level ini.`,
+      `Format rumus: =${auditedFormat(formula)}`,
+      refs.length ? `Argumen yang dipakai level ini: ${refs.join(' | ')}.` : 'Function ini tidak membutuhkan argumen tambahan.',
+      acceptedFormulas.length ? 'Hardcode diterima sebagai alternatif, tapi referensi cell lebih aman untuk latihan.' : 'Gunakan referensi cell/range supaya rumus fleksibel.'
+    ],
+    commonMistakes: [
+      'Mengulang jawaban level sebelumnya padahal soal sudah berubah.',
+      'Range/cell tidak sesuai data di tabel level ini.',
+      'Kriteria atau lookup value tidak ada di tabel.',
+      'Urutan argumen kebalik.',
+      'Separator atau kurung penutup belum benar.'
+    ],
+    nextUseCase: `Lanjutkan ke level berikutnya agar kamu paham variasi pemakaian ${formula.name}.`,
+    audit: {
+      ...(base.audit || {}),
+      tiered: true,
+      levelIndex: variantIndex,
+      expectedFormula,
+      tableKey,
+      refs,
+      requiredRefs,
+      requiredTexts,
+      tableRows: table?.rows?.length || null,
+      note: 'Latihan bertingkat dibuat dari mapping formula, tableKey, dan argumen agar tabel, soal, hint, dan expected formula saling nyambung.'
+    }
+  };
+}
+
+export function generateTieredExercisesForFormula(formula, count = 6) {
+  const total = Math.max(6, count || 6);
+  return Array.from({ length: total }, (_, index) => makeTieredExercise(formula, index));
 }
 
 export { formatOverrides };

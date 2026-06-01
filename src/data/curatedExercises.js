@@ -1,5 +1,5 @@
 import { formulaCatalogFull } from './formulaCatalogFull.js';
-import { generateDetailedExerciseForFormula } from './formulaPracticeFactory.js';
+import { generateDetailedExerciseForFormula, generateTieredExercisesForFormula } from './formulaPracticeFactory.js';
 // Curated exercise bank untuk rumus populer.
 // Expected formula disimpan dalam separator English (,). UI akan mengubah tampilannya sesuai mode Indonesia/English.
 
@@ -7247,6 +7247,7 @@ const buildBetterHints = (exercise = {}) => {
   if (texts.length) hints.push(`Value/kriteria yang harus masuk: ${texts.join(', ')}.`);
 
   hints.push('Isi argumen satu per satu dari kiri ke kanan. Jangan loncat dulu ke jawaban final.');
+  hints.push('Bandingkan lagi soal dengan tabel. Pastikan data yang diminta memang ada di tabel latihan.');
   hints.push('Cek lagi separatornya: mode Indonesia pakai titik koma (;), mode English pakai koma (,).');
   return hints;
 };
@@ -7345,9 +7346,18 @@ const generatedExercises = Object.fromEntries(
   formulaCatalogFull.map((formula) => [formula.id, normalizeExercise(generateDetailedExerciseForFormula(formula))])
 );
 
+const generatedExerciseLevels = Object.fromEntries(
+  formulaCatalogFull.map((formula) => [formula.id, generateTieredExercisesForFormula(formula, 6).map((exercise) => normalizeExercise(exercise))])
+);
+
 export const curatedExercises = {
   ...generatedExercises,
   ...normalizedManualExercises
 };
 
+export const curatedExerciseLevels = Object.fromEntries(
+  formulaCatalogFull.map((formula) => [formula.id, generatedExerciseLevels[formula.id] || []])
+);
+
 export const getCuratedExercise = (formulaId) => curatedExercises[formulaId] || null;
+export const getCuratedExercises = (formulaId) => curatedExerciseLevels[formulaId] || (curatedExercises[formulaId] ? [curatedExercises[formulaId]] : []);
