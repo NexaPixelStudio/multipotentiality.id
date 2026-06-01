@@ -36,6 +36,20 @@ const normalizeRange = (startRef, endRef = startRef) => {
   return from === to ? from : `${from}:${to}`;
 };
 
+const normalizeVerticalRange = (startRef, endRef = startRef) => {
+  const start = parseCell(startRef);
+  const end = parseCell(endRef);
+  if (!start || !end) return startRef;
+
+  const col = numberToCol(start.col);
+  const minRow = Math.min(start.row, end.row);
+  const maxRow = Math.max(start.row, end.row);
+  const from = `${col}${minRow}`;
+  const to = `${col}${maxRow}`;
+
+  return from === to ? from : `${from}:${to}`;
+};
+
 const inRange = (cellRef, rangeRef) => {
   const cell = parseCell(cellRef);
   if (!cell) return false;
@@ -51,7 +65,7 @@ const inRange = (cellRef, rangeRef) => {
   return cell.col >= minCol && cell.col <= maxCol && cell.row >= minRow && cell.row <= maxRow;
 };
 
-export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected }) {
+export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected, onFillDrag }) {
   const columns = table?.columns || [];
   const rows = table?.rows || [];
   const [selectionStart, setSelectionStart] = useState(null);
@@ -61,8 +75,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
 
   const liveRange = useMemo(() => {
     if (!selectionStart) return null;
+    if (selectionMode === 'fill') return normalizeVerticalRange(selectionStart, selectionEnd || selectionStart);
     return normalizeRange(selectionStart, selectionEnd || selectionStart);
-  }, [selectionStart, selectionEnd]);
+  }, [selectionMode, selectionStart, selectionEnd]);
 
   const isHighlighted = (ref) => highlightRanges.some((range) => inRange(ref, range));
   const isSelected = (ref) => liveRange ? inRange(ref, liveRange) : false;
@@ -106,6 +121,20 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
 
     const finishSelection = () => {
       if (!selectionStart) return;
+
+      if (selectionMode === 'fill') {
+        const endRef = selectionEnd || selectionStart;
+        const finalRange = normalizeVerticalRange(selectionStart, endRef);
+        if (finalRange.includes(':')) {
+          onFillDrag?.({ sourceCell: selectionStart, targetCell: endRef, targetRange: finalRange });
+        }
+        setIsDragging(false);
+        setSelectionStart(null);
+        setSelectionEnd(null);
+        setSelectionMode('cell');
+        return;
+      }
+
       const finalRange = normalizeRange(selectionStart, selectionEnd || selectionStart);
       onRangeSelected?.(finalRange);
       setIsDragging(false);
@@ -116,7 +145,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
 
     window.addEventListener('mouseup', finishSelection);
     return () => window.removeEventListener('mouseup', finishSelection);
-  }, [isDragging, selectionStart, selectionEnd, onRangeSelected]);
+  }, [isDragging, selectionMode, selectionStart, selectionEnd, onRangeSelected, onFillDrag]);
 
   const beginSelection = (event, ref) => {
     event.preventDefault();
@@ -128,8 +157,25 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   };
 
   const moveSelection = (ref) => {
-    if (!isDragging || selectionMode !== 'cell' || !selectionStart) return;
+    if (!isDragging || !selectionStart) return;
+
+    if (selectionMode === 'fill') {
+      setSelectionEnd(ref);
+      return;
+    }
+
+    if (selectionMode !== 'cell') return;
     setSelectionEnd(ref);
+    onCellClick?.(ref);
+  };
+
+  const beginFillDrag = (event, ref) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setSelectionMode('fill');
+    setSelectionStart(ref);
+    setSelectionEnd(ref);
+    setIsDragging(true);
     onCellClick?.(ref);
   };
 
@@ -198,6 +244,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                     selected={isSelected(ref)}
                     onMouseDown={beginSelection}
                     onMouseEnter={moveSelection}
+                    onFillMouseDown={beginFillDrag}
                   />
                 );
               })}
@@ -226,6 +273,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                         selected={isSelected(ref)}
                         onMouseDown={beginSelection}
                         onMouseEnter={moveSelection}
+                        onFillMouseDown={beginFillDrag}
                       />
                     );
                   })}
@@ -239,15 +287,24 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   );
 }
 
-function Cell({ refName, value, header, active, highlighted, selected, onMouseDown, onMouseEnter }) {
+function Cell({ refName, value, header, active, highlighted, selected, onMouseDown, onMouseEnter, onFillMouseDown }) {
   return (
     <td
       onMouseDown={(event) => onMouseDown?.(event, refName)}
       onMouseEnter={() => onMouseEnter?.(refName)}
       title={refName}
-      className={`sheet-cell cursor-cell select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
+      className={`sheet-cell relative cursor-cell select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
     >
       <div className="min-h-[20px] truncate">{String(value ?? '')}</div>
+      {active && !header ? (
+        <button
+          type="button"
+          aria-label={`Tarik untuk duplikat rumus dari ${refName}`}
+          title="Tarik ke bawah untuk duplikat rumus"
+          onMouseDown={(event) => onFillMouseDown?.(event, refName)}
+          className="absolute -bottom-1 -right-1 h-3 w-3 cursor-crosshair rounded-[2px] border border-white bg-coach-green shadow-sm ring-1 ring-coach-green/70 dark:border-[#1b211c]"
+        />
+      ) : null}
     </td>
   );
 }

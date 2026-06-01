@@ -437,6 +437,49 @@ function getLearningModeConfig(mode = 'guided') {
   return config[normalized];
 }
 
+function parseSheetCell(ref = '') {
+  const match = String(ref || '').toUpperCase().replace(/\$/g, '').match(/^([A-Z]+)(\d+)$/);
+  if (!match) return null;
+  const colNumber = match[1].split('').reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0);
+  return { col: match[1], colNumber, row: Number(match[2]) };
+}
+
+function numberToSheetCol(number = 1) {
+  let value = Number(number) || 1;
+  let output = '';
+  while (value > 0) {
+    const remainder = (value - 1) % 26;
+    output = String.fromCharCode(65 + remainder) + output;
+    value = Math.floor((value - 1) / 26);
+  }
+  return output || 'A';
+}
+
+function shiftFormulaRows(formula = '', rowDelta = 0) {
+  if (!rowDelta) return formula;
+  return String(formula || '').replace(/(\$?)([A-Z]{1,3})(\$?)(\d+)/gi, (match, colLock, col, rowLock, rowText) => {
+    if (rowLock === '$') return match;
+    const nextRow = Math.max(1, Number(rowText) + rowDelta);
+    return `${colLock || ''}${String(col).toUpperCase()}${rowLock || ''}${nextRow}`;
+  });
+}
+
+function getVerticalFillCells(sourceCell = '', targetCell = '') {
+  const source = parseSheetCell(sourceCell);
+  const target = parseSheetCell(targetCell);
+  if (!source || !target) return [];
+
+  const startRow = Math.min(source.row, target.row);
+  const endRow = Math.max(source.row, target.row);
+  const col = numberToSheetCol(source.colNumber);
+  const cells = [];
+
+  for (let row = startRow; row <= endRow; row += 1) {
+    cells.push(`${col}${row}`);
+  }
+
+  return cells;
+}
 
 export default function App() {
   const [formulas, setFormulas] = useState(formulaCatalogFull);
@@ -455,6 +498,7 @@ export default function App() {
   const [selectionTarget, setSelectionTarget] = useState('formula');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [exerciseIndex, setExerciseIndex] = useState(0);
+  const [filledCellValues, setFilledCellValues] = useState({});
 
   const selectedFormula = useMemo(() => {
     return formulas.find((formula) => formula.id === selectedId) || formulas[0];
@@ -529,11 +573,36 @@ export default function App() {
 
   const liveCellValues = useMemo(() => {
     const targetCell = exercise?.activeCell || activeCell;
-    if (!answer.trim() || !targetCell || !formulaResult) return {};
-    return {
-      [String(targetCell).toUpperCase()]: formulaResult.displayValue ?? formulaResult.value ?? ''
-    };
-  }, [activeCell, answer, exercise?.activeCell, formulaResult]);
+    const nextValues = { ...filledCellValues };
+
+    if (answer.trim() && targetCell && formulaResult) {
+      nextValues[String(targetCell).toUpperCase()] = formulaResult.displayValue ?? formulaResult.value ?? '';
+    }
+
+    return nextValues;
+  }, [activeCell, answer, exercise?.activeCell, filledCellValues, formulaResult]);
+
+  const handleFillDrag = ({ sourceCell, targetCell }) => {
+    const baseCell = sourceCell || exercise?.activeCell || activeCell;
+    const cells = getVerticalFillCells(baseCell, targetCell);
+    const source = parseSheetCell(baseCell);
+
+    if (!source || !answer.trim() || cells.length < 2) return;
+
+    const nextValues = {};
+
+    cells.forEach((cellRef) => {
+      const cell = parseSheetCell(cellRef);
+      if (!cell) return;
+      const shiftedFormula = shiftFormulaRows(answer, cell.row - source.row);
+      const shiftedResult = evaluateFormula(shiftedFormula, table, progressState.separatorMode);
+      nextValues[cellRef.toUpperCase()] = shiftedResult?.displayValue ?? shiftedResult?.value ?? '';
+    });
+
+    setFilledCellValues((current) => ({ ...current, ...nextValues }));
+    setSelectedRange(cells.length ? `${cells[0]}:${cells[cells.length - 1]}` : null);
+    if (cells.length) setActiveCell(cells[cells.length - 1]);
+  };
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', Boolean(progressState.darkMode));
@@ -552,6 +621,7 @@ export default function App() {
     setLastRangeInsertion(null);
     setLookupValue('');
     setSelectionTarget('formula');
+    setFilledCellValues({});
     setExerciseIndex(0);
   }, [selectedFormula?.id]);
 
@@ -573,6 +643,7 @@ export default function App() {
     setLastRangeInsertion(null);
     setLookupValue('');
     setSelectionTarget('formula');
+    setFilledCellValues({});
   }, [exerciseIndex]);
 
   const updatePreference = (key, value) => {
@@ -594,6 +665,7 @@ export default function App() {
     setAnswer(nextValue);
     setFeedback(null);
     setLastRangeInsertion(null);
+    setFilledCellValues({});
   };
 
   const handleCheckAnswer = (submittedFormula) => {
@@ -668,6 +740,7 @@ export default function App() {
     setLastRangeInsertion(null);
     setLookupValue('');
     setSelectionTarget('formula');
+    setFilledCellValues({});
   };
 
   const handleResetAll = () => {
@@ -683,6 +756,7 @@ export default function App() {
     setLastRangeInsertion(null);
     setLookupValue('');
     setSelectionTarget('formula');
+    setFilledCellValues({});
   };
 
   const handleNextFormula = () => {
@@ -826,6 +900,7 @@ export default function App() {
             selectedRange={selectedRange}
             onCellClick={setActiveCell}
             onRangeSelected={handleRangeSelected}
+            onFillDrag={handleFillDrag}
           />
 
           <FormulaBar
