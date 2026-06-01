@@ -1,5 +1,11 @@
 import { getFormulaLearningContent } from '../data/formulaLearningContent.js';
 
+function displayFormat(format = '') {
+  const raw = String(format || '').trim();
+  const withEquals = raw.startsWith('=') ? raw : `=${raw}`;
+  return withEquals.replace(/,\s*/g, '; ');
+}
+
 export default function FormulaTheory({ formula, isGeneric }) {
   const learning = getFormulaLearningContent(formula);
   const description = learning.description || formula.description;
@@ -25,7 +31,7 @@ export default function FormulaTheory({ formula, isGeneric }) {
         <div className="rounded-2xl border border-coach-line bg-coach-beige p-4 dark:border-white/10 dark:bg-black/20 lg:w-[360px]">
           <p className="text-xs font-black uppercase tracking-[0.16em] text-black/40 dark:text-white/45">Format</p>
           <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 text-sm font-bold text-coach-green dark:bg-white/8 dark:text-emerald-200">
-            {String(formula.syntax || '').trim().startsWith('=') ? formula.syntax : `=${formula.syntax}`}
+            {displayFormat(formula.syntax)}
           </code>
         </div>
       </div>
@@ -41,6 +47,7 @@ export default function FormulaTheory({ formula, isGeneric }) {
           {exampleFormula && (
             <div className="rounded-2xl border border-coach-green/20 bg-coach-greenSoft/70 p-4 dark:border-emerald-400/15 dark:bg-emerald-400/10">
               <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Contoh Rumus</p>
+              <p className="mt-1 text-xs font-semibold text-black/45 dark:text-white/45">Ini contoh penggunaan, bukan jawaban latihan.</p>
               <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 font-mono text-sm font-black text-coach-green dark:bg-black/20 dark:text-emerald-200">
                 {exampleFormula}
               </code>
