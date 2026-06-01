@@ -11536,7 +11536,11 @@ const baseFormulaCatalogFull = [
   }
 ];
 
-export const formulaCatalogFull = baseFormulaCatalogFull.map((formula) => {
+const hiddenFormulaIds = new Set(['true', 'false']);
+
+export const formulaCatalogFull = baseFormulaCatalogFull
+  .filter((formula) => !hiddenFormulaIds.has(String(formula.id || '').toLowerCase()))
+  .map((formula) => {
   const learning = formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
   const nextTags = Array.from(new Set([...(formula.tags || []), 'practice']));
   return normalizeFormulaRecord({
