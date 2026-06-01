@@ -681,15 +681,137 @@ const makeLogic = (formula, refs) => {
   return `Baca format dari kiri ke kanan. Isi argumen pertama dulu, lalu lanjut ke argumen berikutnya.${refText}`;
 };
 
-const makeHints = (formula, refs, texts) => {
-  const name = formula.name;
-  return [
-    `Mulai dari tanda = lalu tulis ${name}.`,
-    refs.length ? `Cari dulu data yang dibutuhkan di tabel: ${refs[0]}.` : 'Tentukan dulu input pertama yang diminta rumus.',
-    refs.length > 1 ? `Lanjutkan argumen berikutnya: ${refs.slice(1).join(', ')}.` : 'Ikuti urutan argumen dari format, jangan loncat ke bagian akhir dulu.',
-    texts.length ? `Kalau ada teks/kriteria, pastikan nilainya benar-benar ada di tabel: ${texts.join(', ')}.` : 'Kalau butuh teks atau pilihan TRUE/FALSE, isi sesuai contoh parameter di tabel.',
-    'Cek lagi separator dan tutup kurung di akhir rumus.'
-  ];
+const cleanHintToken = (value = '') => String(value || '').replace(/^"|"$/g, '').trim();
+const uniqueHintItems = (items = []) => [...new Set((items || []).filter(Boolean).map((item) => String(item).trim()).filter(Boolean))];
+const listHintItems = (items = []) => uniqueHintItems(items).join(', ');
+
+const hintValue = (value = '') => cleanHintToken(value) ? `“${cleanHintToken(value)}”` : 'value dari soal';
+const hintList = (items = []) => listHintItems(items) || 'data yang diminta soal';
+const hintQuestionGoal = (formula) => {
+  const name = upper(formula.name);
+  if (['SUM','SUMIF','SUMIFS'].includes(name)) return 'total/jumlah';
+  if (['AVERAGE','AVERAGEIF','AVERAGEIFS'].includes(name)) return 'rata-rata';
+  if (/COUNT/.test(name)) return 'jumlah data';
+  if (lookupFunctions.has(name)) return 'hasil pencarian dari tabel referensi';
+  if (formula.category === 'Text') return 'hasil olahan teks';
+  if (formula.category === 'Date and Time') return 'hasil tanggal atau jam';
+  if (formula.category === 'Financial') return 'hasil perhitungan keuangan';
+  if (formula.category === 'Statistical' || formula.category === 'Compatibility') return 'hasil statistik dari parameter yang tersedia';
+  if (formula.category === 'Logical') return 'hasil keputusan TRUE/FALSE atau pilihan kondisi';
+  return 'hasil akhir sesuai soal';
+};
+
+const makeHints = (formula, refs = [], texts = []) => {
+  const name = upper(formula.name);
+  const hints = [];
+  const add = (hint) => {
+    const value = String(hint || '').trim();
+    if (value && !hints.includes(value)) hints.push(value);
+  };
+  const ref1 = refs[0];
+  const ref2 = refs[1];
+  const ref3 = refs[2];
+  const ref4 = refs[3];
+  const text1 = cleanHintToken(texts[0]);
+  const text2 = cleanHintToken(texts[1]);
+
+  add(`Pahami dulu tujuan soalnya: rumus ini harus menghasilkan ${hintQuestionGoal(formula)}, bukan sekadar menyalin format.`);
+
+  if (criteriaFunctions.has(name)) {
+    if (name === 'COUNTIF') {
+      add(`Select ${ref1 || 'range kriteria'} sebagai kolom/range yang dicek.`);
+      add(`Masukkan kriteria ${hintValue(text1)} persis seperti value di tabel.`);
+      add('COUNTIF tidak butuh range angka hasil karena tugasnya hanya menghitung jumlah data yang cocok.');
+      add('Urutannya: range kriteria, lalu kriteria. Jangan pakai COUNT untuk soal bersyarat.');
+    } else if (name === 'SUMIF') {
+      add(`Select ${ref1 || 'range kriteria'} sebagai range yang berisi syarat ${hintValue(text1)}.`);
+      add(`Masukkan kriteria ${hintValue(text1)} dari soal.`);
+      add(`Select ${ref3 || ref2 || 'range angka'} sebagai angka yang akan dijumlahkan.`);
+      add('Urutannya: range kriteria, kriteria, lalu range angka. Jangan mulai dari range angka.');
+    } else if (name === 'AVERAGEIF') {
+      add(`Soal ini mencari rata-rata dengan satu syarat. Select ${ref1 || 'range kriteria'} sebagai range berisi syarat ${hintValue(text1)}.`);
+      add(`Masukkan kriteria ${hintValue(text1)} persis seperti di tabel.`);
+      add(`Select ${ref3 || ref2 || 'range angka'} sebagai angka yang ingin dihitung rata-ratanya.`);
+      add('Urutannya: range kriteria, kriteria, lalu range angka.');
+    } else if (name === 'COUNTIFS') {
+      add(`Syarat pertama: select ${ref1 || 'range kriteria pertama'}, lalu masukkan ${hintValue(text1)}.`);
+      add(`Syarat kedua: select ${ref3 || ref2 || 'range kriteria kedua'}, lalu masukkan ${hintValue(text2)}.`);
+      add('COUNTIFS menghitung baris yang memenuhi semua syarat, jadi tidak perlu range angka hasil.');
+    } else {
+      const action = name === 'SUMIFS' ? 'dijumlahkan' : name === 'AVERAGEIFS' ? 'dihitung rata-ratanya' : name === 'MAXIFS' ? 'dicari nilai terbesarnya' : 'dicari nilai terkecilnya';
+      add(`Select ${ref1 || 'range angka'} sebagai range hasil yang akan ${action}.`);
+      add(`Syarat pertama: select ${ref2 || 'range kriteria pertama'}, lalu masukkan ${hintValue(text1)}.`);
+      add(`Syarat kedua: select ${ref4 || ref3 || 'range kriteria kedua'}, lalu masukkan ${hintValue(text2)}.`);
+      add(`Urutan ${name}: range hasil dulu, lalu pasangan range kriteria dan kriteria.`);
+    }
+  } else if (lookupFunctions.has(name)) {
+    if (name === 'VLOOKUP') {
+      add(`Tentukan lookup value dari ${ref1 || 'cell lookup'} sebagai data kunci yang dicari.`);
+      add(`Select table array ${ref2 || 'range master'}. Kolom pertama table array harus berisi lookup value.`);
+      add('Tentukan column index dari table array, bukan dari seluruh worksheet.');
+      add('Gunakan exact match untuk kode/nama yang harus sama persis.');
+    } else if (name === 'HLOOKUP') {
+      add(`Tentukan lookup value ${text1 ? hintValue(text1) : ref1 || 'dari soal'} terlebih dahulu.`);
+      add(`Select table array ${ref2 || 'range horizontal'}. Lookup value harus berada di baris pertama range itu.`);
+      add('Tentukan row index dari table array, bukan dari nomor baris worksheet.');
+      add('Gunakan exact match supaya hasil tidak meleset.');
+    } else if (name === 'XLOOKUP') {
+      add(`Tentukan lookup value ${ref1 || 'dari soal'} terlebih dahulu.`);
+      add(`Select lookup array ${ref2 || 'range pencarian'} sebagai tempat mencari lookup value.`);
+      add(`Select return array ${ref3 || 'range hasil'} sebagai kolom/range yang hasilnya ingin diambil.`);
+      add('Lookup array dan return array harus sejajar.');
+    } else if (name === 'MATCH' || name === 'XMATCH') {
+      add(`Tentukan value yang dicari: ${ref1 || hintValue(text1)}.`);
+      add(`Select lookup array ${ref2 || 'range pencarian'} sebagai tempat mencari posisinya.`);
+      add('Hasil MATCH/XMATCH adalah nomor posisi, bukan isi datanya.');
+    } else if (name === 'INDEX') {
+      add(`Select array utama ${ref1 || 'range tabel'} sebagai tempat mengambil hasil.`);
+      add('Isi nomor baris, lalu nomor kolom jika format memintanya.');
+      add('INDEX mengambil hasil dari perpotongan baris dan kolom.');
+    } else {
+      add(`Tentukan data kunci dan range referensi. Bagian pentingnya: ${hintList(refs)}.`);
+      if (texts.length) add(`Parameter/value dari soal: ${hintList(texts)}.`);
+    }
+  } else if (['SUM','AVERAGE','MIN','MAX'].includes(name)) {
+    const action = name === 'SUM' ? 'total keseluruhan' : name === 'AVERAGE' ? 'rata-rata' : name === 'MIN' ? 'angka terkecil' : 'angka terbesar';
+    add(`Soal meminta ${action}. Select ${ref1 || 'range angka'} sebagai range angka utama.`);
+    add(`Pastikan range yang dipilih berisi angka yang relevan, bukan kolom teks atau header yang tidak diminta.`);
+    add(`Untuk ${name}, satu range yang tepat sudah cukup jika datanya berurutan.`);
+  } else if (['COUNT','COUNTA','COUNTBLANK'].includes(name)) {
+    add(`Select ${ref1 || 'range data'} sebagai area yang ingin dihitung.`);
+    add(name === 'COUNT' ? 'COUNT hanya menghitung angka.' : name === 'COUNTA' ? 'COUNTA menghitung cell yang terisi, baik angka maupun teks.' : 'COUNTBLANK hanya menghitung cell kosong.');
+    add('Pilih rumus yang sesuai dengan jenis data yang ingin dihitung.');
+  } else if (name === 'IF') {
+    add('Tentukan kondisi yang mau diuji dulu.');
+    add(`Isi kondisi sebagai argumen pertama, misalnya ${ref1 || 'cell nilai dibandingkan dengan batas'}.`);
+    add(`Isi hasil jika benar, lalu hasil jika salah. Contoh value: ${hintList(texts)}.`);
+  } else if (formula.category === 'Text') {
+    add(`Select teks utama dari ${ref1 || 'cell teks utama'}.`);
+    add('Tentukan apakah rumus ini mengambil bagian teks, mencari teks, mengganti teks, menggabungkan teks, atau merapikan teks.');
+    if (refs.length > 1) add(`Isi parameter berikutnya sesuai urutan: ${hintList(refs.slice(1))}.`);
+  } else if (formula.category === 'Date and Time') {
+    add(`Select tanggal/jam utama dari ${ref1 || 'cell tanggal atau jam'}.`);
+    add('Pastikan input dikenali Excel sebagai tanggal/jam, bukan teks biasa.');
+    if (refs.length > 1) add(`Isi parameter tambahan sesuai soal: ${hintList(refs.slice(1))}.`);
+  } else if (formula.category === 'Financial') {
+    add('Baca parameter keuangan di tabel: rate, nper, pv, pmt, fv, dan type.');
+    add(`Mulai dari ${ref1 || 'rate'}, lalu lanjut ke ${ref2 || 'nper'}, lalu ${ref3 || 'nilai utama'}.`);
+    add('Perhatikan tanda plus/minus karena Excel membedakan uang keluar dan uang masuk.');
+  } else if (formula.category === 'Statistical' || formula.category === 'Compatibility') {
+    add('Pakai tabel parameter statistik yang sesuai, bukan tabel siswa atau penjualan umum.');
+    add(refs.length ? `Ambil parameter sesuai urutan: ${hintList(refs)}.` : 'Cocokkan parameter statistik dengan format rumus.');
+    add('Jangan ganti parameter dengan range yang tidak berhubungan.');
+  } else if (formula.category === 'Engineering') {
+    add('Cek jenis inputnya dulu: angka, unit, bilangan biner, atau bilangan kompleks.');
+    add(refs.length ? `Ambil parameter dari tabel sesuai urutan: ${hintList(refs)}.` : 'Isi parameter teknik sesuai format rumus.');
+  } else {
+    add(refs.length ? `Ambil data dari tabel sesuai urutan: ${hintList(refs)}.` : `Tentukan input utama untuk ${formula.name}.`);
+    if (texts.length) add(`Value/kriteria yang perlu ditulis: ${hintList(texts)}.`);
+  }
+
+  add('Setelah semua bagian dipilih, susun argumen mengikuti urutan format rumus.');
+  add('Terakhir cek tanda =, separator (; atau ,), dan kurung penutup.');
+  return hints.slice(0, 7);
 };
 
 export function generateDetailedExerciseForFormula(formula) {
@@ -1077,13 +1199,7 @@ function makeTieredExercise(formula, variantIndex = 0) {
     argumentCount: { min: refs.length, max: null },
     highlightRanges: requiredRefs,
     allowedFunctions: [formula.name],
-    hints: [
-      `Level ${variantIndex + 1}: pahami dulu apa yang diminta soal, jangan langsung ketik rumus final.`,
-      refs[0] ? `Argumen pertama mengarah ke ${refs[0]}. Cari posisinya di tabel.` : `Tentukan input pertama untuk ${formula.name}.`,
-      refs.length > 1 ? `Argumen berikutnya: ${refs.slice(1).join(', ')}.` : 'Kalau argumennya hanya satu, pastikan datanya sesuai jenis rumus.',
-      requiredTexts.length ? `Value/kriteria yang dipakai: ${requiredTexts.join(', ')}. Pastikan ada di tabel.` : 'Kalau ada parameter TRUE/FALSE, angka, atau pilihan lain, ikuti kebutuhan format rumus.',
-      'Baru setelah itu cek separator, urutan argumen, dan kurung penutup.'
-    ],
+    hints: makeHints(formula, refs, requiredTexts),
     successExplanation: `Tepat. Kamu menyelesaikan level ${variantIndex + 1} untuk ${formula.name} dengan data yang sesuai konteks latihan.`,
     formulaParts: [
       `${formula.name} adalah function utama untuk level ini.`,

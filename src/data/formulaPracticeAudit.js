@@ -47,6 +47,22 @@ const valueTokensLookSafe = (exercise) => {
   return tokens.every((value) => String(value || '').trim().length > 0);
 };
 
+
+const hintsLookHelpful = (exercise) => {
+  const hints = exercise?.hints || [];
+  const joined = hints.join(' ');
+  const hasQuestionDirection = /Soalnya adalah|tujuan soalnya|harus menghasilkan/i.test(joined);
+  const hasActionClue = /Select|Pilih|Tentukan|Masukkan|Ambil|Cari/i.test(joined);
+  const hasDataClue = /range|cell|kriteria|lookup|parameter|table array|return array|row index|column index|tanggal|teks|angka/i.test(joined);
+  const tooGeneric = /pahami dulu apa yang diminta soal, jangan langsung ketik rumus final|Argumen berikutnya:|Cocokkan urutan argumen dengan format rumusnya\.?$/i.test(joined);
+  return Array.isArray(hints)
+    && hints.length >= 5
+    && hasQuestionDirection
+    && hasActionClue
+    && hasDataClue
+    && !tooGeneric;
+};
+
 const questionLooksLikeQuestion = (exercise) => {
   const q = String(exercise?.question || '').trim();
   return q.length > 12 && /[?？]$/.test(q) && !/^(Basic|Criteria|Multi-condition|Reference|Mixed input|Challenge)\s*:/i.test(q);
@@ -65,7 +81,8 @@ export function auditFormulaPractice() {
       expectedFormulaMatchesName: Boolean(exercise && formulaStartsCorrect(formula, exercise)),
       questionExists: Boolean(exercise?.question && exercise.question.length > 12),
       questionIsNaturalQuestion: Boolean(exercise && questionLooksLikeQuestion(exercise)),
-      hintsExist: Boolean(Array.isArray(exercise?.hints) && exercise.hints.length >= 4),
+      hintsExist: Boolean(Array.isArray(exercise?.hints) && exercise.hints.length >= 5),
+      hintsHelpful: Boolean(exercise && hintsLookHelpful(exercise)),
       requiredRefsSafe: Boolean(!exercise || requiredRefsLookSafe(exercise)),
       requiredTextsSafe: Boolean(!exercise || valueTokensLookSafe(exercise)),
       tableCompactEnough: Boolean(!table || (table.rows?.length || 0) <= 16 || ['students', 'sales', 'dynamic', 'financeParameter', 'engineeringParameter', 'databaseMini', 'lookup'].includes(exercise.tableKey))

@@ -7234,22 +7234,317 @@ const formulaFriendlyNames = {
   TEXT: 'mengubah tampilan angka menjadi teks berformat'
 };
 
+const upperName = (value = '') => String(value || '').toUpperCase();
+const cleanToken = (value = '') => String(value || '').replace(/^=/, '').replace(/^"|"$/g, '').trim();
+const uniqueList = (items = []) => [...new Set((items || []).filter(Boolean).map((item) => String(item).trim()).filter(Boolean))];
+const asList = (items = []) => uniqueList(items).join(', ');
+const refKind = (ref = '') => String(ref).includes(':') ? 'range' : 'cell';
+const first = (items = [], fallback = '') => (items && items.length ? items[0] : fallback);
+const second = (items = [], fallback = '') => (items && items.length > 1 ? items[1] : fallback);
+const third = (items = [], fallback = '') => (items && items.length > 2 ? items[2] : fallback);
+const fourth = (items = [], fallback = '') => (items && items.length > 3 ? items[3] : fallback);
+const fifth = (items = [], fallback = '') => (items && items.length > 4 ? items[4] : fallback);
+
+const criteriaFormulaNames = new Set(['SUMIF','SUMIFS','COUNTIF','COUNTIFS','AVERAGEIF','AVERAGEIFS','MAXIFS','MINIFS']);
+const lookupFormulaNames = new Set(['VLOOKUP','HLOOKUP','XLOOKUP','LOOKUP','MATCH','XMATCH','INDEX','INDEX MATCH','ADDRESS','INDIRECT','OFFSET','ROW','COLUMN','ROWS','COLUMNS','FORMULATEXT','HYPERLINK']);
+const logicalFormulaNames = new Set(['IF','IFS','AND','OR','NOT','IFERROR','IFNA','SWITCH','TRUE','FALSE','XOR']);
+const textFormulaNames = new Set(['TEXT','LEFT','LEFTB','RIGHT','RIGHTB','MID','MIDB','LEN','LENB','TRIM','CLEAN','LOWER','UPPER','PROPER','CONCAT','CONCATENATE','TEXTJOIN','TEXTSPLIT','TEXTBEFORE','TEXTAFTER','FIND','FINDB','SEARCH','SEARCHB','SUBSTITUTE','REPLACE','REPLACEB','VALUE','NUMBERVALUE','EXACT','REPT','CHAR','UNICHAR','CODE','UNICODE']);
+const dateFormulaNames = new Set(['DATE','DATEVALUE','DAY','MONTH','YEAR','TODAY','NOW','DATEDIF','DAYS','NETWORKDAYS','NETWORKDAYS.INTL','WORKDAY','WORKDAY.INTL','EDATE','EOMONTH','HOUR','MINUTE','SECOND','TIME','TIMEVALUE','WEEKDAY','WEEKNUM','ISOWEEKNUM','YEARFRAC','DAYS360']);
+const dynamicFormulaNames = new Set(['FILTER','SORT','SORTBY','UNIQUE','TRANSPOSE','VSTACK','HSTACK','TAKE','DROP','CHOOSECOLS','CHOOSEROWS','EXPAND','TOCOL','TOROW','WRAPCOLS','WRAPROWS','SEQUENCE','RANDARRAY']);
+const dbFormulaNames = new Set(['DAVERAGE','DCOUNT','DCOUNTA','DGET','DMAX','DMIN','DPRODUCT','DSTDEV','DSTDEVP','DSUM','DVAR','DVARP']);
+const financeFormulaNames = new Set(['PMT','FV','PV','RATE','NPER','NPV','IRR','XIRR','XNPV','MIRR','IPMT','PPMT','CUMIPMT','CUMPRINC','DB','DDB','SLN','SYD','VDB','PRICE','YIELD','DURATION','MDURATION','ACCRINT','ACCRINTM','DISC','INTRATE','RECEIVED','EFFECT','NOMINAL','RRI','PDURATION','FVSCHEDULE']);
+const mathFormulaNames = new Set(['SUM','AVERAGE','MIN','MAX','COUNT','COUNTA','COUNTBLANK','LARGE','SMALL','PRODUCT','SUMPRODUCT','SUMSQ','ABS','ROUND','ROUNDUP','ROUNDDOWN','INT','MOD','CEILING','CEILING.MATH','FLOOR','FLOOR.MATH','POWER','SQRT','RAND','RANDBETWEEN','SUBTOTAL','AGGREGATE','COMBIN','COMBINA','FACT','MROUND','QUOTIENT','TRUNC','SIGN','PI']);
+const statFormulaNames = new Set(['NEGBINOMDIST','NEGBINOM.DIST','BINOMDIST','BINOM.DIST','BINOM.DIST.RANGE','BINOM.INV','NORMDIST','NORM.DIST','NORMINV','NORM.INV','NORMSDIST','NORM.S.DIST','NORMSINV','NORM.S.INV','CHITEST','CHISQ.TEST','CONFIDENCE','CONFIDENCE.NORM','CONFIDENCE.T','CORREL','COVAR','COVARIANCE.P','COVARIANCE.S','FTEST','F.TEST','TTEST','T.TEST','ZTEST','BETA.DIST','BETADIST','GAMMA.DIST','GAMMADIST','WEIBULL','WEIBULL.DIST','EXPON.DIST','EXPONDIST','POISSON','POISSON.DIST','PERCENTILE','PERCENTILE.EXC','PERCENTILE.INC','QUARTILE','QUARTILE.EXC','QUARTILE.INC','RANK','RANK.EQ','RANK.AVG','STDEV.S','STDEV.P','VAR.S','VAR.P','MEDIAN','MODE','MODE.SNGL','MODE.MULT']);
+
+const addBaseHint = (hints, hint) => {
+  const value = String(hint || '').trim();
+  if (value && !hints.includes(value)) hints.push(value);
+};
+
+const describeQuestionGoal = (question = '') => {
+  const clean = String(question || '').replace(/[?？]$/g, '').trim();
+  if (/rata-rata/i.test(clean)) return 'rata-rata yang diminta soal';
+  if (/total|jumlahkan|keseluruhan/i.test(clean)) return 'total/jumlah yang diminta soal';
+  if (/jumlah data|berapa jumlah/i.test(clean)) return 'jumlah data yang memenuhi soal';
+  if (/posisi|di posisi/i.test(clean)) return 'posisi data yang dicari';
+  if (/harga|nama produk|master|lookup|diambil/i.test(clean)) return 'data hasil pencarian dari tabel referensi';
+  if (/peluang|distribusi|statistik/i.test(clean)) return 'hasil perhitungan statistik dari parameter yang tersedia';
+  if (/status|keputusan|lulus|benar|salah/i.test(clean)) return 'hasil keputusan dari kondisi yang diuji';
+  if (/tanggal|hari|bulan|tahun|jam|menit|detik/i.test(clean)) return 'hasil dari tanggal atau jam yang dipakai';
+  if (/teks|karakter|huruf|kata|email|kode/i.test(clean)) return 'hasil olahan teks dari data yang tersedia';
+  return 'hasil akhir yang diminta soal';
+};
+
+const rangeLabel = (ref = '') => String(ref || '').includes(':') ? 'range' : 'cell';
+const quotedValue = (value = '') => value ? `“${cleanToken(value)}”` : 'value dari soal';
+
 const buildBetterHints = (exercise = {}) => {
   const refs = extractMainRefs(exercise);
-  const texts = exercise.requiredTexts || [];
-  const name = exercise.formulaName;
-  const hints = [
-    `Baca dulu pertanyaannya: ${ensureQuestionText(exercise.question)}`,
-    `Pilih rumus ${name} karena tugasnya untuk ${formulaFriendlyNames[name] || 'mengolah data sesuai soal'}.`
-  ];
+  const texts = uniqueList(exercise.requiredTexts || []);
+  const name = upperName(exercise.formulaName);
+  const tableKey = exercise.tableKey || '';
+  const hints = [];
+  const question = ensureQuestionText(exercise.question);
+  const goal = describeQuestionGoal(question);
+  const ref1 = first(refs);
+  const ref2 = second(refs);
+  const ref3 = third(refs);
+  const ref4 = fourth(refs);
+  const ref5 = fifth(refs);
+  const text1 = cleanToken(first(texts));
+  const text2 = cleanToken(second(texts));
+  const text3 = cleanToken(third(texts));
 
-  if (refs.length) hints.push(`Cari data yang dipakai di tabel. Range/cell pentingnya: ${refs.join(', ')}.`);
-  if (texts.length) hints.push(`Value/kriteria yang harus masuk: ${texts.join(', ')}.`);
+  addBaseHint(hints, `Soalnya adalah: ${question} Artinya, rumus harus menghasilkan ${goal}.`);
 
-  hints.push('Isi argumen satu per satu dari kiri ke kanan. Jangan loncat dulu ke jawaban final.');
-  hints.push('Bandingkan lagi soal dengan tabel. Pastikan data yang diminta memang ada di tabel latihan.');
-  hints.push('Cek lagi separatornya: mode Indonesia pakai titik koma (;), mode English pakai koma (,).');
-  return hints;
+  if (mathFormulaNames.has(name) || ['SUM','AVERAGE','MIN','MAX','COUNT','COUNTA','COUNTBLANK'].includes(name)) {
+    if (['SUM','AVERAGE','MIN','MAX'].includes(name)) {
+      const action = name === 'SUM' ? 'total keseluruhan' : name === 'AVERAGE' ? 'rata-rata' : name === 'MIN' ? 'angka paling kecil' : 'angka paling besar';
+      addBaseHint(hints, `Soal ini meminta ${action}. Cari kolom/range angka yang sesuai dengan pertanyaan.`);
+      addBaseHint(hints, `Select ${ref1 || 'range angka'} sebagai range utama. Pastikan range itu berisi data angka, bukan kolom teks.`);
+      addBaseHint(hints, `Untuk ${name}, satu range yang tepat sudah cukup jika datanya berurutan. Tidak perlu mengetik angka satu per satu.`);
+      addBaseHint(hints, 'Kalau kamu memilih header juga, pastikan memang latihan meminta header ikut terseleksi. Kalau tidak, mulai dari baris data pertama.');
+    } else if (name === 'COUNT') {
+      addBaseHint(hints, `COUNT dipakai untuk menghitung cell yang berisi angka. Select ${ref1 || 'range angka'} sebagai area yang dicek.`);
+      addBaseHint(hints, 'Teks dan cell kosong tidak ikut dihitung. Jadi pilih range yang memang berisi angka.');
+      addBaseHint(hints, 'Jangan pakai COUNTA kalau soal hanya meminta jumlah cell angka.');
+    } else if (name === 'COUNTA') {
+      addBaseHint(hints, `COUNTA menghitung semua cell yang terisi. Select ${ref1 || 'range data'} sebagai area yang ingin dicek.`);
+      addBaseHint(hints, 'Angka dan teks ikut dihitung. Cell kosong tidak ikut dihitung.');
+      addBaseHint(hints, 'Jangan pakai COUNT kalau datanya berisi campuran angka dan teks.');
+    } else if (name === 'COUNTBLANK') {
+      addBaseHint(hints, `COUNTBLANK mencari cell kosong. Select ${ref1 || 'range data'} yang memang berisi kemungkinan cell kosong.`);
+      addBaseHint(hints, 'Yang dihitung hanya cell kosong. Cell berisi teks, angka, atau spasi tidak dihitung sebagai kosong murni.');
+      addBaseHint(hints, 'Jangan pakai COUNTA, karena COUNTA justru menghitung cell yang terisi.');
+    } else if (['LARGE','SMALL'].includes(name)) {
+      addBaseHint(hints, `Select range angka ${ref1 || 'range angka'} terlebih dahulu.`);
+      addBaseHint(hints, `Setelah range, tentukan urutan ke berapa yang diminta soal, misalnya terbesar ke-2 atau terkecil ke-3.`);
+      addBaseHint(hints, `${name} butuh dua bagian utama: range angka dan nomor urutan.`);
+    } else if (['ROUND','ROUNDUP','ROUNDDOWN','MROUND','TRUNC','INT','CEILING','CEILING.MATH','FLOOR','FLOOR.MATH'].includes(name)) {
+      addBaseHint(hints, `Ambil angka utama dari ${ref1 || 'cell angka'}, lalu tentukan digit/kelipatan pembulatannya.`);
+      addBaseHint(hints, 'Bedakan pembulatan biasa, selalu ke atas, selalu ke bawah, dan pembulatan ke kelipatan tertentu.');
+      if (refs.length > 1) addBaseHint(hints, `Parameter pembantu yang dipakai: ${asList(refs.slice(1))}.`);
+    } else if (['ABS','POWER','SQRT','MOD','QUOTIENT','FACT','COMBIN','COMBINA','PRODUCT','SUMPRODUCT','SUMSQ'].includes(name)) {
+      addBaseHint(hints, `${name} memakai angka atau range sesuai formatnya. Ambil input dari tabel sesuai urutan.`);
+      if (refs.length) addBaseHint(hints, `Input yang dipakai di latihan ini: ${asList(refs)}.`);
+      addBaseHint(hints, 'Kalau format meminta angka tunggal, jangan pilih range panjang. Kalau format meminta array/range, baru pilih range.');
+    } else if (name === 'RAND') {
+      addBaseHint(hints, 'RAND menghasilkan angka acak 0 sampai 1. Rumus ini tidak butuh input dari tabel.');
+      addBaseHint(hints, 'Karena acak, hasil bisa berubah setiap workbook dihitung ulang. Yang dilatih adalah struktur rumusnya.');
+    } else if (name === 'RANDBETWEEN') {
+      addBaseHint(hints, 'RANDBETWEEN butuh batas bawah dan batas atas. Tentukan angka paling kecil dulu, lalu angka paling besar.');
+      if (texts.length) addBaseHint(hints, `Batas yang dipakai: ${asList(texts)}.`);
+      addBaseHint(hints, 'Hasilnya acak, jadi yang dicek adalah apakah batasnya sudah benar.');
+    } else {
+      addBaseHint(hints, `${name} adalah rumus hitung angka. Tentukan input angka/range yang diminta soal.`);
+      if (refs.length) addBaseHint(hints, `Input yang dipakai: ${asList(refs)}.`);
+    }
+  } else if (criteriaFormulaNames.has(name)) {
+    if (name === 'COUNTIF') {
+      addBaseHint(hints, `Cari kolom yang berisi data untuk dicek. Di latihan ini gunakan ${ref1 || 'range kriteria'} sebagai range kriteria.`);
+      addBaseHint(hints, `Masukkan kriteria ${quotedValue(text1)}. Kriteria harus sama dengan value yang benar-benar ada di tabel.`);
+      addBaseHint(hints, 'COUNTIF hanya menghitung jumlah data yang cocok, jadi tidak perlu range angka tambahan.');
+      addBaseHint(hints, 'Urutan mengisinya: range kriteria, lalu kriteria. Jangan gunakan COUNT karena COUNT tidak membaca syarat.');
+    } else if (name === 'SUMIF') {
+      addBaseHint(hints, `Cari kolom yang berisi kriteria. Gunakan ${ref1 || 'range kriteria'} karena di sana Excel mengecek ${quotedValue(text1)}.`);
+      addBaseHint(hints, `Masukkan kriteria ${quotedValue(text1)} persis seperti yang tertulis di soal atau tabel.`);
+      addBaseHint(hints, `Select ${ref3 || ref2 || 'range angka'} sebagai range angka yang ingin dijumlahkan.`);
+      addBaseHint(hints, 'Urutan SUMIF: range kriteria, kriteria, lalu range angka. Jangan mulai dari range angka.');
+    } else if (name === 'AVERAGEIF') {
+      addBaseHint(hints, `Soal ini mencari rata-rata berdasarkan satu syarat. Cari dulu kolom yang berisi syarat ${quotedValue(text1)}.`);
+      addBaseHint(hints, `Select ${ref1 || 'range kriteria'} sebagai range kriteria, karena range ini berisi value yang dicek.`);
+      addBaseHint(hints, `Masukkan kriteria ${quotedValue(text1)}. Tulis persis seperti value di tabel, termasuk spasi dan hurufnya.`);
+      addBaseHint(hints, `Select ${ref3 || ref2 || 'range angka'} sebagai range angka yang ingin dihitung rata-ratanya.`);
+      addBaseHint(hints, 'Urutan AVERAGEIF: range kriteria, kriteria, lalu range angka. Kalau range angka ditaruh di awal, hasilnya bisa salah.');
+    } else if (name === 'COUNTIFS') {
+      addBaseHint(hints, 'Soal ini menghitung jumlah data dengan lebih dari satu syarat. Setiap syarat harus punya pasangan range dan value.');
+      addBaseHint(hints, `Pasangan pertama: select ${ref1 || 'range kriteria pertama'}, lalu masukkan kriteria ${quotedValue(text1)}.`);
+      addBaseHint(hints, `Pasangan kedua: select ${ref3 || ref2 || 'range kriteria kedua'}, lalu masukkan kriteria ${quotedValue(text2)}.`);
+      addBaseHint(hints, 'COUNTIFS tidak butuh range angka hasil. Ia hanya menghitung baris yang memenuhi semua syarat.');
+    } else {
+      const action = name === 'SUMIFS' ? 'dijumlahkan' : name === 'AVERAGEIFS' ? 'dihitung rata-ratanya' : name === 'MAXIFS' ? 'dicari nilai terbesarnya' : 'dicari nilai terkecilnya';
+      addBaseHint(hints, `Soal ini memakai beberapa syarat. Mulai dari range angka yang akan ${action}.`);
+      addBaseHint(hints, `Select ${ref1 || 'range angka'} sebagai range hasil, yaitu angka yang akan ${action}.`);
+      addBaseHint(hints, `Syarat pertama: select ${ref2 || 'range kriteria pertama'}, lalu masukkan ${quotedValue(text1)}.`);
+      addBaseHint(hints, `Syarat kedua: select ${ref4 || ref3 || 'range kriteria kedua'}, lalu masukkan ${quotedValue(text2)}.`);
+      addBaseHint(hints, `Urutan ${name}: range hasil dulu, lalu pasangan range kriteria dan kriteria. Jangan tertukar dengan SUMIF/AVERAGEIF.`);
+    }
+  } else if (lookupFormulaNames.has(name)) {
+    if (name === 'VLOOKUP') {
+      addBaseHint(hints, `Tentukan lookup value dulu, yaitu data kunci yang mau dicari. Di latihan ini gunakan ${ref1 || 'cell lookup value'}.`);
+      addBaseHint(hints, `Select table array ${ref2 || 'range master'}. Pastikan kolom pertama di range itu berisi kode/value yang dicari.`);
+      addBaseHint(hints, `Tentukan nomor kolom hasil. Hitung dari kolom pertama table array, bukan dari kolom A worksheet.`);
+      addBaseHint(hints, 'Gunakan exact match untuk kode produk agar Excel tidak mengambil hasil yang mirip tapi salah.');
+    } else if (name === 'HLOOKUP') {
+      addBaseHint(hints, `Tentukan lookup value dari soal, misalnya ${text1 ? quotedValue(text1) : ref1 || 'kode produk yang dicari'}.`);
+      addBaseHint(hints, `Select table array ${ref2 || 'range master horizontal'}. Lookup value harus berada di baris pertama range ini.`);
+      addBaseHint(hints, 'Tentukan nomor baris hasil. Hitung dari baris pertama table array, bukan dari nomor baris worksheet.');
+      addBaseHint(hints, 'Gunakan exact match agar kode yang dicari harus sama persis.');
+    } else if (name === 'XLOOKUP') {
+      addBaseHint(hints, `Tentukan lookup value dulu: ${ref1 || 'cell yang berisi data yang dicari'}.`);
+      addBaseHint(hints, `Select lookup array ${ref2 || 'range tempat mencari data kunci'}. Range ini harus berisi value yang dicari.`);
+      addBaseHint(hints, `Select return array ${ref3 || 'range hasil'}. Dari range inilah Excel mengambil jawabannya.`);
+      addBaseHint(hints, 'Pastikan lookup array dan return array sejajar. Kalau jumlah barisnya beda, hasil bisa meleset.');
+    } else if (name === 'MATCH' || name === 'XMATCH') {
+      addBaseHint(hints, `Tentukan value yang dicari, yaitu ${ref1 || text1 || 'lookup value dari soal'}.`);
+      addBaseHint(hints, `Select ${ref2 || 'lookup array'} sebagai tempat mencari posisi value tersebut.`);
+      addBaseHint(hints, 'Karena yang dicari adalah posisi, hasilnya berupa nomor urutan, bukan nama produk atau harga.');
+      addBaseHint(hints, 'Gunakan match mode/exact match jika soal meminta value yang sama persis.');
+    } else if (name === 'LOOKUP') {
+      addBaseHint(hints, `Tentukan lookup value dari ${ref1 || 'cell lookup value'} sebagai data kunci yang dicari.`);
+      addBaseHint(hints, `Select lookup vector ${ref2 || 'range pencarian'} sebagai tempat Excel mencari lookup value.`);
+      addBaseHint(hints, `Select result vector ${ref3 || 'range hasil'} sebagai range yang hasilnya ingin diambil.`);
+      addBaseHint(hints, 'Lookup vector dan result vector harus sejajar agar hasilnya tidak bergeser.');
+    } else if (name === 'INDEX') {
+      addBaseHint(hints, `Select array utama ${ref1 || 'range tabel referensi'} sebagai area tempat mengambil hasil.`);
+      addBaseHint(hints, `Tentukan nomor baris dari soal atau parameter latihan, lalu isi sebagai argumen row_num.`);
+      addBaseHint(hints, `Jika diminta kolom tertentu, tentukan nomor kolomnya juga. INDEX mengambil data dari titik potong baris dan kolom.`);
+    } else if (name === 'ADDRESS') {
+      addBaseHint(hints, 'ADDRESS membuat alamat cell dari nomor baris dan nomor kolom. Tentukan dulu nomor baris yang diminta soal.');
+      addBaseHint(hints, 'Setelah nomor baris, isi nomor kolom. Contoh: baris 1 dan kolom 2 akan membentuk alamat B1.');
+      addBaseHint(hints, 'Argumen tambahan seperti tipe absolut/relatif boleh diisi kalau soal memintanya.');
+      addBaseHint(hints, 'Jangan pilih range tabel, karena ADDRESS bekerja dari angka baris dan kolom.');
+    } else if (name === 'OFFSET') {
+      addBaseHint(hints, `Pilih titik awal/reference terlebih dahulu, yaitu ${ref1 || 'cell awal'}.`);
+      addBaseHint(hints, 'Tentukan berapa baris turun/naik dari titik awal. Angka positif turun, angka negatif naik.');
+      addBaseHint(hints, 'Tentukan berapa kolom geser dari titik awal. Angka positif ke kanan, angka negatif ke kiri.');
+      addBaseHint(hints, 'Kalau format meminta height dan width, isi ukuran range hasil yang ingin dikembalikan.');
+    } else if (name === 'INDEX MATCH') {
+      addBaseHint(hints, `Select return range ${ref1 || 'range hasil'} sebagai area nilai yang ingin diambil.`);
+      addBaseHint(hints, `Di dalam MATCH, pakai lookup value ${ref2 || 'cell lookup'} dan lookup range ${ref3 || 'range kode master'}.`);
+      addBaseHint(hints, 'MATCH mencari posisi data, lalu posisi itu dipakai INDEX untuk mengambil hasil.');
+      addBaseHint(hints, 'Pastikan return range sejajar dengan lookup range agar hasil tidak bergeser.');
+    } else if (name === 'HYPERLINK') {
+      addBaseHint(hints, `Ambil alamat link dari ${ref1 || 'cell URL'}, lalu isi teks tampilannya jika diminta.`);
+      addBaseHint(hints, 'Argumen pertama adalah tujuan link. Argumen kedua hanya nama yang tampil di cell.');
+    } else if (name === 'FORMULATEXT') {
+      addBaseHint(hints, `Pilih cell yang berisi formula, yaitu ${ref1 || 'cell formula'} pada tabel.`);
+      addBaseHint(hints, 'FORMULATEXT tidak menghitung ulang formula itu. Ia hanya menampilkan teks rumus yang ada di cell tersebut.');
+      addBaseHint(hints, 'Jangan pilih cell biasa yang tidak punya formula, karena hasilnya bisa error.');
+      addBaseHint(hints, 'Argumennya cukup satu: cell yang formulanya ingin ditampilkan.');
+    } else if (['ROW','COLUMN','ROWS','COLUMNS'].includes(name)) {
+      addBaseHint(hints, `Select ${ref1 || 'cell/range'} yang ingin dicek nomor baris, nomor kolom, jumlah baris, atau jumlah kolomnya.`);
+      addBaseHint(hints, `${name} tidak mencari isi cell, tapi membaca posisi atau ukuran range.`);
+    } else {
+      addBaseHint(hints, refs.length ? `Tentukan data kunci dan range referensi dari tabel. Bagian pentingnya: ${asList(refs)}.` : `Tentukan value yang dicari dan area referensi untuk ${name}.`);
+      if (texts.length) addBaseHint(hints, `Parameter tambahan yang terlihat di soal: ${asList(texts)}.`);
+    }
+  } else if (logicalFormulaNames.has(name)) {
+    if (name === 'IF') {
+      addBaseHint(hints, 'Tentukan kondisi yang mau diuji dulu. Contohnya nilai sudah memenuhi batas tertentu atau belum.');
+      addBaseHint(hints, `Bagian pertama IF adalah kondisi, misalnya ${ref1 || 'cell nilai dibandingkan dengan batas'}.`);
+      addBaseHint(hints, `Setelah kondisi, isi hasil kalau kondisi benar: ${quotedValue(text1)}.`);
+      addBaseHint(hints, `Terakhir, isi hasil kalau kondisi salah: ${quotedValue(text2)}.`);
+    } else if (name === 'IFS') {
+      addBaseHint(hints, 'IFS mengecek beberapa kondisi dari kiri ke kanan. Kondisi pertama yang benar akan langsung dipakai.');
+      addBaseHint(hints, `Pasangkan kondisi pertama dengan hasilnya, misalnya ${ref1 || 'kondisi pertama'} lalu ${quotedValue(text1)}.`);
+      addBaseHint(hints, `Lanjutkan pasangan kondisi berikutnya. Kalau butuh jawaban default, gunakan TRUE di pasangan terakhir.`);
+      addBaseHint(hints, 'Jangan lupa: IFS selalu berjalan berpasangan, kondisi lalu hasil.');
+    } else if (name === 'AND' || name === 'OR') {
+      addBaseHint(hints, `${name} mengecek beberapa kondisi. Tentukan kondisi pertama dan kondisi kedua dari tabel.`);
+      addBaseHint(hints, `Kondisi yang dipakai di latihan ini: ${asList(refs) || 'kondisi dari soal'}.`);
+      addBaseHint(hints, name === 'AND' ? 'AND bernilai TRUE hanya kalau semua kondisi benar.' : 'OR bernilai TRUE kalau minimal satu kondisi benar.');
+    } else if (name === 'NOT') {
+      addBaseHint(hints, `Pilih kondisi yang ingin dibalik hasilnya, misalnya ${ref1 || 'kondisi dari soal'}.`);
+      addBaseHint(hints, 'NOT mengubah TRUE menjadi FALSE, dan FALSE menjadi TRUE.');
+    } else if (name === 'IFERROR' || name === 'IFNA') {
+      addBaseHint(hints, `Masukkan rumus utama yang mungkin error sebagai argumen pertama.`);
+      addBaseHint(hints, `Masukkan teks pengganti sebagai argumen kedua, misalnya ${quotedValue(text1)}.`);
+      addBaseHint(hints, name === 'IFNA' ? 'IFNA hanya menangani error #N/A.' : 'IFERROR menangani banyak jenis error seperti #DIV/0!, #VALUE!, dan #N/A.');
+    } else if (name === 'SWITCH') {
+      addBaseHint(hints, `Pilih nilai yang ingin diuji, biasanya dari ${ref1 || 'cell status/kode'}.`);
+      addBaseHint(hints, 'Setelah itu isi pasangan value dan hasil. Kalau value cocok, hasil pasangannya yang keluar.');
+      addBaseHint(hints, 'Tambahkan hasil default di bagian akhir agar ada jawaban saat tidak ada value yang cocok.');
+    } else if (name === 'TRUE' || name === 'FALSE') {
+      addBaseHint(hints, `${name} adalah nilai logika bawaan Excel. Rumus ini tidak mengambil data dari tabel.`);
+      addBaseHint(hints, 'Tugasnya hanya menghasilkan nilai logika tetap, yaitu TRUE atau FALSE.');
+      addBaseHint(hints, 'Karena tidak punya argumen, isi rumusnya memakai nama function dengan kurung kosong.');
+      addBaseHint(hints, 'Jangan menulis teks dalam tanda kutip, karena yang diminta adalah nilai logika, bukan teks biasa.');
+    } else if (name === 'XOR') {
+      addBaseHint(hints, 'XOR mengecek beberapa kondisi TRUE/FALSE. Hasilnya TRUE kalau jumlah kondisi yang TRUE ganjil.');
+      addBaseHint(hints, refs.length ? `Pilih kondisi yang ingin dicek dari tabel: ${asList(refs)}.` : 'Tentukan kondisi pertama dan kondisi kedua dari tabel.');
+      addBaseHint(hints, 'Jangan samakan XOR dengan OR. OR cukup butuh satu TRUE, sedangkan XOR melihat ganjil/genapnya jumlah TRUE.');
+      addBaseHint(hints, 'Isi argumen berupa kondisi logika, bukan teks biasa.');
+    } else {
+      addBaseHint(hints, `${name} fokus pada TRUE/FALSE. Tentukan dulu kondisi atau nilai logika yang diminta soal.`);
+      if (refs.length) addBaseHint(hints, `Kondisi atau input logika yang dipakai: ${asList(refs)}.`);
+      addBaseHint(hints, 'Pastikan setiap argumen menghasilkan TRUE/FALSE atau bisa dibaca Excel sebagai nilai logika.');
+    }
+  } else if (textFormulaNames.has(name)) {
+    addBaseHint(hints, `Cari teks utama yang mau diolah. Di latihan ini biasanya berada di ${ref1 || 'cell teks utama'}.`);
+    if (['LEFT','LEFTB'].includes(name)) addBaseHint(hints, 'LEFT mengambil karakter dari kiri. Tentukan jumlah karakter yang ingin diambil.');
+    else if (['RIGHT','RIGHTB'].includes(name)) addBaseHint(hints, 'RIGHT mengambil karakter dari kanan. Tentukan jumlah karakter yang ingin diambil.');
+    else if (['MID','MIDB'].includes(name)) addBaseHint(hints, 'MID mengambil teks dari tengah. Tentukan posisi mulai, lalu jumlah karakter yang diambil.');
+    else if (['LEN','LENB'].includes(name)) addBaseHint(hints, 'LEN menghitung jumlah karakter dari teks. Cukup pilih cell teks yang ingin dihitung.');
+    else if (['TRIM','CLEAN','LOWER','UPPER','PROPER'].includes(name)) addBaseHint(hints, 'Pilih cell teks, lalu biarkan rumus merapikan spasi, membersihkan karakter, atau mengubah bentuk huruf.');
+    else if (['CONCAT','CONCATENATE','TEXTJOIN'].includes(name)) addBaseHint(hints, 'Tentukan teks atau range yang ingin digabung. Untuk TEXTJOIN, tentukan pemisahnya dulu jika diminta.');
+    else if (['FIND','FINDB','SEARCH','SEARCHB'].includes(name)) addBaseHint(hints, 'Tentukan teks kecil yang ingin dicari, lalu pilih teks utama tempat pencarian dilakukan.');
+    else if (['SUBSTITUTE','REPLACE','REPLACEB'].includes(name)) addBaseHint(hints, 'Tentukan teks utama, bagian yang ingin diganti, dan penggantinya. Jangan tertukar antara teks lama dan teks baru.');
+    else if (['VALUE','NUMBERVALUE'].includes(name)) addBaseHint(hints, 'Pilih teks yang terlihat seperti angka. Rumus ini mengubah angka yang masih berbentuk teks menjadi angka sungguhan.');
+    else addBaseHint(hints, 'Tentukan apakah rumus ini mengambil, menggabungkan, mencari, mengganti, atau membersihkan teks.');
+    if (refs.length > 1) addBaseHint(hints, `Parameter berikutnya yang perlu diisi: ${asList(refs.slice(1))}.`);
+  } else if (dateFormulaNames.has(name)) {
+    addBaseHint(hints, `Cari data tanggal/jam yang diminta soal, biasanya di ${ref1 || 'cell tanggal atau jam'}.`);
+    if (name === 'DATE') addBaseHint(hints, 'DATE dibangun dari tiga bagian: tahun, bulan, tanggal. Urutannya jangan dibalik.');
+    else if (['DAY','MONTH','YEAR','HOUR','MINUTE','SECOND'].includes(name)) addBaseHint(hints, `${name} mengambil satu bagian dari tanggal/jam. Input utamanya cukup satu cell tanggal atau jam.`);
+    else if (['NETWORKDAYS','NETWORKDAYS.INTL','WORKDAY','WORKDAY.INTL'].includes(name)) addBaseHint(hints, 'Tentukan tanggal awal dan tanggal akhir atau jumlah hari kerja. Perhatikan hari libur jika tabel menyediakannya.');
+    else if (['DATEDIF','DAYS','DAYS360','YEARFRAC'].includes(name)) addBaseHint(hints, 'Untuk selisih tanggal, isi tanggal awal dulu lalu tanggal akhir. Jangan tertukar.');
+    else if (['EDATE','EOMONTH'].includes(name)) addBaseHint(hints, 'Pilih tanggal awal, lalu tentukan berapa bulan ingin digeser.');
+    else addBaseHint(hints, 'Pastikan input berupa tanggal/jam yang dikenali Excel, bukan teks biasa.');
+  } else if (name === 'LET') {
+    addBaseHint(hints, 'LET dipakai untuk memberi nama sementara pada hasil perhitungan di dalam satu rumus. Tentukan nama variabelnya dulu.');
+    addBaseHint(hints, 'Setelah nama variabel, isi nilai atau perhitungan yang akan disimpan ke nama itu.');
+    addBaseHint(hints, 'Di bagian akhir, panggil nama variabel atau lanjutkan perhitungan memakai nama tersebut.');
+    addBaseHint(hints, 'Urutan LET selalu berpasangan: nama, nilai, lalu perhitungan akhir.');
+  } else if (dynamicFormulaNames.has(name)) {
+    addBaseHint(hints, `${name} menghasilkan output array, jadi hasilnya bisa melebar ke beberapa cell.`);
+    if (name === 'FILTER') addBaseHint(hints, 'Pilih tabel utama dulu, lalu buat kondisi filter dari kolom yang sejajar dengan tabel utama.');
+    else if (['SORT','SORTBY'].includes(name)) addBaseHint(hints, 'Pilih area data yang mau diurutkan, lalu tentukan kolom/range acuan sort.');
+    else if (name === 'UNIQUE') addBaseHint(hints, 'Pilih range yang ingin dibersihkan dari data dobel. Hasilnya hanya data unik.');
+    else if (['TAKE','DROP'].includes(name)) addBaseHint(hints, 'Pilih array utama, lalu tentukan berapa baris/kolom yang diambil atau dibuang.');
+    else addBaseHint(hints, refs.length ? `Area array yang dipakai: ${asList(refs)}.` : 'Pilih area array yang akan diproses.');
+  } else if (dbFormulaNames.has(name)) {
+    addBaseHint(hints, 'Rumus database selalu butuh 3 bagian: database lengkap, field, dan criteria.');
+    addBaseHint(hints, `Select database lengkap ${ref1 || 'range database'}, bukan hanya satu kolom.`);
+    addBaseHint(hints, `Isi field/kolom yang ingin dihitung dari ${ref2 || 'field'}, lalu pilih criteria ${ref3 || 'range criteria'}.`);
+  } else if (financeFormulaNames.has(name) || tableKey === 'financeParameter') {
+    addBaseHint(hints, 'Baca parameter keuangan di tabel: rate, nper, pv, pmt, fv, dan type. Jangan langsung pilih semua cell.');
+    addBaseHint(hints, `Mulai dari rate/bunga ${ref1 || 'cell rate'}. Pastikan periodenya sama dengan periode pembayaran.`);
+    addBaseHint(hints, `Lanjut ke nper/periode ${ref2 || 'cell nper'}, lalu nilai utama seperti pv/pmt/fv ${ref3 || 'cell nilai utama'}.`);
+    addBaseHint(hints, 'Perhatikan tanda minus pada uang keluar/masuk. Di Excel finansial, tanda positif dan negatif bisa mengubah arah arus kas.');
+  } else if (statFormulaNames.has(name) || /stats/i.test(tableKey)) {
+    addBaseHint(hints, 'Ini soal statistik. Pakai tabel parameter yang disediakan, bukan tabel nilai siswa atau penjualan umum.');
+    if (name === 'NEGBINOMDIST' || name === 'NEGBINOM.DIST') addBaseHint(hints, 'Ambil jumlah gagal, target berhasil, dan peluang berhasil. Untuk versi .DIST, tambahkan pilihan cumulative TRUE/FALSE.');
+    else if (/BINOM/.test(name)) addBaseHint(hints, 'Ambil jumlah sukses, jumlah percobaan, peluang sukses, dan pilihan cumulative jika format memintanya.');
+    else if (/NORM|STANDARDIZE/.test(name)) addBaseHint(hints, 'Ambil nilai x/z, mean, standar deviasi, dan cumulative jika diminta.');
+    else if (/CHISQ|CHI|F\.TEST|FTEST|T\.TEST|TTEST/.test(name)) addBaseHint(hints, 'Pilih range aktual dan pembanding atau parameter derajat bebas. Pastikan range yang dibandingkan seukuran.');
+    else addBaseHint(hints, refs.length ? `Ambil parameter sesuai urutan tabel: ${asList(refs)}.` : 'Cocokkan parameter statistik dengan format rumus.');
+    if (refs.length) addBaseHint(hints, `Urutan parameter latihan ini: ${asList(refs)}. Jangan ganti dengan range yang tidak berhubungan.`);
+  } else if (tableKey === 'engineeringParameter') {
+    addBaseHint(hints, 'Ini soal engineering. Cek dulu jenis inputnya: angka, unit, biner, hex, octal, atau bilangan kompleks.');
+    addBaseHint(hints, refs.length ? `Ambil parameter dari tabel sesuai urutan: ${asList(refs)}.` : 'Ambil parameter teknik sesuai format rumus.');
+    addBaseHint(hints, 'Kalau ada unit atau bilangan kompleks, tulis persis seperti value pada tabel.');
+  } else if (tableKey === 'webParameter') {
+    addBaseHint(hints, 'Ini soal web/XML. Tentukan dulu apakah yang dipakai adalah URL, teks XML, XPath, atau teks yang mau di-encode.');
+    addBaseHint(hints, refs.length ? `Input yang dipakai dari tabel: ${asList(refs)}.` : 'Ambil data web/XML dari tabel latihan.');
+    addBaseHint(hints, 'Untuk WEBSERVICE/FILTERXML, browser hanya mengecek struktur. Hasil asli tetap bergantung pada Excel dan koneksi web/XML.');
+  } else if (tableKey === 'cubeParameter') {
+    addBaseHint(hints, 'Rumus Cube butuh connection dan member/set expression. Cari dua bagian itu dulu di tabel.');
+    addBaseHint(hints, refs.length ? `Ambil argumen dari tabel: ${asList(refs)}.` : 'Pilih connection dan member expression sesuai tabel.');
+    addBaseHint(hints, 'Di website ini yang dilatih adalah struktur argumen karena hasil aslinya butuh Data Model/OLAP di Excel.');
+  } else if (tableKey === 'informationMixed') {
+    addBaseHint(hints, 'Tentukan cell yang ingin dicek, lalu tentukan jenis pengecekannya: kosong, angka, teks, error, formula, atau tipe data.');
+    addBaseHint(hints, refs.length ? `Cell/range yang dicek: ${asList(refs)}.` : 'Pilih cell yang sesuai dengan pertanyaan.');
+  } else {
+    addBaseHint(hints, `Pilih ${name} karena rumus ini dipakai untuk ${formulaFriendlyNames[name] || 'mengolah data sesuai pertanyaan'}.`);
+    if (refs.length) addBaseHint(hints, `Ambil data dari tabel secara berurutan: ${asList(refs)}.`);
+    if (texts.length) addBaseHint(hints, `Value/kriteria yang perlu ditulis: ${asList(texts)}.`);
+  }
+
+  addBaseHint(hints, 'Setelah semua bagian dipilih, susun argumen sesuai urutan format rumus. Jangan mengubah urutan hanya karena range terlihat mirip.');
+  addBaseHint(hints, 'Terakhir, cek tanda =, separator (; atau ,), dan kurung tutup. Kalau hasilnya masih salah, biasanya masalahnya ada di range atau urutan argumen.');
+
+  return hints.slice(0, 7);
 };
 
 const buildFormulaParts = (exercise = {}) => {
