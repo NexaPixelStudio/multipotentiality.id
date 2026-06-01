@@ -982,6 +982,159 @@ const financeScenarios = [
   { rate: 0.008, nper: 15, pv: 5000000, pmt: -400000, fv: 0, type: 0 }
 ];
 
+
+const ifPracticeRows = [
+  ['Agus', 75, 90, 'Lunas', ''],
+  ['Sinta', 88, 95, 'Lunas', ''],
+  ['Budi', 65, 80, 'Belum', ''],
+  ['Nadia', 92, 98, 'Lunas', ''],
+  ['Raka', 70, 60, 'Belum', ''],
+  ['Maya', 84, 72, 'Lunas', '']
+];
+
+const ifLevelScenarios = [
+  {
+    label: 'Basic',
+    activeCell: 'E2',
+    sourceCell: 'B2',
+    conditionText: 'Nilai Agus di B2 lebih besar atau sama dengan 75',
+    criteriaValue: '75',
+    trueResult: 'Lulus',
+    falseResult: 'Tidak Lulus',
+    expectedFormula: '=IF(B2>=75,"Lulus","Tidak Lulus")',
+    question: 'Di cell E2, buat status Agus: jika Nilai di B2 >= 75 maka hasilnya Lulus, jika tidak maka Tidak Lulus.'
+  },
+  {
+    label: 'Nilai Tinggi',
+    activeCell: 'E3',
+    sourceCell: 'B3',
+    conditionText: 'Nilai Sinta di B3 lebih besar atau sama dengan 90',
+    criteriaValue: '90',
+    trueResult: 'Nilai Tinggi',
+    falseResult: 'Nilai Standar',
+    expectedFormula: '=IF(B3>=90,"Nilai Tinggi","Nilai Standar")',
+    question: 'Di cell E3, buat status Sinta: jika Nilai di B3 >= 90 maka hasilnya Nilai Tinggi, jika tidak maka Nilai Standar.'
+  },
+  {
+    label: 'Kehadiran',
+    activeCell: 'E4',
+    sourceCell: 'C4',
+    conditionText: 'Kehadiran Budi di C4 lebih besar atau sama dengan 80',
+    criteriaValue: '80',
+    trueResult: 'Hadir Baik',
+    falseResult: 'Kurang Hadir',
+    expectedFormula: '=IF(C4>=80,"Hadir Baik","Kurang Hadir")',
+    question: 'Di cell E4, buat status Budi: jika Kehadiran di C4 >= 80 maka hasilnya Hadir Baik, jika tidak maka Kurang Hadir.'
+  },
+  {
+    label: 'Pembayaran',
+    activeCell: 'E5',
+    sourceCell: 'D5',
+    conditionText: 'Pembayaran Nadia di D5 sama dengan Lunas',
+    criteriaValue: 'Lunas',
+    trueResult: 'Boleh Ikut',
+    falseResult: 'Tahan Dulu',
+    expectedFormula: '=IF(D5="Lunas","Boleh Ikut","Tahan Dulu")',
+    question: 'Di cell E5, buat status Nadia: jika Pembayaran di D5 = Lunas maka hasilnya Boleh Ikut, jika tidak maka Tahan Dulu.'
+  },
+  {
+    label: 'Remedial',
+    activeCell: 'E6',
+    sourceCell: 'B6',
+    conditionText: 'Nilai Raka di B6 lebih kecil dari 75',
+    criteriaValue: '75',
+    trueResult: 'Remedial',
+    falseResult: 'Aman',
+    expectedFormula: '=IF(B6<75,"Remedial","Aman")',
+    question: 'Di cell E6, buat status Raka: jika Nilai di B6 < 75 maka hasilnya Remedial, jika tidak maka Aman.'
+  },
+  {
+    label: 'Follow Up',
+    activeCell: 'E7',
+    sourceCell: 'C7',
+    conditionText: 'Kehadiran Maya di C7 lebih kecil dari 75',
+    criteriaValue: '75',
+    trueResult: 'Follow Up',
+    falseResult: 'Aman',
+    expectedFormula: '=IF(C7<75,"Follow Up","Aman")',
+    question: 'Di cell E7, buat status Maya: jika Kehadiran di C7 < 75 maka hasilnya Follow Up, jika tidak maka Aman.'
+  }
+];
+
+function makeIfPracticeTable() {
+  return {
+    title: 'Data Status Siswa',
+    description: 'Pakai kolom B, C, atau D sebagai kondisi. Kolom E adalah tempat menulis hasil IF sesuai baris yang diminta soal.',
+    columns: ['Nama', 'Nilai', 'Kehadiran', 'Pembayaran', 'Hasil IF'],
+    rows: ifPracticeRows
+  };
+}
+
+function makeIfTieredExercise(formula, variantIndex = 0, base = {}) {
+  const scenario = ifLevelScenarios[variantIndex % ifLevelScenarios.length];
+  const requiredRefs = [scenario.sourceCell];
+  const requiredTexts = [scenario.trueResult, scenario.falseResult];
+  return {
+    ...base,
+    id: `${formula.id}__level_${variantIndex + 1}`,
+    baseFormulaId: formula.id,
+    formulaName: formula.name,
+    title: `Latihan ${variantIndex + 1}: ${scenario.label}`,
+    levelIndex: variantIndex,
+    levelLabel: scenario.label,
+    tableKey: 'logicalPractice',
+    table: makeIfPracticeTable(),
+    activeCell: scenario.activeCell,
+    question: scenario.question,
+    logicPrompt: `IF di latihan ini mengecek kondisi: ${scenario.conditionText}. Kalau kondisi benar, hasilnya “${scenario.trueResult}”. Kalau kondisi salah, hasilnya “${scenario.falseResult}”. Urutannya: kondisi, hasil jika benar, hasil jika salah.`,
+    expectedFormula: scenario.expectedFormula,
+    acceptedFormulas: [scenario.expectedFormula.replace(/,/g, ';')],
+    requiredRefs,
+    requiredTexts,
+    criteriaValue: scenario.criteriaValue,
+    conditionText: scenario.conditionText,
+    trueResult: scenario.trueResult,
+    falseResult: scenario.falseResult,
+    argumentCount: { min: 3, max: 3 },
+    highlightRanges: requiredRefs,
+    allowedFunctions: [formula.name],
+    hints: [
+      `Tulis rumus di ${scenario.activeCell}, bukan di cell sumber datanya.`,
+      `Argumen pertama adalah kondisi: ${scenario.conditionText}.`,
+      `Jika kondisi benar, hasilnya “${scenario.trueResult}”.`,
+      `Jika kondisi salah, hasilnya “${scenario.falseResult}”.`,
+      'Susun IF dengan urutan: kondisi, value jika benar, value jika salah.'
+    ],
+    successExplanation: `Tepat. Rumus IF sudah mengecek ${scenario.sourceCell}, lalu mengeluarkan hasil sesuai kondisi yang diminta soal.`,
+    formulaParts: [
+      'IF adalah function utama untuk membuat keputusan sederhana.',
+      `Kondisi yang diuji: ${scenario.conditionText}.`,
+      `Value jika benar: ${scenario.trueResult}.`,
+      `Value jika salah: ${scenario.falseResult}.`
+    ],
+    commonMistakes: [
+      'Menulis angka 75 saja, padahal IF harus diawali =IF dan punya tiga argumen.',
+      `Memilih cell hasil ${scenario.activeCell} sebagai kondisi, padahal kondisi harus mengambil ${scenario.sourceCell}.`,
+      'Menukar posisi hasil benar dan hasil salah.',
+      'Lupa tanda kutip untuk hasil berupa teks.',
+      'Separator atau kurung penutup belum benar.'
+    ],
+    nextUseCase: 'Pakai pola IF ini untuk membuat status lulus, follow up, pembayaran, prioritas, atau keputusan sederhana lainnya.',
+    audit: {
+      ...(base.audit || {}),
+      tiered: true,
+      levelIndex: variantIndex,
+      expectedFormula: scenario.expectedFormula,
+      tableKey: 'logicalPractice',
+      refs: requiredRefs,
+      requiredRefs,
+      requiredTexts,
+      tableRows: ifPracticeRows.length,
+      note: 'IF dibuat manual agar soal, table, clue, active cell, dan expected formula saling nyambung.'
+    }
+  };
+}
+
 function makeCompactTable(tableKey, variantIndex = 0) {
   const n = variantIndex % 6;
   if (tableKey === 'statsNegBinom') {
@@ -1237,6 +1390,7 @@ function makeVariantQuestion(formula, refs, variantIndex = 0) {
 function makeTieredExercise(formula, variantIndex = 0) {
   const base = generateDetailedExerciseForFormula(formula);
   const name = upper(formula.name);
+  if (name === 'IF') return makeIfTieredExercise(formula, variantIndex, base);
   const tableKey = tableForFormula(formula);
   const refs = makeVariantRefs(formula, variantIndex);
   const expectedFormula = name === 'INDEX MATCH'

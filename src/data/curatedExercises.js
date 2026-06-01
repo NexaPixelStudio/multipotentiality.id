@@ -7317,6 +7317,12 @@ const buildLogicPrompt = (exercise = {}) => {
     const action = name === 'COUNT' ? 'cell yang berisi angka' : name === 'COUNTA' ? 'cell yang terisi' : 'cell yang kosong';
     return `${name} dipakai untuk menghitung ${action}. Pilih range yang ingin dicek (${ref1}), lalu pastikan jenis data di range itu sesuai dengan pertanyaan.`;
   }
+  if (name === 'IF') {
+    const condition = exercise.conditionText || `cell ${ref1} diuji sesuai batas pada soal`;
+    const trueResult = exercise.trueResult || text1 || 'hasil jika benar';
+    const falseResult = exercise.falseResult || text2 || 'hasil jika salah';
+    return `IF di soal ini mengecek kondisi: ${condition}. Kalau kondisi benar, hasilnya “${trueResult}”. Kalau kondisi salah, hasilnya “${falseResult}”. Urutannya harus tetap: kondisi, hasil jika benar, hasil jika salah.`;
+  }
   if (logicalFormulaNames.has(name)) return `${name} dipakai untuk membaca kondisi atau keputusan. Tentukan kondisi/value logika dari soal, lalu isi hasil atau pengecekan sesuai urutan format rumus.`;
   if (textFormulaNames.has(name)) return `${name} dipakai untuk mengolah teks. Tentukan teks utama terlebih dahulu (${ref1}), lalu isi parameter tambahan seperti posisi, jumlah karakter, teks yang dicari, atau teks pengganti.`;
   if (dateFormulaNames.has(name)) return `${name} bekerja dengan tanggal atau jam. Pilih tanggal/jam utama (${ref1}), lalu isi parameter tambahan seperti tanggal akhir, jumlah hari, jumlah bulan, atau tipe hitung jika diminta.`;
@@ -7484,10 +7490,15 @@ const buildBetterHints = (exercise = {}) => {
     }
   } else if (logicalFormulaNames.has(name)) {
     if (name === 'IF') {
-      addBaseHint(hints, 'Tentukan kondisi yang mau diuji dulu. Contohnya nilai sudah memenuhi batas tertentu atau belum.');
-      addBaseHint(hints, `Bagian pertama IF adalah kondisi, misalnya ${ref1 || 'cell nilai dibandingkan dengan batas'}.`);
-      addBaseHint(hints, `Setelah kondisi, isi hasil kalau kondisi benar: ${quotedValue(text1)}.`);
-      addBaseHint(hints, `Terakhir, isi hasil kalau kondisi salah: ${quotedValue(text2)}.`);
+      const condition = exercise.conditionText || `cell ${ref1 || 'nilai'} dibandingkan dengan batas dari soal`;
+      const criteria = exercise.criteriaValue ? ` Batas/kriteria yang dipakai: ${exercise.criteriaValue}.` : '';
+      const trueResult = exercise.trueResult || text1 || 'hasil jika benar';
+      const falseResult = exercise.falseResult || text2 || 'hasil jika salah';
+      addBaseHint(hints, `Tentukan kondisi yang diuji: ${condition}.${criteria}`);
+      addBaseHint(hints, `Argumen pertama IF adalah kondisi. Jangan isi angka saja, tulis kondisi lengkapnya.`);
+      addBaseHint(hints, `Jika kondisi benar, hasilnya “${trueResult}”.`);
+      addBaseHint(hints, `Jika kondisi salah, hasilnya “${falseResult}”.`);
+      addBaseHint(hints, 'Urutan IF: kondisi, value jika benar, value jika salah. Jangan tertukar.');
     } else if (name === 'IFS') {
       addBaseHint(hints, 'IFS mengecek beberapa kondisi dari kiri ke kanan. Kondisi pertama yang benar akan langsung dipakai.');
       addBaseHint(hints, `Pasangkan kondisi pertama dengan hasilnya, misalnya ${ref1 || 'kondisi pertama'} lalu ${quotedValue(text1)}.`);
