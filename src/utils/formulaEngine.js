@@ -413,8 +413,8 @@ function evaluateExpression(expr, ctx) {
   const call = parseFunctionCall(raw);
   if (call) return evaluateFunction(call.name, call.args, ctx);
 
-  if (/^\$?[A-Z]+\$?\d+:\$?[A-Z]+\$?\d+$/i.test(raw)) return getRange(ctx.sheet, raw);
-  if (/^\$?[A-Z]+\$?\d+$/i.test(raw)) return getCell(ctx.sheet, raw);
+  if (/^(?:[^!]+!)?\$?[A-Z]+\$?\d+:(?:[^!]+!)?\$?[A-Z]+\$?\d+$/i.test(raw)) return getRange(ctx.sheet, raw);
+  if (/^(?:[^!]+!)?\$?[A-Z]+\$?\d+$/i.test(raw)) return getCell(ctx.sheet, raw);
 
   // Small arithmetic support, enough for formulas like x*10 in simple LAMBDA demos.
   const arithmeticMatch = raw.match(/^(.+?)([+\-*/])(.+)$/);
