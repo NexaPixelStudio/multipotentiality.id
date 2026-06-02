@@ -1,11 +1,17 @@
-export const sharedExerciseTables = {};
+import { batchBasicSalesTable, batch01BasicCalculationExercises } from './quality/batch01BasicCalculation.js';
 
-export const curatedExercises = {};
+export const sharedExerciseTables = {
+  batchBasicSales: batchBasicSalesTable
+};
 
-export function getCuratedExercise() {
-  return null;
+export const curatedExercises = {
+  ...batch01BasicCalculationExercises
+};
+
+export function getCuratedExercise(formulaId) {
+  return curatedExercises[formulaId]?.[0] || null;
 }
 
-export function getCuratedExercises() {
-  return [];
+export function getCuratedExercises(formulaId) {
+  return curatedExercises[formulaId] || [];
 }
