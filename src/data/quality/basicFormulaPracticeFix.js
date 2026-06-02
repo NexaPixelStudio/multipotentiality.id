@@ -39,16 +39,16 @@ const conditionalTable = {
 
 const logicalTable = {
   title: 'Data Status Siswa',
-  description: 'Pakai Nilai, Kehadiran, dan Pembayaran sebagai kondisi. Kolom Status adalah tempat hasil rumus.',
-  columns: ['Nama', 'Nilai', 'Kehadiran', 'Pembayaran', 'Status'],
+  description: 'Pakai Nilai, Kehadiran, dan Jenis Kelamin sebagai kondisi. Kolom Status adalah tempat hasil rumus.',
+  columns: ['Nama', 'Nilai', 'Kehadiran', 'Jenis Kelamin', 'Status'],
   rows: [
-    ['Agus', 75, 90, 'Lunas', ''],
-    ['Sinta', 88, 95, 'Lunas', ''],
-    ['Budi', 65, 80, 'Belum', ''],
-    ['Nadia', 92, 98, 'Lunas', ''],
-    ['Raka', 70, 60, 'Belum', ''],
-    ['Maya', 84, 72, 'Lunas', ''],
-    ['Doni', 0, 70, 'Belum', '']
+    ['Agus', 75, 90, 'Laki-laki', ''],
+    ['Sinta', 88, 95, 'Perempuan', ''],
+    ['Budi', 65, 80, 'Laki-laki', ''],
+    ['Nadia', 92, 98, 'Perempuan', ''],
+    ['Raka', 70, 60, 'Laki-laki', ''],
+    ['Maya', 84, 72, 'Perempuan', ''],
+    ['Doni', 0, 70, 'Laki-laki', '']
   ]
 };
 
@@ -329,35 +329,35 @@ const logicalScenarios = {
   ]),
   and: makeLevels('and', 'AND', [
     { label: 'Nilai dan Kehadiran Agus', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, cek Agus: apakah Nilai >= 75 dan Kehadiran >= 80?', expectedFormula: '=AND(B2>=75,C2>=80)', refs: ['B2', 'C2'], texts: ['75', '80'], logic: 'AND bernilai TRUE hanya kalau semua kondisi benar.' },
-    { label: 'Sinta Lengkap', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, cek Sinta: apakah Nilai >= 75, Kehadiran >= 80, dan Pembayaran Lunas?', expectedFormula: '=AND(B3>=75,C3>=80,D3="Lunas")', refs: ['B3', 'C3', 'D3'], texts: ['75', '80', 'Lunas'], logic: 'Semua kondisi harus benar agar AND menghasilkan TRUE.' },
+    { label: 'Sinta Lengkap', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, cek Sinta: apakah Nilai >= 75, Kehadiran >= 80, dan Jenis Kelamin Perempuan?', expectedFormula: '=AND(B3>=75,C3>=80,D3="Perempuan")', refs: ['B3', 'C3', 'D3'], texts: ['75', '80', 'Perempuan'], logic: 'Semua kondisi harus benar agar AND menghasilkan TRUE.' },
     { label: 'Budi Lulus Syarat', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, cek Budi: apakah Nilai >= 75 dan Kehadiran >= 80?', expectedFormula: '=AND(B4>=75,C4>=80)', refs: ['B4', 'C4'], texts: ['75', '80'], logic: 'Jika salah satu kondisi gagal, AND menghasilkan FALSE.' },
-    { label: 'Nadia Top', table: logicalTable, activeCell: 'E5', question: 'Di cell E5, cek Nadia: apakah Nilai >= 90 dan Pembayaran Lunas?', expectedFormula: '=AND(B5>=90,D5="Lunas")', refs: ['B5', 'D5'], texts: ['90', 'Lunas'], logic: 'AND bisa mengecek angka dan teks sekaligus.' },
-    { label: 'Raka Lengkap', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, cek Raka: apakah Nilai >= 75, Kehadiran >= 80, dan Pembayaran Lunas?', expectedFormula: '=AND(B6>=75,C6>=80,D6="Lunas")', refs: ['B6', 'C6', 'D6'], texts: ['75', '80', 'Lunas'], logic: 'Semua syarat harus benar. Kalau ada satu yang gagal, hasilnya FALSE.' },
-    { label: 'Maya Aman', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah Nilai >= 75 dan Pembayaran Lunas?', expectedFormula: '=AND(B7>=75,D7="Lunas")', refs: ['B7', 'D7'], texts: ['75', 'Lunas'], logic: 'Pakai baris Maya dan cek dua kondisi.' }
+    { label: 'Nadia Top', table: logicalTable, activeCell: 'E5', question: 'Di cell E5, cek Nadia: apakah Nilai >= 90 dan Jenis Kelamin Perempuan?', expectedFormula: '=AND(B5>=90,D5="Perempuan")', refs: ['B5', 'D5'], texts: ['90', 'Perempuan'], logic: 'AND bisa mengecek angka dan teks sekaligus.' },
+    { label: 'Raka Lengkap', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, cek Raka: apakah Nilai >= 75, Kehadiran >= 80, dan Jenis Kelamin Laki-laki?', expectedFormula: '=AND(B6>=75,C6>=80,D6="Laki-laki")', refs: ['B6', 'C6', 'D6'], texts: ['75', '80', 'Laki-laki'], logic: 'Semua syarat harus benar. Kalau ada satu yang gagal, hasilnya FALSE.' },
+    { label: 'Maya Aman', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah Nilai >= 75 dan Jenis Kelamin Perempuan?', expectedFormula: '=AND(B7>=75,D7="Perempuan")', refs: ['B7', 'D7'], texts: ['75', 'Perempuan'], logic: 'Pakai baris Maya dan cek dua kondisi.' }
   ]),
   or: makeLevels('or', 'OR', [
-    { label: 'Agus Satu Syarat', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, cek Agus: apakah Nilai >= 90 atau Pembayaran Lunas?', expectedFormula: '=OR(B2>=90,D2="Lunas")', refs: ['B2', 'D2'], texts: ['90', 'Lunas'], logic: 'OR bernilai TRUE kalau minimal satu kondisi benar.' },
+    { label: 'Agus Satu Syarat', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, cek Agus: apakah Nilai >= 90 atau Jenis Kelamin Laki-laki?', expectedFormula: '=OR(B2>=90,D2="Laki-laki")', refs: ['B2', 'D2'], texts: ['90', 'Laki-laki'], logic: 'OR bernilai TRUE kalau minimal satu kondisi benar.' },
     { label: 'Sinta Satu Syarat', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, cek Sinta: apakah Nilai >= 90 atau Kehadiran >= 90?', expectedFormula: '=OR(B3>=90,C3>=90)', refs: ['B3', 'C3'], texts: ['90'], logic: 'Cukup salah satu kondisi benar.' },
-    { label: 'Budi Follow Up', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, cek Budi: apakah Nilai < 75 atau Pembayaran Belum?', expectedFormula: '=OR(B4<75,D4="Belum")', refs: ['B4', 'D4'], texts: ['75', 'Belum'], logic: 'OR cocok untuk cek apakah perlu follow up karena salah satu masalah muncul.' },
+    { label: 'Budi Follow Up', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, cek Budi: apakah Nilai < 75 atau Jenis Kelamin Laki-laki?', expectedFormula: '=OR(B4<75,D4="Laki-laki")', refs: ['B4', 'D4'], texts: ['75', 'Laki-laki'], logic: 'OR bernilai TRUE kalau minimal satu kondisi benar.' },
     { label: 'Nadia Sangat Baik', table: logicalTable, activeCell: 'E5', question: 'Di cell E5, cek Nadia: apakah Nilai >= 90 atau Kehadiran >= 95?', expectedFormula: '=OR(B5>=90,C5>=95)', refs: ['B5', 'C5'], texts: ['90', '95'], logic: 'Jika salah satu kondisi benar, hasilnya TRUE.' },
     { label: 'Raka Bermasalah', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, cek Raka: apakah Nilai < 75 atau Kehadiran < 75?', expectedFormula: '=OR(B6<75,C6<75)', refs: ['B6', 'C6'], texts: ['75'], logic: 'OR membaca minimal satu masalah.' },
-    { label: 'Maya Aman', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah Nilai >= 80 atau Pembayaran Lunas?', expectedFormula: '=OR(B7>=80,D7="Lunas")', refs: ['B7', 'D7'], texts: ['80', 'Lunas'], logic: 'Pakai baris Maya.' }
+    { label: 'Maya Aman', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah Nilai >= 80 atau Jenis Kelamin Perempuan?', expectedFormula: '=OR(B7>=80,D7="Perempuan")', refs: ['B7', 'D7'], texts: ['80', 'Perempuan'], logic: 'Pakai baris Maya.' }
   ]),
   not: makeLevels('not', 'NOT', [
-    { label: 'Agus Belum Bayar?', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, cek Agus: apakah kebalikan dari Pembayaran Lunas?', expectedFormula: '=NOT(D2="Lunas")', refs: ['D2'], texts: ['Lunas'], logic: 'NOT membalik hasil logika. Kalau D2 = Lunas benar, NOT menghasilkan FALSE.' },
+    { label: 'Agus Bukan Perempuan?', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, cek Agus: apakah kebalikan dari Jenis Kelamin Perempuan?', expectedFormula: '=NOT(D2="Perempuan")', refs: ['D2'], texts: ['Perempuan'], logic: 'NOT membalik hasil logika. Karena Agus bukan Perempuan, hasilnya TRUE.' },
     { label: 'Sinta Tidak Lulus?', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, cek Sinta: apakah kebalikan dari Nilai >= 75?', expectedFormula: '=NOT(B3>=75)', refs: ['B3'], texts: ['75'], logic: 'NOT membalik TRUE menjadi FALSE.' },
-    { label: 'Budi Tidak Lunas?', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, cek Budi: apakah kebalikan dari Pembayaran Lunas?', expectedFormula: '=NOT(D4="Lunas")', refs: ['D4'], texts: ['Lunas'], logic: 'Karena Budi belum lunas, D4=Lunas salah, lalu NOT menjadi TRUE.' },
+    { label: 'Budi Bukan Perempuan?', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, cek Budi: apakah kebalikan dari Jenis Kelamin Perempuan?', expectedFormula: '=NOT(D4="Perempuan")', refs: ['D4'], texts: ['Perempuan'], logic: 'Karena Budi bukan Perempuan, kondisi D4=Perempuan salah, lalu NOT menjadi TRUE.' },
     { label: 'Nadia Tidak Tinggi?', table: logicalTable, activeCell: 'E5', question: 'Di cell E5, cek Nadia: apakah kebalikan dari Nilai >= 90?', expectedFormula: '=NOT(B5>=90)', refs: ['B5'], texts: ['90'], logic: 'NOT membalik hasil kondisi nilai.' },
     { label: 'Raka Tidak Hadir Baik?', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, cek Raka: apakah kebalikan dari Kehadiran >= 80?', expectedFormula: '=NOT(C6>=80)', refs: ['C6'], texts: ['80'], logic: 'Jika kehadiran tidak memenuhi, NOT menghasilkan TRUE.' },
-    { label: 'Maya Tidak Lunas?', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah kebalikan dari Pembayaran Lunas?', expectedFormula: '=NOT(D7="Lunas")', refs: ['D7'], texts: ['Lunas'], logic: 'Pakai cell pembayaran Maya.' }
+    { label: 'Maya Bukan Laki-laki?', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah kebalikan dari Jenis Kelamin Laki-laki?', expectedFormula: '=NOT(D7="Laki-laki")', refs: ['D7'], texts: ['Laki-laki'], logic: 'Pakai cell Jenis Kelamin Maya.' }
   ]),
   xor: makeLevels('xor', 'XOR', [
     { label: 'Agus Satu Kondisi', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, cek Agus: apakah hanya salah satu dari Nilai >= 75 dan Kehadiran >= 80 yang benar?', expectedFormula: '=XOR(B2>=75,C2>=80)', refs: ['B2', 'C2'], texts: ['75', '80'], logic: 'XOR bernilai TRUE kalau jumlah kondisi benar ganjil. Untuk dua kondisi, artinya hanya satu yang benar.' },
     { label: 'Budi Satu Kondisi', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, cek Budi: apakah hanya salah satu dari Nilai >= 75 dan Kehadiran >= 80 yang benar?', expectedFormula: '=XOR(B4>=75,C4>=80)', refs: ['B4', 'C4'], texts: ['75', '80'], logic: 'Jika satu benar dan satu salah, XOR menghasilkan TRUE.' },
     { label: 'Raka Satu Kondisi', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, cek Raka: apakah hanya salah satu dari Nilai >= 75 dan Kehadiran >= 80 yang benar?', expectedFormula: '=XOR(B6>=75,C6>=80)', refs: ['B6', 'C6'], texts: ['75', '80'], logic: 'Untuk dua kondisi, XOR cocok mengecek “salah satu saja”.' },
     { label: 'Nadia Satu Kondisi', table: logicalTable, activeCell: 'E5', question: 'Di cell E5, cek Nadia: apakah hanya salah satu dari Nilai >= 90 dan Kehadiran >= 95 yang benar?', expectedFormula: '=XOR(B5>=90,C5>=95)', refs: ['B5', 'C5'], texts: ['90', '95'], logic: 'Kalau dua-duanya benar, XOR menghasilkan FALSE.' },
-    { label: 'Pembayaran atau Nilai', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, cek Sinta: apakah hanya salah satu dari Nilai >= 90 dan Pembayaran Lunas yang benar?', expectedFormula: '=XOR(B3>=90,D3="Lunas")', refs: ['B3', 'D3'], texts: ['90', 'Lunas'], logic: 'Pakai kombinasi kondisi angka dan teks.' },
-    { label: 'Maya Satu Kondisi', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah hanya salah satu dari Nilai >= 90 dan Pembayaran Lunas yang benar?', expectedFormula: '=XOR(B7>=90,D7="Lunas")', refs: ['B7', 'D7'], texts: ['90', 'Lunas'], logic: 'Pakai baris Maya.' }
+    { label: 'Gender atau Nilai', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, cek Sinta: apakah hanya salah satu dari Nilai >= 90 dan Jenis Kelamin Perempuan yang benar?', expectedFormula: '=XOR(B3>=90,D3="Perempuan")', refs: ['B3', 'D3'], texts: ['90', 'Perempuan'], logic: 'Pakai kombinasi kondisi angka dan teks.' },
+    { label: 'Maya Satu Kondisi', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cek Maya: apakah hanya salah satu dari Nilai >= 90 dan Jenis Kelamin Perempuan yang benar?', expectedFormula: '=XOR(B7>=90,D7="Perempuan")', refs: ['B7', 'D7'], texts: ['90', 'Perempuan'], logic: 'Pakai baris Maya.' }
   ]),
   ifs: makeLevels('ifs', 'IFS', [
     { label: 'Grade Agus', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, buat grade Agus: Nilai >= 90 menjadi A, Nilai >= 75 menjadi B, selain itu C.', expectedFormula: '=IFS(B2>=90,"A",B2>=75,"B",TRUE,"C")', refs: ['B2'], texts: ['A', 'B', 'C'], logic: 'IFS membaca kondisi dari kiri ke kanan. Kondisi pertama yang benar langsung dipakai.' },
@@ -384,12 +384,12 @@ const logicalScenarios = {
     { label: 'Cari Doni', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, cari posisi Doni di A2:A8. Jika #N/A, tampilkan Tidak Ada.', expectedFormula: '=IFNA(MATCH("Doni",A2:A8,0),"Tidak Ada")', refs: ['A2:A8'], texts: ['Doni', 'Tidak Ada'], logic: 'Doni ada di daftar, jadi hasilnya posisi di range.' }
   ]),
   switch: makeLevels('switch', 'SWITCH', [
-    { label: 'Status Bayar Agus', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, ubah Pembayaran Agus: Lunas menjadi Aman, Belum menjadi Follow Up.', expectedFormula: '=SWITCH(D2,"Lunas","Aman","Belum","Follow Up","Cek")', refs: ['D2'], texts: ['Lunas', 'Aman', 'Belum', 'Follow Up', 'Cek'], logic: 'SWITCH mencocokkan satu nilai dengan beberapa kemungkinan hasil.' },
-    { label: 'Status Bayar Budi', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, ubah Pembayaran Budi: Lunas menjadi Aman, Belum menjadi Follow Up.', expectedFormula: '=SWITCH(D4,"Lunas","Aman","Belum","Follow Up","Cek")', refs: ['D4'], texts: ['Lunas', 'Aman', 'Belum', 'Follow Up', 'Cek'], logic: 'Jika nilai cocok dengan Belum, hasilnya Follow Up.' },
+    { label: 'Jenis Kelamin Agus', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, ubah Jenis Kelamin Agus: Laki-laki menjadi Siswa Laki-laki, Perempuan menjadi Siswa Perempuan.', expectedFormula: '=SWITCH(D2,"Laki-laki","Siswa Laki-laki","Perempuan","Siswa Perempuan","Cek")', refs: ['D2'], texts: ['Laki-laki', 'Siswa Laki-laki', 'Perempuan', 'Siswa Perempuan', 'Cek'], logic: 'SWITCH mencocokkan satu nilai dengan beberapa kemungkinan hasil.' },
+    { label: 'Jenis Kelamin Budi', table: logicalTable, activeCell: 'E4', question: 'Di cell E4, ubah Jenis Kelamin Budi: Laki-laki menjadi Siswa Laki-laki, Perempuan menjadi Siswa Perempuan.', expectedFormula: '=SWITCH(D4,"Laki-laki","Siswa Laki-laki","Perempuan","Siswa Perempuan","Cek")', refs: ['D4'], texts: ['Laki-laki', 'Siswa Laki-laki', 'Perempuan', 'Siswa Perempuan', 'Cek'], logic: 'Jika nilai cocok dengan Laki-laki, hasilnya Siswa Laki-laki.' },
     { label: 'Kehadiran Agus', table: logicalTable, activeCell: 'E2', question: 'Di cell E2, ubah Kehadiran Agus: 90 menjadi Baik, 95 menjadi Sangat Baik, selain itu Cek.', expectedFormula: '=SWITCH(C2,90,"Baik",95,"Sangat Baik","Cek")', refs: ['C2'], texts: ['90', 'Baik', '95', 'Sangat Baik', 'Cek'], logic: 'SWITCH bisa mencocokkan angka juga.' },
     { label: 'Kehadiran Sinta', table: logicalTable, activeCell: 'E3', question: 'Di cell E3, ubah Kehadiran Sinta: 90 menjadi Baik, 95 menjadi Sangat Baik, selain itu Cek.', expectedFormula: '=SWITCH(C3,90,"Baik",95,"Sangat Baik","Cek")', refs: ['C3'], texts: ['90', 'Baik', '95', 'Sangat Baik', 'Cek'], logic: 'Urutan argumen SWITCH adalah nilai, pasangan value-hasil, lalu default.' },
-    { label: 'Pembayaran Raka', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, ubah Pembayaran Raka: Lunas menjadi Aman, Belum menjadi Follow Up.', expectedFormula: '=SWITCH(D6,"Lunas","Aman","Belum","Follow Up","Cek")', refs: ['D6'], texts: ['Lunas', 'Aman', 'Belum', 'Follow Up', 'Cek'], logic: 'Pakai cell pembayaran Raka.' },
-    { label: 'Pembayaran Maya', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, ubah Pembayaran Maya: Lunas menjadi Aman, Belum menjadi Follow Up.', expectedFormula: '=SWITCH(D7,"Lunas","Aman","Belum","Follow Up","Cek")', refs: ['D7'], texts: ['Lunas', 'Aman', 'Belum', 'Follow Up', 'Cek'], logic: 'Pakai cell pembayaran Maya.' }
+    { label: 'Jenis Kelamin Raka', table: logicalTable, activeCell: 'E6', question: 'Di cell E6, ubah Jenis Kelamin Raka: Laki-laki menjadi Siswa Laki-laki, Perempuan menjadi Siswa Perempuan.', expectedFormula: '=SWITCH(D6,"Laki-laki","Siswa Laki-laki","Perempuan","Siswa Perempuan","Cek")', refs: ['D6'], texts: ['Laki-laki', 'Siswa Laki-laki', 'Perempuan', 'Siswa Perempuan', 'Cek'], logic: 'Pakai cell Jenis Kelamin Raka.' },
+    { label: 'Jenis Kelamin Maya', table: logicalTable, activeCell: 'E7', question: 'Di cell E7, ubah Jenis Kelamin Maya: Laki-laki menjadi Siswa Laki-laki, Perempuan menjadi Siswa Perempuan.', expectedFormula: '=SWITCH(D7,"Laki-laki","Siswa Laki-laki","Perempuan","Siswa Perempuan","Cek")', refs: ['D7'], texts: ['Laki-laki', 'Siswa Laki-laki', 'Perempuan', 'Siswa Perempuan', 'Cek'], logic: 'Pakai cell Jenis Kelamin Maya.' }
   ])
 };
 
