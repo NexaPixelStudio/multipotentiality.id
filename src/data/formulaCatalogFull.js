@@ -11536,20 +11536,18 @@ const baseFormulaCatalogFull = [
   }
 ];
 
-const hiddenFormulaIds = new Set(['true', 'false']);
-
 export const formulaCatalogFull = baseFormulaCatalogFull
-  .filter((formula) => !hiddenFormulaIds.has(String(formula.id || '').toLowerCase()))
+  .filter((formula) => !['TRUE', 'FALSE'].includes(String(formula.name || '').toUpperCase()))
   .map((formula) => {
-  const learning = formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
-  const nextTags = Array.from(new Set([...(formula.tags || []), 'practice']));
-  return normalizeFormulaRecord({
-    ...formula,
-    ...learning,
-    hasExercise: true,
-    tags: nextTags
+    const learning = formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
+    const nextTags = Array.from(new Set([...(formula.tags || []), 'practice']));
+    return normalizeFormulaRecord({
+      ...formula,
+      ...learning,
+      hasExercise: true,
+      tags: nextTags
+    });
   });
-});
 
 export const formulaById = Object.fromEntries(formulaCatalogFull.map((formula) => [formula.id, formula]));
 

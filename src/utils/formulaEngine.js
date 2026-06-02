@@ -520,6 +520,20 @@ function evaluateFunction(name, argExprs, ctx) {
       for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
       return sumRange.reduce((sum, item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria)) ? sum + (Number(item) || 0) : sum, 0);
     }
+    case 'MAXIFS': {
+      const maxRange = flatArg(0);
+      const pairs = [];
+      for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
+      const values = maxRange.filter((item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria))).map(Number).filter(Number.isFinite);
+      return values.length ? Math.max(...values) : 0;
+    }
+    case 'MINIFS': {
+      const minRange = flatArg(0);
+      const pairs = [];
+      for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
+      const values = minRange.filter((item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria))).map(Number).filter(Number.isFinite);
+      return values.length ? Math.min(...values) : 0;
+    }
     case 'AVERAGEIF': {
       const criteriaRange = flatArg(0);
       const criteria = arg(1);
@@ -537,6 +551,7 @@ function evaluateFunction(name, argExprs, ctx) {
     case 'IF': return arg(0) ? arg(1) : arg(2);
     case 'AND': return args().every(Boolean);
     case 'OR': return args().some(Boolean);
+    case 'XOR': return args().filter(Boolean).length % 2 === 1;
     case 'NOT': return !arg(0);
     case 'IFERROR': {
       try { return arg(0); } catch { return arg(1); }
