@@ -7727,14 +7727,13 @@ const generatedExerciseLevels = Object.fromEntries(
 );
 
 export const curatedExercises = {
-  ...generatedExercises,
   ...normalizedManualExercises,
   ...batch01BasicCalculationExercises,
   ...basicFormulaPracticeExercises
 };
 
 export const curatedExerciseLevels = Object.fromEntries(
-  formulaCatalogFull.map((formula) => [formula.id, basicFormulaPracticeLevels[formula.id] || batch01BasicCalculationLevels[formula.id] || generatedExerciseLevels[formula.id] || []])
+  formulaCatalogFull.map((formula) => [formula.id, basicFormulaPracticeLevels[formula.id] || batch01BasicCalculationLevels[formula.id] || []])
 );
 
 export const getCuratedExercise = (formulaId) => curatedExercises[formulaId] || null;

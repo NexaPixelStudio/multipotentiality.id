@@ -4,6 +4,13 @@ import { normalizeFormulaRecord } from './formulaAuditRules.js';
 // Data katalog Formula Coach.
 // Kategori dan nama function disiapkan sebagai data lokal supaya komponen UI tidak perlu diubah saat katalog di-update.
 
+
+const verifiedPracticeFormulaIds = new Set([
+  'sum', 'average', 'min', 'max', 'large', 'small', 'count', 'counta', 'countblank',
+  'sumif', 'sumifs', 'countif', 'countifs', 'averageif', 'averageifs', 'maxifs', 'minifs',
+  'if', 'ifs', 'iferror', 'ifna', 'switch', 'and', 'or', 'not', 'xor'
+]);
+
 const baseFormulaCatalogFull = [
   {
     "id": "detectlanguage",
@@ -11540,11 +11547,19 @@ export const formulaCatalogFull = baseFormulaCatalogFull
   .filter((formula) => !['TRUE', 'FALSE'].includes(String(formula.name || '').toUpperCase()))
   .map((formula) => {
     const learning = formulaLearningContent[formula.name] || formulaLearningContent[formula.id] || {};
-    const nextTags = Array.from(new Set([...(formula.tags || []), 'practice']));
+    const verifiedPractice = verifiedPracticeFormulaIds.has(String(formula.id || '').toLowerCase());
+    const nextTags = Array.from(new Set([
+      ...(formula.tags || []).filter((tag) => tag !== 'practice'),
+      ...(verifiedPractice ? ['practice'] : ['theory'])
+    ]));
     return normalizeFormulaRecord({
       ...formula,
       ...learning,
-      hasExercise: true,
+      hasExercise: verifiedPractice,
+      auditStatus: verifiedPractice ? 'practice-verified' : 'theory-only-needs-manual-practice',
+      auditNote: verifiedPractice
+        ? 'Latihan sudah dikurasi manual agar table, soal, clue, dan jawaban saling nyambung.'
+        : 'Latihan otomatis dinonaktifkan dulu supaya user tidak mendapat soal yang tidak nyambung. Rumus tetap muncul sebagai teori sampai dibuatkan latihan manual.',
       tags: nextTags
     });
   });
@@ -11573,6 +11588,6 @@ export function importFormulaCatalog(nextCatalog = []) {
     version: item.version || 'Microsoft 365 / supported Excel versions',
     availability: item.availability || ['Excel Desktop', 'Excel Web', 'Microsoft 365'],
     tags: item.tags || [],
-    hasExercise: true
+    hasExercise: verifiedPracticeFormulaIds.has(String(item.id || '').toLowerCase())
   }));
 }

@@ -43,12 +43,12 @@ const humanCategoryCopy = {
     meaning: 'Contoh ini menghitung jumlah hari antara tanggal B2 dan C2.'
   },
   Logical: {
-    description: (name) => `Rumus ${name} dipakai untuk membaca kondisi dan membuat keputusan dari kondisi tersebut.`,
-    logic: 'Untuk pemula, AND, OR, NOT, dan XOR lebih mudah dipelajari jika digabung dengan IF, supaya hasilnya bukan cuma TRUE/FALSE tapi menjadi status yang jelas.',
-    useCase: 'Untuk status lulus/tidak, prioritas/reguler, remedial/aman, validasi data, dan keputusan dari beberapa syarat.',
-    analogy: 'Kayak aturan pintu masuk. Excel cek syaratnya dulu, lalu IF menentukan tulisan hasil akhirnya.',
-    sample: '=IF(AND(B2>=75;C2>=80);"Lulus";"Tidak Lulus")',
-    meaning: 'Contoh ini mengecek dua syarat sekaligus. Jika nilai minimal 75 dan kehadiran minimal 80, hasilnya Lulus. Kalau salah satu tidak terpenuhi, hasilnya Tidak Lulus.'
+    description: (name) => `Rumus ${name} dipakai untuk membaca hasil kondisi TRUE/FALSE atau membuat keputusan dari kondisi tertentu.`,
+    logic: 'Tulis kondisi yang mau dicek. Kalau rumusnya IF/IFS, tentukan juga hasil saat kondisi benar dan salah.',
+    useCase: 'Untuk status lulus/tidak, validasi data, syarat kelayakan, pengecekan kosong/tidak kosong, atau kondisi alternatif.',
+    analogy: 'Kayak aturan pintu masuk. Excel mengecek syarat dulu, lalu mengeluarkan hasil sesuai aturan rumusnya.',
+    sample: '=AND(B2>=75;C2>=80)',
+    meaning: 'Contoh ini mengecek dua kondisi. Hasilnya TRUE jika nilai minimal 75 dan kehadiran minimal 80 sama-sama terpenuhi.'
   },
   'Dynamic Array': {
     description: (name) => `Rumus ${name} dipakai untuk mengeluarkan hasil yang bisa melebar otomatis ke banyak cell.`,
@@ -393,27 +393,27 @@ export const functionExamples = {
   },
   AND: {
     exampleFormula: '=IF(AND(B2>=75;C2>=80);"Lulus";"Tidak Lulus")',
-    exampleMeaning: 'Contoh ini mengecek dua syarat sekaligus. Jika nilai minimal 75 dan kehadiran minimal 80, hasilnya Lulus. Jika salah satu tidak terpenuhi, hasilnya Tidak Lulus.',
-    simpleLogic: 'AND dipakai saat semua syarat harus terpenuhi.',
-    useCase: 'Untuk mengecek kelayakan yang butuh lebih dari satu syarat.'
+    exampleMeaning: 'Contoh ini mengecek dua syarat sekaligus. Jika nilai minimal 75 dan kehadiran minimal 80, hasilnya Lulus. Kalau salah satu syarat gagal, hasilnya Tidak Lulus.',
+    simpleLogic: 'AND mengecek apakah semua kondisi benar. Untuk pemula, AND lebih mudah dipahami saat digabung dengan IF supaya hasilnya menjadi status yang bisa dibaca.',
+    useCase: 'Untuk keputusan yang butuh semua syarat terpenuhi, misalnya lulus jika nilai cukup dan kehadiran cukup.'
   },
   OR: {
     exampleFormula: '=IF(OR(B2>=90;C2>=95);"Prioritas";"Reguler")',
-    exampleMeaning: 'Contoh ini mengecek apakah salah satu syarat tinggi terpenuhi. Jika nilai minimal 90 atau kehadiran minimal 95, hasilnya Prioritas. Jika tidak, hasilnya Reguler.',
-    simpleLogic: 'OR dipakai saat cukup salah satu syarat saja yang benar.',
-    useCase: 'Untuk mengecek kondisi alternatif, misalnya boleh lanjut karena nilai cukup atau kehadiran cukup.'
+    exampleMeaning: 'Contoh ini mengecek apakah nilai minimal 90 atau kehadiran minimal 95. Jika salah satu benar, hasilnya Prioritas. Jika dua-duanya tidak terpenuhi, hasilnya Reguler.',
+    simpleLogic: 'OR mengecek apakah minimal satu kondisi benar. Untuk latihan pemula, OR lebih jelas jika digabung dengan IF agar hasil akhirnya berupa keputusan.',
+    useCase: 'Untuk keputusan yang cukup memenuhi salah satu syarat, misalnya prioritas jika nilai sangat tinggi atau kehadiran sangat tinggi.'
   },
   NOT: {
-    exampleFormula: '=IF(NOT(ISBLANK(A2));"Data Ada";"Data Kosong")',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 tidak kosong. Jika A2 terisi, hasilnya Data Ada. Jika kosong, hasilnya Data Kosong.',
-    simpleLogic: 'NOT dipakai untuk membalik hasil logika. TRUE jadi FALSE, FALSE jadi TRUE.',
-    useCase: 'Untuk mengecek kebalikan dari sebuah kondisi, misalnya data tidak kosong atau status bukan kondisi tertentu.'
+    exampleFormula: '=IF(NOT(B2>=75);"Remedial";"Aman")',
+    exampleMeaning: 'Contoh ini membaca kondisi kebalikannya. Jika nilai tidak mencapai 75, hasilnya Remedial. Jika nilainya sudah 75 atau lebih, hasilnya Aman.',
+    simpleLogic: 'NOT membalik hasil logika. TRUE menjadi FALSE dan FALSE menjadi TRUE. Untuk pemula, NOT lebih mudah dipakai di dalam IF agar hasilnya menjadi status.',
+    useCase: 'Untuk keputusan yang memakai kebalikan syarat, misalnya remedial jika nilai tidak memenuhi batas.'
   },
   XOR: {
-    exampleFormula: '=IF(XOR(B2>=90;C2>=95);"Tepat Satu";"Tidak")',
-    exampleMeaning: 'Contoh ini mengecek apakah hanya salah satu syarat yang terpenuhi. Jika tepat satu kondisi benar, hasilnya Tepat Satu. Jika dua-duanya sama, hasilnya Tidak.',
-    simpleLogic: 'XOR dipakai untuk kondisi ganjil: hasil TRUE jika jumlah kondisi benar adalah ganjil.',
-    useCase: 'Untuk kasus logika khusus saat hanya satu syarat yang boleh benar.'
+    exampleFormula: '=IF(XOR(B2>=75;C2>=80);"Cek Manual";"Normal")',
+    exampleMeaning: 'Contoh ini mengecek kondisi yang tidak konsisten. Jika hanya salah satu dari nilai atau kehadiran yang memenuhi syarat, hasilnya Cek Manual. Jika dua-duanya sama-sama memenuhi atau sama-sama tidak memenuhi, hasilnya Normal.',
+    simpleLogic: 'XOR bernilai benar jika hanya salah satu kondisi benar. Karena hasil mentahnya TRUE/FALSE, lebih mudah diajarkan dengan IF agar outputnya jelas.',
+    useCase: 'Untuk validasi khusus saat dua kondisi seharusnya konsisten, misalnya butuh dicek manual jika hanya satu syarat yang lolos.'
   },
   IFERROR: {
     exampleFormula: '=IFERROR(VLOOKUP(A2;E2:F10;2;FALSE);"Tidak ditemukan")',
@@ -447,33 +447,33 @@ export const functionExamples = {
   },
   ISBLANK: {
     exampleFormula: '=IF(ISBLANK(A2);"Data Kosong";"Data Ada")',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 kosong. Jika kosong, hasilnya Data Kosong. Jika terisi, hasilnya Data Ada.',
-    simpleLogic: 'ISBLANK mengecek apakah sebuah cell kosong.',
-    useCase: 'Untuk validasi input yang belum diisi.'
+    exampleMeaning: 'Contoh ini mengecek A2. Jika A2 kosong, hasilnya Data Kosong. Jika A2 terisi, hasilnya Data Ada.',
+    simpleLogic: 'ISBLANK mengecek apakah cell kosong. Untuk pemula, hasilnya lebih mudah dibaca jika dibungkus dengan IF.',
+    useCase: 'Untuk validasi data kosong sebelum data diproses.'
   },
   ISNUMBER: {
     exampleFormula: '=IF(ISNUMBER(B2);"Angka";"Bukan Angka")',
-    exampleMeaning: 'Contoh ini mengecek apakah B2 berisi angka. Jika iya, hasilnya Angka. Jika tidak, hasilnya Bukan Angka.',
-    simpleLogic: 'ISNUMBER mengecek apakah sebuah value bertipe angka.',
-    useCase: 'Untuk memastikan data bisa dihitung sebelum dipakai di rumus.'
+    exampleMeaning: 'Contoh ini mengecek B2. Jika B2 berisi angka, hasilnya Angka. Jika bukan angka, hasilnya Bukan Angka.',
+    simpleLogic: 'ISNUMBER mengecek apakah isi cell berupa angka. Supaya ramah untuk pemula, gabungkan dengan IF untuk membuat label hasil.',
+    useCase: 'Untuk validasi input angka sebelum dihitung.'
   },
   ISTEXT: {
     exampleFormula: '=IF(ISTEXT(A2);"Teks";"Bukan Teks")',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi teks. Jika iya, hasilnya Teks. Jika tidak, hasilnya Bukan Teks.',
-    simpleLogic: 'ISTEXT mengecek apakah sebuah value bertipe teks.',
-    useCase: 'Untuk validasi data nama, kode, status, atau input teks lain.'
+    exampleMeaning: 'Contoh ini mengecek A2. Jika A2 berisi teks, hasilnya Teks. Jika bukan teks, hasilnya Bukan Teks.',
+    simpleLogic: 'ISTEXT mengecek apakah isi cell berupa teks. Gabungkan dengan IF jika ingin hasilnya menjadi label.',
+    useCase: 'Untuk validasi nama, kode, kategori, atau input teks lain.'
   },
   ISERROR: {
-    exampleFormula: '=IF(ISERROR(A2);"Ada Error";"Aman")',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error. Jika ada error, hasilnya Ada Error. Jika tidak, hasilnya Aman.',
-    simpleLogic: 'ISERROR mengecek semua jenis error Excel.',
-    useCase: 'Untuk mendeteksi error sebelum rumus lain diproses.'
+    exampleFormula: '=IF(ISERROR(A2);"Perlu Dicek";"Aman")',
+    exampleMeaning: 'Contoh ini mengecek A2. Jika A2 berisi error, hasilnya Perlu Dicek. Jika tidak error, hasilnya Aman.',
+    simpleLogic: 'ISERROR mengecek apakah value menghasilkan error. Untuk laporan, lebih enak jika digabung dengan IF agar hasilnya berupa status.',
+    useCase: 'Untuk membuat pengecekan sebelum error ditangani atau sebelum laporan dibagikan.'
   },
   ISNA: {
-    exampleFormula: '=IF(ISNA(A2);"Tidak Ditemukan";"Ada Data")',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error #N/A. Jika iya, hasilnya Tidak Ditemukan. Jika tidak, hasilnya Ada Data.',
-    simpleLogic: 'ISNA khusus mengecek error #N/A.',
-    useCase: 'Untuk mengecek hasil lookup yang tidak ditemukan.'
+    exampleFormula: '=IF(ISNA(A2);"Tidak Ditemukan";"Ada")',
+    exampleMeaning: 'Contoh ini mengecek A2. Jika A2 berisi error #N/A, hasilnya Tidak Ditemukan. Jika bukan #N/A, hasilnya Ada.',
+    simpleLogic: 'ISNA hanya mengecek error #N/A. Dalam praktik lookup, gabungkan dengan IF agar hasilnya lebih mudah dibaca.',
+    useCase: 'Untuk cek hasil lookup yang tidak menemukan data.'
   },
   DETECTLANGUAGE: {
     exampleFormula: '=DETECTLANGUAGE(A2)',
@@ -536,8 +536,8 @@ const exampleOverrides = {
   IFS: '=IFS(B2>=90;"A";B2>=75;"B";TRUE;"C")',
   AND: '=IF(AND(B2>=75;C2>=80);"Lulus";"Tidak Lulus")',
   OR: '=IF(OR(B2>=90;C2>=95);"Prioritas";"Reguler")',
-  NOT: '=IF(NOT(ISBLANK(A2));"Data Ada";"Data Kosong")',
-  XOR: '=IF(XOR(B2>=90;C2>=95);"Tepat Satu";"Tidak")',
+  NOT: '=IF(NOT(B2>=75);"Remedial";"Aman")',
+  XOR: '=IF(XOR(B2>=75;C2>=80);"Cek Manual";"Normal")',
   IFERROR: '=IFERROR(VLOOKUP(A2;E2:F10;2;FALSE);"Tidak ditemukan")',
   IFNA: '=IFNA(XLOOKUP(A2;E2:E10;F2:F10);"Tidak ditemukan")',
   SWITCH: '=SWITCH(D2;"Laki-laki";"Male";"Perempuan";"Female";"Tidak diketahui")',
@@ -546,8 +546,8 @@ const exampleOverrides = {
   ISBLANK: '=IF(ISBLANK(A2);"Data Kosong";"Data Ada")',
   ISNUMBER: '=IF(ISNUMBER(B2);"Angka";"Bukan Angka")',
   ISTEXT: '=IF(ISTEXT(A2);"Teks";"Bukan Teks")',
-  ISERROR: '=IF(ISERROR(A2);"Ada Error";"Aman")',
-  ISNA: '=IF(ISNA(A2);"Tidak Ditemukan";"Ada Data")',
+  ISERROR: '=IF(ISERROR(A2);"Perlu Dicek";"Aman")',
+  ISNA: '=IF(ISNA(A2);"Tidak Ditemukan";"Ada")',
   VLOOKUP: '=VLOOKUP(A2;E2:H20;2;FALSE)',
   HLOOKUP: '=HLOOKUP(B1;A1:E5;3;FALSE)',
   XLOOKUP: '=XLOOKUP(A2;E2:E20;F2:F20;"Tidak ditemukan")',
@@ -640,6 +640,11 @@ const buildExampleFromFormat = (formula = {}, format = '') => {
 
 const buildExampleMeaning = (formula = {}) => {
   const name = formula.name || '';
+  if (name === 'AND') return 'Contoh ini memakai AND di dalam IF. AND mengecek semua syarat, lalu IF mengubahnya menjadi status akhir.';
+  if (name === 'OR') return 'Contoh ini memakai OR di dalam IF. OR cukup butuh salah satu syarat benar, lalu IF mengubahnya menjadi status akhir.';
+  if (name === 'NOT') return 'Contoh ini memakai NOT di dalam IF. NOT membalik kondisi, lalu IF membuat hasilnya mudah dibaca.';
+  if (name === 'XOR') return 'Contoh ini memakai XOR di dalam IF untuk menandai kondisi yang hanya salah satunya benar.';
+  if (['ISBLANK','ISNUMBER','ISTEXT','ISERROR','ISNA'].includes(name)) return 'Contoh ini menggabungkan fungsi pengecekan dengan IF supaya hasilnya bukan TRUE/FALSE mentah, melainkan status yang mudah dibaca.';
   if (['SUMIF','AVERAGEIF'].includes(name)) return 'Contoh ini memakai satu syarat. Excel mengecek kategori Digital, lalu menghitung angka yang sesuai.';
   if (name === 'COUNTIF') return 'Contoh ini menghitung jumlah data yang kategorinya Digital.';
   if (['SUMIFS','AVERAGEIFS','MAXIFS','MINIFS'].includes(name)) return 'Contoh ini memakai lebih dari satu syarat, misalnya kategori Digital dan kota Jakarta, lalu menghitung angka yang sesuai.';
@@ -700,8 +705,8 @@ export function normalizeFormulaRecord(formula = {}) {
     exampleFormula: learning.exampleFormula,
     exampleMeaning: learning.exampleMeaning,
     beginnerTip: learning.beginnerTip,
-    auditStatus: generic ? 'needs-manual-format-check' : learning.auditStatus,
-    auditNote: generic ? learning.auditNote : learning.auditNote,
+    auditStatus: formula.auditStatus || (generic ? 'needs-manual-format-check' : learning.auditStatus),
+    auditNote: formula.auditNote || learning.auditNote,
     hasExercise: Boolean(formula.hasExercise)
   };
 }
