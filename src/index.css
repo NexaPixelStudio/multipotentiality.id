@@ -14,15 +14,25 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  max-width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(33, 115, 70, 0.10), transparent 34rem),
     linear-gradient(180deg, #F7F9F5 0%, #EFF5EF 100%);
+}
+
+#root {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 button, input, select, textarea {
@@ -53,8 +63,35 @@ body::-webkit-scrollbar-track,
   background: rgba(214, 224, 215, 0.55);
 }
 
+main,
+main > div,
+main section,
+main aside {
+  min-width: 0;
+}
+
+.formula-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.formula-scroll table {
+  width: 100%;
+  min-width: 880px;
+  table-layout: fixed;
+}
+
+.formula-scroll th,
+.formula-scroll td {
+  overflow: hidden;
+}
+
 .sheet-cell {
-  min-width: 118px;
+  min-width: 82px;
+  max-width: 120px;
+  word-break: normal;
 }
 
 .dark body {
@@ -80,8 +117,22 @@ body::-webkit-scrollbar-track,
   font-size: calc(0.68rem + 1px) !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .formula-scroll table {
+    min-width: 760px;
+  }
+
   .sheet-cell {
-    min-width: 105px;
+    min-width: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formula-scroll table {
+    min-width: 680px;
+  }
+
+  .sheet-cell {
+    min-width: 68px;
   }
 }
