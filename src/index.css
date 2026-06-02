@@ -75,8 +75,8 @@ main aside {
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  padding-right: 22px;
-  padding-bottom: 12px;
+  padding-right: 5px;
+  padding-bottom: 5px;
 }
 
 .formula-scroll table {
@@ -84,7 +84,7 @@ main aside {
   min-width: 940px;
   table-layout: fixed;
   font-size: 11px;
-  margin-right: 22px;
+  margin-right: 5px;
   margin-bottom: 4px;
 }
 
@@ -189,14 +189,14 @@ main aside {
 
 @media (max-width: 768px) {
   .formula-scroll {
-    padding-right: 18px;
-    padding-bottom: 10px;
+    padding-right: 5px;
+    padding-bottom: 5px;
   }
 
   .formula-scroll table {
     min-width: 820px;
     font-size: 10px;
-    margin-right: 18px;
+    margin-right: 5px;
   }
 
   .formula-scroll tr > th:first-child {
