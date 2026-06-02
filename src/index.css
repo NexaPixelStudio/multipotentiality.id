@@ -92,6 +92,20 @@ main aside {
   vertical-align: middle;
 }
 
+.formula-scroll thead th,
+.formula-scroll tbody th {
+  font-size: 10px !important;
+  line-height: 1rem;
+}
+
+.formula-scroll tr > th:first-child {
+  width: 34px !important;
+  min-width: 34px !important;
+  max-width: 34px !important;
+  padding-left: 0.25rem !important;
+  padding-right: 0.25rem !important;
+}
+
 .formula-scroll .truncate {
   overflow: visible;
   text-overflow: clip;
@@ -146,5 +160,11 @@ main aside {
 
   .sheet-cell {
     min-width: 50px;
+  }
+
+  .formula-scroll tr > th:first-child {
+    width: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
   }
 }
