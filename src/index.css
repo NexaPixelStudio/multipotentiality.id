@@ -79,7 +79,7 @@ main aside {
 
 .formula-scroll table {
   width: 100%;
-  min-width: 720px;
+  min-width: 940px;
   table-layout: fixed;
   font-size: 11px;
 }
@@ -87,8 +87,8 @@ main aside {
 .formula-scroll th,
 .formula-scroll td {
   overflow: hidden;
-  padding: 0.45rem 0.5rem !important;
-  line-height: 1.15rem;
+  padding: 0.38rem 0.45rem !important;
+  line-height: 1.05rem;
   vertical-align: middle;
 }
 
@@ -106,14 +106,49 @@ main aside {
   padding-right: 0.25rem !important;
 }
 
+.formula-scroll tr > th:nth-child(2),
+.formula-scroll tr > td:nth-child(2) {
+  width: 120px;
+}
+
+.formula-scroll tr > th:nth-child(3),
+.formula-scroll tr > td:nth-child(3) {
+  width: 104px;
+}
+
+.formula-scroll tr > th:nth-child(4),
+.formula-scroll tr > td:nth-child(4),
+.formula-scroll tr > th:nth-child(5),
+.formula-scroll tr > td:nth-child(5),
+.formula-scroll tr > th:nth-child(6),
+.formula-scroll tr > td:nth-child(6),
+.formula-scroll tr > th:nth-child(7),
+.formula-scroll tr > td:nth-child(7),
+.formula-scroll tr > th:nth-child(8),
+.formula-scroll tr > td:nth-child(8),
+.formula-scroll tr > th:nth-child(9),
+.formula-scroll tr > td:nth-child(9) {
+  width: 78px;
+}
+
+.formula-scroll tr > th:nth-child(10),
+.formula-scroll tr > td:nth-child(10) {
+  width: 110px;
+}
+
+.formula-scroll tr > th:nth-child(11),
+.formula-scroll tr > td:nth-child(11) {
+  width: 90px;
+}
+
 .formula-scroll .truncate {
   overflow: visible;
   text-overflow: clip;
-  white-space: normal;
+  white-space: nowrap;
 }
 
 .sheet-cell {
-  min-width: 58px;
+  min-width: 0;
   max-width: none;
   word-break: normal;
 }
@@ -143,23 +178,15 @@ main aside {
 
 @media (max-width: 1200px) {
   .formula-scroll table {
-    min-width: 680px;
+    min-width: 880px;
     font-size: 10.5px;
-  }
-
-  .sheet-cell {
-    min-width: 54px;
   }
 }
 
 @media (max-width: 768px) {
   .formula-scroll table {
-    min-width: 620px;
+    min-width: 820px;
     font-size: 10px;
-  }
-
-  .sheet-cell {
-    min-width: 50px;
   }
 
   .formula-scroll tr > th:first-child {
