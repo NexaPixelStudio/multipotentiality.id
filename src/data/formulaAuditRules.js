@@ -43,12 +43,12 @@ const humanCategoryCopy = {
     meaning: 'Contoh ini menghitung jumlah hari antara tanggal B2 dan C2.'
   },
   Logical: {
-    description: (name) => `Rumus ${name} dipakai untuk membuat keputusan dari kondisi benar atau salah.`,
-    logic: 'Tulis kondisi yang mau dicek, lalu tentukan hasil kalau kondisi benar dan hasil kalau salah.',
-    useCase: 'Untuk status lulus/tidak, approve/reject, diskon/tidak diskon, atau valid/tidak valid.',
-    analogy: 'Kayak aturan pintu masuk. Kalau syaratnya terpenuhi, masuk jalur A. Kalau tidak, masuk jalur B.',
-    sample: '=IF(D2>=75;"Lulus";"Tidak Lulus")',
-    meaning: 'Contoh ini mengecek nilai D2. Kalau minimal 75 hasilnya Lulus, kalau tidak hasilnya Tidak Lulus.'
+    description: (name) => `Rumus ${name} dipakai untuk membaca hasil kondisi TRUE/FALSE atau membuat keputusan dari kondisi tertentu.`,
+    logic: 'Tulis kondisi yang mau dicek. Kalau rumusnya IF/IFS, tentukan juga hasil saat kondisi benar dan salah.',
+    useCase: 'Untuk status lulus/tidak, validasi data, syarat kelayakan, pengecekan kosong/tidak kosong, atau kondisi alternatif.',
+    analogy: 'Kayak aturan pintu masuk. Excel mengecek syarat dulu, lalu mengeluarkan hasil sesuai aturan rumusnya.',
+    sample: '=AND(B2>=75;C2>=80)',
+    meaning: 'Contoh ini mengecek dua kondisi. Hasilnya TRUE jika nilai minimal 75 dan kehadiran minimal 80 sama-sama terpenuhi.'
   },
   'Dynamic Array': {
     description: (name) => `Rumus ${name} dipakai untuk mengeluarkan hasil yang bisa melebar otomatis ke banyak cell.`,
@@ -277,49 +277,233 @@ export const verifiedFormatOverrides = {
 };
 
 export const functionExamples = {
+  SUM: {
+    exampleFormula: '=SUM(B2:B13)',
+    exampleMeaning: 'Contoh ini menjumlahkan seluruh angka penjualan dari B2 sampai B13.',
+    simpleLogic: 'SUM dipakai untuk menjumlahkan angka dalam satu range atau beberapa range.',
+    useCase: 'Untuk total penjualan, total biaya, total qty, atau angka lain yang perlu dijumlahkan.'
+  },
+  AVERAGE: {
+    exampleFormula: '=AVERAGE(B2:B13)',
+    exampleMeaning: 'Contoh ini menghitung rata-rata penjualan dari B2 sampai B13.',
+    simpleLogic: 'AVERAGE menjumlahkan angka lalu membaginya dengan jumlah data angka.',
+    useCase: 'Untuk mencari rata-rata nilai, rata-rata penjualan, rata-rata qty, atau rata-rata biaya.'
+  },
+  MIN: {
+    exampleFormula: '=MIN(B2:B13)',
+    exampleMeaning: 'Contoh ini mencari angka penjualan paling kecil dari B2 sampai B13.',
+    simpleLogic: 'MIN dipakai untuk mengambil nilai terkecil dari kumpulan angka.',
+    useCase: 'Untuk mencari penjualan terendah, nilai terendah, stok paling sedikit, atau biaya paling kecil.'
+  },
+  MAX: {
+    exampleFormula: '=MAX(B2:B13)',
+    exampleMeaning: 'Contoh ini mencari angka penjualan paling besar dari B2 sampai B13.',
+    simpleLogic: 'MAX dipakai untuk mengambil nilai terbesar dari kumpulan angka.',
+    useCase: 'Untuk mencari penjualan tertinggi, nilai tertinggi, stok terbanyak, atau biaya paling besar.'
+  },
+  LARGE: {
+    exampleFormula: '=LARGE(B2:B13;2)',
+    exampleMeaning: 'Contoh ini mencari penjualan terbesar ke-2 dari B2 sampai B13.',
+    simpleLogic: 'LARGE mencari angka terbesar berdasarkan urutan yang kamu tentukan.',
+    useCase: 'Untuk mencari top 2, top 3, atau ranking nilai terbesar tanpa membuat sort manual.'
+  },
+  SMALL: {
+    exampleFormula: '=SMALL(B2:B13;2)',
+    exampleMeaning: 'Contoh ini mencari penjualan terkecil ke-2 dari B2 sampai B13.',
+    simpleLogic: 'SMALL mencari angka terkecil berdasarkan urutan yang kamu tentukan.',
+    useCase: 'Untuk mencari bottom 2, bottom 3, atau ranking nilai terkecil tanpa membuat sort manual.'
+  },
+  COUNT: {
+    exampleFormula: '=COUNT(B2:B13)',
+    exampleMeaning: 'Contoh ini menghitung berapa banyak cell berisi angka pada B2 sampai B13.',
+    simpleLogic: 'COUNT hanya menghitung cell yang isinya angka. Teks dan cell kosong tidak dihitung.',
+    useCase: 'Untuk menghitung jumlah data angka, jumlah nilai, jumlah transaksi bernominal, atau kolom numeric.'
+  },
+  COUNTA: {
+    exampleFormula: '=COUNTA(A2:A13)',
+    exampleMeaning: 'Contoh ini menghitung berapa banyak cell yang terisi pada A2 sampai A13, termasuk teks.',
+    simpleLogic: 'COUNTA menghitung semua cell yang tidak kosong, baik teks maupun angka.',
+    useCase: 'Untuk menghitung jumlah nama, kode, catatan terisi, atau data yang sudah diinput.'
+  },
+  COUNTBLANK: {
+    exampleFormula: '=COUNTBLANK(F2:F13)',
+    exampleMeaning: 'Contoh ini menghitung berapa banyak cell kosong pada F2 sampai F13.',
+    simpleLogic: 'COUNTBLANK hanya menghitung cell yang kosong.',
+    useCase: 'Untuk mengecek data yang belum diisi, catatan kosong, atau kolom yang masih bolong.'
+  },
+  SUMIF: {
+    exampleFormula: '=SUMIF(C2:C9;"Digital";D2:D9)',
+    exampleMeaning: 'Contoh ini menjumlahkan Penjualan di D2:D9 hanya untuk baris yang Kategorinya Digital di C2:C9.',
+    simpleLogic: 'SUMIF menjumlahkan angka dengan satu syarat.',
+    useCase: 'Untuk total penjualan per kategori, total omzet per kota, atau total angka berdasarkan satu kriteria.'
+  },
+  SUMIFS: {
+    exampleFormula: '=SUMIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+    exampleMeaning: 'Contoh ini menjumlahkan Penjualan di D2:D9 untuk Kategori Digital dan Kota Jakarta.',
+    simpleLogic: 'SUMIFS menjumlahkan angka dengan lebih dari satu syarat.',
+    useCase: 'Untuk total penjualan berdasarkan beberapa kriteria sekaligus.'
+  },
+  COUNTIF: {
+    exampleFormula: '=COUNTIF(C2:C9;"Digital")',
+    exampleMeaning: 'Contoh ini menghitung berapa baris yang Kategorinya Digital pada C2:C9.',
+    simpleLogic: 'COUNTIF menghitung jumlah data yang memenuhi satu syarat.',
+    useCase: 'Untuk menghitung jumlah order per kategori, jumlah data per kota, atau jumlah status tertentu.'
+  },
+  COUNTIFS: {
+    exampleFormula: '=COUNTIFS(C2:C9;"Digital";B2:B9;"Jakarta")',
+    exampleMeaning: 'Contoh ini menghitung jumlah order dengan Kategori Digital dan Kota Jakarta.',
+    simpleLogic: 'COUNTIFS menghitung jumlah data yang memenuhi beberapa syarat sekaligus.',
+    useCase: 'Untuk menghitung data yang harus cocok dengan dua atau lebih kriteria.'
+  },
+  AVERAGEIF: {
+    exampleFormula: '=AVERAGEIF(C2:C9;"Digital";D2:D9)',
+    exampleMeaning: 'Contoh ini menghitung rata-rata Penjualan di D2:D9 untuk baris yang Kategorinya Digital.',
+    simpleLogic: 'AVERAGEIF menghitung rata-rata angka dengan satu syarat.',
+    useCase: 'Untuk rata-rata penjualan per kategori, rata-rata qty per kota, atau rata-rata nilai berdasarkan satu kriteria.'
+  },
+  AVERAGEIFS: {
+    exampleFormula: '=AVERAGEIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+    exampleMeaning: 'Contoh ini menghitung rata-rata Penjualan untuk Kategori Digital dan Kota Jakarta.',
+    simpleLogic: 'AVERAGEIFS menghitung rata-rata angka dengan lebih dari satu syarat.',
+    useCase: 'Untuk rata-rata angka berdasarkan beberapa kriteria sekaligus.'
+  },
+  MAXIFS: {
+    exampleFormula: '=MAXIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+    exampleMeaning: 'Contoh ini mencari Penjualan terbesar untuk Kategori Digital dan Kota Jakarta.',
+    simpleLogic: 'MAXIFS mencari nilai terbesar yang memenuhi satu atau beberapa syarat.',
+    useCase: 'Untuk mencari transaksi tertinggi berdasarkan kategori, kota, status, atau kriteria lain.'
+  },
+  MINIFS: {
+    exampleFormula: '=MINIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+    exampleMeaning: 'Contoh ini mencari Penjualan terkecil untuk Kategori Digital dan Kota Jakarta.',
+    simpleLogic: 'MINIFS mencari nilai terkecil yang memenuhi satu atau beberapa syarat.',
+    useCase: 'Untuk mencari transaksi terendah berdasarkan kategori, kota, status, atau kriteria lain.'
+  },
+  IF: {
+    exampleFormula: '=IF(B2>=75;"Lulus";"Tidak Lulus")',
+    exampleMeaning: 'Contoh ini mengecek nilai di B2. Kalau nilainya minimal 75, hasilnya Lulus. Kalau tidak, hasilnya Tidak Lulus.',
+    simpleLogic: 'IF membaca satu kondisi, lalu mengeluarkan hasil berbeda untuk kondisi benar dan kondisi salah.',
+    useCase: 'Untuk membuat status seperti Lulus/Tidak Lulus, Layak/Tidak Layak, atau Prioritas/Normal.'
+  },
+  IFS: {
+    exampleFormula: '=IFS(B2>=90;"A";B2>=75;"B";TRUE;"C")',
+    exampleMeaning: 'Contoh ini mengecek nilai di B2 secara berurutan. Jika minimal 90 hasilnya A, jika minimal 75 hasilnya B, selain itu C.',
+    simpleLogic: 'IFS mengecek beberapa kondisi dari kiri ke kanan. Kondisi pertama yang benar akan dipakai sebagai hasil.',
+    useCase: 'Untuk membuat kategori bertingkat seperti grade nilai, level prioritas, atau status risiko.'
+  },
+  AND: {
+    exampleFormula: '=AND(B2>=75;C2>=80)',
+    exampleMeaning: 'Contoh ini mengecek apakah nilai di B2 minimal 75 dan kehadiran di C2 minimal 80. Hasilnya TRUE hanya jika dua-duanya benar.',
+    simpleLogic: 'AND dipakai saat semua syarat harus terpenuhi.',
+    useCase: 'Untuk mengecek kelayakan yang butuh lebih dari satu syarat.'
+  },
+  OR: {
+    exampleFormula: '=OR(B2>=75;C2>=80)',
+    exampleMeaning: 'Contoh ini mengecek apakah nilai di B2 minimal 75 atau kehadiran di C2 minimal 80. Hasilnya TRUE jika minimal salah satu kondisi benar.',
+    simpleLogic: 'OR dipakai saat cukup salah satu syarat saja yang benar.',
+    useCase: 'Untuk mengecek kondisi alternatif, misalnya boleh lanjut karena nilai cukup atau kehadiran cukup.'
+  },
+  NOT: {
+    exampleFormula: '=NOT(ISBLANK(A2))',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 tidak kosong. ISBLANK(A2) mengecek kosong atau tidak, lalu NOT membalik hasilnya.',
+    simpleLogic: 'NOT dipakai untuk membalik hasil logika. TRUE jadi FALSE, FALSE jadi TRUE.',
+    useCase: 'Untuk mengecek kebalikan dari sebuah kondisi, misalnya data tidak kosong atau status bukan kondisi tertentu.'
+  },
+  XOR: {
+    exampleFormula: '=XOR(B2>=75;C2>=80)',
+    exampleMeaning: 'Contoh ini bernilai TRUE jika hanya salah satu kondisi yang benar. Kalau dua-duanya benar atau dua-duanya salah, hasilnya FALSE.',
+    simpleLogic: 'XOR dipakai untuk kondisi ganjil: hasil TRUE jika jumlah kondisi benar adalah ganjil.',
+    useCase: 'Untuk kasus logika khusus saat hanya satu syarat yang boleh benar.'
+  },
+  IFERROR: {
+    exampleFormula: '=IFERROR(VLOOKUP(A2;E2:F10;2;FALSE);"Tidak ditemukan")',
+    exampleMeaning: 'Contoh ini menjalankan VLOOKUP. Kalau rumus itu menghasilkan error apa pun, Excel menampilkan teks Tidak ditemukan.',
+    simpleLogic: 'IFERROR menangkap error dari rumus utama, lalu menggantinya dengan hasil yang lebih aman dibaca.',
+    useCase: 'Untuk merapikan hasil lookup, pembagian, atau rumus lain yang bisa error.'
+  },
+  IFNA: {
+    exampleFormula: '=IFNA(XLOOKUP(A2;E2:E10;F2:F10);"Tidak ditemukan")',
+    exampleMeaning: 'Contoh ini menjalankan XLOOKUP. Kalau data tidak ditemukan dan hasilnya #N/A, Excel menampilkan teks Tidak ditemukan.',
+    simpleLogic: 'IFNA khusus menangani error #N/A, biasanya dari data lookup yang tidak ditemukan.',
+    useCase: 'Untuk lookup yang datanya mungkin belum ada di master data.'
+  },
+  SWITCH: {
+    exampleFormula: '=SWITCH(D2;"Laki-laki";"Male";"Perempuan";"Female";"Tidak diketahui")',
+    exampleMeaning: 'Contoh ini membaca isi D2. Jika Laki-laki hasilnya Male, jika Perempuan hasilnya Female, selain itu Tidak diketahui.',
+    simpleLogic: 'SWITCH mencocokkan satu value dengan beberapa kemungkinan hasil.',
+    useCase: 'Untuk mengubah kode/status menjadi label yang lebih mudah dibaca.'
+  },
+  TRUE: {
+    exampleFormula: '=TRUE()',
+    exampleMeaning: 'Contoh ini menghasilkan nilai logika TRUE. Ini nilai logika, bukan latihan rumus utama untuk table.',
+    simpleLogic: 'TRUE mengembalikan nilai benar.',
+    useCase: 'Biasanya dipakai sebagai kondisi default di rumus seperti IFS.'
+  },
+  FALSE: {
+    exampleFormula: '=FALSE()',
+    exampleMeaning: 'Contoh ini menghasilkan nilai logika FALSE. Ini nilai logika, bukan latihan rumus utama untuk table.',
+    simpleLogic: 'FALSE mengembalikan nilai salah.',
+    useCase: 'Biasanya dipakai untuk argumen exact match atau kondisi logika.'
+  },
+  ISBLANK: {
+    exampleFormula: '=ISBLANK(A2)',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 kosong. Hasilnya TRUE jika kosong dan FALSE jika ada isinya.',
+    simpleLogic: 'ISBLANK mengecek apakah sebuah cell kosong.',
+    useCase: 'Untuk validasi input yang belum diisi.'
+  },
+  ISNUMBER: {
+    exampleFormula: '=ISNUMBER(B2)',
+    exampleMeaning: 'Contoh ini mengecek apakah B2 berisi angka. Hasilnya TRUE jika isinya angka.',
+    simpleLogic: 'ISNUMBER mengecek apakah sebuah value bertipe angka.',
+    useCase: 'Untuk memastikan data bisa dihitung sebelum dipakai di rumus.'
+  },
+  ISTEXT: {
+    exampleFormula: '=ISTEXT(A2)',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi teks. Hasilnya TRUE jika isinya teks.',
+    simpleLogic: 'ISTEXT mengecek apakah sebuah value bertipe teks.',
+    useCase: 'Untuk validasi data nama, kode, status, atau input teks lain.'
+  },
+  ISERROR: {
+    exampleFormula: '=ISERROR(A2)',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error. Hasilnya TRUE jika A2 adalah error apa pun.',
+    simpleLogic: 'ISERROR mengecek semua jenis error Excel.',
+    useCase: 'Untuk mendeteksi error sebelum rumus lain diproses.'
+  },
+  ISNA: {
+    exampleFormula: '=ISNA(A2)',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error #N/A. Hasilnya TRUE hanya untuk #N/A.',
+    simpleLogic: 'ISNA khusus mengecek error #N/A.',
+    useCase: 'Untuk mengecek hasil lookup yang tidak ditemukan.'
+  },
   DETECTLANGUAGE: {
     exampleFormula: '=DETECTLANGUAGE(A2)',
-    exampleMeaning: 'Mendeteksi bahasa dari teks di A2.',
-    simpleLogic: 'Excel membaca teks, lalu mengembalikan kode bahasa yang terdeteksi.'
+    exampleMeaning: 'Mendeteksi bahasa dari teks di A2.'
   },
   TRANSLATE: {
     exampleFormula: '=TRANSLATE(A2;"id";"en")',
-    exampleMeaning: 'Menerjemahkan teks di A2 dari bahasa Indonesia ke English.',
-    simpleLogic: 'Excel mengambil teks sumber, lalu menerjemahkannya ke bahasa target.'
+    exampleMeaning: 'Menerjemahkan teks di A2 dari bahasa Indonesia ke English.'
   },
   REGEXEXTRACT: {
     exampleFormula: '=REGEXEXTRACT(A2;"[0-9]+")',
-    exampleMeaning: 'Mengambil angka pertama yang muncul di teks A2.',
-    simpleLogic: 'Excel mencari teks yang cocok dengan pola regex, lalu mengambil bagian yang cocok.'
+    exampleMeaning: 'Mengambil angka pertama yang muncul di teks A2.'
   },
   REGEXREPLACE: {
     exampleFormula: '=REGEXREPLACE(A2;"[0-9]+";"XXX")',
-    exampleMeaning: 'Mengganti bagian angka di A2 menjadi XXX.',
-    simpleLogic: 'Excel mencari pola tertentu di teks, lalu menggantinya dengan teks baru.'
+    exampleMeaning: 'Mengganti bagian angka di A2 menjadi XXX.'
   },
   REGEXTEST: {
     exampleFormula: '=REGEXTEST(A2;"[0-9]+")',
-    exampleMeaning: 'Mengecek apakah teks A2 punya angka.',
-    simpleLogic: 'Excel mengecek apakah teks cocok dengan pola regex. Hasilnya TRUE atau FALSE.'
+    exampleMeaning: 'Mengecek apakah teks A2 punya angka.'
   },
   LET: {
     exampleFormula: '=LET(total;SUM(E2:E16);total)',
-    exampleMeaning: 'Simpan total penjualan sebagai nama total, lalu tampilkan hasilnya.',
-    simpleLogic: 'Excel menghitung bagian rumus, menyimpannya dengan nama sementara, lalu memakai nama itu lagi.'
+    exampleMeaning: 'Simpan total penjualan sebagai nama total, lalu tampilkan hasilnya.'
   },
   LAMBDA: {
     exampleFormula: '=LAMBDA(x;x*10)(5)',
-    exampleMeaning: 'Buat function kecil yang mengalikan input dengan 10, lalu jalankan untuk angka 5.',
-    simpleLogic: 'Kamu membuat function sendiri: tentukan inputnya, lalu tentukan cara hitungnya.'
+    exampleMeaning: 'Buat function kecil yang mengalikan input dengan 10, lalu jalankan untuk angka 5.'
   }
 };
-
-Object.assign(verifiedFormatOverrides, {
-  XOR: 'XOR(logical1, [logical2], ...)',
-  ACOS: 'ACOS(number)', ACOSH: 'ACOSH(number)', ACOT: 'ACOT(number)', ACOTH: 'ACOTH(number)', ARABIC: 'ARABIC(text)', ASIN: 'ASIN(number)', ASINH: 'ASINH(number)', ATAN: 'ATAN(number)', ATAN2: 'ATAN2(x_num, y_num)', ATANH: 'ATANH(number)', BASE: 'BASE(number, radix, [min_length])',
-  'CEILING.MATH': 'CEILING.MATH(number, [significance], [mode])', 'CEILING.PRECISE': 'CEILING.PRECISE(number, [significance])', COMBIN: 'COMBIN(number, number_chosen)', COMBINA: 'COMBINA(number, number_chosen)', COS: 'COS(number)', COSH: 'COSH(number)', COT: 'COT(number)', COTH: 'COTH(number)', CSC: 'CSC(number)', CSCH: 'CSCH(number)', DECIMAL: 'DECIMAL(text, radix)', DEGREES: 'DEGREES(angle)', EVEN: 'EVEN(number)', EXP: 'EXP(number)', FACT: 'FACT(number)', FACTDOUBLE: 'FACTDOUBLE(number)', 'FLOOR.MATH': 'FLOOR.MATH(number, [significance], [mode])', 'FLOOR.PRECISE': 'FLOOR.PRECISE(number, [significance])', GCD: 'GCD(number1, [number2], ...)', 'ISO.CEILING': 'ISO.CEILING(number, [significance])', LCM: 'LCM(number1, [number2], ...)', LN: 'LN(number)', LOG: 'LOG(number, [base])', LOG10: 'LOG10(number)', MDETERM: 'MDETERM(array)', MINVERSE: 'MINVERSE(array)', MMULT: 'MMULT(array1, array2)', MROUND: 'MROUND(number, multiple)', MULTINOMIAL: 'MULTINOMIAL(number1, [number2], ...)', MUNIT: 'MUNIT(dimension)', ODD: 'ODD(number)', PI: 'PI()', PRODUCT: 'PRODUCT(number1, [number2], ...)', QUOTIENT: 'QUOTIENT(numerator, denominator)', RADIANS: 'RADIANS(angle)', ROMAN: 'ROMAN(number, [form])', SEC: 'SEC(number)', SECH: 'SECH(number)', SERIESSUM: 'SERIESSUM(x, n, m, coefficients)', SIGN: 'SIGN(number)', SIN: 'SIN(number)', SINH: 'SINH(number)', SQRTPI: 'SQRTPI(number)', SUMSQ: 'SUMSQ(number1, [number2], ...)', SUMX2MY2: 'SUMX2MY2(array_x, array_y)', SUMX2PY2: 'SUMX2PY2(array_x, array_y)', SUMXMY2: 'SUMXMY2(array_x, array_y)', TAN: 'TAN(number)', TANH: 'TANH(number)', TRUNC: 'TRUNC(number, [num_digits])',
-  ARRAYTOTEXT: 'ARRAYTOTEXT(array, [format])', ASC: 'ASC(text)', BAHTTEXT: 'BAHTTEXT(number)', CHAR: 'CHAR(number)', CODE: 'CODE(text)', DBCS: 'DBCS(text)', DOLLAR: 'DOLLAR(number, [decimals])', EXACT: 'EXACT(text1, text2)', FINDB: 'FINDB(find_text, within_text, [start_num])', FIXED: 'FIXED(number, [decimals], [no_commas])', LEFTB: 'LEFTB(text, [num_bytes])', LENB: 'LENB(text)', MIDB: 'MIDB(text, start_num, num_bytes)', PHONETIC: 'PHONETIC(reference)', REPLACEB: 'REPLACEB(old_text, start_num, num_bytes, new_text)', REPT: 'REPT(text, number_times)', RIGHTB: 'RIGHTB(text, [num_bytes])', SEARCHB: 'SEARCHB(find_text, within_text, [start_num])', T: 'T(value)', UNICHAR: 'UNICHAR(number)', UNICODE: 'UNICODE(text)', VALUETOTEXT: 'VALUETOTEXT(value, [format])'
-});
 
 const categoryFallback = (category = '') => humanCategoryCopy[category] || humanCategoryCopy['Advanced / Professional'];
 
@@ -331,26 +515,39 @@ export function isGenericFormat(format = '') {
 const withIdSeparator = (formula = '') => String(formula || '').replace(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/g, ';');
 
 const exampleOverrides = {
-  SUM: '=SUM(E2:E20)',
-  AVERAGE: '=AVERAGE(E2:E20)',
-  MIN: '=MIN(E2:E20)',
-  MAX: '=MAX(E2:E20)',
-  COUNT: '=COUNT(E2:E20)',
-  COUNTA: '=COUNTA(A2:A20)',
-  COUNTBLANK: '=COUNTBLANK(B2:B20)',
-  COUNTIF: '=COUNTIF(B2:B20;"Digital")',
-  COUNTIFS: '=COUNTIFS(B2:B20;"Digital";C2:C20;"Jakarta")',
-  SUMIF: '=SUMIF(B2:B20;"Digital";E2:E20)',
-  SUMIFS: '=SUMIFS(E2:E20;B2:B20;"Digital";C2:C20;"Jakarta")',
-  AVERAGEIF: '=AVERAGEIF(B2:B20;"Digital";E2:E20)',
-  AVERAGEIFS: '=AVERAGEIFS(E2:E20;B2:B20;"Digital";C2:C20;"Jakarta")',
-  IF: '=IF(D2>=75;"Lulus";"Tidak Lulus")',
-  IFS: '=IFS(D2>=90;"A";D2>=75;"B";TRUE;"C")',
-  AND: '=AND(D2>=75;E2="Lunas")',
-  OR: '=OR(B2="Digital";C2="Jakarta")',
+  SUM: '=SUM(B2:B13)',
+  AVERAGE: '=AVERAGE(B2:B13)',
+  MIN: '=MIN(B2:B13)',
+  MAX: '=MAX(B2:B13)',
+  LARGE: '=LARGE(B2:B13;2)',
+  SMALL: '=SMALL(B2:B13;2)',
+  COUNT: '=COUNT(B2:B13)',
+  COUNTA: '=COUNTA(A2:A13)',
+  COUNTBLANK: '=COUNTBLANK(F2:F13)',
+  COUNTIF: '=COUNTIF(C2:C9;"Digital")',
+  COUNTIFS: '=COUNTIFS(C2:C9;"Digital";B2:B9;"Jakarta")',
+  SUMIF: '=SUMIF(C2:C9;"Digital";D2:D9)',
+  SUMIFS: '=SUMIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+  AVERAGEIF: '=AVERAGEIF(C2:C9;"Digital";D2:D9)',
+  AVERAGEIFS: '=AVERAGEIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+  MAXIFS: '=MAXIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+  MINIFS: '=MINIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
+  IF: '=IF(B2>=75;"Lulus";"Tidak Lulus")',
+  IFS: '=IFS(B2>=90;"A";B2>=75;"B";TRUE;"C")',
+  AND: '=AND(B2>=75;C2>=80)',
+  OR: '=OR(B2>=75;C2>=80)',
   NOT: '=NOT(ISBLANK(A2))',
-  IFERROR: '=IFERROR(VLOOKUP(A2;E2:H20;2;FALSE);"Tidak ditemukan")',
-  IFNA: '=IFNA(XLOOKUP(A2;E2:E20;F2:F20);"Tidak ditemukan")',
+  XOR: '=XOR(B2>=75;C2>=80)',
+  IFERROR: '=IFERROR(VLOOKUP(A2;E2:F10;2;FALSE);"Tidak ditemukan")',
+  IFNA: '=IFNA(XLOOKUP(A2;E2:E10;F2:F10);"Tidak ditemukan")',
+  SWITCH: '=SWITCH(D2;"Laki-laki";"Male";"Perempuan";"Female";"Tidak diketahui")',
+  TRUE: '=TRUE()',
+  FALSE: '=FALSE()',
+  ISBLANK: '=ISBLANK(A2)',
+  ISNUMBER: '=ISNUMBER(B2)',
+  ISTEXT: '=ISTEXT(A2)',
+  ISERROR: '=ISERROR(A2)',
+  ISNA: '=ISNA(A2)',
   VLOOKUP: '=VLOOKUP(A2;E2:H20;2;FALSE)',
   HLOOKUP: '=HLOOKUP(B1;A1:E5;3;FALSE)',
   XLOOKUP: '=XLOOKUP(A2;E2:E20;F2:F20;"Tidak ditemukan")',
@@ -443,8 +640,10 @@ const buildExampleFromFormat = (formula = {}, format = '') => {
 
 const buildExampleMeaning = (formula = {}) => {
   const name = formula.name || '';
-  if (['SUMIF','COUNTIF','AVERAGEIF'].includes(name)) return 'Contoh ini memakai satu syarat. Excel mengecek kategori Digital, lalu menghitung bagian angka yang sesuai.';
-  if (['SUMIFS','COUNTIFS','AVERAGEIFS'].includes(name)) return 'Contoh ini memakai lebih dari satu syarat, misalnya kategori Digital dan kota Jakarta.';
+  if (['SUMIF','AVERAGEIF'].includes(name)) return 'Contoh ini memakai satu syarat. Excel mengecek kategori Digital, lalu menghitung angka yang sesuai.';
+  if (name === 'COUNTIF') return 'Contoh ini menghitung jumlah data yang kategorinya Digital.';
+  if (['SUMIFS','AVERAGEIFS','MAXIFS','MINIFS'].includes(name)) return 'Contoh ini memakai lebih dari satu syarat, misalnya kategori Digital dan kota Jakarta, lalu menghitung angka yang sesuai.';
+  if (name === 'COUNTIFS') return 'Contoh ini menghitung jumlah data yang memenuhi beberapa syarat sekaligus.';
   if (['VLOOKUP','HLOOKUP','XLOOKUP','LOOKUP','MATCH','XMATCH','INDEX'].includes(name)) return 'Contoh ini mengambil data dari tabel referensi memakai nilai pencarian yang sudah ada.';
   if (['LEFT','RIGHT','MID','LEN','TRIM','LOWER','UPPER','PROPER','CONCAT','CONCATENATE','TEXTJOIN','TEXTSPLIT','TEXTBEFORE','TEXTAFTER','FIND','SEARCH','SUBSTITUTE','REPLACE','TEXT'].includes(name)) return 'Contoh ini mengolah teks, kode, nama, atau format tampilan dari cell.';
   if (['DATE','DAY','MONTH','YEAR','TODAY','NOW','DATEDIF','DAYS','NETWORKDAYS','WORKDAY','EDATE','EOMONTH','TIME','HOUR','MINUTE','SECOND'].includes(name)) return 'Contoh ini memakai data tanggal atau waktu yang umum dipakai di laporan kerja.';
