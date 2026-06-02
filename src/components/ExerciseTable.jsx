@@ -65,9 +65,46 @@ const inRange = (cellRef, rangeRef) => {
   return cell.col >= minCol && cell.col <= maxCol && cell.row >= minRow && cell.row <= maxRow;
 };
 
+const fallbackQuestionSheet = {
+  title: 'Sheet 2 - Soal',
+  description: 'Sheet ini disiapkan untuk menaruh soal latihan.',
+  columns: ['Bagian', 'Isi'],
+  rows: [
+    ['Soal', 'Soal akan muncul di sini kalau data latihan sudah punya Sheet 2.'],
+    ['Catatan', 'Sheet 1 dipakai untuk data, Sheet 2 dipakai untuk soal.']
+  ]
+};
+
 export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected, onFillDrag }) {
-  const columns = table?.columns || [];
-  const rows = table?.rows || [];
+  const sheets = useMemo(() => [
+    {
+      id: 'sheet1',
+      name: table?.sheetName || 'Sheet 1',
+      label: 'Data',
+      table: {
+        title: table?.title || 'Data Latihan',
+        description: table?.description || '',
+        columns: table?.columns || [],
+        rows: table?.rows || []
+      },
+      selectable: true
+    },
+    {
+      id: 'sheet2',
+      name: table?.questionSheetName || 'Sheet 2',
+      label: 'Soal',
+      table: table?.questionSheet || fallbackQuestionSheet,
+      selectable: false
+    }
+  ], [table]);
+
+  const [activeSheetId, setActiveSheetId] = useState('sheet1');
+  const activeSheet = sheets.find((sheet) => sheet.id === activeSheetId) || sheets[0];
+  const currentTable = activeSheet.table || {};
+  const columns = currentTable.columns || [];
+  const rows = currentTable.rows || [];
+  const canSelect = Boolean(activeSheet.selectable);
+
   const [selectionStart, setSelectionStart] = useState(null);
   const [selectionEnd, setSelectionEnd] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -79,12 +116,26 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     return normalizeRange(selectionStart, selectionEnd || selectionStart);
   }, [selectionMode, selectionStart, selectionEnd]);
 
-  const isHighlighted = (ref) => highlightRanges.some((range) => inRange(ref, range));
+  const isHighlighted = (ref) => canSelect && highlightRanges.some((range) => inRange(ref, range));
   const isSelected = (ref) => liveRange ? inRange(ref, liveRange) : false;
   const lastSheetRow = rows.length + 1;
   const lastSheetColumn = numberToCol(columns.length || 1);
+  const displayActiveCell = canSelect ? (activeCell || 'A1') : `${activeSheet.name}`;
+
+  const resetSelection = () => {
+    setIsDragging(false);
+    setSelectionStart(null);
+    setSelectionEnd(null);
+    setSelectionMode('cell');
+  };
+
+  const handleSheetChange = (sheetId) => {
+    setActiveSheetId(sheetId);
+    resetSelection();
+  };
 
   const beginColumnSelection = (event, colIndex) => {
+    if (!canSelect) return;
     event.preventDefault();
     const col = numberToCol(colIndex + 1);
     setSelectionMode('column');
@@ -95,13 +146,14 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   };
 
   const moveColumnSelection = (colIndex) => {
-    if (!isDragging || selectionMode !== 'column' || !selectionStart) return;
+    if (!canSelect || !isDragging || selectionMode !== 'column' || !selectionStart) return;
     const col = numberToCol(colIndex + 1);
     setSelectionEnd(`${col}${lastSheetRow}`);
     onCellClick?.(`${col}1`);
   };
 
   const beginRowSelection = (event, sheetRow) => {
+    if (!canSelect) return;
     event.preventDefault();
     setSelectionMode('row');
     setSelectionStart(`A${sheetRow}`);
@@ -111,7 +163,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   };
 
   const moveRowSelection = (sheetRow) => {
-    if (!isDragging || selectionMode !== 'row' || !selectionStart) return;
+    if (!canSelect || !isDragging || selectionMode !== 'row' || !selectionStart) return;
     setSelectionEnd(`${lastSheetColumn}${sheetRow}`);
     onCellClick?.(`A${sheetRow}`);
   };
@@ -128,19 +180,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
         if (finalRange.includes(':')) {
           onFillDrag?.({ sourceCell: selectionStart, targetCell: endRef, targetRange: finalRange });
         }
-        setIsDragging(false);
-        setSelectionStart(null);
-        setSelectionEnd(null);
-        setSelectionMode('cell');
+        resetSelection();
         return;
       }
 
       const finalRange = normalizeRange(selectionStart, selectionEnd || selectionStart);
       onRangeSelected?.(finalRange);
-      setIsDragging(false);
-      setSelectionStart(null);
-      setSelectionEnd(null);
-      setSelectionMode('cell');
+      resetSelection();
     };
 
     window.addEventListener('mouseup', finishSelection);
@@ -148,6 +194,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   }, [isDragging, selectionMode, selectionStart, selectionEnd, onRangeSelected, onFillDrag]);
 
   const beginSelection = (event, ref) => {
+    if (!canSelect) return;
     event.preventDefault();
     setSelectionMode('cell');
     setSelectionStart(ref);
@@ -157,7 +204,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   };
 
   const moveSelection = (ref) => {
-    if (!isDragging || !selectionStart) return;
+    if (!canSelect || !isDragging || !selectionStart) return;
 
     if (selectionMode === 'fill') {
       setSelectionEnd(ref);
@@ -170,6 +217,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   };
 
   const beginFillDrag = (event, ref) => {
+    if (!canSelect) return;
     event.preventDefault();
     event.stopPropagation();
     setSelectionMode('fill');
@@ -179,29 +227,24 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     onCellClick?.(ref);
   };
 
-  const stopDragging = () => {
-    setIsDragging(false);
-    setSelectionMode('cell');
-  };
-
   return (
     <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Spreadsheet Practice</p>
-          <h3 className="text-xl font-black text-coach-ink dark:text-white">{table?.title || 'Data Latihan'}</h3>
-          <p className="mt-1 text-sm text-black/55 dark:text-white/55">{table?.description}</p>
+          <h3 className="text-xl font-black text-coach-ink dark:text-white">{currentTable.title || 'Data Latihan'}</h3>
+          <p className="mt-1 text-sm text-black/55 dark:text-white/55">{currentTable.description}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-black/50 dark:text-white/55">
-          <span className="rounded-full bg-coach-beige px-3 py-2 dark:bg-black/20">Aktif: {activeCell || 'A1'}</span>
+          <span className="rounded-full bg-coach-beige px-3 py-2 dark:bg-black/20">Aktif: {displayActiveCell}</span>
           <span className="rounded-full bg-coach-greenSoft px-3 py-2 text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            Klik/drag cell, header kolom, atau nomor baris
+            {canSelect ? 'Klik/drag cell, header kolom, atau nomor baris' : 'Sheet soal hanya untuk dibaca'}
           </span>
         </div>
       </div>
 
       <div className="formula-scroll overflow-auto rounded-2xl border border-coach-line dark:border-white/10">
-        <table className="border-collapse bg-white text-sm dark:bg-[#1b211c]">
+        <table className={`border-collapse bg-white text-sm dark:bg-[#1b211c] ${activeSheetId === 'sheet2' ? 'sheet-question-table' : 'sheet-data-table'}`}>
           <thead>
             <tr>
               <th className="sticky left-0 z-20 min-w-[48px] border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 dark:border-white/10 dark:bg-black/30 dark:text-white/45" />
@@ -212,7 +255,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                     key={colName}
                     onMouseDown={(event) => beginColumnSelection(event, index)}
                     onMouseEnter={() => moveColumnSelection(index)}
-                    title={`Klik atau drag untuk pilih ${colName}1:${colName}${lastSheetRow}`}
+                    title={canSelect ? `Klik atau drag untuk pilih ${colName}1:${colName}${lastSheetRow}` : colName}
                     className="sheet-cell cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
                   >
                     {colName}
@@ -226,7 +269,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
               <th
                 onMouseDown={(event) => beginRowSelection(event, 1)}
                 onMouseEnter={() => moveRowSelection(1)}
-                title={`Klik atau drag untuk pilih A1:${lastSheetColumn}1`}
+                title={canSelect ? `Klik atau drag untuk pilih A1:${lastSheetColumn}1` : '1'}
                 className="sticky left-0 z-10 cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
               >
                 1
@@ -237,11 +280,12 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                   <Cell
                     key={ref}
                     refName={ref}
-                    value={cellValues[ref] ?? column}
+                    value={canSelect ? (cellValues[ref] ?? column) : column}
                     header
-                    active={activeCell === ref}
+                    active={canSelect && activeCell === ref}
                     highlighted={isHighlighted(ref)}
                     selected={isSelected(ref)}
+                    canSelect={canSelect}
                     onMouseDown={beginSelection}
                     onMouseEnter={moveSelection}
                     onFillMouseDown={beginFillDrag}
@@ -256,7 +300,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                   <th
                     onMouseDown={(event) => beginRowSelection(event, sheetRow)}
                     onMouseEnter={() => moveRowSelection(sheetRow)}
-                    title={`Klik atau drag untuk pilih A${sheetRow}:${lastSheetColumn}${sheetRow}`}
+                    title={canSelect ? `Klik atau drag untuk pilih A${sheetRow}:${lastSheetColumn}${sheetRow}` : String(sheetRow)}
                     className="sticky left-0 z-10 cursor-cell select-none border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 transition hover:bg-coach-greenSoft hover:text-coach-green dark:border-white/10 dark:bg-black/30 dark:text-white/45 dark:hover:bg-emerald-400/12 dark:hover:text-emerald-200"
                   >
                     {sheetRow}
@@ -267,10 +311,11 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                       <Cell
                         key={ref}
                         refName={ref}
-                        value={cellValues[ref] ?? row[colIndex]}
-                        active={activeCell === ref}
+                        value={canSelect ? (cellValues[ref] ?? row[colIndex]) : row[colIndex]}
+                        active={canSelect && activeCell === ref}
                         highlighted={isHighlighted(ref)}
                         selected={isSelected(ref)}
+                        canSelect={canSelect}
                         onMouseDown={beginSelection}
                         onMouseEnter={moveSelection}
                         onFillMouseDown={beginFillDrag}
@@ -283,20 +328,34 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
           </tbody>
         </table>
       </div>
+
+      <div className="mt-2 flex items-center gap-2 rounded-2xl border border-coach-line bg-coach-beige px-3 py-2 dark:border-white/10 dark:bg-black/20">
+        {sheets.map((sheet) => (
+          <button
+            key={sheet.id}
+            type="button"
+            onClick={() => handleSheetChange(sheet.id)}
+            className={`rounded-xl px-4 py-2 text-xs font-black transition ${activeSheetId === sheet.id ? 'bg-white text-coach-green shadow-sm dark:bg-white/10 dark:text-emerald-200' : 'text-black/55 hover:bg-white/70 hover:text-coach-green dark:text-white/55 dark:hover:bg-white/10'}`}
+            title={sheet.label}
+          >
+            {sheet.name}
+          </button>
+        ))}
+      </div>
     </section>
   );
 }
 
-function Cell({ refName, value, header, active, highlighted, selected, onMouseDown, onMouseEnter, onFillMouseDown }) {
+function Cell({ refName, value, header, active, highlighted, selected, canSelect, onMouseDown, onMouseEnter, onFillMouseDown }) {
   return (
     <td
       onMouseDown={(event) => onMouseDown?.(event, refName)}
       onMouseEnter={() => onMouseEnter?.(refName)}
       title={refName}
-      className={`sheet-cell relative cursor-cell select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
+      className={`sheet-cell relative ${canSelect ? 'cursor-cell' : 'cursor-default'} select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
     >
       <div className="min-h-[20px] truncate">{String(value ?? '')}</div>
-      {active && !header ? (
+      {active && !header && canSelect ? (
         <button
           type="button"
           aria-label={`Tarik untuk duplikat rumus dari ${refName}`}
