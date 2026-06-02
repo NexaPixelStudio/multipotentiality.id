@@ -55,16 +55,16 @@ export default function FormulaTheory({ formula, isGeneric }) {
         <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
           {exampleFormula && (
             <div className="rounded-2xl border border-coach-green/20 bg-coach-greenSoft/70 p-4 dark:border-emerald-400/15 dark:bg-emerald-400/10">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Contoh Rumus</p>
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Pola Rumus</p>
               <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 font-mono text-sm font-black text-coach-green dark:bg-black/20 dark:text-emerald-200">
                 {exampleFormula}
               </code>
-              <p className="mt-2 text-[11px] font-bold text-coach-green/70 dark:text-emerald-200/70">Ini contoh penggunaan, bukan jawaban latihan.</p>
+              <p className="mt-2 text-[11px] font-bold text-coach-green/70 dark:text-emerald-200/70">Ini pola penyusunan rumus, bukan jawaban latihan.</p>
             </div>
           )}
 
           <div className="rounded-2xl border border-coach-line bg-coach-beige/70 p-4 dark:border-white/10 dark:bg-black/18">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-black/40 dark:text-white/45">Maksud contohnya</p>
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-black/40 dark:text-white/45">Cara bacanya</p>
             {exampleMeaning && <p className="mt-2 text-sm leading-6 text-black/65 dark:text-white/65">{exampleMeaning}</p>}
             {beginnerTip && <p className="mt-2 rounded-xl bg-white px-3 py-2 text-xs font-semibold leading-5 text-black/55 dark:bg-white/8 dark:text-white/60">{beginnerTip}</p>}
           </div>
