@@ -81,14 +81,14 @@ main aside {
   width: 100%;
   min-width: 720px;
   table-layout: fixed;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .formula-scroll th,
 .formula-scroll td {
   overflow: hidden;
   padding: 0.45rem 0.5rem !important;
-  line-height: 1.25rem;
+  line-height: 1.15rem;
   vertical-align: middle;
 }
 
@@ -130,7 +130,7 @@ main aside {
 @media (max-width: 1200px) {
   .formula-scroll table {
     min-width: 680px;
-    font-size: 12.5px;
+    font-size: 10.5px;
   }
 
   .sheet-cell {
@@ -141,7 +141,7 @@ main aside {
 @media (max-width: 768px) {
   .formula-scroll table {
     min-width: 620px;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .sheet-cell {
