@@ -116,6 +116,23 @@ function idSeparator(formula = '') {
   return formula.replace(/,/g, ';');
 }
 
+function buildQuestionSheet({ title, question, activeCell, formulaName, criteriaValue, ranges, logic }) {
+  return {
+    title: 'Sheet 2 - Soal',
+    description: 'Sheet ini berisi soal latihan. Sheet 1 tetap dipakai sebagai data utama.',
+    columns: ['Bagian', 'Isi'],
+    rows: [
+      ['Judul Latihan', title],
+      ['Soal', question],
+      ['Cell Jawaban', activeCell],
+      ['Rumus yang Dipakai', formulaName],
+      ['Value / Kriteria', criteriaValue || 'Tidak ada value khusus.'],
+      ['Range yang Dipakai', ranges?.length ? ranges.join(', ') : 'Ikuti soal dan data di Sheet 1.'],
+      ['Cara Baca', logic]
+    ]
+  };
+}
+
 function buildExercise(formulaId, plan, rowData, rowIndex) {
   const row = rowIndex + 2;
   const product = rowData[0];
@@ -124,24 +141,28 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
   const expectedFormula = plan.buildFormula(range, order);
   const label = typeof plan.label === 'function' ? plan.label({ order }) : plan.label;
   const context = { product, row, order, range };
+  const question = plan.buildQuestion(context);
+  const logicPrompt = plan.buildLogic(context);
+  const criteriaValue = ['LARGE', 'SMALL'].includes(plan.name) ? String(order) : '';
+  const title = `Latihan ${rowIndex + 1}: ${label}`;
 
   return {
     id: `${formulaId}__level_${rowIndex + 1}`,
     baseFormulaId: formulaId,
     formulaName: plan.name,
-    title: `Latihan ${rowIndex + 1}: ${label}`,
+    title,
     levelIndex: rowIndex,
     levelLabel: label,
     tableKey: 'batchBasicSales',
-    table: batchBasicSalesTable,
+    table: { ...batchBasicSalesTable, questionSheet: buildQuestionSheet({ title, question, activeCell: `J${row}`, formulaName: plan.name, criteriaValue, ranges: [range], logic: logicPrompt }) },
     activeCell: `J${row}`,
-    question: plan.buildQuestion(context),
-    logicPrompt: plan.buildLogic(context),
+    question,
+    logicPrompt,
     expectedFormula,
     acceptedFormulas: [idSeparator(expectedFormula)],
     requiredRefs: [range],
     requiredTexts: [],
-    criteriaValue: ['LARGE', 'SMALL'].includes(plan.name) ? String(order) : '',
+    criteriaValue,
     argumentCount: ['LARGE', 'SMALL'].includes(plan.name) ? { min: 2, max: 2 } : { min: 1, max: 1 },
     highlightRanges: [range],
     allowedFunctions: [plan.name],

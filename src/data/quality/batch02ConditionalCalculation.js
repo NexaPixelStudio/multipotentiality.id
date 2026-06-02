@@ -149,6 +149,23 @@ function getFormulaParts(formulaId, scenario) {
   ];
 }
 
+function buildQuestionSheet({ title, question, activeCell, formulaName, criteriaValue, ranges, logic }) {
+  return {
+    title: 'Sheet 2 - Soal',
+    description: 'Sheet ini berisi soal latihan. Sheet 1 tetap dipakai sebagai data utama.',
+    columns: ['Bagian', 'Isi'],
+    rows: [
+      ['Judul Latihan', title],
+      ['Soal', question],
+      ['Cell Jawaban', activeCell],
+      ['Rumus yang Dipakai', formulaName],
+      ['Value / Kriteria', criteriaValue || 'Tidak ada value khusus.'],
+      ['Range yang Dipakai', ranges?.length ? ranges.join(', ') : 'Ikuti soal dan data di Sheet 1.'],
+      ['Cara Baca', logic]
+    ]
+  };
+}
+
 function getCommonMistakes(formulaId) {
   return isMultiFormula(formulaId)
     ? ['Menulis syarat tanpa pasangannya.', 'Menukar urutan range angka dengan range syarat.', 'Lupa tanda kutip untuk kriteria teks.', 'Memakai versi satu syarat padahal soal punya lebih dari satu syarat.']
@@ -172,26 +189,31 @@ function buildExercise(formulaId, scenario, index) {
   const conditionText = multi
     ? scenario.criteriaPairs.map(([range, criteria]) => `${range} = ${criteria}`).join(' dan ')
     : `${scenario.criteriaRange} = ${scenario.criteriaText}`;
+  const question = `Di cell ${scenario.activeCell}, ${scenario.task}.`;
+  const logicPrompt = `${meta.name} dipakai untuk mencari ${meta.resultWord} dengan ${multi ? 'lebih dari satu syarat' : 'satu syarat'}. Cara bacanya: cek ${conditionText}, lalu ${meta.resultWord} diambil dari data yang memenuhi syarat.`;
+  const ranges = getHighlightRanges(scenario);
+  const criteriaValue = getCriteriaValue(scenario);
+  const title = `Latihan ${index + 1}: ${scenario.label}`;
 
   return {
     id: `${formulaId}__level_${index + 1}`,
     baseFormulaId: formulaId,
     formulaName: meta.name,
-    title: `Latihan ${index + 1}: ${scenario.label}`,
+    title,
     levelIndex: index,
     levelLabel: scenario.label,
     tableKey: 'batchConditionalOrders',
-    table: batchConditionalOrderTable,
+    table: { ...batchConditionalOrderTable, questionSheet: buildQuestionSheet({ title, question, activeCell: scenario.activeCell, formulaName: meta.name, criteriaValue, ranges, logic: logicPrompt }) },
     activeCell: scenario.activeCell,
-    question: `Di cell ${scenario.activeCell}, ${scenario.task}.`,
-    logicPrompt: `${meta.name} dipakai untuk mencari ${meta.resultWord} dengan ${multi ? 'lebih dari satu syarat' : 'satu syarat'}. Cara bacanya: cek ${conditionText}, lalu ${meta.resultWord} diambil dari data yang memenuhi syarat.`,
+    question,
+    logicPrompt,
     expectedFormula,
     acceptedFormulas: [idSeparator(expectedFormula)],
-    requiredRefs: getHighlightRanges(scenario),
+    requiredRefs: ranges,
     requiredTexts: getRequiredTexts(scenario),
-    criteriaValue: getCriteriaValue(scenario),
+    criteriaValue,
     argumentCount: meta.argumentCount,
-    highlightRanges: getHighlightRanges(scenario),
+    highlightRanges: ranges,
     allowedFunctions: [meta.name],
     hints: getHints(formulaId, scenario),
     successExplanation: `Tepat. ${meta.name} sudah menghitung ${meta.resultWord} sesuai syarat pada soal.`,
@@ -202,7 +224,7 @@ function buildExercise(formulaId, scenario, index) {
       batch: 'batch-02-conditional-calculation',
       tableKey: 'batchConditionalOrders',
       expectedFormula,
-      refs: getHighlightRanges(scenario),
+      refs: ranges,
       requiredTexts: getRequiredTexts(scenario),
       note: 'Conditional batch dibuat dari awal. Single criteria dan multi criteria dipisah agar tidak crash.'
     }
