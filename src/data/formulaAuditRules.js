@@ -43,12 +43,12 @@ const humanCategoryCopy = {
     meaning: 'Contoh ini menghitung jumlah hari antara tanggal B2 dan C2.'
   },
   Logical: {
-    description: (name) => `Rumus ${name} dipakai untuk membaca hasil kondisi TRUE/FALSE atau membuat keputusan dari kondisi tertentu.`,
-    logic: 'Tulis kondisi yang mau dicek. Kalau rumusnya IF/IFS, tentukan juga hasil saat kondisi benar dan salah.',
-    useCase: 'Untuk status lulus/tidak, validasi data, syarat kelayakan, pengecekan kosong/tidak kosong, atau kondisi alternatif.',
-    analogy: 'Kayak aturan pintu masuk. Excel mengecek syarat dulu, lalu mengeluarkan hasil sesuai aturan rumusnya.',
-    sample: '=AND(B2>=75;C2>=80)',
-    meaning: 'Contoh ini mengecek dua kondisi. Hasilnya TRUE jika nilai minimal 75 dan kehadiran minimal 80 sama-sama terpenuhi.'
+    description: (name) => `Rumus ${name} dipakai untuk membaca kondisi dan membuat keputusan dari kondisi tersebut.`,
+    logic: 'Untuk pemula, AND, OR, NOT, dan XOR lebih mudah dipelajari jika digabung dengan IF, supaya hasilnya bukan cuma TRUE/FALSE tapi menjadi status yang jelas.',
+    useCase: 'Untuk status lulus/tidak, prioritas/reguler, remedial/aman, validasi data, dan keputusan dari beberapa syarat.',
+    analogy: 'Kayak aturan pintu masuk. Excel cek syaratnya dulu, lalu IF menentukan tulisan hasil akhirnya.',
+    sample: '=IF(AND(B2>=75;C2>=80);"Lulus";"Tidak Lulus")',
+    meaning: 'Contoh ini mengecek dua syarat sekaligus. Jika nilai minimal 75 dan kehadiran minimal 80, hasilnya Lulus. Kalau salah satu tidak terpenuhi, hasilnya Tidak Lulus.'
   },
   'Dynamic Array': {
     description: (name) => `Rumus ${name} dipakai untuk mengeluarkan hasil yang bisa melebar otomatis ke banyak cell.`,
@@ -392,26 +392,26 @@ export const functionExamples = {
     useCase: 'Untuk membuat kategori bertingkat seperti grade nilai, level prioritas, atau status risiko.'
   },
   AND: {
-    exampleFormula: '=AND(B2>=75;C2>=80)',
-    exampleMeaning: 'Contoh ini mengecek apakah nilai di B2 minimal 75 dan kehadiran di C2 minimal 80. Hasilnya TRUE hanya jika dua-duanya benar.',
+    exampleFormula: '=IF(AND(B2>=75;C2>=80);"Lulus";"Tidak Lulus")',
+    exampleMeaning: 'Contoh ini mengecek dua syarat sekaligus. Jika nilai minimal 75 dan kehadiran minimal 80, hasilnya Lulus. Jika salah satu tidak terpenuhi, hasilnya Tidak Lulus.',
     simpleLogic: 'AND dipakai saat semua syarat harus terpenuhi.',
     useCase: 'Untuk mengecek kelayakan yang butuh lebih dari satu syarat.'
   },
   OR: {
-    exampleFormula: '=OR(B2>=75;C2>=80)',
-    exampleMeaning: 'Contoh ini mengecek apakah nilai di B2 minimal 75 atau kehadiran di C2 minimal 80. Hasilnya TRUE jika minimal salah satu kondisi benar.',
+    exampleFormula: '=IF(OR(B2>=90;C2>=95);"Prioritas";"Reguler")',
+    exampleMeaning: 'Contoh ini mengecek apakah salah satu syarat tinggi terpenuhi. Jika nilai minimal 90 atau kehadiran minimal 95, hasilnya Prioritas. Jika tidak, hasilnya Reguler.',
     simpleLogic: 'OR dipakai saat cukup salah satu syarat saja yang benar.',
     useCase: 'Untuk mengecek kondisi alternatif, misalnya boleh lanjut karena nilai cukup atau kehadiran cukup.'
   },
   NOT: {
-    exampleFormula: '=NOT(ISBLANK(A2))',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 tidak kosong. ISBLANK(A2) mengecek kosong atau tidak, lalu NOT membalik hasilnya.',
+    exampleFormula: '=IF(NOT(ISBLANK(A2));"Data Ada";"Data Kosong")',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 tidak kosong. Jika A2 terisi, hasilnya Data Ada. Jika kosong, hasilnya Data Kosong.',
     simpleLogic: 'NOT dipakai untuk membalik hasil logika. TRUE jadi FALSE, FALSE jadi TRUE.',
     useCase: 'Untuk mengecek kebalikan dari sebuah kondisi, misalnya data tidak kosong atau status bukan kondisi tertentu.'
   },
   XOR: {
-    exampleFormula: '=XOR(B2>=75;C2>=80)',
-    exampleMeaning: 'Contoh ini bernilai TRUE jika hanya salah satu kondisi yang benar. Kalau dua-duanya benar atau dua-duanya salah, hasilnya FALSE.',
+    exampleFormula: '=IF(XOR(B2>=90;C2>=95);"Tepat Satu";"Tidak")',
+    exampleMeaning: 'Contoh ini mengecek apakah hanya salah satu syarat yang terpenuhi. Jika tepat satu kondisi benar, hasilnya Tepat Satu. Jika dua-duanya sama, hasilnya Tidak.',
     simpleLogic: 'XOR dipakai untuk kondisi ganjil: hasil TRUE jika jumlah kondisi benar adalah ganjil.',
     useCase: 'Untuk kasus logika khusus saat hanya satu syarat yang boleh benar.'
   },
@@ -446,32 +446,32 @@ export const functionExamples = {
     useCase: 'Biasanya dipakai untuk argumen exact match atau kondisi logika.'
   },
   ISBLANK: {
-    exampleFormula: '=ISBLANK(A2)',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 kosong. Hasilnya TRUE jika kosong dan FALSE jika ada isinya.',
+    exampleFormula: '=IF(ISBLANK(A2);"Data Kosong";"Data Ada")',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 kosong. Jika kosong, hasilnya Data Kosong. Jika terisi, hasilnya Data Ada.',
     simpleLogic: 'ISBLANK mengecek apakah sebuah cell kosong.',
     useCase: 'Untuk validasi input yang belum diisi.'
   },
   ISNUMBER: {
-    exampleFormula: '=ISNUMBER(B2)',
-    exampleMeaning: 'Contoh ini mengecek apakah B2 berisi angka. Hasilnya TRUE jika isinya angka.',
+    exampleFormula: '=IF(ISNUMBER(B2);"Angka";"Bukan Angka")',
+    exampleMeaning: 'Contoh ini mengecek apakah B2 berisi angka. Jika iya, hasilnya Angka. Jika tidak, hasilnya Bukan Angka.',
     simpleLogic: 'ISNUMBER mengecek apakah sebuah value bertipe angka.',
     useCase: 'Untuk memastikan data bisa dihitung sebelum dipakai di rumus.'
   },
   ISTEXT: {
-    exampleFormula: '=ISTEXT(A2)',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi teks. Hasilnya TRUE jika isinya teks.',
+    exampleFormula: '=IF(ISTEXT(A2);"Teks";"Bukan Teks")',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi teks. Jika iya, hasilnya Teks. Jika tidak, hasilnya Bukan Teks.',
     simpleLogic: 'ISTEXT mengecek apakah sebuah value bertipe teks.',
     useCase: 'Untuk validasi data nama, kode, status, atau input teks lain.'
   },
   ISERROR: {
-    exampleFormula: '=ISERROR(A2)',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error. Hasilnya TRUE jika A2 adalah error apa pun.',
+    exampleFormula: '=IF(ISERROR(A2);"Ada Error";"Aman")',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error. Jika ada error, hasilnya Ada Error. Jika tidak, hasilnya Aman.',
     simpleLogic: 'ISERROR mengecek semua jenis error Excel.',
     useCase: 'Untuk mendeteksi error sebelum rumus lain diproses.'
   },
   ISNA: {
-    exampleFormula: '=ISNA(A2)',
-    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error #N/A. Hasilnya TRUE hanya untuk #N/A.',
+    exampleFormula: '=IF(ISNA(A2);"Tidak Ditemukan";"Ada Data")',
+    exampleMeaning: 'Contoh ini mengecek apakah A2 berisi error #N/A. Jika iya, hasilnya Tidak Ditemukan. Jika tidak, hasilnya Ada Data.',
     simpleLogic: 'ISNA khusus mengecek error #N/A.',
     useCase: 'Untuk mengecek hasil lookup yang tidak ditemukan.'
   },
@@ -534,20 +534,20 @@ const exampleOverrides = {
   MINIFS: '=MINIFS(D2:D9;C2:C9;"Digital";B2:B9;"Jakarta")',
   IF: '=IF(B2>=75;"Lulus";"Tidak Lulus")',
   IFS: '=IFS(B2>=90;"A";B2>=75;"B";TRUE;"C")',
-  AND: '=AND(B2>=75;C2>=80)',
-  OR: '=OR(B2>=75;C2>=80)',
-  NOT: '=NOT(ISBLANK(A2))',
-  XOR: '=XOR(B2>=75;C2>=80)',
+  AND: '=IF(AND(B2>=75;C2>=80);"Lulus";"Tidak Lulus")',
+  OR: '=IF(OR(B2>=90;C2>=95);"Prioritas";"Reguler")',
+  NOT: '=IF(NOT(ISBLANK(A2));"Data Ada";"Data Kosong")',
+  XOR: '=IF(XOR(B2>=90;C2>=95);"Tepat Satu";"Tidak")',
   IFERROR: '=IFERROR(VLOOKUP(A2;E2:F10;2;FALSE);"Tidak ditemukan")',
   IFNA: '=IFNA(XLOOKUP(A2;E2:E10;F2:F10);"Tidak ditemukan")',
   SWITCH: '=SWITCH(D2;"Laki-laki";"Male";"Perempuan";"Female";"Tidak diketahui")',
   TRUE: '=TRUE()',
   FALSE: '=FALSE()',
-  ISBLANK: '=ISBLANK(A2)',
-  ISNUMBER: '=ISNUMBER(B2)',
-  ISTEXT: '=ISTEXT(A2)',
-  ISERROR: '=ISERROR(A2)',
-  ISNA: '=ISNA(A2)',
+  ISBLANK: '=IF(ISBLANK(A2);"Data Kosong";"Data Ada")',
+  ISNUMBER: '=IF(ISNUMBER(B2);"Angka";"Bukan Angka")',
+  ISTEXT: '=IF(ISTEXT(A2);"Teks";"Bukan Teks")',
+  ISERROR: '=IF(ISERROR(A2);"Ada Error";"Aman")',
+  ISNA: '=IF(ISNA(A2);"Tidak Ditemukan";"Ada Data")',
   VLOOKUP: '=VLOOKUP(A2;E2:H20;2;FALSE)',
   HLOOKUP: '=HLOOKUP(B1;A1:E5;3;FALSE)',
   XLOOKUP: '=XLOOKUP(A2;E2:E20;F2:F20;"Tidak ditemukan")',
