@@ -1,0 +1,108 @@
+name: Patch formula practice factory exports
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/patch-formula-practice-factory-exports.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add missing compatibility exports
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('src/data/formulaPracticeFactory.js')
+          text = path.read_text()
+
+          patch = r'''
+
+// Compatibility exports used by App.jsx when a formula has no curated exercise.
+export const genericTheoryTable = {
+  title: 'Data Latihan Umum',
+  description: 'Tabel fallback untuk rumus yang belum punya latihan khusus.',
+  columns: ['Item', 'Nilai', 'Keterangan'],
+  rows: [
+    ['Data 1', 10, 'Contoh angka'],
+    ['Data 2', 20, 'Contoh angka'],
+    ['Data 3', 30, 'Contoh angka'],
+    ['Data 4', 40, 'Contoh angka']
+  ]
+};
+
+export function createGenericExercise(formula = {}) {
+  const safeFormula = {
+    id: formula.id || String(formula.name || 'generic').toLowerCase(),
+    name: formula.name || 'FORMULA',
+    category: formula.category || formula.displayCategory || 'General',
+    syntax: formula.syntax || `${formula.name || 'FORMULA'}(value)`,
+    ...formula
+  };
+
+  try {
+    const generated = generateDetailedExerciseForFormula(safeFormula);
+    return {
+      ...generated,
+      table: generated.table || genericTheoryTable,
+      activeCell: generated.activeCell || 'C2'
+    };
+  } catch (error) {
+    return {
+      id: safeFormula.id,
+      formulaName: safeFormula.name,
+      title: `Latihan ${safeFormula.name}`,
+      tableKey: 'genericTheory',
+      table: genericTheoryTable,
+      activeCell: 'C2',
+      question: `Apa hasil ${safeFormula.name} dari data latihan yang tersedia?`,
+      logicPrompt: 'Baca format rumus, pilih data yang sesuai, lalu susun argumen sesuai urutan format.',
+      expectedFormula: `=${safeFormula.name}(B2:B5)`,
+      acceptedFormulas: [],
+      requiredRefs: ['B2:B5'],
+      requiredTexts: [],
+      argumentCount: { min: 1, max: null },
+      highlightRanges: ['B2:B5'],
+      allowedFunctions: [safeFormula.name],
+      hints: [
+        'Awali rumus dengan tanda =.',
+        'Pilih range atau cell yang sesuai dengan format rumus.',
+        'Cek separator dan kurung penutup sebelum submit.'
+      ],
+      successExplanation: 'Rumus sudah terbaca dengan struktur yang sesuai.',
+      formulaParts: [`${safeFormula.name} adalah rumus yang sedang dilatih.`],
+      commonMistakes: ['Lupa tanda =.', 'Salah memilih range.', 'Argumen belum lengkap.'],
+      nextUseCase: 'Gunakan pola ini sebagai latihan awal sebelum dibuatkan soal khusus.'
+    };
+  }
+}
+'''
+
+          if 'export function createGenericExercise' not in text:
+            text = text.rstrip() + patch + '\n'
+            path.write_text(text)
+
+          Path('.github/workflows/patch-formula-practice-factory-exports.yml').unlink(missing_ok=True)
+          PY
+      - name: Build check
+        run: npm ci && npm run build
+      - name: Commit patch
+        run: |
+          if git diff --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "chatgpt-fix-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/formulaPracticeFactory.js .github/workflows/patch-formula-practice-factory-exports.yml
+          git commit -m "Add formula practice factory compatibility exports"
+          git push origin main
