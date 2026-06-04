@@ -1,4 +1,4 @@
-name: Patch selectable sheet tabs
+name: Keep Sheet2 result layout selectable
 
 on:
   push:
@@ -17,98 +17,52 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Patch ExerciseTable sheet behavior
+      - name: Patch only selectable behavior
         run: |
           python3 <<'PY'
           from pathlib import Path
           p = Path('src/components/ExerciseTable.jsx')
           s = p.read_text()
 
-          s = s.replace(
-          """const parseCell = (ref = '') => {
-  const match = String(ref).toUpperCase().match(/^([A-Z]+)(\\d+)$/);
-  if (!match) return null;
-  return { col: colToNumber(match[1]), row: Number(match[2]) };
-};""",
-          """const parseCell = (ref = '') => {
-  const cleaned = String(ref).replace(/^'?[^'!]+?'?!/, '').toUpperCase();
-  const match = cleaned.match(/^([A-Z]+)(\\d+)$/);
-  if (!match) return null;
-  return { col: colToNumber(match[1]), row: Number(match[2]) };
-};""")
+          s = s.replace("selectable: false", "selectable: table?.questionSheetSelectable === true")
+          s = s.replace("const [activeSheetId, setActiveSheetId] = useState('sheet1');", "const [activeSheetId, setActiveSheetId] = useState(table?.activeSheetId || 'sheet1');")
 
-          s = s.replace(
-          """const fallbackQuestionSheet = {
-  title: 'Sheet 2 - Soal',
-  description: 'Sheet ini disiapkan untuk menaruh soal latihan.',
-  columns: ['Bagian', 'Isi'],
-  rows: [
-    ['Soal', 'Soal akan muncul di sini kalau data latihan sudah punya Sheet 2.'],
-    ['Catatan', 'Sheet 1 dipakai untuk data, Sheet 2 dipakai untuk soal.']
-  ]
-};""",
-          """const splitSheetRange = (range = '') => {
-  const text = String(range || '');
-  const bangIndex = text.lastIndexOf('!');
-  if (bangIndex === -1) return { sheetName: '', ref: text };
-  return { sheetName: text.slice(0, bangIndex).replace(/^'|'$/g, ''), ref: text.slice(bangIndex + 1) };
-};
+          old = """  const canSelect = Boolean(activeSheet.selectable);
 
-const normalizeSheet = (sheet, index = 0) => {
-  const name = sheet?.name || sheet?.sheetName || `Sheet${index + 1}`;
-  return {
-    id: sheet?.id || name.toLowerCase().replace(/\\s+/g, ''),
-    name,
-    label: sheet?.label || name,
-    selectable: sheet?.selectable !== false,
-    table: {
-      title: sheet?.title || sheet?.table?.title || name,
-      description: sheet?.description || sheet?.table?.description || '',
-      columns: sheet?.columns || sheet?.table?.columns || [],
-      rows: sheet?.rows || sheet?.table?.rows || []
-    }
+  const [selectionStart, setSelectionStart] = useState(null);"""
+          new = """  const canSelect = Boolean(activeSheet.selectable);
+  const formulaSheetId = table?.formulaSheetId || table?.answerSheetId || 'sheet1';
+  const isAnswerSheet = activeSheetId === formulaSheetId || sheets.length === 1;
+
+  const [selectionStart, setSelectionStart] = useState(null);"""
+          s = s.replace(old, new)
+
+          s = s.replace("const displayActiveCell = canSelect ? (activeCell || 'A1') : `${activeSheet.name}`;", "const displayActiveCell = canSelect ? (isAnswerSheet ? (activeCell || 'A1') : activeSheet.name) : `${activeSheet.name}`;")
+
+          old = """  const handleSheetChange = (sheetId) => {
+    setActiveSheetId(sheetId);
+    resetSelection();
+  };"""
+          new = """  const handleSheetChange = (sheetId) => {
+    setActiveSheetId(sheetId);
+    resetSelection();
   };
-};""")
 
-          start = s.index("  const sheets = useMemo(() => [")
-          end = s.index("  const [activeSheetId, setActiveSheetId]", start)
-          replacement = """  const sheets = useMemo(() => {
-    if (Array.isArray(table?.sheets) && table.sheets.length) {
-      return table.sheets.map((sheet, index) => normalizeSheet(sheet, index));
-    }
+  const formatRangeForFormula = (range) => {
+    if (!range) return range;
+    if (isAnswerSheet || sheets.length === 1) return range;
+    return `${activeSheet.name}!${range}`;
+  };"""
+          s = s.replace(old, new)
 
-    return [normalizeSheet({
-      id: 'sheet1',
-      name: table?.sheetName || 'Sheet1',
-      label: 'Data',
-      title: table?.title || 'Data Latihan',
-      description: table?.description || '',
-      columns: table?.columns || [],
-      rows: table?.rows || [],
-      selectable: true
-    })];
-  }, [table]);
-
-"""
-          s = s[:start] + replacement + s[end:]
-
-          s = s.replace("  const [activeSheetId, setActiveSheetId] = useState('sheet1');", "  const [activeSheetId, setActiveSheetId] = useState(table?.activeSheetId || sheets[0]?.id || 'sheet1');")
-          s = s.replace("  const canSelect = Boolean(activeSheet.selectable);", "  const canSelect = Boolean(activeSheet.selectable);\n  const formulaSheetId = table?.formulaSheetId || table?.answerSheetId || sheets[0]?.id || 'sheet1';\n  const isAnswerSheet = activeSheet?.id === formulaSheetId || sheets.length === 1;\n  const visibleRanges = highlightRanges\n    .map((range) => {\n      const { sheetName, ref } = splitSheetRange(range);\n      if (!sheetName) return isAnswerSheet || sheets.length === 1 ? ref : '';\n      return sheetName === activeSheet?.name ? ref : '';\n    })\n    .filter(Boolean);\n\n  useEffect(() => {\n    setActiveSheetId(table?.activeSheetId || sheets[0]?.id || 'sheet1');\n    resetSelection();\n  }, [table]);")
-          s = s.replace("const isHighlighted = (ref) => canSelect && highlightRanges.some((range) => inRange(ref, range));", "const isHighlighted = (ref) => canSelect && visibleRanges.some((range) => inRange(ref, range));")
-          s = s.replace("const displayActiveCell = canSelect ? (activeCell || 'A1') : `${activeSheet.name}`;", "const displayActiveCell = isAnswerSheet ? (activeCell || 'A1') : `${activeSheet.name}`;")
-          s = s.replace("  const handleSheetChange = (sheetId) => {\n    setActiveSheetId(sheetId);\n    resetSelection();\n  };", "  const handleSheetChange = (sheetId) => {\n    setActiveSheetId(sheetId);\n    resetSelection();\n  };\n\n  const formatRangeForFormula = (range) => {\n    if (!range) return range;\n    if (sheets.length === 1 || isAnswerSheet) return range;\n    return `${activeSheet.name}!${range}`;\n  };\n\n  const setTargetCellIfNeeded = (ref) => {\n    if (isAnswerSheet) onCellClick?.(ref);\n  };")
-          s = s.replace("onCellClick?.(", "setTargetCellIfNeeded(")
-          s = s.replace("setTargetCellIfNeeded?.(", "onCellClick?.(")
           s = s.replace("onRangeSelected?.(finalRange);", "onRangeSelected?.(formatRangeForFormula(finalRange));")
-          s = s.replace("if (!canSelect) return;\n    event.preventDefault();\n    event.stopPropagation();", "if (!canSelect || !isAnswerSheet) return;\n    event.preventDefault();\n    event.stopPropagation();")
-          s = s.replace("{canSelect ? 'Klik/drag cell, header kolom, atau nomor baris' : 'Sheet soal hanya untuk dibaca'}", "{canSelect ? (isAnswerSheet ? 'Klik cell untuk target hasil, rumus tetap diketik di formula bar' : 'Pilih cell/range data untuk masuk ke rumus') : 'Sheet ini hanya untuk dibaca'}")
+          s = s.replace("{canSelect ? 'Klik/drag cell, header kolom, atau nomor baris' : 'Sheet soal hanya untuk dibaca'}", "{canSelect ? (isAnswerSheet ? 'Klik cell untuk target hasil, rumus tetap diketik di formula bar' : 'Klik/drag cell, header kolom, atau nomor baris') : 'Sheet ini hanya untuk dibaca'}")
           s = s.replace("value={canSelect ? (cellValues[ref] ?? column) : column}", "value={isAnswerSheet ? (cellValues[ref] ?? column) : column}")
           s = s.replace("value={canSelect ? (cellValues[ref] ?? row[colIndex]) : row[colIndex]}", "value={isAnswerSheet ? (cellValues[ref] ?? row[colIndex]) : row[colIndex]}")
           s = s.replace("active={canSelect && activeCell === ref}", "active={canSelect && isAnswerSheet && activeCell === ref}")
-          s = s.replace("{active && !header && canSelect ? (", "{active && !header && canSelect ? (")
 
-          Path('.github/workflows/patch-exercise-table-selectable-sheets.yml').unlink(missing_ok=True)
           p.write_text(s)
+          Path('.github/workflows/patch-exercise-table-selectable-sheets.yml').unlink(missing_ok=True)
           PY
       - name: Build check
         run: npm ci && npm run build
@@ -121,5 +75,5 @@ const normalizeSheet = (sheet, index = 0) => {
           git config user.name "chatgpt-fix-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/components/ExerciseTable.jsx .github/workflows/patch-exercise-table-selectable-sheets.yml
-          git commit -m "Fix sheet tabs and selectable cells"
+          git commit -m "Keep Sheet2 result layout selectable"
           git push origin main
