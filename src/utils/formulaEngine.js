@@ -1,4 +1,3 @@
-import { makeSpecialEnvironmentResult } from '../data/excelSpecialEnvironment.js';
 const ERROR_CODES = {
   name: '#NAME?',
   value: '#VALUE!',
@@ -8,19 +7,13 @@ const ERROR_CODES = {
   div0: '#DIV/0!'
 };
 
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const errorResult = (code, message) => ({ ok: false, error: code, value: code, displayValue: code, message });
+const isBlank = (value) => value === '' || value === null || typeof value === 'undefined';
+const isRangeObject = (value) => value && value.__range === true;
+const flatten = (value) => isRangeObject(value) ? value.values.flat() : Array.isArray(value) ? value.flat(Infinity) : [value];
 
-const stripOuterQuotes = (value = '') => {
-  const text = String(value).trim();
-  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) {
-    return text.slice(1, -1);
-  }
-  return text;
-};
-
-const toColNumber = (col = '') => String(col).toUpperCase().split('').reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0);
-
-const toColName = (num = 1) => {
+const colToNumber = (col = '') => String(col).toUpperCase().split('').reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0);
+const numberToCol = (num = 1) => {
   let value = Number(num);
   let col = '';
   while (value > 0) {
@@ -31,46 +24,10 @@ const toColName = (num = 1) => {
   return col || 'A';
 };
 
-const isBlank = (value) => value === '' || value === null || typeof value === 'undefined';
-const isErrorValue = (value) => typeof value === 'string' && /^#(N\/A|VALUE!|REF!|NAME\?|NUM!|DIV\/0!)$/.test(value);
-
-const errorResult = (code, message) => ({ ok: false, error: code, value: code, displayValue: code, message });
-const okResult = (value, normalizedFormula = '') => ({ ok: true, value, displayValue: formatExcelValue(value), normalizedFormula });
-
-const isRangeObject = (value) => value && value.__range === true;
-const flatten = (value) => {
-  if (isRangeObject(value)) return value.values.flat();
-  if (Array.isArray(value)) return value.flat(Infinity);
-  return [value];
-};
-
-const isNumericValue = (value) => {
-  if (isBlank(value) || typeof value === 'boolean') return false;
-  if (value instanceof Date) return true;
-  if (typeof value === 'number') return Number.isFinite(value);
-  return false;
-};
-
-const numberFromExcelValue = (value) => {
-  if (value instanceof Date) return value.getTime();
-  return Number(value);
-};
-
-const numbersOnly = (value) => flatten(value)
-  .filter(isNumericValue)
-  .map(numberFromExcelValue)
-  .filter((item) => Number.isFinite(item));
-const textValue = (value) => {
-  if (isRangeObject(value)) return String(flatten(value)[0] ?? '');
-  if (Array.isArray(value)) return String(value.flat(Infinity)[0] ?? '');
-  return String(value ?? '');
-};
-const numberValue = (value) => {
-  const raw = isRangeObject(value) || Array.isArray(value) ? flatten(value)[0] : value;
-  if (raw instanceof Date) return raw.getTime();
-  const number = Number(raw);
-  if (!Number.isFinite(number)) throw new Error(ERROR_CODES.value);
-  return number;
+const stripOuterQuotes = (value = '') => {
+  const text = String(value ?? '').trim();
+  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) return text.slice(1, -1);
+  return text;
 };
 
 export function autoCloseFormula(formula = '') {
@@ -87,42 +44,22 @@ export function autoCloseFormula(formula = '') {
   return depth > 0 ? `${raw}${')'.repeat(depth)}` : raw;
 }
 
-export function normalizeForEvaluation(formula = '', separatorMode = 'id') {
-  let text = String(formula || '').trim();
-  if (!text) return '';
+export function normalizeForEvaluation(formula = '') {
   let output = '';
   let inQuote = false;
-  for (let i = 0; i < text.length; i += 1) {
-    const char = text[i];
-    if (char === '"' && text[i - 1] !== '\\') inQuote = !inQuote;
-    if (!inQuote && char === ';') output += ',';
-    else output += char;
+  for (const char of String(formula || '').trim()) {
+    if (char === '"') inQuote = !inQuote;
+    output += !inQuote && char === ';' ? ',' : char;
   }
   return autoCloseFormula(output);
 }
 
 export function formatExcelValue(value) {
-  if (isErrorValue(value)) return value;
-  if (value && value.__specialEnvironment === true) return value.preview || value.environment?.resultLabel || 'Butuh Excel';
-  if (value && value.__structureOnly === true) return value.preview || 'Struktur valid';
-  if (isRangeObject(value)) {
-    const rows = value.values;
-    const preview = rows.slice(0, 4).map((row) => row.map(formatExcelValue).join(' | ')).join('\n');
-    return rows.length > 4 ? `${preview}\n...` : preview;
-  }
-  if (Array.isArray(value)) {
-    return value.slice(0, 8).map(formatExcelValue).join(', ');
-  }
-  if (value instanceof Date) {
-    const y = value.getFullYear();
-    const m = String(value.getMonth() + 1).padStart(2, '0');
-    const d = String(value.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}`;
-  }
+  if (isRangeObject(value)) return value.values.map((row) => row.map(formatExcelValue).join(' | ')).join('\n');
+  if (Array.isArray(value)) return value.map(formatExcelValue).join(', ');
   if (typeof value === 'number') {
     if (!Number.isFinite(value)) return ERROR_CODES.num;
-    const rounded = Math.round(value * 1000000) / 1000000;
-    return new Intl.NumberFormat('id-ID', { maximumFractionDigits: 6 }).format(rounded);
+    return new Intl.NumberFormat('id-ID', { maximumFractionDigits: 6 }).format(Math.round(value * 1000000) / 1000000);
   }
   if (typeof value === 'boolean') return value ? 'TRUE' : 'FALSE';
   if (isBlank(value)) return '';
@@ -133,65 +70,12 @@ export function compareExcelResults(a, b) {
   const normalize = (value) => {
     if (isRangeObject(value)) return value.values.map((row) => row.map(normalize));
     if (Array.isArray(value)) return value.map(normalize);
-    if (value && value.__specialEnvironment === true) return `ENV:${value.functionName}:${value.environment?.id || 'special'}:${value.argCount}`;
-    if (value && value.__structureOnly === true) return `STRUCTURE:${value.functionName}:${value.argCount}`;
-    if (value instanceof Date) return value.toISOString().slice(0, 10);
     if (typeof value === 'number') return Math.round(value * 1000000) / 1000000;
     if (typeof value === 'boolean') return value;
     return String(value ?? '').trim().toUpperCase();
   };
   return JSON.stringify(normalize(a)) === JSON.stringify(normalize(b));
 }
-
-const parseCellRef = (ref = '') => {
-  const match = String(ref).toUpperCase().match(/^\$?([A-Z]+)\$?(\d+)$/);
-  if (!match) return null;
-  return { col: toColNumber(match[1]), row: Number(match[2]), ref: `${match[1]}${Number(match[2])}` };
-};
-
-const parseRangeRef = (ref = '') => {
-  const parts = String(ref).toUpperCase().replace(/\$/g, '').split(':');
-  const start = parseCellRef(parts[0]);
-  const end = parseCellRef(parts[1] || parts[0]);
-  if (!start || !end) return null;
-  return {
-    startCol: Math.min(start.col, end.col),
-    endCol: Math.max(start.col, end.col),
-    startRow: Math.min(start.row, end.row),
-    endRow: Math.max(start.row, end.row)
-  };
-};
-
-const buildSheet = (table = {}) => {
-  const values = new Map();
-  const columns = table.columns || [];
-  const rows = table.rows || [];
-  columns.forEach((column, index) => values.set(`${toColName(index + 1)}1`, column));
-  rows.forEach((row, rowIndex) => {
-    columns.forEach((_, colIndex) => values.set(`${toColName(colIndex + 1)}${rowIndex + 2}`, row[colIndex] ?? ''));
-  });
-  return values;
-};
-
-const getCell = (sheet, ref) => {
-  const cell = parseCellRef(ref);
-  if (!cell) throw new Error(ERROR_CODES.ref);
-  return sheet.has(cell.ref) ? sheet.get(cell.ref) : '';
-};
-
-const getRange = (sheet, ref) => {
-  const range = parseRangeRef(ref);
-  if (!range) throw new Error(ERROR_CODES.ref);
-  const rows = [];
-  for (let r = range.startRow; r <= range.endRow; r += 1) {
-    const row = [];
-    for (let c = range.startCol; c <= range.endCol; c += 1) {
-      row.push(sheet.get(`${toColName(c)}${r}`) ?? '');
-    }
-    rows.push(row);
-  }
-  return { __range: true, ref: String(ref).toUpperCase().replace(/\$/g, ''), values: rows, rowCount: rows.length, colCount: rows[0]?.length || 0 };
-};
 
 const splitArgs = (inner = '') => {
   const args = [];
@@ -216,700 +100,248 @@ const splitArgs = (inner = '') => {
   return args;
 };
 
-const parseFunctionCall = (expr = '') => {
-  const clean = String(expr).trim();
-  const match = clean.match(/^([A-Z][A-Z0-9._]*)\s*\(/i);
-  if (!match || !clean.endsWith(')')) return null;
-  const name = match[1].toUpperCase();
-  const openIndex = clean.indexOf('(');
-  const inner = clean.slice(openIndex + 1, -1);
-  return { name, args: splitArgs(inner) };
+const parseFunctionCall = (formula = '') => {
+  const clean = normalizeForEvaluation(formula);
+  const match = clean.match(/^=\s*([A-Z][A-Z0-9._]*)\s*\((.*)\)$/i);
+  if (!match) return null;
+  return { name: match[1].toUpperCase(), args: splitArgs(match[2]) };
 };
 
-const findTopLevelComparison = (expr = '') => {
-  const ops = ['>=', '<=', '<>', '>', '<', '='];
-  let depth = 0;
-  let inQuote = false;
-  for (let i = 0; i < expr.length; i += 1) {
-    const char = expr[i];
-    if (char === '"' && expr[i - 1] !== '\\') inQuote = !inQuote;
-    if (inQuote) continue;
-    if (char === '(') depth += 1;
-    if (char === ')') depth = Math.max(0, depth - 1);
-    if (depth === 0) {
-      const op = ops.find((item) => expr.slice(i, i + item.length) === item);
-      if (op) return { left: expr.slice(0, i), op, right: expr.slice(i + op.length) };
+const splitSheetRef = (ref = '') => {
+  const clean = String(ref || '').trim().replace(/\$/g, '');
+  const bangIndex = clean.lastIndexOf('!');
+  if (bangIndex === -1) return { sheetName: '', ref: clean };
+  return {
+    sheetName: clean.slice(0, bangIndex).replace(/^'|'$/g, '').trim(),
+    ref: clean.slice(bangIndex + 1)
+  };
+};
+
+const makeKey = (sheetName = '', ref = '') => {
+  const sheet = String(sheetName || '').trim().toUpperCase();
+  const cell = String(ref || '').trim().replace(/\$/g, '').toUpperCase();
+  return sheet ? `${sheet}!${cell}` : cell;
+};
+
+const getWorkbook = (table = {}) => {
+  const sheets = Array.isArray(table.sheets) && table.sheets.length
+    ? table.sheets.map((sheet, index) => ({
+      name: sheet.name || sheet.sheetName || `Sheet${index + 1}`,
+      columns: sheet.columns || sheet.table?.columns || [],
+      rows: sheet.rows || sheet.table?.rows || []
+    }))
+    : [{ name: table.sheetName || 'Sheet1', columns: table.columns || [], rows: table.rows || [] }];
+
+  const defaultSheetName = table.formulaSheetName || table.defaultSheetName || table.activeSheetName || sheets[0]?.name || 'Sheet1';
+  const values = new Map();
+  const bounds = new Map();
+
+  const setValue = (sheetName, ref, value) => {
+    values.set(makeKey(sheetName, ref), value);
+    if (String(sheetName).toUpperCase() === String(defaultSheetName).toUpperCase()) values.set(makeKey('', ref), value);
+  };
+
+  sheets.forEach((sheet) => {
+    const sheetName = sheet.name;
+    const columns = sheet.columns || [];
+    const rows = sheet.rows || [];
+    bounds.set(String(sheetName).toUpperCase(), { maxCol: Math.max(columns.length, 1), maxRow: Math.max(rows.length + 1, 1) });
+    columns.forEach((column, index) => setValue(sheetName, `${numberToCol(index + 1)}1`, column));
+    rows.forEach((row, rowIndex) => {
+      columns.forEach((_, colIndex) => setValue(sheetName, `${numberToCol(colIndex + 1)}${rowIndex + 2}`, row[colIndex] ?? ''));
+    });
+  });
+
+  return { values, bounds, defaultSheetName };
+};
+
+const parseCellRef = (ref = '', defaultSheetName = '') => {
+  const { sheetName, ref: localRef } = splitSheetRef(ref);
+  const match = localRef.toUpperCase().match(/^([A-Z]+)(\d+)$/);
+  if (!match) return null;
+  const normalizedRef = `${match[1]}${Number(match[2])}`;
+  const finalSheet = sheetName || defaultSheetName || '';
+  return { sheetName: finalSheet, col: colToNumber(match[1]), row: Number(match[2]), ref: normalizedRef, key: makeKey(finalSheet, normalizedRef) };
+};
+
+const parseRangeRef = (ref = '', workbook) => {
+  const raw = String(ref || '').trim().replace(/\$/g, '');
+  const firstSplit = splitSheetRef(raw.split(':')[0]);
+  const sheetName = firstSplit.sheetName || workbook.defaultSheetName || '';
+  const bound = workbook.bounds.get(String(sheetName).toUpperCase()) || { maxCol: 26, maxRow: 100 };
+
+  const expandFullColumn = (part) => {
+    const split = splitSheetRef(part);
+    const prefix = split.sheetName ? `${split.sheetName}!` : '';
+    if (/^[A-Z]+$/i.test(split.ref)) return `${prefix}${split.ref}1:${split.ref}${bound.maxRow}`;
+    return part;
+  };
+
+  const expanded = raw.includes(':')
+    ? raw.split(':').map(expandFullColumn).join(':')
+    : expandFullColumn(raw);
+
+  const [startText, endText = startText] = expanded.split(':');
+  const start = parseCellRef(startText, sheetName);
+  const end = parseCellRef(endText, start?.sheetName || sheetName);
+  if (!start || !end) return null;
+  return {
+    sheetName: start.sheetName || end.sheetName || sheetName,
+    startCol: Math.min(start.col, end.col),
+    endCol: Math.max(start.col, end.col),
+    startRow: Math.min(start.row, end.row),
+    endRow: Math.max(start.row, end.row)
+  };
+};
+
+const getCell = (workbook, ref) => {
+  const cell = parseCellRef(ref, workbook.defaultSheetName);
+  if (!cell) throw new Error(ERROR_CODES.ref);
+  return workbook.values.has(cell.key) ? workbook.values.get(cell.key) : '';
+};
+
+const getRange = (workbook, ref) => {
+  const range = parseRangeRef(ref, workbook);
+  if (!range) throw new Error(ERROR_CODES.ref);
+  const rows = [];
+  for (let row = range.startRow; row <= range.endRow; row += 1) {
+    const nextRow = [];
+    for (let col = range.startCol; col <= range.endCol; col += 1) {
+      nextRow.push(workbook.values.get(makeKey(range.sheetName, `${numberToCol(col)}${row}`)) ?? '');
     }
+    rows.push(nextRow);
   }
-  return null;
+  const prefix = range.sheetName ? `${range.sheetName}!` : '';
+  return { __range: true, ref: `${prefix}${numberToCol(range.startCol)}${range.startRow}:${numberToCol(range.endCol)}${range.endRow}`, values: rows, rowCount: rows.length, colCount: rows[0]?.length || 0 };
 };
 
-const compareValues = (left, op, right) => {
-  const lRaw = isRangeObject(left) ? flatten(left)[0] : left;
-  const rRaw = isRangeObject(right) ? flatten(right)[0] : right;
-  const lNum = Number(lRaw);
-  const rNum = Number(rRaw);
-  const bothNumber = Number.isFinite(lNum) && Number.isFinite(rNum);
-  const l = bothNumber ? lNum : String(lRaw ?? '').toUpperCase();
-  const r = bothNumber ? rNum : String(rRaw ?? '').toUpperCase();
-  if (op === '=') return l === r;
-  if (op === '<>') return l !== r;
-  if (op === '>') return l > r;
-  if (op === '<') return l < r;
-  if (op === '>=') return l >= r;
-  if (op === '<=') return l <= r;
+const isCellLike = (text = '') => /^(?:'[^']+'|[A-Z0-9_ ]+)?!?\$?[A-Z]+\$?\d+$/i.test(String(text).trim());
+const isRangeLike = (text = '') => /^(?:'[^']+'|[A-Z0-9_ ]+)?!?\$?[A-Z]+(?:\$?\d+)?:(?:(?:'[^']+'|[A-Z0-9_ ]+)!?)?\$?[A-Z]+(?:\$?\d+)?$/i.test(String(text).trim());
+
+const evaluateArg = (arg = '', workbook) => {
+  const text = String(arg || '').trim();
+  if (!text) return '';
+  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) return stripOuterQuotes(text);
+  if (/^-?\d+(\.\d+)?$/.test(text)) return Number(text);
+  if (isRangeLike(text)) return getRange(workbook, text);
+  if (isCellLike(text)) return getCell(workbook, text);
+  const nested = parseFunctionCall(`=${text}`);
+  if (nested) return evaluateCall(nested.name, nested.args, workbook);
+  return text;
+};
+
+const numericValues = (value) => flatten(value).map((item) => Number(item)).filter((item) => Number.isFinite(item));
+const countNumbers = (value) => numericValues(value).length;
+const countNonBlank = (value) => flatten(value).filter((item) => !isBlank(item)).length;
+const countBlank = (value) => flatten(value).filter((item) => isBlank(item)).length;
+
+const resolveCriteria = (criteria, workbook) => {
+  if (typeof criteria !== 'string') return criteria;
+  const text = criteria.trim();
+  if (isCellLike(text)) return getCell(workbook, text);
+  return stripOuterQuotes(text);
+};
+
+const compareValues = (value, operator, target) => {
+  const aNum = Number(value);
+  const bNum = Number(target);
+  const bothNumber = Number.isFinite(aNum) && Number.isFinite(bNum);
+  const a = bothNumber ? aNum : String(value ?? '').toUpperCase();
+  const b = bothNumber ? bNum : String(target ?? '').toUpperCase();
+  if (operator === '=') return a === b;
+  if (operator === '<>') return a !== b;
+  if (operator === '>') return a > b;
+  if (operator === '<') return a < b;
+  if (operator === '>=') return a >= b;
+  if (operator === '<=') return a <= b;
   return false;
 };
 
 const matchesCriteria = (value, criteria) => {
-  let rule = isRangeObject(criteria) ? flatten(criteria)[0] : criteria;
-  if (typeof rule === 'string') rule = stripOuterQuotes(rule);
-  const textRule = String(rule ?? '').trim();
-  const operatorMatch = textRule.match(/^(>=|<=|<>|>|<|=)(.*)$/);
-  if (operatorMatch) {
-    const [, op, rawTarget] = operatorMatch;
-    const target = rawTarget.trim();
-    return compareValues(value, op, Number.isFinite(Number(target)) ? Number(target) : target);
+  const resolved = isRangeObject(criteria) ? flatten(criteria)[0] : criteria;
+  const text = stripOuterQuotes(String(resolved ?? '').trim());
+  const operatorMatch = text.match(/^(>=|<=|<>|>|<|=)(.*)$/);
+  if (operatorMatch) return compareValues(value, operatorMatch[1], operatorMatch[2].trim());
+  return String(value ?? '').trim().toUpperCase() === text.toUpperCase();
+};
+
+const conditionalPairsPass = (rowIndex, pairs, workbook) => pairs.every(([rangeArg, criteriaArg]) => {
+  const range = evaluateArg(rangeArg, workbook);
+  const criteria = resolveCriteria(criteriaArg, workbook);
+  const value = isRangeObject(range) ? flatten(range)[rowIndex] : range;
+  return matchesCriteria(value, criteria);
+});
+
+const evaluateCall = (name, args, workbook) => {
+  const upper = name.toUpperCase();
+  const values = args.map((arg) => evaluateArg(arg, workbook));
+
+  if (upper === 'SUM') return numericValues(values).reduce((sum, item) => sum + item, 0);
+  if (upper === 'AVERAGE') {
+    const nums = numericValues(values);
+    return nums.length ? nums.reduce((sum, item) => sum + item, 0) / nums.length : 0;
   }
-  return String(value ?? '').toUpperCase() === String(rule ?? '').toUpperCase();
-};
-
-const dateFromValue = (value) => {
-  const raw = isRangeObject(value) ? flatten(value)[0] : value;
-  if (raw instanceof Date) return raw;
-  if (typeof raw === 'number') return new Date(Math.round((raw - 25569) * 86400 * 1000));
-  const date = new Date(String(raw));
-  if (Number.isNaN(date.getTime())) throw new Error(ERROR_CODES.value);
-  return date;
-};
-
-const excelSerial = (date) => Math.floor(date.getTime() / 86400000) + 25569;
-const businessDays = (start, end) => {
-  const from = new Date(start);
-  const to = new Date(end);
-  let count = 0;
-  const step = from <= to ? 1 : -1;
-  const cursor = new Date(from);
-  while ((step > 0 && cursor <= to) || (step < 0 && cursor >= to)) {
-    const day = cursor.getDay();
-    if (day !== 0 && day !== 6) count += step;
-    cursor.setDate(cursor.getDate() + step);
-  }
-  return count;
-};
-
-
-const factorial = (value) => {
-  const n = Math.floor(Number(value));
-  if (!Number.isFinite(n) || n < 0) throw new Error(ERROR_CODES.num);
-  let result = 1;
-  for (let i = 2; i <= n; i += 1) result *= i;
-  return result;
-};
-
-const factDouble = (value) => {
-  const n = Math.floor(Number(value));
-  if (!Number.isFinite(n) || n < -1) throw new Error(ERROR_CODES.num);
-  if (n <= 0) return 1;
-  let result = 1;
-  for (let i = n; i > 1; i -= 2) result *= i;
-  return result;
-};
-
-const combination = (nValue, kValue) => {
-  const n = Math.floor(Number(nValue));
-  const k = Math.floor(Number(kValue));
-  if (!Number.isFinite(n) || !Number.isFinite(k) || n < 0 || k < 0 || k > n) throw new Error(ERROR_CODES.num);
-  const m = Math.min(k, n - k);
-  let result = 1;
-  for (let i = 1; i <= m; i += 1) result = (result * (n - m + i)) / i;
-  return result;
-};
-
-const permutation = (nValue, kValue) => {
-  const n = Math.floor(Number(nValue));
-  const k = Math.floor(Number(kValue));
-  if (!Number.isFinite(n) || !Number.isFinite(k) || n < 0 || k < 0 || k > n) throw new Error(ERROR_CODES.num);
-  let result = 1;
-  for (let i = 0; i < k; i += 1) result *= (n - i);
-  return result;
-};
-
-const erfApprox = (xValue) => {
-  const x = Number(xValue);
-  const sign = x < 0 ? -1 : 1;
-  const abs = Math.abs(x);
-  const t = 1 / (1 + 0.3275911 * abs);
-  const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-abs * abs);
-  return sign * y;
-};
-
-const normalCdf = (x) => 0.5 * (1 + erfApprox(Number(x) / Math.SQRT2));
-const normalPdf = (x) => Math.exp(-0.5 * Number(x) ** 2) / Math.sqrt(2 * Math.PI);
-
-const inverseNormal = (pValue) => {
-  const p = Number(pValue);
-  if (!(p > 0 && p < 1)) throw new Error(ERROR_CODES.num);
-  // Peter John Acklam approximation, accurate enough for learning feedback.
-  const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
-  const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
-  const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
-  const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
-  const plow = 0.02425;
-  const phigh = 1 - plow;
-  if (p < plow) {
-    const q = Math.sqrt(-2 * Math.log(p));
-    return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
-  }
-  if (p > phigh) {
-    const q = Math.sqrt(-2 * Math.log(1 - p));
-    return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
-  }
-  const q = p - 0.5;
-  const r = q * q;
-  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
-};
-
-const binomProb = (successes, trials, probability) => combination(trials, successes) * (probability ** successes) * ((1 - probability) ** (trials - successes));
-const poissonProb = (x, mean) => (Math.exp(-mean) * (mean ** x)) / factorial(x);
-
-const workday = (start, days) => {
-  const cursor = new Date(start);
-  let remaining = Math.abs(Number(days));
-  const direction = Number(days) >= 0 ? 1 : -1;
-  while (remaining > 0) {
-    cursor.setDate(cursor.getDate() + direction);
-    const day = cursor.getDay();
-    if (day !== 0 && day !== 6) remaining -= 1;
-  }
-  return cursor;
-};
-
-function evaluateExpression(expr, ctx) {
-  const raw = String(expr || '').trim();
-  if (!raw) return '';
-  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) return stripOuterQuotes(raw);
-  if (/^TRUE$/i.test(raw)) return true;
-  if (/^FALSE$/i.test(raw)) return false;
-  if (/^-?\d+(\.\d+)?$/.test(raw)) return Number(raw);
-  if (/^#(N\/A|VALUE!|REF!|NAME\?|NUM!|DIV\/0!)$/i.test(raw)) return raw.toUpperCase();
-
-  const variableName = raw.toUpperCase();
-  if (/^[A-Z_][A-Z0-9._]*$/i.test(raw) && ctx.vars?.has(variableName)) {
-    return ctx.vars.get(variableName);
+  if (upper === 'MIN') return Math.min(...numericValues(values));
+  if (upper === 'MAX') return Math.max(...numericValues(values));
+  if (upper === 'COUNT') return countNumbers(values);
+  if (upper === 'COUNTA') return countNonBlank(values);
+  if (upper === 'COUNTBLANK') return countBlank(values);
+  if (upper === 'LARGE' || upper === 'SMALL') {
+    const nums = numericValues(values[0]).sort((a, b) => upper === 'LARGE' ? b - a : a - b);
+    const order = Number(values[1]);
+    if (!Number.isFinite(order) || order < 1 || order > nums.length) throw new Error(ERROR_CODES.num);
+    return nums[Math.floor(order) - 1];
   }
 
-  const comparison = findTopLevelComparison(raw);
-  if (comparison) {
-    const left = evaluateExpression(comparison.left, ctx);
-    const right = evaluateExpression(comparison.right, ctx);
-    if (isRangeObject(left)) {
-      const leftFlat = flatten(left);
-      return leftFlat.map((item) => compareValues(item, comparison.op, right));
+  if (upper === 'SUMIF' || upper === 'COUNTIF' || upper === 'AVERAGEIF') {
+    const criteriaRange = evaluateArg(args[0], workbook);
+    const criteria = resolveCriteria(args[1], workbook);
+    const valueRange = upper === 'COUNTIF' ? criteriaRange : evaluateArg(args[2], workbook);
+    const criteriaValues = flatten(criteriaRange);
+    const outputValues = flatten(valueRange);
+    const matched = criteriaValues.map((value, index) => matchesCriteria(value, criteria) ? outputValues[index] : null).filter((value) => value !== null);
+    if (upper === 'COUNTIF') return matched.length;
+    const nums = numericValues(matched);
+    if (upper === 'SUMIF') return nums.reduce((sum, item) => sum + item, 0);
+    return nums.length ? nums.reduce((sum, item) => sum + item, 0) / nums.length : 0;
+  }
+
+  if (upper === 'SUMIFS' || upper === 'COUNTIFS' || upper === 'AVERAGEIFS') {
+    const hasValueRange = upper !== 'COUNTIFS';
+    const valueRange = hasValueRange ? evaluateArg(args[0], workbook) : null;
+    const pairs = [];
+    for (let index = hasValueRange ? 1 : 0; index < args.length; index += 2) pairs.push([args[index], args[index + 1]]);
+    const baseLength = hasValueRange ? flatten(valueRange).length : flatten(evaluateArg(pairs[0]?.[0], workbook)).length;
+    const matched = [];
+    for (let index = 0; index < baseLength; index += 1) {
+      if (conditionalPairsPass(index, pairs, workbook)) matched.push(hasValueRange ? flatten(valueRange)[index] : 1);
     }
-    return compareValues(left, comparison.op, right);
+    if (upper === 'COUNTIFS') return matched.length;
+    const nums = numericValues(matched);
+    if (upper === 'SUMIFS') return nums.reduce((sum, item) => sum + item, 0);
+    return nums.length ? nums.reduce((sum, item) => sum + item, 0) / nums.length : 0;
   }
 
-  const call = parseFunctionCall(raw);
-  if (call) return evaluateFunction(call.name, call.args, ctx);
-
-  if (/^(?:[^!]+!)?\$?[A-Z]+\$?\d+:(?:[^!]+!)?\$?[A-Z]+\$?\d+$/i.test(raw)) return getRange(ctx.sheet, raw);
-  if (/^(?:[^!]+!)?\$?[A-Z]+\$?\d+$/i.test(raw)) return getCell(ctx.sheet, raw);
-
-  // Small arithmetic support, enough for formulas like x*10 in simple LAMBDA demos.
-  const arithmeticMatch = raw.match(/^(.+?)([+\-*/])(.+)$/);
-  if (arithmeticMatch && !/[A-Z]\w*\(/i.test(raw)) {
-    const left = numberValue(evaluateExpression(arithmeticMatch[1], ctx));
-    const right = numberValue(evaluateExpression(arithmeticMatch[3], ctx));
-    if (arithmeticMatch[2] === '+') return left + right;
-    if (arithmeticMatch[2] === '-') return left - right;
-    if (arithmeticMatch[2] === '*') return left * right;
-    if (arithmeticMatch[2] === '/') {
-      if (right === 0) throw new Error(ERROR_CODES.div0);
-      return left / right;
-    }
-  }
-
+  if (upper === 'IF') return values[0] ? values[1] : values[2];
   throw new Error(ERROR_CODES.name);
-}
-
-function evaluateFunction(name, argExprs, ctx) {
-  const arg = (index) => evaluateExpression(argExprs[index], ctx);
-  const args = () => argExprs.map((item) => evaluateExpression(item, ctx));
-  const flatArg = (index) => flatten(arg(index));
-  const nums = (index) => numbersOnly(arg(index));
-
-  switch (name) {
-    case 'TRUE': return true;
-    case 'FALSE': return false;
-    case 'SUM': return argExprs.reduce((sum, _, index) => sum + numbersOnly(arg(index)).reduce((a, b) => a + b, 0), 0);
-    case 'COUNT': return argExprs.reduce((sum, _, index) => sum + numbersOnly(arg(index)).length, 0);
-    case 'COUNTA': return argExprs.reduce((sum, _, index) => sum + flatten(arg(index)).filter((v) => !isBlank(v)).length, 0);
-    case 'COUNTBLANK': return flatArg(0).filter((v) => isBlank(v)).length;
-    case 'AVERAGE': {
-      const values = argExprs.flatMap((_, index) => numbersOnly(arg(index)));
-      if (!values.length) throw new Error(ERROR_CODES.div0);
-      return values.reduce((a, b) => a + b, 0) / values.length;
-    }
-    case 'MIN': return Math.min(...argExprs.flatMap((_, index) => numbersOnly(arg(index))));
-    case 'MAX': return Math.max(...argExprs.flatMap((_, index) => numbersOnly(arg(index))));
-    case 'LARGE': return nums(0).sort((a, b) => b - a)[Math.max(0, Number(arg(1)) - 1)];
-    case 'SMALL': return nums(0).sort((a, b) => a - b)[Math.max(0, Number(arg(1)) - 1)];
-    case 'MEDIAN': {
-      const values = nums(0).sort((a, b) => a - b);
-      const mid = Math.floor(values.length / 2);
-      return values.length % 2 ? values[mid] : (values[mid - 1] + values[mid]) / 2;
-    }
-    case 'MODE': {
-      const counts = new Map();
-      nums(0).forEach((n) => counts.set(n, (counts.get(n) || 0) + 1));
-      return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? ERROR_CODES.na;
-    }
-    case 'STDEV':
-    case 'STDEVP':
-    case 'STDEV.S':
-    case 'STDEV.P': {
-      const values = nums(0);
-      const mean = values.reduce((a, b) => a + b, 0) / values.length;
-      const divisor = (name === 'STDEV.S' || name === 'STDEV') ? values.length - 1 : values.length;
-      return Math.sqrt(values.reduce((sum, item) => sum + (item - mean) ** 2, 0) / divisor);
-    }
-    case 'VAR':
-    case 'VARP':
-    case 'VAR.S':
-    case 'VAR.P': {
-      const values = nums(0);
-      const mean = values.reduce((a, b) => a + b, 0) / values.length;
-      const divisor = (name === 'VAR.S' || name === 'VAR') ? values.length - 1 : values.length;
-      return values.reduce((sum, item) => sum + (item - mean) ** 2, 0) / divisor;
-    }
-    case 'PERCENTILE': {
-      const values = nums(0).sort((a, b) => a - b);
-      const k = Number(arg(1));
-      const pos = (values.length - 1) * k;
-      const lower = Math.floor(pos);
-      const upper = Math.ceil(pos);
-      return values[lower] + (values[upper] - values[lower]) * (pos - lower);
-    }
-    case 'QUARTILE': return evaluateFunction('PERCENTILE', [argExprs[0], String(Number(arg(1)) / 4)], ctx);
-    case 'RANK':
-    case 'RANK.EQ': {
-      const value = numberValue(arg(0));
-      const order = Number(argExprs[2] ? arg(2) : 0);
-      const values = nums(1).sort((a, b) => order ? a - b : b - a);
-      return values.findIndex((item) => item === value) + 1 || ERROR_CODES.na;
-    }
-    case 'COUNTIF': return flatArg(0).filter((item) => matchesCriteria(item, arg(1))).length;
-    case 'COUNTIFS': {
-      const pairs = [];
-      for (let i = 0; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
-      const len = pairs[0]?.[0]?.length || 0;
-      let count = 0;
-      for (let row = 0; row < len; row += 1) if (pairs.every(([range, criteria]) => matchesCriteria(range[row], criteria))) count += 1;
-      return count;
-    }
-    case 'SUMIF': {
-      const criteriaRange = flatArg(0);
-      const criteria = arg(1);
-      const sumRange = argExprs[2] ? flatArg(2) : criteriaRange;
-      return criteriaRange.reduce((sum, item, index) => matchesCriteria(item, criteria) ? sum + (Number(sumRange[index]) || 0) : sum, 0);
-    }
-    case 'SUMIFS': {
-      const sumRange = flatArg(0);
-      const pairs = [];
-      for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
-      return sumRange.reduce((sum, item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria)) ? sum + (Number(item) || 0) : sum, 0);
-    }
-    case 'MAXIFS': {
-      const maxRange = flatArg(0);
-      const pairs = [];
-      for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
-      const values = maxRange.filter((item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria))).map(Number).filter(Number.isFinite);
-      return values.length ? Math.max(...values) : 0;
-    }
-    case 'MINIFS': {
-      const minRange = flatArg(0);
-      const pairs = [];
-      for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
-      const values = minRange.filter((item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria))).map(Number).filter(Number.isFinite);
-      return values.length ? Math.min(...values) : 0;
-    }
-    case 'AVERAGEIF': {
-      const criteriaRange = flatArg(0);
-      const criteria = arg(1);
-      const avgRange = argExprs[2] ? flatArg(2) : criteriaRange;
-      const values = avgRange.filter((item, index) => matchesCriteria(criteriaRange[index], criteria)).map(Number).filter(Number.isFinite);
-      return values.reduce((a, b) => a + b, 0) / values.length;
-    }
-    case 'AVERAGEIFS': {
-      const avgRange = flatArg(0);
-      const pairs = [];
-      for (let i = 1; i < argExprs.length; i += 2) pairs.push([flatArg(i), arg(i + 1)]);
-      const values = avgRange.filter((item, index) => pairs.every(([range, criteria]) => matchesCriteria(range[index], criteria))).map(Number).filter(Number.isFinite);
-      return values.reduce((a, b) => a + b, 0) / values.length;
-    }
-    case 'IF': return arg(0) ? arg(1) : arg(2);
-    case 'AND': return args().every(Boolean);
-    case 'OR': return args().some(Boolean);
-    case 'XOR': return args().filter(Boolean).length % 2 === 1;
-    case 'NOT': return !arg(0);
-    case 'IFERROR': {
-      try { return arg(0); } catch { return arg(1); }
-    }
-    case 'IFNA': {
-      try {
-        const value = arg(0);
-        return value === ERROR_CODES.na ? arg(1) : value;
-      } catch (error) {
-        if (error.message === ERROR_CODES.na) return arg(1);
-        throw error;
-      }
-    }
-    case 'IFS': {
-      for (let i = 0; i < argExprs.length; i += 2) if (arg(i)) return arg(i + 1);
-      throw new Error(ERROR_CODES.na);
-    }
-    case 'SWITCH': {
-      const value = arg(0);
-      for (let i = 1; i < argExprs.length - 1; i += 2) if (compareValues(value, '=', arg(i))) return arg(i + 1);
-      return argExprs.length % 2 === 0 ? arg(argExprs.length - 1) : ERROR_CODES.na;
-    }
-    case 'VLOOKUP': {
-      const lookup = arg(0);
-      const range = arg(1);
-      const colIndex = Number(arg(2));
-      if (!isRangeObject(range)) throw new Error(ERROR_CODES.value);
-      const row = range.values.find((items) => compareValues(items[0], '=', lookup));
-      if (!row) throw new Error(ERROR_CODES.na);
-      return row[colIndex - 1] ?? ERROR_CODES.ref;
-    }
-    case 'HLOOKUP': {
-      const lookup = arg(0);
-      const range = arg(1);
-      const rowIndex = Number(arg(2));
-      if (!isRangeObject(range)) throw new Error(ERROR_CODES.value);
-      const colIndex = range.values[0]?.findIndex((item) => compareValues(item, '=', lookup));
-      if (colIndex < 0) throw new Error(ERROR_CODES.na);
-      return range.values[rowIndex - 1]?.[colIndex] ?? ERROR_CODES.ref;
-    }
-    case 'XLOOKUP': {
-      const lookup = arg(0);
-      const lookupArray = flatArg(1);
-      const returnArray = flatArg(2);
-      const index = lookupArray.findIndex((item) => compareValues(item, '=', lookup));
-      if (index < 0) return argExprs[3] ? arg(3) : ERROR_CODES.na;
-      return returnArray[index] ?? ERROR_CODES.na;
-    }
-    case 'LOOKUP': {
-      const lookup = arg(0);
-      const lookupVector = flatArg(1);
-      const resultVector = argExprs[2] ? flatArg(2) : lookupVector;
-      const index = lookupVector.findIndex((item) => compareValues(item, '=', lookup));
-      if (index < 0) throw new Error(ERROR_CODES.na);
-      return resultVector[index];
-    }
-    case 'INDEX': {
-      const range = arg(0);
-      const row = Math.max(1, Number(arg(1) || 1));
-      const col = Math.max(1, Number(argExprs[2] ? arg(2) : 1));
-      if (!isRangeObject(range)) return range;
-      return range.values[row - 1]?.[col - 1] ?? ERROR_CODES.ref;
-    }
-    case 'MATCH':
-    case 'XMATCH': {
-      const lookup = arg(0);
-      const vector = flatArg(1);
-      const index = vector.findIndex((item) => compareValues(item, '=', lookup));
-      if (index < 0) throw new Error(ERROR_CODES.na);
-      return index + 1;
-    }
-    case 'FILTER': {
-      const range = arg(0);
-      const include = flatten(arg(1));
-      if (!isRangeObject(range)) throw new Error(ERROR_CODES.value);
-      return { ...range, values: range.values.filter((_, index) => Boolean(include[index])) };
-    }
-    case 'SORT': {
-      const range = arg(0);
-      const sortIndex = Number(argExprs[1] ? arg(1) : 1) - 1;
-      const order = Number(argExprs[2] ? arg(2) : 1);
-      return { ...range, values: [...range.values].sort((a, b) => (a[sortIndex] > b[sortIndex] ? 1 : -1) * (order < 0 ? -1 : 1)) };
-    }
-    case 'SORTBY': return evaluateFunction('SORT', [argExprs[0], '4', '-1'], ctx);
-    case 'UNIQUE': {
-      const seen = new Set();
-      const values = flatArg(0).filter((item) => { const key = String(item); if (seen.has(key)) return false; seen.add(key); return true; });
-      return values;
-    }
-    case 'TRANSPOSE': {
-      const range = arg(0);
-      if (!isRangeObject(range)) return range;
-      return { ...range, values: range.values[0].map((_, col) => range.values.map((row) => row[col])) };
-    }
-    case 'CHOOSE': return arg(Math.max(1, Number(arg(0))) );
-    case 'CHOOSECOLS': {
-      const range = arg(0); const cols = argExprs.slice(1).map((_, i) => Number(arg(i + 1)) - 1);
-      return { ...range, values: range.values.map((row) => cols.map((col) => row[col])) };
-    }
-    case 'CHOOSEROWS': {
-      const range = arg(0); const rows = argExprs.slice(1).map((_, i) => Number(arg(i + 1)) - 1);
-      return { ...range, values: rows.map((row) => range.values[row]) };
-    }
-    case 'TAKE': {
-      const range = arg(0); const rows = Number(arg(1));
-      return { ...range, values: rows >= 0 ? range.values.slice(0, rows) : range.values.slice(rows) };
-    }
-    case 'DROP': {
-      const range = arg(0); const rows = Number(arg(1));
-      return { ...range, values: rows >= 0 ? range.values.slice(rows) : range.values.slice(0, rows) };
-    }
-    case 'VSTACK': return { __range: true, values: argExprs.flatMap((_, i) => (isRangeObject(arg(i)) ? arg(i).values : [[arg(i)]])) };
-    case 'HSTACK': {
-      const ranges = argExprs.map((_, i) => arg(i));
-      const rowCount = Math.max(...ranges.map((r) => (isRangeObject(r) ? r.values.length : 1)));
-      return { __range: true, values: Array.from({ length: rowCount }, (_, row) => ranges.flatMap((r) => (isRangeObject(r) ? (r.values[row] || []) : [r]))) };
-    }
-    case 'TEXT': return textValue(arg(0));
-    case 'LEFT': return textValue(arg(0)).slice(0, Number(argExprs[1] ? arg(1) : 1));
-    case 'RIGHT': { const text = textValue(arg(0)); return text.slice(-Number(argExprs[1] ? arg(1) : 1)); }
-    case 'MID': return textValue(arg(0)).slice(Number(arg(1)) - 1, Number(arg(1)) - 1 + Number(arg(2)));
-    case 'LEN': return textValue(arg(0)).length;
-    case 'TRIM': return textValue(arg(0)).trim().replace(/\s+/g, ' ');
-    case 'CLEAN': return textValue(arg(0)).replace(/[\x00-\x1F\x7F]/g, '');
-    case 'LOWER': return textValue(arg(0)).toLowerCase();
-    case 'UPPER': return textValue(arg(0)).toUpperCase();
-    case 'PROPER': return textValue(arg(0)).toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
-    case 'CONCAT':
-    case 'CONCATENATE': return argExprs.map((_, index) => flatten(arg(index)).join('')).join('');
-    case 'TEXTJOIN': {
-      const delimiter = textValue(arg(0)); const ignoreEmpty = Boolean(arg(1));
-      const items = argExprs.slice(2).flatMap((_, i) => flatten(arg(i + 2))).filter((item) => !ignoreEmpty || !isBlank(item));
-      return items.join(delimiter);
-    }
-    case 'TEXTSPLIT': return textValue(arg(0)).split(textValue(arg(1)));
-    case 'TEXTBEFORE': return textValue(arg(0)).split(textValue(arg(1)))[0];
-    case 'TEXTAFTER': return textValue(arg(0)).split(textValue(arg(1))).slice(1).join(textValue(arg(1)));
-    case 'FIND': return textValue(arg(1)).indexOf(textValue(arg(0))) + 1 || ERROR_CODES.value;
-    case 'SEARCH': return textValue(arg(1)).toLowerCase().indexOf(textValue(arg(0)).toLowerCase()) + 1 || ERROR_CODES.value;
-    case 'SUBSTITUTE': return textValue(arg(0)).split(textValue(arg(1))).join(textValue(arg(2)));
-    case 'REPLACE': {
-      const text = textValue(arg(0)); const start = Number(arg(1)) - 1; const count = Number(arg(2));
-      return `${text.slice(0, start)}${textValue(arg(3))}${text.slice(start + count)}`;
-    }
-    case 'VALUE':
-    case 'NUMBERVALUE': return Number(textValue(arg(0)).replace(/,/g, '.'));
-    case 'DATE': return new Date(Number(arg(0)), Number(arg(1)) - 1, Number(arg(2)));
-    case 'DAY': return dateFromValue(arg(0)).getDate();
-    case 'MONTH': return dateFromValue(arg(0)).getMonth() + 1;
-    case 'YEAR': return dateFromValue(arg(0)).getFullYear();
-    case 'TODAY': { const d = new Date(); d.setHours(0, 0, 0, 0); return d; }
-    case 'NOW': return new Date();
-    case 'DATEDIF': {
-      const start = dateFromValue(arg(0)); const end = dateFromValue(arg(1)); const unit = textValue(arg(2)).toLowerCase();
-      if (unit === 'y') return end.getFullYear() - start.getFullYear();
-      if (unit === 'm') return (end.getFullYear() - start.getFullYear()) * 12 + end.getMonth() - start.getMonth();
-      return Math.floor((end - start) / 86400000);
-    }
-    case 'DAYS': return Math.round((dateFromValue(arg(0)) - dateFromValue(arg(1))) / 86400000);
-    case 'NETWORKDAYS':
-    case 'NETWORKDAYS.INTL': return businessDays(dateFromValue(arg(0)), dateFromValue(arg(1)));
-    case 'WORKDAY':
-    case 'WORKDAY.INTL': return workday(dateFromValue(arg(0)), Number(arg(1)));
-    case 'EDATE': { const d = dateFromValue(arg(0)); return new Date(d.getFullYear(), d.getMonth() + Number(arg(1)), d.getDate()); }
-    case 'EOMONTH': { const d = dateFromValue(arg(0)); return new Date(d.getFullYear(), d.getMonth() + Number(arg(1)) + 1, 0); }
-    case 'HOUR': return Number(textValue(arg(0)).split(':')[0]);
-    case 'MINUTE': return Number(textValue(arg(0)).split(':')[1]);
-    case 'SECOND': return Number(textValue(arg(0)).split(':')[2]);
-    case 'TIME': return `${String(arg(0)).padStart(2, '0')}:${String(arg(1)).padStart(2, '0')}:${String(arg(2)).padStart(2, '0')}`;
-    case 'ABS': return Math.abs(numberValue(arg(0)));
-    case 'ROUND': return Number(numberValue(arg(0)).toFixed(Number(arg(1))));
-    case 'ROUNDUP': { const digits = Number(arg(1)); const factor = 10 ** digits; return Math.ceil(numberValue(arg(0)) * factor) / factor; }
-    case 'ROUNDDOWN': { const digits = Number(arg(1)); const factor = 10 ** digits; return Math.floor(numberValue(arg(0)) * factor) / factor; }
-    case 'INT': return Math.floor(numberValue(arg(0)));
-    case 'MOD': return numberValue(arg(0)) % numberValue(arg(1));
-    case 'CEILING': return Math.ceil(numberValue(arg(0)) / numberValue(arg(1))) * numberValue(arg(1));
-    case 'FLOOR': return Math.floor(numberValue(arg(0)) / numberValue(arg(1))) * numberValue(arg(1));
-    case 'POWER': return numberValue(arg(0)) ** numberValue(arg(1));
-    case 'SQRT': { const value = numberValue(arg(0)); if (value < 0) throw new Error(ERROR_CODES.num); return Math.sqrt(value); }
-    case 'RAND': return Math.random();
-    case 'RANDBETWEEN': return Math.floor(Math.random() * (Number(arg(1)) - Number(arg(0)) + 1)) + Number(arg(0));
-    case 'SUBTOTAL':
-    case 'AGGREGATE': return numbersOnly(arg(argExprs.length - 1)).reduce((a, b) => a + b, 0);
-    case 'SUMPRODUCT': {
-      const arrays = argExprs.map((_, index) => numbersOnly(arg(index)));
-      const len = Math.min(...arrays.map((items) => items.length));
-      return Array.from({ length: len }, (_, i) => arrays.reduce((product, items) => product * (items[i] || 0), 1)).reduce((a, b) => a + b, 0);
-    }
-    case 'ISBLANK': return isBlank(arg(0));
-    case 'ISNUMBER': return typeof arg(0) === 'number' && Number.isFinite(arg(0));
-    case 'ISTEXT': return typeof arg(0) === 'string' && !isErrorValue(arg(0));
-    case 'ISERROR': return isErrorValue(arg(0));
-    case 'ISNA': return arg(0) === ERROR_CODES.na;
-    case 'ISFORMULA': return /^=/.test(textValue(arg(0)));
-    case 'TYPE': { const value = arg(0); if (typeof value === 'number') return 1; if (typeof value === 'string') return 2; if (typeof value === 'boolean') return 4; if (isErrorValue(value)) return 16; return 64; }
-    case 'N': { const value = arg(0); if (typeof value === 'number') return value; if (value instanceof Date) return excelSerial(value); if (typeof value === 'boolean') return value ? 1 : 0; return 0; }
-    case 'ROW': return parseCellRef(argExprs[0])?.row || 1;
-    case 'COLUMN': return parseCellRef(argExprs[0])?.col || 1;
-    case 'ROWS': return isRangeObject(arg(0)) ? arg(0).rowCount : 1;
-    case 'COLUMNS': return isRangeObject(arg(0)) ? arg(0).colCount : 1;
-    case 'ADDRESS': return `$${toColName(Number(arg(1)))}$${Number(arg(0))}`;
-    case 'INDIRECT': return evaluateExpression(textValue(arg(0)), ctx);
-    case 'OFFSET': {
-      const base = parseCellRef(argExprs[0]); if (!base) throw new Error(ERROR_CODES.ref);
-      const target = `${toColName(base.col + Number(arg(2) || 0))}${base.row + Number(arg(1) || 0)}`;
-      return getCell(ctx.sheet, target);
-    }
-    case 'FORMULATEXT': return textValue(arg(0));
-    case 'HYPERLINK': return argExprs[1] ? textValue(arg(1)) : textValue(arg(0));
-    case 'CELL': {
-      const infoType = textValue(arg(0)).toLowerCase();
-      if (infoType === 'address') return `$${argExprs[1].replace(/\d+$/, '')}$${parseCellRef(argExprs[1])?.row || 1}`;
-      return textValue(arg(1));
-    }
-    case 'FORECAST':
-    case 'TREND': {
-      const x = numberValue(arg(0)); const ys = nums(1); const xs = nums(2);
-      const n = Math.min(xs.length, ys.length);
-      const xMean = xs.reduce((a, b) => a + b, 0) / n; const yMean = ys.reduce((a, b) => a + b, 0) / n;
-      const slope = xs.reduce((sum, item, i) => sum + (item - xMean) * (ys[i] - yMean), 0) / xs.reduce((sum, item) => sum + (item - xMean) ** 2, 0);
-      const intercept = yMean - slope * xMean;
-      return intercept + slope * x;
-    }
-
-    case 'COMBIN': return combination(numberValue(arg(0)), numberValue(arg(1)));
-    case 'COMBINA': return combination(numberValue(arg(0)) + numberValue(arg(1)) - 1, numberValue(arg(1)));
-    case 'PERMUT': return permutation(numberValue(arg(0)), numberValue(arg(1)));
-    case 'PERMUTATIONA': return numberValue(arg(0)) ** numberValue(arg(1));
-    case 'FACT': return factorial(numberValue(arg(0)));
-    case 'FACTDOUBLE': return factDouble(numberValue(arg(0)));
-    case 'PRODUCT': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((a, b) => a * b, 1);
-    case 'SUMSQ': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((sum, item) => sum + item ** 2, 0);
-    case 'QUOTIENT': return Math.trunc(numberValue(arg(0)) / numberValue(arg(1)));
-    case 'SIGN': return Math.sign(numberValue(arg(0)));
-    case 'PI': return Math.PI;
-    case 'EXP': return Math.exp(numberValue(arg(0)));
-    case 'LN': return Math.log(numberValue(arg(0)));
-    case 'LOG': return Math.log(numberValue(arg(0))) / Math.log(argExprs[1] ? numberValue(arg(1)) : 10);
-    case 'LOG10': return Math.log10(numberValue(arg(0)));
-    case 'RADIANS': return numberValue(arg(0)) * Math.PI / 180;
-    case 'DEGREES': return numberValue(arg(0)) * 180 / Math.PI;
-    case 'SIN': return Math.sin(numberValue(arg(0)));
-    case 'COS': return Math.cos(numberValue(arg(0)));
-    case 'TAN': return Math.tan(numberValue(arg(0)));
-    case 'ASIN': return Math.asin(numberValue(arg(0)));
-    case 'ACOS': return Math.acos(numberValue(arg(0)));
-    case 'ATAN': return Math.atan(numberValue(arg(0)));
-    case 'ATAN2': return Math.atan2(numberValue(arg(1)), numberValue(arg(0)));
-    case 'SINH': return Math.sinh(numberValue(arg(0)));
-    case 'COSH': return Math.cosh(numberValue(arg(0)));
-    case 'TANH': return Math.tanh(numberValue(arg(0)));
-    case 'SQRTPI': return Math.sqrt(numberValue(arg(0)) * Math.PI);
-    case 'MROUND': return Math.round(numberValue(arg(0)) / numberValue(arg(1))) * numberValue(arg(1));
-    case 'TRUNC': { const factor = 10 ** Number(argExprs[1] ? arg(1) : 0); return Math.trunc(numberValue(arg(0)) * factor) / factor; }
-    case 'EVEN': { const v = numberValue(arg(0)); return Math.sign(v || 1) * Math.ceil(Math.abs(v) / 2) * 2; }
-    case 'ODD': { const v = numberValue(arg(0)); return Math.sign(v || 1) * (Math.floor((Math.abs(v) + 1) / 2) * 2 - 1); }
-    case 'GCD': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((a, b) => { let x=Math.abs(a), y=Math.abs(b); while(y){ [x,y]=[y,x%y]; } return x; });
-    case 'LCM': return argExprs.flatMap((_, index) => numbersOnly(arg(index))).reduce((a, b) => { let x=Math.abs(a), y=Math.abs(b), t=x; while(y){ [x,y]=[y,x%y]; } return Math.abs(a*b)/(x||1); }, 1);
-    case 'BINOMDIST':
-    case 'BINOM.DIST': { const k=numberValue(arg(0)), n=numberValue(arg(1)), p=numberValue(arg(2)); const cumulative=Boolean(arg(3)); return cumulative ? Array.from({length: Math.floor(k)+1}, (_,i)=>binomProb(i,n,p)).reduce((a,b)=>a+b,0) : binomProb(k,n,p); }
-    case 'BINOM.DIST.RANGE': { const n=numberValue(arg(0)), p=numberValue(arg(1)), start=numberValue(arg(2)), end=argExprs[3] ? numberValue(arg(3)) : start; return Array.from({length: Math.floor(end-start)+1}, (_,i)=>binomProb(start+i,n,p)).reduce((a,b)=>a+b,0); }
-    case 'BINOM.INV':
-    case 'CRITBINOM': { const n=numberValue(arg(0)), p=numberValue(arg(1)), alpha=numberValue(arg(2)); let total=0; for(let i=0;i<=n;i+=1){ total += binomProb(i,n,p); if(total >= alpha) return i; } return n; }
-    case 'NEGBINOMDIST':
-    case 'NEGBINOM.DIST': { const f=numberValue(arg(0)), s=numberValue(arg(1)), p=numberValue(arg(2)); const prob=(fail)=>combination(fail+s-1, fail) * (p ** s) * ((1-p) ** fail); const cumulative=name==='NEGBINOM.DIST' && Boolean(arg(3)); return cumulative ? Array.from({length: Math.floor(f)+1}, (_,i)=>prob(i)).reduce((a,b)=>a+b,0) : prob(f); }
-    case 'POISSON':
-    case 'POISSON.DIST': { const x=numberValue(arg(0)), mean=numberValue(arg(1)), cumulative=Boolean(arg(2)); return cumulative ? Array.from({length: Math.floor(x)+1}, (_,i)=>poissonProb(i,mean)).reduce((a,b)=>a+b,0) : poissonProb(x,mean); }
-    case 'NORMDIST':
-    case 'NORM.DIST': { const x=numberValue(arg(0)), mean=numberValue(arg(1)), sd=numberValue(arg(2)); if(sd<=0) throw new Error(ERROR_CODES.num); const z=(x-mean)/sd; return Boolean(arg(3)) ? normalCdf(z) : normalPdf(z)/sd; }
-    case 'NORMSDIST': return normalCdf(numberValue(arg(0)));
-    case 'NORM.S.DIST': return Boolean(arg(1)) ? normalCdf(numberValue(arg(0))) : normalPdf(numberValue(arg(0)));
-    case 'NORMINV':
-    case 'NORM.INV': return numberValue(arg(1)) + numberValue(arg(2)) * inverseNormal(numberValue(arg(0)));
-    case 'NORMSINV':
-    case 'NORM.S.INV': return inverseNormal(numberValue(arg(0)));
-    case 'STANDARDIZE': return (numberValue(arg(0)) - numberValue(arg(1))) / numberValue(arg(2));
-    case 'LOGNORMDIST': return normalCdf((Math.log(numberValue(arg(0))) - numberValue(arg(1))) / numberValue(arg(2)));
-    case 'LOGNORM.DIST': { const x=numberValue(arg(0)), mean=numberValue(arg(1)), sd=numberValue(arg(2)); const z=(Math.log(x)-mean)/sd; return Boolean(arg(3)) ? normalCdf(z) : Math.exp(-0.5*z*z)/(x*sd*Math.sqrt(2*Math.PI)); }
-    case 'LOGINV':
-    case 'LOGNORM.INV': return Math.exp(numberValue(arg(1)) + numberValue(arg(2)) * inverseNormal(numberValue(arg(0))));
-    case 'CONFIDENCE':
-    case 'CONFIDENCE.NORM': return Math.abs(inverseNormal(numberValue(arg(0))/2)) * numberValue(arg(1)) / Math.sqrt(numberValue(arg(2)));
-    case 'COVAR':
-    case 'COVARIANCE.P':
-    case 'COVARIANCE.S': { const x=nums(0), y=nums(1); const n=Math.min(x.length,y.length); const xm=x.reduce((a,b)=>a+b,0)/n, ym=y.reduce((a,b)=>a+b,0)/n; const div=name.endsWith('.S') ? n-1 : n; return x.slice(0,n).reduce((sum,item,i)=>sum+(item-xm)*(y[i]-ym),0)/div; }
-    case 'CORREL':
-    case 'PEARSON': { const cov=evaluateFunction('COVARIANCE.P', argExprs, ctx); const sx=evaluateFunction('STDEV.P',[argExprs[0]],ctx), sy=evaluateFunction('STDEV.P',[argExprs[1]],ctx); return cov/(sx*sy); }
-    case 'RANK.AVG':
-    case 'RANK.EQ':
-    case 'RANK': { const value = numberValue(arg(0)); const order = Number(argExprs[2] ? arg(2) : 0); const values = nums(1).sort((a, b) => order ? a - b : b - a); const matches=values.map((item,i)=>item===value?i+1:null).filter(Boolean); return matches.length ? (name==='RANK.AVG' ? matches.reduce((a,b)=>a+b,0)/matches.length : matches[0]) : ERROR_CODES.na; }
-    // Newer formula demos. We keep these lightweight so the UI can still show a result instead of feeling broken.
-    case 'LET': {
-      const localVars = new Map(ctx.vars || []);
-      for (let i = 0; i < argExprs.length - 1; i += 2) {
-        const varName = String(argExprs[i] || '').trim().replace(/^['"]|['"]$/g, '').toUpperCase();
-        if (!varName || i + 1 >= argExprs.length) throw new Error(ERROR_CODES.value);
-        const varValue = evaluateExpression(argExprs[i + 1], { ...ctx, vars: localVars });
-        localVars.set(varName, varValue);
-      }
-      return evaluateExpression(argExprs[argExprs.length - 1], { ...ctx, vars: localVars });
-    }
-    case 'LAMBDA': return '[Struktur LAMBDA valid]';
-    case 'MAP': return flatArg(0).map((item) => Number(item) * 2);
-    case 'REDUCE': return flatArg(1).reduce((sum, item) => sum + (Number(item) || 0), Number(arg(0) || 0));
-    case 'SCAN': { let total = Number(arg(0) || 0); return flatArg(1).map((item) => { total += Number(item) || 0; return total; }); }
-    case 'BYROW': return flatArg(0).map((item) => Number(item) * 2);
-    case 'BYCOL': return numbersOnly(arg(0)).reduce((a, b) => a + b, 0);
-    case 'MAKEARRAY': return { __range: true, values: Array.from({ length: Number(arg(0)) }, (_, r) => Array.from({ length: Number(arg(1)) }, (_, c) => (r + 1) * (c + 1))) };
-    default: {
-      const specialEnvironmentResult = makeSpecialEnvironmentResult(name, argExprs.length);
-      if (specialEnvironmentResult) return specialEnvironmentResult;
-      return { __structureOnly: true, functionName: name, argCount: argExprs.length, preview: 'Struktur valid' };
-    }
-  }
-}
+};
 
 export function evaluateFormula(formula = '', table = {}, separatorMode = 'id') {
-  const normalizedFormula = normalizeForEvaluation(formula, separatorMode);
-  const raw = normalizedFormula.trim();
-  if (!raw) return { ok: null, value: '', displayValue: '', message: 'Formula masih kosong.' };
-  if (!raw.startsWith('=')) return errorResult(ERROR_CODES.value, 'Formula harus diawali tanda =.');
   try {
-    const sheet = buildSheet(table);
-    const value = evaluateExpression(raw.slice(1), { sheet, table, vars: new Map() });
-    if (isErrorValue(value)) return errorResult(value, `Formula menghasilkan ${value}.`);
-    if (value && value.__structureOnly === true) {
-      if (value.__specialEnvironment === true) {
-        return {
-          ok: 'environment',
-          value,
-          displayValue: value.environment?.resultLabel || value.preview || 'Butuh Excel',
-          normalizedFormula,
-          structureOnly: true,
-          specialEnvironment: true,
-          environment: value.environment,
-          message: value.environment?.description || 'Struktur rumus valid. Hasil asli perlu dicek di environment Excel yang sesuai.'
-        };
-      }
-      return {
-        ok: 'structure',
-        value,
-        displayValue: 'Struktur valid',
-        normalizedFormula,
-        structureOnly: true,
-        message: 'Struktur rumus valid. Hasil asli untuk function ini perlu dicek langsung di Excel.'
-      };
-    }
-    return okResult(value, normalizedFormula);
+    const normalizedFormula = normalizeForEvaluation(formula, separatorMode);
+    if (!normalizedFormula.startsWith('=')) return errorResult(ERROR_CODES.name, 'Formula harus diawali tanda =.');
+    const call = parseFunctionCall(normalizedFormula);
+    if (!call) return errorResult(ERROR_CODES.name, 'Nama rumus belum terbaca.');
+    const workbook = getWorkbook(table);
+    const value = evaluateCall(call.name, call.args, workbook);
+    return { ok: true, value, displayValue: formatExcelValue(value), normalizedFormula };
   } catch (error) {
     const code = Object.values(ERROR_CODES).includes(error.message) ? error.message : ERROR_CODES.value;
-    const messages = {
-      [ERROR_CODES.name]: 'Nama rumus atau nama referensi tidak dikenali.',
-      [ERROR_CODES.value]: 'Tipe data atau struktur argumen belum cocok.',
-      [ERROR_CODES.ref]: 'Referensi cell/range tidak valid.',
-      [ERROR_CODES.na]: 'Data yang dicari tidak ditemukan.',
-      [ERROR_CODES.num]: 'Angka tidak valid untuk rumus ini.',
-      [ERROR_CODES.div0]: 'Ada pembagian dengan nol.'
-    };
-    return errorResult(code, messages[code] || 'Formula belum bisa dihitung.');
+    const message = code === ERROR_CODES.ref
+      ? 'Referensi cell/range tidak valid.'
+      : code === ERROR_CODES.name
+        ? 'Nama rumus belum didukung atau belum terbaca.'
+        : 'Formula belum bisa dihitung. Cek argumen, range, atau tipe datanya.';
+    return errorResult(code, message);
   }
 }
