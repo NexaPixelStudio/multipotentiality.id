@@ -1,0 +1,100 @@
+name: Fix answer sheet click suppression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-answer-sheet-click-suppression.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch App answer-sheet click behavior
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('src/App.jsx')
+          s = p.read_text()
+
+          s = s.replace(
+            "import { useEffect, useMemo, useState } from 'react';",
+            "import { useEffect, useMemo, useRef, useState } from 'react';"
+          )
+
+          s = s.replace(
+            "const [cellFormulas, setCellFormulas] = useState({});",
+            "const [cellFormulas, setCellFormulas] = useState({});\n  const suppressNextRangeRef = useRef(null);"
+          )
+
+          old = """  const handleCellClick = (cellRef, meta = {}) => {
+    const current = String(answer || '').trimStart();
+    if (!current.startsWith('=')) {
+      if (meta.isAnswerSheet !== false) selectAnswerCell(cellRef);
+    }
+  };
+
+  const handleRangeSelected = (rangeRef) => { setSelectedRange(rangeRef); insertRangeIntoFormula(rangeRef); };
+"""
+
+          new = """  const handleCellClick = (cellRef, meta = {}) => {
+    const current = String(answer || '').trimStart();
+    const key = String(cellRef || '').toUpperCase();
+
+    if (meta.isAnswerSheet && cellFormulas[key]) {
+      suppressNextRangeRef.current = key;
+      selectAnswerCell(cellRef);
+      return;
+    }
+
+    if (!current.startsWith('=')) {
+      if (meta.isAnswerSheet !== false) {
+        suppressNextRangeRef.current = key;
+        selectAnswerCell(cellRef);
+      }
+    }
+  };
+
+  const handleRangeSelected = (rangeRef, meta = {}) => {
+    const key = String(rangeRef || '').toUpperCase();
+
+    if (suppressNextRangeRef.current === key) {
+      suppressNextRangeRef.current = null;
+      setSelectedRange(rangeRef);
+      return;
+    }
+
+    if (meta.isAnswerSheet && !String(rangeRef || '').includes(':') && cellFormulas[key]) {
+      suppressNextRangeRef.current = null;
+      setSelectedRange(rangeRef);
+      return;
+    }
+
+    suppressNextRangeRef.current = null;
+    setSelectedRange(rangeRef);
+    insertRangeIntoFormula(rangeRef);
+  };
+"""
+
+          if old not in s:
+            raise SystemExit('Target App.jsx block not found')
+          s = s.replace(old, new)
+
+          p.write_text(s)
+          Path('.github/workflows/fix-answer-sheet-click-suppression.yml').unlink(missing_ok=True)
+          PY
+      - name: Commit patch
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "chatgpt-fix-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/App.jsx .github/workflows/fix-answer-sheet-click-suppression.yml
+          git commit -m "Stop saved cells from being inserted into formulas"
+          git push origin main
