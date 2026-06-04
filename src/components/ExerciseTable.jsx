@@ -15,8 +15,10 @@ const numberToCol = (num = 1) => {
   return col;
 };
 
+const stripSheetName = (ref = '') => String(ref || '').replace(/^'?[^'!]+?'?!/, '');
+
 const parseCell = (ref = '') => {
-  const match = String(ref).toUpperCase().match(/^([A-Z]+)(\d+)$/);
+  const match = stripSheetName(ref).toUpperCase().match(/^([A-Z]+)(\d+)$/);
   if (!match) return null;
   return { col: colToNumber(match[1]), row: Number(match[2]) };
 };
@@ -50,11 +52,21 @@ const normalizeVerticalRange = (startRef, endRef = startRef) => {
   return from === to ? from : `${from}:${to}`;
 };
 
+const splitSheetRange = (range = '') => {
+  const text = String(range || '');
+  const bangIndex = text.lastIndexOf('!');
+  if (bangIndex === -1) return { sheetName: '', ref: text };
+  return {
+    sheetName: text.slice(0, bangIndex).replace(/^'|'$/g, ''),
+    ref: text.slice(bangIndex + 1)
+  };
+};
+
 const inRange = (cellRef, rangeRef) => {
   const cell = parseCell(cellRef);
   if (!cell) return false;
-  const [start, end] = String(rangeRef).split(':');
-  if (!end) return cellRef.toUpperCase() === start.toUpperCase();
+  const [start, end] = String(splitSheetRange(rangeRef).ref).split(':');
+  if (!end) return stripSheetName(cellRef).toUpperCase() === start.toUpperCase();
   const a = parseCell(start);
   const b = parseCell(end);
   if (!a || !b) return false;
@@ -65,50 +77,73 @@ const inRange = (cellRef, rangeRef) => {
   return cell.col >= minCol && cell.col <= maxCol && cell.row >= minRow && cell.row <= maxRow;
 };
 
-const fallbackQuestionSheet = {
-  title: 'Sheet 2 - Soal',
-  description: 'Sheet ini disiapkan untuk menaruh soal latihan.',
-  columns: ['Bagian', 'Isi'],
-  rows: [
-    ['Soal', 'Soal akan muncul di sini kalau data latihan sudah punya Sheet 2.'],
-    ['Catatan', 'Sheet 1 dipakai untuk data, Sheet 2 dipakai untuk soal.']
-  ]
+const normalizeSheet = (sheet, index = 0) => {
+  const name = sheet?.name || sheet?.sheetName || `Sheet${index + 1}`;
+  const id = sheet?.id || name.toLowerCase().replace(/\s+/g, '');
+  return {
+    id,
+    name,
+    label: sheet?.label || name,
+    selectable: sheet?.selectable !== false,
+    table: {
+      title: sheet?.title || sheet?.table?.title || name,
+      description: sheet?.description || sheet?.table?.description || '',
+      columns: sheet?.columns || sheet?.table?.columns || [],
+      rows: sheet?.rows || sheet?.table?.rows || []
+    }
+  };
 };
 
 export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected, onFillDrag }) {
-  const sheets = useMemo(() => [
-    {
-      id: 'sheet1',
-      name: table?.sheetName || 'Sheet 1',
-      label: 'Data',
-      table: {
-        title: table?.title || 'Data Latihan',
-        description: table?.description || '',
-        columns: table?.columns || [],
-        rows: table?.rows || []
-      },
-      selectable: true
-    },
-    {
-      id: 'sheet2',
-      name: table?.questionSheetName || 'Sheet 2',
-      label: 'Soal',
-      table: table?.questionSheet || fallbackQuestionSheet,
-      selectable: false
+  const sheets = useMemo(() => {
+    if (Array.isArray(table?.sheets) && table.sheets.length) {
+      return table.sheets.map((sheet, index) => normalizeSheet(sheet, index));
     }
-  ], [table]);
 
-  const [activeSheetId, setActiveSheetId] = useState('sheet1');
+    return [normalizeSheet({
+      id: 'sheet1',
+      name: table?.sheetName || 'Sheet1',
+      label: 'Data',
+      title: table?.title || 'Data Latihan',
+      description: table?.description || '',
+      columns: table?.columns || [],
+      rows: table?.rows || [],
+      selectable: true
+    })];
+  }, [table]);
+
+  const answerSheetId = table?.answerSheetId || table?.formulaSheetId || sheets[0]?.id || 'sheet1';
+  const initialSheetId = table?.activeSheetId || answerSheetId || sheets[0]?.id || 'sheet1';
+  const [activeSheetId, setActiveSheetId] = useState(initialSheetId);
   const activeSheet = sheets.find((sheet) => sheet.id === activeSheetId) || sheets[0];
-  const currentTable = activeSheet.table || {};
+  const currentTable = activeSheet?.table || {};
   const columns = currentTable.columns || [];
   const rows = currentTable.rows || [];
-  const canSelect = Boolean(activeSheet.selectable);
+  const canSelect = Boolean(activeSheet?.selectable);
+  const isAnswerSheet = activeSheet?.id === answerSheetId || sheets.length === 1;
 
   const [selectionStart, setSelectionStart] = useState(null);
   const [selectionEnd, setSelectionEnd] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [selectionMode, setSelectionMode] = useState('cell');
+
+  useEffect(() => {
+    setActiveSheetId(initialSheetId);
+    setIsDragging(false);
+    setSelectionStart(null);
+    setSelectionEnd(null);
+    setSelectionMode('cell');
+  }, [initialSheetId, table]);
+
+  const visibleRanges = useMemo(() => {
+    return highlightRanges
+      .map((range) => {
+        const { sheetName, ref } = splitSheetRange(range);
+        if (!sheetName) return isAnswerSheet || sheets.length === 1 ? ref : '';
+        return sheetName === activeSheet?.name ? ref : '';
+      })
+      .filter(Boolean);
+  }, [activeSheet?.name, highlightRanges, isAnswerSheet, sheets.length]);
 
   const liveRange = useMemo(() => {
     if (!selectionStart) return null;
@@ -116,11 +151,11 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     return normalizeRange(selectionStart, selectionEnd || selectionStart);
   }, [selectionMode, selectionStart, selectionEnd]);
 
-  const isHighlighted = (ref) => canSelect && highlightRanges.some((range) => inRange(ref, range));
+  const isHighlighted = (ref) => canSelect && visibleRanges.some((range) => inRange(ref, range));
   const isSelected = (ref) => liveRange ? inRange(ref, liveRange) : false;
   const lastSheetRow = rows.length + 1;
   const lastSheetColumn = numberToCol(columns.length || 1);
-  const displayActiveCell = canSelect ? (activeCell || 'A1') : `${activeSheet.name}`;
+  const displayActiveCell = isAnswerSheet ? (activeCell || 'A1') : activeSheet?.name;
 
   const resetSelection = () => {
     setIsDragging(false);
@@ -129,9 +164,21 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionMode('cell');
   };
 
+  const getMeta = () => ({
+    sheetId: activeSheet?.id,
+    sheetName: activeSheet?.name,
+    isAnswerSheet
+  });
+
   const handleSheetChange = (sheetId) => {
     setActiveSheetId(sheetId);
     resetSelection();
+  };
+
+  const formatRangeForFormula = (range) => {
+    if (!range) return range;
+    if (isAnswerSheet || sheets.length === 1) return range;
+    return `${activeSheet.name}!${range}`;
   };
 
   const beginColumnSelection = (event, colIndex) => {
@@ -142,14 +189,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionStart(`${col}1`);
     setSelectionEnd(`${col}${lastSheetRow}`);
     setIsDragging(true);
-    onCellClick?.(`${col}1`);
+    onCellClick?.(`${col}1`, getMeta());
   };
 
   const moveColumnSelection = (colIndex) => {
     if (!canSelect || !isDragging || selectionMode !== 'column' || !selectionStart) return;
     const col = numberToCol(colIndex + 1);
     setSelectionEnd(`${col}${lastSheetRow}`);
-    onCellClick?.(`${col}1`);
   };
 
   const beginRowSelection = (event, sheetRow) => {
@@ -159,13 +205,12 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionStart(`A${sheetRow}`);
     setSelectionEnd(`${lastSheetColumn}${sheetRow}`);
     setIsDragging(true);
-    onCellClick?.(`A${sheetRow}`);
+    onCellClick?.(`A${sheetRow}`, getMeta());
   };
 
   const moveRowSelection = (sheetRow) => {
     if (!canSelect || !isDragging || selectionMode !== 'row' || !selectionStart) return;
     setSelectionEnd(`${lastSheetColumn}${sheetRow}`);
-    onCellClick?.(`A${sheetRow}`);
   };
 
   useEffect(() => {
@@ -185,13 +230,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
       }
 
       const finalRange = normalizeRange(selectionStart, selectionEnd || selectionStart);
-      onRangeSelected?.(finalRange);
+      onRangeSelected?.(formatRangeForFormula(finalRange), getMeta());
       resetSelection();
     };
 
     window.addEventListener('mouseup', finishSelection);
     return () => window.removeEventListener('mouseup', finishSelection);
-  }, [isDragging, selectionMode, selectionStart, selectionEnd, onRangeSelected, onFillDrag]);
+  }, [isDragging, selectionMode, selectionStart, selectionEnd, onRangeSelected, onFillDrag, activeSheet?.id, activeSheet?.name, isAnswerSheet]);
 
   const beginSelection = (event, ref) => {
     if (!canSelect) return;
@@ -200,32 +245,35 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionStart(ref);
     setSelectionEnd(ref);
     setIsDragging(true);
-    onCellClick?.(ref);
+    onCellClick?.(ref, getMeta());
   };
 
   const moveSelection = (ref) => {
     if (!canSelect || !isDragging || !selectionStart) return;
-
     if (selectionMode === 'fill') {
       setSelectionEnd(ref);
       return;
     }
-
     if (selectionMode !== 'cell') return;
     setSelectionEnd(ref);
-    onCellClick?.(ref);
   };
 
   const beginFillDrag = (event, ref) => {
-    if (!canSelect) return;
+    if (!canSelect || !isAnswerSheet) return;
     event.preventDefault();
     event.stopPropagation();
     setSelectionMode('fill');
     setSelectionStart(ref);
     setSelectionEnd(ref);
     setIsDragging(true);
-    onCellClick?.(ref);
+    onCellClick?.(ref, getMeta());
   };
+
+  const statusText = !canSelect
+    ? 'Sheet ini hanya untuk dibaca'
+    : isAnswerSheet
+      ? 'Klik cell untuk target hasil, rumus tetap diketik di formula bar'
+      : 'Klik/drag cell, header kolom, atau nomor baris';
 
   return (
     <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">
@@ -238,13 +286,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
         <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-black/50 dark:text-white/55">
           <span className="rounded-full bg-coach-beige px-3 py-2 dark:bg-black/20">Aktif: {displayActiveCell}</span>
           <span className="rounded-full bg-coach-greenSoft px-3 py-2 text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">
-            {canSelect ? 'Klik/drag cell, header kolom, atau nomor baris' : 'Sheet soal hanya untuk dibaca'}
+            {statusText}
           </span>
         </div>
       </div>
 
       <div className="formula-scroll overflow-auto rounded-2xl border border-coach-line dark:border-white/10">
-        <table className={`border-collapse bg-white text-sm dark:bg-[#1b211c] ${activeSheetId === 'sheet2' ? 'sheet-question-table' : 'sheet-data-table'}`}>
+        <table className={`border-collapse bg-white text-sm dark:bg-[#1b211c] ${isAnswerSheet ? 'sheet-answer-table' : 'sheet-data-table'}`}>
           <thead>
             <tr>
               <th className="sticky left-0 z-20 min-w-[48px] border border-coach-line bg-coach-beige px-3 py-2 text-center text-xs font-black text-black/45 dark:border-white/10 dark:bg-black/30 dark:text-white/45" />
@@ -280,12 +328,13 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                   <Cell
                     key={ref}
                     refName={ref}
-                    value={canSelect ? (cellValues[ref] ?? column) : column}
+                    value={isAnswerSheet ? (cellValues[ref] ?? column) : column}
                     header
-                    active={canSelect && activeCell === ref}
+                    active={canSelect && isAnswerSheet && activeCell === ref}
                     highlighted={isHighlighted(ref)}
                     selected={isSelected(ref)}
                     canSelect={canSelect}
+                    isAnswerSheet={isAnswerSheet}
                     onMouseDown={beginSelection}
                     onMouseEnter={moveSelection}
                     onFillMouseDown={beginFillDrag}
@@ -311,11 +360,12 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                       <Cell
                         key={ref}
                         refName={ref}
-                        value={canSelect ? (cellValues[ref] ?? row[colIndex]) : row[colIndex]}
-                        active={canSelect && activeCell === ref}
+                        value={isAnswerSheet ? (cellValues[ref] ?? row[colIndex]) : row[colIndex]}
+                        active={canSelect && isAnswerSheet && activeCell === ref}
                         highlighted={isHighlighted(ref)}
                         selected={isSelected(ref)}
                         canSelect={canSelect}
+                        isAnswerSheet={isAnswerSheet}
                         onMouseDown={beginSelection}
                         onMouseEnter={moveSelection}
                         onFillMouseDown={beginFillDrag}
@@ -329,24 +379,26 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
         </table>
       </div>
 
-      <div className="mt-2 flex items-center gap-2 rounded-2xl border border-coach-line bg-coach-beige px-3 py-2 dark:border-white/10 dark:bg-black/20">
-        {sheets.map((sheet) => (
-          <button
-            key={sheet.id}
-            type="button"
-            onClick={() => handleSheetChange(sheet.id)}
-            className={`rounded-xl px-4 py-2 text-xs font-black transition ${activeSheetId === sheet.id ? 'bg-white text-coach-green shadow-sm dark:bg-white/10 dark:text-emerald-200' : 'text-black/55 hover:bg-white/70 hover:text-coach-green dark:text-white/55 dark:hover:bg-white/10'}`}
-            title={sheet.label}
-          >
-            {sheet.name}
-          </button>
-        ))}
-      </div>
+      {sheets.length > 1 ? (
+        <div className="mt-2 flex items-center gap-2 rounded-2xl border border-coach-line bg-coach-beige px-3 py-2 dark:border-white/10 dark:bg-black/20">
+          {sheets.map((sheet) => (
+            <button
+              key={sheet.id}
+              type="button"
+              onClick={() => handleSheetChange(sheet.id)}
+              className={`rounded-xl px-4 py-2 text-xs font-black transition ${activeSheetId === sheet.id ? 'bg-white text-coach-green shadow-sm dark:bg-white/10 dark:text-emerald-200' : 'text-black/55 hover:bg-white/70 hover:text-coach-green dark:text-white/55 dark:hover:bg-white/10'}`}
+              title={sheet.label}
+            >
+              {sheet.name}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }
 
-function Cell({ refName, value, header, active, highlighted, selected, canSelect, onMouseDown, onMouseEnter, onFillMouseDown }) {
+function Cell({ refName, value, header, active, highlighted, selected, canSelect, isAnswerSheet, onMouseDown, onMouseEnter, onFillMouseDown }) {
   return (
     <td
       onMouseDown={(event) => onMouseDown?.(event, refName)}
@@ -355,7 +407,7 @@ function Cell({ refName, value, header, active, highlighted, selected, canSelect
       className={`sheet-cell relative ${canSelect ? 'cursor-cell' : 'cursor-default'} select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
     >
       <div className="min-h-[20px] truncate">{String(value ?? '')}</div>
-      {active && !header && canSelect ? (
+      {active && !header && canSelect && isAnswerSheet ? (
         <button
           type="button"
           aria-label={`Tarik untuk duplikat rumus dari ${refName}`}
