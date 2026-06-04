@@ -1,0 +1,70 @@
+name: Fix committed cell click
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-committed-cell-click.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch App click behavior
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('src/App.jsx')
+          s = p.read_text()
+          s = s.replace(
+"""  const handleCellClick = (cellRef, meta = {}) => {
+    const current = String(answer || '').trimStart();
+    if (!current.startsWith('=')) {
+      if (meta.isAnswerSheet !== false) selectAnswerCell(cellRef);
+    }
+  };
+
+  const handleRangeSelected = (rangeRef) => { setSelectedRange(rangeRef); insertRangeIntoFormula(rangeRef); };
+""",
+"""  const handleCellClick = (cellRef, meta = {}) => {
+    const current = String(answer || '').trimStart();
+    const key = String(cellRef || '').toUpperCase();
+
+    if (meta.isAnswerSheet && cellFormulas[key]) {
+      selectAnswerCell(cellRef);
+      return;
+    }
+
+    if (!current.startsWith('=')) {
+      if (meta.isAnswerSheet !== false) selectAnswerCell(cellRef);
+    }
+  };
+
+  const handleRangeSelected = (rangeRef, meta = {}) => {
+    const key = String(rangeRef || '').toUpperCase();
+    if (meta.isAnswerSheet && !String(rangeRef || '').includes(':') && cellFormulas[key]) {
+      setSelectedRange(rangeRef);
+      return;
+    }
+    setSelectedRange(rangeRef);
+    insertRangeIntoFormula(rangeRef);
+  };
+""")
+          p.write_text(s)
+          Path('.github/workflows/fix-committed-cell-click.yml').unlink(missing_ok=True)
+          PY
+      - name: Commit patch
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "chatgpt-fix-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/App.jsx .github/workflows/fix-committed-cell-click.yml
+          git commit -m "Prevent committed cell clicks from editing formula"
+          git push origin main
