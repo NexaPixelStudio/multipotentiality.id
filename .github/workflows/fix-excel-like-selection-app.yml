@@ -1,0 +1,81 @@
+name: Fix excel like selection app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-excel-like-selection-app.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch App selection behavior
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('src/App.jsx')
+          s = p.read_text()
+          s = s.replace(
+            "const showQuestionHelper = modeConfig.showValueHelper && questionHelperValues.length > 0;",
+            "const showQuestionHelper = false;"
+          )
+          s = s.replace(
+            """    if (!formulaInputActive || !trimmed.startsWith('=')) {
+      return;
+    }
+""",
+            """    if (!trimmed.startsWith('=')) {
+      return;
+    }
+"""
+          )
+          old = """  const handleRangeSelected = (rangeRef) => {
+    setSelectedRange(rangeRef);
+    insertRangeIntoFormula(rangeRef);
+  };
+"""
+          new = """  const handleCellClick = (cellRef, meta = {}) => {
+    const current = String(answer || '').trimStart();
+
+    if (meta.isAnswerSheet && !current.startsWith('=')) {
+      setActiveCell(cellRef);
+      return;
+    }
+
+    if (current.startsWith('=')) {
+      const refForFormula = meta.isAnswerSheet || !meta.sheetName ? cellRef : `${meta.sheetName}!${cellRef}`;
+      setSelectedRange(refForFormula);
+      insertRangeIntoFormula(refForFormula);
+      return;
+    }
+
+    if (meta.isAnswerSheet) setActiveCell(cellRef);
+  };
+
+  const handleRangeSelected = (rangeRef) => {
+    setSelectedRange(rangeRef);
+    insertRangeIntoFormula(rangeRef);
+  };
+"""
+          if old in s and 'const handleCellClick = ' not in s:
+            s = s.replace(old, new)
+          s = s.replace('onCellClick={setActiveCell}', 'onCellClick={handleCellClick}')
+          p.write_text(s)
+          Path('.github/workflows/fix-excel-like-selection-app.yml').unlink(missing_ok=True)
+          PY
+      - name: Commit patch
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "chatgpt-fix-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/App.jsx .github/workflows/fix-excel-like-selection-app.yml
+          git commit -m "Keep formula input active during sheet selection"
+          git push origin main
