@@ -157,17 +157,17 @@ main aside {
   word-break: normal;
 }
 
+aside.space-y-3 > section:first-child > div.space-y-2,
+aside.space-y-3 > section:first-child > p {
+  display: none !important;
+}
+
 .dark body {
   background:
     radial-gradient(circle at top left, rgba(33, 115, 70, 0.16), transparent 34rem),
     linear-gradient(180deg, #17211B 0%, #101711 100%);
 }
 
-/*
-  Font scale update:
-  Tailwind sizes are already raised by 1px from tailwind.config.js.
-  These rules cover custom arbitrary sizes like text-[10px], text-[11px], and text-[0.68rem].
-*/
 .text-\[10px\] {
   font-size: 11px !important;
 }
