@@ -1,0 +1,157 @@
+name: Fix formula engine sheet refs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-formula-engine-sheet-refs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch formula engine sheet references
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          p = Path('src/utils/formulaEngine.js')
+          s = p.read_text()
+          s = s.replace("""const parseCellRef = (ref = '') => {
+  const match = String(ref).toUpperCase().match(/^\\$?([A-Z]+)\\$?(\\d+)$/);
+  if (!match) return null;
+  return { col: toColNumber(match[1]), row: Number(match[2]), ref: `${match[1]}${Number(match[2])}` };
+};
+
+const parseRangeRef = (ref = '') => {
+  const parts = String(ref).toUpperCase().replace(/\\$/g, '').split(':');
+  const start = parseCellRef(parts[0]);
+  const end = parseCellRef(parts[1] || parts[0]);
+  if (!start || !end) return null;
+  return {
+    startCol: Math.min(start.col, end.col),
+    endCol: Math.max(start.col, end.col),
+    startRow: Math.min(start.row, end.row),
+    endRow: Math.max(start.row, end.row)
+  };
+};
+
+const buildSheet = (table = {}) => {
+  const values = new Map();
+  const columns = table.columns || [];
+  const rows = table.rows || [];
+  columns.forEach((column, index) => values.set(`${toColName(index + 1)}1`, column));
+  rows.forEach((row, rowIndex) => {
+    columns.forEach((_, colIndex) => values.set(`${toColName(colIndex + 1)}${rowIndex + 2}`, row[colIndex] ?? ''));
+  });
+  return values;
+};
+
+const getCell = (sheet, ref) => {
+  const cell = parseCellRef(ref);
+  if (!cell) throw new Error(ERROR_CODES.ref);
+  return sheet.has(cell.ref) ? sheet.get(cell.ref) : '';
+};
+
+const getRange = (sheet, ref) => {
+  const range = parseRangeRef(ref);
+  if (!range) throw new Error(ERROR_CODES.ref);
+  const rows = [];
+  for (let r = range.startRow; r <= range.endRow; r += 1) {
+    const row = [];
+    for (let c = range.startCol; c <= range.endCol; c += 1) {
+      row.push(sheet.get(`${toColName(c)}${r}`) ?? '');
+    }
+    rows.push(row);
+  }
+  return { __range: true, ref: String(ref).toUpperCase().replace(/\\$/g, ''), values: rows, rowCount: rows.length, colCount: rows[0]?.length || 0 };
+};""", """const splitSheetRef = (ref = '') => {
+  const clean = String(ref || '').trim().replace(/\\$/g, '');
+  const bangIndex = clean.lastIndexOf('!');
+  if (bangIndex === -1) return { sheetName: '', ref: clean };
+  return { sheetName: clean.slice(0, bangIndex).replace(/^'|'$/g, '').trim(), ref: clean.slice(bangIndex + 1) };
+};
+
+const sheetKey = (sheetName = '', ref = '') => {
+  const sheet = String(sheetName || '').trim().toUpperCase();
+  const cell = String(ref || '').replace(/\\$/g, '').toUpperCase();
+  return sheet ? `${sheet}!${cell}` : cell;
+};
+
+const parseCellRef = (ref = '', defaultSheetName = '') => {
+  const split = splitSheetRef(ref);
+  const match = split.ref.toUpperCase().match(/^([A-Z]+)(\\d+)$/);
+  if (!match) return null;
+  const cleanRef = `${match[1]}${Number(match[2])}`;
+  const sheetName = split.sheetName || defaultSheetName || '';
+  return { sheetName, col: toColNumber(match[1]), row: Number(match[2]), ref: cleanRef, key: sheetKey(sheetName, cleanRef) };
+};
+
+const parseRangeRef = (ref = '', defaultSheetName = '') => {
+  const parts = String(ref || '').replace(/\\$/g, '').split(':');
+  const first = splitSheetRef(parts[0]);
+  const start = parseCellRef(parts[0], defaultSheetName);
+  const end = parseCellRef(parts[1] || parts[0], first.sheetName || defaultSheetName);
+  if (!start || !end) return null;
+  return { sheetName: start.sheetName || end.sheetName || defaultSheetName || '', startCol: Math.min(start.col, end.col), endCol: Math.max(start.col, end.col), startRow: Math.min(start.row, end.row), endRow: Math.max(start.row, end.row) };
+};
+
+const getTableSheets = (table = {}) => {
+  if (Array.isArray(table.sheets) && table.sheets.length) return table.sheets.map((sheet, index) => ({ name: sheet.name || `Sheet${index + 1}`, columns: sheet.columns || [], rows: sheet.rows || [] }));
+  return [{ name: table.sheetName || 'Sheet1', columns: table.columns || [], rows: table.rows || [] }];
+};
+
+const buildSheet = (table = {}) => {
+  const values = new Map();
+  const sheets = getTableSheets(table);
+  const defaultSheetName = table.formulaSheetName || table.defaultSheetName || sheets[0]?.name || 'Sheet1';
+  const setValue = (sheetName, ref, value) => {
+    values.set(sheetKey(sheetName, ref), value);
+    if (String(sheetName).toUpperCase() === String(defaultSheetName).toUpperCase()) values.set(String(ref).toUpperCase(), value);
+  };
+  sheets.forEach((sheet) => {
+    const columns = sheet.columns || [];
+    const rows = sheet.rows || [];
+    columns.forEach((column, index) => setValue(sheet.name, `${toColName(index + 1)}1`, column));
+    rows.forEach((row, rowIndex) => columns.forEach((_, colIndex) => setValue(sheet.name, `${toColName(colIndex + 1)}${rowIndex + 2}`, row[colIndex] ?? '')));
+  });
+  return { values, defaultSheetName };
+};
+
+const getCell = (sheet, ref) => {
+  const cell = parseCellRef(ref, sheet?.defaultSheetName);
+  if (!cell) throw new Error(ERROR_CODES.ref);
+  return sheet.values.has(cell.key) ? sheet.values.get(cell.key) : '';
+};
+
+const getRange = (sheet, ref) => {
+  const range = parseRangeRef(ref, sheet?.defaultSheetName);
+  if (!range) throw new Error(ERROR_CODES.ref);
+  const rows = [];
+  for (let r = range.startRow; r <= range.endRow; r += 1) {
+    const row = [];
+    for (let c = range.startCol; c <= range.endCol; c += 1) row.push(sheet.values.get(sheetKey(range.sheetName, `${toColName(c)}${r}`)) ?? '');
+    rows.push(row);
+  }
+  const prefix = range.sheetName ? `${range.sheetName}!` : '';
+  return { __range: true, ref: `${prefix}${toColName(range.startCol)}${range.startRow}:${toColName(range.endCol)}${range.endRow}`, values: rows, rowCount: rows.length, colCount: rows[0]?.length || 0 };
+};""")
+          s = s.replace("/^\\$?[A-Z]+\\$?\\d+:\\$?[A-Z]+\\$?\\d+$/i", "/^(?:[^!]+!)?\\$?[A-Z]+\\$?\\d+:(?:[^!]+!)?\\$?[A-Z]+\\$?\\d+$/i")
+          s = s.replace("/^\\$?[A-Z]+\\$?\\d+$/i", "/^(?:[^!]+!)?\\$?[A-Z]+\\$?\\d+$/i")
+          p.write_text(s)
+          Path('.github/workflows/fix-formula-engine-sheet-refs.yml').unlink(missing_ok=True)
+          PY
+      - name: Commit patch
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "chatgpt-fix-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/utils/formulaEngine.js .github/workflows/fix-formula-engine-sheet-refs.yml
+          git commit -m "Support formula references across sheets"
+          git push origin main
