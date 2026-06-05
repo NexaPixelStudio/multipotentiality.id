@@ -122,7 +122,6 @@ export default function App() {
     setSelectedRange(null);
     setIsEditingFormula(false);
     suppressNextRangeRef.current = null;
-    setFormulaFocusTick((tick) => tick + 1);
   };
 
   const selectAnswerCell = (cellRef = '') => {
@@ -152,7 +151,6 @@ export default function App() {
     setSelectedRange(null);
     setIsEditingFormula(false);
     suppressNextRangeRef.current = null;
-    setFormulaFocusTick((tick) => tick + 1);
   };
 
   useEffect(() => {
@@ -225,10 +223,14 @@ export default function App() {
       return;
     }
 
+    if (isEditingFormula && current.startsWith('=')) {
+      return;
+    }
+
     if (meta.isAnswerSheet && !cellFormulas[key]) {
       suppressNextRangeRef.current = key;
-      selectAnswerCell(cellRef);
       setIsEditingFormula(false);
+      selectAnswerCell(cellRef);
       return;
     }
 
