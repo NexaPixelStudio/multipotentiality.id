@@ -18,7 +18,7 @@ export const batchBasicSalesTable = {
 const formulaPlans = {
   sum: {
     name: 'SUM',
-    label: 'Total 6 Bulan',
+    label: 'Total Penjualan 6 Bulan',
     buildFormula: (range) => `=SUM(${range})`,
     buildQuestion: ({ product, row }) => `Di cell J${row}, hitung total penjualan ${product} dari Januari sampai Juni.`,
     buildLogic: ({ product, row }) => `SUM dipakai karena soal meminta total. Cara bacanya: jumlahkan semua angka penjualan ${product} dari C${row} sampai H${row}.`,
@@ -28,7 +28,7 @@ const formulaPlans = {
   },
   average: {
     name: 'AVERAGE',
-    label: 'Rata-rata 6 Bulan',
+    label: 'Rata-rata Penjualan 6 Bulan',
     buildFormula: (range) => `=AVERAGE(${range})`,
     buildQuestion: ({ product, row }) => `Di cell J${row}, hitung rata-rata penjualan ${product} dari Januari sampai Juni.`,
     buildLogic: ({ product, row }) => `AVERAGE dipakai karena soal meminta rata-rata. Cara bacanya: ambil semua angka ${product} dari C${row} sampai H${row}, lalu cari rata-ratanya.`,
@@ -58,7 +58,7 @@ const formulaPlans = {
   },
   large: {
     name: 'LARGE',
-    label: ({ order }) => `Terbesar ke-${order}`,
+    label: ({ order }) => `Penjualan Terbesar ke-${order}`,
     buildFormula: (range, order) => `=LARGE(${range},${order})`,
     buildQuestion: ({ product, row, order }) => `Di cell J${row}, cari penjualan terbesar ke-${order} untuk ${product} dari Januari sampai Juni.`,
     buildLogic: ({ row, order }) => `LARGE dipakai karena soal meminta urutan terbesar. Cara bacanya: dari angka C${row} sampai H${row}, ambil angka terbesar urutan ke-${order}.`,
@@ -68,7 +68,7 @@ const formulaPlans = {
   },
   small: {
     name: 'SMALL',
-    label: ({ order }) => `Terkecil ke-${order}`,
+    label: ({ order }) => `Penjualan Terkecil ke-${order}`,
     buildFormula: (range, order) => `=SMALL(${range},${order})`,
     buildQuestion: ({ product, row, order }) => `Di cell J${row}, cari penjualan terkecil ke-${order} untuk ${product} dari Januari sampai Juni.`,
     buildLogic: ({ row, order }) => `SMALL dipakai karena soal meminta urutan terkecil. Cara bacanya: dari angka C${row} sampai H${row}, ambil angka terkecil urutan ke-${order}.`,
@@ -78,7 +78,7 @@ const formulaPlans = {
   },
   count: {
     name: 'COUNT',
-    label: 'Jumlah Bulan Berangka',
+    label: 'Jumlah Bulan Berisi Angka',
     buildFormula: (range) => `=COUNT(${range})`,
     buildQuestion: ({ product, row }) => `Di cell J${row}, hitung berapa bulan ${product} yang memiliki angka penjualan.`,
     buildLogic: ({ row }) => `COUNT dipakai untuk menghitung cell berisi angka. Cara bacanya: cek C${row} sampai H${row}, lalu hitung berapa cell yang berisi angka.`,
@@ -144,7 +144,7 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
   const question = plan.buildQuestion(context);
   const logicPrompt = plan.buildLogic(context);
   const criteriaValue = ['LARGE', 'SMALL'].includes(plan.name) ? String(order) : '';
-  const title = `Latihan ${rowIndex + 1}: ${label}`;
+  const title = `Latihan ${rowIndex + 1}: ${label} - ${product}`;
 
   return {
     id: `${formulaId}__level_${rowIndex + 1}`,
@@ -152,7 +152,7 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
     formulaName: plan.name,
     title,
     levelIndex: rowIndex,
-    levelLabel: label,
+    levelLabel: `${label} - ${product}`,
     tableKey: 'batchBasicSales',
     table: { ...batchBasicSalesTable, questionSheet: buildQuestionSheet({ title, question, activeCell: `J${row}`, formulaName: plan.name, criteriaValue, ranges: [range], logic: logicPrompt }) },
     activeCell: `J${row}`,
