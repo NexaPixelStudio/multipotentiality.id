@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
 import ProgressPanel from './components/ProgressPanel.jsx';
 import FormulaTheory from './components/FormulaTheory.jsx';
@@ -74,6 +74,8 @@ export default function App() {
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [filledCellValues, setFilledCellValues] = useState({});
   const [cellFormulas, setCellFormulas] = useState({});
+  const [isEditingFormula, setIsEditingFormula] = useState(false);
+  const suppressNextRangeRef = useRef(null);
 
   const selectedFormula = useMemo(() => formulas.find((formula) => formula.id === selectedId) || formulas[0], [formulas, selectedId]);
   const curatedExercises = useMemo(() => selectedFormula?.hasExercise ? getCuratedExercises(selectedFormula.id) : [], [selectedFormula?.id, selectedFormula?.hasExercise]);
@@ -106,6 +108,8 @@ export default function App() {
   const clearSessionCells = () => {
     setFilledCellValues({});
     setCellFormulas({});
+    setIsEditingFormula(false);
+    suppressNextRangeRef.current = null;
   };
 
   const loadCellFormula = (cellRef = '') => {
@@ -116,6 +120,8 @@ export default function App() {
     setFeedback(null);
     setLastRangeInsertion(null);
     setSelectedRange(null);
+    setIsEditingFormula(false);
+    suppressNextRangeRef.current = null;
     setFormulaFocusTick((tick) => tick + 1);
   };
 
@@ -144,6 +150,8 @@ export default function App() {
     setFormulaCursor(nextFormula.length);
     setLastRangeInsertion(null);
     setSelectedRange(null);
+    setIsEditingFormula(false);
+    suppressNextRangeRef.current = null;
     setFormulaFocusTick((tick) => tick + 1);
   };
 
@@ -184,11 +192,16 @@ export default function App() {
 
   const updatePreference = (key, value) => setProgressState((prev) => setPreference(prev, key, value));
   const handleSelectFormula = (formulaId) => { setSelectedId(formulaId); setMobileSidebarOpen(false); };
-  const handleAnswerChange = (nextValue) => { setAnswer(nextValue); setFeedback(null); setLastRangeInsertion(null); };
+  const handleAnswerChange = (nextValue) => {
+    setAnswer(nextValue);
+    setFeedback(null);
+    setLastRangeInsertion(null);
+    setIsEditingFormula(String(nextValue || '').trimStart().startsWith('='));
+  };
 
   const insertRangeIntoFormula = (rangeRef) => {
     const current = answer || '';
-    if (!current.trimStart().startsWith('=')) return;
+    if (!isEditingFormula || !current.trimStart().startsWith('=')) return;
     let start = Math.min(formulaCursor ?? current.length, current.length);
     let end = start;
     if (lastRangeInsertion && current.slice(lastRangeInsertion.start, lastRangeInsertion.end) === lastRangeInsertion.value) { start = lastRangeInsertion.start; end = lastRangeInsertion.end; }
@@ -203,24 +216,50 @@ export default function App() {
 
   const handleCellClick = (cellRef, meta = {}) => {
     const current = String(answer || '').trimStart();
+    const key = String(cellRef || '').toUpperCase();
+
+    if (meta.isAnswerSheet && cellFormulas[key]) {
+      suppressNextRangeRef.current = key;
+      setIsEditingFormula(false);
+      selectAnswerCell(cellRef);
+      return;
+    }
+
+    if (meta.isAnswerSheet && !cellFormulas[key]) {
+      suppressNextRangeRef.current = key;
+      selectAnswerCell(cellRef);
+      setIsEditingFormula(false);
+      return;
+    }
+
     if (!current.startsWith('=')) {
       if (meta.isAnswerSheet !== false) selectAnswerCell(cellRef);
     }
   };
 
-  const handleRangeSelected = (rangeRef) => { setSelectedRange(rangeRef); insertRangeIntoFormula(rangeRef); };
+  const handleRangeSelected = (rangeRef, meta = {}) => {
+    const key = String(rangeRef || '').toUpperCase();
+    if (suppressNextRangeRef.current === key) {
+      suppressNextRangeRef.current = null;
+      setSelectedRange(rangeRef);
+      return;
+    }
+    setSelectedRange(rangeRef);
+    if (isEditingFormula) insertRangeIntoFormula(rangeRef);
+  };
 
   const handleFillDrag = ({ sourceCell, targetCell }) => {
     const baseCell = sourceCell || activeCell || exercise?.activeCell;
+    const sourceFormula = cellFormulas[String(baseCell || '').toUpperCase()] || answer;
     const cells = getVerticalFillCells(baseCell, targetCell);
     const source = parseSheetCell(baseCell);
-    if (!source || !answer.trim() || cells.length < 2) return;
+    if (!source || !sourceFormula.trim() || cells.length < 2) return;
     const nextValues = {};
     const nextFormulas = {};
     cells.forEach((cellRef) => {
       const cell = parseSheetCell(cellRef);
       if (!cell) return;
-      const shiftedFormula = shiftFormulaRows(answer, cell.row - source.row);
+      const shiftedFormula = shiftFormulaRows(sourceFormula, cell.row - source.row);
       const shiftedResult = evaluateFormula(shiftedFormula, table, progressState.separatorMode);
       nextValues[cellRef.toUpperCase()] = shiftedResult?.displayValue ?? shiftedResult?.value ?? '';
       nextFormulas[cellRef.toUpperCase()] = shiftedFormula;
@@ -228,6 +267,8 @@ export default function App() {
     setFilledCellValues((current) => ({ ...current, ...nextValues }));
     setCellFormulas((current) => ({ ...current, ...nextFormulas }));
     setSelectedRange(cells.length ? `${cells[0]}:${cells[cells.length - 1]}` : null);
+    setIsEditingFormula(false);
+    suppressNextRangeRef.current = null;
     if (cells.length) setActiveCell(cells[cells.length - 1]);
   };
 
@@ -239,6 +280,8 @@ export default function App() {
     setFeedback(result);
     setProgressState((prev) => markFormulaAttempt(prev, selectedFormula.id, result.correct));
     const committed = commitFormulaToCell(completedFormula, activeCell);
+    setIsEditingFormula(false);
+    suppressNextRangeRef.current = null;
     if (committed) moveAfterCommit(committed.target);
   };
 
@@ -276,7 +319,7 @@ export default function App() {
           <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]"><div className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Latihan Bertingkat</p><h3 className="mt-1 text-xl font-black">Level {exerciseIndex + 1} dari {exerciseCount}</h3></div><div className="flex flex-wrap gap-2"><button type="button" onClick={handleResetExercise} className="rounded-full border border-coach-line bg-white px-4 py-2 text-xs font-black text-black/60 transition hover:border-coach-green hover:text-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/65 dark:hover:text-emerald-200">Reset Latihan</button>{Array.from({ length: exerciseCount }, (_, index) => <button key={index} type="button" onClick={() => setExerciseIndex(index)} className={`rounded-full px-4 py-2 text-xs font-black transition ${index === exerciseIndex ? 'bg-coach-green text-white shadow-sm' : 'border border-coach-line bg-coach-beige text-black/55 hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white/60'}`}>Latihan {index + 1}</button>)}</div></div><p className="mt-3 text-sm font-semibold leading-6 text-black/55 dark:text-white/55">Setiap level memakai soal, logika, dan arah penyelesaian yang berbeda. Selesaikan bertahap sebelum lanjut ke rumus berikutnya.</p><div className="mt-3 rounded-2xl border border-coach-green/15 bg-coach-greenSoft px-4 py-3 text-sm leading-6 text-black/60 dark:border-emerald-400/10 dark:bg-emerald-400/10 dark:text-white/65"><span className="font-black text-coach-green dark:text-emerald-200">{modeConfig.title}: </span>{modeConfig.description}</div></section>
           <section className="rounded-[2rem] border border-coach-line bg-white p-5 shadow-soft dark:border-white/10 dark:bg-white/[0.055]"><p className="text-xs font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">Soal Latihan</p><h3 className="mt-1 text-2xl font-black text-coach-ink dark:text-white">{exercise.title}</h3>{learningMode !== 'challenge' ? <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/65 dark:bg-black/20 dark:text-white/65"><span className="font-black text-coach-green dark:text-emerald-300">{learningMode === 'guided' ? 'Logika rumusnya: ' : 'Arah singkat: '}</span>{learningMode === 'guided' ? exercise.logicPrompt : 'Baca pertanyaannya, cari data yang relevan di tabel, lalu susun rumusnya tanpa melihat contoh rumus.'}</div> : <div className="mt-4 rounded-2xl bg-coach-beige p-4 text-sm leading-6 text-black/55 dark:bg-black/20 dark:text-white/55">Challenge Mode aktif. Arah penyelesaian disembunyikan agar kamu benar-benar latihan dari soal dan tabel.</div>}{finalFormulaPreview && <p className="mt-3 rounded-2xl bg-emerald-50 p-4 text-sm text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Rumus final baru muncul setelah benar: <span className="font-mono font-black">{finalFormulaPreview}</span></p>}</section>
           <ExerciseTable table={table} highlightRanges={exercise.highlightRanges} activeCell={activeCell || exercise?.activeCell} cellValues={liveCellValues} selectedRange={selectedRange} onCellClick={handleCellClick} onRangeSelected={handleRangeSelected} onFillDrag={handleFillDrag} />
-          <FormulaBar question={exercise.question} selectedRange={selectedRange} value={answer} onChange={handleAnswerChange} onSubmit={handleCheckAnswer} separatorMode={progressState.separatorMode} formulaOptions={formulaOptions} onCursorChange={setFormulaCursor} onFocusChange={() => setSelectionTarget('formula')} cursorPosition={formulaCursor} focusTick={formulaFocusTick} formulaResult={formulaResult} feedback={feedback} showQuestionHelper={false} helperValues={[]} lookupValue={lookupValue} onLookupValueChange={setLookupValue} onInsertHelperValue={() => {}} selectionTarget={selectionTarget} onSelectionTargetChange={setSelectionTarget} learningMode={learningMode} showLogicPanel={modeConfig.showLogicPanel} showLogicExample={modeConfig.showLogicExample} showValueHelper={false} enableFormulaAssist={modeConfig.enableFormulaAssist} showLiveResult={modeConfig.showLiveResult} showRangeTips={modeConfig.showRangeTips} />
+          <FormulaBar question={exercise.question} selectedRange={selectedRange} value={answer} onChange={handleAnswerChange} onSubmit={handleCheckAnswer} separatorMode={progressState.separatorMode} formulaOptions={formulaOptions} onCursorChange={setFormulaCursor} onFocusChange={(isActive) => { setSelectionTarget('formula'); if (isActive) setIsEditingFormula(true); }} cursorPosition={formulaCursor} focusTick={formulaFocusTick} formulaResult={formulaResult} feedback={feedback} showQuestionHelper={false} helperValues={[]} lookupValue={lookupValue} onLookupValueChange={setLookupValue} onInsertHelperValue={() => {}} selectionTarget={selectionTarget} onSelectionTargetChange={setSelectionTarget} learningMode={learningMode} showLogicPanel={modeConfig.showLogicPanel} showLogicExample={modeConfig.showLogicExample} showValueHelper={false} enableFormulaAssist={modeConfig.enableFormulaAssist} showLiveResult={modeConfig.showLiveResult} showRangeTips={modeConfig.showRangeTips} />
           <HintBox hints={exercise.hints} mode={progressState.lastMode} hintIndex={hintIndex} onNextHint={handleNextHint} onResetHints={() => setHintIndex(-1)} />
           <FeedbackBox feedback={feedback} exercise={exercise} separatorMode={progressState.separatorMode} isCorrect={feedback?.correct} onNext={handleNextExerciseStep} nextLabel={nextFeedbackLabel} />
         </div>
