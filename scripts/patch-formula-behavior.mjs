@@ -33,7 +33,7 @@ const safeShiftBlock = `const shiftFormulaRows = (formula = '', rowOffset = 0) =
 
   const shifted = protectedFormula.replace(/(^|[^A-Z0-9_!])(\\$?)([A-Z]{1,3})(\\$?)(\\d+)(?![A-Z0-9_])/gi, (match, prefix, colLock, col, rowLock, row) => {
     if (rowLock) return match;
-    return \`${prefix}${colLock}${col}${rowLock}\${Math.max(1, Number(row) + rowOffset)}\`;
+    return prefix + colLock + col + rowLock + Math.max(1, Number(row) + rowOffset);
   });
 
   return shifted.replace(/__PROTECTED_SHEET_REF_(\\d+)__/g, (_, index) => protectedRefs[Number(index)] || '');
