@@ -32,7 +32,7 @@ replaceOnce(
 
 replaceOnce(
   "    setFormulaFocusTick((tick) => tick + 1);\n  };\n\n  const selectAnswerCell",
-  "    setIsEditingFormula(false);\n    setFormulaFocusTick((tick) => tick + 1);\n  };\n\n  const selectAnswerCell",
+  "    setIsEditingFormula(false);\n    suppressNextRangeRef.current = null;\n    setFormulaFocusTick((tick) => tick + 1);\n  };\n\n  const selectAnswerCell",
   'load cell stops editing'
 );
 
@@ -54,11 +54,56 @@ replaceOnce(
   'range insert only while editing'
 );
 
-replaceOnce(
-  "  const handleCellClick = (cellRef, meta = {}) => {\n    const current = String(answer || '').trimStart();\n    if (!current.startsWith('=')) {\n      if (meta.isAnswerSheet !== false) selectAnswerCell(cellRef);\n    }\n  };\n\n  const handleRangeSelected = (rangeRef) => { setSelectedRange(rangeRef); insertRangeIntoFormula(rangeRef); };",
-  "  const handleCellClick = (cellRef, meta = {}) => {\n    const current = String(answer || '').trimStart();\n    const key = String(cellRef || '').toUpperCase();\n\n    if (meta.isAnswerSheet && (!isEditingFormula || cellFormulas[key])) {\n      suppressNextRangeRef.current = key;\n      selectAnswerCell(cellRef);\n      return;\n    }\n\n    if (!current.startsWith('=')) {\n      if (meta.isAnswerSheet !== false) {\n        suppressNextRangeRef.current = key;\n        selectAnswerCell(cellRef);\n      }\n    }\n  };\n\n  const handleRangeSelected = (rangeRef, meta = {}) => {\n    const key = String(rangeRef || '').toUpperCase();\n\n    if (suppressNextRangeRef.current === key) {\n      suppressNextRangeRef.current = null;\n      setSelectedRange(rangeRef);\n      return;\n    }\n\n    setSelectedRange(rangeRef);\n    if (isEditingFormula) insertRangeIntoFormula(rangeRef);\n  };",
-  'cell click and range selection edit guard'
-);
+const fixedSelectionBlock = `  const handleCellClick = (cellRef, meta = {}) => {
+    const current = String(answer || '').trimStart();
+    const key = String(cellRef || '').toUpperCase();
+
+    if (meta.isAnswerSheet && cellFormulas[key]) {
+      suppressNextRangeRef.current = key;
+      setIsEditingFormula(false);
+      selectAnswerCell(cellRef);
+      return;
+    }
+
+    if (isEditingFormula && current.startsWith('=')) {
+      return;
+    }
+
+    if (meta.isAnswerSheet && !cellFormulas[key]) {
+      suppressNextRangeRef.current = key;
+      setIsEditingFormula(false);
+      selectAnswerCell(cellRef);
+      return;
+    }
+
+    if (!current.startsWith('=')) {
+      if (meta.isAnswerSheet !== false) selectAnswerCell(cellRef);
+    }
+  };
+
+  const handleRangeSelected = (rangeRef, meta = {}) => {
+    const key = String(rangeRef || '').toUpperCase();
+
+    if (suppressNextRangeRef.current === key) {
+      suppressNextRangeRef.current = null;
+      setSelectedRange(rangeRef);
+      return;
+    }
+
+    setSelectedRange(rangeRef);
+    if (isEditingFormula) insertRangeIntoFormula(rangeRef);
+  };
+
+`;
+
+const selectionBlockRegex = /  const handleCellClick = \(cellRef, meta = \{\}\) => \{[\s\S]*?  const handleFillDrag = /;
+if (!source.includes("if (isEditingFormula && current.startsWith('='))")) {
+  if (!selectionBlockRegex.test(source)) {
+    console.warn('[patch-formula-behavior] Skip cell selection block: target not found');
+  } else {
+    source = source.replace(selectionBlockRegex, `${fixedSelectionBlock}  const handleFillDrag = `);
+  }
+}
 
 replaceOnce(
   "    setSelectedRange(cells.length ? `${cells[0]}:${cells[cells.length - 1]}` : null);\n    if (cells.length) setActiveCell(cells[cells.length - 1]);\n  };",
