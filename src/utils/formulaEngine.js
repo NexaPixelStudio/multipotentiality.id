@@ -218,30 +218,6 @@ const getRange = (workbook, ref) => {
 const isCellLike = (text = '') => /^(?:'[^']+'|[A-Z0-9_ ]+)?!?\$?[A-Z]+\$?\d+$/i.test(String(text).trim());
 const isRangeLike = (text = '') => /^(?:'[^']+'|[A-Z0-9_ ]+)?!?\$?[A-Z]+(?:\$?\d+)?:(?:(?:'[^']+'|[A-Z0-9_ ]+)!?)?\$?[A-Z]+(?:\$?\d+)?$/i.test(String(text).trim());
 
-const evaluateArg = (arg = '', workbook) => {
-  const text = String(arg || '').trim();
-  if (!text) return '';
-  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) return stripOuterQuotes(text);
-  if (/^-?\d+(\.\d+)?$/.test(text)) return Number(text);
-  if (isRangeLike(text)) return getRange(workbook, text);
-  if (isCellLike(text)) return getCell(workbook, text);
-  const nested = parseFunctionCall(`=${text}`);
-  if (nested) return evaluateCall(nested.name, nested.args, workbook);
-  return text;
-};
-
-const numericValues = (value) => flatten(value).map((item) => Number(item)).filter((item) => Number.isFinite(item));
-const countNumbers = (value) => numericValues(value).length;
-const countNonBlank = (value) => flatten(value).filter((item) => !isBlank(item)).length;
-const countBlank = (value) => flatten(value).filter((item) => isBlank(item)).length;
-
-const resolveCriteria = (criteria, workbook) => {
-  if (typeof criteria !== 'string') return criteria;
-  const text = criteria.trim();
-  if (isCellLike(text)) return getCell(workbook, text);
-  return stripOuterQuotes(text);
-};
-
 const compareValues = (value, operator, target) => {
   const aNum = Number(value);
   const bNum = Number(target);
@@ -255,6 +231,64 @@ const compareValues = (value, operator, target) => {
   if (operator === '>=') return a >= b;
   if (operator === '<=') return a <= b;
   return false;
+};
+
+const findComparisonOperator = (text = '') => {
+  let inQuote = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const char = text[i];
+    if (char === '"' && text[i - 1] !== '\\') inQuote = !inQuote;
+    if (inQuote) continue;
+    const two = text.slice(i, i + 2);
+    if (['>=', '<=', '<>'].includes(two)) return { operator: two, index: i };
+    if (['=', '>', '<'].includes(char)) return { operator: char, index: i };
+  }
+  return null;
+};
+
+const toBool = (value) => {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'number') return value !== 0;
+  const text = String(value ?? '').trim().toUpperCase();
+  if (text === 'TRUE') return true;
+  if (text === 'FALSE') return false;
+  if (text === '') return false;
+  return Boolean(value);
+};
+
+const evaluateArg = (arg = '', workbook) => {
+  const text = String(arg || '').trim();
+  if (!text) return '';
+  if ((text.startsWith('"') && text.endsWith('"')) || (text.startsWith("'") && text.endsWith("'"))) return stripOuterQuotes(text);
+  if (/^TRUE$/i.test(text)) return true;
+  if (/^FALSE$/i.test(text)) return false;
+  if (/^-?\d+(\.\d+)?$/.test(text)) return Number(text);
+
+  const nested = parseFunctionCall(`=${text}`);
+  if (nested) return evaluateCall(nested.name, nested.args, workbook);
+
+  const comparison = findComparisonOperator(text);
+  if (comparison) {
+    const left = text.slice(0, comparison.index).trim();
+    const right = text.slice(comparison.index + comparison.operator.length).trim();
+    return compareValues(evaluateArg(left, workbook), comparison.operator, evaluateArg(right, workbook));
+  }
+
+  if (isRangeLike(text)) return getRange(workbook, text);
+  if (isCellLike(text)) return getCell(workbook, text);
+  return text;
+};
+
+const numericValues = (value) => flatten(value).map((item) => Number(item)).filter((item) => Number.isFinite(item));
+const countNumbers = (value) => numericValues(value).length;
+const countNonBlank = (value) => flatten(value).filter((item) => !isBlank(item)).length;
+const countBlank = (value) => flatten(value).filter((item) => isBlank(item)).length;
+
+const resolveCriteria = (criteria, workbook) => {
+  if (typeof criteria !== 'string') return criteria;
+  const text = criteria.trim();
+  if (isCellLike(text)) return getCell(workbook, text);
+  return stripOuterQuotes(text);
 };
 
 const matchesCriteria = (value, criteria) => {
@@ -271,6 +305,9 @@ const conditionalPairsPass = (rowIndex, pairs, workbook) => pairs.every(([rangeA
   const value = isRangeObject(range) ? flatten(range)[rowIndex] : range;
   return matchesCriteria(value, criteria);
 });
+
+const exactText = (a, b) => String(a ?? '').trim().toUpperCase() === String(b ?? '').trim().toUpperCase();
+const getRangeMatrix = (value) => isRangeObject(value) ? value.values : [[value]];
 
 const evaluateCall = (name, args, workbook) => {
   const upper = name.toUpperCase();
@@ -322,7 +359,65 @@ const evaluateCall = (name, args, workbook) => {
     return nums.length ? nums.reduce((sum, item) => sum + item, 0) / nums.length : 0;
   }
 
-  if (upper === 'IF') return values[0] ? values[1] : values[2];
+  if (upper === 'AND') return values.every(toBool);
+  if (upper === 'OR') return values.some(toBool);
+  if (upper === 'NOT') return !toBool(values[0]);
+  if (upper === 'IF') return toBool(values[0]) ? values[1] : values[2];
+  if (upper === 'IFS') {
+    for (let index = 0; index < values.length; index += 2) {
+      if (toBool(values[index])) return values[index + 1];
+    }
+    throw new Error(ERROR_CODES.na);
+  }
+
+  if (upper === 'MATCH') {
+    const lookupValue = values[0];
+    const lookupArray = flatten(values[1]);
+    const position = lookupArray.findIndex((item) => exactText(item, lookupValue));
+    if (position === -1) throw new Error(ERROR_CODES.na);
+    return position + 1;
+  }
+
+  if (upper === 'INDEX') {
+    const matrix = getRangeMatrix(values[0]);
+    const rowIndex = Number(values[1]) - 1;
+    const colIndex = values.length > 2 ? Number(values[2]) - 1 : 0;
+    if (!matrix[rowIndex] || typeof matrix[rowIndex][colIndex] === 'undefined') throw new Error(ERROR_CODES.ref);
+    return matrix[rowIndex][colIndex];
+  }
+
+  if (upper === 'VLOOKUP') {
+    const lookupValue = values[0];
+    const matrix = getRangeMatrix(values[1]);
+    const colIndex = Number(values[2]) - 1;
+    const row = matrix.find((item) => exactText(item[0], lookupValue));
+    if (!row) throw new Error(ERROR_CODES.na);
+    if (typeof row[colIndex] === 'undefined') throw new Error(ERROR_CODES.ref);
+    return row[colIndex];
+  }
+
+  if (upper === 'HLOOKUP') {
+    const lookupValue = values[0];
+    const matrix = getRangeMatrix(values[1]);
+    const rowIndex = Number(values[2]) - 1;
+    const colIndex = matrix[0]?.findIndex((item) => exactText(item, lookupValue));
+    if (colIndex < 0) throw new Error(ERROR_CODES.na);
+    if (!matrix[rowIndex] || typeof matrix[rowIndex][colIndex] === 'undefined') throw new Error(ERROR_CODES.ref);
+    return matrix[rowIndex][colIndex];
+  }
+
+  if (upper === 'XLOOKUP') {
+    const lookupValue = values[0];
+    const lookupArray = flatten(values[1]);
+    const returnArray = flatten(values[2]);
+    const index = lookupArray.findIndex((item) => exactText(item, lookupValue));
+    if (index === -1) {
+      if (typeof values[3] !== 'undefined') return values[3];
+      throw new Error(ERROR_CODES.na);
+    }
+    return returnArray[index];
+  }
+
   throw new Error(ERROR_CODES.name);
 };
 
@@ -341,7 +436,9 @@ export function evaluateFormula(formula = '', table = {}, separatorMode = 'id') 
       ? 'Referensi cell/range tidak valid.'
       : code === ERROR_CODES.name
         ? 'Nama rumus belum didukung atau belum terbaca.'
-        : 'Formula belum bisa dihitung. Cek argumen, range, atau tipe datanya.';
+        : code === ERROR_CODES.na
+          ? 'Data yang dicari tidak ditemukan.'
+          : 'Formula belum bisa dihitung. Cek argumen, range, atau tipe datanya.';
     return errorResult(code, message);
   }
 }
