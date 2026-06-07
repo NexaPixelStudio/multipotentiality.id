@@ -3,239 +3,48 @@ import { normalizeFormulaRecord } from './formulaAuditRules.js';
 const commonAvailability = ['Excel Desktop', 'Excel Web', 'Microsoft 365'];
 
 const batchBasicFormulaRecords = [
-  {
-    id: 'sum',
-    name: 'SUM',
-    category: 'Math and Trigonometry',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Menjumlahkan angka dalam satu range.',
-    syntax: 'SUM(number1, [number2], ...)',
-    simpleLogic: 'Pilih range angka yang mau dijumlahkan. Jangan ketik angkanya satu per satu kalau datanya sudah ada di tabel.',
-    useCase: 'Dipakai untuk menghitung total penjualan, total qty, total nilai, atau total angka lain.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'average',
-    name: 'AVERAGE',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Menghitung rata-rata angka dalam satu range.',
-    syntax: 'AVERAGE(number1, [number2], ...)',
-    simpleLogic: 'Pilih kumpulan angka, lalu Excel membagi totalnya dengan jumlah angka yang ada.',
-    useCase: 'Dipakai untuk mencari rata-rata penjualan, rata-rata nilai, atau performa bulanan.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'min',
-    name: 'MIN',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Mencari angka paling kecil dalam satu range.',
-    syntax: 'MIN(number1, [number2], ...)',
-    simpleLogic: 'Pilih range angka, lalu Excel mengambil angka yang nilainya paling rendah.',
-    useCase: 'Dipakai untuk mencari penjualan terendah, nilai terkecil, atau stok paling sedikit.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'max',
-    name: 'MAX',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Mencari angka paling besar dalam satu range.',
-    syntax: 'MAX(number1, [number2], ...)',
-    simpleLogic: 'Pilih range angka, lalu Excel mengambil angka yang nilainya paling tinggi.',
-    useCase: 'Dipakai untuk mencari penjualan tertinggi, nilai terbesar, atau stok paling banyak.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'large',
-    name: 'LARGE',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Mencari angka terbesar ke-1, ke-2, ke-3, dan seterusnya.',
-    syntax: 'LARGE(array, k)',
-    simpleLogic: 'Pilih range angka, lalu tentukan urutan terbesar yang dicari.',
-    useCase: 'Dipakai saat kamu butuh top 1, top 2, atau top 3 dari sebuah data angka.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'small',
-    name: 'SMALL',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Mencari angka terkecil ke-1, ke-2, ke-3, dan seterusnya.',
-    syntax: 'SMALL(array, k)',
-    simpleLogic: 'Pilih range angka, lalu tentukan urutan terkecil yang dicari.',
-    useCase: 'Dipakai saat kamu butuh bottom 1, bottom 2, atau angka terendah urutan tertentu.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'count',
-    name: 'COUNT',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Menghitung berapa cell yang berisi angka.',
-    syntax: 'COUNT(value1, [value2], ...)',
-    simpleLogic: 'Pilih range, lalu Excel menghitung cell yang isinya angka saja.',
-    useCase: 'Dipakai untuk menghitung berapa bulan yang punya angka penjualan atau berapa nilai yang sudah terisi angka.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'counta',
-    name: 'COUNTA',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Menghitung berapa cell yang terisi, baik angka maupun teks.',
-    syntax: 'COUNTA(value1, [value2], ...)',
-    simpleLogic: 'Pilih range, lalu Excel menghitung semua cell yang tidak kosong.',
-    useCase: 'Dipakai untuk mengecek berapa data yang sudah diisi, termasuk angka, teks, dan catatan.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'countblank',
-    name: 'COUNTBLANK',
-    category: 'Statistical',
-    displayCategory: 'Basic Calculation',
-    level: 'Basic',
-    description: 'Menghitung berapa cell yang masih kosong.',
-    syntax: 'COUNTBLANK(range)',
-    simpleLogic: 'Pilih range, lalu Excel menghitung cell yang belum terisi.',
-    useCase: 'Dipakai untuk mencari data yang belum lengkap, catatan yang belum diisi, atau kolom yang masih kosong.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['basic', 'batch-01', 'practice'],
-    hasExercise: true
-  }
+  { id: 'sum', name: 'SUM', category: 'Math and Trigonometry', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Menjumlahkan angka dalam satu range.', syntax: 'SUM(number1, [number2], ...)', simpleLogic: 'Pilih range angka yang mau dijumlahkan. Jangan ketik angkanya satu per satu kalau datanya sudah ada di tabel.', useCase: 'Dipakai untuk menghitung total penjualan, total qty, total nilai, atau total angka lain.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'average', name: 'AVERAGE', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Menghitung rata-rata angka dalam satu range.', syntax: 'AVERAGE(number1, [number2], ...)', simpleLogic: 'Pilih kumpulan angka, lalu Excel membagi totalnya dengan jumlah angka yang ada.', useCase: 'Dipakai untuk mencari rata-rata penjualan, rata-rata nilai, atau performa bulanan.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'min', name: 'MIN', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Mencari angka paling kecil dalam satu range.', syntax: 'MIN(number1, [number2], ...)', simpleLogic: 'Pilih range angka, lalu Excel mengambil angka yang nilainya paling rendah.', useCase: 'Dipakai untuk mencari penjualan terendah, nilai terkecil, atau stok paling sedikit.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'max', name: 'MAX', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Mencari angka paling besar dalam satu range.', syntax: 'MAX(number1, [number2], ...)', simpleLogic: 'Pilih range angka, lalu Excel mengambil angka yang nilainya paling tinggi.', useCase: 'Dipakai untuk mencari penjualan tertinggi, nilai terbesar, atau stok paling banyak.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'large', name: 'LARGE', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Mencari angka terbesar ke-1, ke-2, ke-3, dan seterusnya.', syntax: 'LARGE(array, k)', simpleLogic: 'Pilih range angka, lalu tentukan urutan terbesar yang dicari.', useCase: 'Dipakai saat kamu butuh top 1, top 2, atau top 3 dari sebuah data angka.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'small', name: 'SMALL', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Mencari angka terkecil ke-1, ke-2, ke-3, dan seterusnya.', syntax: 'SMALL(array, k)', simpleLogic: 'Pilih range angka, lalu tentukan urutan terkecil yang dicari.', useCase: 'Dipakai saat kamu butuh bottom 1, bottom 2, atau angka terendah urutan tertentu.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'count', name: 'COUNT', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Menghitung berapa cell yang berisi angka.', syntax: 'COUNT(value1, [value2], ...)', simpleLogic: 'Pilih range, lalu Excel menghitung cell yang isinya angka saja.', useCase: 'Dipakai untuk menghitung berapa bulan yang punya angka penjualan atau berapa nilai yang sudah terisi angka.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'counta', name: 'COUNTA', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Menghitung berapa cell yang terisi, baik angka maupun teks.', syntax: 'COUNTA(value1, [value2], ...)', simpleLogic: 'Pilih range, lalu Excel menghitung semua cell yang tidak kosong.', useCase: 'Dipakai untuk mengecek berapa data yang sudah diisi, termasuk angka, teks, dan catatan.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true },
+  { id: 'countblank', name: 'COUNTBLANK', category: 'Statistical', displayCategory: 'Basic Calculation', level: 'Basic', description: 'Menghitung berapa cell yang masih kosong.', syntax: 'COUNTBLANK(range)', simpleLogic: 'Pilih range, lalu Excel menghitung cell yang belum terisi.', useCase: 'Dipakai untuk mencari data yang belum lengkap, catatan yang belum diisi, atau kolom yang masih kosong.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['basic', 'batch-01', 'practice'], hasExercise: true }
 ];
 
 const batchConditionalFormulaRecords = [
-  {
-    id: 'sumif',
-    name: 'SUMIF',
-    category: 'Math and Trigonometry',
-    displayCategory: 'Conditional Calculation',
-    level: 'Basic',
-    description: 'Menjumlahkan angka yang memenuhi satu syarat.',
-    syntax: 'SUMIF(range, criteria, [sum_range])',
-    simpleLogic: 'Tentukan kolom yang dicek syaratnya, tulis syaratnya, lalu tentukan kolom angka yang mau dijumlahkan.',
-    useCase: 'Dipakai untuk total penjualan per kategori, kota, toko, channel, atau status.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['conditional', 'batch-02', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'countif',
-    name: 'COUNTIF',
-    category: 'Statistical',
-    displayCategory: 'Conditional Calculation',
-    level: 'Basic',
-    description: 'Menghitung jumlah data yang memenuhi satu syarat.',
-    syntax: 'COUNTIF(range, criteria)',
-    simpleLogic: 'Tentukan range yang dicek, lalu tulis syarat yang mau dihitung.',
-    useCase: 'Dipakai untuk menghitung jumlah order per kota, kategori, channel, toko, atau status.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['conditional', 'batch-02', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'averageif',
-    name: 'AVERAGEIF',
-    category: 'Statistical',
-    displayCategory: 'Conditional Calculation',
-    level: 'Basic',
-    description: 'Menghitung rata-rata angka yang memenuhi satu syarat.',
-    syntax: 'AVERAGEIF(range, criteria, [average_range])',
-    simpleLogic: 'Tentukan kolom yang dicek syaratnya, tulis syaratnya, lalu tentukan kolom angka yang mau dirata-ratakan.',
-    useCase: 'Dipakai untuk rata-rata penjualan per kategori, kota, toko, channel, atau status.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['conditional', 'batch-02', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'sumifs',
-    name: 'SUMIFS',
-    category: 'Math and Trigonometry',
-    displayCategory: 'Conditional Calculation',
-    level: 'Basic',
-    description: 'Menjumlahkan angka yang memenuhi lebih dari satu syarat.',
-    syntax: 'SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)',
-    simpleLogic: 'Tentukan range angka yang dijumlahkan, lalu tulis pasangan range syarat dan isi syaratnya.',
-    useCase: 'Dipakai untuk total penjualan dengan gabungan syarat, misalnya kategori Fashion dari kota Jakarta.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['conditional', 'batch-02', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'countifs',
-    name: 'COUNTIFS',
-    category: 'Statistical',
-    displayCategory: 'Conditional Calculation',
-    level: 'Basic',
-    description: 'Menghitung jumlah data yang memenuhi lebih dari satu syarat.',
-    syntax: 'COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2], ...)',
-    simpleLogic: 'Tulis pasangan range syarat dan isi syaratnya. Data dihitung hanya kalau semua syarat terpenuhi.',
-    useCase: 'Dipakai untuk jumlah order dengan gabungan syarat, misalnya Shopee yang statusnya Selesai.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['conditional', 'batch-02', 'practice'],
-    hasExercise: true
-  },
-  {
-    id: 'averageifs',
-    name: 'AVERAGEIFS',
-    category: 'Statistical',
-    displayCategory: 'Conditional Calculation',
-    level: 'Basic',
-    description: 'Menghitung rata-rata angka yang memenuhi lebih dari satu syarat.',
-    syntax: 'AVERAGEIFS(average_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)',
-    simpleLogic: 'Tentukan range angka yang dirata-ratakan, lalu tulis pasangan range syarat dan isi syaratnya.',
-    useCase: 'Dipakai untuk rata-rata penjualan dengan gabungan syarat, misalnya kota Surabaya melalui Lazada.',
-    version: 'Excel 2010+ / Microsoft 365',
-    availability: commonAvailability,
-    tags: ['conditional', 'batch-02', 'practice'],
-    hasExercise: true
-  }
+  { id: 'sumif', name: 'SUMIF', category: 'Math and Trigonometry', displayCategory: 'Conditional Calculation', level: 'Basic', description: 'Menjumlahkan angka yang memenuhi satu syarat.', syntax: 'SUMIF(range, criteria, [sum_range])', simpleLogic: 'Tentukan kolom yang dicek syaratnya, tulis syaratnya, lalu tentukan kolom angka yang mau dijumlahkan.', useCase: 'Dipakai untuk total penjualan per kategori, kota, toko, channel, atau status.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['conditional', 'batch-02', 'practice'], hasExercise: true },
+  { id: 'countif', name: 'COUNTIF', category: 'Statistical', displayCategory: 'Conditional Calculation', level: 'Basic', description: 'Menghitung jumlah data yang memenuhi satu syarat.', syntax: 'COUNTIF(range, criteria)', simpleLogic: 'Tentukan range yang dicek, lalu tulis syarat yang mau dihitung.', useCase: 'Dipakai untuk menghitung jumlah order per kota, kategori, channel, toko, atau status.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['conditional', 'batch-02', 'practice'], hasExercise: true },
+  { id: 'averageif', name: 'AVERAGEIF', category: 'Statistical', displayCategory: 'Conditional Calculation', level: 'Basic', description: 'Menghitung rata-rata angka yang memenuhi satu syarat.', syntax: 'AVERAGEIF(range, criteria, [average_range])', simpleLogic: 'Tentukan kolom yang dicek syaratnya, tulis syaratnya, lalu tentukan kolom angka yang mau dirata-ratakan.', useCase: 'Dipakai untuk rata-rata penjualan per kategori, kota, toko, channel, atau status.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['conditional', 'batch-02', 'practice'], hasExercise: true },
+  { id: 'sumifs', name: 'SUMIFS', category: 'Math and Trigonometry', displayCategory: 'Conditional Calculation', level: 'Basic', description: 'Menjumlahkan angka yang memenuhi lebih dari satu syarat.', syntax: 'SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)', simpleLogic: 'Tentukan range angka yang dijumlahkan, lalu tulis pasangan range syarat dan isi syaratnya.', useCase: 'Dipakai untuk total penjualan dengan gabungan syarat, misalnya kategori Fashion dari kota Jakarta.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['conditional', 'batch-02', 'practice'], hasExercise: true },
+  { id: 'countifs', name: 'COUNTIFS', category: 'Statistical', displayCategory: 'Conditional Calculation', level: 'Basic', description: 'Menghitung jumlah data yang memenuhi lebih dari satu syarat.', syntax: 'COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2], ...)', simpleLogic: 'Tulis pasangan range syarat dan isi syaratnya. Data dihitung hanya kalau semua syarat terpenuhi.', useCase: 'Dipakai untuk jumlah order dengan gabungan syarat, misalnya Shopee yang statusnya Selesai.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['conditional', 'batch-02', 'practice'], hasExercise: true },
+  { id: 'averageifs', name: 'AVERAGEIFS', category: 'Statistical', displayCategory: 'Conditional Calculation', level: 'Basic', description: 'Menghitung rata-rata angka yang memenuhi lebih dari satu syarat.', syntax: 'AVERAGEIFS(average_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)', simpleLogic: 'Tentukan range angka yang dirata-ratakan, lalu tulis pasangan range syarat dan isi syaratnya.', useCase: 'Dipakai untuk rata-rata penjualan dengan gabungan syarat, misalnya kota Surabaya melalui Lazada.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['conditional', 'batch-02', 'practice'], hasExercise: true }
+];
+
+const batchLogicalFormulaRecords = [
+  { id: 'if', name: 'IF', category: 'Logical', displayCategory: 'Logical', level: 'Basic', description: 'Membuat hasil berdasarkan kondisi benar atau salah.', syntax: 'IF(logical_test, value_if_true, value_if_false)', simpleLogic: 'Tulis kondisi yang dicek, lalu tentukan hasil kalau benar dan hasil kalau salah.', useCase: 'Dipakai untuk status lulus/tidak, approve/reject, valid/tidak valid, atau hasil keputusan lain.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['logical', 'batch-03', 'practice'], hasExercise: true },
+  { id: 'ifs', name: 'IFS', category: 'Logical', displayCategory: 'Logical', level: 'Basic', description: 'Membuat hasil dari banyak kondisi berurutan.', syntax: 'IFS(logical_test1, value_if_true1, [logical_test2, value_if_true2], ...)', simpleLogic: 'Tulis pasangan kondisi dan hasil. Excel membaca dari atas ke bawah sampai ada kondisi yang benar.', useCase: 'Dipakai untuk grade nilai, level performa, status prioritas, atau kategori bertingkat.', version: 'Excel 2016+ / Microsoft 365', availability: commonAvailability, tags: ['logical', 'batch-03', 'practice'], hasExercise: true },
+  { id: 'if_and', name: 'IF AND', category: 'Logical', displayCategory: 'Logical', level: 'Basic', description: 'Menggabungkan IF dan AND saat semua syarat harus benar.', syntax: 'IF(AND(logical1, logical2), value_if_true, value_if_false)', simpleLogic: 'AND mengecek semua syarat. IF mengubah hasil TRUE/FALSE menjadi teks atau keputusan.', useCase: 'Dipakai untuk status yang butuh dua syarat atau lebih, misalnya nilai cukup dan data sesuai.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['logical', 'batch-03', 'practice'], hasExercise: true },
+  { id: 'if_or', name: 'IF OR', category: 'Logical', displayCategory: 'Logical', level: 'Basic', description: 'Menggabungkan IF dan OR saat cukup salah satu syarat benar.', syntax: 'IF(OR(logical1, logical2), value_if_true, value_if_false)', simpleLogic: 'OR mengecek apakah minimal satu syarat benar. IF menampilkan hasil keputusan.', useCase: 'Dipakai untuk kondisi alternatif, misalnya masuk kriteria jika nilai cukup atau kategori tertentu.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['logical', 'batch-03', 'practice'], hasExercise: true },
+  { id: 'if_not', name: 'IF NOT', category: 'Logical', displayCategory: 'Logical', level: 'Basic', description: 'Menggabungkan IF dan NOT untuk membalik kondisi.', syntax: 'IF(NOT(logical), value_if_true, value_if_false)', simpleLogic: 'NOT membalik hasil kondisi. IF menampilkan keputusan berdasarkan hasil yang sudah dibalik.', useCase: 'Dipakai untuk status remedial, data belum valid, atau pengecekan kebalikan dari sebuah syarat.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['logical', 'batch-03', 'practice'], hasExercise: true }
+];
+
+const batchLookupFormulaRecords = [
+  { id: 'vlookup', name: 'VLOOKUP', category: 'Lookup and Reference', displayCategory: 'Lookup & Reference', level: 'Basic', description: 'Mencari data secara vertikal dari kolom paling kiri tabel.', syntax: 'VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])', simpleLogic: 'Cari kode di kolom paling kiri, lalu ambil hasil dari nomor kolom yang ditentukan.', useCase: 'Dipakai untuk mengambil nama produk, harga, kategori, atau data master lain berdasarkan kode.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['lookup', 'batch-04', 'practice'], hasExercise: true },
+  { id: 'hlookup', name: 'HLOOKUP', category: 'Lookup and Reference', displayCategory: 'Lookup & Reference', level: 'Basic', description: 'Mencari data secara horizontal dari baris paling atas tabel.', syntax: 'HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])', simpleLogic: 'Cari kode di baris atas, lalu ambil hasil dari nomor baris yang ditentukan.', useCase: 'Dipakai untuk membaca tabel horizontal atau data referensi yang disusun melebar.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['lookup', 'batch-04', 'practice'], hasExercise: true },
+  { id: 'xlookup', name: 'XLOOKUP', category: 'Lookup and Reference', displayCategory: 'Lookup & Reference', level: 'Basic', description: 'Mencari data dari lookup array dan mengambil hasil dari return array.', syntax: 'XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])', simpleLogic: 'Pilih value yang dicari, range tempat mencarinya, lalu range hasil yang mau diambil.', useCase: 'Dipakai untuk lookup modern yang lebih fleksibel dibanding VLOOKUP.', version: 'Microsoft 365 / Excel 2021+', availability: commonAvailability, tags: ['lookup', 'batch-04', 'practice'], hasExercise: true },
+  { id: 'index', name: 'INDEX', category: 'Lookup and Reference', displayCategory: 'Lookup & Reference', level: 'Basic', description: 'Mengambil data berdasarkan posisi dalam sebuah range.', syntax: 'INDEX(array, row_num, [column_num])', simpleLogic: 'Pilih range hasil, lalu tentukan posisi baris atau kolom yang mau diambil.', useCase: 'Dipakai untuk mengambil data dari posisi tertentu, sering digabung dengan MATCH.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['lookup', 'batch-04', 'practice'], hasExercise: true },
+  { id: 'match', name: 'MATCH', category: 'Lookup and Reference', displayCategory: 'Lookup & Reference', level: 'Basic', description: 'Mencari posisi sebuah data dalam range.', syntax: 'MATCH(lookup_value, lookup_array, [match_type])', simpleLogic: 'Cari value di sebuah range, lalu Excel memberi posisi urutannya.', useCase: 'Dipakai untuk mencari posisi kode, posisi nama, atau pendukung INDEX MATCH.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['lookup', 'batch-04', 'practice'], hasExercise: true },
+  { id: 'index_match', name: 'INDEX MATCH', category: 'Lookup and Reference', displayCategory: 'Lookup & Reference', level: 'Basic', description: 'Menggabungkan INDEX dan MATCH untuk lookup yang fleksibel.', syntax: 'INDEX(return_range, MATCH(lookup_value, lookup_range, 0))', simpleLogic: 'MATCH mencari posisi data, lalu INDEX mengambil hasil dari posisi tersebut.', useCase: 'Dipakai sebagai alternatif lookup yang fleksibel saat VLOOKUP kurang nyaman.', version: 'Excel 2010+ / Microsoft 365', availability: commonAvailability, tags: ['lookup', 'batch-04', 'practice'], hasExercise: true }
 ];
 
 export const formulaCatalogFull = [
   ...batchBasicFormulaRecords,
-  ...batchConditionalFormulaRecords
+  ...batchConditionalFormulaRecords,
+  ...batchLogicalFormulaRecords,
+  ...batchLookupFormulaRecords
 ].map((record) => normalizeFormulaRecord(record));
 
 export function importFormulaCatalog(records = []) {
