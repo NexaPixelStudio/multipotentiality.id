@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -94,6 +94,12 @@ const normalizeSheet = (sheet, index = 0) => {
   };
 };
 
+const getCellRefFromPoint = (x, y) => {
+  const element = document.elementFromPoint(x, y);
+  const cell = element?.closest?.('[data-cell-ref]');
+  return cell?.dataset?.cellRef || null;
+};
+
 export default function ExerciseTable({ table, highlightRanges = [], activeCell, cellValues = {}, onCellClick, onRangeSelected, onFillDrag }) {
   const sheets = useMemo(() => {
     if (Array.isArray(table?.sheets) && table.sheets.length) {
@@ -121,6 +127,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   const rows = currentTable.rows || [];
   const canSelect = Boolean(activeSheet?.selectable);
   const isAnswerSheet = activeSheet?.id === answerSheetId || sheets.length === 1;
+  const touchDraggingRef = useRef(false);
 
   const [selectionStart, setSelectionStart] = useState(null);
   const [selectionEnd, setSelectionEnd] = useState(null);
@@ -133,6 +140,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionStart(null);
     setSelectionEnd(null);
     setSelectionMode('cell');
+    touchDraggingRef.current = false;
   }, [initialSheetId, table]);
 
   const visibleRanges = useMemo(() => {
@@ -162,6 +170,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionStart(null);
     setSelectionEnd(null);
     setSelectionMode('cell');
+    touchDraggingRef.current = false;
   };
 
   const getMeta = () => ({
@@ -213,34 +222,60 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     setSelectionEnd(`${lastSheetColumn}${sheetRow}`);
   };
 
+  const finishSelection = () => {
+    if (!selectionStart) return;
+
+    if (selectionMode === 'fill') {
+      const endRef = selectionEnd || selectionStart;
+      const finalRange = normalizeVerticalRange(selectionStart, endRef);
+      if (finalRange.includes(':')) {
+        onFillDrag?.({ sourceCell: selectionStart, targetCell: endRef, targetRange: finalRange });
+      }
+      resetSelection();
+      return;
+    }
+
+    const finalRange = normalizeRange(selectionStart, selectionEnd || selectionStart);
+    onRangeSelected?.(formatRangeForFormula(finalRange), getMeta());
+    resetSelection();
+  };
+
   useEffect(() => {
     if (!isDragging) return undefined;
 
-    const finishSelection = () => {
-      if (!selectionStart) return;
+    const handleTouchMove = (event) => {
+      if (!touchDraggingRef.current) return;
+      const touch = event.touches?.[0];
+      if (!touch) return;
+      const ref = getCellRefFromPoint(touch.clientX, touch.clientY);
+      if (!ref) return;
+      event.preventDefault();
+      setSelectionEnd(ref);
+    };
 
-      if (selectionMode === 'fill') {
-        const endRef = selectionEnd || selectionStart;
-        const finalRange = normalizeVerticalRange(selectionStart, endRef);
-        if (finalRange.includes(':')) {
-          onFillDrag?.({ sourceCell: selectionStart, targetCell: endRef, targetRange: finalRange });
-        }
-        resetSelection();
-        return;
-      }
-
-      const finalRange = normalizeRange(selectionStart, selectionEnd || selectionStart);
-      onRangeSelected?.(formatRangeForFormula(finalRange), getMeta());
-      resetSelection();
+    const handleTouchEnd = (event) => {
+      if (!touchDraggingRef.current) return;
+      event.preventDefault();
+      finishSelection();
     };
 
     window.addEventListener('mouseup', finishSelection);
-    return () => window.removeEventListener('mouseup', finishSelection);
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: false });
+    window.addEventListener('touchcancel', handleTouchEnd, { passive: false });
+
+    return () => {
+      window.removeEventListener('mouseup', finishSelection);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('touchcancel', handleTouchEnd);
+    };
   }, [isDragging, selectionMode, selectionStart, selectionEnd, onRangeSelected, onFillDrag, activeSheet?.id, activeSheet?.name, isAnswerSheet]);
 
   const beginSelection = (event, ref) => {
     if (!canSelect) return;
     event.preventDefault();
+    touchDraggingRef.current = event.type === 'touchstart';
     setSelectionMode('cell');
     setSelectionStart(ref);
     setSelectionEnd(ref);
@@ -262,6 +297,7 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
     if (!canSelect || !isAnswerSheet) return;
     event.preventDefault();
     event.stopPropagation();
+    touchDraggingRef.current = event.type === 'touchstart';
     setSelectionMode('fill');
     setSelectionStart(ref);
     setSelectionEnd(ref);
@@ -337,7 +373,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                     isAnswerSheet={isAnswerSheet}
                     onMouseDown={beginSelection}
                     onMouseEnter={moveSelection}
+                    onTouchStart={beginSelection}
                     onFillMouseDown={beginFillDrag}
+                    onFillTouchStart={beginFillDrag}
                   />
                 );
               })}
@@ -368,7 +406,9 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
                         isAnswerSheet={isAnswerSheet}
                         onMouseDown={beginSelection}
                         onMouseEnter={moveSelection}
+                        onTouchStart={beginSelection}
                         onFillMouseDown={beginFillDrag}
+                        onFillTouchStart={beginFillDrag}
                       />
                     );
                   })}
@@ -398,13 +438,15 @@ export default function ExerciseTable({ table, highlightRanges = [], activeCell,
   );
 }
 
-function Cell({ refName, value, header, active, highlighted, selected, canSelect, isAnswerSheet, onMouseDown, onMouseEnter, onFillMouseDown }) {
+function Cell({ refName, value, header, active, highlighted, selected, canSelect, isAnswerSheet, onMouseDown, onMouseEnter, onTouchStart, onFillMouseDown, onFillTouchStart }) {
   return (
     <td
+      data-cell-ref={refName}
       onMouseDown={(event) => onMouseDown?.(event, refName)}
       onMouseEnter={() => onMouseEnter?.(refName)}
+      onTouchStart={(event) => onTouchStart?.(event, refName)}
       title={refName}
-      className={`sheet-cell relative ${canSelect ? 'cursor-cell' : 'cursor-default'} select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
+      className={`sheet-cell relative ${canSelect ? 'cursor-cell touch-none' : 'cursor-default'} select-none border border-coach-line px-3 py-2 transition dark:border-white/10 ${header ? 'bg-coach-green/8 font-black text-coach-ink dark:bg-emerald-400/10 dark:text-white' : 'text-black/70 dark:text-white/70'} ${highlighted ? 'bg-coach-green/16 ring-1 ring-inset ring-coach-green/50 dark:bg-emerald-400/14' : ''} ${selected ? 'bg-coach-greenSoft ring-2 ring-inset ring-coach-green/80 dark:bg-emerald-400/18' : ''} ${active ? 'outline outline-2 outline-coach-green' : ''}`}
     >
       <div className="min-h-[20px] truncate">{String(value ?? '')}</div>
       {active && !header && canSelect && isAnswerSheet ? (
@@ -413,7 +455,8 @@ function Cell({ refName, value, header, active, highlighted, selected, canSelect
           aria-label={`Tarik untuk duplikat rumus dari ${refName}`}
           title="Tarik ke bawah untuk duplikat rumus"
           onMouseDown={(event) => onFillMouseDown?.(event, refName)}
-          className="absolute -bottom-1 -right-1 h-3 w-3 cursor-crosshair rounded-[2px] border border-white bg-coach-green shadow-sm ring-1 ring-coach-green/70 dark:border-[#1b211c]"
+          onTouchStart={(event) => onFillTouchStart?.(event, refName)}
+          className="absolute -bottom-1 -right-1 h-4 w-4 cursor-crosshair touch-none rounded-[2px] border border-white bg-coach-green shadow-sm ring-1 ring-coach-green/70 dark:border-[#1b211c]"
         />
       ) : null}
     </td>
