@@ -1,5 +1,9 @@
 // Batch 03: Logical
-// Fokus: IF, IFS, dan kombinasi IF dengan AND / OR / NOT.
+// Fokus: membuat keputusan dari satu syarat, banyak syarat berurutan, atau gabungan syarat.
+// Catatan desain: tiap 6 level memakai AMBANG NILAI, OPERATOR PERBANDINGAN, dan LABEL HASIL
+// yang berbeda-beda (bukan cuma ganti nama siswa dengan aturan yang sama persis), supaya
+// pelajar benar-benar berlatih membaca syarat, bukan menghafal pola. Soal dan logicPrompt
+// sengaja tidak menyebut nama rumus.
 
 export const batchLogicalStudentTable = {
   title: 'Data Nilai Siswa',
@@ -16,81 +20,150 @@ export const batchLogicalStudentTable = {
 };
 
 const idSeparator = (formula = '') => formula.replace(/,/g, ';');
+const opWord = (op) => (op === '>' ? 'lebih dari' : 'minimal');
+const opDesc = (op) => (op === '>' ? 'harus lebih besar dari' : 'boleh sama dengan atau lebih besar dari');
+
+// ---------- IF ----------
+const ifVariants = [
+  { threshold: 75, op: '>=', trueLabel: 'Lulus', falseLabel: 'Tidak Lulus' },
+  { threshold: 80, op: '>=', trueLabel: 'Lulus', falseLabel: 'Tidak Lulus' },
+  { threshold: 70, op: '>', trueLabel: 'Layak', falseLabel: 'Tidak Layak' },
+  { threshold: 65, op: '>=', trueLabel: 'Naik Kelas', falseLabel: 'Tinggal Kelas' },
+  { threshold: 85, op: '>=', trueLabel: 'Istimewa', falseLabel: 'Standar' },
+  { threshold: 80, op: '>', trueLabel: 'Lolos Seleksi', falseLabel: 'Belum Lolos' }
+];
+
+// ---------- IFS ----------
+const ifsVariants = [
+  { tiers: [[90, 'A'], [80, 'B'], [75, 'C']], fallback: 'Remedial' },
+  { tiers: [[85, 'Istimewa'], [70, 'Baik'], [60, 'Cukup']], fallback: 'Kurang' },
+  { tiers: [[90, 'Sangat Baik'], [75, 'Baik'], [60, 'Cukup']], fallback: 'Perlu Bimbingan' },
+  { tiers: [[80, 'Tinggi'], [65, 'Sedang']], fallback: 'Rendah' },
+  { tiers: [[85, 'A'], [70, 'B']], fallback: 'C' },
+  { tiers: [[90, 'Juara 1'], [80, 'Juara 2'], [70, 'Juara 3']], fallback: 'Peserta' }
+];
+
+// ---------- IF + AND ----------
+const ifAndVariants = [
+  { threshold: 75, gender: 'Laki-laki', trueLabel: 'Lulus Putra', falseLabel: 'Tidak Sesuai' },
+  { threshold: 80, gender: 'Perempuan', trueLabel: 'Lulus Putri', falseLabel: 'Tidak Sesuai' },
+  { threshold: 85, gender: 'Laki-laki', trueLabel: 'Beasiswa Putra', falseLabel: 'Tidak Memenuhi' },
+  { threshold: 70, gender: 'Perempuan', trueLabel: 'Lulus Putri', falseLabel: 'Tidak Sesuai' },
+  { threshold: 75, gender: 'Laki-laki', trueLabel: 'Lulus Putra', falseLabel: 'Tidak Sesuai' },
+  { threshold: 85, gender: 'Perempuan', trueLabel: 'Beasiswa Putri', falseLabel: 'Tidak Memenuhi' }
+];
+
+// ---------- IF + OR ----------
+const ifOrVariants = [
+  { threshold: 75, gender: 'Perempuan', trueLabel: 'Masuk Kriteria', falseLabel: 'Tidak Masuk' },
+  { threshold: 85, gender: 'Laki-laki', trueLabel: 'Masuk Kriteria', falseLabel: 'Tidak Masuk' },
+  { threshold: 90, gender: 'Perempuan', trueLabel: 'Dapat Apresiasi', falseLabel: 'Belum Dapat' },
+  { threshold: 70, gender: 'Laki-laki', trueLabel: 'Masuk Kriteria', falseLabel: 'Tidak Masuk' },
+  { threshold: 80, gender: 'Perempuan', trueLabel: 'Masuk Kriteria', falseLabel: 'Tidak Masuk' },
+  { threshold: 90, gender: 'Laki-laki', trueLabel: 'Dapat Apresiasi', falseLabel: 'Belum Dapat' }
+];
+
+// ---------- IF + NOT ----------
+const ifNotVariants = [
+  { threshold: 75, trueLabel: 'Remedial', falseLabel: 'Lulus' },
+  { threshold: 80, trueLabel: 'Remedial', falseLabel: 'Lulus' },
+  { threshold: 70, trueLabel: 'Perlu Perbaikan', falseLabel: 'Sudah Baik' },
+  { threshold: 65, trueLabel: 'Perlu Perbaikan', falseLabel: 'Sudah Baik' },
+  { threshold: 85, trueLabel: 'Belum Istimewa', falseLabel: 'Istimewa' },
+  { threshold: 90, trueLabel: 'Belum Istimewa', falseLabel: 'Istimewa' }
+];
 
 const logicalPlans = {
   if: {
     name: 'IF',
-    label: 'Status Lulus',
     argumentCount: { min: 3, max: 3 },
-    buildFormula: (row) => `=IF(B${row}>=75,"Lulus","Tidak Lulus")`,
-    buildQuestion: ({ row, student }) => `Di cell D${row}, buat status ${student}. Jika nilai minimal 75, hasilnya Lulus. Jika kurang dari 75, hasilnya Tidak Lulus.`,
-    buildLogic: ({ row }) => `IF dipakai untuk membuat keputusan. Cara bacanya: cek apakah B${row} >= 75. Kalau benar, tulis Lulus. Kalau salah, tulis Tidak Lulus.`,
-    hints: (row) => [`Kondisinya ada di B${row}>=75.`, 'Bagian kedua adalah hasil kalau kondisi benar.', 'Bagian ketiga adalah hasil kalau kondisi salah.', `Tulis hasilnya di D${row}.`],
-    parts: (row) => ['IF membuat hasil berdasarkan satu kondisi.', `B${row}>=75 adalah kondisi yang dicek.`, '"Lulus" adalah hasil jika kondisi benar.', '"Tidak Lulus" adalah hasil jika kondisi salah.'],
-    mistakes: ['Lupa menulis hasil jika salah.', 'Menukar posisi hasil benar dan salah.', 'Menulis nilai manual, padahal harus ambil dari cell nilai.']
+    variants: ifVariants,
+    buildFormula: (row, v) => `=IF(B${row}${v.op}${v.threshold},"${v.trueLabel}","${v.falseLabel}")`,
+    buildQuestion: ({ row, student, v }) => `Di cell D${row}, tentukan status ${student}. Kalau nilainya ${opWord(v.op)} ${v.threshold}, tulis "${v.trueLabel}". Kalau tidak, tulis "${v.falseLabel}".`,
+    buildLogic: ({ row, v }) => `Ada satu syarat yang dicek pada nilai di B${row}: apakah nilainya ${opDesc(v.op)} ${v.threshold}. Ada dua kemungkinan hasil: satu untuk syarat yang terpenuhi, satu lagi untuk syarat yang tidak terpenuhi.`,
+    hints: (row, v) => [`Syaratnya ada di B${row}, dibandingkan dengan angka ${v.threshold}.`, 'Ada dua kemungkinan hasil: satu kalau syarat terpenuhi, satu kalau tidak.', 'Bagian kedua rumus untuk hasil saat syarat benar, bagian ketiga untuk saat syarat salah.', `Tulis hasilnya di D${row}.`],
+    parts: (row, v) => ['Bagian ini membuat hasil berdasarkan satu kondisi.', `B${row}${v.op}${v.threshold} adalah kondisi yang dicek.`, `"${v.trueLabel}" adalah hasil jika kondisi benar.`, `"${v.falseLabel}" adalah hasil jika kondisi salah.`],
+    mistakes: ['Lupa menulis hasil untuk kondisi yang salah.', 'Menukar posisi hasil benar dan salah.', 'Menulis nilai manual, padahal harus membandingkan dengan cell nilai.']
   },
   ifs: {
     name: 'IFS',
-    label: 'Grade Nilai',
-    argumentCount: { min: 8, max: 8 },
-    buildFormula: (row) => `=IFS(B${row}>=90,"A",B${row}>=80,"B",B${row}>=75,"C",TRUE,"Remedial")`,
-    buildQuestion: ({ row, student }) => `Di cell D${row}, buat grade nilai ${student}: A jika nilai minimal 90, B jika minimal 80, C jika minimal 75, selain itu Remedial.`,
-    buildLogic: ({ row }) => `IFS dipakai saat pilihan hasilnya lebih dari dua. Cara bacanya: cek B${row} dari syarat paling tinggi dulu, lalu turun ke syarat berikutnya. TRUE dipakai sebagai pilihan terakhir kalau semua syarat sebelumnya tidak terpenuhi.`,
-    hints: (row) => [`Mulai dari syarat tertinggi: B${row}>=90.`, 'IFS dibaca berpasangan: syarat, hasil, syarat, hasil.', 'TRUE di akhir berarti selain syarat sebelumnya.', `Tulis hasilnya di D${row}.`],
-    parts: (row) => ['IFS mengecek banyak kondisi berurutan.', `B${row}>=90 menghasilkan A.`, `B${row}>=80 menghasilkan B.`, `B${row}>=75 menghasilkan C.`, 'TRUE menghasilkan Remedial sebagai pilihan terakhir.'],
-    mistakes: ['Menaruh syarat rendah di awal, sehingga grade tinggi tidak terbaca benar.', 'Lupa pasangan hasil setelah kondisi.', 'Lupa kondisi terakhir untuk nilai yang tidak memenuhi syarat.']
+    argumentCount: { min: 6, max: 8 },
+    variants: ifsVariants,
+    buildFormula: (row, v) => {
+      const tierText = v.tiers.map(([threshold, label]) => `B${row}>=${threshold},"${label}"`).join(',');
+      return `=IFS(${tierText},TRUE,"${v.fallback}")`;
+    },
+    buildQuestion: ({ row, student, v }) => {
+      const tierText = v.tiers.map(([threshold, label]) => `"${label}" jika minimal ${threshold}`).join(', ');
+      return `Di cell D${row}, tentukan tingkatan hasil ${student} berdasarkan nilainya: ${tierText}, dan "${v.fallback}" jika semua syarat itu tidak terpenuhi.`;
+    },
+    buildLogic: ({ row, v }) => `Ada beberapa syarat yang perlu dicek berurutan dari yang paling tinggi ambang nilainya sampai yang paling rendah, memakai nilai di B${row}. Begitu ketemu syarat pertama yang terpenuhi, hasil untuk syarat itu langsung dipakai dan syarat-syarat sesudahnya tidak perlu dicek lagi. Kalau tidak ada satu pun syarat yang terpenuhi, hasilnya adalah "${v.fallback}".`,
+    hints: (row, v) => [`Mulai dari syarat dengan ambang nilai paling tinggi: B${row}>=${v.tiers[0][0]}.`, 'Syarat dan hasilnya ditulis berpasangan, dari ambang tertinggi ke terendah.', 'Kalau semua syarat di atas tidak terpenuhi, siapkan satu pasangan terakhir sebagai hasil default.', `Tulis hasilnya di D${row}.`],
+    parts: (row, v) => [
+      'Bagian ini mengecek beberapa syarat secara berurutan.',
+      ...v.tiers.map(([threshold, label]) => `B${row}>=${threshold} menghasilkan "${label}".`),
+      `Kalau tidak ada syarat di atas yang terpenuhi, hasilnya "${v.fallback}".`
+    ],
+    mistakes: ['Menaruh syarat dengan ambang rendah di awal, sehingga hasil untuk ambang tinggi tidak pernah terbaca.', 'Lupa menuliskan pasangan hasil setelah tiap syarat.', 'Tidak menyiapkan hasil default untuk kondisi yang tidak memenuhi syarat manapun.']
   },
   if_and: {
     name: 'IF AND',
-    label: 'Lulus Putra',
     argumentCount: { min: 3, max: 3 },
-    buildFormula: (row) => `=IF(AND(B${row}>=75,C${row}="Laki-laki"),"Lulus Putra","Tidak Sesuai")`,
-    buildQuestion: ({ row, student }) => `Di cell D${row}, buat status ${student}. Jika nilai minimal 75 dan jenis kelamin Laki-laki, hasilnya Lulus Putra. Jika tidak, hasilnya Tidak Sesuai.`,
-    buildLogic: ({ row }) => `AND dipakai karena dua syarat harus benar semua. IF mengubah hasil TRUE/FALSE dari AND menjadi teks yang mudah dibaca.`,
-    hints: (row) => [`Syarat pertama: B${row}>=75.`, `Syarat kedua: C${row}="Laki-laki".`, 'Masukkan AND di dalam IF.', `Tulis hasilnya di D${row}.`],
-    parts: (row) => ['AND mengecek apakah semua syarat benar.', `B${row}>=75 mengecek nilai.`, `C${row}="Laki-laki" mengecek jenis kelamin.`, 'IF menampilkan teks sesuai hasil AND.'],
-    mistakes: ['Memakai OR padahal soal meminta dua syarat wajib benar.', 'Menulis AND sendirian tanpa IF sehingga hasilnya hanya TRUE/FALSE.', 'Lupa tanda petik untuk teks Laki-laki.']
+    variants: ifAndVariants,
+    buildFormula: (row, v) => `=IF(AND(B${row}>=${v.threshold},C${row}="${v.gender}"),"${v.trueLabel}","${v.falseLabel}")`,
+    buildQuestion: ({ row, student, v }) => `Di cell D${row}, tentukan status ${student}. Kalau nilainya minimal ${v.threshold} DAN jenis kelaminnya ${v.gender}, tulis "${v.trueLabel}". Kalau salah satu saja tidak terpenuhi, tulis "${v.falseLabel}".`,
+    buildLogic: ({ row, v }) => `Ada dua syarat yang harus benar semuanya secara bersamaan: nilai di B${row} minimal ${v.threshold}, dan jenis kelamin di C${row} adalah ${v.gender}. Kalau salah satu saja tidak terpenuhi, hasilnya tetap "${v.falseLabel}".`,
+    hints: (row, v) => [`Syarat pertama: B${row}>=${v.threshold}.`, `Syarat kedua: C${row}="${v.gender}".`, 'Kedua syarat itu harus benar bersamaan, tidak boleh cuma salah satu.', `Tulis hasilnya di D${row}.`],
+    parts: (row, v) => ['Bagian ini mengecek apakah dua syarat benar semuanya.', `B${row}>=${v.threshold} mengecek nilai.`, `C${row}="${v.gender}" mengecek jenis kelamin.`, `Hasilnya "${v.trueLabel}" hanya kalau keduanya benar, selain itu "${v.falseLabel}".`],
+    mistakes: ['Menganggap cukup salah satu syarat yang benar, padahal keduanya wajib benar.', 'Menulis dua syarat itu terpisah tanpa digabung jadi satu pengecekan.', 'Lupa tanda petik untuk teks jenis kelamin.']
   },
   if_or: {
     name: 'IF OR',
-    label: 'Masuk Kriteria',
     argumentCount: { min: 3, max: 3 },
-    buildFormula: (row) => `=IF(OR(B${row}>=75,C${row}="Perempuan"),"Masuk Kriteria","Tidak Masuk")`,
-    buildQuestion: ({ row, student }) => `Di cell D${row}, buat status ${student}. Jika nilai minimal 75 atau jenis kelamin Perempuan, hasilnya Masuk Kriteria. Jika keduanya tidak terpenuhi, hasilnya Tidak Masuk.`,
-    buildLogic: ({ row }) => `OR dipakai karena cukup salah satu syarat yang benar. IF mengubah hasil OR menjadi teks status.`,
-    hints: (row) => [`Syarat pertama: B${row}>=75.`, `Syarat kedua: C${row}="Perempuan".`, 'OR cukup butuh salah satu syarat benar.', `Tulis hasilnya di D${row}.`],
-    parts: (row) => ['OR mengecek apakah minimal satu syarat benar.', `B${row}>=75 mengecek nilai.`, `C${row}="Perempuan" mengecek jenis kelamin.`, 'IF menampilkan status sesuai hasil OR.'],
-    mistakes: ['Memakai AND padahal soal bilang atau.', 'Lupa memasukkan OR ke dalam IF.', 'Menulis teks Perempuan tanpa tanda petik.']
+    variants: ifOrVariants,
+    buildFormula: (row, v) => `=IF(OR(B${row}>=${v.threshold},C${row}="${v.gender}"),"${v.trueLabel}","${v.falseLabel}")`,
+    buildQuestion: ({ row, student, v }) => `Di cell D${row}, tentukan status ${student}. Kalau nilainya minimal ${v.threshold} ATAU jenis kelaminnya ${v.gender}, tulis "${v.trueLabel}". Kalau dua-duanya tidak terpenuhi, tulis "${v.falseLabel}".`,
+    buildLogic: ({ row, v }) => `Ada dua syarat, tapi cukup salah satu saja yang benar: nilai di B${row} minimal ${v.threshold}, atau jenis kelamin di C${row} adalah ${v.gender}. Hasilnya baru "${v.falseLabel}" kalau dua-duanya sama-sama tidak terpenuhi.`,
+    hints: (row, v) => [`Syarat pertama: B${row}>=${v.threshold}.`, `Syarat kedua: C${row}="${v.gender}".`, 'Cukup salah satu syarat itu benar, tidak perlu keduanya.', `Tulis hasilnya di D${row}.`],
+    parts: (row, v) => ['Bagian ini mengecek apakah minimal satu dari dua syarat benar.', `B${row}>=${v.threshold} mengecek nilai.`, `C${row}="${v.gender}" mengecek jenis kelamin.`, `Hasilnya "${v.trueLabel}" kalau salah satu benar, "${v.falseLabel}" kalau dua-duanya salah.`],
+    mistakes: ['Mengira kedua syarat harus benar semua, padahal cukup salah satu.', 'Menulis dua syarat itu terpisah tanpa digabung jadi satu pengecekan.', 'Lupa tanda petik untuk teks jenis kelamin.']
   },
   if_not: {
     name: 'IF NOT',
-    label: 'Status Remedial',
     argumentCount: { min: 3, max: 3 },
-    buildFormula: (row) => `=IF(NOT(B${row}>=75),"Remedial","Lulus")`,
-    buildQuestion: ({ row, student }) => `Di cell D${row}, buat status ${student}. Jika nilai tidak memenuhi minimal 75, hasilnya Remedial. Jika memenuhi, hasilnya Lulus.`,
-    buildLogic: ({ row }) => `NOT dipakai untuk membalik kondisi. B${row}>=75 artinya memenuhi. NOT membuatnya menjadi tidak memenuhi. Setelah itu IF menampilkan Remedial atau Lulus.`,
-    hints: (row) => [`Kondisi dasarnya: B${row}>=75.`, 'NOT membalik hasil kondisi tersebut.', 'Kalau hasil NOT benar, artinya siswa perlu Remedial.', `Tulis hasilnya di D${row}.`],
-    parts: (row) => ['NOT membalik TRUE menjadi FALSE, dan FALSE menjadi TRUE.', `B${row}>=75 mengecek apakah nilai memenuhi.`, 'IF menampilkan Remedial jika kondisi setelah NOT benar.'],
-    mistakes: ['Memakai NOT tanpa IF sehingga hasilnya hanya TRUE/FALSE.', 'Kebalik menaruh hasil Remedial dan Lulus.', 'Mengira NOT sama dengan OR.']
+    variants: ifNotVariants,
+    buildFormula: (row, v) => `=IF(NOT(B${row}>=${v.threshold}),"${v.trueLabel}","${v.falseLabel}")`,
+    buildQuestion: ({ row, student, v }) => `Di cell D${row}, tentukan status ${student}. Kalau nilainya TIDAK memenuhi minimal ${v.threshold}, tulis "${v.trueLabel}". Kalau memenuhi, tulis "${v.falseLabel}".`,
+    buildLogic: ({ row, v }) => `Syarat dasarnya adalah nilai di B${row} minimal ${v.threshold}. Yang dicek justru kebalikannya: dipakai saat syarat dasar itu TIDAK terpenuhi. Kalau syarat dasar terpenuhi, hasilnya "${v.falseLabel}".`,
+    hints: (row, v) => [`Syarat dasarnya: B${row}>=${v.threshold}.`, 'Yang dicek adalah kebalikan dari syarat dasar itu.', `Kalau kebalikannya benar (syarat dasar tidak terpenuhi), hasilnya "${v.trueLabel}".`, `Tulis hasilnya di D${row}.`],
+    parts: (row, v) => ['Bagian ini membalik hasil dari satu syarat.', `B${row}>=${v.threshold} adalah syarat dasarnya.`, `Hasilnya "${v.trueLabel}" kalau syarat dasar itu tidak terpenuhi.`, `Hasilnya "${v.falseLabel}" kalau syarat dasar terpenuhi.`],
+    mistakes: ['Menulis kebalikan syarat itu sendirian tanpa dibungkus jadi satu keputusan lengkap.', 'Kebalik menaruh hasil untuk kondisi terpenuhi dan tidak terpenuhi.', 'Mengira ini sama dengan mengecek syarat sebaliknya secara langsung tanpa membalik hasil.']
   }
 };
 
 function buildExercise(formulaId, plan, rowData, rowIndex) {
   const row = rowIndex + 2;
   const student = rowData[0];
-  const expectedFormula = plan.buildFormula(row);
-  const title = `Latihan ${rowIndex + 1}: ${plan.label} - ${student}`;
-  const question = plan.buildQuestion({ row, student });
-  const logicPrompt = plan.buildLogic({ row, student });
+  const v = plan.variants[rowIndex];
+  const expectedFormula = plan.buildFormula(row, v);
+  const context = { row, student, v };
+  const question = plan.buildQuestion(context);
+  const logicPrompt = plan.buildLogic(context);
   const refs = [`B${row}`, `C${row}`];
+  const levelLabel = formulaId === 'ifs'
+    ? `${v.tiers.map(([t]) => t).join('/')} - ${student}`
+    : `${v.threshold} - ${student}`;
+  const argumentCount = formulaId === 'ifs'
+    ? { min: v.tiers.length * 2 + 2, max: v.tiers.length * 2 + 2 }
+    : plan.argumentCount;
 
   return {
     id: `${formulaId}__level_${rowIndex + 1}`,
     baseFormulaId: formulaId,
     formulaName: plan.name,
-    title,
+    title: `Latihan ${rowIndex + 1}: ${levelLabel}`,
     levelIndex: rowIndex,
-    levelLabel: `${plan.label} - ${student}`,
+    levelLabel,
     tableKey: 'batchLogicalStudents',
     table: batchLogicalStudentTable,
     activeCell: `D${row}`,
@@ -101,15 +174,15 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
     requiredRefs: refs,
     requiredTexts: [],
     criteriaValue: '',
-    argumentCount: plan.argumentCount,
+    argumentCount,
     highlightRanges: refs,
     allowedFunctions: plan.name.split(' '),
-    hints: plan.hints(row),
-    successExplanation: `Tepat. ${plan.name} sudah menghasilkan status sesuai kondisi pada baris ${student}.`,
-    formulaParts: plan.parts(row),
+    hints: plan.hints(row, v),
+    successExplanation: `Tepat. Status untuk baris ${student} sudah dihasilkan sesuai syarat yang diminta.`,
+    formulaParts: plan.parts(row, v),
     commonMistakes: plan.mistakes,
-    nextUseCase: 'Pola logical ini bisa dipakai untuk status lulus, validasi data, prioritas kerja, atau pengecekan syarat otomatis.',
-    audit: { batch: 'batch-03-logical', tableKey: 'batchLogicalStudents', expectedFormula, refs, note: 'Logical batch memakai data siswa sederhana agar kondisi mudah dibaca.' }
+    nextUseCase: 'Pola pengambilan keputusan seperti ini bisa dipakai untuk status lulus, validasi data, prioritas kerja, atau pengecekan syarat otomatis lainnya.',
+    audit: { batch: 'batch-03-logical', tableKey: 'batchLogicalStudents', expectedFormula, refs, note: 'Tiap level memakai ambang nilai, operator, atau label berbeda supaya bukan pengulangan kasus yang sama.' }
   };
 }
 

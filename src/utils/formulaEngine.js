@@ -10,7 +10,11 @@ const ERROR_CODES = {
 const errorResult = (code, message) => ({ ok: false, error: code, value: code, displayValue: code, message });
 const isBlank = (value) => value === '' || value === null || typeof value === 'undefined';
 const isRangeObject = (value) => value && value.__range === true;
-const flatten = (value) => isRangeObject(value) ? value.values.flat() : Array.isArray(value) ? value.flat(Infinity) : [value];
+const flatten = (value) => {
+  if (isRangeObject(value)) return value.values.flat(Infinity);
+  if (Array.isArray(value)) return value.flatMap(flatten);
+  return [value];
+};
 
 const colToNumber = (col = '') => String(col).toUpperCase().split('').reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0);
 const numberToCol = (num = 1) => {

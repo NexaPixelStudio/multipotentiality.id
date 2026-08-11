@@ -342,15 +342,6 @@ export function validateFormula(answer, exercise, separatorMode = 'id', table = 
     };
   }
 
-  if (exercise.expectedFormula?.includes('>=75') && !formulaNorm.includes('D2>=75') && !formulaNorm.includes('75<=D2')) {
-    return {
-      correct: false,
-      title: 'Kondisinya belum tepat.',
-      message: 'Untuk soal ini, batas lulusnya adalah nilai lebih besar atau sama dengan 75. Operatornya harus >=, bukan cuma > atau <.',
-      details: ['Coba cek bagian kondisi logical_test.']
-    };
-  }
-
   const exact = exactFormulaMatch(answerAsEnglish, exercise);
   if (!exact && exercise.expectedFormula && (exercise.requiredRefs || []).length === 0 && (exercise.requiredTexts || []).length === 0 && minArgs === 0) {
     return {

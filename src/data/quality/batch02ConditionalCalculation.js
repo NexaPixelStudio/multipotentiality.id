@@ -138,9 +138,8 @@ function getCriteriaValue(scenario) {
 }
 
 function getHints(formulaId, scenario) {
-  const meta = formulaMeta[formulaId];
-  if (Array.isArray(scenario.criteriaPairs)) return [`${meta.name} dipakai karena soal punya lebih dari satu syarat.`, scenario.valueRange ? `Range angka yang dihitung ada di ${scenario.valueRange}.` : 'Rumus ini menghitung jumlah data, jadi tidak butuh range angka.', 'Ambil data mentah dari Sheet1, lalu ambil kriteria dari header/baris di Sheet2.', 'Urutannya: range angka dulu jika ada, lalu pasangan range syarat dan cell kriteria.'];
-  return [`${meta.name} dipakai karena soal hanya punya satu syarat.`, `Range syarat ada di ${scenario.criteriaRange}.`, `Kriteria diambil dari cell ${scenario.criteriaRef} pada Sheet2.`, scenario.valueRange ? `Range angka yang dihitung ada di ${scenario.valueRange}.` : 'COUNTIF tidak butuh range angka, karena yang dihitung jumlah data.'];
+  if (Array.isArray(scenario.criteriaPairs)) return ['Soal ini punya lebih dari satu syarat yang harus terpenuhi bersamaan.', scenario.valueRange ? `Range angka yang dihitung ada di ${scenario.valueRange}.` : 'Yang dihitung adalah jumlah baris data, jadi tidak perlu range angka.', 'Ambil data mentah dari Sheet1, lalu ambil kriteria dari header/baris di Sheet2.', 'Urutannya: range angka dulu jika ada, lalu pasangan range syarat dan cell kriteria untuk tiap syarat.'];
+  return ['Soal ini hanya punya satu syarat yang perlu dicek.', `Range syarat ada di ${scenario.criteriaRange}.`, `Kriteria diambil dari cell ${scenario.criteriaRef} pada Sheet2.`, scenario.valueRange ? `Range angka yang dihitung ada di ${scenario.valueRange}.` : 'Yang dihitung adalah jumlah baris data, jadi tidak perlu range angka.'];
 }
 
 function getFormulaParts(formulaId, scenario) {
@@ -164,7 +163,7 @@ function buildExercise(formulaId, scenario, index) {
   const multi = Array.isArray(scenario.criteriaPairs);
   const conditionText = multi ? scenario.criteriaPairs.map(([range, ref]) => `${range} dicek memakai ${ref}`).join(' dan ') : `${scenario.criteriaRange} dicek memakai ${scenario.criteriaRef}`;
   const question = `Di Sheet2 cell ${scenario.activeCell}, ${scenario.task}.`;
-  const logicPrompt = `${meta.name} dipakai untuk mencari ${meta.resultWord} dengan ${multi ? 'lebih dari satu syarat' : 'satu syarat'}. Cara bacanya: ${conditionText}, lalu hasilnya ditulis di Sheet2.`;
+  const logicPrompt = `Yang dicari adalah ${meta.resultWord} dari data di Sheet1, tapi harus melewati ${multi ? 'lebih dari satu syarat sekaligus' : 'satu syarat'} dulu. Cara bacanya: ${conditionText}, lalu hasilnya ditulis di Sheet2.`;
   const ranges = getRanges(scenario);
   const criteriaValue = getCriteriaValue(scenario);
   const title = `Latihan ${index + 1}: ${scenario.label}`;

@@ -1,5 +1,9 @@
 // Batch 01: Basic Calculation
 // Fokus: rumus hitung dasar yang bisa berdiri sendiri dan mudah dipahami pemula.
+// Catatan desain: tiap 6 level memakai PERIODE/URUTAN yang berbeda (bukan cuma ganti nama
+// produk), supaya jawabannya benar-benar berbeda dan bukan pengulangan kasus yang sama.
+// Soal dan logicPrompt sengaja tidak menyebut nama rumus, supaya pelajar menyimpulkan
+// sendiri rumus mana yang cocok dari cara kerjanya.
 
 export const batchBasicSalesTable = {
   title: 'Data Penjualan Produk',
@@ -15,108 +19,118 @@ export const batchBasicSalesTable = {
   ]
 };
 
+// 6 periode berbeda dipakai bergantian tiap level supaya range dan hasilnya bervariasi nyata.
+const periodScopes = [
+  { label: 'Januari sampai Juni', build: (row) => `C${row}:H${row}` },
+  { label: 'Januari sampai Maret (kuartal 1)', build: (row) => `C${row}:E${row}` },
+  { label: 'April sampai Juni (kuartal 2)', build: (row) => `F${row}:H${row}` },
+  { label: 'Februari sampai Mei', build: (row) => `D${row}:G${row}` },
+  { label: 'Mei sampai Juni', build: (row) => `G${row}:H${row}` },
+  { label: 'Maret sampai Juni', build: (row) => `E${row}:H${row}` }
+];
+
+const largeSmallOrders = [2, 3, 1, 4, 2, 3];
+
 const formulaPlans = {
   sum: {
     name: 'SUM',
-    label: 'Total Penjualan 6 Bulan',
+    label: (scope) => `Total Penjualan ${scope.label}`,
     buildFormula: (range) => `=SUM(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung total penjualan ${product} dari Januari sampai Juni.`,
-    buildLogic: ({ product, row }) => `SUM dipakai karena soal meminta total. Cara bacanya: jumlahkan semua angka penjualan ${product} dari C${row} sampai H${row}.`,
-    hints: (range, row) => [`Pilih range angka bulanannya: ${range}.`, 'Karena yang diminta total, gunakan SUM.', 'Jangan ketik angka satu per satu. Ambil dari range tabel.', `Tulis hasilnya di J${row}.`],
-    parts: (range) => ['SUM adalah rumus untuk menjumlahkan angka.', `${range} adalah range angka yang dihitung.`, 'Hasilnya adalah total dari semua angka di range.'],
-    mistakes: ['Memilih kolom Produk atau Kategori, padahal itu teks.', 'Memilih hanya satu bulan, padahal soal meminta Januari sampai Juni.', 'Mengetik angka manual, bukan memilih range.']
+    buildQuestion: ({ product, row, scope }) => `Di cell J${row}, jumlahkan penjualan ${product} untuk periode ${scope.label}.`,
+    buildLogic: ({ range, scope }) => `Bagian yang dihitung adalah angka penjualan pada periode ${scope.label}, yaitu range ${range}. Semua angka di range itu perlu digabung menjadi satu angka total.`,
+    hints: (range, row) => [`Range angkanya ada di ${range}.`, 'Semua angka di range itu perlu digabung menjadi satu angka total.', 'Jangan ketik angka manual satu per satu, ambil langsung dari tabel.', `Tulis hasilnya di J${row}.`],
+    parts: (range) => ['SUM menjumlahkan semua angka dalam satu range.', `${range} adalah range angka yang dihitung.`, 'Hasilnya adalah total dari semua angka di range itu.'],
+    mistakes: ['Memilih kolom Produk atau Kategori, padahal itu teks.', 'Memilih range periode yang tidak sesuai dengan yang diminta soal.', 'Mengetik angka manual, bukan memilih range.']
   },
   average: {
     name: 'AVERAGE',
-    label: 'Rata-rata Penjualan 6 Bulan',
+    label: (scope) => `Rata-rata Penjualan ${scope.label}`,
     buildFormula: (range) => `=AVERAGE(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung rata-rata penjualan ${product} dari Januari sampai Juni.`,
-    buildLogic: ({ product, row }) => `AVERAGE dipakai karena soal meminta rata-rata. Cara bacanya: ambil semua angka ${product} dari C${row} sampai H${row}, lalu cari rata-ratanya.`,
-    hints: (range, row) => [`Pilih range angka bulanannya: ${range}.`, 'Karena yang diminta rata-rata, gunakan AVERAGE.', 'Jangan pakai SUM, karena SUM menghasilkan total.', `Tulis hasilnya di J${row}.`],
-    parts: (range) => ['AVERAGE adalah rumus untuk mencari rata-rata.', `${range} adalah kumpulan angka yang dirata-ratakan.`, 'Hasilnya adalah total angka dibagi jumlah data.'],
-    mistakes: ['Memakai SUM, padahal soal meminta rata-rata.', 'Memilih range yang tidak lengkap.', 'Memasukkan kolom teks ke dalam range.']
+    buildQuestion: ({ product, row, scope }) => `Di cell J${row}, cari rata-rata penjualan ${product} untuk periode ${scope.label}.`,
+    buildLogic: ({ range, scope }) => `Bagian yang dihitung adalah angka penjualan pada periode ${scope.label}, yaitu range ${range}. Yang dicari adalah nilai tengah dari kumpulan angka itu, bukan totalnya.`,
+    hints: (range, row) => [`Range angkanya ada di ${range}.`, 'Yang dicari adalah nilai tengah dari kumpulan angka itu, bukan totalnya.', 'Excel bisa langsung menghitung nilai tengah tanpa kamu membagi manual.', `Tulis hasilnya di J${row}.`],
+    parts: (range) => ['AVERAGE mencari nilai tengah dari sekumpulan angka.', `${range} adalah kumpulan angka yang dihitung.`, 'Hasilnya adalah total angka dibagi jumlah datanya.'],
+    mistakes: ['Menjumlahkan angkanya saja tanpa mencari nilai tengah.', 'Memilih range periode yang tidak sesuai dengan yang diminta soal.', 'Memasukkan kolom teks ke dalam range.']
   },
   min: {
     name: 'MIN',
-    label: 'Penjualan Terendah',
+    label: (scope) => `Penjualan Terendah ${scope.label}`,
     buildFormula: (range) => `=MIN(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, cari penjualan terendah ${product} dari Januari sampai Juni.`,
-    buildLogic: ({ row }) => `MIN dipakai karena soal meminta angka paling kecil. Cara bacanya: cek C${row} sampai H${row}, lalu ambil penjualan yang paling rendah.`,
-    hints: (range, row) => [`Pilih range angka bulanannya: ${range}.`, 'Karena yang dicari angka paling kecil, gunakan MIN.', 'MIN tidak menjumlahkan angka.', `Tulis hasilnya di J${row}.`],
-    parts: (range) => ['MIN mencari angka terkecil.', `${range} adalah range yang dicek.`, 'Hasilnya adalah angka paling rendah di range.'],
-    mistakes: ['Memakai SUM karena mengira semua rumus angka menjumlahkan.', 'Memakai MAX, padahal soal meminta terendah.', 'Memilih range yang berisi teks.']
+    buildQuestion: ({ product, row, scope }) => `Di cell J${row}, cari angka penjualan paling rendah dari ${product} selama periode ${scope.label}.`,
+    buildLogic: ({ range, scope }) => `Bandingkan semua angka penjualan pada periode ${scope.label}, yaitu range ${range}, lalu ambil angka yang paling kecil di antara semuanya.`,
+    hints: (range, row) => [`Range angkanya ada di ${range}.`, 'Bandingkan semua angka di range itu, lalu ambil yang paling kecil.', 'Ini bukan soal menjumlahkan angka.', `Tulis hasilnya di J${row}.`],
+    parts: (range) => ['MIN mengambil angka terkecil dari sekumpulan angka.', `${range} adalah range yang dibandingkan.`, 'Hasilnya adalah angka paling rendah di range itu.'],
+    mistakes: ['Menjumlahkan angka, padahal yang diminta angka terendah.', 'Mengambil angka tertinggi, padahal yang diminta terendah.', 'Memilih range periode yang tidak sesuai dengan yang diminta soal.']
   },
   max: {
     name: 'MAX',
-    label: 'Penjualan Tertinggi',
+    label: (scope) => `Penjualan Tertinggi ${scope.label}`,
     buildFormula: (range) => `=MAX(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, cari penjualan tertinggi ${product} dari Januari sampai Juni.`,
-    buildLogic: ({ row }) => `MAX dipakai karena soal meminta angka paling besar. Cara bacanya: cek C${row} sampai H${row}, lalu ambil penjualan yang paling tinggi.`,
-    hints: (range, row) => [`Pilih range angka bulanannya: ${range}.`, 'Karena yang dicari angka paling besar, gunakan MAX.', 'MAX tidak menjumlahkan angka.', `Tulis hasilnya di J${row}.`],
-    parts: (range) => ['MAX mencari angka terbesar.', `${range} adalah range yang dicek.`, 'Hasilnya adalah angka paling tinggi di range.'],
-    mistakes: ['Memakai MIN, padahal soal meminta tertinggi.', 'Memilih range yang tidak lengkap.', 'Menjumlahkan semua bulan dengan SUM.']
+    buildQuestion: ({ product, row, scope }) => `Di cell J${row}, cari angka penjualan paling tinggi dari ${product} selama periode ${scope.label}.`,
+    buildLogic: ({ range, scope }) => `Bandingkan semua angka penjualan pada periode ${scope.label}, yaitu range ${range}, lalu ambil angka yang paling besar di antara semuanya.`,
+    hints: (range, row) => [`Range angkanya ada di ${range}.`, 'Bandingkan semua angka di range itu, lalu ambil yang paling besar.', 'Ini bukan soal menjumlahkan angka.', `Tulis hasilnya di J${row}.`],
+    parts: (range) => ['MAX mengambil angka terbesar dari sekumpulan angka.', `${range} adalah range yang dibandingkan.`, 'Hasilnya adalah angka paling tinggi di range itu.'],
+    mistakes: ['Mengambil angka terendah, padahal yang diminta tertinggi.', 'Menjumlahkan semua angka di periode itu.', 'Memilih range periode yang tidak sesuai dengan yang diminta soal.']
   },
   large: {
     name: 'LARGE',
     label: ({ order }) => `Penjualan Terbesar ke-${order}`,
     buildFormula: (range, order) => `=LARGE(${range},${order})`,
-    buildQuestion: ({ product, row, order }) => `Di cell J${row}, cari penjualan terbesar ke-${order} untuk ${product} dari Januari sampai Juni.`,
-    buildLogic: ({ row, order }) => `LARGE dipakai karena soal meminta urutan terbesar. Cara bacanya: dari angka C${row} sampai H${row}, ambil angka terbesar urutan ke-${order}.`,
-    hints: (range, row, order) => [`Pilih range angka bulanannya: ${range}.`, `Masukkan urutan terbesar yang dicari: ${order}.`, 'LARGE butuh dua bagian: range angka dan urutan terbesar.', `Tulis hasilnya di J${row}.`],
-    parts: (range, order) => ['LARGE mencari angka terbesar berdasarkan urutan.', `${range} adalah range angka.`, `${order} artinya ambil angka terbesar urutan ke-${order}.`],
-    mistakes: ['Lupa mengisi urutan terbesar.', 'Mengira LARGE sama persis dengan MAX untuk semua kasus.', 'Memilih range yang tidak lengkap.']
+    buildQuestion: ({ product, row, order }) => `Di cell J${row}, cari angka penjualan terbesar urutan ke-${order} dari ${product} selama Januari sampai Juni.`,
+    buildLogic: ({ order }) => `Kalau angka penjualan diurutkan dari yang paling besar, yang diminta adalah angka pada urutan ke-${order}, bukan cuma yang paling besar.`,
+    hints: (range, row, order) => [`Range angkanya ada di ${range}.`, `Urutan yang diminta adalah ke-${order} dari yang paling besar.`, 'Rumus ini butuh dua bagian: range angka, dan nomor urutan yang dicari.', `Tulis hasilnya di J${row}.`],
+    parts: (range, order) => ['LARGE mengambil angka berdasarkan urutan dari yang terbesar.', `${range} adalah range angka.`, `${order} berarti ambil angka terbesar urutan ke-${order}.`],
+    mistakes: ['Lupa mengisi nomor urutan yang diminta.', 'Mengira hasilnya selalu sama dengan angka paling besar, padahal urutannya bukan ke-1.', 'Memilih range yang tidak lengkap.']
   },
   small: {
     name: 'SMALL',
     label: ({ order }) => `Penjualan Terkecil ke-${order}`,
     buildFormula: (range, order) => `=SMALL(${range},${order})`,
-    buildQuestion: ({ product, row, order }) => `Di cell J${row}, cari penjualan terkecil ke-${order} untuk ${product} dari Januari sampai Juni.`,
-    buildLogic: ({ row, order }) => `SMALL dipakai karena soal meminta urutan terkecil. Cara bacanya: dari angka C${row} sampai H${row}, ambil angka terkecil urutan ke-${order}.`,
-    hints: (range, row, order) => [`Pilih range angka bulanannya: ${range}.`, `Masukkan urutan terkecil yang dicari: ${order}.`, 'SMALL butuh dua bagian: range angka dan urutan terkecil.', `Tulis hasilnya di J${row}.`],
-    parts: (range, order) => ['SMALL mencari angka terkecil berdasarkan urutan.', `${range} adalah range angka.`, `${order} artinya ambil angka terkecil urutan ke-${order}.`],
-    mistakes: ['Lupa mengisi urutan terkecil.', 'Mengira SMALL sama persis dengan MIN untuk semua kasus.', 'Memilih range yang tidak lengkap.']
+    buildQuestion: ({ product, row, order }) => `Di cell J${row}, cari angka penjualan terkecil urutan ke-${order} dari ${product} selama Januari sampai Juni.`,
+    buildLogic: ({ order }) => `Kalau angka penjualan diurutkan dari yang paling kecil, yang diminta adalah angka pada urutan ke-${order}, bukan cuma yang paling kecil.`,
+    hints: (range, row, order) => [`Range angkanya ada di ${range}.`, `Urutan yang diminta adalah ke-${order} dari yang paling kecil.`, 'Rumus ini butuh dua bagian: range angka, dan nomor urutan yang dicari.', `Tulis hasilnya di J${row}.`],
+    parts: (range, order) => ['SMALL mengambil angka berdasarkan urutan dari yang terkecil.', `${range} adalah range angka.`, `${order} berarti ambil angka terkecil urutan ke-${order}.`],
+    mistakes: ['Lupa mengisi nomor urutan yang diminta.', 'Mengira hasilnya selalu sama dengan angka paling kecil, padahal urutannya bukan ke-1.', 'Memilih range yang tidak lengkap.']
   },
   count: {
     name: 'COUNT',
-    label: 'Jumlah Bulan Berisi Angka',
+    label: (scope) => `Jumlah Bulan Berisi Angka (${scope.label})`,
     buildFormula: (range) => `=COUNT(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung berapa bulan ${product} yang memiliki angka penjualan.`,
-    buildLogic: ({ row }) => `COUNT dipakai untuk menghitung cell berisi angka. Cara bacanya: cek C${row} sampai H${row}, lalu hitung berapa cell yang berisi angka.`,
-    hints: (range, row) => [`Pilih range angka bulanannya: ${range}.`, 'COUNT hanya menghitung cell yang berisi angka.', 'Teks dan cell kosong tidak ikut dihitung.', `Tulis hasilnya di J${row}.`],
-    parts: (range) => ['COUNT menghitung cell berisi angka.', `${range} adalah range yang dicek.`, 'Hasilnya adalah jumlah cell angka, bukan total nilainya.'],
-    mistakes: ['Memakai SUM, padahal yang ditanya jumlah cell.', 'Memilih kolom teks.', 'Mengira COUNT menjumlahkan angka.']
+    buildQuestion: ({ product, row, scope }) => `Di cell J${row}, hitung berapa bulan yang punya angka penjualan untuk ${product} selama periode ${scope.label}.`,
+    buildLogic: ({ range, scope }) => `Cek range ${range} yang mewakili periode ${scope.label}, lalu hitung berapa cell di dalamnya yang benar-benar berisi angka.`,
+    hints: (range, row) => [`Range angkanya ada di ${range}.`, 'Yang dihitung adalah berapa cell yang isinya angka, bukan menjumlahkan nilainya.', 'Cell kosong atau berisi teks tidak ikut dihitung.', `Tulis hasilnya di J${row}.`],
+    parts: (range) => ['COUNT menghitung berapa cell yang berisi angka.', `${range} adalah range yang dicek.`, 'Hasilnya adalah jumlah cell angka, bukan total nilainya.'],
+    mistakes: ['Menjumlahkan nilainya, padahal yang ditanya jumlah cell.', 'Memilih kolom teks.', 'Memilih range periode yang tidak sesuai dengan yang diminta soal.']
   },
   counta: {
     name: 'COUNTA',
-    label: 'Jumlah Cell Terisi',
+    label: 'Jumlah Kolom Terisi',
     range: (row) => `A${row}:I${row}`,
     buildFormula: (range) => `=COUNTA(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung berapa cell yang sudah terisi pada baris ${product} dari kolom A sampai I.`,
-    buildLogic: ({ row }) => `COUNTA dipakai untuk menghitung cell yang terisi. Cara bacanya: cek A${row} sampai I${row}, lalu hitung semua cell yang ada isinya, baik teks maupun angka.`,
-    hints: (range, row) => [`Pilih range data barisnya: ${range}.`, 'COUNTA menghitung angka dan teks.', 'Cell kosong tidak dihitung.', `Tulis hasilnya di J${row}.`],
+    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung berapa kolom yang sudah terisi datanya untuk baris ${product}, dari kolom Produk sampai Catatan.`,
+    buildLogic: ({ range }) => `Cek ${range}, lalu hitung semua cell yang ada isinya, baik itu berupa teks maupun angka.`,
+    hints: (range, row) => [`Range datanya ada di ${range}.`, 'Yang dihitung adalah semua cell yang ada isinya, baik angka maupun teks.', 'Cell yang masih kosong tidak ikut dihitung.', `Tulis hasilnya di J${row}.`],
     parts: (range) => ['COUNTA menghitung cell yang tidak kosong.', `${range} adalah range yang dicek.`, 'Hasilnya adalah jumlah cell yang sudah ada isinya.'],
-    mistakes: ['Memakai COUNT, padahal COUNT hanya menghitung angka.', 'Memilih range terlalu sempit.', 'Mengira cell kosong ikut dihitung.']
+    mistakes: ['Hanya menghitung cell berisi angka, padahal teks juga harus dihitung.', 'Memilih range terlalu sempit.', 'Mengira cell kosong ikut dihitung.']
   },
   countblank: {
     name: 'COUNTBLANK',
-    label: 'Jumlah Cell Kosong',
+    label: 'Jumlah Kolom Kosong',
     range: (row) => `A${row}:I${row}`,
     buildFormula: (range) => `=COUNTBLANK(${range})`,
-    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung berapa cell yang masih kosong pada baris ${product} dari kolom A sampai I.`,
-    buildLogic: ({ row }) => `COUNTBLANK dipakai untuk mencari cell kosong. Cara bacanya: cek A${row} sampai I${row}, lalu hitung bagian yang belum terisi.`,
-    hints: (range, row) => [`Pilih range data barisnya: ${range}.`, 'COUNTBLANK hanya menghitung cell kosong.', 'Cell yang berisi angka atau teks tidak dihitung.', `Tulis hasilnya di J${row}.`],
-    parts: (range) => ['COUNTBLANK menghitung cell kosong.', `${range} adalah range yang dicek.`, 'Hasilnya adalah jumlah cell yang belum diisi.'],
-    mistakes: ['Memakai COUNTA, padahal yang ditanya cell kosong.', 'Memilih hanya kolom Catatan padahal soal meminta A sampai I.', 'Mengira angka 0 dihitung sebagai kosong.']
+    buildQuestion: ({ product, row }) => `Di cell J${row}, hitung berapa kolom yang masih kosong untuk baris ${product}, dari kolom Produk sampai Catatan.`,
+    buildLogic: ({ range }) => `Cek ${range}, lalu hitung bagian yang belum diisi apa pun.`,
+    hints: (range, row) => [`Range datanya ada di ${range}.`, 'Yang dihitung adalah cell yang belum diisi sama sekali.', 'Cell yang berisi angka atau teks tidak termasuk.', `Tulis hasilnya di J${row}.`],
+    parts: (range) => ['COUNTBLANK menghitung cell yang masih kosong.', `${range} adalah range yang dicek.`, 'Hasilnya adalah jumlah cell yang belum diisi.'],
+    mistakes: ['Menghitung cell yang sudah terisi, padahal yang ditanya cell kosong.', 'Memilih hanya kolom Catatan, padahal soal meminta Produk sampai Catatan.', 'Mengira angka 0 dihitung sebagai kosong.']
   }
 };
-
-const orderByRow = [1, 2, 3, 1, 2, 3];
 
 function idSeparator(formula = '') {
   return formula.replace(/,/g, ';');
 }
 
-function buildQuestionSheet({ title, question, activeCell, formulaName, criteriaValue, ranges, logic }) {
+function buildQuestionSheet({ title, question, activeCell, criteriaValue, ranges, logic }) {
   return {
     title: 'Sheet 2 - Soal',
     description: 'Sheet ini berisi soal latihan. Sheet 1 tetap dipakai sebagai data utama.',
@@ -125,7 +139,6 @@ function buildQuestionSheet({ title, question, activeCell, formulaName, criteria
       ['Judul Latihan', title],
       ['Soal', question],
       ['Cell Jawaban', activeCell],
-      ['Rumus yang Dipakai', formulaName],
       ['Value / Kriteria', criteriaValue || 'Tidak ada value khusus.'],
       ['Range yang Dipakai', ranges?.length ? ranges.join(', ') : 'Ikuti soal dan data di Sheet 1.'],
       ['Cara Baca', logic]
@@ -136,14 +149,16 @@ function buildQuestionSheet({ title, question, activeCell, formulaName, criteria
 function buildExercise(formulaId, plan, rowData, rowIndex) {
   const row = rowIndex + 2;
   const product = rowData[0];
-  const order = orderByRow[rowIndex];
-  const range = plan.range ? plan.range(row) : `C${row}:H${row}`;
+  const isOrderBased = ['LARGE', 'SMALL'].includes(plan.name);
+  const scope = periodScopes[rowIndex];
+  const order = largeSmallOrders[rowIndex];
+  const range = plan.range ? plan.range(row) : scope.build(row);
   const expectedFormula = plan.buildFormula(range, order);
-  const label = typeof plan.label === 'function' ? plan.label({ order }) : plan.label;
-  const context = { product, row, order, range };
+  const label = typeof plan.label === 'function' ? plan.label(isOrderBased ? { order } : scope) : plan.label;
+  const context = { product, row, order, range, scope };
   const question = plan.buildQuestion(context);
   const logicPrompt = plan.buildLogic(context);
-  const criteriaValue = ['LARGE', 'SMALL'].includes(plan.name) ? String(order) : '';
+  const criteriaValue = isOrderBased ? String(order) : '';
   const title = `Latihan ${rowIndex + 1}: ${label} - ${product}`;
 
   return {
@@ -154,7 +169,7 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
     levelIndex: rowIndex,
     levelLabel: `${label} - ${product}`,
     tableKey: 'batchBasicSales',
-    table: { ...batchBasicSalesTable, questionSheet: buildQuestionSheet({ title, question, activeCell: `J${row}`, formulaName: plan.name, criteriaValue, ranges: [range], logic: logicPrompt }) },
+    table: { ...batchBasicSalesTable, questionSheet: buildQuestionSheet({ title, question, activeCell: `J${row}`, criteriaValue, ranges: [range], logic: logicPrompt }) },
     activeCell: `J${row}`,
     question,
     logicPrompt,
@@ -163,11 +178,11 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
     requiredRefs: [range],
     requiredTexts: [],
     criteriaValue,
-    argumentCount: ['LARGE', 'SMALL'].includes(plan.name) ? { min: 2, max: 2 } : { min: 1, max: 1 },
+    argumentCount: isOrderBased ? { min: 2, max: 2 } : { min: 1, max: 1 },
     highlightRanges: [range],
     allowedFunctions: [plan.name],
     hints: plan.hints(range, row, order),
-    successExplanation: `Tepat. ${plan.name} sudah mengambil data yang benar dari ${range}.`,
+    successExplanation: `Tepat. Rumus ini sudah mengambil data yang benar dari ${range}.`,
     formulaParts: plan.parts(range, order),
     commonMistakes: plan.mistakes,
     nextUseCase: 'Pola ini bisa dipakai lagi untuk laporan penjualan, stok, nilai, atau angka kerja lainnya.',
@@ -176,7 +191,7 @@ function buildExercise(formulaId, plan, rowData, rowIndex) {
       tableKey: 'batchBasicSales',
       expectedFormula,
       refs: [range],
-      note: 'Dibuat dari awal agar soal, tabel, clue, dan jawaban saling nyambung.'
+      note: 'Tiap level memakai periode atau urutan berbeda supaya jawabannya bervariasi, bukan cuma ganti nama produk.'
     }
   };
 }
