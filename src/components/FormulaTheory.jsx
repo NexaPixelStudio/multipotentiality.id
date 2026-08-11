@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { getFormulaLearningContent } from '../data/formulaLearningContent.js';
 import { getExcelSpecialEnvironment } from '../data/excelSpecialEnvironment.js';
 
@@ -15,6 +16,8 @@ function displayFormat(value = '') {
 }
 
 export default function FormulaTheory({ formula, isGeneric }) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  useEffect(() => setDetailsOpen(false), [formula?.id]);
   const learning = getFormulaLearningContent(formula);
   const description = learning.description || formula.description;
   const simpleLogic = learning.simpleLogic || formula.simpleLogic;
@@ -45,41 +48,54 @@ export default function FormulaTheory({ formula, isGeneric }) {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-3 md:grid-cols-3">
-        <InfoCard title="Kapan dipakai?" text={useCase} />
-        <InfoCard title="Logika sederhananya" text={simpleLogic} />
-        <InfoCard title="Analogi Rumus" text={analogy} />
-      </div>
+      <button
+        type="button"
+        onClick={() => setDetailsOpen((current) => !current)}
+        className="mt-4 flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-coach-green transition hover:text-coach-ink dark:text-emerald-300 dark:hover:text-white"
+      >
+        <span className={`inline-block transition-transform ${detailsOpen ? 'rotate-90' : ''}`}>›</span>
+        {detailsOpen ? 'Sembunyikan penjelasan lengkap' : 'Lihat penjelasan lengkap (kapan dipakai, logika, analogi)'}
+      </button>
 
-      {(exampleFormula || exampleMeaning || beginnerTip) && (
-        <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
-          {exampleFormula && (
-            <div className="rounded-2xl border border-coach-green/20 bg-coach-greenSoft/70 p-4 dark:border-emerald-400/15 dark:bg-emerald-400/10">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Pola Rumus</p>
-              <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 font-mono text-sm font-black text-coach-green dark:bg-black/20 dark:text-emerald-200">
-                {exampleFormula}
-              </code>
-              <p className="mt-2 text-[11px] font-bold text-coach-green/70 dark:text-emerald-200/70">Ini pola penyusunan rumus, bukan jawaban latihan.</p>
+      {detailsOpen && (
+        <>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            <InfoCard title="Kapan dipakai?" text={useCase} />
+            <InfoCard title="Logika sederhananya" text={simpleLogic} />
+            <InfoCard title="Analogi Rumus" text={analogy} />
+          </div>
+
+          {(exampleFormula || exampleMeaning || beginnerTip) && (
+            <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+              {exampleFormula && (
+                <div className="rounded-2xl border border-coach-green/20 bg-coach-greenSoft/70 p-4 dark:border-emerald-400/15 dark:bg-emerald-400/10">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Pola Rumus</p>
+                  <code className="mt-2 block break-words rounded-xl bg-white px-3 py-3 font-mono text-sm font-black text-coach-green dark:bg-black/20 dark:text-emerald-200">
+                    {exampleFormula}
+                  </code>
+                  <p className="mt-2 text-[11px] font-bold text-coach-green/70 dark:text-emerald-200/70">Ini pola penyusunan rumus, bukan jawaban latihan.</p>
+                </div>
+              )}
+
+              <div className="rounded-2xl border border-coach-line bg-coach-beige/70 p-4 dark:border-white/10 dark:bg-black/18">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-black/40 dark:text-white/45">Cara bacanya</p>
+                {exampleMeaning && <p className="mt-2 text-sm leading-6 text-black/65 dark:text-white/65">{exampleMeaning}</p>}
+                {beginnerTip && <p className="mt-2 rounded-xl bg-white px-3 py-2 text-xs font-semibold leading-5 text-black/55 dark:bg-white/8 dark:text-white/60">{beginnerTip}</p>}
+              </div>
             </div>
           )}
 
-          <div className="rounded-2xl border border-coach-line bg-coach-beige/70 p-4 dark:border-white/10 dark:bg-black/18">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-black/40 dark:text-white/45">Cara bacanya</p>
-            {exampleMeaning && <p className="mt-2 text-sm leading-6 text-black/65 dark:text-white/65">{exampleMeaning}</p>}
-            {beginnerTip && <p className="mt-2 rounded-xl bg-white px-3 py-2 text-xs font-semibold leading-5 text-black/55 dark:bg-white/8 dark:text-white/60">{beginnerTip}</p>}
-          </div>
-        </div>
-      )}
-
-      {specialEnvironment && (
-        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-100">
-          <p className="text-xs font-black uppercase tracking-[0.16em]">Environment Excel Khusus</p>
-          <p className="mt-2 font-bold">{specialEnvironment.label}</p>
-          <p className="mt-1">{specialEnvironment.description}</p>
-          <ul className="mt-2 list-disc space-y-1 pl-5">
-            {specialEnvironment.requirements.map((item) => <li key={item}>{item}</li>)}
-          </ul>
-        </div>
+          {specialEnvironment && (
+            <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-100">
+              <p className="text-xs font-black uppercase tracking-[0.16em]">Environment Excel Khusus</p>
+              <p className="mt-2 font-bold">{specialEnvironment.label}</p>
+              <p className="mt-1">{specialEnvironment.description}</p>
+              <ul className="mt-2 list-disc space-y-1 pl-5">
+                {specialEnvironment.requirements.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          )}
+        </>
       )}
 
       {isGeneric && (
