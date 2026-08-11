@@ -204,6 +204,16 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
       </div>
 
       <div className="sidebar-scroll flex-1 overflow-y-auto p-3">
+        {Object.keys(grouped).length === 0 && (
+          <div className="rounded-3xl border border-dashed border-coach-line bg-white/60 p-5 text-center dark:border-white/10 dark:bg-white/[0.03]">
+            <p className="text-sm font-black text-coach-ink dark:text-white">Belum ada rumus di sini</p>
+            <p className="mt-1 text-xs font-semibold leading-5 text-black/50 dark:text-white/50">
+              {category !== 'All'
+                ? 'Kategori ini belum kami isi latihannya. Coba pilih kategori lain seperti Basic Calculation atau Logical.'
+                : 'Coba ganti kata pencarian atau reset filternya.'}
+            </p>
+          </div>
+        )}
         {displayCategories.map((groupName) => {
           const items = grouped[groupName];
           if (!items) return null;

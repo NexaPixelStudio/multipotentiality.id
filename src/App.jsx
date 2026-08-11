@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
+import OnboardingCard from './components/OnboardingCard.jsx';
 import ProgressPanel from './components/ProgressPanel.jsx';
 import FormulaTheory from './components/FormulaTheory.jsx';
 import ExerciseTable from './components/ExerciseTable.jsx';
@@ -314,6 +315,7 @@ export default function App() {
       <main className="mx-auto grid max-w-[1500px] gap-5 px-4 py-5 lg:grid-cols-[1fr_420px] lg:px-6">
         <div className="space-y-5">
           <div className="flex items-center justify-between gap-3 lg:hidden"><button onClick={() => setMobileSidebarOpen(true)} className="rounded-full bg-coach-green px-4 py-3 text-sm font-black text-white">Buka Daftar Rumus</button><p className="text-sm font-bold text-black/50 dark:text-white/50">{selectedFormula.name}</p></div>
+          {!progressState.onboardingDismissed && <OnboardingCard onDismiss={() => updatePreference('onboardingDismissed', true)} />}
           <ProgressPanel formula={selectedFormula} formulaProgress={formulaProgress} stats={stats} />
           <FormulaTheory formula={selectedFormula} isGeneric={isGeneric} />
           <section className="rounded-[2rem] border border-coach-line bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/[0.055]">

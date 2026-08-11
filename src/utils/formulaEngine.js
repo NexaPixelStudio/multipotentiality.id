@@ -34,6 +34,19 @@ const stripOuterQuotes = (value = '') => {
   return text;
 };
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+const isDateValue = (value) => Boolean(value) && value.__date === true;
+const wrapDate = (date) => ({ __date: true, date });
+const pad2 = (num) => String(num).padStart(2, '0');
+const formatDateValue = (date) => `${pad2(date.getUTCDate())}/${pad2(date.getUTCMonth() + 1)}/${date.getUTCFullYear()}`;
+const toJsDate = (value) => {
+  if (isDateValue(value)) return value.date;
+  if (value instanceof Date) return value;
+  const match = String(value ?? '').trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (match) return new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+  throw new Error(ERROR_CODES.value);
+};
+
 export function autoCloseFormula(formula = '') {
   const raw = String(formula || '');
   let depth = 0;
@@ -59,6 +72,7 @@ export function normalizeForEvaluation(formula = '') {
 }
 
 export function formatExcelValue(value) {
+  if (isDateValue(value)) return formatDateValue(value.date);
   if (isRangeObject(value)) return value.values.map((row) => row.map(formatExcelValue).join(' | ')).join('\n');
   if (Array.isArray(value)) return value.map(formatExcelValue).join(', ');
   if (typeof value === 'number') {
@@ -72,6 +86,7 @@ export function formatExcelValue(value) {
 
 export function compareExcelResults(a, b) {
   const normalize = (value) => {
+    if (isDateValue(value)) return value.date.getTime();
     if (isRangeObject(value)) return value.values.map((row) => row.map(normalize));
     if (Array.isArray(value)) return value.map(normalize);
     if (typeof value === 'number') return Math.round(value * 1000000) / 1000000;
@@ -420,6 +435,116 @@ const evaluateCall = (name, args, workbook) => {
       throw new Error(ERROR_CODES.na);
     }
     return returnArray[index];
+  }
+
+  if (upper === 'LEFT') return String(values[0] ?? '').slice(0, Number(values[1] ?? 1));
+  if (upper === 'RIGHT') {
+    const num = Number(values[1] ?? 1);
+    return num <= 0 ? '' : String(values[0] ?? '').slice(-num);
+  }
+  if (upper === 'MID') {
+    const start = Math.max(1, Number(values[1]));
+    return String(values[0] ?? '').slice(start - 1, start - 1 + Number(values[2]));
+  }
+  if (upper === 'LEN') return String(values[0] ?? '').length;
+  if (upper === 'TRIM') return String(values[0] ?? '').trim().replace(/\s+/g, ' ');
+  if (upper === 'UPPER') return String(values[0] ?? '').toUpperCase();
+  if (upper === 'LOWER') return String(values[0] ?? '').toLowerCase();
+  if (upper === 'PROPER') return String(values[0] ?? '').toLowerCase().replace(/(^|[^a-zA-Z])([a-z])/g, (match, sep, char) => sep + char.toUpperCase());
+  if (upper === 'CONCAT' || upper === 'CONCATENATE') return flatten(values).map((item) => String(item ?? '')).join('');
+  if (upper === 'TEXTJOIN') {
+    const delimiter = String(values[0] ?? '');
+    const ignoreEmpty = toBool(values[1]);
+    const items = flatten(values.slice(2)).map((item) => String(item ?? ''));
+    return items.filter((item) => !ignoreEmpty || item !== '').join(delimiter);
+  }
+  if (upper === 'SUBSTITUTE') {
+    const text = String(values[0] ?? '');
+    const oldText = String(values[1] ?? '');
+    const newText = String(values[2] ?? '');
+    if (!oldText) return text;
+    if (typeof values[3] === 'undefined') return text.split(oldText).join(newText);
+    const occurrence = Number(values[3]);
+    let count = 0;
+    let searchFrom = 0;
+    let foundIndex = -1;
+    for (;;) {
+      const found = text.indexOf(oldText, searchFrom);
+      if (found === -1) break;
+      count += 1;
+      if (count === occurrence) { foundIndex = found; break; }
+      searchFrom = found + oldText.length;
+    }
+    if (foundIndex === -1) return text;
+    return text.slice(0, foundIndex) + newText + text.slice(foundIndex + oldText.length);
+  }
+  if (upper === 'FIND' || upper === 'SEARCH') {
+    const findText = String(values[0] ?? '');
+    const withinText = String(values[1] ?? '');
+    const start = values[2] ? Number(values[2]) - 1 : 0;
+    const haystack = upper === 'FIND' ? withinText : withinText.toLowerCase();
+    const needle = upper === 'FIND' ? findText : findText.toLowerCase();
+    const index = haystack.indexOf(needle, start);
+    if (index === -1) throw new Error(ERROR_CODES.value);
+    return index + 1;
+  }
+
+  if (upper === 'DATE') {
+    const [year, month, day] = values.map(Number);
+    return wrapDate(new Date(Date.UTC(year, month - 1, day)));
+  }
+  if (upper === 'TODAY') {
+    const now = new Date();
+    return wrapDate(new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())));
+  }
+  if (upper === 'YEAR') return toJsDate(values[0]).getUTCFullYear();
+  if (upper === 'MONTH') return toJsDate(values[0]).getUTCMonth() + 1;
+  if (upper === 'DAY') return toJsDate(values[0]).getUTCDate();
+  if (upper === 'WEEKDAY') {
+    const jsDay = toJsDate(values[0]).getUTCDay();
+    const type = values[1] ? Number(values[1]) : 1;
+    if (type === 2) return jsDay === 0 ? 7 : jsDay;
+    if (type === 3) return jsDay === 0 ? 6 : jsDay - 1;
+    return jsDay + 1;
+  }
+  if (upper === 'DATEDIF') {
+    const start = toJsDate(values[0]);
+    const end = toJsDate(values[1]);
+    const unit = String(values[2] ?? 'D').toUpperCase();
+    if (unit === 'D') return Math.round((end - start) / DAY_MS);
+    if (unit === 'M') {
+      let months = (end.getUTCFullYear() - start.getUTCFullYear()) * 12 + (end.getUTCMonth() - start.getUTCMonth());
+      if (end.getUTCDate() < start.getUTCDate()) months -= 1;
+      return months;
+    }
+    if (unit === 'Y') {
+      let years = end.getUTCFullYear() - start.getUTCFullYear();
+      const beforeAnniversary = end.getUTCMonth() < start.getUTCMonth() || (end.getUTCMonth() === start.getUTCMonth() && end.getUTCDate() < start.getUTCDate());
+      if (beforeAnniversary) years -= 1;
+      return years;
+    }
+    throw new Error(ERROR_CODES.num);
+  }
+  if (upper === 'EDATE') {
+    const date = toJsDate(values[0]);
+    const months = Number(values[1]);
+    return wrapDate(new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months, date.getUTCDate())));
+  }
+  if (upper === 'EOMONTH') {
+    const date = toJsDate(values[0]);
+    const months = Number(values[1]);
+    return wrapDate(new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months + 1, 0)));
+  }
+  if (upper === 'NETWORKDAYS') {
+    const start = toJsDate(values[0]);
+    const end = toJsDate(values[1]);
+    const [from, to] = start.getTime() <= end.getTime() ? [start, end] : [end, start];
+    let count = 0;
+    for (let t = from.getTime(); t <= to.getTime(); t += DAY_MS) {
+      const dayOfWeek = new Date(t).getUTCDay();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) count += 1;
+    }
+    return start.getTime() <= end.getTime() ? count : -count;
   }
 
   throw new Error(ERROR_CODES.name);

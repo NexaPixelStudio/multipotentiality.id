@@ -483,9 +483,7 @@ export default function FormulaBar({
         updateValue(completedValue, completedValue.length);
       }
 
-      requestAnimationFrame(() => {
-        onSubmit?.(completedValue);
-      });
+      onSubmit?.(completedValue);
     }
   };
 
@@ -528,9 +526,7 @@ export default function FormulaBar({
       updateValue(completedValue, completedValue.length);
     }
     setOpen(false);
-    requestAnimationFrame(() => {
-      onSubmit?.(completedValue);
-    });
+    onSubmit?.(completedValue);
   };
 
   const renderFormulaStatus = () => {

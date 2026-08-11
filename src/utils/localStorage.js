@@ -5,7 +5,8 @@ export const defaultProgressState = {
   lastMode: 'guided',
   separatorMode: 'id',
   darkMode: false,
-  lastFormulaId: 'sum'
+  lastFormulaId: 'sum',
+  onboardingDismissed: false
 };
 
 export function loadProgress() {

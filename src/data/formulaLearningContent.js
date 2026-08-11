@@ -234,6 +234,168 @@ export const formulaLearningContent = {
     exampleFormula: '=INDEX(range_hasil; MATCH(nilai_yang_dicari; range_pencarian; 0))',
     exampleMeaning: 'Artinya: cari dulu posisi nilai_yang_dicari di range_pencarian, lalu pakai posisi itu untuk mengambil isi dari range_hasil.',
     beginnerTip: 'Kedua range yang dipakai — range pencarian dan range hasil — harus punya jumlah baris yang sama supaya posisinya benar-benar sejajar.'
+  },
+  LEFT: {
+    description: 'Mengambil beberapa karakter dari sisi kiri sebuah teks.',
+    simpleLogic: 'Tentukan teksnya, lalu tentukan berapa banyak karakter yang diambil dihitung dari huruf paling kiri.',
+    useCase: 'Untuk mengambil kode awal, inisial, atau kategori yang tersimpan di bagian depan sebuah teks.',
+    analogy: 'Bayangkan memotong beberapa huruf pertama dari sebuah kata, seperti mengambil tiga huruf pertama untuk kode singkat.',
+    exampleFormula: '=LEFT(teks; jumlah_karakter)',
+    exampleMeaning: 'Artinya: ambil sejumlah karakter dari sisi kiri teks, sebanyak jumlah_karakter.',
+    beginnerTip: 'Spasi juga dihitung sebagai karakter, jadi hasilnya bisa ikut membawa spasi kalau teks aslinya belum rapi.'
+  },
+  RIGHT: {
+    description: 'Mengambil beberapa karakter dari sisi kanan sebuah teks.',
+    simpleLogic: 'Tentukan teksnya, lalu tentukan berapa banyak karakter yang diambil dihitung dari huruf paling kanan.',
+    useCase: 'Untuk mengambil bagian akhir kode, tiga digit terakhir nomor urut, atau ekstensi file.',
+    analogy: 'Bayangkan memotong beberapa huruf terakhir dari sebuah kata, dihitung mundur dari belakang.',
+    exampleFormula: '=RIGHT(teks; jumlah_karakter)',
+    exampleMeaning: 'Artinya: ambil sejumlah karakter dari sisi kanan teks, sebanyak jumlah_karakter.',
+    beginnerTip: 'Kalau jumlah karakter yang diminta lebih besar dari panjang teksnya, hasilnya adalah keseluruhan teks itu sendiri.'
+  },
+  MID: {
+    description: 'Mengambil bagian tengah sebuah teks, mulai dari posisi tertentu.',
+    simpleLogic: 'Tentukan teksnya, posisi karakter awal, lalu jumlah karakter yang diambil dari posisi itu.',
+    useCase: 'Untuk mengambil bagian tengah kode, seperti mengambil tahun yang terselip di tengah nomor invoice.',
+    analogy: 'Bayangkan menunjuk sebuah titik di tengah kalimat, lalu menggunting beberapa huruf ke kanan dari titik itu.',
+    exampleFormula: '=MID(teks; posisi_awal; jumlah_karakter)',
+    exampleMeaning: 'Artinya: mulai dari posisi_awal pada teks, ambil sebanyak jumlah_karakter ke kanan.',
+    beginnerTip: 'Posisi karakter dihitung mulai dari angka 1, bukan dari angka 0.'
+  },
+  LEN: {
+    description: 'Menghitung jumlah karakter dalam sebuah teks.',
+    simpleLogic: 'Tentukan teksnya, Excel menghitung semua karakter di dalamnya, termasuk spasi.',
+    useCase: 'Untuk validasi panjang data, seperti memastikan nomor telepon atau kode punya jumlah digit yang benar.',
+    analogy: 'Bayangkan menghitung berapa huruf dan spasi yang ada dalam sebuah kalimat, satu per satu.',
+    exampleFormula: '=LEN(teks)',
+    exampleMeaning: 'Artinya: hitung jumlah karakter dalam teks, termasuk spasi di dalamnya.',
+    beginnerTip: 'LEN menghitung karakter, bukan kata — kalimat dengan banyak spasi tetap dihitung sesuai jumlah hurufnya.'
+  },
+  TRIM: {
+    description: 'Merapikan spasi berlebih dalam sebuah teks.',
+    simpleLogic: 'Tentukan teksnya, spasi di awal dan akhir dihapus, spasi ganda di tengah dijadikan satu spasi saja.',
+    useCase: 'Untuk merapikan data hasil copy-paste dari formulir atau sistem lain yang sering berantakan spasinya.',
+    analogy: 'Bayangkan merapikan kalimat yang ketikannya kelebihan spasi, supaya jaraknya jadi wajar lagi.',
+    exampleFormula: '=TRIM(teks)',
+    exampleMeaning: 'Artinya: bersihkan spasi berlebih dari teks, sisakan satu spasi saja antar kata.',
+    beginnerTip: 'TRIM tidak mengubah huruf besar/kecil — kalau teksnya juga perlu dirapikan hurufnya, gabungkan dengan rumus lain.'
+  },
+  UPPER: {
+    description: 'Mengubah semua huruf dalam teks menjadi huruf besar (kapital).',
+    simpleLogic: 'Tentukan teksnya, semua huruf kecil diubah menjadi huruf besar.',
+    useCase: 'Untuk menyeragamkan format kode, label, atau plat nomor menjadi huruf besar semua.',
+    analogy: 'Bayangkan mengetik ulang sebuah kalimat sambil menekan Caps Lock terus-menerus.',
+    exampleFormula: '=UPPER(teks)',
+    exampleMeaning: 'Artinya: ubah semua huruf dalam teks menjadi huruf besar.',
+    beginnerTip: 'Angka dan tanda baca tidak berubah — hanya huruf yang terpengaruh.'
+  },
+  LOWER: {
+    description: 'Mengubah semua huruf dalam teks menjadi huruf kecil.',
+    simpleLogic: 'Tentukan teksnya, semua huruf besar diubah menjadi huruf kecil.',
+    useCase: 'Untuk menyeragamkan format email atau username menjadi huruf kecil semua.',
+    analogy: 'Kebalikan dari UPPER: seperti mematikan Caps Lock sebelum mengetik ulang kalimatnya.',
+    exampleFormula: '=LOWER(teks)',
+    exampleMeaning: 'Artinya: ubah semua huruf dalam teks menjadi huruf kecil.',
+    beginnerTip: 'Angka dan tanda baca tidak berubah — hanya huruf yang terpengaruh.'
+  },
+  PROPER: {
+    description: 'Membuat huruf pertama tiap kata menjadi huruf besar, sisanya huruf kecil.',
+    simpleLogic: 'Tentukan teksnya, huruf pertama tiap kata diubah menjadi kapital, huruf lain dalam kata yang sama jadi huruf kecil.',
+    useCase: 'Untuk merapikan format nama orang yang penulisan huruf besar/kecilnya tidak konsisten.',
+    analogy: 'Bayangkan merapikan nama yang ditulis serampangan menjadi format nama yang layak di undangan resmi.',
+    exampleFormula: '=PROPER(teks)',
+    exampleMeaning: 'Artinya: ubah huruf pertama tiap kata menjadi kapital, sisanya huruf kecil.',
+    beginnerTip: 'PROPER tidak merapikan spasi berlebih — kalau spasinya juga berantakan, gabungkan dengan TRIM.'
+  },
+  CONCAT: {
+    description: 'Menggabungkan dua atau lebih teks menjadi satu teks.',
+    simpleLogic: 'Tentukan teks-teks yang mau digabung secara berurutan, hasilnya disatukan tanpa pemisah kecuali ditambahkan manual.',
+    useCase: 'Untuk menyusun nama lengkap dari nama depan dan belakang, atau menyusun kode gabungan dari beberapa bagian.',
+    analogy: 'Bayangkan menempelkan beberapa potongan kertas bertuliskan kata menjadi satu kalimat utuh.',
+    exampleFormula: '=CONCAT(teks_1; teks_2)',
+    exampleMeaning: 'Artinya: gabungkan teks_1 dan teks_2 menjadi satu teks berurutan.',
+    beginnerTip: 'Kalau butuh spasi atau tanda pemisah di antara teks, sisipkan sendiri di antara argumen, misalnya CONCAT(teks_1; " "; teks_2).'
+  },
+  SUBSTITUTE: {
+    description: 'Mengganti sepotong teks tertentu dengan teks baru.',
+    simpleLogic: 'Tentukan teks sumbernya, bagian teks yang dicari, lalu teks penggantinya.',
+    useCase: 'Untuk memperbaiki kesalahan ketik yang berulang, atau mengganti kode lama dengan kode baru di banyak data sekaligus.',
+    analogy: 'Bayangkan mencari kata tertentu di dalam kalimat lalu menggantinya dengan kata lain, seperti fitur find-and-replace.',
+    exampleFormula: '=SUBSTITUTE(teks; teks_dicari; teks_pengganti)',
+    exampleMeaning: 'Artinya: cari teks_dicari di dalam teks, lalu ganti dengan teks_pengganti.',
+    beginnerTip: 'Tanpa argumen tambahan, SUBSTITUTE mengganti SEMUA kemunculan teks yang dicari, bukan cuma yang pertama.'
+  },
+  YEAR: {
+    description: 'Mengambil bagian tahun dari sebuah tanggal.',
+    simpleLogic: 'Tentukan tanggalnya, Excel mengambil angka tahunnya saja dan mengabaikan bulan serta tanggal harian.',
+    useCase: 'Untuk mengelompokkan data per tahun atau menghitung usia dari tanggal lahir.',
+    analogy: 'Bayangkan melihat kalender lengkap tapi hanya mencatat angka tahunnya saja.',
+    exampleFormula: '=YEAR(tanggal)',
+    exampleMeaning: 'Artinya: ambil angka tahun dari tanggal.',
+    beginnerTip: 'Hasilnya berupa angka biasa, bukan tanggal — bisa langsung dipakai untuk perhitungan lain.'
+  },
+  MONTH: {
+    description: 'Mengambil bagian bulan dari sebuah tanggal, berupa angka 1 sampai 12.',
+    simpleLogic: 'Tentukan tanggalnya, Excel mengambil angka bulannya saja dan mengabaikan tahun serta tanggal harian.',
+    useCase: 'Untuk mengelompokkan data per bulan atau membuat laporan bulanan.',
+    analogy: 'Bayangkan melihat kalender lengkap tapi hanya mencatat angka bulannya saja.',
+    exampleFormula: '=MONTH(tanggal)',
+    exampleMeaning: 'Artinya: ambil angka bulan (1-12) dari tanggal.',
+    beginnerTip: 'Hasilnya angka, bukan nama bulan — kalau mau nama bulan, perlu rumus tambahan untuk mengubahnya jadi teks.'
+  },
+  DAY: {
+    description: 'Mengambil bagian tanggal harian dari sebuah tanggal, berupa angka 1 sampai 31.',
+    simpleLogic: 'Tentukan tanggalnya, Excel mengambil angka tanggal hariannya saja dan mengabaikan bulan serta tahun.',
+    useCase: 'Untuk mengecek tanggal jatuh tempo atau tanggal transaksi dalam sebuah bulan.',
+    analogy: 'Bayangkan melihat kalender lengkap tapi hanya mencatat angka tanggalnya saja, tanpa peduli bulan dan tahunnya.',
+    exampleFormula: '=DAY(tanggal)',
+    exampleMeaning: 'Artinya: ambil angka tanggal harian (1-31) dari tanggal.',
+    beginnerTip: 'DAY berbeda dari DATEDIF — DAY hanya membaca satu tanggal, bukan menghitung selisih dua tanggal.'
+  },
+  WEEKDAY: {
+    description: 'Mencari urutan hari dalam seminggu dari sebuah tanggal.',
+    simpleLogic: 'Tentukan tanggalnya, Excel memberi angka urutan hari, biasanya 1 untuk Minggu sampai 7 untuk Sabtu.',
+    useCase: 'Untuk mengecek apakah sebuah tanggal jatuh di akhir pekan atau hari kerja.',
+    analogy: 'Bayangkan menandai di kalender itu hari apa, lalu mengubahnya jadi nomor urut dalam seminggu.',
+    exampleFormula: '=WEEKDAY(tanggal)',
+    exampleMeaning: 'Artinya: cari urutan hari dalam seminggu dari tanggal, hasilnya berupa angka.',
+    beginnerTip: 'Hasilnya angka, bukan nama hari — dan defaultnya angka 1 mewakili hari Minggu, bukan Senin.'
+  },
+  DATEDIF: {
+    description: 'Menghitung selisih dua tanggal dalam satuan hari, bulan, atau tahun.',
+    simpleLogic: 'Tentukan tanggal awal, tanggal akhir, lalu satuan hasil yang diinginkan (hari, bulan, atau tahun).',
+    useCase: 'Untuk menghitung masa kerja karyawan, usia seseorang, atau lama sebuah proyek berjalan.',
+    analogy: 'Bayangkan menghitung berapa lama jarak antara dua tanggal di kalender, entah dalam hari, bulan, atau tahun penuh.',
+    exampleFormula: '=DATEDIF(tanggal_awal; tanggal_akhir; satuan)',
+    exampleMeaning: 'Artinya: hitung selisih dari tanggal_awal sampai tanggal_akhir, hasilnya dalam satuan yang diminta.',
+    beginnerTip: 'Satuan ditulis dalam tanda kutip: "D" untuk hari, "M" untuk bulan, "Y" untuk tahun.'
+  },
+  EDATE: {
+    description: 'Menggeser sebuah tanggal maju atau mundur sejumlah bulan.',
+    simpleLogic: 'Tentukan tanggal awal, lalu jumlah bulan yang mau digeser. Angka positif menggeser maju, angka negatif menggeser mundur.',
+    useCase: 'Untuk menghitung tanggal jatuh tempo, perpanjangan kontrak, atau reminder berkala tiap beberapa bulan.',
+    analogy: 'Bayangkan menggeser jarum kalender maju beberapa bulan dari tanggal awal, lalu melihat jatuh di tanggal berapa.',
+    exampleFormula: '=EDATE(tanggal_awal; jumlah_bulan)',
+    exampleMeaning: 'Artinya: geser tanggal_awal maju sebanyak jumlah_bulan, tanggal hariannya mengikuti tanggal asal.',
+    beginnerTip: 'Hasilnya berupa tanggal baru, bukan angka selisih — beda dengan DATEDIF yang hasilnya angka.'
+  },
+  EOMONTH: {
+    description: 'Mencari tanggal akhir bulan, setelah digeser sejumlah bulan dari tanggal awal.',
+    simpleLogic: 'Tentukan tanggal awal, lalu jumlah bulan yang digeser sebelum diambil tanggal terakhir di bulan hasilnya.',
+    useCase: 'Untuk mencari tanggal akhir bulan laporan, atau tanggal jatuh tempo yang selalu di akhir bulan.',
+    analogy: 'Bayangkan menggeser kalender ke bulan tertentu, lalu langsung membuka halaman tanggal paling akhir di bulan itu.',
+    exampleFormula: '=EOMONTH(tanggal_awal; jumlah_bulan)',
+    exampleMeaning: 'Artinya: geser tanggal_awal sebanyak jumlah_bulan, lalu ambil tanggal terakhir di bulan hasilnya.',
+    beginnerTip: 'Isi jumlah_bulan dengan 0 kalau mau tetap di bulan yang sama, tinggal mencari tanggal akhirnya.'
+  },
+  NETWORKDAYS: {
+    description: 'Menghitung jumlah hari kerja (Senin sampai Jumat) di antara dua tanggal.',
+    simpleLogic: 'Tentukan tanggal awal dan tanggal akhir, Excel menghitung semua hari di antaranya tapi mengecualikan Sabtu dan Minggu.',
+    useCase: 'Untuk menghitung estimasi waktu pengerjaan proyek atau durasi kerja dalam satuan hari kerja.',
+    analogy: 'Bayangkan menghitung hari dari kalender kerja kantor, di mana akhir pekan otomatis dilewati saat menghitung.',
+    exampleFormula: '=NETWORKDAYS(tanggal_awal; tanggal_akhir)',
+    exampleMeaning: 'Artinya: hitung jumlah hari kerja dari tanggal_awal sampai tanggal_akhir, Sabtu dan Minggu tidak dihitung.',
+    beginnerTip: 'Tanggal awal dan akhir sama-sama dihitung kalau jatuh di hari kerja, jadi hasilnya termasuk kedua ujung tanggal itu.'
   }
 };
 
