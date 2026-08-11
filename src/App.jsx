@@ -76,8 +76,6 @@ export default function App() {
   const [cellFormulas, setCellFormulas] = useState({});
   const [isEditingFormula, setIsEditingFormula] = useState(false);
   const suppressNextRangeRef = useRef(null);
-  const [isEditingFormula, setIsEditingFormula] = useState(false);
-  const suppressNextRangeRef = useRef(null);
 
   const selectedFormula = useMemo(() => formulas.find((formula) => formula.id === selectedId) || formulas[0], [formulas, selectedId]);
   const curatedExercises = useMemo(() => selectedFormula?.hasExercise ? getCuratedExercises(selectedFormula.id) : [], [selectedFormula?.id, selectedFormula?.hasExercise]);
