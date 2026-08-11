@@ -456,7 +456,7 @@ function Cell({ refName, value, header, active, highlighted, selected, canSelect
           title="Tarik ke bawah untuk duplikat rumus"
           onMouseDown={(event) => onFillMouseDown?.(event, refName)}
           onTouchStart={(event) => onFillTouchStart?.(event, refName)}
-          className="absolute -bottom-1 -right-1 h-4 w-4 cursor-crosshair touch-none rounded-[2px] border border-white bg-coach-green shadow-sm ring-1 ring-coach-green/70 dark:border-[#1b211c]"
+          className="absolute -bottom-1.5 -right-1.5 h-6 w-6 cursor-crosshair touch-none rounded-[3px] border-2 border-white bg-coach-green shadow-sm ring-1 ring-coach-green/70 dark:border-[#1b211c]"
         />
       ) : null}
     </td>

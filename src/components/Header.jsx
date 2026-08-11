@@ -9,8 +9,7 @@ export default function Header({
   separatorMode,
   onSeparatorChange,
   learningMode,
-  onLearningModeChange,
-  onImportCatalog
+  onLearningModeChange
 }) {
   return (
     <header className="sticky top-0 z-30 border-b border-coach-line/80 bg-coach-beige/90 backdrop-blur dark:border-white/10 dark:bg-coach-ink/92">
@@ -29,15 +28,13 @@ export default function Header({
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <label className="cursor-pointer rounded-full border border-coach-line bg-white px-4 py-2 text-sm font-semibold text-coach-ink transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white">
-              Import Catalog
-              <input type="file" accept="application/json" className="hidden" onChange={onImportCatalog} />
-            </label>
             <button
               onClick={onToggleDark}
-              className="rounded-full border border-coach-line bg-white px-4 py-2 text-sm font-semibold text-coach-ink transition hover:border-coach-green dark:border-white/10 dark:bg-white/5 dark:text-white"
+              title={darkMode ? 'Mode Terang' : 'Mode Gelap'}
+              aria-label={darkMode ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'}
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-coach-line bg-white text-lg transition hover:border-coach-green dark:border-white/10 dark:bg-white/5"
             >
-              {darkMode ? 'Mode Terang' : 'Mode Gelap'}
+              {darkMode ? '☀️' : '🌙'}
             </button>
             <button
               onClick={onReset}
@@ -49,10 +46,8 @@ export default function Header({
         </div>
 
         <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto] lg:items-center">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          <div className="grid grid-cols-3 gap-2 sm:max-w-md">
             <Stat label="Total rumus" value={stats.total} />
-            <Stat label="Punya latihan" value={stats.practice} />
-            <Stat label="Theory only" value={stats.theory} />
             <Stat label="Dikuasai" value={stats.mastered} />
             <Stat label="Progress" value={`${stats.percent}%`} />
           </div>

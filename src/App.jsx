@@ -7,7 +7,7 @@ import FormulaBar from './components/FormulaBar.jsx';
 import FeedbackBox from './components/FeedbackBox.jsx';
 import HintBox from './components/HintBox.jsx';
 import FormulaSidebar from './components/FormulaSidebar.jsx';
-import { formulaCatalogFull, importFormulaCatalog } from './data/formulaCatalogFull.js';
+import { formulaCatalogFull } from './data/formulaCatalogFull.js';
 import { sharedExerciseTables, getCuratedExercise, getCuratedExercises } from './data/curatedExercises.js';
 import { createGenericExercise, genericTheoryTable } from './data/formulaPracticeFactory.js';
 import { validateFormula, validateGenericFormula, formulaForSeparator } from './utils/formulaValidator.js';
@@ -74,6 +74,8 @@ export default function App() {
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [filledCellValues, setFilledCellValues] = useState({});
   const [cellFormulas, setCellFormulas] = useState({});
+  const [isEditingFormula, setIsEditingFormula] = useState(false);
+  const suppressNextRangeRef = useRef(null);
   const [isEditingFormula, setIsEditingFormula] = useState(false);
   const suppressNextRangeRef = useRef(null);
 
@@ -291,18 +293,17 @@ export default function App() {
     setAnswer(''); setFeedback(null); setHintIndex(-1); setActiveCell(exercise?.activeCell || 'G2'); setSelectedRange(null); setFormulaCursor(0); setLastRangeInsertion(null); setLookupValue(''); setSelectionTarget('formula'); clearSessionCells();
   };
 
-  const handleResetAll = () => { const fresh = { ...defaultProgressState }; resetProgress(); setProgressState(fresh); setSelectedId('sum'); handleResetExercise(); };
+  const handleResetAll = () => {
+    if (!window.confirm('Yakin mau reset semua progress belajar? Aksi ini tidak bisa dibatalkan.')) return;
+    const fresh = { ...defaultProgressState };
+    resetProgress();
+    setProgressState(fresh);
+    setSelectedId('sum');
+    handleResetExercise();
+  };
   const handleNextFormula = () => { const navigationList = getFormulaNavigationList(formulas); const index = navigationList.findIndex((formula) => formula.id === selectedFormula.id); const next = navigationList[(index === -1 ? 0 : index) + 1] || navigationList[0]; if (next) setSelectedId(next.id); window.scrollTo({ top: 0, behavior: 'smooth' }); };
   const handleNextExerciseStep = () => { if (exerciseIndex < exerciseCount - 1) { setExerciseIndex((index) => index + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); return; } handleNextFormula(); };
   const handleNextHint = () => { const rawLimit = modeConfig.hintLimit === Infinity ? exercise.hints.length : modeConfig.hintLimit; const limit = Math.min(rawLimit, exercise.hints.length); if (limit > 0) setHintIndex((prev) => Math.min(prev + 1, limit - 1)); };
-
-  const handleImportCatalog = async (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    try { const text = await file.text(); const json = JSON.parse(text); const imported = importFormulaCatalog(Array.isArray(json) ? json : json.formulas); if (imported.length) { setFormulas(imported); setSelectedId(imported[0].id); } }
-    catch (error) { alert('File catalog tidak bisa dibaca. Pastikan format JSON valid.'); console.error(error); }
-    finally { event.target.value = ''; }
-  };
 
   if (!selectedFormula || !exercise) return null;
 
@@ -312,7 +313,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-coach-beige text-coach-ink transition dark:bg-coach-ink dark:text-white">
-      <Header stats={stats} onReset={handleResetAll} darkMode={progressState.darkMode} onToggleDark={() => updatePreference('darkMode', !progressState.darkMode)} separatorMode={progressState.separatorMode} onSeparatorChange={(value) => updatePreference('separatorMode', value)} learningMode={learningMode} onLearningModeChange={(value) => updatePreference('lastMode', value)} onImportCatalog={handleImportCatalog} />
+      <Header stats={stats} onReset={handleResetAll} darkMode={progressState.darkMode} onToggleDark={() => updatePreference('darkMode', !progressState.darkMode)} separatorMode={progressState.separatorMode} onSeparatorChange={(value) => updatePreference('separatorMode', value)} learningMode={learningMode} onLearningModeChange={(value) => updatePreference('lastMode', value)} />
       <main className="mx-auto grid max-w-[1500px] gap-5 px-4 py-5 lg:grid-cols-[1fr_420px] lg:px-6">
         <div className="space-y-5">
           <div className="flex items-center justify-between gap-3 lg:hidden"><button onClick={() => setMobileSidebarOpen(true)} className="rounded-full bg-coach-green px-4 py-3 text-sm font-black text-white">Buka Daftar Rumus</button><p className="text-sm font-bold text-black/50 dark:text-white/50">{selectedFormula.name}</p></div>

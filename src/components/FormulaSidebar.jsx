@@ -104,10 +104,6 @@ function getFormulaFamily(formula) {
   return `${baseName} Family`;
 }
 
-function familyKey(category, family) {
-  return `${category}::${family}`;
-}
-
 function sortFamilyNames(a, b) {
   const aIndex = familyOrder.indexOf(a);
   const bIndex = familyOrder.indexOf(b);
@@ -117,31 +113,33 @@ function sortFamilyNames(a, b) {
   return a.localeCompare(b);
 }
 
-function getFamilyMeta(items) {
-  const practice = items.filter((item) => item.hasExercise).length;
-  const theory = items.length - practice;
-  return { practice, theory, total: items.length };
-}
+const STATUS_FILTERS = [
+  { value: 'All', label: 'Semua status' },
+  { value: 'onlyExercise', label: 'Punya latihan' },
+  { value: 'Belum dicoba', label: 'Belum dicoba' },
+  { value: 'Sedang belajar', label: 'Sedang belajar' },
+  { value: 'Benar', label: 'Benar' },
+  { value: 'Perlu ulang', label: 'Perlu ulang' }
+];
 
 export default function FormulaSidebar({ formulas, selectedId, onSelect, progress, mobileOpen, onClose }) {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('All');
   const [level, setLevel] = useState('All');
-  const [onlyExercise, setOnlyExercise] = useState(false);
-  const [status, setStatus] = useState('All');
+  const [statusFilter, setStatusFilter] = useState('All');
   const [openCategories, setOpenCategories] = useState({});
-  const [openFamilies, setOpenFamilies] = useState({});
+
+  const onlyExercise = statusFilter === 'onlyExercise';
+  const status = onlyExercise ? 'All' : statusFilter;
 
   const filtered = useMemo(() => searchFormulas(formulas, { query, category, level, onlyExercise, status, progress }), [formulas, query, category, level, onlyExercise, status, progress]);
-  const isSearching = Boolean(query.trim()) || level !== 'All' || onlyExercise || status !== 'All';
+  const isSearching = Boolean(query.trim()) || level !== 'All' || statusFilter !== 'All';
 
   const grouped = useMemo(() => {
     return filtered.reduce((acc, formula) => {
       const categoryName = formula.displayCategory;
-      const familyName = getFormulaFamily(formula);
-      acc[categoryName] = acc[categoryName] || {};
-      acc[categoryName][familyName] = acc[categoryName][familyName] || [];
-      acc[categoryName][familyName].push(formula);
+      acc[categoryName] = acc[categoryName] || [];
+      acc[categoryName].push(formula);
       return acc;
     }, {});
   }, [filtered]);
@@ -151,9 +149,7 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
   useEffect(() => {
     if (!selectedFormula) return;
     const selectedCategory = selectedFormula.displayCategory;
-    const selectedFamily = getFormulaFamily(selectedFormula);
     setOpenCategories((prev) => ({ ...prev, [selectedCategory]: true }));
-    setOpenFamilies((prev) => ({ ...prev, [familyKey(selectedCategory, selectedFamily)]: true }));
   }, [selectedFormula]);
 
   useEffect(() => {
@@ -164,24 +160,14 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
   useEffect(() => {
     if (!isSearching) return;
     const nextCategories = {};
-    const nextFamilies = {};
-    Object.entries(grouped).forEach(([categoryName, families]) => {
+    Object.keys(grouped).forEach((categoryName) => {
       nextCategories[categoryName] = true;
-      Object.keys(families).forEach((familyName) => {
-        nextFamilies[familyKey(categoryName, familyName)] = true;
-      });
     });
     setOpenCategories((prev) => ({ ...prev, ...nextCategories }));
-    setOpenFamilies((prev) => ({ ...prev, ...nextFamilies }));
   }, [isSearching, grouped]);
 
   const toggleCategory = (categoryName) => {
     setOpenCategories((prev) => ({ ...prev, [categoryName]: !prev[categoryName] }));
-  };
-
-  const toggleFamily = (categoryName, familyName) => {
-    const key = familyKey(categoryName, familyName);
-    setOpenFamilies((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const content = (
@@ -211,29 +197,20 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
               {levels.map((item) => <option key={item} value={item}>{item}</option>)}
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-2">
-            <select value={status} onChange={(event) => setStatus(event.target.value)} className="rounded-2xl border border-coach-line bg-white px-3 py-2 text-xs font-semibold dark:border-white/10 dark:bg-black/20 dark:text-white">
-              <option value="All">Semua status</option>
-              <option value="Belum dicoba">Belum dicoba</option>
-              <option value="Sedang belajar">Sedang belajar</option>
-              <option value="Benar">Benar</option>
-              <option value="Perlu ulang">Perlu ulang</option>
-            </select>
-            <label className="flex items-center justify-center gap-2 rounded-2xl border border-coach-line bg-white px-3 py-2 text-xs font-bold text-black/60 dark:border-white/10 dark:bg-black/20 dark:text-white/70">
-              <input type="checkbox" checked={onlyExercise} onChange={(event) => setOnlyExercise(event.target.checked)} />
-              Punya latihan
-            </label>
-          </div>
-
+          <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} className="w-full rounded-2xl border border-coach-line bg-white px-3 py-2 text-xs font-semibold dark:border-white/10 dark:bg-black/20 dark:text-white">
+            {STATUS_FILTERS.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+          </select>
         </div>
       </div>
 
       <div className="sidebar-scroll flex-1 overflow-y-auto p-3">
         {displayCategories.map((groupName) => {
-          const families = grouped[groupName];
-          if (!families) return null;
-          const familyNames = Object.keys(families).sort(sortFamilyNames);
-          const groupTotal = familyNames.reduce((total, familyName) => total + families[familyName].length, 0);
+          const items = grouped[groupName];
+          if (!items) return null;
+          const sortedItems = [...items].sort((a, b) => {
+            const familyDiff = sortFamilyNames(getFormulaFamily(a), getFormulaFamily(b));
+            return familyDiff !== 0 ? familyDiff : a.name.localeCompare(b.name);
+          });
           const isCategoryOpen = Boolean(openCategories[groupName]);
 
           return (
@@ -245,65 +222,36 @@ export default function FormulaSidebar({ formulas, selectedId, onSelect, progres
               >
                 <div>
                   <p className="text-[11px] font-black uppercase tracking-[0.18em] text-coach-green dark:text-emerald-300">{groupName}</p>
-                  <p className="mt-1 text-xs font-semibold text-black/45 dark:text-white/45">{familyNames.length} family · {groupTotal} rumus</p>
+                  <p className="mt-1 text-xs font-semibold text-black/45 dark:text-white/45">{sortedItems.length} rumus</p>
                 </div>
                 <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-coach-line bg-white text-sm font-black text-coach-green transition dark:border-white/10 dark:bg-white/5 ${isCategoryOpen ? 'rotate-90' : ''}`}>›</span>
               </button>
 
               {isCategoryOpen && (
                 <div className="space-y-2 border-t border-coach-line p-2 dark:border-white/10">
-                  {familyNames.map((familyName) => {
-                    const items = families[familyName];
-                    const meta = getFamilyMeta(items);
-                    const key = familyKey(groupName, familyName);
-                    const isFamilyOpen = Boolean(openFamilies[key]);
-                    const hasSelectedFormula = items.some((item) => item.id === selectedId);
-
+                  {sortedItems.map((formula) => {
+                    const formulaStatus = getFormulaStatus(progress, formula.id);
                     return (
-                      <div key={familyName} className={`overflow-hidden rounded-2xl border bg-white transition dark:bg-white/[0.035] ${hasSelectedFormula ? 'border-coach-green' : 'border-black/6 dark:border-white/8'}`}>
-                        <button
-                          type="button"
-                          onClick={() => toggleFamily(groupName, familyName)}
-                          className="flex w-full items-center justify-between gap-3 px-3 py-3 text-left transition hover:bg-coach-green/5"
-                        >
+                      <button
+                        key={formula.id}
+                        onClick={() => onSelect(formula.id)}
+                        className={`w-full rounded-2xl border p-3 text-left transition hover:border-coach-green hover:bg-coach-green/5 ${selectedId === formula.id ? 'border-coach-green bg-coach-green/10 ring-2 ring-coach-green/10' : 'border-black/6 bg-black/[0.015] dark:border-white/8 dark:bg-white/[0.025]'}`}
+                      >
+                        <div className="flex items-start justify-between gap-2">
                           <div>
-                            <p className="text-sm font-black text-coach-ink dark:text-white">{familyName}</p>
-                            <p className="mt-1 text-[11px] font-semibold text-black/45 dark:text-white/45">
-                              {meta.total} rumus · {meta.practice} practice · {meta.theory} theory
-                            </p>
+                            <p className="font-black text-coach-ink dark:text-white">{formula.name}</p>
+                            <p className="mt-1 line-clamp-2 text-xs text-black/50 dark:text-white/50">{formula.description}</p>
                           </div>
-                          <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-coach-green/10 text-sm font-black text-coach-green transition dark:bg-emerald-400/10 dark:text-emerald-200 ${isFamilyOpen ? 'rotate-90' : ''}`}>›</span>
-                        </button>
-
-                        {isFamilyOpen && (
-                          <div className="space-y-2 border-t border-coach-line bg-white/80 p-2 dark:border-white/10 dark:bg-black/10">
-                            {items.map((formula) => {
-                              const formulaStatus = getFormulaStatus(progress, formula.id);
-                              return (
-                                <button
-                                  key={formula.id}
-                                  onClick={() => onSelect(formula.id)}
-                                  className={`w-full rounded-2xl border p-3 text-left transition hover:border-coach-green hover:bg-coach-green/5 ${selectedId === formula.id ? 'border-coach-green bg-coach-green/10 ring-2 ring-coach-green/10' : 'border-black/6 bg-black/[0.015] dark:border-white/8 dark:bg-white/[0.025]'}`}
-                                >
-                                  <div className="flex items-start justify-between gap-2">
-                                    <div>
-                                      <p className="font-black text-coach-ink dark:text-white">{formula.name}</p>
-                                      <p className="mt-1 line-clamp-2 text-xs text-black/50 dark:text-white/50">{formula.description}</p>
-                                    </div>
-                                    <span className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-black ${formula.hasExercise ? 'bg-coach-green text-white' : 'bg-black/8 text-black/45 dark:bg-white/10 dark:text-white/50'}`}>
-                                      {formula.hasExercise ? 'Practice' : 'Theory'}
-                                    </span>
-                                  </div>
-                                  <div className="mt-3 flex flex-wrap gap-1.5">
-                                    <span className="rounded-full bg-coach-beige px-2 py-1 text-[10px] font-bold text-black/55 dark:bg-black/25 dark:text-white/55">{formula.level}</span>
-                                    <span className={`rounded-full px-2 py-1 text-[10px] font-bold ${statusClasses[formulaStatus]}`}>{formulaStatus}</span>
-                                  </div>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
+                          <span className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-black ${formula.hasExercise ? 'bg-coach-green text-white' : 'bg-black/8 text-black/45 dark:bg-white/10 dark:text-white/50'}`}>
+                            {formula.hasExercise ? 'Practice' : 'Theory'}
+                          </span>
+                        </div>
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          <span className="rounded-full bg-coach-beige px-2 py-1 text-[10px] font-bold text-black/55 dark:bg-black/25 dark:text-white/55">{formula.level}</span>
+                          <span className="rounded-full bg-black/5 px-2 py-1 text-[10px] font-bold text-black/40 dark:bg-white/10 dark:text-white/40">{getFormulaFamily(formula)}</span>
+                          <span className={`rounded-full px-2 py-1 text-[10px] font-bold ${statusClasses[formulaStatus]}`}>{formulaStatus}</span>
+                        </div>
+                      </button>
                     );
                   })}
                 </div>

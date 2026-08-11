@@ -374,6 +374,8 @@ export default function FormulaBar({
   const [activeIndex, setActiveIndex] = useState(0);
   const [showSignature, setShowSignature] = useState(true);
   const [openInfoKey, setOpenInfoKey] = useState(null);
+  const [logicPanelOpen, setLogicPanelOpen] = useState(false);
+  const [helpPanelOpen, setHelpPanelOpen] = useState(false);
 
   const cursor = Math.min(cursorPosition ?? value.length, value.length);
   const fragmentInfo = useMemo(() => getFragment(value, cursor), [value, cursor]);
@@ -648,38 +650,58 @@ export default function FormulaBar({
             {!open && showSignature && <SignatureTooltip signature={activeSignature} />}
           </div>
 
-          <section className="rounded-xl border border-coach-line bg-white px-4 py-3 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Penjelasan Logika Rumus</p>
-            <div className="mt-2 space-y-2 text-xs font-semibold leading-5 text-black/60 dark:text-white/60">
-              <p><span className="font-black text-coach-green dark:text-emerald-200">Kapan Rumus Dipakai?</span> {logicExplanation.useCase}</p>
-              <p><span className="font-black text-coach-green dark:text-emerald-200">Analogi Rumus:</span> {logicExplanation.analogy}</p>
-              <p><span className="font-black text-coach-green dark:text-emerald-200">Logika:</span> {logicExplanation.logic}</p>
-              {logicExplanation.exampleFormula && (
-                <div className="rounded-xl border border-coach-green/15 bg-white px-3 py-2 dark:border-emerald-400/10 dark:bg-black/20">
-                  <span className="font-black text-coach-green dark:text-emerald-200">Contoh:</span>{' '}
-                  <code className="font-mono font-black text-coach-ink dark:text-white">{logicExplanation.exampleFormula}</code>
-                  {logicExplanation.exampleMeaning && <p className="mt-1 text-[11px] font-semibold text-black/45 dark:text-white/45">{logicExplanation.exampleMeaning}</p>}
+          {showLogicPanel && (
+            <section className="rounded-xl border border-coach-line bg-white px-4 py-3 shadow-[inset_0_1px_0_rgba(33,115,70,0.04)] dark:border-white/10 dark:bg-black/20">
+              <button
+                type="button"
+                onClick={() => setLogicPanelOpen((current) => !current)}
+                className="flex w-full items-center justify-between gap-2 text-left"
+              >
+                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Penjelasan Logika Rumus</p>
+                <span className="shrink-0 text-xs font-black text-coach-green dark:text-emerald-200">{logicPanelOpen ? 'Sembunyikan' : 'Lihat'}</span>
+              </button>
+              {logicPanelOpen && (
+                <div className="mt-2 space-y-2 text-xs font-semibold leading-5 text-black/60 dark:text-white/60">
+                  <p><span className="font-black text-coach-green dark:text-emerald-200">Kapan Rumus Dipakai?</span> {logicExplanation.useCase}</p>
+                  <p><span className="font-black text-coach-green dark:text-emerald-200">Analogi Rumus:</span> {logicExplanation.analogy}</p>
+                  <p><span className="font-black text-coach-green dark:text-emerald-200">Logika:</span> {logicExplanation.logic}</p>
+                  {showLogicExample && logicExplanation.exampleFormula && (
+                    <div className="rounded-xl border border-coach-green/15 bg-white px-3 py-2 dark:border-emerald-400/10 dark:bg-black/20">
+                      <span className="font-black text-coach-green dark:text-emerald-200">Contoh:</span>{' '}
+                      <code className="font-mono font-black text-coach-ink dark:text-white">{logicExplanation.exampleFormula}</code>
+                      {logicExplanation.exampleMeaning && <p className="mt-1 text-[11px] font-semibold text-black/45 dark:text-white/45">{logicExplanation.exampleMeaning}</p>}
+                    </div>
+                  )}
+                  {specialEnvironment && (
+                    <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] leading-5 text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-100">
+                      <p><span className="font-black">Environment Excel Khusus:</span> {specialEnvironment.label}</p>
+                      <p className="mt-1">{specialEnvironment.description}</p>
+                    </div>
+                  )}
                 </div>
               )}
-              {specialEnvironment && (
-                <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] leading-5 text-amber-900 dark:border-amber-400/20 dark:bg-amber-400/10 dark:text-amber-100">
-                  <p><span className="font-black">Environment Excel Khusus:</span> {specialEnvironment.label}</p>
-                  <p className="mt-1">{specialEnvironment.description}</p>
-                </div>
-              )}
-            </div>
-          </section>
+            </section>
+          )}
 
           <section className="rounded-xl border border-coach-line bg-white px-4 py-3 dark:border-white/10 dark:bg-black/20">
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Cara mengisi</p>
-            <div className="mt-1 flex flex-wrap gap-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
-              <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
-              <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
-              <span>Enter untuk cek jawaban.</span>
-              {canShowQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
-              {showRangeTips && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>}
-              {isChallengeMode && <span>Mode challenge: bantuan disembunyikan.</span>}
-            </div>
+            <button
+              type="button"
+              onClick={() => setHelpPanelOpen((current) => !current)}
+              className="flex w-full items-center justify-between gap-2 text-left"
+            >
+              <p className="text-[10px] font-black uppercase tracking-[0.16em] text-coach-green dark:text-emerald-200">Cara mengisi</p>
+              <span className="shrink-0 text-xs font-black text-coach-green dark:text-emerald-200">{helpPanelOpen ? 'Sembunyikan' : 'Lihat'}</span>
+            </button>
+            {helpPanelOpen && (
+              <div className="mt-2 flex flex-wrap gap-2 text-[11px] font-semibold leading-5 text-black/55 dark:text-white/55">
+                <span>Awali dengan <span className="font-mono font-black text-coach-green dark:text-emerald-200">=</span></span>
+                <span>{separatorMode === 'id' ? 'Pakai titik koma (;).' : 'Use comma (,).'}</span>
+                <span>Enter untuk cek jawaban.</span>
+                {canShowQuestionHelper && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik value untuk criteria/lookup</span>}
+                {showRangeTips && <span className="rounded-full bg-coach-greenSoft px-2 py-1 text-[10px] font-black text-coach-green dark:bg-emerald-400/10 dark:text-emerald-200">Klik/drag tabel untuk range</span>}
+                {isChallengeMode && <span>Mode challenge: bantuan disembunyikan.</span>}
+              </div>
+            )}
           </section>
         </div>
 
@@ -740,7 +762,7 @@ export default function FormulaBar({
               type="button"
               onMouseDown={(event) => event.preventDefault()}
               onClick={handleManualCheck}
-              className="mt-3 w-full rounded-xl bg-coach-green px-4 py-3 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-coach-ink hover:shadow-md dark:hover:bg-emerald-600"
+              className="mt-3 w-full rounded-xl bg-coach-green px-4 py-3.5 text-base font-black text-white shadow-md ring-2 ring-coach-green/20 transition hover:-translate-y-0.5 hover:bg-coach-ink hover:shadow-lg dark:hover:bg-emerald-600"
             >
               Cek Jawaban
             </button>
