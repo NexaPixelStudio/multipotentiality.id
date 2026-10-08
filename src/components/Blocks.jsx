@@ -3,16 +3,17 @@ import Sheet from './Sheet.jsx';
 import { createContext } from '../engine/evaluator.js';
 import { parseAddr } from '../engine/refs.js';
 import { Rich, localizeFormula } from '../lib/text.jsx';
+import Icon from './Icon.jsx';
 
 function Callout({ icon, title, tone, children }) {
   const tones = {
-    brand: 'border-brand/30 bg-brand-soft',
-    info: 'border-info/30 bg-info-soft',
-    warn: 'border-warn/40 bg-warn-soft'
+    brand: ['border-brand/30 bg-brand-soft', 'bg-brand/15 text-brand'],
+    info: ['border-info/30 bg-info-soft', 'bg-info/15 text-info'],
+    warn: ['border-warn/40 bg-warn-soft', 'bg-warn/15 text-warn']
   };
   return (
-    <aside className={`flex gap-3 rounded-2xl border p-4 ${tones[tone]}`}>
-      <div className="text-2xl leading-none" aria-hidden="true">{icon}</div>
+    <aside className={`flex gap-3 rounded-2xl border p-4 transition-shadow hover:shadow-soft ${tones[tone][0]}`}>
+      <span className={`grid h-9 w-9 flex-none place-items-center rounded-xl ${tones[tone][1]}`} aria-hidden="true"><Icon name={icon} size={20} /></span>
       <div className="min-w-0">
         <p className="mb-0.5 text-sm font-bold uppercase tracking-wide text-ink/70">{title}</p>
         <div className="text-[0.98rem] leading-relaxed text-ink">{children}</div>
@@ -69,11 +70,11 @@ export function Blocks({ blocks, locale }) {
           case 'p':
             return <p key={i} className="leading-relaxed"><Rich text={b.text} locale={locale} /></p>;
           case 'analogy':
-            return <Callout key={i} icon="💡" title="Bayangkan begini" tone="brand"><Rich text={b.text} locale={locale} /></Callout>;
+            return <Callout key={i} icon="bulb" title="Bayangkan begini" tone="brand"><Rich text={b.text} locale={locale} /></Callout>;
           case 'tip':
-            return <Callout key={i} icon="✨" title="Tips" tone="info"><Rich text={b.text} locale={locale} /></Callout>;
+            return <Callout key={i} icon="sparkles" title="Tips" tone="info"><Rich text={b.text} locale={locale} /></Callout>;
           case 'warn':
-            return <Callout key={i} icon="⚠️" title="Hati-hati" tone="warn"><Rich text={b.text} locale={locale} /></Callout>;
+            return <Callout key={i} icon="alert" title="Hati-hati" tone="warn"><Rich text={b.text} locale={locale} /></Callout>;
           case 'steps':
             return (
               <ul key={i} className="space-y-2.5">

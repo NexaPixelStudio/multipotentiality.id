@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header.jsx';
+import Icon from './components/Icon.jsx';
 import Home from './pages/Home.jsx';
 import ModulePage from './pages/ModulePage.jsx';
 import ExercisePage from './pages/ExercisePage.jsx';
@@ -10,7 +11,7 @@ import { useRoute, href } from './lib/router.js';
 function NotFound() {
   return (
     <div className="card p-10 text-center">
-      <p className="text-4xl">🧭</p>
+      <span className="icon-badge mx-auto grid h-16 w-16 place-items-center rounded-3xl"><Icon name="compass" size={32} /></span>
       <h1 className="mt-2 text-xl font-bold">Halaman tidak ditemukan</h1>
       <a href={href('')} className="btn-primary mt-4">Kembali ke beranda</a>
     </div>
@@ -37,7 +38,7 @@ export default function App() {
       </a>
       <Header active={active} />
       <main id="utama" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 pb-28 pt-6 outline-none md:pb-14 md:pt-8">
-        <div className="mx-auto max-w-4xl lg:max-w-none">{page}</div>
+        <div key={parts.join("/")} className="page-enter mx-auto max-w-4xl lg:max-w-none">{page}</div>
       </main>
       <footer className="border-t border-line px-4 py-6 pb-24 text-center text-sm text-muted md:pb-6">
         Progres belajarmu tersimpan di browser ini saja. Tidak ada akun, tidak ada data yang dikirim ke mana pun.

@@ -7,7 +7,7 @@ import { sheet, f, q, p, analogy, tip, warn, steps, syntax, demo } from './helpe
 const kenalan = {
   id: 'kenalan',
   level: 1,
-  emoji: '👋',
+  icon: 'table',
   title: 'Kenalan dengan Excel',
   tagline: 'Sel, kolom, baris, dan rumus pertamamu',
   why: 'Semua yang kamu pelajari di Excel dibangun di atas tiga hal ini: sel, alamat sel, dan rumus. Paham di sini = lancar di semua bab berikutnya.',
@@ -20,7 +20,7 @@ const kenalan = {
         p('Kotak kecil itu namanya **sel**. Sel-sel tersusun dalam **kolom** (berjalan ke samping, diberi nama huruf: A, B, C...) dan **baris** (berjalan ke bawah, diberi nomor: 1, 2, 3...).'),
         analogy('Alamat sel itu seperti nomor kursi di bioskop. "Kursi C4" artinya: lajur C, baris ke-4. Di Excel, sel C4 adalah kotak di pertemuan **kolom C** dan **baris 4**.'),
         demo({
-          rows: [['Nama', 'Nilai', null, 'Isi B3 →'], ['Ayu', 85], ['Budi', 90], ['Citra', 78]],
+          rows: [['Nama', 'Nilai', null, 'Isi B3:'], ['Ayu', 85], ['Budi', 90], ['Citra', 78]],
           cell: 'D3',
           formula: '=B3',
           caption: 'Sel B3 berisi angka 90 (kolom B, baris 3). Rumus =B3 di sel D3 cuma "mengintip" isinya.'
@@ -131,7 +131,7 @@ const kenalan = {
 const operator = {
   id: 'operator',
   level: 1,
-  emoji: '➕',
+  icon: 'calculator',
   title: 'Hitung dengan Operator',
   tagline: 'Tambah, kurang, kali, bagi, pangkat, dan persen',
   why: 'Sebelum memakai fungsi, kamu perlu lancar dengan operator hitung dasar. Ini dipakai di hampir semua rumus, dari diskon sampai pajak.',
@@ -294,7 +294,7 @@ const operator = {
 const fungsiDasar = {
   id: 'fungsi-dasar',
   level: 1,
-  emoji: '🧮',
+  icon: 'sigma',
   title: 'Fungsi Pertama',
   tagline: 'SUM, AVERAGE, MIN, MAX, COUNT',
   why: 'Menjumlahkan 100 sel dengan tanda + itu melelahkan. Fungsi membuat pekerjaan itu satu baris saja. Ini lima fungsi yang paling sering dipakai di dunia kerja.',
@@ -485,7 +485,7 @@ const fungsiDasar = {
 const salinRumus = {
   id: 'salin-rumus',
   level: 1,
-  emoji: '📋',
+  icon: 'copy',
   title: 'Salin Rumus & Tanda $',
   tagline: 'Cara menyalin rumus ke ratusan baris dengan benar',
   why: 'Kamu jarang mengetik rumus satu per satu. Biasanya satu rumus disalin ke bawah. Kalau tidak paham tanda $, hasilnya diam-diam salah.',
@@ -522,7 +522,7 @@ const salinRumus = {
           formula: '=B2*$F$1',
           caption: 'Di C3 rumusnya menjadi =B3*$F$1 : B bergeser ke B3, tapi $F$1 tetap mengunci kurs.'
         }),
-        tip('Saat mengetik rumus, tekan **F4** untuk memutar F1 → $F$1 → F$1 → $F1 → F1.')
+        tip('Saat mengetik rumus, tekan **F4** untuk memutar F1, $F$1, F$1, $F1, lalu kembali ke F1.')
       ]
     }
   ],
@@ -569,7 +569,7 @@ const salinRumus = {
       q: 'Saat mengetik referensi sel di rumus, tombol apa yang menambahkan tanda **$** secara otomatis?',
       options: ['F2', 'F4', 'F5', 'F12'],
       answer: 1,
-      explain: '**F4** memutar jenis referensi: F1 → $F$1 → F$1 → $F1 → kembali ke F1. Tidak perlu mengetik $ manual.',
+      explain: '**F4** memutar jenis referensi: F1, $F$1, F$1, $F1, lalu kembali ke F1. Tidak perlu mengetik $ manual.',
       whyNot: ['F2 dipakai untuk mengedit isi sel.', '', 'F5 dipakai untuk "Go To" (pindah ke sel tertentu).', 'F12 adalah "Save As".']
     }),
     f({
@@ -621,7 +621,7 @@ const salinRumus = {
 const shortcut = {
   id: 'shortcut',
   level: 1,
-  emoji: '⌨️',
+  icon: 'keyboard',
   title: 'Shortcut & Kebiasaan Baik',
   tagline: 'Bekerja lebih cepat dan menghindari kesalahan umum',
   why: 'Pengguna Excel yang mahir terlihat cepat karena mereka hampir tidak menyentuh mouse. Beberapa kebiasaan kecil di sini menghemat jam kerja.',

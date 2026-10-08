@@ -5,13 +5,14 @@ import { Rich } from '../lib/text.jsx';
 import { href } from '../lib/router.js';
 import { TONE } from '../lib/tone.js';
 import { useProgress } from '../state/progress.jsx';
+import Icon, { IconBadge } from '../components/Icon.jsx';
 
 export default function ModulePage({ id }) {
   const p = useProgress();
   const m = MODULE_BY_ID[id];
 
   useEffect(() => {
-    if (m) document.title = `${m.title} · Belajar Excel`;
+    if (m) document.title = `${m.title} - Belajar Excel`;
     return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
   }, [m]);
 
@@ -29,20 +30,20 @@ export default function ModulePage({ id }) {
   return (
     <article className="space-y-8">
       <nav aria-label="Jejak halaman" className="text-sm text-muted">
-        <a href={href('')} className="hover:text-brand">Beranda</a> <span aria-hidden="true">/</span> <span>Level {level.id} · {level.name}</span>
+        <a href={href('')} className="hover:text-brand">Beranda</a> <span aria-hidden="true">/</span> <span>Level {level.id}: {level.name}</span>
       </nav>
 
       <header className={`card border-l-4 p-6 sm:p-8 ${tone.bar}`}>
         <div className="flex items-start gap-4">
-          <span className="text-5xl" aria-hidden="true">{m.emoji}</span>
+          <IconBadge name={m.icon} tone={level.tone} size={34} className="h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem]" />
           <div className="min-w-0">
             <h1 className="text-3xl font-extrabold leading-tight">{m.title}</h1>
             <p className="mt-1 text-lg text-muted">{m.tagline}</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <span className="chip">⏱ ± {m.minutes} menit</span>
-              <span className="chip">📝 {m.exercises.length} soal</span>
-              <span className="chip">{level.emoji} Level {level.id}</span>
-              {st.complete && <span className="chip bg-ok-soft text-ok">✓ Selesai</span>}
+              <span className="chip gap-1.5"><Icon name="clock" size={13} />{m.minutes} menit</span>
+              <span className="chip gap-1.5"><Icon name="file-text" size={13} />{m.exercises.length} soal</span>
+              <span className="chip gap-1.5"><Icon name={level.icon} size={13} />Level {level.id}</span>
+              {st.complete && <span className="chip gap-1.5 bg-ok-soft text-ok"><Icon name="check" size={13} strokeWidth={2.6} />Selesai</span>}
             </div>
           </div>
         </div>
@@ -51,16 +52,16 @@ export default function ModulePage({ id }) {
           <p className="mt-1"><Rich text={m.why} locale={p.locale} /></p>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
-          <a href="#materi" className="btn-soft" onClick={(e) => { e.preventDefault(); document.getElementById('materi')?.scrollIntoView({ behavior: 'smooth' }); }}>Baca materi ↓</a>
+          <a href="#materi" className="btn-soft" onClick={(e) => { e.preventDefault(); document.getElementById('materi')?.scrollIntoView({ behavior: 'smooth' }); }}>Baca materi<Icon name="arrow-down" size={17} /></a>
           <a href={href(`latihan/${m.id}/${startIndex + 1}`)} className="btn-primary">
-            {st.solved > 0 && !st.complete ? 'Lanjutkan latihan' : st.complete ? 'Ulangi latihan' : 'Langsung ke latihan'} →
+            {st.solved > 0 && !st.complete ? 'Lanjutkan latihan' : st.complete ? 'Ulangi latihan' : 'Langsung ke latihan'}<Icon name="arrow-right" size={18} className="icon-slide" />
           </a>
         </div>
       </header>
 
       <section id="materi" className="scroll-mt-24 space-y-8" aria-label="Materi">
         {m.lessons.map((l, i) => (
-          <section key={l.title} className="card p-6 sm:p-8" aria-labelledby={`l-${i}`}>
+          <section key={l.title} className="card rise p-6 sm:p-8" style={{ '--i': Math.min(i, 3) }} aria-labelledby={`l-${i}`}>
             <h2 id={`l-${i}`} className="mb-4 flex items-center gap-3 text-xl font-bold">
               <span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-brand text-sm font-bold text-brand-ink">{i + 1}</span>
               {l.title}
@@ -78,7 +79,7 @@ export default function ModulePage({ id }) {
             className="btn-primary"
             onClick={() => p.markRead(m.id)}
           >
-            Aku siap, mulai latihan →
+            Aku siap, mulai latihan<Icon name="arrow-right" size={18} className="icon-slide" />
           </a>
         </div>
         <ol className="mt-5 divide-y divide-line rounded-xl border border-line">
@@ -86,9 +87,9 @@ export default function ModulePage({ id }) {
             const d = p.done[e.id];
             return (
               <li key={e.id}>
-                <a href={href(`latihan/${m.id}/${i + 1}`)} className="flex items-center gap-3 px-4 py-3 hover:bg-sunken">
-                  <span className={`grid h-7 w-7 flex-none place-items-center rounded-full text-xs font-bold ${d?.solved ? 'bg-ok text-surface' : d?.revealed ? 'bg-warn-soft text-warn' : 'bg-sunken text-muted'}`}>
-                    {d?.solved ? '✓' : d?.revealed ? '👁' : i + 1}
+                <a href={href(`latihan/${m.id}/${i + 1}`)} className="group flex items-center gap-3 px-4 py-3 transition hover:bg-sunken">
+                  <span className={`grid h-7 w-7 flex-none place-items-center rounded-full text-xs font-bold transition-transform group-hover:scale-110 ${d?.solved ? 'bg-ok text-surface' : d?.revealed ? 'bg-warn-soft text-warn' : 'bg-sunken text-muted'}`}>
+                    {d?.solved ? <Icon name="check" size={15} strokeWidth={3} /> : d?.revealed ? <Icon name="eye" size={15} /> : i + 1}
                   </span>
                   <span className="min-w-0 flex-1 font-medium">{e.title}</span>
                   <span className="chip">{e.type === 'choice' ? 'Pilihan' : 'Rumus'}</span>
@@ -101,16 +102,16 @@ export default function ModulePage({ id }) {
 
       {st.complete && (
         <section className="card anim-pop border-ok/40 bg-ok-soft p-6 text-center">
-          <p className="text-4xl" aria-hidden="true">🎉</p>
-          <h2 className="mt-1 text-xl font-bold">Modul selesai!</h2>
+          <span className="check-draw mx-auto grid h-14 w-14 place-items-center rounded-full bg-ok/15 text-ok"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" /><path d="M8 12.4l3 3 5-6" /></svg></span>
+          <h2 className="mt-2 text-xl font-bold">Modul selesai!</h2>
           <p className="text-muted">Kerja bagus. Siap lanjut?</p>
-          {nextModule && <a href={href(`modul/${nextModule.id}`)} className="btn-primary mt-4">Modul berikutnya: {nextModule.title} →</a>}
+          {nextModule && <a href={href(`modul/${nextModule.id}`)} className="btn-primary mt-4">Modul berikutnya: {nextModule.title}<Icon name="arrow-right" size={18} className="icon-slide" /></a>}
         </section>
       )}
 
       <nav className="flex flex-wrap justify-between gap-3" aria-label="Modul lain">
-        {prevModule ? <a href={href(`modul/${prevModule.id}`)} className="btn-soft">← {prevModule.title}</a> : <span />}
-        {nextModule && <a href={href(`modul/${nextModule.id}`)} className="btn-soft">{nextModule.title} →</a>}
+        {prevModule ? <a href={href(`modul/${prevModule.id}`)} className="btn-soft"><Icon name="arrow-left" size={18} className="icon-slide-back" />{prevModule.title}</a> : <span />}
+        {nextModule && <a href={href(`modul/${nextModule.id}`)} className="btn-soft">{nextModule.title}<Icon name="arrow-right" size={18} className="icon-slide" /></a>}
       </nav>
     </article>
   );
@@ -119,8 +120,8 @@ export default function ModulePage({ id }) {
 function NotFound() {
   return (
     <div className="card p-10 text-center">
-      <p className="text-4xl">🤔</p>
-      <h1 className="mt-2 text-xl font-bold">Modul tidak ditemukan</h1>
+      <span className="icon-badge mx-auto grid h-16 w-16 place-items-center rounded-3xl"><Icon name="help" size={32} /></span>
+      <h1 className="mt-3 text-xl font-bold">Modul tidak ditemukan</h1>
       <a href={href('')} className="btn-primary mt-4">Kembali ke beranda</a>
     </div>
   );

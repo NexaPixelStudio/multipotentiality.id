@@ -7,7 +7,7 @@ import { sheet, f, q, p, analogy, tip, warn, steps, syntax, demo, D } from './he
 const keuangan = {
   id: 'keuangan',
   level: 5,
-  emoji: '💰',
+  icon: 'coins',
   title: 'Keuangan: PMT, FV, PV, NPV',
   tagline: 'Cicilan, tabungan, nilai waktu uang, dan kelayakan investasi',
   why: 'Dari cicilan KPR sampai keputusan investasi, Excel dipakai di seluruh dunia keuangan. Lima fungsi ini adalah fondasinya.',
@@ -143,7 +143,7 @@ const tarifRows = [
 const lookup2arah = {
   id: 'lookup-lanjut',
   level: 5,
-  emoji: '🗺️',
+  icon: 'map',
   title: 'Lookup Dua Arah & Tarif Berlapis',
   tagline: 'Mencari di tabel matriks dan menghitung pajak progresif',
   why: 'Tarif ongkir bergantung pada kota dan berat. Pajak penghasilan bergantung pada lapisan penghasilan. Dua pola ini sering muncul di pekerjaan profesional.',
@@ -310,7 +310,7 @@ const penjualanSheet = ({ omzet = false, laba = false, ringkas = false, extra = 
 const kasusPenjualan = {
   id: 'kasus-penjualan',
   level: 5,
-  emoji: '📈',
+  icon: 'trending-up',
   title: 'Studi Kasus: Laporan Penjualan',
   tagline: 'Dari data mentah ke laporan manajemen',
   why: 'Inilah pekerjaan nyata analis: data transaksi mentah diubah menjadi omzet, laba, peringkat sales, dan pertumbuhan. Kamu akan memakai banyak fungsi sekaligus.',
@@ -441,7 +441,7 @@ const payrollSheet = (filled = [], extra = []) => {
 const kasusPayroll = {
   id: 'kasus-payroll',
   level: 5,
-  emoji: '👥',
+  icon: 'users',
   title: 'Studi Kasus: Payroll & HR',
   tagline: 'Menghitung gaji karyawan dari data dasar',
   why: 'Tim HR dan keuangan menghitung gaji, tunjangan, lembur, dan potongan setiap bulan. Ini kasus yang menyatukan tanggal, IF, referensi terkunci, dan pembulatan.',
@@ -585,7 +585,7 @@ const stokSheet = (extra = []) => sheet('Stok', [
 const kasusInventori = {
   id: 'kasus-inventori',
   level: 5,
-  emoji: '📦',
+  icon: 'package',
   title: 'Studi Kasus: Inventori Gudang',
   tagline: 'Memantau stok, pesanan ulang, dan nilai persediaan',
   why: 'Gudang yang kehabisan stok kehilangan penjualan, tapi stok berlebih menahan uang. Excel membantu tim gudang memantau keduanya.',
@@ -682,7 +682,7 @@ const kasusInventori = {
 const fiturPro = {
   id: 'fitur-pro',
   level: 5,
-  emoji: '🛠️',
+  icon: 'sliders',
   title: 'Fitur Pro (Konsep)',
   tagline: 'PivotTable, Tabel, Validasi, Format Bersyarat, dan praktik terbaik',
   why: 'Rumus hanyalah satu bagian dari Excel. Profesional memilih alat yang tepat: kadang PivotTable lebih cepat daripada seratus rumus SUMIFS.',
@@ -730,7 +730,7 @@ const fiturPro = {
       q: 'Kamu ingin sel stok berubah **merah otomatis** ketika nilainya di bawah minimum. Fitur yang dipakai...',
       options: ['Data Validation', 'Conditional Formatting', 'Freeze Panes', 'Protect Sheet'],
       answer: 1,
-      explain: '**Conditional Formatting** (Home → Conditional Formatting) mewarnai sel berdasarkan aturan yang kamu tentukan.',
+      explain: '**Conditional Formatting** (menu Home, lalu Conditional Formatting) mewarnai sel berdasarkan aturan yang kamu tentukan.',
       whyNot: ['Validation membatasi apa yang boleh diisi, tidak mewarnai.', '', 'Freeze Panes mengunci baris/kolom agar tetap terlihat.', 'Protect Sheet mencegah sel diubah.']
     }),
     q({
@@ -738,7 +738,7 @@ const fiturPro = {
       q: 'Kolom Status hanya boleh berisi "Lunas" atau "Belum", dan kamu ingin pengguna memilih dari **dropdown**. Pakai...',
       options: ['Conditional Formatting', 'Data Validation (List)', 'PivotTable', 'Named Range'],
       answer: 1,
-      explain: '**Data Validation → List** menampilkan dropdown dan menolak isian lain. Ini menjaga konsistensi data sejak awal.'
+      explain: '**Data Validation dengan tipe List** menampilkan dropdown dan menolak isian lain. Ini menjaga konsistensi data sejak awal.'
     }),
     q({
       title: 'Data yang tumbuh sendiri',
@@ -752,14 +752,14 @@ const fiturPro = {
       q: 'Setiap bulan kamu menerima 12 file Excel dengan struktur sama dan harus menggabungkan serta membersihkannya. Alat yang menghemat paling banyak waktu...',
       options: ['Menyalin-tempel manual setiap bulan', 'Power Query', 'Membuka semua file dan melihatnya satu per satu', 'Rumus VLOOKUP'],
       answer: 1,
-      explain: '**Power Query** (Data → Get Data) mengimpor, menggabung, dan membersihkan data lewat langkah yang bisa diulang dengan satu klik "Refresh".'
+      explain: '**Power Query** (menu Data, lalu Get Data) mengimpor, menggabung, dan membersihkan data lewat langkah yang bisa diulang dengan satu klik "Refresh".'
     }),
     q({
       title: 'Judul tetap terlihat',
       q: 'Saat kamu menggulir tabel 1.000 baris ke bawah, baris judul kolom hilang dari layar. Solusinya...',
       options: ['Protect Sheet', 'Freeze Panes (Freeze Top Row)', 'Data Validation', 'Conditional Formatting'],
       answer: 1,
-      explain: '**View → Freeze Panes → Freeze Top Row** membuat baris judul tetap terlihat saat menggulir.'
+      explain: '**View, Freeze Panes, lalu Freeze Top Row** membuat baris judul tetap terlihat saat menggulir.'
     }),
     q({
       title: 'Memilih grafik',
@@ -773,7 +773,7 @@ const fiturPro = {
       q: 'Sel hasil perhitungan penting sering terhapus tidak sengaja oleh rekan kerja yang mengisi tabel. Cara mencegahnya...',
       options: ['Meminta mereka lebih hati-hati', 'Mengunci sel rumus lalu mengaktifkan Protect Sheet', 'Mengubah warna sel jadi kuning', 'Menaruh rumus di sheet paling kiri'],
       answer: 1,
-      explain: 'Kunci sel yang berisi rumus (Format Cells → Protection), lalu aktifkan **Review → Protect Sheet**. Sel input tetap bisa diisi.'
+      explain: 'Kunci sel yang berisi rumus (Format Cells, tab Protection), lalu aktifkan **Review, lalu Protect Sheet**. Sel input tetap bisa diisi.'
     }),
     q({
       title: 'Merancang model yang sehat',

@@ -7,6 +7,7 @@ import Sheet from '../components/Sheet.jsx';
 import { localizeFormula } from '../lib/text.jsx';
 import { href } from '../lib/router.js';
 import { useProgress } from '../state/progress.jsx';
+import Icon, { IconBadge } from '../components/Icon.jsx';
 
 const POPULER = ['SUM', 'IF', 'VLOOKUP', 'XLOOKUP', 'COUNTIF', 'SUMIF', 'INDEX', 'IFERROR'];
 
@@ -22,7 +23,7 @@ export default function ReferencePage({ query }) {
   const [showData, setShowData] = useState(false);
 
   useEffect(() => {
-    document.title = 'Kamus Rumus · Belajar Excel';
+    document.title = 'Kamus Rumus - Belajar Excel';
     return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
   }, []);
 
@@ -47,32 +48,36 @@ export default function ReferencePage({ query }) {
       const v = evaluate(ex, ctx, 'Contoh', { locale: 'en' }).value;
       return v instanceof XlError ? v.code : showValue(v, p.locale);
     } catch {
-      return '—';
+      return '-';
     }
   };
 
   return (
     <div className="space-y-6">
-      <header>
-        <h1 className="text-3xl font-extrabold">📖 Kamus Rumus</h1>
+      <header className="flex items-start gap-4">
+        <IconBadge name="book-open" size={28} className="h-14 w-14" />
+        <div>
+        <h1 className="text-3xl font-extrabold">Kamus Rumus</h1>
         <p className="mt-1 text-lg text-muted">{REFERENCE.length} fungsi Excel dijelaskan dengan bahasa sederhana. Setiap contoh dihitung langsung dari tabel contoh di bawah.</p>
+        </div>
       </header>
 
       <div className="card space-y-4 p-4 sm:p-5">
-        <label className="block">
+        <label className="relative block">
           <span className="sr-only">Cari rumus</span>
+          <Icon name="search" size={19} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
           <input
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Cari rumus atau kata kunci, misalnya: jumlah, rata-rata, tanggal, cari data..."
-            className="w-full rounded-xl border border-line bg-bg px-4 py-3 text-base outline-none focus:border-brand focus:ring-2 focus:ring-brand/30"
+            className="w-full rounded-xl border border-line bg-bg py-3 pl-11 pr-4 text-base outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/20"
           />
         </label>
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-semibold text-muted">Populer:</span>
           {POPULER.map((n) => (
-            <button key={n} type="button" className="chip hover:bg-brand-soft" onClick={() => { setQ(n); setCat('Semua'); }}>{n}</button>
+            <button key={n} type="button" className="chip transition hover:bg-brand-soft hover:text-brand" onClick={() => { setQ(n); setCat('Semua'); }}>{n}</button>
           ))}
         </div>
         <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter kategori">
@@ -82,7 +87,7 @@ export default function ReferencePage({ query }) {
               type="button"
               aria-pressed={cat === c}
               onClick={() => setCat(c)}
-              className={`rounded-full px-3 py-1.5 text-sm font-semibold transition ${cat === c ? 'bg-brand text-brand-ink' : 'bg-sunken text-muted hover:bg-line'}`}
+              className={`rounded-full px-3 py-1.5 text-sm font-semibold transition duration-200 active:scale-95 ${cat === c ? 'bg-brand text-brand-ink shadow-[0_4px_12px_-4px_rgb(var(--brand)/0.7)]' : 'bg-sunken text-muted hover:bg-line'}`}
             >
               {c}
             </button>
@@ -92,7 +97,7 @@ export default function ReferencePage({ query }) {
 
       <div>
         <button type="button" className="btn-soft" onClick={() => setShowData((s) => !s)} aria-expanded={showData}>
-          {showData ? 'Sembunyikan' : 'Lihat'} tabel contoh yang dipakai
+          <Icon name="table" size={18} />{showData ? 'Sembunyikan' : 'Lihat'} tabel contoh yang dipakai
         </button>
         {showData && (
           <div className="card mt-3 overflow-hidden">
@@ -104,10 +109,10 @@ export default function ReferencePage({ query }) {
       <p className="text-sm text-muted" aria-live="polite">{results.length} fungsi ditemukan</p>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        {results.map((r) => {
+        {results.map((r, ri) => {
           const mod = r.module ? MODULE_BY_ID[r.module] : null;
           return (
-            <article key={r.name} className="card flex flex-col p-5" id={`fn-${r.name}`}>
+            <article key={r.name} className="card rise flex flex-col p-5 transition duration-200 hover:border-brand/40 hover:shadow-md" style={{ '--i': Math.min(ri, 8) }} id={`fn-${r.name}`}>
               <div className="flex items-start justify-between gap-2">
                 <h2 className="font-mono text-xl font-extrabold text-brand">{r.name}</h2>
                 <span className="chip">{r.cat}</span>
@@ -122,8 +127,8 @@ export default function ReferencePage({ query }) {
                 <p className="mt-1 text-muted">Hasil: <strong className="font-mono text-ink">{run(r.ex)}</strong></p>
               </div>
               {mod && (
-                <a href={href(`modul/${mod.id}`)} className="mt-3 text-sm font-semibold text-brand hover:underline">
-                  Pelajari di modul “{mod.title}” →
+                <a href={href(`modul/${mod.id}`)} className="group mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline">
+                  Pelajari di modul “{mod.title}”<Icon name="arrow-right" size={15} className="icon-slide" />
                 </a>
               )}
             </article>
@@ -133,8 +138,8 @@ export default function ReferencePage({ query }) {
 
       {results.length === 0 && (
         <div className="card p-10 text-center">
-          <p className="text-4xl">🔍</p>
-          <p className="mt-2 font-semibold">Tidak ada yang cocok dengan “{q}”.</p>
+          <span className="icon-badge mx-auto grid h-16 w-16 place-items-center rounded-3xl"><Icon name="search" size={30} /></span>
+          <p className="mt-3 font-semibold">Tidak ada yang cocok dengan “{q}”.</p>
           <p className="text-muted">Coba kata kunci lain, misalnya “jumlah” atau “tanggal”.</p>
         </div>
       )}
