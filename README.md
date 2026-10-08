@@ -6,7 +6,7 @@ Semua berjalan di browser (React + Vite + Tailwind). Tidak ada server, akun, ata
 
 ## Yang ada di dalamnya
 
-- **5 level, 28 modul, 236 soal**: Pemula, Dasar, Menengah, Mahir, Profesional.
+- **5 level, 28 modul, 279 soal**: Pemula, Dasar, Menengah, Mahir, Profesional.
   Setiap modul punya materi berperumpamaan (analogi sehari-hari), contoh yang dihitung langsung, lalu latihan.
 - **Soal dinilai dari hasilnya**, bukan dari kecocokan teks. Cara lain yang benar tetap diterima (misalnya `VLOOKUP`, `XLOOKUP`, atau `INDEX-MATCH` untuk soal yang sama).
 - **Mesin rumus sendiri** (`src/engine`) yang membaca dan menghitung lebih dari 120 fungsi Excel, termasuk `XLOOKUP`, `FILTER`, `SORT`, `UNIQUE`, `LET`, `SUMIFS`, `DATEDIF`, `PMT`, dan referensi antar-sheet.
