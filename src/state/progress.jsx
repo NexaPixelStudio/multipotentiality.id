@@ -61,6 +61,15 @@ export function ProgressProvider({ children }) {
     });
   }, []);
 
+  const addXp = useCallback((xp) => {
+    if (!(xp > 0)) return;
+    setState((s) => {
+      const today = dayStamp();
+      const streak = s.streak.last === today ? s.streak : { count: s.streak.last === yesterdayStamp() ? s.streak.count + 1 : 1, last: today };
+      return { ...s, xp: s.xp + xp, streak };
+    });
+  }, []);
+
   const markRead = useCallback((moduleId) => setState((s) => (s.read[moduleId] ? s : { ...s, read: { ...s.read, [moduleId]: true } })), []);
   const setLocale = useCallback((locale) => setState((s) => ({ ...s, locale })), []);
   const setTheme = useCallback((theme) => setState((s) => ({ ...s, theme })), []);
@@ -83,12 +92,13 @@ export function ProgressProvider({ children }) {
       nextExercise,
       markSolved,
       markRead,
+      addXp,
       setLocale,
       setTheme,
       dismissWelcome,
       reset
     };
-  }, [state, markSolved, markRead, setLocale, setTheme, dismissWelcome, reset]);
+  }, [state, markSolved, markRead, addXp, setLocale, setTheme, dismissWelcome, reset]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

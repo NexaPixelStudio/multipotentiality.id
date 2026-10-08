@@ -5,6 +5,7 @@ import Home from './pages/Home.jsx';
 import ModulePage from './pages/ModulePage.jsx';
 import ExercisePage from './pages/ExercisePage.jsx';
 import ReferencePage from './pages/ReferencePage.jsx';
+import VisualPage from './pages/VisualPage.jsx';
 import SandboxPage from './pages/SandboxPage.jsx';
 import { useRoute, href } from './lib/router.js';
 
@@ -28,6 +29,7 @@ export default function App() {
   else if (section === 'modul' && a) { page = <ModulePage id={a} />; }
   else if (section === 'latihan' && a && b) { page = <ExercisePage moduleId={a} n={b} />; }
   else if (section === 'kamus') { page = <ReferencePage query={query} />; active = 'kamus'; }
+  else if (section === 'visual') { page = <VisualPage />; active = 'visual'; }
   else if (section === 'bebas') { page = <SandboxPage />; active = 'bebas'; }
   else page = <NotFound />;
 

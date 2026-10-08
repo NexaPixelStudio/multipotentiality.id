@@ -73,6 +73,15 @@ C('=A2*B2', 'correct', exFill);
 C('=A2*B2+SUM(C3:C4)', 'correct', exFill); // referensi relatif ikut bergeser, tidak pernah menunjuk selnya sendiri
 C('=A2*B2+SUM($C$3:$C$3)', 'circular', exFill); // aman di C2, tetapi salinan di C3 menunjuk dirinya sendiri
 
+// generator soal Tebak Hasil: tiap ronde 5 soal, jawaban unik dan benar-benar ada di pilihan
+const { makeRound } = await import('../src/lib/quiz.js');
+for (let n = 0; n < 200; n += 1) {
+  const round = makeRound();
+  if (round.length !== 5) { fail += 1; console.log('ronde tidak lengkap', round.length); break; }
+  const bad = round.find((q) => q.options.length < 3 || new Set(q.options).size !== q.options.length || q.options[q.answerIndex] !== q.answer);
+  if (bad) { fail += 1; console.log('soal tebak hasil tidak valid', bad.formula); break; }
+}
+
 if (fail) {
   console.log(`\n${fail} tes penanda sel gagal`);
   process.exit(1);
