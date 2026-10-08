@@ -1,0 +1,156 @@
+import { D } from '../engine/values.js';
+
+// Data contoh untuk Kamus Rumus. Contoh rumus dihitung langsung terhadap tabel ini.
+export const SAMPLE_SHEET = {
+  name: 'Contoh',
+  rows: [
+    ['Produk', 'Kategori', 'Qty', 'Harga', 'Tanggal', null, 'Arus kas'],
+    ['Kopi', 'Minuman', 10, 20000, D('2025-01-15'), null, -100],
+    ['Teh', 'Minuman', 5, 15000, D('2025-02-20'), null, 40],
+    ['Roti', 'Makanan', 8, 12000, D('2025-02-28'), null, 50],
+    ['Kue', 'Makanan', 3, 30000, D('2025-03-31'), null, 60],
+    ['Susu', 'Minuman', 12, 18000, D('2025-04-01')]
+  ],
+  fmt: { D: 'rp', E: 'date' }
+};
+
+export const REF_CATEGORIES = [
+  'Hitung Dasar', 'Angka & Pembulatan', 'Logika', 'Hitung dengan Syarat', 'Teks', 'Tanggal & Waktu',
+  'Pencarian', 'Statistik', 'Array Dinamis', 'Keuangan', 'Cek & Error'
+];
+
+// [nama, kategori, sintaks, penjelasan sederhana, contoh, id modul]
+const raw = [
+  ['SUM', 'Hitung Dasar', 'SUM(angka1, [angka2], ...)', 'Menjumlahkan semua angka di sebuah range.', '=SUM(C2:C6)', 'fungsi-dasar'],
+  ['AVERAGE', 'Hitung Dasar', 'AVERAGE(angka1, [angka2], ...)', 'Mencari rata-rata dari sekumpulan angka.', '=AVERAGE(C2:C6)', 'fungsi-dasar'],
+  ['MIN', 'Hitung Dasar', 'MIN(angka1, [angka2], ...)', 'Mencari angka terkecil.', '=MIN(D2:D6)', 'fungsi-dasar'],
+  ['MAX', 'Hitung Dasar', 'MAX(angka1, [angka2], ...)', 'Mencari angka terbesar.', '=MAX(D2:D6)', 'fungsi-dasar'],
+  ['COUNT', 'Hitung Dasar', 'COUNT(nilai1, [nilai2], ...)', 'Menghitung berapa sel yang berisi angka.', '=COUNT(A2:D6)', 'fungsi-dasar'],
+  ['COUNTA', 'Hitung Dasar', 'COUNTA(nilai1, [nilai2], ...)', 'Menghitung berapa sel yang tidak kosong, apa pun isinya.', '=COUNTA(A2:A6)', 'fungsi-dasar'],
+  ['COUNTBLANK', 'Hitung Dasar', 'COUNTBLANK(range)', 'Menghitung berapa sel yang kosong.', '=COUNTBLANK(A2:E7)', 'fungsi-dasar'],
+  ['PRODUCT', 'Hitung Dasar', 'PRODUCT(angka1, [angka2], ...)', 'Mengalikan semua angka.', '=PRODUCT(2,3,4)', 'fungsi-dasar'],
+  ['SUMPRODUCT', 'Hitung Dasar', 'SUMPRODUCT(array1, [array2], ...)', 'Mengalikan angka yang sebaris dari beberapa range, lalu menjumlahkan semuanya.', '=SUMPRODUCT(C2:C6,D2:D6)', 'sumproduct'],
+  ['SUBTOTAL', 'Hitung Dasar', 'SUBTOTAL(kode_fungsi, range)', 'Seperti SUM/AVERAGE/dll, tapi hanya menghitung baris yang terlihat setelah difilter. Kode 9 = SUM, 1 = AVERAGE.', '=SUBTOTAL(9,C2:C6)', 'statistik'],
+
+  ['ROUND', 'Angka & Pembulatan', 'ROUND(angka, jumlah_digit)', 'Membulatkan ke angka terdekat. Digit negatif membulatkan ke puluhan, ratusan, ribuan.', '=ROUND(1234.567,-2)', 'pembulatan'],
+  ['ROUNDUP', 'Angka & Pembulatan', 'ROUNDUP(angka, jumlah_digit)', 'Selalu membulatkan ke atas (menjauhi nol).', '=ROUNDUP(50/12,0)', 'pembulatan'],
+  ['ROUNDDOWN', 'Angka & Pembulatan', 'ROUNDDOWN(angka, jumlah_digit)', 'Selalu membulatkan ke bawah (mendekati nol).', '=ROUNDDOWN(4567890,-3)', 'pembulatan'],
+  ['INT', 'Angka & Pembulatan', 'INT(angka)', 'Membuang desimal dan membulatkan ke bawah.', '=INT(7.75)', 'pembulatan'],
+  ['TRUNC', 'Angka & Pembulatan', 'TRUNC(angka, [jumlah_digit])', 'Memotong desimal tanpa membulatkan.', '=TRUNC(-2.9)', 'pembulatan'],
+  ['MOD', 'Angka & Pembulatan', 'MOD(angka, pembagi)', 'Sisa hasil bagi.', '=MOD(100,7)', 'pembulatan'],
+  ['ABS', 'Angka & Pembulatan', 'ABS(angka)', 'Nilai mutlak: membuang tanda minus.', '=ABS(-12)', 'pembulatan'],
+  ['SIGN', 'Angka & Pembulatan', 'SIGN(angka)', 'Menunjukkan tanda angka: 1 positif, -1 negatif, 0 nol.', '=SIGN(-8)', 'pembulatan'],
+  ['SQRT', 'Angka & Pembulatan', 'SQRT(angka)', 'Akar kuadrat.', '=SQRT(144)', 'pembulatan'],
+  ['POWER', 'Angka & Pembulatan', 'POWER(angka, pangkat)', 'Memangkatkan angka. Sama dengan operator ^.', '=POWER(2,10)', 'operator'],
+  ['CEILING', 'Angka & Pembulatan', 'CEILING(angka, kelipatan)', 'Membulatkan ke atas ke kelipatan tertentu.', '=CEILING(1234,500)', 'pembulatan'],
+  ['FLOOR', 'Angka & Pembulatan', 'FLOOR(angka, kelipatan)', 'Membulatkan ke bawah ke kelipatan tertentu.', '=FLOOR(1234,500)', 'pembulatan'],
+  ['MROUND', 'Angka & Pembulatan', 'MROUND(angka, kelipatan)', 'Membulatkan ke kelipatan terdekat.', '=MROUND(1234,500)', 'pembulatan'],
+  ['QUOTIENT', 'Angka & Pembulatan', 'QUOTIENT(angka, pembagi)', 'Hasil bagi bulat (tanpa sisa).', '=QUOTIENT(100,7)', 'pembulatan'],
+  ['PI', 'Angka & Pembulatan', 'PI()', 'Bilangan pi (3,14159...).', '=ROUND(PI(),4)', 'pembulatan'],
+
+  ['IF', 'Logika', 'IF(syarat, hasil_jika_benar, hasil_jika_salah)', 'Memilih satu dari dua hasil berdasarkan sebuah syarat.', '=IF(C2>=10,"Banyak","Sedikit")', 'if'],
+  ['IFS', 'Logika', 'IFS(syarat1, hasil1, syarat2, hasil2, ...)', 'Mengecek beberapa syarat berurutan. Syarat TRUE di akhir berarti "selain itu".', '=IFS(C2>=10,"A",C2>=5,"B",TRUE,"C")', 'logika'],
+  ['AND', 'Logika', 'AND(syarat1, syarat2, ...)', 'BENAR hanya kalau semua syarat benar.', '=AND(C2>5,D2>10000)', 'logika'],
+  ['OR', 'Logika', 'OR(syarat1, syarat2, ...)', 'BENAR kalau salah satu syarat benar.', '=OR(C3>50,D3>10000)', 'logika'],
+  ['NOT', 'Logika', 'NOT(syarat)', 'Membalik BENAR menjadi SALAH, dan sebaliknya.', '=NOT(B2="Minuman")', 'logika'],
+  ['XOR', 'Logika', 'XOR(syarat1, syarat2, ...)', 'BENAR kalau jumlah syarat yang benar ganjil.', '=XOR(TRUE,FALSE)', 'logika'],
+  ['IFERROR', 'Logika', 'IFERROR(rumus, nilai_jika_error)', 'Menampilkan nilai cadangan kalau rumus menghasilkan error.', '=IFERROR(C2/0,"Tidak bisa dibagi")', 'error-iferror'],
+  ['IFNA', 'Logika', 'IFNA(rumus, nilai_jika_NA)', 'Seperti IFERROR, tapi hanya untuk error #N/A.', '=IFNA(VLOOKUP("Tahu",A2:D6,4,FALSE),"Tidak ada")', 'error-iferror'],
+  ['SWITCH', 'Logika', 'SWITCH(nilai, cocok1, hasil1, cocok2, hasil2, ..., [lainnya])', 'Mencocokkan satu nilai dengan daftar pilihan, tanpa IF bersarang.', '=SWITCH(B2,"Minuman","M","Makanan","F","?")', 'switch-choose-let'],
+  ['CHOOSE', 'Logika', 'CHOOSE(nomor, pilihan1, pilihan2, ...)', 'Memilih sebuah nilai berdasarkan nomor urutnya.', '=CHOOSE(2,"Senin","Selasa","Rabu")', 'switch-choose-let'],
+  ['LET', 'Logika', 'LET(nama1, nilai1, ..., hasil)', 'Memberi nama pada hitungan agar rumus rapi dan tidak berulang.', '=LET(total,C2*D2,total*1.11)', 'switch-choose-let'],
+
+  ['COUNTIF', 'Hitung dengan Syarat', 'COUNTIF(range, kriteria)', 'Menghitung berapa sel yang memenuhi satu syarat.', '=COUNTIF(B2:B6,"Minuman")', 'countif-sumif'],
+  ['SUMIF', 'Hitung dengan Syarat', 'SUMIF(range_syarat, kriteria, [range_jumlah])', 'Menjumlahkan angka hanya pada baris yang memenuhi syarat.', '=SUMIF(B2:B6,"Minuman",C2:C6)', 'countif-sumif'],
+  ['AVERAGEIF', 'Hitung dengan Syarat', 'AVERAGEIF(range_syarat, kriteria, [range_rata])', 'Rata-rata hanya untuk baris yang memenuhi syarat.', '=AVERAGEIF(B2:B6,"Makanan",D2:D6)', 'countif-sumif'],
+  ['COUNTIFS', 'Hitung dengan Syarat', 'COUNTIFS(range1, kriteria1, range2, kriteria2, ...)', 'Menghitung baris yang memenuhi semua syarat.', '=COUNTIFS(B2:B6,"Minuman",C2:C6,">5")', 'multi-syarat'],
+  ['SUMIFS', 'Hitung dengan Syarat', 'SUMIFS(range_jumlah, range1, kriteria1, ...)', 'Menjumlahkan dengan banyak syarat. Range jumlah ditulis lebih dulu.', '=SUMIFS(C2:C6,B2:B6,"Minuman",D2:D6,">15000")', 'multi-syarat'],
+  ['AVERAGEIFS', 'Hitung dengan Syarat', 'AVERAGEIFS(range_rata, range1, kriteria1, ...)', 'Rata-rata dengan banyak syarat.', '=AVERAGEIFS(D2:D6,B2:B6,"Minuman",C2:C6,">=10")', 'multi-syarat'],
+  ['MAXIFS', 'Hitung dengan Syarat', 'MAXIFS(range_nilai, range1, kriteria1, ...)', 'Nilai terbesar di antara baris yang memenuhi syarat.', '=MAXIFS(D2:D6,B2:B6,"Minuman")', 'multi-syarat'],
+  ['MINIFS', 'Hitung dengan Syarat', 'MINIFS(range_nilai, range1, kriteria1, ...)', 'Nilai terkecil di antara baris yang memenuhi syarat.', '=MINIFS(D2:D6,B2:B6,"Makanan")', 'multi-syarat'],
+
+  ['LEFT', 'Teks', 'LEFT(teks, [jumlah])', 'Mengambil huruf dari sisi kiri.', '=LEFT("Excel",2)', 'teks-dasar'],
+  ['RIGHT', 'Teks', 'RIGHT(teks, [jumlah])', 'Mengambil huruf dari sisi kanan.', '=RIGHT("Excel",3)', 'teks-dasar'],
+  ['MID', 'Teks', 'MID(teks, mulai, jumlah)', 'Mengambil potongan teks dari tengah.', '=MID("Excel",2,3)', 'teks-dasar'],
+  ['LEN', 'Teks', 'LEN(teks)', 'Menghitung panjang teks (jumlah karakter).', '=LEN("Halo Dunia")', 'teks-dasar'],
+  ['TRIM', 'Teks', 'TRIM(teks)', 'Menghapus spasi berlebih di awal, akhir, dan tengah.', '=TRIM("  Budi   Santoso ")', 'teks-dasar'],
+  ['CLEAN', 'Teks', 'CLEAN(teks)', 'Membuang karakter tak tercetak.', '=CLEAN("Excel")', 'bersihkan-data'],
+  ['UPPER', 'Teks', 'UPPER(teks)', 'Mengubah semua huruf menjadi besar.', '=UPPER("excel")', 'teks-dasar'],
+  ['LOWER', 'Teks', 'LOWER(teks)', 'Mengubah semua huruf menjadi kecil.', '=LOWER("EXCEL")', 'teks-dasar'],
+  ['PROPER', 'Teks', 'PROPER(teks)', 'Huruf pertama tiap kata menjadi besar.', '=PROPER("siti aminah")', 'teks-dasar'],
+  ['EXACT', 'Teks', 'EXACT(teks1, teks2)', 'Mengecek apakah dua teks persis sama, termasuk huruf besar-kecil.', '=EXACT("Excel","excel")', 'teks-lanjut'],
+  ['REPT', 'Teks', 'REPT(teks, jumlah)', 'Mengulang teks beberapa kali.', '=REPT("*",5)', 'teks-lanjut'],
+  ['FIND', 'Teks', 'FIND(yang_dicari, teks, [mulai])', 'Mencari posisi sebuah karakter. Membedakan huruf besar-kecil.', '=FIND("@","rina@kantor.com")', 'teks-lanjut'],
+  ['SEARCH', 'Teks', 'SEARCH(yang_dicari, teks, [mulai])', 'Seperti FIND, tapi tidak membedakan huruf besar-kecil dan mengenal wildcard.', '=SEARCH("C","Excel")', 'teks-lanjut'],
+  ['SUBSTITUTE', 'Teks', 'SUBSTITUTE(teks, lama, baru, [urutan])', 'Mengganti teks tertentu dengan teks lain.', '=SUBSTITUTE("0812-3456","-","")', 'teks-lanjut'],
+  ['REPLACE', 'Teks', 'REPLACE(teks, mulai, jumlah, baru)', 'Mengganti sebagian teks berdasarkan posisi.', '=REPLACE("081234567890",5,4,"****")', 'teks-lanjut'],
+  ['TEXT', 'Teks', 'TEXT(nilai, format)', 'Mengubah angka atau tanggal menjadi teks dengan format tertentu.', '=TEXT(E2,"dddd, dd mmmm yyyy")', 'teks-lanjut'],
+  ['VALUE', 'Teks', 'VALUE(teks)', 'Mengubah teks berisi angka menjadi angka sungguhan.', '=VALUE("1500")+1', 'teks-lanjut'],
+  ['CONCATENATE', 'Teks', 'CONCATENATE(teks1, teks2, ...)', 'Menyambung beberapa teks. Versi lama dari CONCAT atau operator &.', '=CONCATENATE(A2," - ",B2)', 'operator'],
+  ['CONCAT', 'Teks', 'CONCAT(teks1, teks2, ...)', 'Menyambung banyak teks atau range menjadi satu.', '=CONCAT(A2:A4)', 'teks-lanjut'],
+  ['TEXTJOIN', 'Teks', 'TEXTJOIN(pemisah, abaikan_kosong, teks1, ...)', 'Menggabung banyak sel dengan pemisah.', '=TEXTJOIN(", ",TRUE,A2:A6)', 'teks-lanjut'],
+  ['TEXTBEFORE', 'Teks', 'TEXTBEFORE(teks, pembatas, [urutan])', 'Mengambil teks sebelum sebuah pembatas.', '=TEXTBEFORE("rina@kantor.com","@")', 'teks-lanjut'],
+  ['TEXTAFTER', 'Teks', 'TEXTAFTER(teks, pembatas, [urutan])', 'Mengambil teks sesudah sebuah pembatas.', '=TEXTAFTER("rina@kantor.com","@")', 'teks-lanjut'],
+  ['TEXTSPLIT', 'Teks', 'TEXTSPLIT(teks, pembatas_kolom)', 'Memecah teks menjadi beberapa sel menyamping.', '=TEXTSPLIT("a-b-c","-")', 'array-dinamis'],
+
+  ['TODAY', 'Tanggal & Waktu', 'TODAY()', 'Tanggal hari ini. Berubah otomatis setiap hari.', '=TODAY()-TODAY()', 'tanggal'],
+  ['NOW', 'Tanggal & Waktu', 'NOW()', 'Tanggal dan jam saat ini.', '=INT(NOW())-TODAY()', 'tanggal'],
+  ['DATE', 'Tanggal & Waktu', 'DATE(tahun, bulan, hari)', 'Merakit tanggal dari tiga angka.', '=TEXT(DATE(2025,7,20),"dd/mm/yyyy")', 'tanggal'],
+  ['YEAR', 'Tanggal & Waktu', 'YEAR(tanggal)', 'Mengambil tahun dari tanggal.', '=YEAR(E2)', 'tanggal'],
+  ['MONTH', 'Tanggal & Waktu', 'MONTH(tanggal)', 'Mengambil nomor bulan (1–12).', '=MONTH(E3)', 'tanggal'],
+  ['DAY', 'Tanggal & Waktu', 'DAY(tanggal)', 'Mengambil tanggal (1–31).', '=DAY(E4)', 'tanggal'],
+  ['WEEKDAY', 'Tanggal & Waktu', 'WEEKDAY(tanggal, [tipe])', 'Nomor hari dalam seminggu. Tipe 2: Senin = 1.', '=WEEKDAY(E2,2)', 'tanggal'],
+  ['DATEVALUE', 'Tanggal & Waktu', 'DATEVALUE(teks_tanggal)', 'Mengubah teks tanggal (2025-01-15) menjadi tanggal sungguhan.', '=DATEVALUE("2025-01-15")', 'tanggal'],
+  ['DAYS', 'Tanggal & Waktu', 'DAYS(tanggal_akhir, tanggal_awal)', 'Selisih hari antara dua tanggal.', '=DAYS(E3,E2)', 'tanggal'],
+  ['DATEDIF', 'Tanggal & Waktu', 'DATEDIF(mulai, selesai, "Y"/"M"/"D")', 'Selisih tahun, bulan, atau hari penuh. Cocok untuk umur dan masa kerja.', '=DATEDIF(E2,E6,"M")', 'tanggal'],
+  ['EDATE', 'Tanggal & Waktu', 'EDATE(tanggal, jumlah_bulan)', 'Tanggal yang sama beberapa bulan sebelum/sesudahnya.', '=TEXT(EDATE(E2,3),"dd/mm/yyyy")', 'tanggal'],
+  ['EOMONTH', 'Tanggal & Waktu', 'EOMONTH(tanggal, jumlah_bulan)', 'Tanggal terakhir pada suatu bulan.', '=TEXT(EOMONTH(E3,0),"dd/mm/yyyy")', 'tanggal'],
+  ['NETWORKDAYS', 'Tanggal & Waktu', 'NETWORKDAYS(mulai, selesai, [libur])', 'Menghitung hari kerja (Senin–Jumat).', '=NETWORKDAYS(E2,E3)', 'tanggal'],
+  ['WORKDAY', 'Tanggal & Waktu', 'WORKDAY(mulai, jumlah_hari, [libur])', 'Tanggal setelah sekian hari kerja.', '=TEXT(WORKDAY(E2,10),"dd/mm/yyyy")', 'tanggal'],
+
+  ['VLOOKUP', 'Pencarian', 'VLOOKUP(dicari, tabel, nomor_kolom, [FALSE])', 'Mencari di kolom pertama sebuah tabel, lalu mengambil isi dari kolom ke-n.', '=VLOOKUP("Roti",A2:D6,4,FALSE)', 'vlookup'],
+  ['HLOOKUP', 'Pencarian', 'HLOOKUP(dicari, tabel, nomor_baris, [FALSE])', 'Seperti VLOOKUP, tapi untuk tabel mendatar.', '=HLOOKUP("Qty",A1:E6,2,FALSE)', 'vlookup'],
+  ['LOOKUP', 'Pencarian', 'LOOKUP(dicari, range_cari, [range_hasil])', 'Pencarian sederhana versi lama untuk data terurut.', '=LOOKUP(8,C2:C6,A2:A6)', 'vlookup'],
+  ['XLOOKUP', 'Pencarian', 'XLOOKUP(dicari, range_cari, range_hasil, [jika_tidak_ada])', 'Pengganti VLOOKUP yang lebih sederhana dan bisa mencari ke arah mana pun.', '=XLOOKUP("Kue",A2:A6,D2:D6)', 'xlookup'],
+  ['MATCH', 'Pencarian', 'MATCH(dicari, range, [0])', 'Mencari nomor urut sebuah nilai di dalam range.', '=MATCH("Roti",A2:A6,0)', 'index-match'],
+  ['XMATCH', 'Pencarian', 'XMATCH(dicari, range, [mode_cocok])', 'Versi modern MATCH.', '=XMATCH("Roti",A2:A6)', 'xlookup'],
+  ['INDEX', 'Pencarian', 'INDEX(range, baris, [kolom])', 'Mengambil isi sel pada urutan tertentu dalam sebuah range.', '=INDEX(A2:D6,3,4)', 'index-match'],
+  ['ROW', 'Pencarian', 'ROW([sel])', 'Nomor baris sebuah sel.', '=ROW(C5)', 'index-match'],
+  ['COLUMN', 'Pencarian', 'COLUMN([sel])', 'Nomor kolom sebuah sel.', '=COLUMN(C5)', 'index-match'],
+  ['ROWS', 'Pencarian', 'ROWS(range)', 'Jumlah baris dalam sebuah range.', '=ROWS(A2:A6)', 'index-match'],
+  ['COLUMNS', 'Pencarian', 'COLUMNS(range)', 'Jumlah kolom dalam sebuah range.', '=COLUMNS(A1:E1)', 'index-match'],
+
+  ['MEDIAN', 'Statistik', 'MEDIAN(angka1, [angka2], ...)', 'Nilai tengah setelah data diurutkan.', '=MEDIAN(C2:C6)', 'statistik'],
+  ['MODE', 'Statistik', 'MODE(angka1, [angka2], ...)', 'Nilai yang paling sering muncul.', '=MODE(1,2,2,3,3,3)', 'statistik'],
+  ['LARGE', 'Statistik', 'LARGE(range, n)', 'Nilai terbesar ke-n.', '=LARGE(C2:C6,2)', 'statistik'],
+  ['SMALL', 'Statistik', 'SMALL(range, n)', 'Nilai terkecil ke-n.', '=SMALL(C2:C6,2)', 'statistik'],
+  ['RANK', 'Statistik', 'RANK(nilai, range, [urutan])', 'Peringkat sebuah nilai di antara semua nilai.', '=RANK(C3,C2:C6)', 'statistik'],
+  ['STDEV.S', 'Statistik', 'STDEV.S(angka1, [angka2], ...)', 'Simpangan baku sampel: seberapa menyebar data.', '=ROUND(STDEV.S(C2:C6),2)', 'statistik'],
+  ['STDEV.P', 'Statistik', 'STDEV.P(angka1, [angka2], ...)', 'Simpangan baku populasi.', '=ROUND(STDEV.P(C2:C6),2)', 'statistik'],
+
+  ['FILTER', 'Array Dinamis', 'FILTER(data, syarat, [jika_kosong])', 'Menyaring baris yang memenuhi syarat. Hasilnya mengalir ke sel di bawahnya.', '=FILTER(A2:A6,C2:C6>7)', 'array-dinamis'],
+  ['SORT', 'Array Dinamis', 'SORT(data, [kolom_urut], [arah])', 'Mengurutkan data. Arah 1 naik, -1 turun.', '=SORT(C2:C6,1,-1)', 'array-dinamis'],
+  ['SORTBY', 'Array Dinamis', 'SORTBY(data, urut_berdasarkan, [arah])', 'Mengurutkan data berdasarkan kolom lain.', '=SORTBY(A2:A6,C2:C6,-1)', 'array-dinamis'],
+  ['UNIQUE', 'Array Dinamis', 'UNIQUE(data)', 'Daftar nilai unik tanpa duplikat.', '=UNIQUE(B2:B6)', 'array-dinamis'],
+  ['SEQUENCE', 'Array Dinamis', 'SEQUENCE(baris, [kolom], [mulai], [kenaikan])', 'Membuat deret angka otomatis.', '=SEQUENCE(5)', 'array-dinamis'],
+  ['TRANSPOSE', 'Array Dinamis', 'TRANSPOSE(range)', 'Memutar baris menjadi kolom dan sebaliknya.', '=TRANSPOSE(C2:C4)', 'array-dinamis'],
+  ['TAKE', 'Array Dinamis', 'TAKE(data, baris, [kolom])', 'Mengambil beberapa baris pertama (atau terakhir bila negatif).', '=TAKE(A2:A6,2)', 'array-dinamis'],
+  ['CHOOSECOLS', 'Array Dinamis', 'CHOOSECOLS(data, kolom1, [kolom2], ...)', 'Memilih kolom tertentu dari sebuah tabel.', '=CHOOSECOLS(A2:D3,1,4)', 'array-dinamis'],
+
+  ['PMT', 'Keuangan', 'PMT(rate, nper, pv)', 'Cicilan per periode untuk sebuah pinjaman. Hasil negatif berarti uang keluar.', '=ROUND(-PMT(0.12/12,12,100000000),0)', 'keuangan'],
+  ['FV', 'Keuangan', 'FV(rate, nper, pmt, [pv])', 'Nilai di masa depan dari setoran rutin.', '=ROUND(FV(0.06/12,60,-1000000),0)', 'keuangan'],
+  ['PV', 'Keuangan', 'PV(rate, nper, pmt, [fv])', 'Nilai sekarang dari uang di masa depan.', '=ROUND(PV(0.1,3,0,-100000000),0)', 'keuangan'],
+  ['NPV', 'Keuangan', 'NPV(rate, arus1, arus2, ...)', 'Nilai sekarang dari arus kas masa depan. Kurangi investasi awal secara terpisah.', '=ROUND(NPV(0.1,G3:G5)+G2,2)', 'keuangan'],
+  ['IRR', 'Keuangan', 'IRR(arus_kas)', 'Tingkat pengembalian internal sebuah investasi.', '=ROUND(IRR(G2:G5),3)', 'keuangan'],
+
+  ['ISNUMBER', 'Cek & Error', 'ISNUMBER(nilai)', 'Apakah isinya angka?', '=ISNUMBER(C2)', 'error-iferror'],
+  ['ISTEXT', 'Cek & Error', 'ISTEXT(nilai)', 'Apakah isinya teks?', '=ISTEXT(A2)', 'error-iferror'],
+  ['ISBLANK', 'Cek & Error', 'ISBLANK(sel)', 'Apakah sel kosong?', '=ISBLANK(F2)', 'error-iferror'],
+  ['ISLOGICAL', 'Cek & Error', 'ISLOGICAL(nilai)', 'Apakah isinya BENAR/SALAH?', '=ISLOGICAL(TRUE)', 'error-iferror'],
+  ['ISERROR', 'Cek & Error', 'ISERROR(nilai)', 'Apakah hasilnya error apa pun?', '=ISERROR(1/0)', 'error-iferror'],
+  ['ISNA', 'Cek & Error', 'ISNA(nilai)', 'Apakah hasilnya error #N/A?', '=ISNA(VLOOKUP("Tahu",A2:D6,4,FALSE))', 'error-iferror'],
+  ['NA', 'Cek & Error', 'NA()', 'Sengaja menghasilkan error #N/A.', '=IFERROR(NA(),"ok")', 'error-iferror']
+];
+
+export const REFERENCE = raw.map(([name, cat, syntax, desc, ex, module]) => ({ name, cat, syntax, desc, ex, module }));
+export const REFERENCE_BY_NAME = Object.fromEntries(REFERENCE.map((r) => [r.name, r]));

@@ -1,69 +1,97 @@
-import SeparatorToggle from './SeparatorToggle';
-import LearningModeSelector from './LearningModeSelector';
+import React from 'react';
+import { href } from '../lib/router.js';
+import { useProgress } from '../state/progress.jsx';
 
-export default function Header({
-  stats,
-  onReset,
-  darkMode,
-  onToggleDark,
-  separatorMode,
-  onSeparatorChange,
-  learningMode,
-  onLearningModeChange
-}) {
+export function Logo() {
   return (
-    <header className="sticky top-0 z-30 border-b border-coach-line/80 bg-coach-beige/90 backdrop-blur dark:border-white/10 dark:bg-coach-ink/92">
-      <div className="mx-auto flex max-w-[1500px] flex-col gap-4 px-4 py-4 lg:px-6">
-        <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-coach-green text-lg font-black text-white shadow-soft">fx</div>
-              <div>
-                <h1 className="text-2xl font-black tracking-tight text-coach-ink dark:text-white sm:text-3xl">Formula Coach</h1>
-                <p className="max-w-2xl text-sm text-black/60 dark:text-white/62">
-                  Belajar rumus Excel dari dasar sampai profesional dengan latihan langsung.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={onToggleDark}
-              title={darkMode ? 'Mode Terang' : 'Mode Gelap'}
-              aria-label={darkMode ? 'Ganti ke mode terang' : 'Ganti ke mode gelap'}
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-coach-line bg-white text-lg transition hover:border-coach-green dark:border-white/10 dark:bg-white/5"
-            >
-              {darkMode ? '☀️' : '🌙'}
-            </button>
-            <button
-              onClick={onReset}
-              className="rounded-full bg-coach-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-coach-green dark:bg-white dark:text-coach-ink"
-            >
-              Reset Data
-            </button>
-          </div>
-        </div>
-
-        <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto] lg:items-center">
-          <div className="grid grid-cols-3 gap-2 sm:max-w-md">
-            <Stat label="Total rumus" value={stats.total} />
-            <Stat label="Dikuasai" value={stats.mastered} />
-            <Stat label="Progress" value={`${stats.percent}%`} />
-          </div>
-          <SeparatorToggle value={separatorMode} onChange={onSeparatorChange} />
-          <LearningModeSelector value={learningMode} onChange={onLearningModeChange} />
-        </div>
-      </div>
-    </header>
+    <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brand-ink" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round">
+        <path d="M6 5l12 14M18 5L6 19" />
+      </svg>
+    </span>
   );
 }
 
-function Stat({ label, value }) {
+const NAV = [
+  { key: '', label: 'Belajar', icon: '📚' },
+  { key: 'kamus', label: 'Kamus Rumus', icon: '📖' },
+  { key: 'bebas', label: 'Ruang Coba', icon: '🧪' }
+];
+
+const ThemeIcon = ({ theme }) => (theme === 'dark' ? '🌙' : theme === 'light' ? '☀️' : '🌓');
+
+export default function Header({ active }) {
+  const p = useProgress();
+  const nextTheme = { auto: 'light', light: 'dark', dark: 'auto' }[p.theme];
+  const themeName = { auto: 'otomatis', light: 'terang', dark: 'gelap' }[p.theme];
+
   return (
-    <div className="flex min-h-[64px] flex-col items-center justify-center rounded-2xl border border-coach-green/15 bg-coach-greenSoft px-3 py-3 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.78)] transition hover:border-coach-green/28 hover:bg-[#DFF0E6] dark:border-emerald-300/15 dark:bg-emerald-950/35 dark:shadow-none">
-      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-coach-green/60 dark:text-emerald-200/60">{label}</p>
-      <p className="mt-1 text-xl font-black leading-none text-coach-ink dark:text-white">{value}</p>
-    </div>
+    <>
+      <header className="sticky top-0 z-30 border-b border-line bg-bg/90 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5">
+          <a href={href('')} className="flex items-center gap-2.5 rounded-lg pr-2 font-bold" aria-label="Beranda Belajar Excel">
+            <Logo />
+            <span className="text-lg leading-tight">Belajar <span className="text-brand">Excel</span></span>
+          </a>
+
+          <nav className="ml-4 hidden items-center gap-1 md:flex" aria-label="Menu utama">
+            {NAV.map((n) => (
+              <a
+                key={n.key}
+                href={href(n.key)}
+                aria-current={active === n.key ? 'page' : undefined}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-sunken ${active === n.key ? 'bg-brand-soft text-brand' : 'text-muted'}`}
+              >
+                {n.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="ml-auto flex items-center gap-2">
+            <span className="chip hidden sm:inline-flex" title="Poin pengalaman">⭐ {p.xp} XP</span>
+            {p.streak.count > 0 && <span className="chip hidden sm:inline-flex" title="Hari belajar beruntun">🔥 {p.streak.count}</span>}
+
+            <div className="flex overflow-hidden rounded-lg border border-line text-xs font-semibold" role="group" aria-label="Gaya penulisan rumus">
+              {[['id', 'ID  ;'], ['en', 'EN  ,']].map(([val, label]) => (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => p.setLocale(val)}
+                  aria-pressed={p.locale === val}
+                  title={val === 'id' ? 'Excel versi Indonesia: pemisah titik koma (;)' : 'Excel versi Inggris: pemisah koma (,)'}
+                  className={`px-2.5 py-2 transition ${p.locale === val ? 'bg-brand text-brand-ink' : 'bg-surface text-muted hover:bg-sunken'}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => p.setTheme(nextTheme)}
+              className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-surface text-base hover:bg-sunken"
+              aria-label={`Tema ${themeName}. Klik untuk mengganti.`}
+              title={`Tema: ${themeName}`}
+            >
+              <ThemeIcon theme={p.theme} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-line bg-surface/95 backdrop-blur md:hidden" aria-label="Menu utama">
+        {NAV.map((n) => (
+          <a
+            key={n.key}
+            href={href(n.key)}
+            aria-current={active === n.key ? 'page' : undefined}
+            className={`flex flex-col items-center gap-0.5 py-2 text-xs font-semibold ${active === n.key ? 'text-brand' : 'text-muted'}`}
+          >
+            <span className="text-lg" aria-hidden="true">{n.icon}</span>
+            {n.label}
+          </a>
+        ))}
+      </nav>
+    </>
   );
 }
