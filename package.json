@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "verify": "node scripts/engine-tests.mjs && node scripts/verify.mjs"
+    "verify": "node scripts/engine-tests.mjs && node scripts/ref-tests.mjs && node scripts/verify.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
