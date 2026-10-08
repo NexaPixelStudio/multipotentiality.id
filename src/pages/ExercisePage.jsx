@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { LEVELS, MODULE_BY_ID, MODULES } from '../content/index.js';
 import { createContext } from '../engine/evaluator.js';
-import { parse, walk } from '../engine/parser.js';
 import { checkFormula, previewFormula } from '../engine/check.js';
 import { parseAddr } from '../engine/refs.js';
 import Sheet from '../components/Sheet.jsx';
 import FormulaBar from '../components/FormulaBar.jsx';
 import Icon from '../components/Icon.jsx';
 import { useRefPicker } from '../lib/picker.js';
+import { formulaRefs } from '../lib/formulaRefs.js';
 import { Rich, localizeFormula, localizeText, seededShuffle } from '../lib/text.jsx';
 import { href } from '../lib/router.js';
 import { earnXp, useProgress } from '../state/progress.jsx';
@@ -175,22 +175,6 @@ function Success({ ex, result, xp, locale, revealed, onNext, nav }) {
 
 // ---------------------------------------------------------------- Soal rumus
 
-function sheetRefs(input, locale, targetSheet) {
-  if (!input.startsWith('=')) return [];
-  let ast;
-  try {
-    ast = parse(input, locale);
-  } catch {
-    return [];
-  }
-  const out = [];
-  walk(ast, (n) => {
-    if (n.t === 'cell') out.push({ sheet: n.sheet || targetSheet, r1: n.r, c1: n.c, r2: n.r, c2: n.c });
-    else if (n.t === 'range') out.push({ sheet: n.sheet || targetSheet, r1: Math.min(n.a.r, n.b.r), c1: Math.min(n.a.c, n.b.c), r2: Math.max(n.a.r, n.b.r), c2: Math.max(n.a.c, n.b.c) });
-  });
-  return out;
-}
-
 function FormulaExercise({ ex, locale, p }) {
   const nav = useNav(ex);
   const t = useMemo(() => ({ ...parseAddr(ex.target), sheet: ex.targetSheet || ex.sheets[0].name }), [ex]);
@@ -222,7 +206,7 @@ function FormulaExercise({ ex, locale, p }) {
     return m;
   }, [preview, t, ex.resultFmt]);
 
-  const refs = useMemo(() => sheetRefs(input, locale, t.sheet), [input, locale, t.sheet]);
+  const refs = useMemo(() => formulaRefs(input, locale, t.sheet), [input, locale, t.sheet]);
 
   const submit = () => {
     if (state !== 'idle') return;
