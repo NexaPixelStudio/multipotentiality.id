@@ -26,7 +26,7 @@ const multiSyarat = {
   level: 3,
   icon: 'layers',
   title: 'Fungsi dengan Syarat Ganda',
-  tagline: 'Gunakan COUNTIFS, SUMIFS, AVERAGEIFS, MAXIFS, dan MINIFS untuk menganalisis data dengan beberapa kriteria sekaligus.',
+  tagline: 'Analisis data dengan beberapa kriteria sekaligus.',
   why: 'Pertanyaan bisnis jarang hanya memiliki satu syarat, misalnya omzet produk Laptop di Jakarta pada bulan Januari. Fungsi berakhiran "S" dirancang untuk kasus seperti ini dan termasuk kemampuan yang paling sering dibutuhkan di dunia kerja.',
   minutes: 15,
   lessons: [
@@ -211,7 +211,7 @@ const vlookup = {
   level: 3,
   icon: 'search',
   title: 'VLOOKUP dan HLOOKUP',
-  tagline: 'Cari dan ambil data dari tabel lain secara otomatis menggunakan VLOOKUP dan HLOOKUP.',
+  tagline: 'Ambil data dari tabel lain dengan VLOOKUP.',
   why: 'Misalnya Anda memiliki daftar kode produk dan ingin harga tampil secara otomatis. Itulah fungsi VLOOKUP, salah satu fungsi yang paling banyak digunakan di Excel.',
   minutes: 16,
   lessons: [
@@ -407,7 +407,7 @@ const indexMatch = {
   level: 3,
   icon: 'crosshair',
   title: 'INDEX dan MATCH',
-  tagline: 'Gunakan kombinasi INDEX dan MATCH untuk pencarian data yang lebih fleksibel dibanding VLOOKUP.',
+  tagline: 'Pencarian fleksibel dengan INDEX dan MATCH.',
   why: 'Banyak profesional memilih INDEX-MATCH karena dapat mencari ke arah mana pun dan tetap berfungsi ketika kolom disisipkan.',
   minutes: 14,
   lessons: [
@@ -566,7 +566,7 @@ const tanggal = {
   level: 3,
   icon: 'calendar',
   title: 'Tanggal dan Waktu',
-  tagline: 'Hitung jatuh tempo, masa kerja, umur, dan hari kerja dengan DATE, DATEDIF, EDATE, EOMONTH, NETWORKDAYS, dan TEXT.',
+  tagline: 'Jatuh tempo, masa kerja, umur, dan hari kerja.',
   why: 'Jatuh tempo faktur, masa kerja, umur, hari kerja, dan laporan bulanan semuanya bergantung pada tanggal. Excel menyediakan banyak fungsi untuk mengolahnya.',
   minutes: 16,
   lessons: [
@@ -774,7 +774,7 @@ const teksLanjut = {
   level: 3,
   icon: 'scissors',
   title: 'Fungsi Teks Lanjutan',
-  tagline: 'Cari, ganti, pecah, dan gabungkan teks menggunakan FIND, SEARCH, SUBSTITUTE, REPLACE, TEXT, TEXTJOIN, dan VALUE.',
+  tagline: 'Cari, ganti, dan gabungkan teks dengan FIND dan TEXTJOIN.',
   why: 'Data dari sistem lain sering menyatu dalam satu kolom, misalnya nama dan email atau kode dan kota. Fungsi teks lanjutan memungkinkan Anda memisahkan dan merapikannya secara otomatis.',
   minutes: 15,
   lessons: [
@@ -955,7 +955,7 @@ const statistik = {
   level: 3,
   icon: 'bar-chart',
   title: 'Statistik dan Peringkat',
-  tagline: 'Gunakan MEDIAN, MODE, LARGE, SMALL, RANK, dan STDEV untuk membaca sebaran data dan menentukan peringkat.',
+  tagline: 'Median, peringkat, dan sebaran data.',
   why: 'Rata-rata dapat menyesatkan. Gaji seorang direktur, misalnya, dapat menaikkan rata-rata gaji satu perusahaan. Statistik dasar membantu Anda membaca data secara lebih akurat.',
   minutes: 14,
   lessons: [

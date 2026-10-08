@@ -33,7 +33,7 @@ const xlookup = {
   level: 4,
   icon: 'zap',
   title: 'XLOOKUP dan Pencarian Modern',
-  tagline: 'Gunakan XLOOKUP sebagai pengganti VLOOKUP yang lebih sederhana dan lebih fleksibel.',
+  tagline: 'Pengganti VLOOKUP yang lebih sederhana.',
   why: 'XLOOKUP mengatasi keterbatasan VLOOKUP: tidak memerlukan nomor kolom, dapat mencari ke arah kiri, dan menyediakan pesan bawaan jika data tidak ditemukan.',
   minutes: 14,
   lessons: [
@@ -187,7 +187,7 @@ const sumproduct = {
   level: 4,
   icon: 'grid',
   title: 'SUMPRODUCT dan Perhitungan Berbobot',
-  tagline: 'Kalikan data per baris lalu jumlahkan hasilnya dalam satu rumus, tanpa kolom bantu.',
+  tagline: 'Kalikan lalu jumlahkan data dalam satu rumus.',
   why: 'Total omzet dihitung dari kuantitas dikali harga pada setiap baris, lalu dijumlahkan. Biasanya hal ini memerlukan kolom bantu. SUMPRODUCT menyelesaikannya dalam satu rumus dan mendukung banyak syarat.',
   minutes: 14,
   lessons: [
@@ -314,7 +314,7 @@ const arrayDinamis = {
   level: 4,
   icon: 'waves',
   title: 'Array Dinamis',
-  tagline: 'Gunakan FILTER, SORT, UNIQUE, dan SEQUENCE untuk menyaring, mengurutkan, dan membuat daftar secara otomatis.',
+  tagline: 'Saring, urutkan, dan buat daftar otomatis.',
   why: 'Dahulu, mengurutkan, menyaring, dan membuat daftar unik memerlukan menu atau rumus yang rumit. Dengan array dinamis, satu rumus menghasilkan daftar lengkap yang ikut diperbarui saat data berubah.',
   minutes: 18,
   lessons: [
@@ -484,7 +484,7 @@ const switchChoose = {
   level: 4,
   icon: 'list',
   title: 'SWITCH, CHOOSE, dan LET',
-  tagline: 'Tulis rumus yang lebih ringkas, rapi, dan mudah dibaca dengan SWITCH, CHOOSE, dan LET.',
+  tagline: 'Rumus lebih ringkas dengan SWITCH, CHOOSE, dan LET.',
   why: 'IF bersarang yang panjang sulit dibaca dan dipelihara. SWITCH dan CHOOSE menyederhanakannya untuk kasus tertentu, sedangkan LET memberi nama pada bagian perhitungan agar rumus tidak berulang.',
   minutes: 14,
   lessons: [
@@ -629,7 +629,7 @@ const bersihkanData = {
   level: 4,
   icon: 'sparkles',
   title: 'Pembersihan Data',
-  tagline: 'Ubah data yang tidak rapi menjadi data yang siap dianalisis dengan kombinasi fungsi teks.',
+  tagline: 'Rapikan data agar siap dianalisis.',
   why: 'Sebagian besar waktu analisis data dihabiskan untuk membersihkan data. Pengguna Excel yang andal tahu cara merapikannya dengan cepat dan aman.',
   minutes: 16,
   lessons: [

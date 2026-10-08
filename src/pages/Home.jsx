@@ -125,7 +125,7 @@ export default function Home() {
                 <div className="mb-4 flex items-center gap-3">
                   <IconBadge name={l.icon} tone={l.tone} size={26} className="h-12 w-12" />
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-xl font-bold">Level {l.id} — {l.name}</h3>
+                    <h3 className="text-xl font-bold">Level {l.id}: {l.name}</h3>
                     <p className="text-sm text-muted">{l.desc}</p>
                   </div>
                   <div className="hidden w-40 sm:block">
