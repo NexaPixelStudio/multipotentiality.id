@@ -226,7 +226,7 @@ const operator = {
       title: 'Total bayar dengan PPN',
       story: 'Barang di toko dikenai PPN 11%.',
       task: 'Di sel **B3**, hitung **total bayar** = harga barang ditambah PPN-nya.',
-      sheets: [sheet('PPN', [['Harga Barang', 500000], ['PPN', 0.11], ['Total Bayar', '']], { B: 'rp' })],
+      sheets: [sheet('PPN', [['Harga Barang', 500000], ['PPN', 0.11], ['Total Bayar', '']], { B: 'rp', B2: 'pct' })],
       target: 'B3',
       resultFmt: 'rp',
       expect: 555000,
