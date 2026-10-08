@@ -59,9 +59,9 @@ export default function ModulePage({ id }) {
         </div>
       </header>
 
-      <section id="materi" className="scroll-mt-24 space-y-8" aria-label="Materi">
+      <section id="materi" className="scroll-mt-24 space-y-8 2xl:columns-2 2xl:gap-8 2xl:space-y-0" aria-label="Materi">
         {m.lessons.map((l, i) => (
-          <section key={l.title} className="card rise p-6 sm:p-8" style={{ '--i': Math.min(i, 3) }} aria-labelledby={`l-${i}`}>
+          <section key={l.title} className="card rise p-6 sm:p-8 2xl:mb-8 2xl:break-inside-avoid" style={{ '--i': Math.min(i, 3) }} aria-labelledby={`l-${i}`}>
             <h2 id={`l-${i}`} className="mb-4 flex items-center gap-3 text-xl font-bold">
               <span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-brand text-sm font-bold text-brand-ink">{i + 1}</span>
               {l.title}

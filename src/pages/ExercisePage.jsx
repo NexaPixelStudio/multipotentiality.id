@@ -261,7 +261,8 @@ function FormulaExercise({ ex, locale, p }) {
   const tabs = ex.sheets;
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 xl:grid xl:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] xl:items-start xl:gap-6 xl:space-y-0">
+      <div className="space-y-5">
       <section className="card p-5 sm:p-7">
         {ex.story && <p className="mb-2 rounded-lg bg-sunken px-3 py-2 text-sm text-muted"><Rich text={ex.story} locale={locale} /></p>}
         <p className="text-lg font-semibold leading-snug"><Rich text={ex.task} locale={locale} /></p>
@@ -311,7 +312,9 @@ function FormulaExercise({ ex, locale, p }) {
         ))}
         {tabs.length > 1 && tab !== t.sheet && <p className="border-t border-line bg-info-soft px-4 py-2 text-xs text-info">Kamu sedang melihat sheet lain. Klik sel di sini untuk menyisipkan alamatnya ke rumus (otomatis diberi nama sheet).</p>}
       </section>
+      </div>
 
+      <div className="space-y-5">
       <section className="space-y-3" aria-label="Jawaban">
         <FormulaBar
           value={input}
@@ -363,6 +366,7 @@ function FormulaExercise({ ex, locale, p }) {
       </div>
 
       {state !== 'idle' && <Success ex={ex} result={result} xp={xp} locale={locale} revealed={state === 'revealed'} nav={nav} onNext={() => {}} />}
+      </div>
     </div>
   );
 }
@@ -397,7 +401,7 @@ function ChoiceExercise({ ex, locale, p }) {
         <p className="text-lg font-semibold leading-snug"><Rich text={ex.q} locale={locale} /></p>
       </section>
 
-      <div className="grid gap-3" role="group" aria-label="Pilihan jawaban">
+      <div className="grid gap-3 md:grid-cols-2" role="group" aria-label="Pilihan jawaban">
         {order.map((idx, pos) => {
           const isWrong = wrong.includes(idx);
           const isRight = solved && idx === ex.answer;

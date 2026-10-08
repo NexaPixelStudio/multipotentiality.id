@@ -37,8 +37,8 @@ export default function App() {
         Langsung ke konten
       </a>
       <Header active={active} />
-      <main id="utama" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 pb-28 pt-6 outline-none md:pb-14 md:pt-8">
-        <div key={parts.join("/")} className="page-enter mx-auto max-w-4xl lg:max-w-none">{page}</div>
+      <main id="utama" tabIndex={-1} className="gutter w-full flex-1 pb-28 pt-6 outline-none md:pb-14 md:pt-8">
+        <div key={parts.join("/")} className="page-enter">{page}</div>
       </main>
       <footer className="border-t border-line px-4 py-6 pb-24 text-center text-sm text-muted md:pb-6">
         Progres belajarmu tersimpan di browser ini saja. Tidak ada akun, tidak ada data yang dikirim ke mana pun.

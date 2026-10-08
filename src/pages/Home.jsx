@@ -71,7 +71,7 @@ export default function Home() {
           <div className="rise" style={{ '--i': 0 }}>
             <p className="chip mb-3 gap-2"><Icon name="sparkles" size={13} className="text-brand" />Gratis, langsung di browser, bahasa Indonesia</p>
             <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-[2.6rem]">Belajar Excel dari nol sampai mahir, <span className="grad-text">dengan cara yang menyenangkan.</span></h1>
-            <p className="mt-4 max-w-xl text-lg text-muted">
+            <p className="mt-4 max-w-2xl text-lg text-muted">
               {MODULES.length} modul bertahap, {p.totalExercises} soal latihan dengan data nyata, dan penjelasan yang dibuat supaya mudah dipahami, bahkan kalau kamu belum pernah membuka Excel.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -133,7 +133,7 @@ export default function Home() {
                     <Bar pct={Math.round((solved / total) * 100)} />
                   </div>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="auto-grid">
                   {mods.map((m, mi) => {
                     const st = p.moduleStats(m);
                     return (
