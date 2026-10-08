@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { addr } from '../engine/refs.js';
+import { addr, numToCol } from '../engine/refs.js';
+import { MAX_COL, MAX_ROW } from './formulaRefs.js';
 
 const OPENERS = '=(,;+-*/^&<>:';
 
@@ -12,12 +13,30 @@ export function useRefPicker({ inputRef, value, setValue, homeSheet }) {
   const drag = useRef(null);
   const [live, setLive] = useState(null);
 
-  const refText = useCallback((sheet, r1, c1, r2, c2) => {
-    const a = addr(r1, c1);
-    const t = r1 === r2 && c1 === c2 ? a : `${a}:${addr(r2, c2)}`;
+  const withSheet = useCallback((sheet, t) => {
     if (sheet === homeSheet) return t;
     return `${/[^A-Za-z0-9_]/.test(sheet) ? `'${sheet}'` : sheet}!${t}`;
   }, [homeSheet]);
+
+  const refText = useCallback((sheet, r1, c1, r2, c2) => {
+    const a = addr(r1, c1);
+    return withSheet(sheet, r1 === r2 && c1 === c2 ? a : `${a}:${addr(r2, c2)}`);
+  }, [withSheet]);
+
+  // kolom penuh (B:B, B:D) atau baris penuh (2:2, 2:5), seperti klik header di Excel
+  const bandText = useCallback((sheet, kind, a, b) => {
+    const lo = Math.min(a, b);
+    const hi = Math.max(a, b);
+    return withSheet(sheet, kind === 'col' ? `${numToCol(lo)}:${numToCol(hi)}` : `${lo}:${hi}`);
+  }, [withSheet]);
+
+  const bandRange = (sheet, kind, a, b) => {
+    const lo = Math.min(a, b);
+    const hi = Math.max(a, b);
+    return kind === 'col'
+      ? { sheet, r1: 1, c1: lo, r2: MAX_ROW, c2: hi }
+      : { sheet, r1: lo, c1: 1, r2: hi, c2: MAX_COL };
+  };
 
   const write = useCallback((start, end, text) => {
     const el = inputRef.current;
@@ -67,7 +86,7 @@ export function useRefPicker({ inputRef, value, setValue, homeSheet }) {
 
   const onEnter = useCallback((sheet, r, c) => {
     const d = drag.current;
-    if (!d || d.sheet !== sheet || !last.current) return;
+    if (!d || d.kind || d.sheet !== sheet || !last.current) return;
     const r1 = Math.min(d.r, r);
     const r2 = Math.max(d.r, r);
     const c1 = Math.min(d.c, c);
@@ -76,9 +95,30 @@ export function useRefPicker({ inputRef, value, setValue, homeSheet }) {
     setLive({ sheet, r1, c1, r2, c2 });
   }, [refText, write]);
 
+  // klik header kolom/baris: menyisipkan B:B atau 2:2; seret ke header lain untuk memperluas
+  const onHeaderDown = useCallback((sheet, kind, idx, e) => {
+    if (!canPick()) return false;
+    e.preventDefault();
+    const el = inputRef.current;
+    const pos = el.selectionStart ?? valueRef.current.length;
+    const text = bandText(sheet, kind, idx, idx);
+    if (last.current && last.current.end === pos) write(last.current.start, last.current.end, text);
+    else write(pos, el.selectionEnd ?? pos, text);
+    drag.current = { sheet, kind, from: idx };
+    setLive(bandRange(sheet, kind, idx, idx));
+    return true;
+  }, [bandText, canPick, inputRef, write]);
+
+  const onHeaderEnter = useCallback((sheet, kind, idx) => {
+    const d = drag.current;
+    if (!d || d.kind !== kind || d.sheet !== sheet || !last.current) return;
+    write(last.current.start, last.current.end, bandText(sheet, kind, d.from, idx));
+    setLive(bandRange(sheet, kind, d.from, idx));
+  }, [bandText, write]);
+
   const reset = useCallback(() => {
     last.current = null;
   }, []);
 
-  return { onDown, onEnter, live, canPick, reset };
+  return { onDown, onEnter, onHeaderDown, onHeaderEnter, live, canPick, reset };
 }

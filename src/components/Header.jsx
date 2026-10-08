@@ -15,6 +15,7 @@ export function Logo() {
 
 const NAV = [
   { key: '', label: 'Belajar', icon: 'book' },
+  { key: 'visual', label: 'Lab Visual', icon: 'play' },
   { key: 'kamus', label: 'Kamus Rumus', icon: 'book-open' },
   { key: 'bebas', label: 'Ruang Coba', icon: 'flask' }
 ];
@@ -76,7 +77,7 @@ export default function Header({ active }) {
         </div>
       </header>
 
-      <nav className="tabbar fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-line bg-surface/85 backdrop-blur-xl backdrop-saturate-150 md:hidden" aria-label="Menu utama">
+      <nav className="tabbar fixed inset-x-0 bottom-0 z-30 grid grid-cols-4 border-t border-line bg-surface/85 backdrop-blur-xl backdrop-saturate-150 md:hidden" aria-label="Menu utama">
         {NAV.map((n) => (
           <a key={n.key} href={href(n.key)} aria-current={active === n.key ? 'page' : undefined} className="tab-item">
             <span className="tab-pill"><Icon name={n.icon} size={21} /></span>

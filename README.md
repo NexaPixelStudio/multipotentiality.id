@@ -8,6 +8,7 @@ Semua berjalan di browser (React + Vite + Tailwind). Tidak ada server, akun, ata
 
 - **5 level, 28 modul, 289 soal**: Dasar Excel, Rumus Esensial, Analisis Data, Rumus Lanjutan, dan Penerapan Profesional.
   Setiap modul punya materi berperumpamaan (analogi sehari-hari), contoh yang dihitung langsung, lalu latihan.
+- **Lab Visual** (`#/visual`): animasi langkah demi langkah untuk SUM, menyalin rumus, tanda `$`, IF, VLOOKUP, SUMIF, dan urutan operasi, ditambah game **Tebak Hasil** (5 soal acak per ronde yang jawabannya dihitung mesin rumus).
 - **Soal dinilai dari hasilnya**, bukan dari kecocokan teks. Cara lain yang benar tetap diterima (misalnya `VLOOKUP`, `XLOOKUP`, atau `INDEX-MATCH` untuk soal yang sama).
 - **Mesin rumus sendiri** (`src/engine`) yang membaca dan menghitung lebih dari 120 fungsi Excel, termasuk `XLOOKUP`, `FILTER`, `SORT`, `UNIQUE`, `LET`, `SUMIFS`, `DATEDIF`, `PMT`, dan referensi antar-sheet.
 - **Umpan balik spesifik**: pesan untuk error `#DIV/0!`/`#N/A`/dst, saran nama fungsi yang salah ketik, kurung tidak berpasangan, argumen kurang, jebakan umum per soal, dan petunjuk bertingkat (3 level).
