@@ -320,6 +320,8 @@ export default function SandboxPage() {
           minCols={COLS}
           onDown={picker.onDown}
           onEnter={picker.onEnter}
+          onHeaderDown={picker.onHeaderDown}
+          onHeaderEnter={picker.onHeaderEnter}
           onSelect={(s, r, c) => {
             select(r, c);
             // di layar sentuh, langsung fokus ke kotak rumus agar papan ketik muncul

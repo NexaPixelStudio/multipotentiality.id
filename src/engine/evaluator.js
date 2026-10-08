@@ -141,6 +141,11 @@ export function evalNode(node, env) {
       if (!s) throw xerr(ERR.ref);
       return rangeValues(env, s.name, 1, node.c1, Math.max(s.maxR, 1), node.c2);
     }
+    case 'rowrange': {
+      const s = env.ctx.sheet(node.sheet || env.sheet);
+      if (!s) throw xerr(ERR.ref);
+      return rangeValues(env, s.name, Math.min(node.r1, node.r2), 1, Math.max(node.r1, node.r2), Math.max(s.maxC, 1));
+    }
     case 'name': {
       if (env.vars && node.v in env.vars) return env.vars[node.v];
       throw xerr(ERR.name);
@@ -206,7 +211,7 @@ export function analyze(ast) {
       if (!f) issues.push({ kind: 'unknown-fn', name: n.name });
       else if (n.args.length < f.min || n.args.length > f.max) issues.push({ kind: 'argcount', name: n.name, min: f.min, max: f.max, got: n.args.length });
     }
-    if (n.t === 'cell' || n.t === 'range' || n.t === 'colrange') refs += 1;
+    if (n.t === 'cell' || n.t === 'range' || n.t === 'colrange' || n.t === 'rowrange') refs += 1;
   });
   return { fns, refs, issues };
 }

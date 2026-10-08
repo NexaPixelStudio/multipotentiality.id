@@ -182,9 +182,27 @@ export function parse(src, locale = 'id') {
     }
   }
 
+  // nomor baris untuk range baris seperti 2:5, $2:$5, atau Data!2:5
+  const rowTok = (t) => {
+    if (!t) return null;
+    if (t.t === 'num' && Number.isInteger(t.v) && t.v >= 1) return { n: t.v, abs: false };
+    if (t.t === 'word') {
+      const m = /^(\$?)(\d{1,7})$/.exec(t.v);
+      if (m && Number(m[2]) >= 1) return { n: Number(m[2]), abs: m[1] === '$', sheet: t.sheet };
+    }
+    return null;
+  };
+
   function parsePrimary() {
     const tk = peek();
     if (!tk) throw new ParseError('incomplete', 'Rumus belum lengkap: setelah operator atau pemisah masih diperlukan sebuah nilai.');
+    const first = rowTok(tk);
+    if (first && toks[p + 1] && toks[p + 1].t === 'op' && toks[p + 1].v === ':') {
+      const second = rowTok(toks[p + 2]);
+      if (!second) throw new ParseError('range', 'Setelah ":" harus ada nomor baris, misalnya 2:5.');
+      p += 3;
+      return { t: 'rowrange', sheet: first.sheet, r1: first.n, r2: second.n, ar1: first.abs, ar2: second.abs };
+    }
     if (tk.t === 'num') {
       p += 1;
       return { t: 'num', v: tk.v };
@@ -272,6 +290,11 @@ export function shiftAst(node, dr, dc) {
       ...node,
       c1: node.ac1 ? node.c1 : node.c1 + dc,
       c2: node.ac2 ? node.c2 : node.c2 + dc
+    };
+    case 'rowrange': return {
+      ...node,
+      r1: node.ar1 ? node.r1 : node.r1 + dr,
+      r2: node.ar2 ? node.r2 : node.r2 + dr
     };
     case 'call': return { ...node, args: node.args.map((a) => shiftAst(a, dr, dc)) };
     case 'bin': return { ...node, l: shiftAst(node.l, dr, dc), r: shiftAst(node.r, dr, dc) };

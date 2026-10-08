@@ -86,6 +86,7 @@ const STATUS_TITLE = {
   forbid: ['target', 'Gunakan pendekatan lain'],
   hardcode: ['link', 'Gunakan referensi sel, bukan angka langsung'],
   noequals: ['equal', 'Awali dengan tanda ='],
+  circular: ['rotate', 'Rumus merujuk ke selnya sendiri'],
   empty: ['pencil', 'Tulis rumus terlebih dahulu']
 };
 
@@ -289,6 +290,8 @@ function FormulaExercise({ ex, locale, p }) {
             minCols={4}
             onDown={picker.onDown}
             onEnter={picker.onEnter}
+            onHeaderDown={picker.onHeaderDown}
+            onHeaderEnter={picker.onHeaderEnter}
             onSelect={(sheetName, r, c) => {
               if (sheetName === t.sheet && r === t.r && c === t.c) inputRef.current?.focus();
             }}

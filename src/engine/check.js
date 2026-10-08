@@ -1,5 +1,6 @@
 import { createContext, evaluate, evalAst, analyze, shiftAst, ParseError, XlError } from './evaluator.js';
 import { FUNCTION_NAMES } from './functions.js';
+import { walk } from './parser.js';
 import { parseAddr, addr } from './refs.js';
 import { formatCell } from './values.js';
 
@@ -61,6 +62,19 @@ function parseTarget(ex) {
   return { ...p, sheetName };
 }
 
+// Apakah rumus menunjuk ke sel tempat rumus itu sendiri berada (referensi melingkar)?
+function refsSelf(ast, home, sheetName, r, c) {
+  let hit = false;
+  walk(ast, (n) => {
+    if (hit || (n.sheet || sheetName) !== sheetName) return;
+    if (n.t === 'cell') hit = n.r === r && n.c === c;
+    else if (n.t === 'range') hit = r >= Math.min(n.a.r, n.b.r) && r <= Math.max(n.a.r, n.b.r) && c >= Math.min(n.a.c, n.b.c) && c <= Math.max(n.a.c, n.b.c);
+    else if (n.t === 'colrange') hit = c >= Math.min(n.c1, n.c2) && c <= Math.max(n.c1, n.c2);
+    else if (n.t === 'rowrange') hit = r >= Math.min(n.r1, n.r2) && r <= Math.max(n.r1, n.r2);
+  });
+  return hit;
+}
+
 function runOnce(ex, input, locale, preview = false) {
   const text = input.trim();
   const t = parseTarget(ex);
@@ -81,6 +95,19 @@ function runOnce(ex, input, locale, preview = false) {
   if (bad?.kind === 'argcount') {
     const need = bad.min === bad.max ? `${bad.min}` : `${bad.min}${bad.max > 20 ? ' atau lebih' : ` sampai ${bad.max}`}`;
     return { status: 'argcount', name: bad.name, message: `${bad.name} memerlukan ${need} argumen, tetapi Anda menulis ${bad.got}. Periksa pemisah argumen: Excel Indonesia menggunakan ; (titik koma).` };
+  }
+  {
+    const rows = ex.fillTo ? parseAddr(ex.fillTo).r - t.r + 1 : 1;
+    const cols = ex.fillTo ? parseAddr(ex.fillTo).c - t.c + 1 : 1;
+    for (let i = 0; i < rows; i += 1) {
+      for (let j = 0; j < cols; j += 1) {
+        const ast = i === 0 && j === 0 ? ev.ast : shiftAst(ev.ast, i, j);
+        if (refsSelf(ast, t, t.sheetName, t.r + i, t.c + j)) {
+          const own = addr(t.r + i, t.c + j);
+          return { status: 'circular', cell: own, message: `Rumus ini menyertakan ${own}, yaitu sel tempat rumus ditulis, sehingga menjadi referensi melingkar. Excel akan menampilkan peringatan dan hasilnya tidak benar. Pilih range yang tidak mencakup sel ini.` };
+        }
+      }
+    }
   }
   if (!preview && ex.mustUse?.length && !ex.mustUse.some((f) => info.fns.has(f))) {
     return { status: 'mustuse', message: `Latihan ini melatih penggunaan ${ex.mustUse.join(' / ')}. Gunakan fungsi tersebut untuk menjawab.` };
@@ -198,6 +225,7 @@ export function previewFormula(ex, input, locale = 'id') {
   if (!text.startsWith('=') || text.length < 2) return null;
   try {
     const run = runOnce(ex, text, locale, true);
+    if (run.status === 'circular') return { ok: false, text: 'Rumus menyertakan selnya sendiri (referensi melingkar).' };
     if (run.status !== 'evaluated') return null;
     const err = firstError(run.value);
     return { ok: !err, text: err ? err.code : display(run.fill ? run.value[0][0] : run.value, ex.resultFmt, locale), value: run.value };

@@ -32,6 +32,21 @@ const T = (formula, expected, locale = 'id') => {
   }
 };
 
+// range kolom dan baris penuh (klik header kolom/baris di tabel)
+T('=SUM(C:C)', 38);
+T('=SUM(C:D)', 95038);
+T('=SUM($C:$C)', 38);
+T('=COUNT(2:2)', 3);
+T('=COUNT(2:3)', 6);
+T('=COUNT(3:2)', 6); // urutan dibalik tetap dinormalkan
+T('=COUNTA(3:3)', 5);
+T('=COUNT($2:$3)', 6);
+T('=COUNT(Sheet1!2:3)', 6);
+T("=COUNTA('Data Harga'!1:2)", 4);
+T('=SUM(C2:C3)+COUNT(2:2)', 18);
+T('=COUNT(2:)', 'PARSE:Setelah ":" harus ada nomor baris, misalnya 2:5.');
+T('=2', 2); // angka biasa tetap angka
+
 // dasar
 T('=1+2*3', 7);
 T('=(1+2)*3', 9);
