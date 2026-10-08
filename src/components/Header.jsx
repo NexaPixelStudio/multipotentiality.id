@@ -46,7 +46,7 @@ export default function Header({ active }) {
 
           <div className="ml-auto flex items-center gap-2">
             <span className="chip hidden sm:inline-flex" title="Poin pengalaman"><Icon name="star" size={14} className="text-amber-500" />{p.xp} XP</span>
-            {p.streak.count > 0 && <span className="chip hidden sm:inline-flex" title="Hari belajar beruntun"><Icon name="flame" size={14} className="text-orange-500" />{p.streak.count}</span>}
+            {p.streak.count > 0 && <span className="chip hidden sm:inline-flex" title="Hari belajar berturut-turut"><Icon name="flame" size={14} className="text-orange-500" />{p.streak.count}</span>}
 
             <div className="flex overflow-hidden rounded-lg border border-line text-xs font-semibold" role="group" aria-label="Gaya penulisan rumus">
               {[['id', 'ID  ;'], ['en', 'EN  ,']].map(([val, label]) => (

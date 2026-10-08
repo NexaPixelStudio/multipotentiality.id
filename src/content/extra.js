@@ -10,7 +10,7 @@ export default {
     f({
       title: 'Berapa sel yang kosong?',
       story: 'Sel nilai yang kosong berarti siswa belum dinilai.',
-      task: 'Di sel **B8**, hitung **berapa sel kosong** di B2:B7 memakai fungsi khusus untuk itu.',
+      task: 'Di sel **B8**, hitung **berapa sel kosong** di B2:B7 menggunakan fungsi khusus untuk itu.',
       sheets: S([['Siswa', 'Nilai'], ['Ayu', 80], ['Budi', null], ['Citra', 75], ['Dedi', null], ['Eka', 90], ['Fani', 85], ['Belum dinilai', '']]),
       target: 'B8',
       expect: 2,
@@ -22,13 +22,13 @@ export default {
     f({
       title: 'Jumlah kombinasi paket',
       story: 'Sebuah toko menjual paket dengan 3 pilihan ukuran, 4 warna, dan 2 bahan.',
-      task: 'Di sel **B5**, hitung **jumlah seluruh kombinasi** dengan mengalikan semua angka di B2:B4 memakai fungsi **PRODUCT**.',
+      task: 'Di sel **B5**, hitung **jumlah seluruh kombinasi** dengan mengalikan semua angka di B2:B4 menggunakan fungsi **PRODUCT**.',
       sheets: S([['Pilihan', 'Jumlah'], ['Ukuran', 3], ['Warna', 4], ['Bahan', 2], ['Kombinasi', '']]),
       target: 'B5',
       expect: 24,
       solution: '=PRODUCT(B2:B4)',
       mustUse: ['PRODUCT'],
-      hints: ['SUM menjumlahkan. Kamu butuh yang mengalikan.', 'PRODUCT(range) mengalikan semua angka di range.', 'Tulis: =PRODUCT(B2:B4)'],
+      hints: ['SUM menjumlahkan. Anda butuh yang mengalikan.', 'PRODUCT(range) mengalikan semua angka di range.', 'Tulis: =PRODUCT(B2:B4)'],
       explain: '3 × 4 × 2 = 24 kombinasi.'
     })
   ],
@@ -37,7 +37,7 @@ export default {
     f({
       title: 'Bunga majemuk dengan POWER',
       story: 'Modal Rp 1.000.000 bertumbuh 10% per tahun selama 3 tahun.',
-      task: 'Di sel **B4**, hitung nilai akhir = modal × (1 + bunga) pangkat tahun, memakai fungsi **POWER**.',
+      task: 'Di sel **B4**, hitung nilai akhir = modal × (1 + bunga) pangkat tahun, menggunakan fungsi **POWER**.',
       sheets: S([['Modal', 1000000], ['Bunga per tahun', 0.1], ['Lama (tahun)', 3], ['Nilai akhir', '']], { B: 'int' }),
       target: 'B4',
       resultFmt: 'rp',
@@ -49,7 +49,7 @@ export default {
     }),
     f({
       title: 'Menyambung dengan CONCATENATE',
-      task: 'Di sel **C2**, gabungkan nama depan, satu spasi, dan nama belakang memakai **CONCATENATE**.',
+      task: 'Di sel **C2**, gabungkan nama depan, satu spasi, dan nama belakang menggunakan **CONCATENATE**.',
       sheets: S([['Depan', 'Belakang', 'Lengkap'], ['Siti', 'Aminah', '']]),
       target: 'C2',
       expect: 'Siti Aminah',
@@ -70,12 +70,12 @@ export default {
       expect: 12,
       solution: '=SQRT(B1)',
       mustUse: ['SQRT'],
-      hints: ['Kebalikan dari memangkatkan dua.', 'SQRT = square root.', 'Tulis: =SQRT(B1)'],
+      hints: ['Kebalikan dari pangkat dua.', 'SQRT = square root.', 'Tulis: =SQRT(B1)'],
       explain: 'Akar kuadrat dari 144 adalah 12. Bilangan negatif menghasilkan #NUM!.'
     }),
     f({
       title: 'Naik, turun, atau tetap?',
-      story: 'Kamu ingin menandai perubahan harga: 1 untuk naik, -1 untuk turun, 0 untuk tetap.',
+      story: 'Anda ingin menandai perubahan harga: 1 untuk naik, -1 untuk turun, 0 untuk tetap.',
       task: 'Di sel **B2**, ubah selisih harga di A2 menjadi 1, -1, atau 0 dengan **SIGN**. Salin sampai B4.',
       sheets: S([['Selisih', 'Tanda'], [-5, ''], [0, ''], [8, '']]),
       target: 'B2',
@@ -83,8 +83,8 @@ export default {
       expect: [[-1], [0], [1]],
       solution: '=SIGN(A2)',
       mustUse: ['SIGN'],
-      hints: ['Kamu hanya peduli arahnya, bukan besarnya.', 'SIGN mengembalikan 1, 0, atau -1.', 'Tulis: =SIGN(A2)'],
-      explain: 'SIGN praktis untuk ikon naik/turun atau pewarnaan bersyarat.'
+      hints: ['Anda hanya peduli arahnya, bukan besarnya.', 'SIGN mengembalikan 1, 0, atau -1.', 'Tulis: =SIGN(A2)'],
+      explain: 'SIGN berguna untuk ikon naik/turun atau pewarnaan bersyarat.'
     }),
     f({
       title: 'Harga ke kelipatan 500 (ke atas)',
@@ -97,14 +97,14 @@ export default {
       expect: [[12500], [12500], [13000]],
       solution: '=CEILING(A2,500)',
       mustUse: ['CEILING'],
-      hints: ['ROUNDUP membulatkan digit. Di sini kamu butuh kelipatan.', 'CEILING(angka, kelipatan).', 'Tulis: =CEILING(A2,500)'],
+      hints: ['ROUNDUP membulatkan digit. Di sini Anda butuh kelipatan.', 'CEILING(angka, kelipatan).', 'Tulis: =CEILING(A2,500)'],
       explain: 'Angka yang sudah kelipatan 500 tidak berubah (12.500), sedangkan 12.501 naik ke 13.000.'
     }),
     f({
       title: 'Kuota ke kelipatan 12 (ke bawah)',
       story: 'Pengiriman hanya boleh dalam kardus penuh berisi 12.',
-      task: 'Di sel **B2**, hitung jumlah barang yang bisa dikirim: bulatkan **ke bawah** ke kelipatan 12 dengan **FLOOR**.',
-      sheets: S([['Stok', 100], ['Bisa dikirim', '']]),
+      task: 'Di sel **B2**, hitung jumlah barang yang dapat dikirim: bulatkan **ke bawah** ke kelipatan 12 dengan **FLOOR**.',
+      sheets: S([['Stok', 100], ['Dapat dikirim', '']]),
       target: 'B2',
       expect: 96,
       solution: '=FLOOR(B1,12)',
@@ -114,31 +114,31 @@ export default {
     }),
     f({
       title: 'Kelipatan 250 terdekat',
-      task: 'Di sel **B2**, bulatkan harga di A2 ke **kelipatan 250 terdekat** (bisa naik atau turun) dengan **MROUND**. Salin sampai B3.',
+      task: 'Di sel **B2**, bulatkan harga di A2 ke **kelipatan 250 terdekat** (dapat naik atau turun) dengan **MROUND**. Salin sampai B3.',
       sheets: S([['Harga', 'Bulat'], [1100, ''], [1130, '']]),
       target: 'B2',
       fillTo: 'B3',
       expect: [[1000], [1250]],
       solution: '=MROUND(A2,250)',
       mustUse: ['MROUND'],
-      hints: ['CEILING selalu naik dan FLOOR selalu turun. Kamu butuh yang ke terdekat.', 'MROUND(angka, kelipatan).', 'Tulis: =MROUND(A2,250)'],
+      hints: ['CEILING selalu naik dan FLOOR selalu turun. Anda butuh yang ke terdekat.', 'MROUND(angka, kelipatan).', 'Tulis: =MROUND(A2,250)'],
       explain: '1.100 lebih dekat ke 1.000, sedangkan 1.130 lebih dekat ke 1.250.'
     }),
     f({
       title: 'Minggu penuh',
-      task: 'Di sel **B2**, hitung berapa **minggu penuh** dalam 100 hari memakai **QUOTIENT** (hasil bagi tanpa sisa).',
+      task: 'Di sel **B2**, hitung berapa **minggu penuh** dalam 100 hari menggunakan **QUOTIENT** (hasil bagi tanpa sisa).',
       sheets: S([['Jumlah hari', 100], ['Minggu penuh', '']]),
       target: 'B2',
       expect: 14,
       solution: '=QUOTIENT(B1,7)',
       alt: ['=INT(B1/7)'],
       mustUse: ['QUOTIENT', 'INT'],
-      hints: ['Kamu hanya butuh bagian bulat dari pembagian.', 'QUOTIENT(angka, pembagi).', 'Tulis: =QUOTIENT(B1,7)'],
-      explain: '100 ÷ 7 = 14 sisa 2, jadi 14 minggu penuh. Sisanya bisa dicari dengan MOD.'
+      hints: ['Anda hanya butuh bagian bulat dari pembagian.', 'QUOTIENT(angka, pembagi).', 'Tulis: =QUOTIENT(B1,7)'],
+      explain: '100 ÷ 7 = 14 sisa 2, jadi 14 minggu penuh. Sisanya dapat dicari dengan MOD.'
     }),
     f({
       title: 'Luas lingkaran',
-      task: 'Di sel **B2**, hitung luas lingkaran = π × r², dibulatkan 2 desimal. Pakai fungsi **PI()**.',
+      task: 'Di sel **B2**, hitung luas lingkaran = π × r², dibulatkan 2 desimal. Gunakan fungsi **PI()**.',
       sheets: S([['Jari-jari', 10], ['Luas', '']]),
       target: 'B2',
       expect: 314.16,
@@ -158,13 +158,13 @@ export default {
       solution: '=TRUNC(A2)',
       shouldFail: ['=ROUND(A2,0)', '=INT(A2)'],
       mustUse: ['TRUNC'],
-      hints: ['ROUND membulatkan ke terdekat dan INT membulatkan ke bawah. Kamu butuh yang hanya membuang desimal.', 'TRUNC(angka) membuang desimal begitu saja.', 'Tulis: =TRUNC(A2)'],
+      hints: ['ROUND membulatkan ke terdekat dan INT membulatkan ke bawah. Anda butuh yang hanya membuang desimal.', 'TRUNC(angka) membuang desimal begitu saja.', 'Tulis: =TRUNC(A2)'],
       explain: 'TRUNC(7,89) = 7 dan TRUNC(-7,89) = -7. INT(-7,89) menghasilkan -8 karena membulatkan ke bawah.'
     }),
     f({
       title: 'Pertumbuhan kontinu dengan EXP',
       story: 'Sebuah investasi bertumbuh terus-menerus dengan laju 5% per tahun.',
-      task: 'Di sel **B4**, hitung nilai akhir = modal × e^(laju × tahun) memakai **EXP**, lalu bulatkan ke 2 desimal.',
+      task: 'Di sel **B4**, hitung nilai akhir = modal × e^(laju × tahun) menggunakan **EXP**, lalu bulatkan ke 2 desimal.',
       sheets: S([['Modal', 1000], ['Laju per tahun', 0.05], ['Lama (tahun)', 2], ['Nilai akhir', '']]),
       target: 'B4',
       expect: 1105.17,
@@ -175,8 +175,8 @@ export default {
     }),
     f({
       title: 'Berapa lama uang berlipat dua?',
-      story: 'Tabungan tumbuh 7% per tahun. Kamu ingin tahu berapa tahun sampai nilainya dua kali lipat.',
-      task: 'Di sel **B2**, hitung lama = LN(2) / LN(1 + bunga) memakai **LN**, lalu bulatkan ke 1 desimal.',
+      story: 'Tabungan tumbuh 7% per tahun. Anda ingin mengetahui berapa tahun yang diperlukan agar nilainya menjadi dua kali lipat.',
+      task: 'Di sel **B2**, hitung lama = LN(2) / LN(1 + bunga) menggunakan **LN**, lalu bulatkan ke 1 desimal.',
       sheets: S([['Bunga per tahun', 0.07], ['Lama (tahun)', '']]),
       target: 'B2',
       expect: 10.2,
@@ -190,8 +190,8 @@ export default {
   logika: [
     f({
       title: 'Kebalikan dengan NOT',
-      story: 'Ongkir dikenakan untuk semua kota selain Jakarta.',
-      task: 'Di sel **B2**, hasilkan **TRUE** bila kota di A2 **bukan** Jakarta, memakai **NOT**. Salin sampai B4.',
+      story: 'Ongkos kirim dikenakan untuk semua kota selain Jakarta.',
+      task: 'Di sel **B2**, hasilkan **TRUE** bila kota di A2 **bukan** Jakarta, menggunakan **NOT**. Salin sampai B4.',
       sheets: S([['Kota', 'Kena ongkir?'], ['Jakarta', ''], ['Bandung', ''], ['Medan', '']]),
       target: 'B2',
       fillTo: 'B4',
@@ -203,24 +203,24 @@ export default {
     }),
     f({
       title: 'Salah satu saja dengan XOR',
-      story: 'Akses gratis berlaku jika pengunjung membawa kupon ATAU berstatus member, tapi bukan keduanya.',
-      task: 'Di sel **C2**, hasilkan **TRUE** bila **tepat satu** dari kolom A (member) dan kolom B (kupon) bernilai TRUE, memakai **XOR**. Salin sampai C4.',
+      story: 'Akses gratis berlaku jika pengunjung membawa kupon ATAU berstatus member, tetapi bukan keduanya.',
+      task: 'Di sel **C2**, hasilkan **TRUE** bila **tepat satu** dari kolom A (member) dan kolom B (kupon) bernilai TRUE, menggunakan **XOR**. Salin sampai C4.',
       sheets: S([['Member', 'Kupon', 'Gratis?'], [true, false, ''], [true, true, ''], [false, false, '']]),
       target: 'C2',
       fillTo: 'C4',
       expect: [[true], [false], [false]],
       solution: '=XOR(A2,B2)',
       mustUse: ['XOR'],
-      hints: ['OR benar bila salah satu atau keduanya benar. Kamu butuh yang berbeda.', 'XOR benar bila jumlah yang benar ganjil.', 'Tulis: =XOR(A2,B2)'],
+      hints: ['OR benar bila salah satu atau keduanya benar. Anda butuh yang berbeda.', 'XOR benar bila jumlah yang benar ganjil.', 'Tulis: =XOR(A2,B2)'],
       explain: 'XOR "exclusive or": baris kedua (keduanya TRUE) menghasilkan FALSE.'
     })
   ],
 
   'error-iferror': [
     f({
-      title: 'Hanya tangkap #N/A',
+      title: 'Menangkap hanya error #N/A',
       story: 'Kode pelanggan yang tidak ada di daftar akan memberi #N/A. Error lain sebaiknya tetap terlihat.',
-      task: 'Di sel **B2**, cari nama dari kode di A2 pada tabel D2:E4. Jika tidak ketemu, tampilkan **"Belum terdaftar"** dengan **IFNA**. Salin sampai B4.',
+      task: 'Di sel **B2**, cari nama dari kode di A2 pada tabel D2:E4. Jika tidak ditemukan, tampilkan **"Belum terdaftar"** dengan **IFNA**. Salin sampai B4.',
       sheets: S([['Kode', 'Nama', null, 'Kode', 'Nama'], ['K1', '', null, 'K1', 'Ani'], ['K9', '', null, 'K2', 'Budi'], ['K2', '', null, 'K3', 'Cici']]),
       target: 'B2',
       fillTo: 'B4',
@@ -228,24 +228,24 @@ export default {
       solution: '=IFNA(VLOOKUP(A2,$D$2:$E$4,2,FALSE),"Belum terdaftar")',
       alt: ['=IFNA(XLOOKUP(A2,$D$2:$D$4,$E$2:$E$4),"Belum terdaftar")'],
       mustUse: ['IFNA'],
-      hints: ['IFERROR menangkap semua error. IFNA hanya #N/A.', 'Bungkus VLOOKUP dengan IFNA dan kunci tabelnya.', 'Tulis: =IFNA(VLOOKUP(A2,$D$2:$E$4,2,FALSE),"Belum terdaftar")'],
-      explain: 'IFNA lebih aman daripada IFERROR untuk lookup: kalau ada kesalahan lain (misalnya #REF!), kamu tetap melihatnya.'
+      hints: ['IFERROR menangkap semua error. IFNA hanya #N/A.', 'Gunakan IFNA pada VLOOKUP dan kunci tabelnya.', 'Tulis: =IFNA(VLOOKUP(A2,$D$2:$E$4,2,FALSE),"Belum terdaftar")'],
+      explain: 'IFNA lebih aman daripada IFERROR untuk lookup: jika ada kesalahan lain (misalnya #REF!), Anda tetap melihatnya.'
     }),
     f({
       title: 'Angka atau teks?',
       story: 'Angka yang tersimpan sebagai teks ("7" dalam tanda kutip) tidak dihitung sebagai angka.',
-      task: 'Di sel **B2**, tulis **"Angka"** bila A2 berisi angka sungguhan, selain itu **"Teks"**, memakai **ISNUMBER**. Salin sampai B4.',
+      task: 'Di sel **B2**, tulis **"Angka"** bila A2 berisi angka sungguhan, selain itu **"Teks"**, menggunakan **ISNUMBER**. Salin sampai B4.',
       sheets: S([['Isi', 'Jenis'], [12, ''], ['abc', ''], ['7', '']]),
       target: 'B2',
       fillTo: 'B4',
       expect: [['Angka'], ['Teks'], ['Teks']],
       solution: '=IF(ISNUMBER(A2),"Angka","Teks")',
       mustUse: ['ISNUMBER'],
-      hints: ['ISNUMBER menghasilkan TRUE atau FALSE, cocok sebagai syarat IF.', 'Taruh ISNUMBER(A2) di bagian syarat.', 'Tulis: =IF(ISNUMBER(A2),"Angka","Teks")'],
-      explain: 'Baris ketiga berisi "7" yang berupa teks, jadi hasilnya "Teks". Inilah penyebab umum SUM yang "melewatkan" angka.'
+      hints: ['ISNUMBER menghasilkan TRUE atau FALSE, cocok sebagai syarat IF.', 'Letakkan ISNUMBER(A2) pada bagian syarat.', 'Tulis: =IF(ISNUMBER(A2),"Angka","Teks")'],
+      explain: 'Baris ketiga berisi "7" yang berupa teks, jadi hasilnya "Teks". Inilah penyebab umum SUM yang tidak menghitung angka tersebut.'
     }),
     f({
-      title: 'Cek isi sebagai teks',
+      title: 'Memeriksa apakah isi berupa teks',
       task: 'Di sel **B2**, hasilkan TRUE bila A2 berisi **teks** dengan **ISTEXT**. Salin sampai B4.',
       sheets: S([['Isi', 'Teks?'], ['Rina', ''], [45, ''], ['10', '']]),
       target: 'B2',
@@ -257,8 +257,8 @@ export default {
       explain: '"10" dalam tanda kutip adalah teks, sedangkan 45 adalah angka.'
     }),
     f({
-      title: 'Tandai yang belum diisi',
-      task: 'Di sel **C2**, tulis **"Belum diisi"** bila nilai di B2 kosong, selain itu **"OK"**, memakai **ISBLANK**. Salin sampai C4.',
+      title: 'Menandai sel yang belum diisi',
+      task: 'Di sel **C2**, tulis **"Belum diisi"** bila nilai di B2 kosong, selain itu **"OK"**, menggunakan **ISBLANK**. Salin sampai C4.',
       sheets: S([['Siswa', 'Nilai', 'Status'], ['Ayu', 80, ''], ['Budi', null, ''], ['Citra', 75, '']]),
       target: 'C2',
       fillTo: 'C4',
@@ -273,10 +273,10 @@ export default {
       q: 'Fungsi `=NA()` sengaja menghasilkan #N/A. Kapan ini berguna?',
       options: ['Untuk menandai data yang hilang agar grafik tidak menggambar titik nol palsu', 'Untuk menjumlahkan angka yang tidak ada', 'Untuk menghapus error di seluruh sheet', 'Untuk mengubah teks menjadi angka'],
       answer: 0,
-      explain: 'Sel kosong atau 0 membuat grafik garis turun ke nol. #N/A dilewati oleh grafik, jadi garis tampak putus pada data yang memang hilang. Fungsi lain seperti IFNA bisa menangkapnya bila perlu.'
+      explain: 'Sel kosong atau 0 membuat grafik garis turun ke nol. #N/A dilewati oleh grafik, jadi garis tampak putus pada data yang memang hilang. Fungsi lain seperti IFNA dapat menangkapnya bila perlu.'
     }),
     f({
-      title: 'Apakah hasilnya BENAR/SALAH?',
+      title: 'Memeriksa nilai logika',
       story: 'Kolom Status kadang berisi TRUE/FALSE sungguhan, kadang teks "TRUE" biasa.',
       task: 'Di sel **B2**, hasilkan TRUE bila A2 berisi nilai logika (TRUE/FALSE sungguhan) dengan **ISLOGICAL**. Salin sampai B4.',
       sheets: S([['Isi', 'Logika?'], [true, ''], ['TRUE', ''], [5, '']]),
@@ -285,12 +285,12 @@ export default {
       expect: [[true], [false], [false]],
       solution: '=ISLOGICAL(A2)',
       mustUse: ['ISLOGICAL'],
-      hints: ['Seperti ISNUMBER dan ISTEXT, tapi untuk BENAR/SALAH.', 'ISLOGICAL(sel).', 'Tulis: =ISLOGICAL(A2)'],
+      hints: ['Seperti ISNUMBER dan ISTEXT, tetapi untuk BENAR/SALAH.', 'ISLOGICAL(sel).', 'Tulis: =ISLOGICAL(A2)'],
       explain: 'Teks "TRUE" berbeda dari nilai logika TRUE. Hanya yang kedua yang menghasilkan TRUE.'
     }),
     f({
-      title: 'Deteksi hitungan yang error',
-      task: 'Di sel **C2**, tulis **"Cek data"** bila A2/B2 menghasilkan error, selain itu **"OK"**, memakai **ISERROR**. Salin sampai C4.',
+      title: 'Mendeteksi hasil hitungan yang error',
+      task: 'Di sel **C2**, tulis **"Cek data"** bila A2/B2 menghasilkan error, selain itu **"OK"**, menggunakan **ISERROR**. Salin sampai C4.',
       sheets: S([['Total', 'Hari', 'Status'], [10, 2, ''], [5, 0, ''], [8, 4, '']]),
       target: 'C2',
       fillTo: 'C4',
@@ -301,24 +301,24 @@ export default {
       explain: 'Baris kedua membagi dengan nol sehingga #DIV/0!. ISERROR menangkapnya tanpa menampilkan error itu.'
     }),
     f({
-      title: 'Apakah tidak ditemukan?',
-      task: 'Di sel **B2**, hasilkan TRUE bila nilai di A2 **tidak ditemukan** di daftar D2:D4, memakai **ISNA** dan **MATCH**. Salin sampai B3.',
+      title: 'Memeriksa nilai yang tidak ditemukan',
+      task: 'Di sel **B2**, hasilkan TRUE bila nilai di A2 **tidak ditemukan** di daftar D2:D4, menggunakan **ISNA** dan **MATCH**. Salin sampai B3.',
       sheets: S([['Cari', 'Tidak ada?', null, 'Daftar'], ['x', '', null, 'x'], ['z', '', null, 'y'], [null, null, null, 'w']]),
       target: 'B2',
       fillTo: 'B3',
       expect: [[false], [true]],
       solution: '=ISNA(MATCH(A2,$D$2:$D$4,0))',
       mustUse: ['ISNA'],
-      hints: ['MATCH menghasilkan #N/A bila tidak ketemu.', 'ISNA mengecek apakah hasilnya #N/A.', 'Tulis: =ISNA(MATCH(A2,$D$2:$D$4,0))'],
-      explain: 'Pola ISNA(MATCH(...)) umum dipakai untuk mencari data yang hilang di salah satu daftar.'
+      hints: ['MATCH menghasilkan #N/A bila tidak ditemukan.', 'ISNA mengecek apakah hasilnya #N/A.', 'Tulis: =ISNA(MATCH(A2,$D$2:$D$4,0))'],
+      explain: 'Pola ISNA(MATCH(...)) umum digunakan untuk mencari data yang hilang di salah satu daftar.'
     }),
     q({
-      title: 'Untuk apa NA()?',
-      q: 'Kamu menulis `=IF(B3="",NA(),B3)`. Apa yang terjadi bila B3 kosong?',
+      title: 'Hasil rumus dengan NA()',
+      q: 'Anda menulis `=IF(B3="",NA(),B3)`. Apa yang terjadi bila B3 kosong?',
       options: ['Sel menampilkan 0', 'Sel menampilkan teks kosong', 'Sel menampilkan error #N/A dengan sengaja', 'Excel menolak rumusnya'],
       answer: 2,
-      explain: 'NA() sengaja menghasilkan #N/A ("not available"). Berguna agar grafik tidak menggambar titik nol untuk data yang belum ada, dan fungsi seperti ISNA atau IFNA bisa menangkapnya.',
-      whyNot: ['Nol dihasilkan bila kamu menulis 0, bukan NA().', 'Teks kosong dihasilkan oleh "", bukan NA().', '', 'Rumusnya sah; hanya hasilnya yang berupa error yang disengaja.']
+      explain: 'NA() sengaja menghasilkan #N/A ("not available"). Berguna agar grafik tidak menggambar titik nol untuk data yang belum ada, dan fungsi seperti ISNA atau IFNA dapat menangkapnya.',
+      whyNot: ['Nol dihasilkan bila Anda menulis 0, bukan NA().', 'Teks kosong dihasilkan oleh "", bukan NA().', '', 'Rumusnya sah; hanya hasilnya yang berupa error yang disengaja.']
     }),
     f({
       title: 'ISERR: error selain #N/A',
@@ -336,7 +336,7 @@ export default {
 
   'bersihkan-data': [
     f({
-      title: 'Buang karakter tak terlihat',
+      title: 'Menghapus karakter tak terlihat',
       story: 'Teks hasil ekspor sistem kadang menyelipkan karakter kontrol yang tidak terlihat.',
       task: 'Di sel **B2**, bersihkan teks di A2 dari karakter yang tidak tercetak dengan **CLEAN**.',
       sheets: S([['Mentah', 'Bersih'], ['Ayam\u0007Bakar', '']]),
@@ -344,7 +344,7 @@ export default {
       expect: 'AyamBakar',
       solution: '=CLEAN(A2)',
       mustUse: ['CLEAN'],
-      hints: ['TRIM membuang spasi, tapi bukan karakter kontrol.', 'CLEAN membuang karakter yang tidak tercetak.', 'Tulis: =CLEAN(A2)'],
+      hints: ['TRIM membuang spasi, tetapi bukan karakter kontrol.', 'CLEAN membuang karakter yang tidak tercetak.', 'Tulis: =CLEAN(A2)'],
       explain: 'CLEAN sering dipasangkan dengan TRIM: =TRIM(CLEAN(A2)).'
     }),
     f({
@@ -372,19 +372,19 @@ export default {
       shouldFail: ['=A2=B2'],
       mustUse: ['EXACT'],
       hints: ['Operator = tidak membedakan huruf besar-kecil.', 'EXACT membedakannya.', 'Tulis: =EXACT(A2,B2)'],
-      explain: '"abc" = "ABC" bernilai TRUE di Excel, tapi EXACT menghasilkan FALSE.'
+      explain: '"abc" = "ABC" bernilai TRUE di Excel, tetapi EXACT menghasilkan FALSE.'
     }),
     f({
-      title: 'Diagram batang dari teks',
-      task: 'Di sel **B2**, buat batang sederhana dengan mengulang tanda "*" sebanyak angka di A2, memakai **REPT**. Salin sampai B4.',
+      title: 'Grafik batang dari teks',
+      task: 'Di sel **B2**, buat batang sederhana dengan mengulang tanda "*" sebanyak angka di A2, menggunakan **REPT**. Salin sampai B4.',
       sheets: S([['Nilai', 'Batang'], [3, ''], [5, ''], [1, '']]),
       target: 'B2',
       fillTo: 'B4',
       expect: [['***'], ['*****'], ['*']],
       solution: '=REPT("*",A2)',
       mustUse: ['REPT'],
-      hints: ['Kamu mengulang sebuah teks beberapa kali.', 'REPT(teks, jumlah ulang).', 'Tulis: =REPT("*",A2)'],
-      explain: 'Trik klasik untuk grafik mini di dalam sel tanpa membuat chart.'
+      hints: ['Anda mengulang sebuah teks beberapa kali.', 'REPT(teks, jumlah ulang).', 'Tulis: =REPT("*",A2)'],
+      explain: 'Cara klasik membuat grafik mini di dalam sel tanpa chart.'
     }),
     f({
       title: 'Menyambung range dengan CONCAT',
@@ -406,7 +406,7 @@ export default {
       solution: '=SEARCH("abc",A2)',
       shouldFail: ['=FIND("abc",A2)'],
       mustUse: ['SEARCH'],
-      hints: ['FIND membedakan huruf besar-kecil, sehingga "abc" tidak ketemu di "ABC".', 'SEARCH mirip FIND tetapi tidak membedakan.', 'Tulis: =SEARCH("abc",A2)'],
+      hints: ['FIND membedakan huruf besar-kecil, sehingga "abc" tidak ditemukan di "ABC".', 'SEARCH mirip FIND tetapi tidak membedakan.', 'Tulis: =SEARCH("abc",A2)'],
       explain: '"ABC" mulai di karakter ke-6. SEARCH menemukannya meski ditulis "abc"; FIND akan menghasilkan #VALUE!.'
     }),
     f({
@@ -418,7 +418,7 @@ export default {
       expect: [['ayu'], ['budi']],
       solution: '=TEXTBEFORE(A2,"@")',
       mustUse: ['TEXTBEFORE'],
-      hints: ['Kamu butuh potongan teks di depan sebuah pemisah.', 'TEXTBEFORE(teks, pemisah).', 'Tulis: =TEXTBEFORE(A2,"@")'],
+      hints: ['Anda butuh potongan teks di depan sebuah pemisah.', 'TEXTBEFORE(teks, pemisah).', 'Tulis: =TEXTBEFORE(A2,"@")'],
       explain: 'TEXTBEFORE memotong teks tepat sebelum pemisah pertama. Lebih ringkas daripada LEFT + FIND.'
     }),
     f({
@@ -437,8 +437,8 @@ export default {
 
   'array-dinamis': [
     f({
-      title: 'Memecah teks menyamping',
-      task: 'Di sel **B2**, pecah kode "JKT-2025-07" di A2 menjadi tiga bagian (di sel B2, C2, D2) dengan pembatas "-" memakai **TEXTSPLIT**.',
+      title: 'Memecah teks ke samping',
+      task: 'Di sel **B2**, pecah kode "JKT-2025-07" di A2 menjadi tiga bagian (di sel B2, C2, D2) dengan pembatas "-" menggunakan **TEXTSPLIT**.',
       sheets: S([['Kode', 'Bagian 1', 'Bagian 2', 'Bagian 3'], ['JKT-2025-07', '', '', '']]),
       target: 'B2',
       expect: [['JKT', '2025', '07']],
@@ -448,8 +448,8 @@ export default {
       explain: 'Hasilnya tetap berupa teks ("07" tidak kehilangan angka nol). Cocok untuk memecah kode, alamat, atau tag.'
     }),
     f({
-      title: 'Urutkan berdasarkan kolom lain',
-      task: 'Di sel **D2**, tampilkan nama siswa (A2:A4) **terurut dari nilai tertinggi** (B2:B4) memakai **SORTBY**.',
+      title: 'Mengurutkan berdasarkan kolom lain',
+      task: 'Di sel **D2**, tampilkan nama siswa (A2:A4) **terurut dari nilai tertinggi** (B2:B4) menggunakan **SORTBY**.',
       sheets: S([['Siswa', 'Nilai'], ['Ayu', 80], ['Budi', 95], ['Citra', 70]]),
       target: 'D2',
       expect: [['Budi'], ['Ayu'], ['Citra']],
@@ -459,15 +459,15 @@ export default {
       explain: 'Kolom pengurut tidak perlu ikut ditampilkan.'
     }),
     f({
-      title: 'Putar kolom jadi baris',
-      task: 'Di sel **C1**, ubah daftar A2:A4 yang berbentuk kolom menjadi satu baris memakai **TRANSPOSE**.',
+      title: 'Mengubah kolom menjadi baris',
+      task: 'Di sel **C1**, ubah daftar A2:A4 yang berbentuk kolom menjadi satu baris menggunakan **TRANSPOSE**.',
       sheets: S([['Bulan'], ['Jan'], ['Feb'], ['Mar']]),
       target: 'C1',
       expect: [['Jan', 'Feb', 'Mar']],
       solution: '=TRANSPOSE(A2:A4)',
       mustUse: ['TRANSPOSE'],
       hints: ['Baris menjadi kolom dan sebaliknya.', 'TRANSPOSE(range).', 'Tulis: =TRANSPOSE(A2:A4)'],
-      explain: 'Berguna saat data tersusun vertikal tapi laporan butuh susunan mendatar.'
+      explain: 'Berguna saat data tersusun vertikal tetapi laporan butuh susunan mendatar.'
     }),
     f({
       title: 'Tiga penjualan teratas',
@@ -477,18 +477,18 @@ export default {
       expect: [[90], [80], [70]],
       solution: '=TAKE(SORT(B2:B7,1,-1),3)',
       mustUse: ['TAKE'],
-      hints: ['Urutkan dulu dari terbesar, lalu ambil beberapa yang teratas.', 'TAKE(daftar, jumlah baris) mengambil dari atas.', 'Tulis: =TAKE(SORT(B2:B7,1,-1),3)'],
+      hints: ['Urutkan dahulu dari terbesar, lalu ambil beberapa yang teratas.', 'TAKE(daftar, jumlah baris) mengambil dari atas.', 'Tulis: =TAKE(SORT(B2:B7,1,-1),3)'],
       explain: 'Pola "urutkan lalu ambil N teratas" untuk laporan top-N. TAKE dengan angka negatif mengambil dari bawah.'
     }),
     f({
-      title: 'Pilih kolom tertentu',
-      task: 'Di sel **E2**, tampilkan hanya **kolom 1 dan kolom 3** dari tabel A2:C4 memakai **CHOOSECOLS**.',
+      title: 'Memilih kolom tertentu',
+      task: 'Di sel **E2**, tampilkan hanya **kolom 1 dan kolom 3** dari tabel A2:C4 menggunakan **CHOOSECOLS**.',
       sheets: S([['Nama', 'Divisi', 'Gaji'], ['Rina', 'HR', 6000000], ['Sandi', 'IT', 9000000], ['Tari', 'HR', 5500000]], { C: 'rp' }),
       target: 'E2',
       expect: [['Rina', 6000000], ['Sandi', 9000000], ['Tari', 5500000]],
       solution: '=CHOOSECOLS(A2:C4,1,3)',
       mustUse: ['CHOOSECOLS'],
-      hints: ['Kamu menyaring kolom, bukan baris.', 'CHOOSECOLS(tabel, nomor kolom, nomor kolom, ...).', 'Tulis: =CHOOSECOLS(A2:C4,1,3)'],
+      hints: ['Anda menyaring kolom, bukan baris.', 'CHOOSECOLS(tabel, nomor kolom, nomor kolom, ...).', 'Tulis: =CHOOSECOLS(A2:C4,1,3)'],
       explain: 'Kolom Divisi dilewati. Urutan nomor menentukan urutan kolom hasil.'
     })
   ],
@@ -497,7 +497,7 @@ export default {
     f({
       title: 'Umur dokumen dengan TODAY',
       story: 'Pada latihan ini, "hari ini" dianggap 15 Juni 2025 agar hasilnya konsisten.',
-      task: 'Di sel **B2**, hitung **berapa hari** sejak dokumen terbit (B1) sampai hari ini, memakai **TODAY**.',
+      task: 'Di sel **B2**, hitung **berapa hari** sejak dokumen terbit (B1) sampai hari ini, menggunakan **TODAY**.',
       sheets: S([['Tanggal terbit', D('2025-06-01')], ['Umur (hari)', '']], { B: 'date' }),
       target: 'B2',
       expect: 14,
@@ -518,22 +518,22 @@ export default {
       solution: '=INT(NOW())',
       mustUse: ['NOW'],
       hints: ['NOW() menyimpan jam sebagai pecahan di belakang koma.', 'Buang pecahan dengan fungsi pembulatan ke bawah.', 'Tulis: =INT(NOW())'],
-      explain: 'INT(NOW()) sama dengan TODAY(). Pakai NOW bila kamu memang butuh jamnya.'
+      explain: 'INT(NOW()) sama dengan TODAY(). Gunakan NOW jika Anda memang memerlukan jamnya.'
     }),
     f({
-      title: 'Ambil tanggalnya saja',
-      task: 'Di sel **B2**, ambil **angka tanggal** (1–31) dari B1.',
+      title: 'Mengambil angka tanggal',
+      task: 'Di sel **B2**, ambil **angka tanggal** (1 sampai 31) dari B1.',
       sheets: S([['Tanggal', D('2025-08-17')], ['Hari ke-', '']], { B: 'date' }),
       target: 'B2',
       expect: 17,
       solution: '=DAY(B1)',
       mustUse: ['DAY'],
       hints: ['Seperti YEAR dan MONTH.', 'DAY(tanggal).', 'Tulis: =DAY(B1)'],
-      explain: 'Ketiganya (YEAR, MONTH, DAY) memecah tanggal menjadi angka yang bisa dipakai di syarat.'
+      explain: 'Ketiganya (YEAR, MONTH, DAY) memecah tanggal menjadi angka yang dapat digunakan di syarat.'
     }),
     f({
-      title: 'Teks tanggal menjadi tanggal',
-      story: 'Data impor menulis tanggal sebagai teks "2025-03-15", sehingga tidak bisa dihitung.',
+      title: 'Mengubah teks menjadi tanggal',
+      story: 'Data impor menulis tanggal sebagai teks "2025-03-15", sehingga tidak dapat dihitung.',
       task: 'Di sel **B2**, ubah teks di A2 menjadi tanggal sungguhan dengan **DATEVALUE**, lalu tambahkan **30 hari**.',
       sheets: S([['Teks tanggal', 'Jatuh tempo'], ['2025-03-15', '']], { B: 'date' }),
       target: 'B2',
@@ -541,13 +541,13 @@ export default {
       expect: D('2025-04-14'),
       solution: '=DATEVALUE(A2)+30',
       mustUse: ['DATEVALUE'],
-      hints: ['Teks tidak bisa ditambah 30 sebagai tanggal.', 'DATEVALUE mengubah teks tanggal menjadi tanggal sungguhan.', 'Tulis: =DATEVALUE(A2)+30'],
+      hints: ['Teks tidak dapat ditambah 30 sebagai tanggal.', 'DATEVALUE mengubah teks tanggal menjadi tanggal sungguhan.', 'Tulis: =DATEVALUE(A2)+30'],
       explain: '15 Maret + 30 hari = 14 April.'
     }),
     f({
       title: 'Estimasi 5 hari kerja',
       story: '5 Juni 2025 adalah hari Kamis. Pengiriman memakan 5 hari kerja (tanpa Sabtu dan Minggu).',
-      task: 'Di sel **B2**, hitung tanggal tiba memakai **WORKDAY**.',
+      task: 'Di sel **B2**, hitung tanggal tiba menggunakan **WORKDAY**.',
       sheets: S([['Tanggal kirim', D('2025-06-05')], ['Estimasi tiba', '']], { B: 'date' }),
       target: 'B2',
       resultFmt: 'date',
@@ -555,7 +555,7 @@ export default {
       solution: '=WORKDAY(B1,5)',
       mustUse: ['WORKDAY'],
       hints: ['Menambah 5 hari biasa akan melewati akhir pekan.', 'WORKDAY(mulai, jumlah hari kerja).', 'Tulis: =WORKDAY(B1,5)'],
-      explain: 'Jumat 6, Senin 9, Selasa 10, Rabu 11, lalu Kamis 12 Juni. Argumen ketiga (opsional) bisa berisi hari libur.'
+      explain: 'Jumat 6, Senin 9, Selasa 10, Rabu 11, lalu Kamis 12 Juni. Argumen ketiga (opsional) dapat berisi hari libur.'
     }),
     f({
       title: 'Selisih hari dengan DAYS',
@@ -566,7 +566,7 @@ export default {
       solution: '=DAYS(B2,B1)',
       shouldFail: ['=DAYS(B1,B2)'],
       mustUse: ['DAYS'],
-      hints: ['Urutan argumen DAYS: tanggal akhir dulu, baru tanggal awal.', 'DAYS(selesai, mulai).', 'Tulis: =DAYS(B2,B1)'],
+      hints: ['Urutan argumen DAYS: tanggal akhir dahulu, baru tanggal awal.', 'DAYS(selesai, mulai).', 'Tulis: =DAYS(B2,B1)'],
       explain: 'DAYS(akhir, awal) sama dengan akhir - awal. Bila urutannya terbalik, hasilnya negatif (-29).'
     })
   ],
@@ -574,8 +574,8 @@ export default {
   vlookup: [
     f({
       title: 'Diskon berdasarkan jumlah beli',
-      story: 'Beli 1+ diskon 0%, 10+ diskon 5%, 50+ diskon 10%.',
-      task: 'Di sel **E2**, cari persentase diskon untuk qty di **E1** memakai **LOOKUP** pada tabel batas (A2:A4) dan diskon (B2:B4).',
+      story: 'Pembelian 1 unit atau lebih mendapat diskon 0%, 10 unit atau lebih 5%, dan 50 unit atau lebih 10%.',
+      task: 'Di sel **E2**, cari persentase diskon untuk qty di **E1** menggunakan **LOOKUP** pada tabel batas (A2:A4) dan diskon (B2:B4).',
       sheets: S([['Qty min', 'Diskon', null, 'Qty', 25], [1, 0, null, 'Diskon', ''], [10, 0.05], [50, 0.1]], { B: 'pct', E: 'pct' }),
       target: 'E2',
       resultFmt: 'pct',
@@ -590,13 +590,13 @@ export default {
   xlookup: [
     f({
       title: 'Posisi kemunculan terakhir',
-      task: 'Di sel **D2**, cari **urutan** kemunculan **terakhir** nama "Ayu" di A2:A5 memakai **XMATCH** (cari dari bawah).',
+      task: 'Di sel **D2**, cari **urutan** kemunculan **terakhir** nama "Ayu" di A2:A5 menggunakan **XMATCH** (cari dari bawah).',
       sheets: S([['Nama'], ['Ayu'], ['Budi'], ['Ayu'], ['Citra']]),
       target: 'D2',
       expect: 3,
       solution: '=XMATCH("Ayu",A2:A5,0,-1)',
       mustUse: ['XMATCH'],
-      hints: ['Seperti MATCH, tapi punya pilihan arah pencarian.', 'Argumen ketiga 0 = persis, argumen keempat -1 = dari bawah.', 'Tulis: =XMATCH("Ayu",A2:A5,0,-1)'],
+      hints: ['Seperti MATCH, tetapi punya pilihan arah pencarian.', 'Argumen ketiga 0 = persis, argumen keempat -1 = dari bawah.', 'Tulis: =XMATCH("Ayu",A2:A5,0,-1)'],
       explain: 'Ayu muncul di urutan 1 dan 3. Dengan pencarian dari bawah, hasilnya 3.'
     })
   ],
@@ -604,7 +604,7 @@ export default {
   'index-match': [
     f({
       title: 'Nomor urut otomatis',
-      task: 'Di sel **A2**, isi **nomor urut** (1, 2, 3, ...) dengan rumus yang memakai **ROW**. Rumus disalin sampai A5.',
+      task: 'Di sel **A2**, isi **nomor urut** (1, 2, 3, ...) dengan rumus yang menggunakan **ROW**. Rumus disalin sampai A5.',
       sheets: S([['No', 'Nama'], [null, 'Rina'], [null, 'Sandi'], [null, 'Tari'], [null, 'Umar']]),
       target: 'A2',
       fillTo: 'A5',
@@ -627,14 +627,14 @@ export default {
       explain: 'COLUMN berguna untuk menghasilkan nomor kolom dinamis, misalnya sebagai argumen INDEX atau VLOOKUP.'
     }),
     f({
-      title: 'Berapa kolom datanya?',
+      title: 'Menghitung jumlah kolom',
       task: 'Di sel **B2**, hitung **jumlah kolom** pada range A1:E1 dengan **COLUMNS**.',
       sheets: S([['Q1', 'Q2', 'Q3', 'Q4', 'Total'], ['Jumlah kolom', '']]),
       target: 'B2',
       expect: 5,
       solution: '=COLUMNS(A1:E1)',
       mustUse: ['COLUMNS'],
-      hints: ['Mirip ROWS, tapi untuk kolom.', 'COLUMNS(range).', 'Tulis: =COLUMNS(A1:E1)'],
+      hints: ['Mirip ROWS, tetapi untuk kolom.', 'COLUMNS(range).', 'Tulis: =COLUMNS(A1:E1)'],
       explain: 'A sampai E ada lima kolom.'
     })
   ],
@@ -649,14 +649,14 @@ export default {
       expect: 2,
       solution: '=STDEV.P(B2:B9)',
       mustUse: ['STDEV.P'],
-      hints: ['Ada dua versi: untuk sampel dan untuk populasi.', 'Seluruh populasi memakai STDEV.P.', 'Tulis: =STDEV.P(B2:B9)'],
+      hints: ['Ada dua versi: untuk sampel dan untuk populasi.', 'Seluruh populasi menggunakan STDEV.P.', 'Tulis: =STDEV.P(B2:B9)'],
       explain: 'STDEV.S membagi dengan n−1 (sampel), STDEV.P membagi dengan n (seluruh populasi). Data ini menghasilkan tepat 2.'
     }),
     f({
-      title: 'Rata-rata hanya baris terlihat',
-      task: 'Di sel **B7**, hitung **rata-rata** B2:B6 memakai **SUBTOTAL** (kode 1 untuk AVERAGE), supaya hasilnya mengikuti filter.',
+      title: 'Rata-rata untuk baris yang terlihat',
+      task: 'Di sel **B6**, hitung **rata-rata** B2:B5 menggunakan **SUBTOTAL** (kode 1 untuk AVERAGE), supaya hasilnya mengikuti filter.',
       sheets: S([['Bulan', 'Penjualan'], ['Jan', 10], ['Feb', 20], ['Mar', 30], ['Apr', 40], ['Rata-rata', '']]),
-      target: 'B7',
+      target: 'B6',
       expect: 25,
       solution: '=SUBTOTAL(1,B2:B5)',
       mustUse: ['SUBTOTAL'],
@@ -668,7 +668,7 @@ export default {
   keuangan: [
     f({
       title: 'Tingkat pengembalian internal (IRR)',
-      story: 'Investasi awal Rp 100 juta menghasilkan Rp 40 juta, 50 juta, dan 60 juta pada tahun 1–3.',
+      story: 'Investasi awal Rp 100 juta menghasilkan Rp 40 juta, 50 juta, dan 60 juta pada tahun 1 sampai 3.',
       task: 'Di sel **B2**, hitung **IRR** dari arus kas di A1:D1 dan bulatkan ke 3 desimal.',
       sheets: S([[-100000000, 40000000, 50000000, 60000000], ['IRR', '']], { A: 'rp', B: 'rp', C: 'rp', D: 'rp' }),
       target: 'B2',

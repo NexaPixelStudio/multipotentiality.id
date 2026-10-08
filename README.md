@@ -1,12 +1,12 @@
 # Belajar Excel
 
-Website belajar Excel **dari nol sampai mahir**, berbahasa Indonesia. Pengguna membaca penjelasan yang sederhana, lalu mengetik rumus sungguhan di lembar kerja interaktif dan langsung mendapat umpan balik yang jelas.
+Platform kursus Excel berbahasa Indonesia **dari dasar hingga mahir**. Peserta mempelajari materi yang disusun bertahap, lalu menulis rumus di lembar kerja interaktif dan langsung menerima umpan balik yang jelas.
 
 Semua berjalan di browser (React + Vite + Tailwind). Tidak ada server, akun, atau data yang dikirim ke mana pun. Progres tersimpan di `localStorage`.
 
 ## Yang ada di dalamnya
 
-- **5 level, 28 modul, 289 soal**: Pemula, Dasar, Menengah, Mahir, Profesional.
+- **5 level, 28 modul, 289 soal**: Dasar Excel, Rumus Esensial, Analisis Data, Rumus Lanjutan, dan Penerapan Profesional.
   Setiap modul punya materi berperumpamaan (analogi sehari-hari), contoh yang dihitung langsung, lalu latihan.
 - **Soal dinilai dari hasilnya**, bukan dari kecocokan teks. Cara lain yang benar tetap diterima (misalnya `VLOOKUP`, `XLOOKUP`, atau `INDEX-MATCH` untuk soal yang sama).
 - **Mesin rumus sendiri** (`src/engine`) yang membaca dan menghitung lebih dari 120 fungsi Excel, termasuk `XLOOKUP`, `FILTER`, `SORT`, `UNIQUE`, `LET`, `SUMIFS`, `DATEDIF`, `PMT`, dan referensi antar-sheet.

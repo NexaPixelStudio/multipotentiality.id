@@ -41,7 +41,7 @@ export default function App() {
         <div key={parts.join("/")} className="page-enter">{page}</div>
       </main>
       <footer className="border-t border-line px-4 py-6 pb-24 text-center text-sm text-muted md:pb-6">
-        Progres belajarmu tersimpan di browser ini saja. Tidak ada akun, tidak ada data yang dikirim ke mana pun.
+        Progres belajar Anda disimpan di browser ini. Platform ini tidak memerlukan akun dan tidak mengirim data ke server mana pun.
       </footer>
     </div>
   );

@@ -181,7 +181,7 @@ T('=SUM(FILTER(C2:C6;B2:B6="Makanan"))', 11);
 T('=TRANSPOSE(C2:C3)', [[10, 5]]);
 T('=LET(x;5;y;x*2;x+y)', 15);
 T('=IF(C2:C4>6;"ya";"tidak")', [['ya'], ['tidak'], ['ya']]);
-T('=IFERROR(VALUE({1}),0)', 'PARSE:Array konstanta {...} belum didukung di aplikasi latihan ini. Pakai range sel saja.');
+T('=IFERROR(VALUE({1}),0)', 'PARSE:Array konstanta {...} belum didukung di latihan ini. Gunakan range sel sebagai gantinya.');
 T('=SUM(C2:C6)/COUNT(C2:C6)', 7.6);
 T('=SUM(A2:A3)', 0);
 // keuangan

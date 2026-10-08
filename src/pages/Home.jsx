@@ -36,12 +36,12 @@ function HeroSheet() {
 function Welcome({ onClose }) {
   return (
     <section className="card relative overflow-hidden p-6 sm:p-8" aria-labelledby="welcome-title">
-      <h2 id="welcome-title" className="text-xl font-bold">Cara belajar di sini</h2>
+      <h2 id="welcome-title" className="text-xl font-bold">Cara belajar di platform ini</h2>
       <ol className="mt-4 grid gap-4 sm:grid-cols-3">
         {[
-          ['1', 'Baca penjelasan singkat', 'Setiap modul dimulai dengan penjelasan sederhana, lengkap dengan contoh dan perumpamaan sehari-hari.'],
-          ['2', 'Ketik rumusnya sendiri', 'Latihan memakai lembar kerja sungguhan. Kamu bisa mengklik sel untuk menyisipkan alamatnya, persis seperti di Excel.'],
-          ['3', 'Dapat umpan balik jelas', 'Jawaban dinilai dari hasilnya, jadi cara lain yang benar tetap diterima. Kalau salah, kamu diberi tahu kenapa.']
+          ['1', 'Pelajari materi', 'Setiap modul diawali dengan penjelasan konsep, contoh yang dihitung langsung, dan analogi dari situasi kerja sehari-hari.'],
+          ['2', 'Tulis rumus Anda sendiri', 'Latihan menggunakan lembar kerja interaktif. Klik sel untuk menyisipkan alamatnya ke dalam rumus, seperti di Excel.'],
+          ['3', 'Terima umpan balik yang jelas', 'Jawaban dinilai berdasarkan hasilnya, sehingga cara lain yang benar tetap diterima. Jika jawaban belum tepat, Anda akan mendapat penjelasan penyebabnya.']
         ].map(([n, t, d]) => (
           <li key={n} className="flex gap-3">
             <span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-brand text-sm font-bold text-brand-ink">{n}</span>
@@ -49,7 +49,7 @@ function Welcome({ onClose }) {
           </li>
         ))}
       </ol>
-      <button type="button" className="btn-soft mt-5" onClick={onClose}>Mengerti, sembunyikan</button>
+      <button type="button" className="btn-soft mt-5" onClick={onClose}>Sembunyikan panduan</button>
     </section>
   );
 }
@@ -69,13 +69,13 @@ export default function Home() {
         <span className="blob blob-b" aria-hidden="true" />
         <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1.35fr_1fr] lg:items-center">
           <div className="rise" style={{ '--i': 0 }}>
-            <p className="chip mb-3 gap-2"><Icon name="sparkles" size={13} className="text-brand" />Gratis, langsung di browser, bahasa Indonesia</p>
-            <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-[2.6rem]">Belajar Excel dari nol sampai mahir, <span className="grad-text">dengan cara yang menyenangkan.</span></h1>
+            <p className="chip mb-3 gap-2"><Icon name="sparkles" size={13} className="text-brand" />Gratis dan berjalan langsung di browser</p>
+            <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-[2.6rem]">Belajar Excel dari dasar hingga mahir, <span className="grad-text">melalui praktik langsung.</span></h1>
             <p className="mt-4 max-w-2xl text-lg text-muted">
-              {MODULES.length} modul bertahap, {p.totalExercises} soal latihan dengan data nyata, dan penjelasan yang dibuat supaya mudah dipahami, bahkan kalau kamu belum pernah membuka Excel.
+              {MODULES.length} modul terstruktur dan {p.totalExercises} soal latihan dengan data kerja nyata. Setiap materi dijelaskan secara bertahap, sehingga dapat diikuti bahkan oleh peserta yang belum pernah menggunakan Excel.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={startHref} className="btn-primary text-base">{started ? (next ? 'Lanjutkan belajar' : 'Semua soal selesai') : 'Mulai dari awal'}<Icon name="arrow-right" size={18} className="icon-slide" /></a>
+              <a href={startHref} className="btn-primary text-base">{started ? (next ? 'Lanjutkan belajar' : 'Semua soal selesai') : 'Mulai belajar'}<Icon name="arrow-right" size={18} className="icon-slide" /></a>
               <a href={href('modul/kenalan')} className="btn-soft text-base">Lihat materi pertama</a>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function Home() {
               {[
                 ['Soal selesai', `${p.totalSolved}/${p.totalExercises}`, 'check-circle', 'text-ok'],
                 ['Poin XP', p.xp, 'star', 'text-amber-500'],
-                ['Hari beruntun', p.streak.count, 'flame', 'text-orange-500']
+                ['Hari berturut-turut', p.streak.count, 'flame', 'text-orange-500']
               ].map(([k, v, i, c]) => (
                 <div key={k} className="rounded-2xl border border-line bg-surface/80 p-3 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-soft sm:p-4">
                   <dt className="flex flex-col items-center gap-1 text-xs font-semibold text-muted"><Icon name={i} size={18} className={c} />{k}</dt>
@@ -103,7 +103,7 @@ export default function Home() {
         <div className="mb-5 flex flex-wrap items-end justify-between gap-2">
           <div>
             <h2 id="path-title" className="text-2xl font-extrabold">Jalur belajar</h2>
-            <p className="text-muted">Ikuti urut dari Level 1. Sudah punya dasar? Lompat ke level yang sesuai, semuanya terbuka.</p>
+            <p className="text-muted">Ikuti materi secara berurutan mulai dari Level 1. Jika sudah menguasai dasarnya, Anda dapat langsung memulai dari level yang sesuai; semua level terbuka.</p>
           </div>
           <nav className="flex flex-wrap gap-1.5" aria-label="Lompat ke level">
             {LEVELS.map((l) => (
@@ -125,7 +125,7 @@ export default function Home() {
                 <div className="mb-4 flex items-center gap-3">
                   <IconBadge name={l.icon} tone={l.tone} size={26} className="h-12 w-12" />
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-xl font-bold">Level {l.id}: {l.name}</h3>
+                    <h3 className="text-xl font-bold">Level {l.id} — {l.name}</h3>
                     <p className="text-sm text-muted">{l.desc}</p>
                   </div>
                   <div className="hidden w-40 sm:block">
@@ -145,7 +145,7 @@ export default function Home() {
                       >
                         <div className="flex items-start justify-between gap-2">
                           <IconBadge name={m.icon} tone={l.tone} size={26} className="h-12 w-12" />
-                          {st.complete ? <span className="chip bg-ok-soft text-ok"><Icon name="check" size={13} strokeWidth={2.6} />Selesai</span> : st.solved > 0 ? <span className="chip">Berjalan</span> : null}
+                          {st.complete ? <span className="chip bg-ok-soft text-ok"><Icon name="check" size={13} strokeWidth={2.6} />Selesai</span> : st.solved > 0 ? <span className="chip">Sedang dipelajari</span> : null}
                         </div>
                         <h4 className="mt-3 text-lg font-bold leading-snug group-hover:text-brand">{m.title}</h4>
                         <p className="mt-1 flex-1 text-sm text-muted">{m.tagline}</p>
@@ -169,11 +169,11 @@ export default function Home() {
       <section className="grid gap-4 sm:grid-cols-2" aria-label="Alat bantu">
         <a href={href('kamus')} className="card lift flex gap-4 p-6">
           <IconBadge name="book-open" size={28} className="h-14 w-14" />
-          <span><strong className="block text-lg">Kamus Rumus</strong><span className="text-muted">Cari rumus dan baca penjelasannya dengan bahasa sederhana. Lengkap dengan contoh dan hasil langsung.</span></span>
+          <span><strong className="block text-lg">Kamus Rumus</strong><span className="text-muted">Cari fungsi Excel beserta penjelasan, sintaks, dan contoh yang dihitung langsung.</span></span>
         </a>
         <a href={href('bebas')} className="card lift flex gap-4 p-6">
           <IconBadge name="flask" size={28} className="h-14 w-14" />
-          <span><strong className="block text-lg">Ruang Coba</strong><span className="text-muted">Lembar kerja bebas untuk bereksperimen dengan rumus apa pun tanpa takut salah.</span></span>
+          <span><strong className="block text-lg">Ruang Coba</strong><span className="text-muted">Lembar kerja bebas untuk mencoba rumus apa pun tanpa memengaruhi progres belajar Anda.</span></span>
         </a>
       </section>
 
@@ -182,7 +182,7 @@ export default function Home() {
           <button
             type="button"
             className="text-sm text-muted underline decoration-dotted underline-offset-4 hover:text-bad"
-            onClick={() => { if (window.confirm('Hapus semua progres belajar di browser ini? Tindakan ini tidak bisa dibatalkan.')) p.reset(); }}
+            onClick={() => { if (window.confirm('Hapus semua progres belajar di browser ini? Tindakan ini tidak dapat dibatalkan.')) p.reset(); }}
           >
             Mulai ulang semua progres
           </button>

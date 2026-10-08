@@ -4,7 +4,7 @@ import { sheet, f, q, p, analogy, tip, warn, steps, syntax, demo } from './helpe
 // LEVEL 2 - DASAR
 // ============================================================
 
-// Data penjualan yang dipakai beberapa soal COUNTIF / SUMIF
+// Data penjualan yang digunakan beberapa soal COUNTIF / SUMIF
 const penjualanRows = (extra = []) => [
   ['Produk', 'Kategori', 'Qty', 'Harga'],
   ['Kopi', 'Minuman', 10, 20000],
@@ -23,17 +23,17 @@ const pembulatan = {
   id: 'pembulatan',
   level: 2,
   icon: 'target',
-  title: 'Pembulatan & Angka',
-  tagline: 'ROUND, ROUNDUP, ROUNDDOWN, INT, MOD, ABS',
-  why: 'Harga, gaji, dan pajak hampir selalu butuh dibulatkan. Hasil hitungan Excel sering berekor panjang (33,333333), dan kamu perlu merapikannya dengan benar.',
+  title: 'Pembulatan dan Fungsi Angka',
+  tagline: 'Gunakan ROUND, ROUNDUP, ROUNDDOWN, INT, MOD, dan ABS untuk merapikan dan mengolah angka hasil perhitungan.',
+  why: 'Harga, gaji, dan pajak hampir selalu perlu dibulatkan. Hasil perhitungan Excel sering memiliki banyak angka desimal (misalnya 33,333333), sehingga perlu dirapikan dengan benar.',
   minutes: 10,
   lessons: [
     {
-      title: 'ROUND: bulatkan ke angka terdekat',
+      title: 'ROUND: membulatkan ke angka terdekat',
       body: [
-        p('Dua hal yang kamu beri ke ROUND: **angka yang dibulatkan** dan **berapa digit** yang ingin dipertahankan.'),
+        p('ROUND memerlukan dua informasi: **angka yang dibulatkan** dan **jumlah digit** yang ingin dipertahankan.'),
         syntax('=ROUND(angka, jumlah_digit)', [['angka', 'Angka (atau sel) yang dibulatkan'], ['jumlah_digit', '2 = dua desimal, 0 = bilangan bulat, -3 = ke ribuan terdekat']]),
-        analogy('Jumlah digit itu seperti "berapa angka yang boleh tinggal di belakang koma". Angka positif ke kanan (desimal), angka negatif ke kiri (puluhan, ratusan, ribuan).'),
+        analogy('Jumlah digit menentukan "berapa angka yang dipertahankan di belakang koma". Angka positif mengarah ke kanan (desimal), sedangkan angka negatif mengarah ke kiri (puluhan, ratusan, ribuan).'),
         demo({
           rows: [['Angka', 15678.456], ['2 desimal', ''], ['Bulat', ''], ['Ribuan', '']],
           cell: 'B2',
@@ -49,16 +49,16 @@ const pembulatan = {
       ]
     },
     {
-      title: 'Ke atas, ke bawah, dan sisa bagi',
+      title: 'Pembulatan ke atas, ke bawah, dan sisa bagi',
       body: [
         steps(
           '`ROUNDUP` selalu membulatkan **ke atas** (menjauhi nol). Cocok untuk kebutuhan kardus, kursi, atau mobil.',
           '`ROUNDDOWN` selalu membulatkan **ke bawah** (mendekati nol).',
           '`INT` membuang desimal dan membulatkan ke bawah: INT(7,9) = 7.',
-          '`MOD(angka, pembagi)` memberi **sisa bagi**: MOD(10,3) = 1.',
-          '`ABS` membuang tanda minus: ABS(-5) = 5.'
+          '`MOD(angka, pembagi)` menghasilkan **sisa bagi**: MOD(10,3) = 1.',
+          '`ABS` menghilangkan tanda minus: ABS(-5) = 5.'
         ),
-        analogy('Memesan kardus: 50 botol, 1 kardus isi 12. 50 ÷ 12 = 4,17. Kamu tidak bisa membeli 4,17 kardus. Butuh **5**, jadi pakai ROUNDUP.'),
+        analogy('Contoh pemesanan kardus: 50 botol, satu kardus berisi 12 botol. 50 ÷ 12 = 4,17, padahal Anda tidak dapat membeli 4,17 kardus. Jumlah yang dibutuhkan adalah **5**, sehingga ROUNDUP yang digunakan.'),
         warn('ROUND(2,5) hasilnya 3, bukan 2. Excel membulatkan angka ".5" ke atas (menjauhi nol).')
       ]
     }
@@ -66,7 +66,7 @@ const pembulatan = {
   exercises: [
     f({
       title: 'Bulatkan ke ratusan',
-      story: 'Harga hasil hitungan sering berekor aneh. Kamu ingin membulatkannya ke ratusan terdekat.',
+      story: 'Harga hasil perhitungan sering memiliki angka desimal yang panjang. Anda ingin membulatkannya ke ratusan terdekat.',
       task: 'Di sel **B3**, bulatkan harga di B2 ke **ratusan terdekat**.',
       sheets: [sheet('Harga', [['Keterangan', 'Nilai'], ['Harga hitungan', 15678], ['Harga bulat', '']], { B: 'rp' })],
       target: 'B3',
@@ -76,7 +76,7 @@ const pembulatan = {
       mustUse: ['ROUND'],
       hints: ['Gunakan fungsi untuk membulatkan ke angka terdekat.', 'Untuk membulatkan ke ratusan, jumlah digitnya adalah -2 (dua langkah ke kiri dari koma).', 'Tulis: =ROUND(B2,-2)'],
       parts: [['ROUND', 'Bulatkan ke terdekat'], ['B2', 'angka yang dibulatkan'], ['-2', 'dua digit ke kiri = ratusan']],
-      explain: '15.678: angka puluhan-nya 78 lebih dari 50, jadi naik ke 15.700.'
+      explain: '15.678: dua digit terakhirnya, 78, lebih dari 50, sehingga dibulatkan naik menjadi 15.700.'
     }),
     f({
       title: 'Dua angka di belakang koma',
@@ -88,7 +88,7 @@ const pembulatan = {
       solution: '=ROUND(B2,2)',
       mustUse: ['ROUND'],
       hints: ['Fungsi yang sama untuk membulatkan ke terdekat.', 'Dua desimal artinya jumlah digit = 2.', 'Tulis: =ROUND(B2,2)'],
-      explain: '78,4567: lihat digit ketiga (6, di atas 5), jadi digit kedua naik menjadi 78,46.'
+      explain: '78,4567: digit ketiga adalah 6 (di atas 5), sehingga digit kedua naik dan hasilnya 78,46.'
     }),
     f({
       title: 'Berapa kardus yang dibutuhkan?',
@@ -99,10 +99,10 @@ const pembulatan = {
       expect: 5,
       solution: '=ROUNDUP(B2/B3,0)',
       mustUse: ['ROUNDUP'],
-      wrongs: [{ value: 4, msg: 'Pembulatan biasa menghasilkan 4, tapi 2 botol sisanya tidak muat. Kita butuh pembulatan yang selalu ke atas.' }],
-      hints: ['Bagi pesanan dengan isi per kardus. Hasilnya berkoma.', 'Kardus tidak boleh kurang, jadi bulatkan selalu ke atas.', 'Tulis: =ROUNDUP(B2/B3,0)'],
+      wrongs: [{ value: 4, msg: 'Pembulatan biasa menghasilkan 4, padahal 2 botol sisanya tidak muat. Diperlukan pembulatan yang selalu ke atas.' }],
+      hints: ['Bagi pesanan dengan isi per kardus. Hasilnya berupa desimal.', 'Kardus tidak boleh kurang, jadi bulatkan selalu ke atas.', 'Tulis: =ROUNDUP(B2/B3,0)'],
       parts: [['B2/B3', '50 ÷ 12 = 4,17 kardus'], ['ROUNDUP(..., 0)', 'bulatkan ke atas menjadi bilangan bulat']],
-      explain: 'Gunakan ROUNDUP kapan pun kekurangan tidak bisa diterima: kardus, kursi, armada, tiket.'
+      explain: 'Gunakan ROUNDUP ketika kekurangan tidak dapat diterima, misalnya untuk kardus, kursi, armada, atau tiket.'
     }),
     f({
       title: 'Bulatkan gaji ke bawah',
@@ -114,7 +114,7 @@ const pembulatan = {
       expect: 4567000,
       solution: '=ROUNDDOWN(B2,-3)',
       mustUse: ['ROUNDDOWN'],
-      hints: ['Kali ini selalu dibulatkan ke bawah, tidak peduli seberapa dekat ke atas.', 'ROUNDDOWN dengan jumlah digit -3 (ribuan).', 'Tulis: =ROUNDDOWN(B2,-3)'],
+      hints: ['Pembulatan harus selalu ke bawah, sedekat apa pun nilainya dengan angka di atasnya.', 'ROUNDDOWN dengan jumlah digit -3 (ribuan).', 'Tulis: =ROUNDDOWN(B2,-3)'],
       explain: 'Sisa 890 dibuang. Hasil: Rp 4.567.000.'
     }),
     f({
@@ -125,25 +125,25 @@ const pembulatan = {
       expect: 7,
       solution: '=INT(B2)',
       alt: ['=ROUNDDOWN(B2,0)', '=TRUNC(B2)'],
-      hints: ['Kamu membuang bagian di belakang koma.', 'INT membulatkan ke bawah menjadi bilangan bulat.', 'Tulis: =INT(B2)'],
+      hints: ['Bagian di belakang koma dibuang.', 'INT membulatkan ke bawah menjadi bilangan bulat.', 'Tulis: =INT(B2)'],
       explain: 'INT(7,75) = 7. Hati-hati dengan angka negatif: INT(-2,5) = -3 karena dibulatkan ke bawah (ke arah yang lebih kecil).'
     }),
     f({
       title: 'Sisa permen',
-      story: 'Seorang guru membagikan permen rata ke murid. Berapa sisanya?',
+      story: 'Seorang guru membagikan permen secara merata kepada murid. Berapa sisanya?',
       task: 'Di sel **B3**, hitung **sisa permen** setelah 100 permen dibagi rata ke 7 anak (angkanya ada di B1 dan B2).',
       sheets: [sheet('Permen', [['Jumlah permen', 100], ['Jumlah anak', 7], ['Sisa permen', '']])],
       target: 'B3',
       expect: 2,
       solution: '=MOD(B1,B2)',
       mustUse: ['MOD'],
-      hints: ['Yang dicari bukan hasil bagi, tapi sisa bagi.', 'Fungsi MOD memberi sisa bagi: MOD(yang dibagi, pembagi).', 'Tulis: =MOD(B1,B2)'],
+      hints: ['Yang dicari bukan hasil bagi, tetapi sisa bagi.', 'Fungsi MOD memberi sisa bagi: MOD(yang dibagi, pembagi).', 'Tulis: =MOD(B1,B2)'],
       parts: [['MOD', 'Sisa bagi'], ['B1', 'yang dibagi (100)'], ['B2', 'pembagi (7)']],
-      explain: '100 = 14 × 7 + 2. Tiap anak dapat 14 permen dan sisa 2.'
+      explain: '100 = 14 × 7 + 2. Tiap anak mendapat 14 permen dan tersisa 2.'
     }),
     f({
       title: 'Selisih tanpa tanda minus',
-      story: 'Auditor hanya peduli besar selisih target dan realisasi, bukan arahnya.',
+      story: 'Auditor hanya memerlukan besar selisih antara target dan realisasi, bukan arahnya.',
       task: 'Di sel **C2**, hitung selisih antara target dan realisasi sebagai **angka positif**.',
       sheets: [sheet('Selisih', [['Target', 'Realisasi', 'Selisih'], [80, 92, '']])],
       target: 'C2',
@@ -163,8 +163,8 @@ const pembulatan = {
       expect: 137000,
       solution: '=ROUND(B2*(1+B3),-2)',
       alt: ['=ROUND(B2+B2*B3,-2)'],
-      hints: ['Hitung dulu total dengan PPN: harga × (1 + PPN).', 'Bungkus hasil hitungan itu dengan fungsi pembulatan.', 'Tulis: =ROUND(B2*(1+B3),-2)'],
-      explain: 'Fungsi bisa membungkus hitungan di dalamnya. 123.456 × 1,11 = 137.036,16 dan dibulatkan ke ratusan menjadi 137.000.'
+      hints: ['Hitung total dengan PPN terlebih dahulu: harga × (1 + PPN).', 'Gunakan fungsi pembulatan pada hasil perhitungan tersebut.', 'Tulis: =ROUND(B2*(1+B3),-2)'],
+      explain: 'Fungsi dapat memuat perhitungan di dalamnya. 123.456 × 1,11 = 137.036,16 dan dibulatkan ke ratusan menjadi 137.000.'
     }),
     q({
       title: 'Arti angka negatif',
@@ -187,16 +187,16 @@ const ifDasar = {
   id: 'if',
   level: 2,
   icon: 'split',
-  title: 'IF: Membuat Keputusan',
-  tagline: 'Biarkan Excel memilih hasil berdasarkan syarat',
-  why: 'IF adalah fungsi yang membuat spreadsheet jadi "pintar". Status lulus, bonus, diskon, peringatan stok, semuanya dimulai dari IF.',
+  title: 'Fungsi IF untuk Pengambilan Keputusan',
+  tagline: 'Gunakan fungsi IF agar Excel menampilkan hasil yang berbeda sesuai syarat yang Anda tentukan.',
+  why: 'IF membuat lembar kerja mampu mengambil keputusan secara otomatis. Penentuan status kelulusan, bonus, diskon, hingga peringatan stok semuanya berawal dari fungsi ini.',
   minutes: 12,
   lessons: [
     {
-      title: 'Kalau ... maka ... kalau tidak ...',
+      title: 'Struktur dasar fungsi IF',
       body: [
-        analogy('Kamu pasti pernah berpikir: "Kalau hujan, aku bawa payung. Kalau tidak, aku pakai topi." IF di Excel persis seperti itu.'),
-        syntax('=IF(syarat, hasil_jika_benar, hasil_jika_salah)', [['syarat', 'Pertanyaan yang jawabannya BENAR atau SALAH, misalnya B2>=70'], ['hasil_jika_benar', 'Apa yang ditampilkan kalau syarat terpenuhi'], ['hasil_jika_salah', 'Apa yang ditampilkan kalau syarat tidak terpenuhi']]),
+        analogy('Anda tentu pernah berpikir: "Jika hujan, saya membawa payung; jika tidak, saya menggunakan topi." Fungsi IF bekerja dengan logika yang sama.'),
+        syntax('=IF(syarat, hasil_jika_benar, hasil_jika_salah)', [['syarat', 'Pertanyaan yang jawabannya BENAR atau SALAH, misalnya B2>=70'], ['hasil_jika_benar', 'Apa yang ditampilkan jika syarat terpenuhi'], ['hasil_jika_salah', 'Apa yang ditampilkan jika syarat tidak terpenuhi']]),
         demo({
           rows: [['Nama', 'Nilai', 'Status'], ['Ayu', 85, ''], ['Budi', 60, '']],
           cell: 'C2',
@@ -214,21 +214,21 @@ const ifDasar = {
     {
       title: 'Operator pembanding',
       body: [
-        p('Untuk menulis syarat, kamu memakai operator pembanding:'),
+        p('Untuk menulis syarat, gunakan operator pembanding:'),
         steps(
           '`=` sama dengan, contoh `B2="Lunas"`',
           '`<>` tidak sama dengan, contoh `B2<>"Lunas"`',
           '`>` lebih besar, `<` lebih kecil',
           '`>=` lebih besar **atau sama dengan**, `<=` lebih kecil atau sama dengan'
         ),
-        warn('**Teks harus diapit tanda kutip**: "Lulus". Tanpa kutip, Excel mengira itu nama (dan menampilkan #NAME?). Angka tidak perlu kutip.'),
+        warn('**Teks harus diapit tanda kutip**: "Lulus". Tanpa tanda kutip, Excel menganggapnya sebagai nama dan menampilkan #NAME?. Angka tidak memerlukan tanda kutip.'),
         tip('Excel tidak membedakan huruf besar/kecil saat membandingkan teks: "lunas" sama dengan "LUNAS".')
       ]
     },
     {
-      title: 'Hasil IF tidak harus teks',
+      title: 'Hasil IF dapat berupa teks, angka, atau perhitungan',
       body: [
-        p('Hasil IF boleh berupa teks, angka, atau bahkan hitungan lain.'),
+        p('Hasil IF dapat berupa teks, angka, atau perhitungan lain.'),
         demo({
           rows: [['Belanja', 'Ongkir'], [150000, ''], [80000, '']],
           fmt: { A: 'rp', B: 'rp' },
@@ -251,14 +251,14 @@ const ifDasar = {
       solution: '=IF(B2>=70,"Lulus","Remedial")',
       shouldFail: ['=IF(B2>70,"Lulus","Remedial")'],
       mustUse: ['IF'],
-      hints: ['Tentukan syaratnya dulu: nilai di B2 minimal 70.', 'Gunakan >= (lebih besar atau sama dengan) agar nilai tepat 70 ikut lulus.', 'Tulis: =IF(B2>=70,"Lulus","Remedial")'],
+      hints: ['Tentukan syaratnya terlebih dahulu: nilai di B2 minimal 70.', 'Gunakan >= (lebih besar atau sama dengan) agar nilai tepat 70 ikut lulus.', 'Tulis: =IF(B2>=70,"Lulus","Remedial")'],
       parts: [['B2>=70', 'Syarat: nilai minimal 70'], ['"Lulus"', 'Hasil jika syarat benar'], ['"Remedial"', 'Hasil jika syarat salah']],
-      explain: 'Citra bernilai tepat 70 dan harus lulus. Itu sebabnya kita pakai >= (bukan >).'
+      explain: 'Citra bernilai tepat 70 dan harus lulus. Itu sebabnya digunakan >= (bukan >).'
     }),
     f({
       title: 'Bonus target',
       story: 'Sales yang mencapai atau melampaui target mendapat bonus Rp 500.000.',
-      task: 'Di sel **D2**, isi bonus: **500000** kalau penjualan (B) mencapai target (C), selain itu **0**. Salin sampai D4.',
+      task: 'Di sel **D2**, isi bonus: **500000** jika penjualan (B) mencapai target (C), selain itu **0**. Salin sampai D4.',
       sheets: [sheet('Bonus', [['Sales', 'Penjualan', 'Target', 'Bonus'], ['Andi', 12000000, 10000000, ''], ['Budi', 9000000, 10000000, ''], ['Citra', 10000000, 10000000, '']], { B: 'rp', C: 'rp', D: 'rp' })],
       target: 'D2',
       fillTo: 'D4',
@@ -267,11 +267,11 @@ const ifDasar = {
       solution: '=IF(B2>=C2,500000,0)',
       mustUse: ['IF'],
       hints: ['Bandingkan penjualan (B2) dengan target (C2).', '"Mencapai" artinya lebih besar atau sama dengan.', 'Tulis: =IF(B2>=C2,500000,0)'],
-      explain: 'Hasil IF di sini berupa angka, jadi tidak perlu tanda kutip. Pada IF, syarat bisa membandingkan dua sel sekaligus.'
+      explain: 'Hasil IF di sini berupa angka, jadi tidak perlu tanda kutip. Pada IF, syarat dapat membandingkan dua sel sekaligus.'
     }),
     f({
       title: 'Peringatan stok',
-      task: 'Di sel **C2**, tulis **"Habis"** kalau stok di B2 sama dengan 0, selain itu tulis **"Tersedia"**. Salin sampai C5.',
+      task: 'Di sel **C2**, tulis **"Habis"** jika stok di B2 sama dengan 0, selain itu tulis **"Tersedia"**. Salin sampai C5.',
       sheets: [sheet('Stok', [['Produk', 'Stok', 'Status'], ['Kopi', 5, ''], ['Teh', 0, ''], ['Susu', 12, ''], ['Gula', 0, '']])],
       target: 'C2',
       fillTo: 'C5',
@@ -285,7 +285,7 @@ const ifDasar = {
     f({
       title: 'Membandingkan teks',
       story: 'Bagian keuangan ingin menandai transaksi yang belum lunas.',
-      task: 'Di sel **C2**, tulis **"Selesai"** kalau status di B2 adalah "Lunas", selain itu **"Tagih"**. Salin sampai C5.',
+      task: 'Di sel **C2**, tulis **"Selesai"** jika status di B2 adalah "Lunas", selain itu **"Tagih"**. Salin sampai C5.',
       sheets: [sheet('Tagihan', [['Pelanggan', 'Status', 'Tindakan'], ['PT Maju', 'Lunas', ''], ['CV Jaya', 'Belum', ''], ['Toko Sinar', 'Lunas', ''], ['UD Bersama', 'Belum', '']])],
       target: 'C2',
       fillTo: 'C5',
@@ -294,12 +294,12 @@ const ifDasar = {
       alt: ['=IF(B2<>"Lunas","Tagih","Selesai")'],
       mustUse: ['IF'],
       hints: ['Teks yang dibandingkan harus diapit tanda kutip.', 'Syaratnya: B2="Lunas".', 'Tulis: =IF(B2="Lunas","Selesai","Tagih")'],
-      explain: 'Membandingkan teks sama seperti angka, hanya saja teksnya wajib diapit kutip. Dua cara (= atau <>) sama-sama benar asal hasilnya tidak tertukar.'
+      explain: 'Membandingkan teks sama seperti angka, hanya saja teksnya wajib diapit kutip. Kedua cara (= atau <>) benar selama hasilnya tidak tertukar.'
     }),
     f({
-      title: 'Gratis ongkir',
-      story: 'Toko online memberi gratis ongkir untuk belanja minimal Rp 100.000. Selain itu ongkirnya Rp 15.000.',
-      task: 'Di sel **B2**, tentukan ongkir untuk belanja di A2. Salin sampai B4.',
+      title: 'Gratis ongkos kirim',
+      story: 'Toko online memberikan gratis ongkos kirim untuk belanja minimal Rp 100.000. Di bawah itu, ongkos kirimnya Rp 15.000.',
+      task: 'Di sel **B2**, tentukan ongkos kirim untuk belanja di A2. Salin sampai B4.',
       sheets: [sheet('Ongkir', [['Belanja', 'Ongkir'], [150000, ''], [80000, ''], [100000, '']], { A: 'rp', B: 'rp' })],
       target: 'B2',
       fillTo: 'B4',
@@ -309,12 +309,12 @@ const ifDasar = {
       mustUse: ['IF'],
       shouldFail: ['=IF(A2>100000,0,15000)'],
       hints: ['Syarat: belanja minimal 100.000.', '"Minimal" berarti lebih besar atau sama dengan.', 'Tulis: =IF(A2>=100000,0,15000)'],
-      explain: 'Belanja tepat Rp 100.000 harus dapat gratis ongkir. Kata "minimal" selalu berarti >=.'
+      explain: 'Belanja tepat Rp 100.000 harus mendapat gratis ongkos kirim. Kata "minimal" selalu berarti >=.'
     }),
     f({
       title: 'Harga member',
       story: 'Member mendapat diskon 10%, non-member membayar harga normal.',
-      task: 'Di sel **D2**, hitung harga yang dibayar. Kalau status (kolom C) adalah "Member", bayar 90% dari harga di B2; selain itu bayar harga penuh. Salin sampai D4.',
+      task: 'Di sel **D2**, hitung harga yang dibayar. Jika status (kolom C) adalah "Member", bayar 90% dari harga di B2; selain itu bayar harga penuh. Salin sampai D4.',
       sheets: [sheet('Member', [['Pelanggan', 'Harga', 'Status', 'Bayar'], ['Rina', 100000, 'Member', ''], ['Sari', 50000, 'Umum', ''], ['Tono', 200000, 'Member', '']], { B: 'rp', D: 'rp' })],
       target: 'D2',
       fillTo: 'D4',
@@ -327,16 +327,16 @@ const ifDasar = {
       explain: 'Hasil IF boleh berupa rumus lain, bukan hanya teks atau angka tetap.'
     }),
     q({
-      title: 'Kenapa #NAME?',
-      q: 'Kamu menulis `=IF(B2>=70,Lulus,"Remedial")` dan hasilnya `#NAME?`. Penyebabnya...',
-      options: ['Fungsi IF salah ketik', 'Teks Lulus tidak diapit tanda kutip', 'Angka 70 harus pakai kutip', 'B2 tidak boleh dipakai di IF'],
+      title: 'Penyebab #NAME? pada rumus IF',
+      q: 'Anda menulis `=IF(B2>=70,Lulus,"Remedial")` dan hasilnya `#NAME?`. Penyebabnya...',
+      options: ['Fungsi IF salah ketik', 'Teks Lulus tidak diapit tanda kutip', 'Angka 70 harus menggunakan kutip', 'B2 tidak boleh digunakan di IF'],
       answer: 1,
-      explain: 'Tanpa kutip, Excel menganggap `Lulus` sebagai nama (seperti nama fungsi atau nama range) dan tidak menemukannya. Teks di dalam rumus selalu pakai kutip.',
-      whyNot: ['IF sudah tertulis benar.', '', 'Angka tidak perlu kutip.', 'B2 boleh dipakai.']
+      explain: 'Tanpa kutip, Excel menganggap `Lulus` sebagai nama (seperti nama fungsi atau nama range) dan tidak menemukannya. Teks di dalam rumus selalu ditulis dengan tanda kutip.',
+      whyNot: ['IF sudah tertulis benar.', '', 'Angka tidak perlu kutip.', 'B2 dapat digunakan.']
     }),
     f({
       title: 'Perbaiki rumus IF',
-      story: 'Rumus dari rekan kerjamu menghasilkan #NAME?. Temukan masalahnya.',
+      story: 'Rumus dari rekan kerja Anda menghasilkan #NAME?. Temukan masalahnya.',
       task: 'Perbaiki rumus ini di sel **C2** agar menampilkan status yang benar.',
       start: '=IF(B2>=70,Lulus,"Remedial")',
       sheets: [sheet('Nilai', [['Nama', 'Nilai', 'Status'], ['Ayu', 85, '']])],
@@ -344,14 +344,14 @@ const ifDasar = {
       expect: 'Lulus',
       solution: '=IF(B2>=70,"Lulus","Remedial")',
       hints: ['Lihat bagian yang menghasilkan teks: mana yang berbeda dari "Remedial"?', 'Ada teks yang lupa diberi tanda kutip.', 'Ganti Lulus menjadi "Lulus".'],
-      explain: 'Setiap teks di dalam rumus harus dibungkus kutip ganda.'
+      explain: 'Setiap teks di dalam rumus harus diapit tanda kutip ganda.'
     }),
     q({
       title: 'IF tanpa pilihan kedua',
       q: 'Apa hasil `=IF(1>2,"Ya")` (argumen ketiga dihilangkan)?',
       options: ['Kosong', 'Error', 'FALSE', '"Ya"'],
       answer: 2,
-      explain: 'Bila syarat salah dan kamu tidak menulis hasil untuk kondisi salah, Excel menampilkan **FALSE**. Biasanya lebih rapi selalu menulis ketiga bagian.'
+      explain: 'Bila syarat salah dan Anda tidak menulis hasil untuk kondisi salah, Excel menampilkan **FALSE**. Biasanya lebih rapi selalu menulis ketiga bagian.'
     })
   ]
 };
@@ -360,16 +360,16 @@ const logika = {
   id: 'logika',
   level: 2,
   icon: 'git-branch',
-  title: 'AND, OR & IF Bersarang',
-  tagline: 'Syarat ganda dan penilaian bertingkat',
-  why: 'Dunia nyata jarang sesederhana satu syarat. Bonus mungkin butuh target tercapai DAN absen bagus. Nilai A–E butuh banyak tingkat. Di sini kamu belajar menyusunnya.',
+  title: 'AND, OR, dan IF Bersarang',
+  tagline: 'Susun syarat ganda dan penilaian bertingkat menggunakan AND, OR, IF bersarang, dan IFS.',
+  why: 'Kondisi di dunia kerja jarang hanya terdiri dari satu syarat. Bonus, misalnya, dapat mensyaratkan target tercapai dan kehadiran yang baik, sedangkan penilaian A sampai E memerlukan beberapa tingkat. Modul ini membahas cara menyusunnya.',
   minutes: 14,
   lessons: [
     {
-      title: 'AND dan OR: banyak syarat sekaligus',
+      title: 'AND dan OR: beberapa syarat sekaligus',
       body: [
         analogy('**AND** seperti persyaratan melamar kerja: usia cukup **dan** punya ijazah **dan** lolos tes. Semua harus ya. **OR** seperti diskon: "member **atau** belanja di atas 200 ribu". Salah satu cukup.'),
-        syntax('=IF(AND(syarat1, syarat2), "Ya", "Tidak")', [['AND(...)', 'BENAR hanya kalau semua syarat benar'], ['OR(...)', 'BENAR kalau salah satu syarat benar'], ['NOT(...)', 'Membalik: benar jadi salah']]),
+        syntax('=IF(AND(syarat1, syarat2), "Ya", "Tidak")', [['AND(...)', 'BENAR hanya jika semua syarat benar'], ['OR(...)', 'BENAR jika salah satu syarat benar'], ['NOT(...)', 'Membalik: benar jadi salah']]),
         demo({
           rows: [['Nilai', 'Hadir %', 'Status'], [80, 90, ''], [85, 60, '']],
           cell: 'C2',
@@ -380,43 +380,43 @@ const logika = {
           rows: [['Nilai', 'Hadir %', 'Status'], [80, 90, 'Lulus'], [85, 60, '']],
           cell: 'C3',
           formula: '=IF(AND(A3>=70,B3>=75),"Lulus","Tidak")',
-          caption: 'Nilai 85 bagus, tapi hadir hanya 60% (belum 75). Satu syarat gagal, hasilnya Tidak.'
+          caption: 'Nilai 85 bagus, tetapi hadir hanya 60% (belum 75). Satu syarat gagal, hasilnya Tidak.'
         })
       ]
     },
     {
-      title: 'IF bersarang: tangga penilaian',
+      title: 'IF bersarang: penilaian bertingkat',
       body: [
-        p('Untuk lebih dari dua kemungkinan (misalnya nilai A, B, C, D), taruh **IF di dalam IF**. Excel mengecek dari atas ke bawah, dan berhenti di syarat pertama yang benar.'),
-        analogy('Seperti naik tangga dari atas: "Nilai di atas 85? A. Kalau bukan, di atas 70? B. Kalau bukan, di atas 55? C. Sisanya D."'),
+        p('Untuk lebih dari dua kemungkinan (misalnya nilai A, B, C, D), letakkan **IF di dalam IF**. Excel mengecek dari atas ke bawah, dan berhenti di syarat pertama yang benar.'),
+        analogy('Cara kerjanya seperti menuruni tangga dari atas: "Nilai di atas 85? A. Jika bukan, di atas 70? B. Jika bukan, di atas 55? C. Sisanya D."'),
         demo({
           rows: [['Nilai', 'Grade'], [78, '']],
           cell: 'B2',
           formula: '=IF(A2>=85,"A",IF(A2>=70,"B",IF(A2>=55,"C","D")))',
-          caption: 'Nilai 78: tidak >= 85, tapi >= 70, jadi "B".'
+          caption: 'Nilai 78: tidak >= 85, tetapi >= 70, jadi "B".'
         }),
-        warn('**Urutan penting.** Mulai dari batas tertinggi. Kalau kamu cek ">= 55" lebih dulu, semua nilai 55 ke atas langsung jadi C dan tidak pernah sampai ke A.')
+        warn('**Urutan syarat menentukan hasil.** Mulai dari batas tertinggi. Jika syarat ">= 55" diperiksa lebih dahulu, semua nilai 55 ke atas langsung menjadi C dan tidak pernah sampai ke A.')
       ]
     },
     {
-      title: 'IFS: versi yang lebih rapi',
+      title: 'IFS: alternatif yang lebih ringkas',
       body: [
-        p('Banyak IF bersarang cepat membuat kurungnya menumpuk. **IFS** menulisnya sebagai daftar pasangan "syarat, hasil":'),
-        syntax('=IFS(syarat1, hasil1, syarat2, hasil2, ..., TRUE, hasil_lainnya)', [['syarat, hasil', 'Pasangan yang dicek berurutan'], ['TRUE, hasil', 'Syarat penutup yang selalu benar: dipakai untuk "selain itu"']]),
+        p('IF yang bersarang terlalu banyak membuat tanda kurungnya menumpuk. **IFS** menuliskannya sebagai daftar pasangan "syarat, hasil":'),
+        syntax('=IFS(syarat1, hasil1, syarat2, hasil2, ..., TRUE, hasil_lainnya)', [['syarat, hasil', 'Pasangan yang dicek berurutan'], ['TRUE, hasil', 'Syarat penutup yang selalu benar: digunakan untuk "selain itu"']]),
         demo({
           rows: [['Nilai', 'Grade'], [78, '']],
           cell: 'B2',
           formula: '=IFS(A2>=85,"A",A2>=70,"B",A2>=55,"C",TRUE,"D")',
-          caption: 'Hasilnya sama dengan IF bersarang tadi, tapi lebih mudah dibaca.'
+          caption: 'Hasilnya sama dengan IF bersarang tadi, tetapi lebih mudah dibaca.'
         }),
-        tip('IFS tersedia di Excel 2019 / Microsoft 365 ke atas. Kalau bekerja dengan Excel versi lama, kamu tetap perlu IF bersarang.')
+        tip('IFS tersedia di Excel 2019 / Microsoft 365 ke atas. Jika bekerja dengan Excel versi lama, Anda tetap perlu IF bersarang.')
       ]
     }
   ],
   exercises: [
     f({
       title: 'Lulus butuh dua syarat',
-      story: 'Siswa lulus kalau nilainya minimal 70 **dan** kehadirannya minimal 75%.',
+      story: 'Siswa lulus jika nilainya minimal 70 **dan** kehadirannya minimal 75%.',
       task: 'Di sel **C2**, tulis "Lulus" jika kedua syarat terpenuhi, selain itu "Tidak Lulus". Salin sampai C5.',
       sheets: [sheet('Kelulusan', [['Nilai', 'Hadir %', 'Status'], [80, 90, ''], [85, 60, ''], [60, 95, ''], [70, 75, '']])],
       target: 'C2',
@@ -424,13 +424,13 @@ const logika = {
       expect: [['Lulus'], ['Tidak Lulus'], ['Tidak Lulus'], ['Lulus']],
       solution: '=IF(AND(A2>=70,B2>=75),"Lulus","Tidak Lulus")',
       mustUse: ['AND'],
-      hints: ['Ada dua syarat yang harus terpenuhi sekaligus.', 'Gabungkan keduanya dengan AND(syarat1, syarat2) lalu taruh di dalam IF.', 'Tulis: =IF(AND(A2>=70,B2>=75),"Lulus","Tidak Lulus")'],
+      hints: ['Ada dua syarat yang harus terpenuhi sekaligus.', 'Gabungkan keduanya dengan AND(syarat1, syarat2) lalu letakkan di dalam IF.', 'Tulis: =IF(AND(A2>=70,B2>=75),"Lulus","Tidak Lulus")'],
       parts: [['AND(A2>=70, B2>=75)', 'Nilai minimal 70 DAN hadir minimal 75'], ['"Lulus"', 'jika keduanya benar'], ['"Tidak Lulus"', 'jika ada yang salah']],
-      explain: 'AND hanya BENAR kalau semua syarat di dalamnya benar. Baris 2 Lulus, sedangkan baris 3 dan 4 masing-masing gagal di salah satu syarat.'
+      explain: 'AND hanya BENAR jika semua syarat di dalamnya benar. Baris 2 Lulus, sedangkan baris 3 dan 4 masing-masing gagal di salah satu syarat.'
     }),
     f({
       title: 'Diskon dengan salah satu syarat',
-      story: 'Pelanggan dapat diskon kalau berstatus "Member" **atau** belanja minimal Rp 200.000.',
+      story: 'Pelanggan dapat diskon jika berstatus "Member" **atau** belanja minimal Rp 200.000.',
       task: 'Di sel **C2**, tulis "Ya" jika pelanggan dapat diskon, selain itu "Tidak". Salin sampai C4.',
       sheets: [sheet('Diskon', [['Status', 'Belanja', 'Diskon?'], ['Member', 100000, ''], ['Umum', 250000, ''], ['Umum', 100000, '']], { B: 'rp' })],
       target: 'C2',
@@ -444,16 +444,16 @@ const logika = {
     f({
       title: 'Grade nilai A sampai D',
       story: 'A untuk nilai 85 ke atas, B untuk 70 sampai 84, C untuk 55 sampai 69, dan D untuk di bawahnya.',
-      task: 'Di sel **B2**, tentukan grade dari nilai di A2 memakai IF bersarang. Salin sampai B5.',
+      task: 'Di sel **B2**, tentukan grade dari nilai di A2 menggunakan IF bersarang. Salin sampai B5.',
       sheets: [sheet('Grade', [['Nilai', 'Grade'], [90, ''], [75, ''], [60, ''], [40, '']])],
       target: 'B2',
       fillTo: 'B5',
       expect: [['A'], ['B'], ['C'], ['D']],
       solution: '=IF(A2>=85,"A",IF(A2>=70,"B",IF(A2>=55,"C","D")))',
       alt: ['=IFS(A2>=85,"A",A2>=70,"B",A2>=55,"C",TRUE,"D")'],
-      hints: ['Cek mulai dari batas tertinggi (85). Kalau tidak memenuhi, turun ke batas berikutnya.', 'IF kedua, ketiga, dan seterusnya diletakkan di bagian "hasil jika salah" milik IF sebelumnya.', 'Tulis: =IF(A2>=85,"A",IF(A2>=70,"B",IF(A2>=55,"C","D")))'],
-      parts: [['IF(A2>=85,"A", ...', 'Kalau 85 ke atas, A. Kalau tidak, lanjut ke IF berikutnya'], ['IF(A2>=70,"B", ...', 'Kalau 70 ke atas, B'], ['IF(A2>=55,"C","D")', 'Kalau 55 ke atas, C. Sisanya D']],
-      explain: 'Setiap IF menangani satu batas, dan sisanya "dilempar" ke IF berikutnya. Jumlah kurung tutup di akhir harus sama dengan jumlah IF.'
+      hints: ['Periksa mulai dari batas tertinggi (85). Jika tidak memenuhi, lanjut ke batas berikutnya.', 'IF kedua, ketiga, dan seterusnya diletakkan di bagian "hasil jika salah" milik IF sebelumnya.', 'Tulis: =IF(A2>=85,"A",IF(A2>=70,"B",IF(A2>=55,"C","D")))'],
+      parts: [['IF(A2>=85,"A", ...', 'Jika 85 ke atas, A. Jika tidak, lanjut ke IF berikutnya'], ['IF(A2>=70,"B", ...', 'Jika 70 ke atas, B'], ['IF(A2>=55,"C","D")', 'Jika 55 ke atas, C. Sisanya D']],
+      explain: 'Setiap IF menangani satu batas, dan sisanya diteruskan ke IF berikutnya. Jumlah kurung tutup di akhir harus sama dengan jumlah IF.'
     }),
     f({
       title: 'Kategori umur dengan IFS',
@@ -465,8 +465,8 @@ const logika = {
       expect: [['Anak'], ['Remaja'], ['Dewasa'], ['Lansia']],
       solution: '=IFS(A2<13,"Anak",A2<18,"Remaja",A2<60,"Dewasa",TRUE,"Lansia")',
       mustUse: ['IFS'],
-      hints: ['IFS menerima pasangan: syarat lalu hasil, berulang.', 'Mulai dari yang terkecil karena kita memakai "<". Pasangan terakhir memakai TRUE sebagai syarat "selain itu".', 'Tulis: =IFS(A2<13,"Anak",A2<18,"Remaja",A2<60,"Dewasa",TRUE,"Lansia")'],
-      explain: 'Syarat TRUE di akhir selalu benar, jadi dipakai untuk menangkap semua sisanya. Tanpa itu, usia 65 akan menghasilkan #N/A.'
+      hints: ['IFS menerima pasangan: syarat lalu hasil, berulang.', 'Mulai dari yang terkecil karena syaratnya menggunakan "<". Pasangan terakhir menggunakan TRUE sebagai syarat "selain itu".', 'Tulis: =IFS(A2<13,"Anak",A2<18,"Remaja",A2<60,"Dewasa",TRUE,"Lansia")'],
+      explain: 'Syarat TRUE di akhir selalu benar, jadi digunakan untuk menangkap semua sisanya. Tanpa itu, usia 65 akan menghasilkan #N/A.'
     }),
     f({
       title: 'Bonus bertingkat',
@@ -479,12 +479,12 @@ const logika = {
       expect: [[2750000], [1050000], [0]],
       solution: '=IF(A2>=50000000,A2*5%,IF(A2>=30000000,A2*3%,0))',
       alt: ['=IFS(A2>=50000000,A2*0.05,A2>=30000000,A2*0.03,TRUE,0)'],
-      hints: ['Ada tiga kemungkinan hasil, jadi butuh dua IF yang bersarang.', 'Cek batas tertinggi dulu (50 juta). Bonusnya penjualan dikali persentase.', 'Tulis: =IF(A2>=50000000,A2*5%,IF(A2>=30000000,A2*3%,0))'],
-      explain: 'Hasil IF yang berupa hitungan (A2*5%) membuat nilai bonus langsung muncul. Urutan dari batas tertinggi menjamin penjualan 55 juta tidak "tersangkut" di bonus 3%.'
+      hints: ['Ada tiga kemungkinan hasil, jadi butuh dua IF yang bersarang.', 'Periksa batas tertinggi terlebih dahulu (50 juta). Bonusnya adalah penjualan dikalikan persentase.', 'Tulis: =IF(A2>=50000000,A2*5%,IF(A2>=30000000,A2*3%,0))'],
+      explain: 'Hasil IF yang berupa hitungan (A2*5%) membuat nilai bonus langsung muncul. Urutan dari batas tertinggi menjamin penjualan 55 juta tidak berhenti di bonus 3%.'
     }),
     q({
-      title: 'Kenapa urutan penting?',
-      q: 'Kamu menulis `=IF(A2>=55,"C",IF(A2>=70,"B",IF(A2>=85,"A","D")))`. Nilai 90 menghasilkan...',
+      title: 'Pentingnya urutan syarat',
+      q: 'Anda menulis `=IF(A2>=55,"C",IF(A2>=70,"B",IF(A2>=85,"A","D")))`. Nilai 90 menghasilkan...',
       options: ['A', 'B', 'C', 'D'],
       answer: 2,
       explain: 'Nilai 90 langsung memenuhi syarat pertama (>= 55), sehingga Excel berhenti dan menjawab **C**. IF berikutnya tidak pernah dicek. Selalu susun syarat dari batas tertinggi ke terendah.'
@@ -517,16 +517,16 @@ const bersyarat = {
   id: 'countif-sumif',
   level: 2,
   icon: 'filter',
-  title: 'Hitung dengan Syarat',
-  tagline: 'COUNTIF, SUMIF, AVERAGEIF',
-  why: '"Berapa total penjualan kategori Minuman?" "Berapa pelanggan dari Jakarta?" Pertanyaan semacam ini muncul setiap hari, dan inilah tiga fungsi yang menjawabnya.',
+  title: 'Menghitung dan Menjumlahkan dengan Syarat',
+  tagline: 'Gunakan COUNTIF, SUMIF, dan AVERAGEIF untuk menghitung, menjumlahkan, dan merata-ratakan data yang memenuhi kriteria.',
+  why: '"Berapa total penjualan kategori Minuman?" atau "Berapa jumlah pelanggan dari Jakarta?" Pertanyaan seperti ini muncul setiap hari, dan tiga fungsi ini dirancang untuk menjawabnya.',
   minutes: 14,
   lessons: [
     {
-      title: 'COUNTIF: menghitung yang cocok saja',
+      title: 'COUNTIF: menghitung data yang memenuhi syarat',
       body: [
-        analogy('Di kelas ada 30 murid. "Berapa murid yang memakai kacamata?" Kamu tidak menghitung semua orang, hanya yang cocok dengan syarat.'),
-        syntax('=COUNTIF(range, kriteria)', [['range', 'Kolom/area tempat Excel mengecek'], ['kriteria', 'Syarat yang harus cocok. Teks ditulis di dalam kutip: "Minuman"']]),
+        analogy('Di kelas ada 30 murid. "Berapa murid yang menggunakan kacamata?" Anda tidak menghitung semua orang, hanya yang cocok dengan syarat.'),
+        syntax('=COUNTIF(range, kriteria)', [['range', 'Kolom atau area yang diperiksa Excel'], ['kriteria', 'Syarat yang harus cocok. Teks ditulis di dalam kutip: "Minuman"']]),
         demo({
           rows: [['Produk', 'Kategori', 'Qty'], ['Kopi', 'Minuman', 10], ['Roti', 'Makanan', 8], ['Teh', 'Minuman', 5], ['Kue', 'Makanan', 3], ['Jumlah minuman', '', '']],
           cell: 'B6',
@@ -537,9 +537,9 @@ const bersyarat = {
       ]
     },
     {
-      title: 'SUMIF: menjumlahkan yang cocok saja',
+      title: 'SUMIF: menjumlahkan data yang memenuhi syarat',
       body: [
-        analogy('Kamu punya tumpukan kuitansi dengan label "Makan", "Transport", "Hotel". "Berapa total yang berlabel Makan?" Jumlahkan hanya kuitansi berlabel itu.'),
+        analogy('Anda punya tumpukan kuitansi dengan label "Makan", "Transport", "Hotel". "Berapa total yang berlabel Makan?" Jumlahkan hanya kuitansi berlabel itu.'),
         syntax('=SUMIF(range_syarat, kriteria, range_yang_dijumlahkan)', [['range_syarat', 'Kolom yang dicek (misalnya Kategori)'], ['kriteria', 'Syaratnya, misalnya "Minuman"'], ['range_yang_dijumlahkan', 'Kolom angka yang dijumlahkan (misalnya Qty)']]),
         demo({
           rows: [['Produk', 'Kategori', 'Qty'], ['Kopi', 'Minuman', 10], ['Roti', 'Makanan', 8], ['Teh', 'Minuman', 5], ['Kue', 'Makanan', 3], ['Qty minuman', '', '']],
@@ -547,16 +547,16 @@ const bersyarat = {
           formula: '=SUMIF(B2:B5,"Minuman",C2:C5)',
           caption: '10 + 5 = 15. Range syarat (B) dan range jumlah (C) harus sama panjang dan sejajar.'
         }),
-        tip('Kalau yang dicek dan yang dijumlahkan adalah kolom yang sama, argumen ketiga boleh dihilangkan. Contoh: =SUMIF(C2:C5,">5") menjumlahkan qty yang lebih dari 5.')
+        tip('Jika yang dicek dan yang dijumlahkan adalah kolom yang sama, argumen ketiga boleh dihilangkan. Contoh: =SUMIF(C2:C5,">5") menjumlahkan qty yang lebih dari 5.')
       ]
     },
     {
       title: 'AVERAGEIF, wildcard, dan kriteria dari sel',
       body: [
-        p('**AVERAGEIF** bekerja seperti SUMIF, tapi mencari rata-rata: `=AVERAGEIF(range_syarat, kriteria, range_rata_rata)`.'),
+        p('**AVERAGEIF** bekerja seperti SUMIF, tetapi mencari rata-rata: `=AVERAGEIF(range_syarat, kriteria, range_rata_rata)`.'),
         p('**Wildcard** membantu mencari pola teks. `*` berarti "teks apa pun" dan `?` berarti "satu huruf apa pun":'),
         steps('`"K*"` : semua yang diawali huruf K', '`"*kopi*"` : semua yang mengandung kata kopi', '`"???"` : tepat tiga huruf'),
-        p('Kriteria juga boleh **diambil dari sel**, jadi syaratnya bisa diubah tanpa mengedit rumus. Untuk operator, sambung dengan `&`:'),
+        p('Kriteria juga boleh **diambil dari sel**, jadi syaratnya dapat diubah tanpa mengedit rumus. Untuk operator, sambung dengan `&`:'),
         demo({
           rows: [['Qty', 'Batas'], [10, 8], [8, null], [5, null], [12, null], ['Jumlah > batas', '']],
           cell: 'B6',
@@ -575,7 +575,7 @@ const bersyarat = {
       expect: 4,
       solution: '=COUNTIF(B2:B9,"Minuman")',
       mustUse: ['COUNTIF', 'COUNTIFS'],
-      hints: ['Kamu menghitung baris yang cocok dengan syarat, bukan semua baris.', 'COUNTIF(range yang dicek, syarat). Syarat berupa teks harus diapit kutip.', 'Tulis: =COUNTIF(B2:B9,"Minuman")'],
+      hints: ['Anda menghitung baris yang cocok dengan syarat, bukan semua baris.', 'COUNTIF(range yang dicek, syarat). Syarat berupa teks harus diapit kutip.', 'Tulis: =COUNTIF(B2:B9,"Minuman")'],
       parts: [['B2:B9', 'Kolom Kategori yang dicek'], ['"Minuman"', 'Syarat yang harus cocok']],
       explain: 'COUNTIF membaca setiap sel di B2:B9 dan menghitung yang isinya "Minuman": Kopi, Teh, Susu, Jus = 4.'
     }),
@@ -599,13 +599,13 @@ const bersyarat = {
       expect: 34,
       solution: '=SUMIF(B2:B9,"Minuman",C2:C9)',
       mustUse: ['SUMIF', 'SUMIFS', 'SUMPRODUCT'],
-      hints: ['Kamu menjumlahkan hanya baris yang cocok, jadi bukan SUM biasa.', 'SUMIF(kolom syarat, syarat, kolom yang dijumlahkan).', 'Tulis: =SUMIF(B2:B9,"Minuman",C2:C9)'],
+      hints: ['Anda menjumlahkan hanya baris yang cocok, jadi bukan SUM biasa.', 'SUMIF(kolom syarat, syarat, kolom yang dijumlahkan).', 'Tulis: =SUMIF(B2:B9,"Minuman",C2:C9)'],
       parts: [['B2:B9', 'Kolom yang dicek (Kategori)'], ['"Minuman"', 'Syaratnya'], ['C2:C9', 'Kolom yang dijumlahkan (Qty)']],
       explain: 'Hanya baris Minuman yang qty-nya dijumlahkan: 10 + 5 + 12 + 7 = 34.'
     }),
     f({
       title: 'Total harga produk mahal',
-      story: 'Kadang yang dicek dan yang dijumlahkan adalah kolom yang sama.',
+      story: 'Pada kasus tertentu, kolom yang diperiksa dan kolom yang dijumlahkan adalah kolom yang sama.',
       task: 'Di sel **D11**, jumlahkan semua **harga** yang nilainya Rp 20.000 atau lebih.',
       sheets: [sheet('Penjualan', penjualanRows([['Total harga mahal', null, null, '']]), { D: 'rp' })],
       target: 'D11',
@@ -614,7 +614,7 @@ const bersyarat = {
       solution: '=SUMIF(D2:D9,">=20000")',
       alt: ['=SUMIF(D2:D9,">=20000",D2:D9)'],
       mustUse: ['SUMIF', 'SUMIFS'],
-      hints: ['Kolom yang dicek dan yang dijumlahkan sama-sama kolom harga.', 'Kalau sama, argumen ketiga boleh dihilangkan.', 'Tulis: =SUMIF(D2:D9,">=20000")'],
+      hints: ['Kolom yang dicek dan yang dijumlahkan sama-sama kolom harga.', 'Jika sama, argumen ketiga boleh dihilangkan.', 'Tulis: =SUMIF(D2:D9,">=20000")'],
       explain: 'Kopi (20.000) + Kue (30.000) + Jus (22.000) = 72.000.'
     }),
     f({
@@ -626,12 +626,12 @@ const bersyarat = {
       expect: 16750,
       solution: '=AVERAGEIF(B2:B9,"Makanan",D2:D9)',
       mustUse: ['AVERAGEIF', 'AVERAGEIFS'],
-      hints: ['Seperti SUMIF, tapi yang dicari rata-ratanya.', 'AVERAGEIF(kolom syarat, syarat, kolom yang dirata-rata).', 'Tulis: =AVERAGEIF(B2:B9,"Makanan",D2:D9)'],
+      hints: ['Seperti SUMIF, tetapi yang dicari rata-ratanya.', 'AVERAGEIF(kolom syarat, syarat, kolom yang dirata-rata).', 'Tulis: =AVERAGEIF(B2:B9,"Makanan",D2:D9)'],
       explain: '(12.000 + 30.000 + 10.000 + 15.000) / 4 = 16.750.'
     }),
     f({
       title: 'Wildcard: diawali huruf K',
-      task: 'Di sel **B11**, hitung berapa **produk yang namanya diawali huruf K**. Pakai tanda bintang `*` sebagai wildcard.',
+      task: 'Di sel **B11**, hitung berapa **produk yang namanya diawali huruf K**. Gunakan tanda bintang `*` sebagai wildcard.',
       sheets: [sheet('Penjualan', penjualanRows([['Diawali K', '', null, null]]), { D: 'rp' })],
       target: 'B11',
       expect: 2,
@@ -642,7 +642,7 @@ const bersyarat = {
     }),
     f({
       title: 'Kriteria dari sel',
-      story: 'Supaya laporan fleksibel, kategori yang dicari ditulis di sel F1. Kamu bisa menggantinya tanpa mengedit rumus.',
+      story: 'Supaya laporan fleksibel, kategori yang dicari ditulis di sel F1. Anda dapat menggantinya tanpa mengedit rumus.',
       task: 'Di sel **C11**, jumlahkan qty untuk kategori yang tertulis di **F1**.',
       sheets: [sheet('Penjualan', penjualanRows([['Qty kategori F1', null, '', null]]).map((r, i) => (i === 0 ? [...r, null, 'Makanan'] : r)), { D: 'rp' })],
       target: 'C11',
@@ -650,8 +650,8 @@ const bersyarat = {
       solution: '=SUMIF(B2:B9,F1,C2:C9)',
       shouldFail: ['=SUMIF(B2:B9,"F1",C2:C9)'],
       mustUse: ['SUMIF', 'SUMIFS'],
-      hints: ['Kriteria boleh berupa alamat sel. Tidak pakai kutip, karena bukan teks.', 'Letakkan F1 di posisi kriteria.', 'Tulis: =SUMIF(B2:B9,F1,C2:C9)'],
-      explain: 'Menulis F1 tanpa kutip artinya "pakai isi sel F1". Ganti F1 menjadi "Minuman" dan angka langsung berubah.'
+      hints: ['Kriteria boleh berupa alamat sel. Tanpa tanda kutip, karena bukan teks.', 'Letakkan F1 di posisi kriteria.', 'Tulis: =SUMIF(B2:B9,F1,C2:C9)'],
+      explain: 'Menulis F1 tanpa kutip artinya "gunakan isi sel F1". Ganti F1 menjadi "Minuman" dan angka langsung berubah.'
     }),
     f({
       title: 'Lebih besar dari sel batas',
@@ -663,7 +663,7 @@ const bersyarat = {
       shouldFail: ['=COUNTIF(C2:C9,">F1")'],
       mustUse: ['COUNTIF', 'COUNTIFS'],
       hints: ['Operator ">" adalah teks, sedangkan F1 adalah sel. Keduanya harus disambung.', 'Sambung dengan tanda &: ">"&F1.', 'Tulis: =COUNTIF(C2:C9,">"&F1)'],
-      explain: '">"&F1 membentuk ">8". Kalau kamu menulis ">F1", Excel mencari angka yang lebih besar dari teks "F1", dan hasilnya salah.'
+      explain: '">"&F1 membentuk ">8". Jika Anda menulis ">F1", Excel mencari angka yang lebih besar dari teks "F1", dan hasilnya salah.'
     }),
     f({
       title: 'Persentase minuman',
@@ -675,7 +675,7 @@ const bersyarat = {
       solution: '=COUNTIF(B2:B9,"Minuman")/COUNTA(B2:B9)',
       alt: ['=COUNTIF(B2:B9,"Minuman")/ROWS(B2:B9)', '=COUNTIF(B2:B9,"Minuman")/COUNTA(A2:A9)'],
       hints: ['Persentase = bagian / keseluruhan.', 'Bagian: jumlah baris Minuman. Keseluruhan: jumlah semua produk (COUNTA).', 'Tulis: =COUNTIF(B2:B9,"Minuman")/COUNTA(B2:B9)'],
-      explain: 'Fungsi bisa dipakai di kedua sisi pembagian. 4 minuman dari 8 produk = 50%.'
+      explain: 'Fungsi dapat digunakan di kedua sisi pembagian. 4 minuman dari 8 produk = 50%.'
     })
   ]
 };
@@ -684,15 +684,15 @@ const teksDasar = {
   id: 'teks-dasar',
   level: 2,
   icon: 'type',
-  title: 'Teks Dasar',
-  tagline: 'LEFT, RIGHT, MID, LEN, TRIM, UPPER, LOWER, PROPER',
-  why: 'Data di dunia nyata sering berupa teks yang berantakan atau perlu dipecah: kode produk, nama, nomor telepon. Fungsi teks merapikannya.',
+  title: 'Fungsi Teks Dasar',
+  tagline: 'Ambil, ukur, dan rapikan teks menggunakan LEFT, RIGHT, MID, LEN, TRIM, UPPER, LOWER, dan PROPER.',
+  why: 'Data di lapangan sering berupa teks yang tidak rapi atau perlu dipecah, seperti kode produk, nama, dan nomor telepon. Fungsi teks membantu merapikannya.',
   minutes: 12,
   lessons: [
     {
       title: 'Mengambil potongan teks',
       body: [
-        analogy('Bayangkan teks sebagai untaian huruf bernomor. Kamu bisa menggunting dari kiri, dari kanan, atau dari tengah.'),
+        analogy('Anggap teks sebagai deretan huruf bernomor. Anda dapat mengambil potongannya dari kiri, kanan, atau tengah.'),
         steps(
           '`LEFT(teks, n)` : ambil **n huruf pertama** dari kiri.',
           '`RIGHT(teks, n)` : ambil **n huruf terakhir** dari kanan.',
@@ -714,7 +714,7 @@ const teksDasar = {
       ]
     },
     {
-      title: 'Merapikan dan mengubah huruf',
+      title: 'Merapikan teks dan mengubah huruf',
       body: [
         steps(
           '`TRIM(teks)` : hapus spasi berlebih di awal, akhir, dan di tengah (spasi ganda jadi satu).',
@@ -728,8 +728,8 @@ const teksDasar = {
           formula: '=PROPER(TRIM(B1))',
           caption: 'TRIM menghapus spasi berlebih, lalu PROPER merapikan huruf besar-kecilnya: "Siti Aminah".'
         }),
-        p('Fungsi boleh **dibungkus bersarang** seperti di atas. Excel menghitung dari dalam keluar.'),
-        tip('Menyambung beberapa teks dengan `&`, misalnya `=LOWER(A2)&"@kantor.com"`.')
+        p('Fungsi dapat **disarangkan** seperti pada contoh di atas. Excel menghitung dari bagian terdalam ke luar.'),
+        tip('Gunakan `&` untuk menyambung beberapa teks, misalnya `=LOWER(A2)&"@kantor.com"`.')
       ]
     }
   ],
@@ -743,7 +743,7 @@ const teksDasar = {
       expect: 'KMP',
       solution: '=LEFT(A2,3)',
       alt: ['=MID(A2,1,3)'],
-      hints: ['Kamu mengambil potongan dari sisi kiri teks.', 'LEFT(teks, jumlah huruf).', 'Tulis: =LEFT(A2,3)'],
+      hints: ['Anda mengambil potongan dari sisi kiri teks.', 'LEFT(teks, jumlah huruf).', 'Tulis: =LEFT(A2,3)'],
       explain: 'LEFT(A2,3) memotong tiga huruf dari kiri: K, M, P.'
     }),
     f({
@@ -755,7 +755,7 @@ const teksDasar = {
       solution: '=RIGHT(A2,3)',
       alt: ['=MID(A2,10,3)'],
       hints: ['Sekarang sisi kanan teks yang dipotong.', 'RIGHT(teks, jumlah huruf).', 'Tulis: =RIGHT(A2,3)'],
-      explain: 'RIGHT bekerja dari ujung kanan. Cocok untuk kode yang panjangnya berbeda-beda tapi akhirannya tetap.'
+      explain: 'RIGHT bekerja dari ujung kanan. Cocok untuk kode yang panjangnya berbeda-beda tetapi akhirannya tetap.'
     }),
     f({
       title: 'Nomor di tengah kode',
@@ -765,7 +765,7 @@ const teksDasar = {
       expect: '0012',
       solution: '=MID(A2,5,4)',
       mustUse: ['MID', 'TEXTBEFORE', 'LEFT', 'RIGHT'],
-      hints: ['Nomor itu ada di tengah, jadi kamu butuh fungsi yang bisa mulai dari mana saja.', 'Huruf K-M-P-"-" menghabiskan 4 posisi, jadi nomor mulai dari posisi ke-5. Panjangnya 4.', 'Tulis: =MID(A2,5,4)'],
+      hints: ['Nomor itu ada di tengah, jadi Anda memerlukan fungsi yang dapat dimulai dari posisi mana pun.', 'Huruf K-M-P-"-" menghabiskan 4 posisi, jadi nomor mulai dari posisi ke-5. Panjangnya 4.', 'Tulis: =MID(A2,5,4)'],
       parts: [['MID', 'Ambil potongan tengah'], ['A2', 'teks sumber'], ['5', 'mulai dari huruf ke-5'], ['4', 'ambil 4 huruf']],
       explain: 'MID(teks, mulai, panjang). Hasilnya tetap teks "0012" sehingga angka nol di depannya tidak hilang.'
     }),
@@ -778,12 +778,12 @@ const teksDasar = {
       expect: 12,
       solution: '=LEN(A2)',
       mustUse: ['LEN'],
-      hints: ['Kamu menghitung banyaknya karakter, bukan nilainya.', 'LEN = length (panjang).', 'Tulis: =LEN(A2)'],
+      hints: ['Anda menghitung banyaknya karakter, bukan nilainya.', 'LEN = length (panjang).', 'Tulis: =LEN(A2)'],
       explain: 'LEN menghitung semua karakter, termasuk spasi dan tanda baca.'
     }),
     f({
       title: 'Hapus spasi berlebih',
-      story: 'Nama hasil copy-paste sering membawa spasi liar yang membuat pencarian gagal.',
+      story: 'Nama hasil copy-paste sering mengandung spasi berlebih yang membuat pencarian gagal.',
       task: 'Di sel **B2**, rapikan nama di A2 agar spasi berlebih hilang.',
       sheets: [sheet('Nama', [['Nama kotor', 'Nama rapi'], ['  Budi   Santoso  ', '']])],
       target: 'B2',
@@ -826,7 +826,7 @@ const teksDasar = {
       mustUse: ['LOWER'],
       hints: ['Ubah nama menjadi huruf kecil, lalu sambung dengan teks domain.', 'LOWER untuk huruf kecil dan & untuk menyambung.', 'Tulis: =LOWER(A2)&"@kantor.com"'],
       parts: [['LOWER(A2)', 'Nama menjadi huruf kecil'], ['&', 'disambung dengan'], ['"@kantor.com"', 'teks tetap']],
-      explain: 'Fungsi teks dan operator & saling melengkapi. Kamu bisa menyalin rumus ke ratusan nama sekaligus.'
+      explain: 'Fungsi teks dan operator & saling melengkapi. Anda dapat menyalin rumus ke ratusan nama sekaligus.'
     }),
     f({
       title: 'Kode karyawan',
@@ -837,9 +837,9 @@ const teksDasar = {
       expect: 'BUD-2021',
       solution: '=UPPER(LEFT(A2,3))&"-"&B2',
       mustUse: ['UPPER', 'LEFT'],
-      hints: ['Kamu butuh tiga bagian yang disambung: 3 huruf awal, tanda hubung, dan tahun.', 'Ambil 3 huruf dengan LEFT, kapitalkan dengan UPPER, lalu sambung dengan &.', 'Tulis: =UPPER(LEFT(A2,3))&"-"&B2'],
+      hints: ['Anda butuh tiga bagian yang disambung: 3 huruf awal, tanda hubung, dan tahun.', 'Ambil 3 huruf dengan LEFT, kapitalkan dengan UPPER, lalu sambung dengan &.', 'Tulis: =UPPER(LEFT(A2,3))&"-"&B2'],
       parts: [['UPPER(LEFT(A2,3))', '"Budi" jadi "Bud" jadi "BUD"'], ['&"-"&', 'sambung dengan tanda hubung'], ['B2', 'lalu tahun masuk']],
-      explain: 'Fungsi dihitung dari dalam keluar: LEFT dulu, baru UPPER. Angka (tahun) otomatis menjadi teks saat disambung dengan &.'
+      explain: 'Fungsi dihitung dari bagian terdalam: LEFT lebih dahulu, baru UPPER. Angka (tahun) otomatis menjadi teks saat disambung dengan &.'
     })
   ]
 };
@@ -848,43 +848,43 @@ const errorModul = {
   id: 'error-iferror',
   level: 2,
   icon: 'alert',
-  title: 'Error & IFERROR',
-  tagline: 'Mengenali pesan error dan menanganinya dengan rapi',
-  why: 'Error bukan musuh. Pesan error adalah petunjuk. Setelah paham artinya, kamu bisa memperbaiki rumus lebih cepat dan membuat laporan yang bersih.',
+  title: 'Memahami Error dan Menggunakan IFERROR',
+  tagline: 'Kenali jenis pesan error di Excel, temukan penyebabnya, dan tangani dengan IFERROR agar laporan tetap bersih.',
+  why: 'Pesan error adalah petunjuk, bukan kegagalan. Dengan memahami artinya, Anda dapat memperbaiki rumus lebih cepat dan menghasilkan laporan yang rapi.',
   minutes: 10,
   lessons: [
     {
-      title: 'Lima error yang paling sering muncul',
+      title: 'Lima error yang paling sering ditemui',
       body: [
-        p('Setiap error diawali tanda `#`. Membaca namanya sudah memberi petunjuk besar:'),
+        p('Setiap pesan error diawali tanda `#`. Namanya sudah memberi petunjuk tentang penyebabnya:'),
         steps(
           '**#DIV/0!** : ada pembagian dengan nol (atau sel kosong).',
-          '**#NAME?** : Excel tidak mengenal nama yang kamu tulis. Biasanya fungsi salah ketik atau teks tanpa kutip.',
+          '**#NAME?** : Excel tidak mengenal nama yang Anda tulis. Biasanya fungsi salah ketik atau teks tanpa kutip.',
           '**#VALUE!** : tipe data salah, misalnya menjumlahkan angka dengan teks.',
           '**#REF!** : rujukan ke sel yang tidak ada lagi (misalnya kolomnya terhapus).',
           '**#N/A** : nilai yang dicari tidak ditemukan (sering muncul di VLOOKUP).'
         ),
-        tip('Latihan ini juga memberi tahu arti error yang muncul pada rumusmu. Baca pesannya, itu petunjuk terbaik.')
+        tip('Latihan ini juga menjelaskan arti error yang muncul pada rumus Anda. Bacalah pesannya karena itu petunjuk yang paling berguna.')
       ]
     },
     {
-      title: 'IFERROR: pelindung rumus',
+      title: 'IFERROR: menangani error pada rumus',
       body: [
-        p('**IFERROR** menjalankan rumus. Kalau hasilnya error, ia menampilkan nilai cadangan yang kamu tentukan.'),
-        syntax('=IFERROR(rumus, nilai_jika_error)', [['rumus', 'Rumus yang mungkin error'], ['nilai_jika_error', 'Tampilkan ini kalau error (boleh 0, teks, atau kosong "")']]),
+        p('**IFERROR** menjalankan rumus. Jika hasilnya error, ia menampilkan nilai cadangan yang Anda tentukan.'),
+        syntax('=IFERROR(rumus, nilai_jika_error)', [['rumus', 'Rumus yang mungkin error'], ['nilai_jika_error', 'Tampilkan ini jika error (boleh 0, teks, atau kosong "")']]),
         demo({
           rows: [['Total', 'Hari', 'Rata-rata'], [100, 0, '']],
           cell: 'C2',
           formula: '=IFERROR(A2/B2,"Belum ada data")',
-          caption: 'A2/B2 akan #DIV/0! karena B2 = 0. IFERROR menggantinya dengan teks yang ramah.'
+          caption: 'A2/B2 akan #DIV/0! karena B2 = 0. IFERROR menggantinya dengan pesan yang lebih jelas.'
         }),
-        warn('Jangan memakai IFERROR sembarangan untuk menutup semua error. Error yang tidak kamu pahami bisa jadi tanda ada kesalahan data atau rumus. Pakai IFERROR kalau kamu tahu persis error apa yang diharapkan.')
+        warn('Hindari menggunakan IFERROR untuk menutupi semua error. Error yang tidak Anda pahami dapat menandakan adanya kesalahan pada data atau rumus. Gunakan IFERROR hanya jika Anda tahu persis error apa yang diharapkan.')
       ]
     }
   ],
   exercises: [
     q({
-      title: 'Si pembagi nol',
+      title: 'Penyebab #DIV/0!',
       q: 'Sel C2 berisi `=A2/B2` dan hasilnya `#DIV/0!`. Penyebab yang paling mungkin...',
       options: ['A2 berisi teks', 'B2 berisi 0 atau kosong', 'Kolom C terlalu sempit', 'Fungsi tidak dikenal'],
       answer: 1,
@@ -892,36 +892,36 @@ const errorModul = {
       whyNot: ['Teks akan menghasilkan #VALUE!, bukan #DIV/0!.', '', 'Kolom sempit hanya menampilkan ####, bukan error.', 'Fungsi tidak dikenal menghasilkan #NAME?.']
     }),
     q({
-      title: 'Si nama aneh',
-      q: 'Kamu mengetik `=SUMM(B2:B5)` dan Excel menampilkan `#NAME?`. Artinya...',
+      title: 'Penyebab #NAME? pada nama fungsi',
+      q: 'Anda mengetik `=SUMM(B2:B5)` dan Excel menampilkan `#NAME?`. Artinya...',
       options: ['Rentang B2:B5 salah', 'Nama fungsi tidak dikenal (salah ketik)', 'Angka terlalu besar', 'Sel terkunci'],
       answer: 1,
       explain: 'SUMM bukan fungsi yang dikenal Excel. #NAME? hampir selalu berarti salah ketik nama fungsi, atau teks yang lupa diberi kutip.'
     }),
     q({
-      title: 'Si tidak ketemu',
+      title: 'Penyebab #N/A',
       q: 'VLOOKUP menghasilkan `#N/A`. Penjelasan yang paling tepat...',
       options: ['Nilai yang dicari tidak ditemukan di tabel', 'Pembagian dengan nol', 'Sel yang dirujuk sudah dihapus', 'Rumus terlalu panjang'],
       answer: 0,
-      explain: '#N/A = Not Available. Nilai yang kamu cari tidak ada di kolom pencarian. Cek ejaan atau spasi tersembunyi.',
+      explain: '#N/A = Not Available. Nilai yang Anda cari tidak ada di kolom pencarian. Cek ejaan atau spasi tersembunyi.',
       whyNot: ['', 'Itu #DIV/0!.', 'Itu #REF!.', 'Panjang rumus tidak menimbulkan #N/A.']
     }),
     f({
-      title: 'Rata-rata per hari yang aman',
+      title: 'Rata-rata per hari tanpa error',
       story: 'Beberapa produk belum terjual sama sekali (hari aktif = 0), sehingga rata-ratanya error.',
-      task: 'Di sel **C2**, hitung rata-rata penjualan per hari (total ÷ hari). Kalau error, tampilkan angka **0**. Salin sampai C4.',
+      task: 'Di sel **C2**, hitung rata-rata penjualan per hari (total ÷ hari). Jika error, tampilkan angka **0**. Salin sampai C4.',
       sheets: [sheet('Rata-rata', [['Total', 'Hari', 'Per hari'], [100, 4, ''], [50, 0, ''], [90, 3, '']])],
       target: 'C2',
       fillTo: 'C4',
       expect: [[25], [0], [30]],
       solution: '=IFERROR(A2/B2,0)',
       mustUse: ['IFERROR'],
-      hints: ['Baris kedua membagi 50 dengan 0 sehingga akan error.', 'Bungkus pembagian dengan IFERROR.', 'Tulis: =IFERROR(A2/B2,0)'],
+      hints: ['Baris kedua membagi 50 dengan 0 sehingga akan error.', 'Gunakan IFERROR pada rumus pembagian.', 'Tulis: =IFERROR(A2/B2,0)'],
       explain: 'IFERROR(rumus, 0) menampilkan hasil rumus bila normal, dan 0 bila error.'
     }),
     f({
-      title: 'Pesan yang ramah',
-      story: 'Laporan untuk atasan sebaiknya tidak berisi #DIV/0!.',
+      title: 'Pesan pengganti error',
+      story: 'Laporan untuk atasan sebaiknya tidak memuat #DIV/0!.',
       task: 'Di sel **C2**, hitung total ÷ hari, tetapi tampilkan teks **"Belum ada data"** bila error. Salin sampai C4.',
       sheets: [sheet('Laporan', [['Total', 'Hari', 'Per hari'], [100, 4, ''], [50, 0, ''], [90, 3, '']])],
       target: 'C2',
@@ -934,7 +934,7 @@ const errorModul = {
     }),
     f({
       title: 'Perbaiki salah ketik',
-      story: 'Rumus rekanmu menampilkan #NAME?. Cari tahu kenapa.',
+      story: 'Rumus rekan kerja Anda menampilkan #NAME?. Cari tahu penyebabnya.',
       task: 'Perbaiki rumus di **B6** agar menjumlahkan B2:B5.',
       start: '=SUMM(B2:B5)',
       sheets: [sheet('Belanja', [['Item', 'Harga'], ['Roti', 12000], ['Susu', 18000], ['Telur', 25000], ['Beras', 60000], ['Total', '']], { B: 'rp' })],
@@ -942,8 +942,8 @@ const errorModul = {
       resultFmt: 'rp',
       expect: 115000,
       solution: '=SUM(B2:B5)',
-      hints: ['Baca pesan error: nama apa yang tidak dikenali?', 'Fungsi SUMM tidak ada. Mungkin maksudnya yang lain.', 'Hapus satu huruf M.'],
-      explain: 'Saat Excel (atau latihan ini) bilang fungsi tidak dikenal, cek ejaan. Excel juga menyarankan nama fungsi saat kamu mengetik.'
+      hints: ['Baca pesan error: nama apa yang tidak dikenali?', 'Fungsi SUMM tidak ada. Pikirkan fungsi yang dimaksud.', 'Hapus satu huruf M.'],
+      explain: 'Jika Excel (atau latihan ini) menyatakan fungsi tidak dikenal, periksa ejaannya. Excel juga menyarankan nama fungsi saat Anda mengetik.'
     }),
     f({
       title: 'Rata-rata dari data kosong',
@@ -954,8 +954,8 @@ const errorModul = {
       expect: '-',
       solution: '=IFERROR(AVERAGE(B2:B5),"-")',
       mustUse: ['IFERROR'],
-      hints: ['AVERAGE dari sel kosong menghasilkan #DIV/0!.', 'Taruh AVERAGE di dalam IFERROR.', 'Tulis: =IFERROR(AVERAGE(B2:B5),"-")'],
-      explain: 'IFERROR bisa membungkus fungsi apa pun, bukan hanya pembagian. Begitu data terisi, rata-rata otomatis muncul.'
+      hints: ['AVERAGE dari sel kosong menghasilkan #DIV/0!.', 'Letakkan AVERAGE di dalam IFERROR.', 'Tulis: =IFERROR(AVERAGE(B2:B5),"-")'],
+      explain: 'IFERROR dapat diterapkan pada fungsi apa pun, bukan hanya pembagian. Begitu data terisi, rata-rata otomatis muncul.'
     })
   ]
 };
