@@ -3,6 +3,7 @@ import level2 from './level2.js';
 import level3 from './level3.js';
 import level4 from './level4.js';
 import level5 from './level5.js';
+import extra from './extra.js';
 
 export const LEVELS = [
   { id: 1, name: 'Pemula', emoji: '🌱', tone: 'emerald', desc: 'Belum pernah memakai Excel? Mulai dari sini. Kita kenalan pelan-pelan.' },
@@ -12,7 +13,8 @@ export const LEVELS = [
   { id: 5, name: 'Profesional', emoji: '🏆', tone: 'amber', desc: 'Rumus keuangan, lookup dua arah, dan studi kasus kerja nyata.' }
 ];
 
-const all = [...level1, ...level2, ...level3, ...level4, ...level5];
+// soal tambahan ditaruh di akhir modul supaya nomor soal lama tidak bergeser
+const all = [...level1, ...level2, ...level3, ...level4, ...level5].map((m) => (extra[m.id] ? { ...m, exercises: [...m.exercises, ...extra[m.id]] } : m));
 
 export const MODULES = all.map((m, mi) => ({
   ...m,
