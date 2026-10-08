@@ -10,6 +10,7 @@ import { useRefPicker } from '../lib/picker.js';
 import { localizeFormula } from '../lib/text.jsx';
 import { href } from '../lib/router.js';
 import { useProgress } from '../state/progress.jsx';
+import Icon, { IconBadge } from '../components/Icon.jsx';
 
 const SHEET = 'Bebas';
 const ROWS = 16;
@@ -133,7 +134,7 @@ export default function SandboxPage() {
   live.current = { draft, dirty, sel };
 
   useEffect(() => {
-    document.title = 'Ruang Coba · Belajar Excel';
+    document.title = 'Ruang Coba - Belajar Excel';
     return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
   }, []);
 
@@ -269,15 +270,18 @@ export default function SandboxPage() {
 
   return (
     <div className="space-y-6">
-      <header>
-        <h1 className="text-3xl font-extrabold">🧪 Ruang Coba</h1>
-        <p className="mt-1 text-lg text-muted">Lembar kerja bebas. Tidak ada nilai, tidak ada salah. Ketik rumus apa pun dan lihat hasilnya langsung.</p>
+      <header className="flex items-start gap-4">
+        <IconBadge name="flask" size={28} className="h-14 w-14" />
+        <div>
+          <h1 className="text-3xl font-extrabold">Ruang Coba</h1>
+          <p className="mt-1 text-lg text-muted">Lembar kerja bebas. Tidak ada nilai, tidak ada salah. Ketik rumus apa pun dan lihat hasilnya langsung.</p>
+        </div>
       </header>
 
       <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Pilih data contoh">
         <span className="text-sm font-semibold text-muted">Data contoh:</span>
         {Object.entries(PRESETS).map(([k, v]) => (
-          <button key={k} type="button" aria-pressed={preset === k} onClick={() => loadPreset(k)} className={`rounded-full px-3 py-1.5 text-sm font-semibold ${preset === k ? 'bg-brand text-brand-ink' : 'bg-sunken text-muted hover:bg-line'}`}>
+          <button key={k} type="button" aria-pressed={preset === k} onClick={() => loadPreset(k)} className={`rounded-full px-3 py-1.5 text-sm font-semibold transition duration-200 active:scale-95 ${preset === k ? 'bg-brand text-brand-ink shadow-[0_4px_12px_-4px_rgb(var(--brand)/0.7)]' : 'bg-sunken text-muted hover:bg-line'}`}>
             {v.label}
           </button>
         ))}
@@ -294,7 +298,7 @@ export default function SandboxPage() {
         onFocusChange={(f) => { setEditing(f); if (!f && live.current.dirty) setTimeout(() => commit(), 0); }}
       />
 
-      {draftNote && <p className="rounded-lg bg-warn-soft px-3 py-2 text-sm text-warn">⚠️ {draftNote}</p>}
+      {draftNote && <p className="anim-pop flex items-center gap-2 rounded-lg bg-warn-soft px-3 py-2 text-sm text-warn"><Icon name="alert" size={16} />{draftNote}</p>}
 
       <section
         ref={gridRef}
@@ -328,7 +332,7 @@ export default function SandboxPage() {
       {current && (
         <section className={`rounded-2xl border p-4 ${current.ok ? 'border-ok/30 bg-ok-soft' : 'border-bad/30 bg-bad-soft'}`} aria-live="polite">
           {current.message ? (
-            <p>⚠️ {current.message}</p>
+            <p className="flex items-center gap-2"><Icon name="alert" size={18} className="text-bad" />{current.message}</p>
           ) : current.value instanceof XlError ? (
             <>
               <p className="font-bold text-bad">Hasil: {current.value.code}</p>

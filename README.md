@@ -6,14 +6,14 @@ Semua berjalan di browser (React + Vite + Tailwind). Tidak ada server, akun, ata
 
 ## Yang ada di dalamnya
 
-- **5 level, 28 modul, 279 soal**: Pemula, Dasar, Menengah, Mahir, Profesional.
+- **5 level, 28 modul, 289 soal**: Pemula, Dasar, Menengah, Mahir, Profesional.
   Setiap modul punya materi berperumpamaan (analogi sehari-hari), contoh yang dihitung langsung, lalu latihan.
 - **Soal dinilai dari hasilnya**, bukan dari kecocokan teks. Cara lain yang benar tetap diterima (misalnya `VLOOKUP`, `XLOOKUP`, atau `INDEX-MATCH` untuk soal yang sama).
 - **Mesin rumus sendiri** (`src/engine`) yang membaca dan menghitung lebih dari 120 fungsi Excel, termasuk `XLOOKUP`, `FILTER`, `SORT`, `UNIQUE`, `LET`, `SUMIFS`, `DATEDIF`, `PMT`, dan referensi antar-sheet.
 - **Umpan balik spesifik**: pesan untuk error `#DIV/0!`/`#N/A`/dst, saran nama fungsi yang salah ketik, kurung tidak berpasangan, argumen kurang, jebakan umum per soal, dan petunjuk bertingkat (3 level).
 - **Simulasi salin rumus** (`fillTo`): rumus diuji saat "ditarik" ke bawah/samping, sehingga tanda `$` benar-benar dilatih.
 - **UI yang ramah**: klik atau seret sel untuk menyisipkan alamat ke rumus, referensi diwarnai seperti di Excel, pratinjau hasil saat mengetik, saran fungsi (Tab untuk menerima), bantuan sintaks, tombol `F4` untuk `$`, mode gelap, dan tampilan ponsel.
-- **Kamus Rumus**: 119 fungsi dengan penjelasan sederhana dan contoh yang dihitung langsung.
+- **Kamus Rumus**: 122 fungsi dengan penjelasan sederhana dan contoh yang dihitung langsung.
 - **Ruang Coba**: lembar kerja bebas dengan data contoh untuk bereksperimen.
 - **Gaya penulisan** Excel Indonesia (`;`) atau Inggris (`,`). Kalau pemisah tidak cocok dengan pilihan, soal tetap dinilai dan pengguna diberi catatan.
 - **XP, streak, dan progres per modul**.

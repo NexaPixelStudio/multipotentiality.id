@@ -1,10 +1,11 @@
 import React from 'react';
 import { href } from '../lib/router.js';
 import { useProgress } from '../state/progress.jsx';
+import Icon from './Icon.jsx';
 
 export function Logo() {
   return (
-    <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brand-ink" aria-hidden="true">
+    <span className="logo-mark grid h-9 w-9 place-items-center rounded-xl bg-brand text-brand-ink shadow-[0_6px_14px_-6px_rgb(var(--brand)/0.8)]" style={{ backgroundImage: 'linear-gradient(135deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0) 55%)' }} aria-hidden="true">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round">
         <path d="M6 5l12 14M18 5L6 19" />
       </svg>
@@ -13,12 +14,12 @@ export function Logo() {
 }
 
 const NAV = [
-  { key: '', label: 'Belajar', icon: '📚' },
-  { key: 'kamus', label: 'Kamus Rumus', icon: '📖' },
-  { key: 'bebas', label: 'Ruang Coba', icon: '🧪' }
+  { key: '', label: 'Belajar', icon: 'book' },
+  { key: 'kamus', label: 'Kamus Rumus', icon: 'book-open' },
+  { key: 'bebas', label: 'Ruang Coba', icon: 'flask' }
 ];
 
-const ThemeIcon = ({ theme }) => (theme === 'dark' ? '🌙' : theme === 'light' ? '☀️' : '🌓');
+const ThemeIcon = ({ theme }) => <Icon name={theme === 'dark' ? 'moon' : theme === 'light' ? 'sun' : 'contrast'} size={19} />;
 
 export default function Header({ active }) {
   const p = useProgress();
@@ -27,7 +28,7 @@ export default function Header({ active }) {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-line bg-bg/90 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-line bg-bg/80 backdrop-blur-xl backdrop-saturate-150">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5">
           <a href={href('')} className="flex items-center gap-2.5 rounded-lg pr-2 font-bold" aria-label="Beranda Belajar Excel">
             <Logo />
@@ -36,20 +37,16 @@ export default function Header({ active }) {
 
           <nav className="ml-4 hidden items-center gap-1 md:flex" aria-label="Menu utama">
             {NAV.map((n) => (
-              <a
-                key={n.key}
-                href={href(n.key)}
-                aria-current={active === n.key ? 'page' : undefined}
-                className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-sunken ${active === n.key ? 'bg-brand-soft text-brand' : 'text-muted'}`}
-              >
+              <a key={n.key} href={href(n.key)} aria-current={active === n.key ? 'page' : undefined} className="nav-link">
+                <Icon name={n.icon} size={17} />
                 {n.label}
               </a>
             ))}
           </nav>
 
           <div className="ml-auto flex items-center gap-2">
-            <span className="chip hidden sm:inline-flex" title="Poin pengalaman">⭐ {p.xp} XP</span>
-            {p.streak.count > 0 && <span className="chip hidden sm:inline-flex" title="Hari belajar beruntun">🔥 {p.streak.count}</span>}
+            <span className="chip hidden sm:inline-flex" title="Poin pengalaman"><Icon name="star" size={14} className="text-amber-500" />{p.xp} XP</span>
+            {p.streak.count > 0 && <span className="chip hidden sm:inline-flex" title="Hari belajar beruntun"><Icon name="flame" size={14} className="text-orange-500" />{p.streak.count}</span>}
 
             <div className="flex overflow-hidden rounded-lg border border-line text-xs font-semibold" role="group" aria-label="Gaya penulisan rumus">
               {[['id', 'ID  ;'], ['en', 'EN  ,']].map(([val, label]) => (
@@ -69,7 +66,7 @@ export default function Header({ active }) {
             <button
               type="button"
               onClick={() => p.setTheme(nextTheme)}
-              className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-surface text-base hover:bg-sunken"
+              className="theme-btn grid h-9 w-9 place-items-center rounded-lg border border-line bg-surface text-muted transition hover:bg-sunken hover:text-ink"
               aria-label={`Tema ${themeName}. Klik untuk mengganti.`}
               title={`Tema: ${themeName}`}
             >
@@ -79,15 +76,10 @@ export default function Header({ active }) {
         </div>
       </header>
 
-      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-line bg-surface/95 backdrop-blur md:hidden" aria-label="Menu utama">
+      <nav className="tabbar fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-line bg-surface/85 backdrop-blur-xl backdrop-saturate-150 md:hidden" aria-label="Menu utama">
         {NAV.map((n) => (
-          <a
-            key={n.key}
-            href={href(n.key)}
-            aria-current={active === n.key ? 'page' : undefined}
-            className={`flex flex-col items-center gap-0.5 py-2 text-xs font-semibold ${active === n.key ? 'text-brand' : 'text-muted'}`}
-          >
-            <span className="text-lg" aria-hidden="true">{n.icon}</span>
+          <a key={n.key} href={href(n.key)} aria-current={active === n.key ? 'page' : undefined} className="tab-item">
+            <span className="tab-pill"><Icon name={n.icon} size={21} /></span>
             {n.label}
           </a>
         ))}

@@ -22,7 +22,7 @@ const penjualanRows = (extra = []) => [
 const pembulatan = {
   id: 'pembulatan',
   level: 2,
-  emoji: '🎯',
+  icon: 'target',
   title: 'Pembulatan & Angka',
   tagline: 'ROUND, ROUNDUP, ROUNDDOWN, INT, MOD, ABS',
   why: 'Harga, gaji, dan pajak hampir selalu butuh dibulatkan. Hasil hitungan Excel sering berekor panjang (33,333333), dan kamu perlu merapikannya dengan benar.',
@@ -186,7 +186,7 @@ const pembulatan = {
 const ifDasar = {
   id: 'if',
   level: 2,
-  emoji: '🔀',
+  icon: 'split',
   title: 'IF: Membuat Keputusan',
   tagline: 'Biarkan Excel memilih hasil berdasarkan syarat',
   why: 'IF adalah fungsi yang membuat spreadsheet jadi "pintar". Status lulus, bonus, diskon, peringatan stok, semuanya dimulai dari IF.',
@@ -359,7 +359,7 @@ const ifDasar = {
 const logika = {
   id: 'logika',
   level: 2,
-  emoji: '🧠',
+  icon: 'git-branch',
   title: 'AND, OR & IF Bersarang',
   tagline: 'Syarat ganda dan penilaian bertingkat',
   why: 'Dunia nyata jarang sesederhana satu syarat. Bonus mungkin butuh target tercapai DAN absen bagus. Nilai A–E butuh banyak tingkat. Di sini kamu belajar menyusunnya.',
@@ -516,7 +516,7 @@ const logika = {
 const bersyarat = {
   id: 'countif-sumif',
   level: 2,
-  emoji: '🔎',
+  icon: 'filter',
   title: 'Hitung dengan Syarat',
   tagline: 'COUNTIF, SUMIF, AVERAGEIF',
   why: '"Berapa total penjualan kategori Minuman?" "Berapa pelanggan dari Jakarta?" Pertanyaan semacam ini muncul setiap hari, dan inilah tiga fungsi yang menjawabnya.',
@@ -683,7 +683,7 @@ const bersyarat = {
 const teksDasar = {
   id: 'teks-dasar',
   level: 2,
-  emoji: '🔤',
+  icon: 'type',
   title: 'Teks Dasar',
   tagline: 'LEFT, RIGHT, MID, LEN, TRIM, UPPER, LOWER, PROPER',
   why: 'Data di dunia nyata sering berupa teks yang berantakan atau perlu dipecah: kode produk, nama, nomor telepon. Fungsi teks merapikannya.',
@@ -838,7 +838,7 @@ const teksDasar = {
       solution: '=UPPER(LEFT(A2,3))&"-"&B2',
       mustUse: ['UPPER', 'LEFT'],
       hints: ['Kamu butuh tiga bagian yang disambung: 3 huruf awal, tanda hubung, dan tahun.', 'Ambil 3 huruf dengan LEFT, kapitalkan dengan UPPER, lalu sambung dengan &.', 'Tulis: =UPPER(LEFT(A2,3))&"-"&B2'],
-      parts: [['UPPER(LEFT(A2,3))', '"Budi" → "Bud" → "BUD"'], ['&"-"&', 'sambung dengan tanda hubung'], ['B2', 'lalu tahun masuk']],
+      parts: [['UPPER(LEFT(A2,3))', '"Budi" jadi "Bud" jadi "BUD"'], ['&"-"&', 'sambung dengan tanda hubung'], ['B2', 'lalu tahun masuk']],
       explain: 'Fungsi dihitung dari dalam keluar: LEFT dulu, baru UPPER. Angka (tahun) otomatis menjadi teks saat disambung dengan &.'
     })
   ]
@@ -847,7 +847,7 @@ const teksDasar = {
 const errorModul = {
   id: 'error-iferror',
   level: 2,
-  emoji: '🚨',
+  icon: 'alert',
   title: 'Error & IFERROR',
   tagline: 'Mengenali pesan error dan menanganinya dengan rapi',
   why: 'Error bukan musuh. Pesan error adalah petunjuk. Setelah paham artinya, kamu bisa memperbaiki rumus lebih cepat dan membuat laporan yang bersih.',

@@ -6,11 +6,11 @@ import level5 from './level5.js';
 import extra from './extra.js';
 
 export const LEVELS = [
-  { id: 1, name: 'Pemula', emoji: '🌱', tone: 'emerald', desc: 'Belum pernah memakai Excel? Mulai dari sini. Kita kenalan pelan-pelan.' },
-  { id: 2, name: 'Dasar', emoji: '🌿', tone: 'teal', desc: 'Rumus yang dipakai hampir setiap hari di kantor: IF, COUNTIF, SUMIF, dan teks.' },
-  { id: 3, name: 'Menengah', emoji: '🌳', tone: 'sky', desc: 'Naik kelas: syarat ganda, VLOOKUP, INDEX-MATCH, tanggal, dan statistik.' },
-  { id: 4, name: 'Mahir', emoji: '🚀', tone: 'violet', desc: 'Rumus modern dan array dinamis: XLOOKUP, FILTER, SORT, LET, dan pembersihan data.' },
-  { id: 5, name: 'Profesional', emoji: '🏆', tone: 'amber', desc: 'Rumus keuangan, lookup dua arah, dan studi kasus kerja nyata.' }
+  { id: 1, name: 'Pemula', icon: 'sprout', tone: 'emerald', desc: 'Belum pernah memakai Excel? Mulai dari sini. Kita kenalan pelan-pelan.' },
+  { id: 2, name: 'Dasar', icon: 'leaf', tone: 'teal', desc: 'Rumus yang dipakai hampir setiap hari di kantor: IF, COUNTIF, SUMIF, dan teks.' },
+  { id: 3, name: 'Menengah', icon: 'tree', tone: 'sky', desc: 'Naik kelas: syarat ganda, VLOOKUP, INDEX-MATCH, tanggal, dan statistik.' },
+  { id: 4, name: 'Mahir', icon: 'rocket', tone: 'violet', desc: 'Rumus modern dan array dinamis: XLOOKUP, FILTER, SORT, LET, dan pembersihan data.' },
+  { id: 5, name: 'Profesional', icon: 'trophy', tone: 'amber', desc: 'Rumus keuangan, lookup dua arah, dan studi kasus kerja nyata.' }
 ];
 
 // soal tambahan ditaruh di akhir modul supaya nomor soal lama tidak bergeser

@@ -41,6 +41,8 @@ const raw = [
   ['ABS', 'Angka & Pembulatan', 'ABS(angka)', 'Nilai mutlak: membuang tanda minus.', '=ABS(-12)', 'pembulatan'],
   ['SIGN', 'Angka & Pembulatan', 'SIGN(angka)', 'Menunjukkan tanda angka: 1 positif, -1 negatif, 0 nol.', '=SIGN(-8)', 'pembulatan'],
   ['SQRT', 'Angka & Pembulatan', 'SQRT(angka)', 'Akar kuadrat.', '=SQRT(144)', 'pembulatan'],
+  ['EXP', 'Angka & Pembulatan', 'EXP(angka)', 'Bilangan e (≈ 2,718) dipangkatkan angka itu.', '=EXP(1)', 'pembulatan'],
+  ['LN', 'Angka & Pembulatan', 'LN(angka)', 'Logaritma natural, kebalikan dari EXP.', '=LN(EXP(2))', 'pembulatan'],
   ['POWER', 'Angka & Pembulatan', 'POWER(angka, pangkat)', 'Memangkatkan angka. Sama dengan operator ^.', '=POWER(2,10)', 'operator'],
   ['CEILING', 'Angka & Pembulatan', 'CEILING(angka, kelipatan)', 'Membulatkan ke atas ke kelipatan tertentu.', '=CEILING(1234,500)', 'pembulatan'],
   ['FLOOR', 'Angka & Pembulatan', 'FLOOR(angka, kelipatan)', 'Membulatkan ke bawah ke kelipatan tertentu.', '=FLOOR(1234,500)', 'pembulatan'],
@@ -149,6 +151,7 @@ const raw = [
   ['ISLOGICAL', 'Cek & Error', 'ISLOGICAL(nilai)', 'Apakah isinya BENAR/SALAH?', '=ISLOGICAL(TRUE)', 'error-iferror'],
   ['ISERROR', 'Cek & Error', 'ISERROR(nilai)', 'Apakah hasilnya error apa pun?', '=ISERROR(1/0)', 'error-iferror'],
   ['ISNA', 'Cek & Error', 'ISNA(nilai)', 'Apakah hasilnya error #N/A?', '=ISNA(VLOOKUP("Tahu",A2:D6,4,FALSE))', 'error-iferror'],
+  ['ISERR', 'Cek & Error', 'ISERR(nilai)', 'Apakah hasilnya error selain #N/A?', '=ISERR(1/0)', 'error-iferror'],
   ['NA', 'Cek & Error', 'NA()', 'Sengaja menghasilkan error #N/A.', '=IFERROR(NA(),"ok")', 'error-iferror']
 ];
 

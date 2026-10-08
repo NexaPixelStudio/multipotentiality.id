@@ -31,7 +31,7 @@ const orderRows = () => [
 const xlookup = {
   id: 'xlookup',
   level: 4,
-  emoji: '⚡',
+  icon: 'zap',
   title: 'XLOOKUP & Pencarian Modern',
   tagline: 'Pengganti VLOOKUP yang lebih sederhana dan lebih kuat',
   why: 'XLOOKUP memperbaiki semua keluhan tentang VLOOKUP: tidak perlu nomor kolom, bisa mencari ke kiri, dan punya pesan "tidak ketemu" bawaan.',
@@ -185,7 +185,7 @@ const tokoRows = [
 const sumproduct = {
   id: 'sumproduct',
   level: 4,
-  emoji: '🧮',
+  icon: 'grid',
   title: 'SUMPRODUCT & Hitungan Berbobot',
   tagline: 'Kali per baris lalu jumlahkan, tanpa kolom bantu',
   why: 'Total omzet = qty × harga di tiap baris, lalu dijumlahkan. Biasanya perlu kolom bantu. SUMPRODUCT melakukannya dalam satu rumus, dan bisa menambahkan banyak syarat.',
@@ -312,7 +312,7 @@ const sumproduct = {
 const arrayDinamis = {
   id: 'array-dinamis',
   level: 4,
-  emoji: '🌊',
+  icon: 'waves',
   title: 'Array Dinamis',
   tagline: 'FILTER, SORT, UNIQUE, SEQUENCE',
   why: 'Dulu mengurutkan, menyaring, dan membuat daftar unik butuh menu atau rumus rumit. Kini satu rumus menghasilkan daftar lengkap yang ikut berubah ketika data berubah.',
@@ -482,7 +482,7 @@ const arrayDinamis = {
 const switchChoose = {
   id: 'switch-choose-let',
   level: 4,
-  emoji: '🗂️',
+  icon: 'list',
   title: 'SWITCH, CHOOSE & LET',
   tagline: 'Rumus yang rapi, pendek, dan mudah dibaca',
   why: 'IF bersarang yang panjang itu melelahkan dibaca. SWITCH dan CHOOSE menyelesaikannya untuk kasus tertentu, dan LET memberi nama pada bagian hitungan supaya rumus tidak berulang.',
@@ -567,7 +567,7 @@ const switchChoose = {
       solution: '=CHOOSE(ROUNDUP(A2/3,0),"Q1","Q2","Q3","Q4")',
       mustUse: ['CHOOSE'],
       hints: ['CHOOSE butuh nomor 1 sampai 4. Ubah bulan menjadi nomor kuartal dulu.', 'Bulan ÷ 3, dibulatkan ke atas, menghasilkan nomor kuartal.', 'Tulis: =CHOOSE(ROUNDUP(A2/3,0),"Q1","Q2","Q3","Q4")'],
-      explain: 'Bulan 5 → 5/3 = 1,67 → dibulatkan ke atas menjadi 2 → pilihan kedua "Q2".'
+      explain: 'Bulan 5: 5/3 = 1,67, dibulatkan ke atas menjadi 2, jadi pilihan kedua "Q2".'
     }),
     f({
       title: 'Singkatan hari dari tanggal',
@@ -627,7 +627,7 @@ const switchChoose = {
 const bersihkanData = {
   id: 'bersihkan-data',
   level: 4,
-  emoji: '🧹',
+  icon: 'sparkles',
   title: 'Membersihkan Data Berantakan',
   tagline: 'Ubah data kotor menjadi data siap analisis',
   why: 'Sebagian besar waktu analisis data habis untuk membersihkan data. Pengguna Excel yang andal tahu cara merapikannya dengan cepat dan aman.',
@@ -637,11 +637,11 @@ const bersihkanData = {
       title: 'Masalah yang hampir selalu ada',
       body: [
         steps(
-          '**Spasi liar** di awal, akhir, atau tengah teks → TRIM',
-          '**Huruf besar-kecil acak** → PROPER, UPPER, LOWER',
-          '**Angka tersimpan sebagai teks** ("Rp 1.500.000") → SUBSTITUTE + VALUE',
-          '**Format campur** pada nomor telepon dan tanggal → SUBSTITUTE bertingkat',
-          '**Data duplikat** → COUNTIF atau UNIQUE'
+          '**Spasi liar** di awal, akhir, atau tengah teks: pakai TRIM',
+          '**Huruf besar-kecil acak**: pakai PROPER, UPPER, LOWER',
+          '**Angka tersimpan sebagai teks** ("Rp 1.500.000"): pakai SUBSTITUTE + VALUE',
+          '**Format campur** pada nomor telepon dan tanggal: pakai SUBSTITUTE bertingkat',
+          '**Data duplikat**: pakai COUNTIF atau UNIQUE'
         ),
         warn('Jangan pernah menimpa data asli. Selalu bersihkan di **kolom baru**, simpan data mentah apa adanya. Kalau ada yang salah, kamu masih punya aslinya.')
       ]
@@ -662,7 +662,7 @@ const bersihkanData = {
           formula: '=VALUE(SUBSTITUTE(SUBSTITUTE(B1,"Rp ",""),".",""))',
           caption: 'Hapus "Rp ", hapus titik pemisah ribuan, lalu ubah teks menjadi angka sungguhan.'
         }),
-        tip('Setelah rumus pembersih selesai, salin hasilnya dan tempel sebagai **Values** (Ctrl + Alt + V → Values) agar tidak lagi bergantung pada kolom mentah.')
+        tip('Setelah rumus pembersih selesai, salin hasilnya dan tempel sebagai **Values** (Ctrl + Alt + V, lalu pilih Values) agar tidak lagi bergantung pada kolom mentah.')
       ]
     }
   ],

@@ -6,17 +6,20 @@ import { checkFormula, previewFormula } from '../engine/check.js';
 import { parseAddr } from '../engine/refs.js';
 import Sheet from '../components/Sheet.jsx';
 import FormulaBar from '../components/FormulaBar.jsx';
+import Icon from '../components/Icon.jsx';
 import { useRefPicker } from '../lib/picker.js';
 import { Rich, localizeFormula, localizeText, seededShuffle } from '../lib/text.jsx';
 import { href } from '../lib/router.js';
 import { earnXp, useProgress } from '../state/progress.jsx';
 
-const PIECES = ['🎉', '✨', '🟢', '⭐', '🎊', '💚'];
+const COLORS = ['rgb(var(--brand))', '#f59e0b', '#38bdf8', '#a78bfa', '#fb7185', '#34d399'];
+const SHAPES = ['', 'round', 'bar', 'round', '', 'bar'];
 
 function Celebrate() {
   const pieces = useMemo(
-    () => Array.from({ length: 14 }, (_, i) => ({
-      ch: PIECES[i % PIECES.length],
+    () => Array.from({ length: 22 }, (_, i) => ({
+      color: COLORS[i % COLORS.length],
+      shape: SHAPES[i % SHAPES.length],
       dx: `${Math.round((Math.random() - 0.5) * 340)}px`,
       dy: `${Math.round(-60 - Math.random() * 160)}px`,
       rot: `${Math.round((Math.random() - 0.5) * 540)}deg`
@@ -26,7 +29,7 @@ function Celebrate() {
   return (
     <div className="pointer-events-none absolute inset-x-0 top-0 h-0" aria-hidden="true">
       {pieces.map((pc, i) => (
-        <span key={i} className="confetti-piece" style={{ '--dx': pc.dx, '--dy': pc.dy, '--rot': pc.rot }}>{pc.ch}</span>
+        <span key={i} className={`confetti-piece ${pc.shape}`} style={{ '--dx': pc.dx, '--dy': pc.dy, '--rot': pc.rot, '--c': pc.color }} />
       ))}
     </div>
   );
@@ -59,11 +62,11 @@ function Dots({ module, current, done }) {
             title={e.title}
             aria-label={`Soal ${i + 1}: ${e.title}${d?.solved ? ' (selesai)' : ''}`}
             aria-current={isCur ? 'step' : undefined}
-            className={`grid h-8 min-w-8 place-items-center rounded-full px-1 text-xs font-bold transition ${
+            className={`grid h-8 min-w-8 place-items-center rounded-full px-1 text-xs font-bold transition duration-200 hover:scale-110 ${
               isCur ? 'bg-brand text-brand-ink ring-2 ring-brand/40 ring-offset-2 ring-offset-bg' : d?.solved ? 'bg-ok-soft text-ok' : d?.revealed ? 'bg-warn-soft text-warn' : 'bg-sunken text-muted hover:bg-line'
             }`}
           >
-            {d?.solved && !isCur ? '✓' : i + 1}
+            {d?.solved && !isCur ? <Icon name="check" size={15} strokeWidth={3} /> : i + 1}
           </a>
         );
       })}
@@ -74,25 +77,25 @@ function Dots({ module, current, done }) {
 // ---------------------------------------------------------------- Umpan balik
 
 const STATUS_TITLE = {
-  wrong: ['🤔', 'Belum tepat'],
-  error: ['🚨', 'Rumusmu menghasilkan error'],
-  syntax: ['✏️', 'Ada yang kurang pas di penulisan rumus'],
-  'unknown-fn': ['🔤', 'Nama fungsi tidak dikenal'],
-  argcount: ['🧮', 'Jumlah argumen belum sesuai'],
-  mustuse: ['🎯', 'Coba pakai fungsi yang sedang dilatih'],
-  forbid: ['🎯', 'Coba cara lain'],
-  hardcode: ['🔗', 'Ambil data dari tabel'],
-  noequals: ['＝', 'Awali dengan tanda ='],
-  empty: ['✍️', 'Tulis rumusmu dulu']
+  wrong: ['help', 'Belum tepat'],
+  error: ['alert', 'Rumusmu menghasilkan error'],
+  syntax: ['pencil', 'Ada yang kurang pas di penulisan rumus'],
+  'unknown-fn': ['type', 'Nama fungsi tidak dikenal'],
+  argcount: ['sliders', 'Jumlah argumen belum sesuai'],
+  mustuse: ['target', 'Coba pakai fungsi yang sedang dilatih'],
+  forbid: ['target', 'Coba cara lain'],
+  hardcode: ['link', 'Ambil data dari tabel'],
+  noequals: ['equal', 'Awali dengan tanda ='],
+  empty: ['pencil', 'Tulis rumusmu dulu']
 };
 
 function Feedback({ result, locale, ex }) {
   if (!result) return null;
   if (result.status === 'correct') return null;
-  const [icon, title] = STATUS_TITLE[result.status] || ['🤔', 'Belum tepat'];
+  const [icon, title] = STATUS_TITLE[result.status] || ['help', 'Belum tepat'];
   return (
     <div role="alert" className="anim-shake rounded-2xl border border-bad/30 bg-bad-soft p-4">
-      <p className="flex items-center gap-2 font-bold text-bad"><span aria-hidden="true">{icon}</span> {title}</p>
+      <p className="flex items-center gap-2.5 font-bold text-bad"><span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-bad/15"><Icon name={icon} size={18} /></span>{title}</p>
       <p className="mt-1 text-ink"><Rich text={result.message} locale={locale} /></p>
       {(result.status === 'wrong' || result.status === 'error') && result.shown !== undefined && (
         <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
@@ -119,7 +122,9 @@ function Success({ ex, result, xp, locale, revealed, onNext, nav }) {
       {!revealed && <Celebrate />}
       <div className="anim-pop rounded-2xl border border-ok/40 bg-ok-soft p-5">
         <p className="flex flex-wrap items-center gap-2 text-lg font-extrabold text-ok">
-          <span aria-hidden="true">{revealed ? '👁️' : '🎉'}</span>
+          {revealed
+            ? <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-ok/15"><Icon name="eye" size={20} /></span>
+            : <span className="check-draw grid h-9 w-9 flex-none place-items-center rounded-full bg-ok/15"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" /><path d="M8 12.4l3 3 5-6" /></svg></span>}
           {revealed ? 'Ini jawabannya. Pelajari dulu, lalu lanjut.' : 'Benar! Kerja bagus.'}
           {!revealed && xp > 0 && <span className="chip bg-surface text-ok">+{xp} XP</span>}
         </p>
@@ -128,7 +133,7 @@ function Success({ ex, result, xp, locale, revealed, onNext, nav }) {
       </div>
 
       <section className="card p-5">
-        <h3 className="mb-2 text-base font-bold">💬 Kenapa begitu?</h3>
+        <h3 className="mb-2 flex items-center gap-2 text-base font-bold"><Icon name="message" size={18} className="text-brand" />Kenapa begitu?</h3>
         <p className="leading-relaxed"><Rich text={ex.explain} locale={locale} /></p>
 
         <div className="mt-4 overflow-x-auto rounded-xl bg-sunken px-4 py-3">
@@ -161,7 +166,7 @@ function Success({ ex, result, xp, locale, revealed, onNext, nav }) {
       </section>
 
       <div className="flex flex-wrap gap-3">
-        <a href={nav.next.href} className="btn-primary" onClick={onNext}>{nav.next.label} →</a>
+        <a href={nav.next.href} className="btn-primary" onClick={onNext}>{nav.next.label}<Icon name="arrow-right" size={18} className="icon-slide" /></a>
         <a href={href(`modul/${nav.module.id}`)} className="btn-soft">Kembali ke materi</a>
       </div>
     </div>
@@ -262,7 +267,7 @@ function FormulaExercise({ ex, locale, p }) {
         <p className="text-lg font-semibold leading-snug"><Rich text={ex.task} locale={locale} /></p>
         {ex.fillTo && (
           <p className="mt-2 text-sm text-muted">
-            📋 Rumus ini akan <strong>disalin otomatis</strong> dari {ex.target} sampai {ex.fillTo}. Pastikan hasilnya benar di semua sel.
+            <Icon name="copy" size={15} className="mr-1.5 inline -translate-y-px text-brand" />Rumus ini akan <strong>disalin otomatis</strong> dari {ex.target} sampai {ex.fillTo}. Pastikan hasilnya benar di semua sel.
           </p>
         )}
       </section>
@@ -280,7 +285,7 @@ function FormulaExercise({ ex, locale, p }) {
                 onClick={() => setTab(s.name)}
                 className={`whitespace-nowrap rounded-t-lg px-4 py-2 text-sm font-semibold ${tab === s.name ? 'bg-surface text-brand' : 'text-muted hover:bg-line/50'}`}
               >
-                {s.name}{s.name === t.sheet ? ' ✎' : ''}
+                {s.name}{s.name === t.sheet ? <Icon name="pencil" size={13} className="ml-1.5 inline -translate-y-px" /> : null}
               </button>
             ))}
           </div>
@@ -322,7 +327,7 @@ function FormulaExercise({ ex, locale, p }) {
 
         {state === 'idle' && preview && (
           <p className={`rounded-lg px-3 py-2 text-sm ${preview.ok ? 'bg-info-soft text-info' : 'bg-warn-soft text-warn'}`} aria-live="polite">
-            {preview.ok ? <>Hasil sementara: <strong className="font-mono">{preview.text}</strong>{ex.fillTo ? <span className="opacity-80"> (sel pertama)</span> : null}</> : <>⚠️ {preview.text}</>}
+            {preview.ok ? <>Hasil sementara: <strong className="font-mono">{preview.text}</strong>{ex.fillTo ? <span className="opacity-80"> (sel pertama)</span> : null}</> : <><Icon name="alert" size={15} className="mr-1.5 inline -translate-y-px" />{preview.text}</>}
           </p>
         )}
         {state === 'idle' && !input && (
@@ -331,12 +336,12 @@ function FormulaExercise({ ex, locale, p }) {
 
         {state === 'idle' && (
           <div className="flex flex-wrap gap-2">
-            <button type="button" className="btn-primary" onClick={submit}>✔ Periksa jawaban</button>
+            <button type="button" className="btn-primary" onClick={submit}><Icon name="check" size={18} strokeWidth={2.6} />Periksa jawaban</button>
             <button type="button" className="btn-soft" onClick={() => setHints((h) => Math.min(3, h + 1))} disabled={hints >= 3}>
-              💡 Petunjuk ({hints}/3)
+              <Icon name="bulb" size={18} />Petunjuk ({hints}/3)
             </button>
-            {(input !== startText) && <button type="button" className="btn-ghost" onClick={reset}>↺ Ulang</button>}
-            {canReveal && <button type="button" className="btn-ghost" onClick={reveal}>👁 Lihat jawaban</button>}
+            {(input !== startText) && <button type="button" className="btn-ghost" onClick={reset}><Icon name="rotate" size={17} />Ulang</button>}
+            {canReveal && <button type="button" className="btn-ghost" onClick={reveal}><Icon name="eye" size={18} />Lihat jawaban</button>}
           </div>
         )}
       </section>
@@ -403,12 +408,12 @@ function ChoiceExercise({ ex, locale, p }) {
               disabled={solved || isWrong}
               onClick={() => choose(idx)}
               aria-pressed={picked === idx}
-              className={`flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition ${
+              className={`group flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition duration-200 active:scale-[0.99] ${
                 isRight ? 'border-ok bg-ok-soft' : isWrong ? 'border-bad/50 bg-bad-soft opacity-80' : 'border-line bg-surface hover:border-brand hover:bg-brand-soft'
               }`}
             >
               <span className={`grid h-8 w-8 flex-none place-items-center rounded-full text-sm font-bold ${isRight ? 'bg-ok text-surface' : isWrong ? 'bg-bad text-surface' : 'bg-sunken text-muted'}`}>
-                {isRight ? '✓' : isWrong ? '✕' : letters[pos]}
+                {isRight ? <Icon name="check" size={17} strokeWidth={3} /> : isWrong ? <Icon name="x" size={16} strokeWidth={3} /> : letters[pos]}
               </span>
               <span className="min-w-0 flex-1"><Rich text={ex.options[idx]} locale={locale} /></span>
             </button>
@@ -418,7 +423,7 @@ function ChoiceExercise({ ex, locale, p }) {
 
       {!solved && picked !== null && wrong.includes(picked) && (
         <div role="alert" className="anim-shake rounded-2xl border border-bad/30 bg-bad-soft p-4">
-          <p className="font-bold text-bad">🤔 Belum tepat. Coba pilihan lain.</p>
+          <p className="flex items-center gap-2 font-bold text-bad"><Icon name="help" size={20} />Belum tepat. Coba pilihan lain.</p>
           {ex.whyNot?.[picked] && <p className="mt-1"><Rich text={ex.whyNot[picked]} locale={locale} /></p>}
         </div>
       )}
@@ -427,14 +432,14 @@ function ChoiceExercise({ ex, locale, p }) {
         <div className="relative space-y-4">
           <Celebrate />
           <div className="anim-pop rounded-2xl border border-ok/40 bg-ok-soft p-5">
-            <p className="flex flex-wrap items-center gap-2 text-lg font-extrabold text-ok">🎉 Benar! {xp > 0 && <span className="chip bg-surface text-ok">+{xp} XP</span>}</p>
+            <p className="flex flex-wrap items-center gap-2 text-lg font-extrabold text-ok"><span className="check-draw grid h-9 w-9 flex-none place-items-center rounded-full bg-ok/15"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" /><path d="M8 12.4l3 3 5-6" /></svg></span>Benar! {xp > 0 && <span className="chip bg-surface text-ok">+{xp} XP</span>}</p>
           </div>
           <section className="card p-5">
-            <h3 className="mb-2 text-base font-bold">💬 Penjelasan</h3>
+            <h3 className="mb-2 flex items-center gap-2 text-base font-bold"><Icon name="message" size={18} className="text-brand" />Penjelasan</h3>
             <p className="leading-relaxed"><Rich text={ex.explain} locale={locale} /></p>
           </section>
           <div className="flex flex-wrap gap-3">
-            <a href={nav.next.href} className="btn-primary">{nav.next.label} →</a>
+            <a href={nav.next.href} className="btn-primary">{nav.next.label}<Icon name="arrow-right" size={18} className="icon-slide" /></a>
             <a href={href(`modul/${nav.module.id}`)} className="btn-soft">Kembali ke materi</a>
           </div>
         </div>
@@ -452,15 +457,15 @@ export default function ExercisePage({ moduleId, n }) {
   const ex = m?.exercises[idx];
 
   useEffect(() => {
-    if (ex) document.title = `${ex.title} · ${m.title} · Belajar Excel`;
+    if (ex) document.title = `${ex.title} - ${m.title} - Belajar Excel`;
     return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
   }, [ex, m]);
 
   if (!m || !ex) {
     return (
       <div className="card p-10 text-center">
-        <p className="text-4xl">🤔</p>
-        <h1 className="mt-2 text-xl font-bold">Soal tidak ditemukan</h1>
+        <span className="icon-badge mx-auto grid h-16 w-16 place-items-center rounded-3xl"><Icon name="help" size={32} /></span>
+        <h1 className="mt-3 text-xl font-bold">Soal tidak ditemukan</h1>
         <a href={href('')} className="btn-primary mt-4">Kembali ke beranda</a>
       </div>
     );
@@ -473,15 +478,15 @@ export default function ExercisePage({ moduleId, n }) {
     <div className="space-y-5">
       <nav aria-label="Jejak halaman" className="flex flex-wrap items-center gap-x-2 text-sm text-muted">
         <a href={href('')} className="hover:text-brand">Beranda</a><span aria-hidden="true">/</span>
-        <a href={href(`modul/${m.id}`)} className="hover:text-brand">{m.emoji} {m.title}</a>
+        <a href={href(`modul/${m.id}`)} className="inline-flex items-center gap-1.5 hover:text-brand"><Icon name={m.icon} size={15} />{m.title}</a>
       </nav>
 
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold text-muted">Level {level.id} · Soal {idx + 1} dari {m.exercises.length}</p>
+          <p className="text-sm font-semibold text-muted">Level {level.id}, Soal {idx + 1} dari {m.exercises.length}</p>
           <h1 className="text-2xl font-extrabold leading-tight">{ex.title}</h1>
         </div>
-        {done?.solved && <span className="chip bg-ok-soft text-ok">✓ Pernah diselesaikan</span>}
+        {done?.solved && <span className="chip gap-1.5 bg-ok-soft text-ok"><Icon name="check" size={13} strokeWidth={2.6} />Pernah diselesaikan</span>}
       </header>
 
       <Dots module={m} current={idx} done={p.done} />
@@ -492,8 +497,8 @@ export default function ExercisePage({ moduleId, n }) {
         : <FormulaExercise key={`${ex.id}-${p.locale}`} ex={ex} locale={p.locale} p={p} />}
 
       <div className="flex justify-between pt-2 text-sm">
-        {idx > 0 ? <a className="text-muted hover:text-brand" href={href(`latihan/${m.id}/${idx}`)}>← Soal sebelumnya</a> : <span />}
-        {idx < m.exercises.length - 1 && <a className="text-muted hover:text-brand" href={href(`latihan/${m.id}/${idx + 2}`)}>Lewati ke soal berikutnya →</a>}
+        {idx > 0 ? <a className="text-muted hover:text-brand" href={href(`latihan/${m.id}/${idx}`)}><Icon name="arrow-left" size={16} className="mr-1 inline" />Soal sebelumnya</a> : <span />}
+        {idx < m.exercises.length - 1 && <a className="text-muted hover:text-brand" href={href(`latihan/${m.id}/${idx + 2}`)}>Lewati ke soal berikutnya<Icon name="arrow-right" size={16} className="ml-1 inline" /></a>}
       </div>
     </div>
   );

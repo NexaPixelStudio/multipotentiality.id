@@ -24,7 +24,7 @@ const orderFmt = { E: 'rp' };
 const multiSyarat = {
   id: 'multi-syarat',
   level: 3,
-  emoji: '🧩',
+  icon: 'layers',
   title: 'Syarat Ganda',
   tagline: 'COUNTIFS, SUMIFS, AVERAGEIFS, MAXIFS, MINIFS',
   why: 'Pertanyaan bisnis jarang hanya punya satu syarat: "omzet Laptop di Jakarta bulan Januari". Versi "S" dari fungsi bersyarat menjawabnya, dan ini salah satu kemampuan yang paling dicari di dunia kerja.',
@@ -209,7 +209,7 @@ const katalogRows = [
 const vlookup = {
   id: 'vlookup',
   level: 3,
-  emoji: '🔭',
+  icon: 'search',
   title: 'VLOOKUP & HLOOKUP',
   tagline: 'Mencari data di tabel lain secara otomatis',
   why: 'Kamu punya daftar kode produk dan ingin harganya muncul sendiri. Itu pekerjaan VLOOKUP, salah satu fungsi paling terkenal dan paling berguna di Excel.',
@@ -238,7 +238,7 @@ const vlookup = {
         ),
         analogy('Skala nilai: 0 = E, 55 = D, 65 = C, 75 = B, 85 = A. Nilai 78 tidak ada persis di tabel. Dengan TRUE, Excel mundur ke batas terdekat di bawahnya (75), lalu mengambil "B".'),
         demo({
-          rows: [['Nilai min', 'Grade'], [0, 'E'], [55, 'D'], [65, 'C'], [75, 'B'], [85, 'A'], ['Nilai 78 →', '']],
+          rows: [['Nilai min', 'Grade'], [0, 'E'], [55, 'D'], [65, 'C'], [75, 'B'], [85, 'A'], ['Nilai 78:', '']],
           cell: 'B7',
           formula: '=VLOOKUP(78,A2:B6,2,TRUE)',
           caption: '78 jatuh di antara 75 dan 85, jadi diambil baris 75 = "B".'
@@ -337,7 +337,7 @@ const vlookup = {
       mustUse: ['VLOOKUP'],
       hints: ['Nilai siswa jarang sama persis dengan batas di tabel.', 'Pakai pencocokan perkiraan (TRUE atau dikosongkan). Tabel sudah terurut naik.', 'Tulis: =VLOOKUP(B2,Skala!$A$2:$B$6,2,TRUE)'],
       parts: [['B2', 'Nilai siswa'], ['Skala!$A$2:$B$6', 'Tabel batas nilai'], ['2', 'Ambil kolom Grade'], ['TRUE', 'Cari batas terdekat yang tidak melebihi nilai']],
-      explain: 'Dengan TRUE, Excel mundur ke batas terbesar yang tidak melebihi nilai. 78 → batas 75 → "B". Dengan FALSE, 78 dianggap tidak ditemukan (#N/A).'
+      explain: 'Dengan TRUE, Excel mundur ke batas terbesar yang tidak melebihi nilai. 78 mengikuti batas 75, hasilnya "B". Dengan FALSE, 78 dianggap tidak ditemukan (#N/A).'
     }),
     f({
       title: 'Komisi berjenjang',
@@ -405,7 +405,7 @@ const karyawanRows = [
 const indexMatch = {
   id: 'index-match',
   level: 3,
-  emoji: '🎛️',
+  icon: 'crosshair',
   title: 'INDEX & MATCH',
   tagline: 'Duet pencarian yang lebih fleksibel dari VLOOKUP',
   why: 'Banyak profesional lebih memilih INDEX-MATCH karena bisa mencari ke arah mana saja dan tidak rusak ketika kolom disisipkan.',
@@ -564,7 +564,7 @@ const tglRows = (r) => r;
 const tanggal = {
   id: 'tanggal',
   level: 3,
-  emoji: '📅',
+  icon: 'calendar',
   title: 'Tanggal & Waktu',
   tagline: 'DATE, YEAR, MONTH, DATEDIF, EDATE, EOMONTH, NETWORKDAYS, TEXT',
   why: 'Jatuh tempo faktur, masa kerja, umur, hari kerja, dan laporan bulanan semuanya bergantung pada tanggal. Excel punya banyak alat untuk itu.',
@@ -621,7 +621,7 @@ const tanggal = {
           formula: '=DATEDIF(B1,B2,"Y")',
           caption: 'Ulang tahun ke-30 baru tiba Agustus, jadi umurnya masih 29 tahun penuh.'
         }),
-        tip('Kode format TEXT yang sering dipakai: "dd/mm/yyyy" → 15/06/2025, "mmmm yyyy" → Juni 2025, "dddd" → Minggu, "mmm" → Jun.')
+        tip('Kode format TEXT yang sering dipakai: "dd/mm/yyyy" menghasilkan 15/06/2025, "mmmm yyyy" menghasilkan Juni 2025, "dddd" menghasilkan Minggu, dan "mmm" menghasilkan Jun.')
       ]
     }
   ],
@@ -772,7 +772,7 @@ const tanggal = {
 const teksLanjut = {
   id: 'teks-lanjut',
   level: 3,
-  emoji: '✂️',
+  icon: 'scissors',
   title: 'Teks Lanjutan',
   tagline: 'FIND, SEARCH, SUBSTITUTE, REPLACE, TEXT, TEXTJOIN, VALUE',
   why: 'Data kotor dari sistem lain sering menyatu dalam satu kolom (nama + email, kode + kota). Dengan teks lanjutan, kamu bisa memotong dan merapikannya otomatis.',
@@ -953,7 +953,7 @@ const teksLanjut = {
 const statistik = {
   id: 'statistik',
   level: 3,
-  emoji: '📊',
+  icon: 'bar-chart',
   title: 'Statistik & Peringkat',
   tagline: 'MEDIAN, MODE, LARGE, SMALL, RANK, STDEV',
   why: 'Rata-rata sering menipu. Gaji satu direktur bisa menaikkan rata-rata satu perusahaan. Statistik dasar membantu kamu melihat angka dengan jujur.',
