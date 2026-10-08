@@ -30,7 +30,7 @@ export default function ModulePage({ id }) {
   return (
     <article className="space-y-8">
       <nav aria-label="Jejak halaman" className="text-sm text-muted">
-        <a href={href('')} className="hover:text-brand">Beranda</a> <span aria-hidden="true">/</span> <span>Level {level.id} — {level.name}</span>
+        <a href={href('')} className="hover:text-brand">Beranda</a> <span aria-hidden="true">/</span> <span>Level {level.id}: {level.name}</span>
       </nav>
 
       <header className={`card border-l-4 p-6 sm:p-8 ${tone.bar}`}>

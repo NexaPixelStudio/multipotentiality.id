@@ -24,7 +24,7 @@ const pembulatan = {
   level: 2,
   icon: 'target',
   title: 'Pembulatan dan Fungsi Angka',
-  tagline: 'Gunakan ROUND, ROUNDUP, ROUNDDOWN, INT, MOD, dan ABS untuk merapikan dan mengolah angka hasil perhitungan.',
+  tagline: 'Rapikan angka dengan ROUND, INT, MOD, dan ABS.',
   why: 'Harga, gaji, dan pajak hampir selalu perlu dibulatkan. Hasil perhitungan Excel sering memiliki banyak angka desimal (misalnya 33,333333), sehingga perlu dirapikan dengan benar.',
   minutes: 10,
   lessons: [
@@ -188,7 +188,7 @@ const ifDasar = {
   level: 2,
   icon: 'split',
   title: 'Fungsi IF untuk Pengambilan Keputusan',
-  tagline: 'Gunakan fungsi IF agar Excel menampilkan hasil yang berbeda sesuai syarat yang Anda tentukan.',
+  tagline: 'Hasil berbeda sesuai syarat dengan fungsi IF.',
   why: 'IF membuat lembar kerja mampu mengambil keputusan secara otomatis. Penentuan status kelulusan, bonus, diskon, hingga peringatan stok semuanya berawal dari fungsi ini.',
   minutes: 12,
   lessons: [
@@ -361,7 +361,7 @@ const logika = {
   level: 2,
   icon: 'git-branch',
   title: 'AND, OR, dan IF Bersarang',
-  tagline: 'Susun syarat ganda dan penilaian bertingkat menggunakan AND, OR, IF bersarang, dan IFS.',
+  tagline: 'Syarat ganda dengan AND, OR, dan IFS.',
   why: 'Kondisi di dunia kerja jarang hanya terdiri dari satu syarat. Bonus, misalnya, dapat mensyaratkan target tercapai dan kehadiran yang baik, sedangkan penilaian A sampai E memerlukan beberapa tingkat. Modul ini membahas cara menyusunnya.',
   minutes: 14,
   lessons: [
@@ -518,7 +518,7 @@ const bersyarat = {
   level: 2,
   icon: 'filter',
   title: 'Menghitung dan Menjumlahkan dengan Syarat',
-  tagline: 'Gunakan COUNTIF, SUMIF, dan AVERAGEIF untuk menghitung, menjumlahkan, dan merata-ratakan data yang memenuhi kriteria.',
+  tagline: 'Hitung dan jumlahkan data sesuai kriteria.',
   why: '"Berapa total penjualan kategori Minuman?" atau "Berapa jumlah pelanggan dari Jakarta?" Pertanyaan seperti ini muncul setiap hari, dan tiga fungsi ini dirancang untuk menjawabnya.',
   minutes: 14,
   lessons: [
@@ -685,7 +685,7 @@ const teksDasar = {
   level: 2,
   icon: 'type',
   title: 'Fungsi Teks Dasar',
-  tagline: 'Ambil, ukur, dan rapikan teks menggunakan LEFT, RIGHT, MID, LEN, TRIM, UPPER, LOWER, dan PROPER.',
+  tagline: 'Ambil dan rapikan teks dengan LEFT, MID, dan TRIM.',
   why: 'Data di lapangan sering berupa teks yang tidak rapi atau perlu dipecah, seperti kode produk, nama, dan nomor telepon. Fungsi teks membantu merapikannya.',
   minutes: 12,
   lessons: [
@@ -849,7 +849,7 @@ const errorModul = {
   level: 2,
   icon: 'alert',
   title: 'Memahami Error dan Menggunakan IFERROR',
-  tagline: 'Kenali jenis pesan error di Excel, temukan penyebabnya, dan tangani dengan IFERROR agar laporan tetap bersih.',
+  tagline: 'Kenali pesan error dan tangani dengan IFERROR.',
   why: 'Pesan error adalah petunjuk, bukan kegagalan. Dengan memahami artinya, Anda dapat memperbaiki rumus lebih cepat dan menghasilkan laporan yang rapi.',
   minutes: 10,
   lessons: [

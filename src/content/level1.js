@@ -9,7 +9,7 @@ const kenalan = {
   level: 1,
   icon: 'table',
   title: 'Dasar-Dasar Excel',
-  tagline: 'Pelajari struktur lembar kerja, sel, kolom, dan baris, serta cara membuat rumus sederhana di Excel.',
+  tagline: 'Struktur lembar kerja, sel, dan rumus sederhana.',
   why: 'Seluruh materi Excel berikutnya bertumpu pada tiga konsep: sel, alamat sel, dan rumus. Dengan memahaminya sejak awal, Anda akan lebih mudah mengikuti modul-modul selanjutnya.',
   minutes: 8,
   lessons: [
@@ -133,7 +133,7 @@ const operator = {
   level: 1,
   icon: 'calculator',
   title: 'Operator dan Perhitungan Dasar',
-  tagline: 'Gunakan operator aritmatika untuk melakukan penjumlahan, pengurangan, perkalian, pembagian, pangkat, dan persentase.',
+  tagline: 'Penjumlahan, perkalian, pangkat, dan persentase.',
   why: 'Operator hitung digunakan di hampir semua rumus, mulai dari perhitungan diskon hingga pajak. Menguasainya terlebih dahulu akan memudahkan Anda mempelajari fungsi.',
   minutes: 10,
   lessons: [
@@ -296,7 +296,7 @@ const fungsiDasar = {
   level: 1,
   icon: 'sigma',
   title: 'Fungsi Dasar Excel',
-  tagline: 'Gunakan fungsi SUM, AVERAGE, MIN, MAX, dan COUNT untuk mengolah data dengan lebih cepat dan efisien.',
+  tagline: 'Olah data lebih cepat dengan SUM, AVERAGE, dan COUNT.',
   why: 'Menjumlahkan ratusan sel satu per satu dengan tanda + tidak efisien dan mudah menimbulkan kesalahan. Dengan fungsi, perhitungan yang sama cukup ditulis dalam satu rumus. Lima fungsi ini paling sering digunakan dalam pekerjaan.',
   minutes: 12,
   lessons: [
@@ -487,7 +487,7 @@ const salinRumus = {
   level: 1,
   icon: 'copy',
   title: 'Referensi Sel dan Penyalinan Rumus',
-  tagline: 'Pelajari cara menyalin rumus ke banyak baris serta menggunakan referensi absolut dengan tanda $.',
+  tagline: 'Menyalin rumus dan referensi absolut dengan tanda $.',
   why: 'Dalam praktik, satu rumus hampir selalu disalin ke banyak baris. Jika tanda $ tidak dipahami, hasil perhitungan dapat keliru tanpa disadari.',
   minutes: 12,
   lessons: [
@@ -623,7 +623,7 @@ const shortcut = {
   level: 1,
   icon: 'keyboard',
   title: 'Shortcut dan Praktik Kerja Efisien',
-  tagline: 'Gunakan shortcut penting untuk mempercepat pekerjaan dan mengurangi kesalahan saat mengolah data.',
+  tagline: 'Shortcut penting untuk bekerja lebih cepat.',
   why: 'Pengguna Excel yang berpengalaman bekerja lebih cepat karena memanfaatkan shortcut keyboard dan menyusun data secara terstruktur. Praktik sederhana ini dapat menghemat banyak waktu kerja.',
   minutes: 8,
   lessons: [

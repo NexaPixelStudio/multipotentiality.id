@@ -9,7 +9,7 @@ const keuangan = {
   level: 5,
   icon: 'coins',
   title: 'Fungsi Keuangan',
-  tagline: 'Hitung cicilan, tabungan, nilai waktu uang, dan kelayakan investasi dengan PMT, FV, PV, NPV, dan IRR.',
+  tagline: 'Cicilan, tabungan, dan kelayakan investasi.',
   why: 'Dari cicilan KPR hingga keputusan investasi, Excel digunakan secara luas di bidang keuangan. Lima fungsi dalam modul ini menjadi fondasinya.',
   minutes: 16,
   lessons: [
@@ -145,7 +145,7 @@ const lookup2arah = {
   level: 5,
   icon: 'map',
   title: 'Lookup Dua Arah dan Tarif Berlapis',
-  tagline: 'Cari data pada tabel matriks dan hitung pajak progresif dengan tarif berlapis.',
+  tagline: 'Tabel matriks dan pajak progresif.',
   why: 'Tarif ongkos kirim bergantung pada kota dan berat, sedangkan pajak penghasilan bergantung pada lapisan penghasilan. Kedua pola ini sering ditemui dalam pekerjaan profesional.',
   minutes: 16,
   lessons: [
@@ -312,7 +312,7 @@ const kasusPenjualan = {
   level: 5,
   icon: 'trending-up',
   title: 'Studi Kasus: Laporan Penjualan',
-  tagline: 'Ubah data transaksi mentah menjadi laporan omzet, laba, peringkat sales, dan pertumbuhan untuk manajemen.',
+  tagline: 'Dari data transaksi menjadi laporan penjualan.',
   why: 'Ini adalah pekerjaan nyata seorang analis: mengubah data transaksi mentah menjadi omzet, laba, peringkat sales, dan pertumbuhan. Anda akan menggunakan banyak fungsi sekaligus.',
   minutes: 22,
   lessons: [
@@ -443,7 +443,7 @@ const kasusPayroll = {
   level: 5,
   icon: 'users',
   title: 'Studi Kasus: Payroll dan HR',
-  tagline: 'Hitung gaji karyawan lengkap dengan tunjangan, lembur, dan potongan dari data dasar.',
+  tagline: 'Hitung gaji, tunjangan, lembur, dan potongan.',
   why: 'Tim HR dan keuangan menghitung gaji, tunjangan, lembur, dan potongan setiap bulan. Kasus ini memadukan fungsi tanggal, IF, referensi terkunci, dan pembulatan.',
   minutes: 22,
   lessons: [
@@ -587,7 +587,7 @@ const kasusInventori = {
   level: 5,
   icon: 'package',
   title: 'Studi Kasus: Inventori Gudang',
-  tagline: 'Pantau stok, tentukan waktu pemesanan ulang, dan hitung nilai persediaan.',
+  tagline: 'Pantau stok dan nilai persediaan gudang.',
   why: 'Gudang yang kehabisan stok kehilangan penjualan, sedangkan stok berlebih menahan modal. Excel membantu tim gudang memantau keduanya.',
   minutes: 20,
   lessons: [
@@ -684,7 +684,7 @@ const fiturPro = {
   level: 5,
   icon: 'sliders',
   title: 'Fitur Lanjutan Excel (Konsep)',
-  tagline: 'Kenali konsep PivotTable, Tabel, Validasi Data, Format Bersyarat, dan praktik terbaik pemodelan data.',
+  tagline: 'PivotTable, Validasi Data, dan Format Bersyarat.',
   why: 'Rumus hanyalah satu bagian dari Excel. Profesional memilih alat yang paling sesuai: dalam beberapa kasus, PivotTable lebih efisien daripada ratusan rumus SUMIFS.',
   minutes: 16,
   lessons: [
