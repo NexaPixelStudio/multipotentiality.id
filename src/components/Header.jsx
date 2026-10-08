@@ -29,7 +29,7 @@ export default function Header({ active }) {
   return (
     <>
       <header className="sticky top-0 z-30 border-b border-line bg-bg/80 backdrop-blur-xl backdrop-saturate-150">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5">
+        <div className="gutter flex items-center gap-3 py-2.5">
           <a href={href('')} className="flex items-center gap-2.5 rounded-lg pr-2 font-bold" aria-label="Beranda Belajar Excel">
             <Logo />
             <span className="text-lg leading-tight">Belajar <span className="text-brand">Excel</span></span>

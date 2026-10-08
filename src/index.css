@@ -240,6 +240,19 @@ body {
   font-size: 1rem;
 }
 
+/* ---------- tata letak cair: mengikuti lebar layar dan zoom ---------- */
+.gutter {
+  padding-inline: clamp(1rem, 3.2vw, 4rem);
+}
+.auto-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+}
+.auto-grid-wide {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+}
+
 /* ---------- lencana ikon ---------- */
 .icon-badge {
   --t: var(--brand);

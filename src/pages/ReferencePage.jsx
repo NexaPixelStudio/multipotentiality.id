@@ -108,7 +108,7 @@ export default function ReferencePage({ query }) {
 
       <p className="text-sm text-muted" aria-live="polite">{results.length} fungsi ditemukan</p>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="auto-grid auto-grid-wide">
         {results.map((r, ri) => {
           const mod = r.module ? MODULE_BY_ID[r.module] : null;
           return (
