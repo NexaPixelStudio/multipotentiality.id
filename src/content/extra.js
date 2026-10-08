@@ -146,6 +146,44 @@ export default {
       mustUse: ['PI'],
       hints: ['Excel punya konstanta pi sendiri.', 'PI() ditulis dengan kurung kosong.', 'Tulis: =ROUND(PI()*B1^2,2)'],
       explain: 'π × 100 = 314,159... yang dibulatkan menjadi 314,16.'
+    }),
+    f({
+      title: 'Buang desimal tanpa membulatkan',
+      story: 'Kasir ingin mengambil bagian bulat dari harga, tanpa pembulatan sama sekali.',
+      task: 'Di sel **B2**, ambil bagian bulat dari A2 dengan **TRUNC**. Salin sampai B3.',
+      sheets: S([['Angka', 'Bulat'], [7.89, ''], [-7.89, '']]),
+      target: 'B2',
+      fillTo: 'B3',
+      expect: [[7], [-7]],
+      solution: '=TRUNC(A2)',
+      shouldFail: ['=ROUND(A2,0)', '=INT(A2)'],
+      mustUse: ['TRUNC'],
+      hints: ['ROUND membulatkan ke terdekat dan INT membulatkan ke bawah. Kamu butuh yang hanya membuang desimal.', 'TRUNC(angka) membuang desimal begitu saja.', 'Tulis: =TRUNC(A2)'],
+      explain: 'TRUNC(7,89) = 7 dan TRUNC(-7,89) = -7. INT(-7,89) menghasilkan -8 karena membulatkan ke bawah.'
+    }),
+    f({
+      title: 'Pertumbuhan kontinu dengan EXP',
+      story: 'Sebuah investasi bertumbuh terus-menerus dengan laju 5% per tahun.',
+      task: 'Di sel **B4**, hitung nilai akhir = modal × e^(laju × tahun) memakai **EXP**, lalu bulatkan ke 2 desimal.',
+      sheets: S([['Modal', 1000], ['Laju per tahun', 0.05], ['Lama (tahun)', 2], ['Nilai akhir', '']]),
+      target: 'B4',
+      expect: 1105.17,
+      solution: '=ROUND(B1*EXP(B2*B3),2)',
+      mustUse: ['EXP'],
+      hints: ['EXP(x) berarti bilangan e dipangkatkan x.', 'Pangkatnya adalah laju × tahun.', 'Tulis: =ROUND(B1*EXP(B2*B3),2)'],
+      explain: 'e^0,1 ≈ 1,10517, jadi 1.000 × 1,10517 ≈ 1.105,17.'
+    }),
+    f({
+      title: 'Berapa lama uang berlipat dua?',
+      story: 'Tabungan tumbuh 7% per tahun. Kamu ingin tahu berapa tahun sampai nilainya dua kali lipat.',
+      task: 'Di sel **B2**, hitung lama = LN(2) / LN(1 + bunga) memakai **LN**, lalu bulatkan ke 1 desimal.',
+      sheets: S([['Bunga per tahun', 0.07], ['Lama (tahun)', '']]),
+      target: 'B2',
+      expect: 10.2,
+      solution: '=ROUND(LN(2)/LN(1+B1),1)',
+      mustUse: ['LN'],
+      hints: ['LN adalah logaritma natural, kebalikan dari EXP.', 'Bagi LN(2) dengan LN(1+bunga).', 'Tulis: =ROUND(LN(2)/LN(1+B1),1)'],
+      explain: 'Sekitar 10,2 tahun. Cara cepatnya "aturan 72": 72 / 7 ≈ 10,3.'
     })
   ],
 
@@ -273,6 +311,26 @@ export default {
       mustUse: ['ISNA'],
       hints: ['MATCH menghasilkan #N/A bila tidak ketemu.', 'ISNA mengecek apakah hasilnya #N/A.', 'Tulis: =ISNA(MATCH(A2,$D$2:$D$4,0))'],
       explain: 'Pola ISNA(MATCH(...)) umum dipakai untuk mencari data yang hilang di salah satu daftar.'
+    }),
+    q({
+      title: 'Untuk apa NA()?',
+      q: 'Kamu menulis `=IF(B3="",NA(),B3)`. Apa yang terjadi bila B3 kosong?',
+      options: ['Sel menampilkan 0', 'Sel menampilkan teks kosong', 'Sel menampilkan error #N/A dengan sengaja', 'Excel menolak rumusnya'],
+      answer: 2,
+      explain: 'NA() sengaja menghasilkan #N/A ("not available"). Berguna agar grafik tidak menggambar titik nol untuk data yang belum ada, dan fungsi seperti ISNA atau IFNA bisa menangkapnya.',
+      whyNot: ['Nol dihasilkan bila kamu menulis 0, bukan NA().', 'Teks kosong dihasilkan oleh "", bukan NA().', '', 'Rumusnya sah; hanya hasilnya yang berupa error yang disengaja.']
+    }),
+    f({
+      title: 'ISERR: error selain #N/A',
+      task: 'Di sel **C2**, hasilkan TRUE bila A2/B2 menghasilkan error **selain #N/A**, dengan **ISERR**. Salin sampai C3.',
+      sheets: S([['Total', 'Jumlah', 'Error?'], [10, 0, ''], [10, 2, '']]),
+      target: 'C2',
+      fillTo: 'C3',
+      expect: [[true], [false]],
+      solution: '=ISERR(A2/B2)',
+      mustUse: ['ISERR'],
+      hints: ['ISERROR menangkap semua error. ISERR sedikit berbeda.', 'ISERR(sesuatu) tidak menghitung #N/A sebagai error.', 'Tulis: =ISERR(A2/B2)'],
+      explain: 'Baris pertama #DIV/0! sehingga ISERR menghasilkan TRUE. Bila hasilnya #N/A, ISERR menghasilkan FALSE.'
     })
   ],
 
@@ -288,6 +346,17 @@ export default {
       mustUse: ['CLEAN'],
       hints: ['TRIM membuang spasi, tapi bukan karakter kontrol.', 'CLEAN membuang karakter yang tidak tercetak.', 'Tulis: =CLEAN(A2)'],
       explain: 'CLEAN sering dipasangkan dengan TRIM: =TRIM(CLEAN(A2)).'
+    }),
+    f({
+      title: 'Menghitung baris data dengan ROWS',
+      task: 'Di sel **B1**, hitung **berapa baris** ada di range A2:A9 dengan **ROWS**.',
+      sheets: S([['Data', 'Jumlah baris'], ['a'], ['b'], ['c'], ['d'], ['e'], ['f'], ['g'], ['h']]),
+      target: 'B1',
+      expect: 8,
+      solution: '=ROWS(A2:A9)',
+      mustUse: ['ROWS'],
+      hints: ['COLUMNS menghitung kolom. Yang ini menghitung baris.', 'ROWS(range).', 'Tulis: =ROWS(A2:A9)'],
+      explain: 'ROWS menghitung baris dalam range, termasuk yang kosong. Berbeda dengan COUNTA yang hanya menghitung sel terisi.'
     })
   ],
 
@@ -327,6 +396,42 @@ export default {
       mustUse: ['CONCAT'],
       hints: ['CONCATENATE butuh tiap sel disebut satu per satu.', 'CONCAT menerima range sekaligus.', 'Tulis: =CONCAT(A2:A4)'],
       explain: 'CONCAT menyambung semua sel dalam range tanpa pemisah. Dengan pemisah, gunakan TEXTJOIN.'
+    }),
+    f({
+      title: 'SEARCH tidak peduli huruf besar-kecil',
+      task: 'Di sel **B2**, cari posisi teks "abc" di A2 **tanpa membedakan huruf besar-kecil** dengan **SEARCH**.',
+      sheets: S([['Kode', 'Posisi'], ['Kode-ABC-01', '']]),
+      target: 'B2',
+      expect: 6,
+      solution: '=SEARCH("abc",A2)',
+      shouldFail: ['=FIND("abc",A2)'],
+      mustUse: ['SEARCH'],
+      hints: ['FIND membedakan huruf besar-kecil, sehingga "abc" tidak ketemu di "ABC".', 'SEARCH mirip FIND tetapi tidak membedakan.', 'Tulis: =SEARCH("abc",A2)'],
+      explain: '"ABC" mulai di karakter ke-6. SEARCH menemukannya meski ditulis "abc"; FIND akan menghasilkan #VALUE!.'
+    }),
+    f({
+      title: 'Ambil nama pengguna dari email',
+      task: 'Di sel **B2**, ambil teks **sebelum tanda @** dengan **TEXTBEFORE**. Salin sampai B3.',
+      sheets: S([['Email', 'Pengguna'], ['ayu@toko.id', ''], ['budi@kantor.co.id', '']]),
+      target: 'B2',
+      fillTo: 'B3',
+      expect: [['ayu'], ['budi']],
+      solution: '=TEXTBEFORE(A2,"@")',
+      mustUse: ['TEXTBEFORE'],
+      hints: ['Kamu butuh potongan teks di depan sebuah pemisah.', 'TEXTBEFORE(teks, pemisah).', 'Tulis: =TEXTBEFORE(A2,"@")'],
+      explain: 'TEXTBEFORE memotong teks tepat sebelum pemisah pertama. Lebih ringkas daripada LEFT + FIND.'
+    }),
+    f({
+      title: 'Ambil domain dari email',
+      task: 'Di sel **B2**, ambil teks **setelah tanda @** dengan **TEXTAFTER**. Salin sampai B3.',
+      sheets: S([['Email', 'Domain'], ['ayu@toko.id', ''], ['budi@kantor.co.id', '']]),
+      target: 'B2',
+      fillTo: 'B3',
+      expect: [['toko.id'], ['kantor.co.id']],
+      solution: '=TEXTAFTER(A2,"@")',
+      mustUse: ['TEXTAFTER'],
+      hints: ['Kebalikan dari TEXTBEFORE.', 'TEXTAFTER(teks, pemisah).', 'Tulis: =TEXTAFTER(A2,"@")'],
+      explain: 'TEXTAFTER memotong teks tepat setelah pemisah pertama. Lebih ringkas daripada MID + FIND + LEN.'
     })
   ],
 
@@ -451,6 +556,18 @@ export default {
       mustUse: ['WORKDAY'],
       hints: ['Menambah 5 hari biasa akan melewati akhir pekan.', 'WORKDAY(mulai, jumlah hari kerja).', 'Tulis: =WORKDAY(B1,5)'],
       explain: 'Jumat 6, Senin 9, Selasa 10, Rabu 11, lalu Kamis 12 Juni. Argumen ketiga (opsional) bisa berisi hari libur.'
+    }),
+    f({
+      title: 'Selisih hari dengan DAYS',
+      task: 'Di sel **B3**, hitung **jumlah hari** dari tanggal mulai (B1) sampai tanggal selesai (B2) dengan **DAYS**.',
+      sheets: S([['Mulai', D('2025-06-01')], ['Selesai', D('2025-06-30')], ['Jumlah hari', '']], { B: 'date' }),
+      target: 'B3',
+      expect: 29,
+      solution: '=DAYS(B2,B1)',
+      shouldFail: ['=DAYS(B1,B2)'],
+      mustUse: ['DAYS'],
+      hints: ['Urutan argumen DAYS: tanggal akhir dulu, baru tanggal awal.', 'DAYS(selesai, mulai).', 'Tulis: =DAYS(B2,B1)'],
+      explain: 'DAYS(akhir, awal) sama dengan akhir - awal. Bila urutannya terbalik, hasilnya negatif (-29).'
     })
   ],
 
