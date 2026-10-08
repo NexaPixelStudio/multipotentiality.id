@@ -13,7 +13,7 @@ export default function ModulePage({ id }) {
 
   useEffect(() => {
     if (m) document.title = `${m.title} - Belajar Excel`;
-    return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
+    return () => { document.title = 'Belajar Excel dari Dasar hingga Mahir'; };
   }, [m]);
 
   if (!m) return <NotFound />;
@@ -30,7 +30,7 @@ export default function ModulePage({ id }) {
   return (
     <article className="space-y-8">
       <nav aria-label="Jejak halaman" className="text-sm text-muted">
-        <a href={href('')} className="hover:text-brand">Beranda</a> <span aria-hidden="true">/</span> <span>Level {level.id}: {level.name}</span>
+        <a href={href('')} className="hover:text-brand">Beranda</a> <span aria-hidden="true">/</span> <span>Level {level.id} — {level.name}</span>
       </nav>
 
       <header className={`card border-l-4 p-6 sm:p-8 ${tone.bar}`}>
@@ -48,13 +48,13 @@ export default function ModulePage({ id }) {
           </div>
         </div>
         <div className="mt-5 rounded-xl bg-brand-soft p-4">
-          <p className="text-sm font-bold uppercase tracking-wide text-brand">Kenapa ini penting?</p>
+          <p className="text-sm font-bold uppercase tracking-wide text-brand">Mengapa materi ini penting?</p>
           <p className="mt-1"><Rich text={m.why} locale={p.locale} /></p>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
           <a href="#materi" className="btn-soft" onClick={(e) => { e.preventDefault(); document.getElementById('materi')?.scrollIntoView({ behavior: 'smooth' }); }}>Baca materi<Icon name="arrow-down" size={17} /></a>
           <a href={href(`latihan/${m.id}/${startIndex + 1}`)} className="btn-primary">
-            {st.solved > 0 && !st.complete ? 'Lanjutkan latihan' : st.complete ? 'Ulangi latihan' : 'Langsung ke latihan'}<Icon name="arrow-right" size={18} className="icon-slide" />
+            {st.solved > 0 && !st.complete ? 'Lanjutkan latihan' : st.complete ? 'Ulangi latihan' : 'Mulai latihan'}<Icon name="arrow-right" size={18} className="icon-slide" />
           </a>
         </div>
       </header>
@@ -79,7 +79,7 @@ export default function ModulePage({ id }) {
             className="btn-primary"
             onClick={() => p.markRead(m.id)}
           >
-            Aku siap, mulai latihan<Icon name="arrow-right" size={18} className="icon-slide" />
+            Mulai latihan<Icon name="arrow-right" size={18} className="icon-slide" />
           </a>
         </div>
         <ol className="mt-5 divide-y divide-line rounded-xl border border-line">
@@ -103,8 +103,8 @@ export default function ModulePage({ id }) {
       {st.complete && (
         <section className="card anim-pop border-ok/40 bg-ok-soft p-6 text-center">
           <span className="check-draw mx-auto grid h-14 w-14 place-items-center rounded-full bg-ok/15 text-ok"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" /><path d="M8 12.4l3 3 5-6" /></svg></span>
-          <h2 className="mt-2 text-xl font-bold">Modul selesai!</h2>
-          <p className="text-muted">Kerja bagus. Siap lanjut?</p>
+          <h2 className="mt-2 text-xl font-bold">Modul selesai</h2>
+          <p className="text-muted">Anda telah menyelesaikan semua latihan di modul ini.</p>
           {nextModule && <a href={href(`modul/${nextModule.id}`)} className="btn-primary mt-4">Modul berikutnya: {nextModule.title}<Icon name="arrow-right" size={18} className="icon-slide" /></a>}
         </section>
       )}

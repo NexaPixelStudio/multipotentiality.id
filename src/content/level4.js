@@ -32,18 +32,18 @@ const xlookup = {
   id: 'xlookup',
   level: 4,
   icon: 'zap',
-  title: 'XLOOKUP & Pencarian Modern',
-  tagline: 'Pengganti VLOOKUP yang lebih sederhana dan lebih kuat',
-  why: 'XLOOKUP memperbaiki semua keluhan tentang VLOOKUP: tidak perlu nomor kolom, bisa mencari ke kiri, dan punya pesan "tidak ketemu" bawaan.',
+  title: 'XLOOKUP dan Pencarian Modern',
+  tagline: 'Gunakan XLOOKUP sebagai pengganti VLOOKUP yang lebih sederhana dan lebih fleksibel.',
+  why: 'XLOOKUP mengatasi keterbatasan VLOOKUP: tidak memerlukan nomor kolom, dapat mencari ke arah kiri, dan menyediakan pesan bawaan jika data tidak ditemukan.',
   minutes: 14,
   lessons: [
     {
-      title: 'VLOOKUP yang tidak ribet',
+      title: 'XLOOKUP: pencarian yang lebih sederhana',
       body: [
-        syntax('=XLOOKUP(dicari, kolom_pencarian, kolom_hasil, [jika_tidak_ada], [mode_cocok], [mode_cari])', [['dicari', 'Nilai yang dicari'], ['kolom_pencarian', 'Kolom tempat mencari (boleh di mana saja)'], ['kolom_hasil', 'Kolom yang isinya diambil. Tidak ada nomor kolom lagi'], ['jika_tidak_ada', 'Pesan jika tidak ketemu (opsional), menggantikan IFERROR']]),
+        syntax('=XLOOKUP(dicari, kolom_pencarian, kolom_hasil, [jika_tidak_ada], [mode_cocok], [mode_cari])', [['dicari', 'Nilai yang dicari'], ['kolom_pencarian', 'Kolom tempat mencari (dapat berada di posisi mana pun)'], ['kolom_hasil', 'Kolom yang isinya akan diambil. Tidak memerlukan nomor kolom'], ['jika_tidak_ada', 'Pesan jika tidak ditemukan (opsional), menggantikan IFERROR']]),
         steps(
           'Defaultnya **pencocokan persis**. Tidak perlu menulis FALSE.',
-          'Bisa mengambil kolom di **kiri maupun kanan**.',
+          'Dapat mengambil kolom di **kiri maupun kanan**.',
           'Punya argumen **jika tidak ada** bawaan.',
           'Tabel tidak perlu terurut untuk pencocokan perkiraan.'
         ),
@@ -53,11 +53,11 @@ const xlookup = {
           formula: '=XLOOKUP("Sandi",A2:A4,B2:B4)',
           caption: 'Cari "Sandi" di kolom A, ambil sel sejajar di kolom B: 9000.'
         }),
-        warn('XLOOKUP hanya ada di Excel 2021, Microsoft 365, dan Excel Web. Excel 2019 ke bawah tidak punya. Untuk file yang dibagikan ke banyak orang, pastikan versi mereka mendukung.')
+        warn('XLOOKUP hanya ada di Excel 2021, Microsoft 365, dan Excel Web. Excel 2019 ke bawah tidak punya. Untuk file yang dibagikan kepada banyak orang, pastikan versi Excel mereka mendukungnya.')
       ]
     },
     {
-      title: 'Kemampuan istimewa XLOOKUP',
+      title: 'Kemampuan tambahan XLOOKUP',
       body: [
         steps(
           '**Mode cocok** (argumen ke-5): `0` persis, `-1` persis atau **terkecil berikutnya**, `1` persis atau **terbesar berikutnya**, `2` wildcard.',
@@ -77,7 +77,7 @@ const xlookup = {
     f({
       title: 'Gaji dari nama',
       story: 'Nama yang dicari ditulis di G1.',
-      task: 'Di sel **G2**, ambil **gaji** karyawan yang namanya ada di G1 memakai **XLOOKUP**.',
+      task: 'Di sel **G2**, ambil **gaji** karyawan yang namanya ada di G1 menggunakan **XLOOKUP**.',
       sheets: [sheet('Karyawan', withExtra(karyawanRows, [[null, null, 'Vina']]), { D: 'rp' })],
       target: 'G2',
       resultFmt: 'rp',
@@ -97,24 +97,24 @@ const xlookup = {
       solution: '=XLOOKUP(G1,B2:B6,A2:A6)',
       mustUse: ['XLOOKUP'],
       hints: ['Letak kolom hasil tidak dibatasi, boleh di kiri kolom pencarian.', 'Kolom pencarian: Nama. Kolom hasil: ID.', 'Tulis: =XLOOKUP(G1,B2:B6,A2:A6)'],
-      explain: 'Hal yang tidak bisa dilakukan VLOOKUP, kini mudah.'
+      explain: 'Pencarian ke kiri tidak dapat dilakukan VLOOKUP, tetapi mudah dilakukan XLOOKUP.'
     }),
     f({
-      title: 'Pesan jika tidak ketemu',
+      title: 'Pesan jika tidak ditemukan',
       story: 'Nama "Zaki" belum terdaftar.',
-      task: 'Di sel **G2**, ambil gaji untuk nama di G1. Jika nama tidak ada, tampilkan teks **"Tidak terdaftar"**, tanpa memakai IFERROR.',
+      task: 'Di sel **G2**, ambil gaji untuk nama di G1. Jika nama tidak ada, tampilkan teks **"Tidak terdaftar"**, tanpa menggunakan IFERROR.',
       sheets: [sheet('Karyawan', withExtra(karyawanRows, [[null, null, 'Zaki']]), { D: 'rp' })],
       target: 'G2',
       expect: 'Tidak terdaftar',
       solution: '=XLOOKUP(G1,B2:B6,D2:D6,"Tidak terdaftar")',
       mustUse: ['XLOOKUP'],
       forbid: ['IFERROR', 'IFNA'],
-      hints: ['XLOOKUP punya argumen keempat khusus untuk kasus tidak ketemu.', 'Isi argumen keempat dengan teks pesannya.', 'Tulis: =XLOOKUP(G1,B2:B6,D2:D6,"Tidak terdaftar")'],
-      explain: 'Argumen "jika tidak ada" membuat rumus lebih pendek dan lebih mudah dibaca dibanding membungkus VLOOKUP dengan IFERROR.'
+      hints: ['XLOOKUP punya argumen keempat khusus untuk kasus tidak ditemukan.', 'Isi argumen keempat dengan teks pesannya.', 'Tulis: =XLOOKUP(G1,B2:B6,D2:D6,"Tidak terdaftar")'],
+      explain: 'Argumen "jika tidak ada" membuat rumus lebih pendek dan lebih mudah dibaca dibanding menerapkan IFERROR pada VLOOKUP.'
     }),
     f({
-      title: 'Komisi berjenjang tanpa urut',
-      story: 'Seperti VLOOKUP perkiraan, tapi XLOOKUP tidak mewajibkan tabel terurut dan lebih jelas maksudnya.',
+      title: 'Komisi berjenjang tanpa pengurutan',
+      story: 'Seperti VLOOKUP perkiraan, tetapi XLOOKUP tidak mewajibkan tabel terurut dan lebih jelas maksudnya.',
       task: 'Di sel **C2**, cari **persentase komisi** untuk omzet di B2 dari tabel sheet **Tarif**. Gunakan mode "persis atau terkecil berikutnya" (-1). Salin sampai C5.',
       sheets: [
         sheet('Komisi', [['Sales', 'Omzet', 'Komisi %'], ['Andi', 8000000, ''], ['Budi', 30000000, ''], ['Citra', 55000000, ''], ['Dedi', 12000000, '']], { B: 'rp', C: 'pct' }),
@@ -127,11 +127,11 @@ const xlookup = {
       solution: '=XLOOKUP(B2,Tarif!$A$2:$A$5,Tarif!$B$2:$B$5,0,-1)',
       mustUse: ['XLOOKUP'],
       hints: ['Omzet jarang tepat sama dengan batas di tabel, jadi perlu mode pencocokan yang mencari batas di bawahnya.', 'Argumen kelima = -1 berarti "persis atau terkecil berikutnya".', 'Tulis: =XLOOKUP(B2,Tarif!$A$2:$A$5,Tarif!$B$2:$B$5,0,-1)'],
-      explain: 'Mode -1 mencari nilai yang sama persis, atau kalau tidak ada, nilai terdekat yang lebih kecil. Cocok untuk tarif berjenjang.'
+      explain: 'Mode -1 mencari nilai yang sama persis, atau jika tidak ada, nilai terdekat yang lebih kecil. Cocok untuk tarif berjenjang.'
     }),
     f({
       title: 'Transaksi terakhir pelanggan',
-      story: 'Pelanggan bisa muncul berkali-kali. Kamu butuh transaksi paling bawah (paling baru).',
+      story: 'Pelanggan dapat muncul berkali-kali. Anda butuh transaksi paling bawah (paling baru).',
       task: 'Di sel **D2**, ambil **jumlah transaksi terakhir** untuk pelanggan di D1 dengan membaca daftar dari bawah ke atas.',
       sheets: [sheet('Transaksi', [['Pelanggan', 'Jumlah', null, 'Ayu'], ['Ayu', 100], ['Budi', 200], ['Ayu', 150], ['Citra', 300], ['Budi', 250], ['Ayu', 175]])],
       target: 'D2',
@@ -153,19 +153,19 @@ const xlookup = {
       solution: '=XLOOKUP(G1,B2:B6,C2:D6)',
       mustUse: ['XLOOKUP'],
       hints: ['Kolom hasil boleh lebih dari satu kolom.', 'Pilih C2:D6 sebagai kolom hasil.', 'Tulis: =XLOOKUP(G1,B2:B6,C2:D6)'],
-      explain: 'Satu rumus mengisi dua sel (G2 dan H2). Ini disebut spill, dan akan kamu dalami di modul Array Dinamis.'
+      explain: 'Satu rumus mengisi dua sel (G2 dan H2). Ini disebut spill, dan akan Anda dalami di modul Array Dinamis.'
     }),
     q({
-      title: 'XLOOKUP vs VLOOKUP',
+      title: 'XLOOKUP dibandingkan VLOOKUP',
       q: 'Manakah pernyataan yang **benar** tentang XLOOKUP?',
-      options: ['Hanya bisa mencari ke kanan seperti VLOOKUP', 'Defaultnya pencocokan persis', 'Wajib memakai nomor kolom', 'Tersedia di semua versi Excel, termasuk Excel 2010'],
+      options: ['Hanya dapat mencari ke kanan seperti VLOOKUP', 'Defaultnya pencocokan persis', 'Wajib menggunakan nomor kolom', 'Tersedia di semua versi Excel, termasuk Excel 2010'],
       answer: 1,
-      explain: 'XLOOKUP otomatis mencari yang persis sama (tanpa FALSE), tidak memakai nomor kolom, dan bisa mencari ke arah mana pun. Tapi hanya ada di Excel 2021 / Microsoft 365 ke atas.',
-      whyNot: ['Justru salah satu kelebihannya bisa mencari ke kiri.', '', 'Itu VLOOKUP. XLOOKUP langsung menunjuk kolom hasil.', 'Tidak tersedia di Excel 2019 ke bawah.']
+      explain: 'XLOOKUP otomatis mencari yang persis sama (tanpa FALSE), tidak menggunakan nomor kolom, dan dapat mencari ke arah mana pun. Namun, fungsi ini hanya tersedia di Excel 2021 / Microsoft 365 ke atas.',
+      whyNot: ['Salah satu kelebihan XLOOKUP justru dapat mencari ke kiri.', '', 'Itu VLOOKUP. XLOOKUP langsung menunjuk kolom hasil.', 'Tidak tersedia di Excel 2019 ke bawah.']
     }),
     q({
-      title: 'Kapan masih butuh VLOOKUP?',
-      q: 'Kamu membagikan file Excel ke rekan yang masih memakai Excel 2016. Rumus pencarian mana yang paling aman dipakai?',
+      title: 'Kapan VLOOKUP masih diperlukan?',
+      q: 'Anda membagikan file Excel kepada rekan yang masih menggunakan Excel 2016. Rumus pencarian mana yang paling aman digunakan?',
       options: ['XLOOKUP', 'VLOOKUP atau INDEX-MATCH', 'FILTER', 'LET'],
       answer: 1,
       explain: 'XLOOKUP, FILTER, dan LET baru ada di Excel 2021 / 365. Untuk kompatibilitas luas, VLOOKUP dan INDEX-MATCH tetap pilihan aman.'
@@ -186,15 +186,15 @@ const sumproduct = {
   id: 'sumproduct',
   level: 4,
   icon: 'grid',
-  title: 'SUMPRODUCT & Hitungan Berbobot',
-  tagline: 'Kali per baris lalu jumlahkan, tanpa kolom bantu',
-  why: 'Total omzet = qty × harga di tiap baris, lalu dijumlahkan. Biasanya perlu kolom bantu. SUMPRODUCT melakukannya dalam satu rumus, dan bisa menambahkan banyak syarat.',
+  title: 'SUMPRODUCT dan Perhitungan Berbobot',
+  tagline: 'Kalikan data per baris lalu jumlahkan hasilnya dalam satu rumus, tanpa kolom bantu.',
+  why: 'Total omzet dihitung dari kuantitas dikali harga pada setiap baris, lalu dijumlahkan. Biasanya hal ini memerlukan kolom bantu. SUMPRODUCT menyelesaikannya dalam satu rumus dan mendukung banyak syarat.',
   minutes: 14,
   lessons: [
     {
-      title: 'Seperti menjumlah struk belanja',
+      title: 'Cara kerja SUMPRODUCT',
       body: [
-        analogy('Di struk: 3 kopi @ 20 ribu, 2 teh @ 15 ribu. Totalnya (3×20) + (2×15). SUMPRODUCT melakukan persis itu: mengalikan angka yang sebaris dari beberapa range, lalu menjumlahkan semuanya.'),
+        analogy('Pada sebuah struk: 3 kopi @ Rp 20 ribu dan 2 teh @ Rp 15 ribu. Totalnya (3×20) + (2×15). SUMPRODUCT bekerja dengan cara yang sama: mengalikan angka yang sebaris dari beberapa range, lalu menjumlahkan semuanya.'),
         demo({
           rows: [['Produk', 'Qty', 'Harga'], ['Kopi', 3, 20000], ['Teh', 2, 15000], ['Total omzet', '', '']],
           cell: 'B4',
@@ -206,7 +206,7 @@ const sumproduct = {
     {
       title: 'SUMPRODUCT dengan syarat',
       body: [
-        p('Kamu bisa menyisipkan syarat sebagai pertanyaan benar/salah. Excel mengubah BENAR menjadi 1 dan SALAH menjadi 0 saat dikalikan, sehingga baris yang tidak memenuhi syarat "mati" (dikali 0).'),
+        p('Anda dapat menyisipkan syarat berupa pernyataan benar atau salah. Saat dikalikan, Excel memperlakukan BENAR sebagai 1 dan SALAH sebagai 0, sehingga baris yang tidak memenuhi syarat menjadi 0 dan tidak ikut dihitung.'),
         syntax('=SUMPRODUCT((range_syarat="nilai") * range_jumlah1 * range_jumlah2)', [['(range="nilai")', 'Menghasilkan deretan BENAR/SALAH'], ['*', 'Mengalikan: BENAR = 1, SALAH = 0, jadi baris tidak cocok bernilai 0']]),
         demo({
           rows: [['Produk', 'Qty', 'Harga', 'Kat.'], ['Kopi', 3, 20000, 'Minuman'], ['Roti', 4, 12000, 'Makanan'], ['Teh', 2, 15000, 'Minuman'], ['Omzet minuman', '', '', '']],
@@ -220,7 +220,7 @@ const sumproduct = {
     {
       title: 'Rata-rata tertimbang',
       body: [
-        analogy('Nilai akhir: tugas bobot 2, UTS bobot 3, UAS bobot 5. UAS lebih menentukan. Rata-rata biasa tidak adil. Rata-rata tertimbang mengalikan tiap nilai dengan bobotnya dulu.'),
+        analogy('Nilai akhir: tugas berbobot 2, UTS berbobot 3, dan UAS berbobot 5. UAS lebih menentukan, sehingga rata-rata biasa kurang tepat. Rata-rata tertimbang mengalikan tiap nilai dengan bobotnya terlebih dahulu.'),
         syntax('=SUMPRODUCT(nilai, bobot) / SUM(bobot)', [['SUMPRODUCT(nilai, bobot)', 'Jumlah (nilai × bobot)'], ['SUM(bobot)', 'Total bobot sebagai pembagi']])
       ]
     }
@@ -235,31 +235,31 @@ const sumproduct = {
       expect: 677000,
       solution: '=SUMPRODUCT(B2:B6,C2:C6)',
       mustUse: ['SUMPRODUCT'],
-      hints: ['Kamu butuh jumlah dari hasil kali dua kolom.', 'SUMPRODUCT(range1, range2) mengalikan pasangan sebaris lalu menjumlahkannya.', 'Tulis: =SUMPRODUCT(B2:B6,C2:C6)'],
+      hints: ['Anda butuh jumlah dari hasil kali dua kolom.', 'SUMPRODUCT(range1, range2) mengalikan pasangan sebaris lalu menjumlahkannya.', 'Tulis: =SUMPRODUCT(B2:B6,C2:C6)'],
       explain: '200.000 + 75.000 + 96.000 + 90.000 + 216.000 = 677.000.'
     }),
     f({
       title: 'Omzet satu kategori',
-      task: 'Di sel **B8**, hitung total omzet (Qty × Harga) untuk produk berkategori **Minuman** memakai SUMPRODUCT dengan syarat.',
+      task: 'Di sel **B8**, hitung total omzet (Qty × Harga) untuk produk berkategori **Minuman** menggunakan SUMPRODUCT dengan syarat.',
       sheets: [sheet('Toko', [...tokoRows, [null, null, null, null], [null, null, null, null], ['Omzet minuman', '', null, null]], { C: 'rp' })],
       target: 'B8',
       resultFmt: 'rp',
       expect: 491000,
       solution: '=SUMPRODUCT((D2:D6="Minuman")*B2:B6*C2:C6)',
       mustUse: ['SUMPRODUCT'],
-      hints: ['Tambahkan syarat kategori di dalam SUMPRODUCT sebagai pertanyaan benar/salah.', 'Sambung dengan tanda kali: (D2:D6="Minuman")*B2:B6*C2:C6.', 'Tulis: =SUMPRODUCT((D2:D6="Minuman")*B2:B6*C2:C6)'],
+      hints: ['Tambahkan syarat kategori di dalam SUMPRODUCT sebagai pernyataan benar atau salah.', 'Sambung dengan tanda kali: (D2:D6="Minuman")*B2:B6*C2:C6.', 'Tulis: =SUMPRODUCT((D2:D6="Minuman")*B2:B6*C2:C6)'],
       parts: [['(D2:D6="Minuman")', 'BENAR (1) untuk baris minuman, SALAH (0) untuk lainnya'], ['*B2:B6*C2:C6', 'dikali qty dan harga']],
       explain: 'Roti dan Kue dikali 0 sehingga tidak ikut: 200.000 + 75.000 + 216.000 = 491.000.'
     }),
     f({
       title: 'Hitung dengan dua syarat',
-      task: 'Di sel **B8**, hitung **berapa produk** yang kategorinya Minuman **dan** qty-nya minimal 10, memakai SUMPRODUCT.',
+      task: 'Di sel **B8**, hitung **berapa produk** yang kategorinya Minuman **dan** qty-nya minimal 10, menggunakan SUMPRODUCT.',
       sheets: [sheet('Toko', [...tokoRows, [null, null, null, null], [null, null, null, null], ['Minuman qty >= 10', '', null, null]], { C: 'rp' })],
       target: 'B8',
       expect: 2,
       solution: '=SUMPRODUCT((D2:D6="Minuman")*(B2:B6>=10))',
       mustUse: ['SUMPRODUCT'],
-      hints: ['Dua syarat DAN dihubungkan dengan perkalian.', 'Setiap syarat dibungkus kurung sendiri.', 'Tulis: =SUMPRODUCT((D2:D6="Minuman")*(B2:B6>=10))'],
+      hints: ['Dua syarat DAN dihubungkan dengan perkalian.', 'Setiap syarat diletakkan dalam kurung tersendiri.', 'Tulis: =SUMPRODUCT((D2:D6="Minuman")*(B2:B6>=10))'],
       explain: 'Hanya baris yang mendapat 1 × 1 = 1 yang dihitung: Kopi (10) dan Susu (12).'
     }),
     f({
@@ -296,15 +296,15 @@ const sumproduct = {
       expect: 491000 / 677000,
       solution: '=SUMPRODUCT((D2:D6="Minuman")*B2:B6*C2:C6)/SUMPRODUCT(B2:B6,C2:C6)',
       mustUse: ['SUMPRODUCT'],
-      hints: ['Bagian = omzet minuman. Keseluruhan = total omzet.', 'Keduanya bisa dihitung dengan SUMPRODUCT.', 'Tulis: =SUMPRODUCT((D2:D6="Minuman")*B2:B6*C2:C6)/SUMPRODUCT(B2:B6,C2:C6)'],
+      hints: ['Bagian = omzet minuman. Keseluruhan = total omzet.', 'Keduanya dapat dihitung dengan SUMPRODUCT.', 'Tulis: =SUMPRODUCT((D2:D6="Minuman")*B2:B6*C2:C6)/SUMPRODUCT(B2:B6,C2:C6)'],
       explain: '491.000 / 677.000 ≈ 72,5%.'
     }),
     q({
-      title: 'Arti BENAR × angka',
-      q: 'Di dalam SUMPRODUCT, pertanyaan `(B2:B6>=10)` menghasilkan BENAR/SALAH. Saat dikalikan dengan angka, BENAR dan SALAH diperlakukan sebagai...',
+      title: 'Nilai BENAR dan SALAH dalam perhitungan',
+      q: 'Di dalam SUMPRODUCT, pernyataan `(B2:B6>=10)` menghasilkan BENAR atau SALAH. Saat dikalikan dengan angka, BENAR dan SALAH diperlakukan sebagai...',
       options: ['BENAR = 10, SALAH = 0', 'BENAR = 1, SALAH = 0', 'BENAR = 0, SALAH = 1', 'Keduanya menghasilkan error'],
       answer: 1,
-      explain: 'Dalam perhitungan, BENAR menjadi **1** dan SALAH menjadi **0**. Itulah sebabnya perkalian dengan syarat bisa menyaring baris.'
+      explain: 'Dalam perhitungan, BENAR menjadi **1** dan SALAH menjadi **0**. Itulah sebabnya perkalian dengan syarat dapat menyaring baris.'
     })
   ]
 };
@@ -314,17 +314,17 @@ const arrayDinamis = {
   level: 4,
   icon: 'waves',
   title: 'Array Dinamis',
-  tagline: 'FILTER, SORT, UNIQUE, SEQUENCE',
-  why: 'Dulu mengurutkan, menyaring, dan membuat daftar unik butuh menu atau rumus rumit. Kini satu rumus menghasilkan daftar lengkap yang ikut berubah ketika data berubah.',
+  tagline: 'Gunakan FILTER, SORT, UNIQUE, dan SEQUENCE untuk menyaring, mengurutkan, dan membuat daftar secara otomatis.',
+  why: 'Dahulu, mengurutkan, menyaring, dan membuat daftar unik memerlukan menu atau rumus yang rumit. Dengan array dinamis, satu rumus menghasilkan daftar lengkap yang ikut diperbarui saat data berubah.',
   minutes: 18,
   lessons: [
     {
       title: 'Satu rumus, banyak hasil',
       body: [
-        analogy('Bayangkan menuang air ke selokan kosong. Airnya mengalir mengisi semua kotak di sepanjang jalan. Rumus array dinamis juga begitu: ditulis sekali di satu sel, hasilnya **tumpah (spill)** ke sel kosong di bawah atau di sampingnya.'),
+        analogy('Bayangkan air yang dituang ke selokan kosong: airnya mengalir mengisi seluruh jalur yang dilaluinya. Rumus array dinamis bekerja serupa: ditulis sekali di satu sel, hasilnya **tumpah (spill)** ke sel kosong di bawah atau di sampingnya.'),
         steps(
           'Tulis rumus di **sel pertama** saja. Sel-sel di sekelilingnya terisi otomatis.',
-          'Kalau data sumber berubah, daftar hasil ikut berubah.',
+          'Jika data sumber berubah, daftar hasil ikut berubah.',
           'Jika ada sel di jalur tumpahan yang sudah terisi, Excel menampilkan **#SPILL!**. Bersihkan sel penghalangnya.'
         ),
         warn('Fitur ini ada di Excel 2021 dan Microsoft 365. Di Excel 2019 ke bawah, FILTER, SORT, dan UNIQUE tidak tersedia.')
@@ -378,7 +378,7 @@ const arrayDinamis = {
       explain: 'Empat baris Jakarta tampil lengkap dengan semua kolomnya, dan daftar akan ikut berubah jika data sumber diubah.'
     }),
     f({
-      title: 'Kalau tidak ada yang cocok',
+      title: 'Jika tidak ada yang cocok',
       task: 'Di sel **G2**, saring baris wilayah **Medan** (tidak ada di data). Jika kosong, tampilkan teks **"Tidak ada data"**.',
       sheets: [sheet('Order', orderRows(), { E: 'rp' })],
       target: 'G2',
@@ -386,18 +386,18 @@ const arrayDinamis = {
       solution: '=FILTER(A2:E11,B2:B11="Medan","Tidak ada data")',
       mustUse: ['FILTER'],
       hints: ['Tanpa argumen ketiga, FILTER menghasilkan error #CALC! saat tidak ada yang cocok.', 'Argumen ketiga adalah teks pengganti.', 'Tulis: =FILTER(A2:E11,B2:B11="Medan","Tidak ada data")'],
-      explain: 'Selalu sediakan argumen ketiga pada laporan yang datanya bisa kosong, supaya pembaca tidak melihat error.'
+      explain: 'Selalu sediakan argumen ketiga pada laporan yang datanya dapat kosong, agar pembaca tidak melihat pesan error.'
     }),
     f({
-      title: 'Siapa yang omzetnya besar?',
+      title: 'Transaksi dengan omzet besar',
       task: 'Di sel **G2**, tampilkan **daftar nama sales** (kolom A) pada transaksi yang omzetnya **minimal Rp 10.000.000**.',
       sheets: [sheet('Order', orderRows(), { E: 'rp' })],
       target: 'G2',
       expect: [['Andi'], ['Budi'], ['Dedi'], ['Citra'], ['Dedi']],
       solution: '=FILTER(A2:A11,E2:E11>=10000000)',
       mustUse: ['FILTER'],
-      hints: ['Yang ditampilkan hanya kolom nama, bukan seluruh tabel.', 'Syaratnya memakai kolom omzet (E).', 'Tulis: =FILTER(A2:A11,E2:E11>=10000000)'],
-      explain: 'Kolom yang ditampilkan dan kolom yang dipakai untuk syarat tidak harus sama.'
+      hints: ['Yang ditampilkan hanya kolom nama, bukan seluruh tabel.', 'Syaratnya menggunakan kolom omzet (E).', 'Tulis: =FILTER(A2:A11,E2:E11>=10000000)'],
+      explain: 'Kolom yang ditampilkan dan kolom yang digunakan untuk syarat tidak harus sama.'
     }),
     f({
       title: 'Daftar wilayah unik',
@@ -407,7 +407,7 @@ const arrayDinamis = {
       expect: [['Jakarta'], ['Bandung'], ['Surabaya']],
       solution: '=UNIQUE(B2:B11)',
       mustUse: ['UNIQUE'],
-      hints: ['Kamu ingin menghilangkan nilai yang berulang.', 'UNIQUE(range).', 'Tulis: =UNIQUE(B2:B11)'],
+      hints: ['Anda ingin menghilangkan nilai yang berulang.', 'UNIQUE(range).', 'Tulis: =UNIQUE(B2:B11)'],
       explain: 'UNIQUE mempertahankan urutan kemunculan pertama: Jakarta, Bandung, lalu Surabaya.'
     }),
     f({
@@ -429,36 +429,36 @@ const arrayDinamis = {
       expect: [[20000000], [10000000], [1500000], [750000]],
       solution: '=SORT(FILTER(E2:E11,B2:B11="Jakarta"),1,-1)',
       mustUse: ['SORT', 'SORTBY'],
-      hints: ['Kerjakan dua langkah: pertama saring, kedua urutkan hasil saringannya.', 'Taruh FILTER di dalam SORT.', 'Tulis: =SORT(FILTER(E2:E11,B2:B11="Jakarta"),1,-1)'],
+      hints: ['Kerjakan dua langkah: pertama saring, kedua urutkan hasil saringannya.', 'Letakkan FILTER di dalam SORT.', 'Tulis: =SORT(FILTER(E2:E11,B2:B11="Jakarta"),1,-1)'],
       parts: [['FILTER(E2:E11, B2:B11="Jakarta")', 'Ambil omzet baris Jakarta'], ['SORT(..., 1, -1)', 'urutkan dari terbesar']],
-      explain: 'Hasil FILTER langsung menjadi bahan SORT. Beginilah array dinamis disusun menjadi satu rumus yang kuat.'
+      explain: 'Hasil FILTER langsung menjadi bahan SORT. Seperti inilah array dinamis dikombinasikan menjadi satu rumus yang kuat.'
     }),
     f({
-      title: 'Berapa wilayah berbeda?',
+      title: 'Jumlah wilayah yang berbeda',
       task: 'Di sel **G2**, hitung **berapa wilayah berbeda** yang ada di B2:B11.',
       sheets: [sheet('Order', orderRows(), { E: 'rp' })],
       target: 'G2',
       expect: 3,
       solution: '=COUNTA(UNIQUE(B2:B11))',
       alt: ['=ROWS(UNIQUE(B2:B11))'],
-      hints: ['Buat daftar unik dulu, lalu hitung isinya.', 'COUNTA menghitung isi daftar yang dihasilkan UNIQUE.', 'Tulis: =COUNTA(UNIQUE(B2:B11))'],
-      explain: 'Hasil UNIQUE bisa langsung dibungkus fungsi lain, di sini untuk menghitung ukurannya.'
+      hints: ['Buat daftar unik terlebih dahulu, lalu hitung isinya.', 'COUNTA menghitung isi daftar yang dihasilkan UNIQUE.', 'Tulis: =COUNTA(UNIQUE(B2:B11))'],
+      explain: 'Hasil UNIQUE dapat langsung digunakan oleh fungsi lain, di sini untuk menghitung ukurannya.'
     }),
     f({
       title: 'Total omzet Jakarta',
-      task: 'Di sel **G2**, jumlahkan omzet transaksi **Jakarta** memakai kombinasi SUM dan FILTER.',
+      task: 'Di sel **G2**, jumlahkan omzet transaksi **Jakarta** menggunakan kombinasi SUM dan FILTER.',
       sheets: [sheet('Order', orderRows(), { E: 'rp' })],
       target: 'G2',
       resultFmt: 'rp',
       expect: 32250000,
       solution: '=SUM(FILTER(E2:E11,B2:B11="Jakarta"))',
       mustUse: ['FILTER'],
-      hints: ['FILTER menghasilkan daftar, dan SUM bisa menjumlahkan daftar.', 'Taruh FILTER di dalam SUM.', 'Tulis: =SUM(FILTER(E2:E11,B2:B11="Jakarta"))'],
+      hints: ['FILTER menghasilkan daftar, dan SUM dapat menjumlahkan daftar.', 'Letakkan FILTER di dalam SUM.', 'Tulis: =SUM(FILTER(E2:E11,B2:B11="Jakarta"))'],
       explain: '20.000.000 + 1.500.000 + 750.000 + 10.000.000 = 32.250.000.'
     }),
     f({
       title: 'Deret angka otomatis',
-      story: 'Membuat nomor urut manual itu membosankan.',
+      story: 'Membuat nomor urut secara manual memakan waktu.',
       task: 'Di sel **A2**, buat **5 angka** yang dimulai dari **10** dan bertambah **10** setiap barisnya (10, 20, 30, 40, 50).',
       sheets: [sheet('Deret', [['Deret angka'], [null], [null], [null], [null], [null]])],
       target: 'A2',
@@ -470,11 +470,11 @@ const arrayDinamis = {
       explain: 'SEQUENCE sangat berguna untuk nomor urut, kalender otomatis, dan sebagai bahan rumus lain.'
     }),
     q({
-      title: 'Apa itu #SPILL!?',
-      q: 'Kamu menulis `=UNIQUE(A2:A20)` di sel D2, tetapi sel D5 sudah berisi data lain. Excel menampilkan `#SPILL!`. Artinya...',
-      options: ['Fungsi UNIQUE salah ketik', 'Hasil rumus tidak bisa mengalir karena ada sel yang terisi menghalangi', 'Datanya terlalu banyak', 'Rumus harus ditulis ulang di sel kosong lain'],
+      title: 'Arti #SPILL!',
+      q: 'Anda menulis `=UNIQUE(A2:A20)` di sel D2, tetapi sel D5 sudah berisi data lain. Excel menampilkan `#SPILL!`. Artinya...',
+      options: ['Fungsi UNIQUE salah ketik', 'Hasil rumus tidak dapat mengalir karena ada sel yang terisi menghalangi', 'Datanya terlalu banyak', 'Rumus harus ditulis ulang di sel kosong lain'],
       answer: 1,
-      explain: 'Hasil array dinamis butuh ruang kosong untuk tumpah. Kosongkan sel penghalang (D5), dan hasilnya langsung muncul.'
+      explain: 'Hasil array dinamis memerlukan ruang kosong untuk tumpah. Kosongkan sel penghalang (D5), dan hasilnya langsung muncul.'
     })
   ]
 };
@@ -483,23 +483,23 @@ const switchChoose = {
   id: 'switch-choose-let',
   level: 4,
   icon: 'list',
-  title: 'SWITCH, CHOOSE & LET',
-  tagline: 'Rumus yang rapi, pendek, dan mudah dibaca',
-  why: 'IF bersarang yang panjang itu melelahkan dibaca. SWITCH dan CHOOSE menyelesaikannya untuk kasus tertentu, dan LET memberi nama pada bagian hitungan supaya rumus tidak berulang.',
+  title: 'SWITCH, CHOOSE, dan LET',
+  tagline: 'Tulis rumus yang lebih ringkas, rapi, dan mudah dibaca dengan SWITCH, CHOOSE, dan LET.',
+  why: 'IF bersarang yang panjang sulit dibaca dan dipelihara. SWITCH dan CHOOSE menyederhanakannya untuk kasus tertentu, sedangkan LET memberi nama pada bagian perhitungan agar rumus tidak berulang.',
   minutes: 14,
   lessons: [
     {
-      title: 'SWITCH: kode jadi nama',
+      title: 'SWITCH: mengubah kode menjadi nama',
       body: [
-        analogy('Seperti menu pilihan angka di telepon: "Tekan 1 untuk Baru, 2 untuk Proses, 3 untuk Selesai". SWITCH mencocokkan satu nilai dengan daftar pilihan.'),
-        syntax('=SWITCH(nilai, cocok1, hasil1, cocok2, hasil2, ..., [lainnya])', [['nilai', 'Yang diperiksa'], ['cocok, hasil', 'Pasangan: jika nilai sama dengan cocok, hasilnya adalah hasil'], ['lainnya', 'Nilai default jika tidak ada yang cocok']]),
+        analogy('Cara kerjanya seperti menu pilihan angka pada layanan telepon: "Tekan 1 untuk Baru, 2 untuk Proses, 3 untuk Selesai". SWITCH mencocokkan satu nilai dengan daftar pilihan.'),
+        syntax('=SWITCH(nilai, cocok1, hasil1, cocok2, hasil2, ..., [lainnya])', [['nilai', 'Yang diperiksa'], ['cocok, hasil', 'Pasangan: jika nilai sama dengan cocok, hasilnya adalah hasil'], ['lainnya', 'Nilai bawaan jika tidak ada yang cocok']]),
         demo({
           rows: [['Kode', 'Status'], [2, '']],
           cell: 'B2',
           formula: '=SWITCH(A2,1,"Baru",2,"Proses",3,"Selesai","Tidak dikenal")',
           caption: 'Kode 2 cocok dengan pasangan kedua, jadi hasilnya "Proses".'
         }),
-        tip('SWITCH hanya membandingkan **kesamaan**. Untuk rentang ("lebih dari 80"), tetap pakai IFS atau IF.')
+        tip('SWITCH hanya membandingkan **kesamaan**. Untuk rentang ("lebih dari 80"), tetap gunakan IFS atau IF.')
       ]
     },
     {
@@ -516,33 +516,33 @@ const switchChoose = {
       ]
     },
     {
-      title: 'LET: beri nama pada hitungan',
+      title: 'LET: memberi nama pada bagian perhitungan',
       body: [
-        analogy('Saat mengobrol, kamu menyebut "Budi" untuk orang yang sama berkali-kali, bukan menjelaskan ciri-cirinya setiap saat. LET memberi nama pada hitungan agar bisa dipakai ulang.'),
-        syntax('=LET(nama1, nilai1, nama2, nilai2, ..., hasil)', [['nama, nilai', 'Pasangan: nama yang kamu buat dan hitungannya'], ['hasil', 'Rumus akhir yang boleh memakai nama-nama tadi']]),
+        analogy('Dalam percakapan, Anda menyebut "Budi" untuk orang yang sama berulang kali, bukan menjelaskan ciri-cirinya setiap saat. LET memberi nama pada suatu perhitungan agar dapat digunakan ulang.'),
+        syntax('=LET(nama1, nilai1, nama2, nilai2, ..., hasil)', [['nama, nilai', 'Pasangan: nama yang Anda buat dan hitungannya'], ['hasil', 'Rumus akhir yang boleh menggunakan nama-nama tadi']]),
         demo({
           rows: [['Harga', 'Diskon', 'Bayar'], [200000, 0.15, '']],
           cell: 'C2',
           formula: '=LET(harga,A2,diskon,B2,harga*(1-diskon))',
           caption: 'Rumus terbaca seperti kalimat: harga dikali (1 − diskon).'
         }),
-        warn('Nama LET tidak boleh menyerupai alamat sel (misalnya X1 atau AB12) dan tidak boleh memuat spasi. Pakai nama deskriptif seperti total, harga, atau ppn.')
+        warn('Nama LET tidak boleh menyerupai alamat sel (misalnya X1 atau AB12) dan tidak boleh memuat spasi. Gunakan nama deskriptif seperti total, harga, atau ppn.')
       ]
     }
   ],
   exercises: [
     f({
-      title: 'Kode status jadi kata',
+      title: 'Mengubah kode status menjadi teks',
       story: '1 = Baru, 2 = Proses, 3 = Selesai. Kode lain dianggap tidak dikenal.',
-      task: 'Di sel **B2**, ubah kode status di A2 menjadi tulisannya memakai **SWITCH**. Salin sampai B5.',
+      task: 'Di sel **B2**, ubah kode status di A2 menjadi tulisannya menggunakan **SWITCH**. Salin sampai B5.',
       sheets: [sheet('Status', [['Kode', 'Status'], [1, ''], [2, ''], [3, ''], [9, '']])],
       target: 'B2',
       fillTo: 'B5',
       expect: [['Baru'], ['Proses'], ['Selesai'], ['Tidak dikenal']],
       solution: '=SWITCH(A2,1,"Baru",2,"Proses",3,"Selesai","Tidak dikenal")',
       mustUse: ['SWITCH'],
-      hints: ['Cocokkan satu nilai (A2) dengan beberapa kemungkinan sekaligus.', 'Setelah semua pasangan, tambahkan satu nilai terakhir tanpa pasangan sebagai default.', 'Tulis: =SWITCH(A2,1,"Baru",2,"Proses",3,"Selesai","Tidak dikenal")'],
-      explain: 'Nilai terakhir yang tidak berpasangan dipakai bila tidak ada yang cocok. Tanpa itu, kode 9 menghasilkan #N/A.'
+      hints: ['Cocokkan satu nilai (A2) dengan beberapa kemungkinan sekaligus.', 'Setelah semua pasangan, tambahkan satu nilai terakhir tanpa pasangan sebagai nilai bawaan.', 'Tulis: =SWITCH(A2,1,"Baru",2,"Proses",3,"Selesai","Tidak dikenal")'],
+      explain: 'Nilai terakhir yang tidak berpasangan digunakan bila tidak ada yang cocok. Tanpa itu, kode 9 menghasilkan #N/A.'
     }),
     f({
       title: 'Singkatan kota',
@@ -553,26 +553,26 @@ const switchChoose = {
       expect: [['Jakarta'], ['Bandung'], ['Kota lain']],
       solution: '=SWITCH(A2,"JKT","Jakarta","BDG","Bandung","SBY","Surabaya","Kota lain")',
       mustUse: ['SWITCH'],
-      hints: ['SWITCH juga bisa membandingkan teks.', 'Tiga pasangan, ditambah satu nilai default.', 'Tulis: =SWITCH(A2,"JKT","Jakarta","BDG","Bandung","SBY","Surabaya","Kota lain")'],
-      explain: 'MLG tidak ada di daftar, jadi jatuh ke nilai default "Kota lain".'
+      hints: ['SWITCH juga dapat membandingkan teks.', 'Tiga pasangan, ditambah satu nilai bawaan.', 'Tulis: =SWITCH(A2,"JKT","Jakarta","BDG","Bandung","SBY","Surabaya","Kota lain")'],
+      explain: 'MLG tidak ada di daftar, sehingga hasilnya adalah nilai bawaan "Kota lain".'
     }),
     f({
-      title: 'Bulan jadi kuartal',
-      story: 'Kuartal = ceil(bulan ÷ 3). Bulan 1–3 = Q1, 4–6 = Q2, 7–9 = Q3, 10–12 = Q4.',
-      task: 'Di sel **B2**, ubah nomor bulan di A2 menjadi "Q1" sampai "Q4" memakai **CHOOSE**. Salin sampai B5.',
+      title: 'Mengubah bulan menjadi kuartal',
+      story: 'Kuartal ditentukan dengan membulatkan ke atas hasil bagi bulan dengan 3. Bulan 1 sampai 3 = Q1, 4 sampai 6 = Q2, 7 sampai 9 = Q3, 10 sampai 12 = Q4.',
+      task: 'Di sel **B2**, ubah nomor bulan di A2 menjadi "Q1" sampai "Q4" menggunakan **CHOOSE**. Salin sampai B5.',
       sheets: [sheet('Kuartal', [['Bulan', 'Kuartal'], [2, ''], [5, ''], [9, ''], [12, '']])],
       target: 'B2',
       fillTo: 'B5',
       expect: [['Q1'], ['Q2'], ['Q3'], ['Q4']],
       solution: '=CHOOSE(ROUNDUP(A2/3,0),"Q1","Q2","Q3","Q4")',
       mustUse: ['CHOOSE'],
-      hints: ['CHOOSE butuh nomor 1 sampai 4. Ubah bulan menjadi nomor kuartal dulu.', 'Bulan ÷ 3, dibulatkan ke atas, menghasilkan nomor kuartal.', 'Tulis: =CHOOSE(ROUNDUP(A2/3,0),"Q1","Q2","Q3","Q4")'],
+      hints: ['CHOOSE memerlukan nomor 1 sampai 4. Ubah bulan menjadi nomor kuartal terlebih dahulu.', 'Bulan ÷ 3, dibulatkan ke atas, menghasilkan nomor kuartal.', 'Tulis: =CHOOSE(ROUNDUP(A2/3,0),"Q1","Q2","Q3","Q4")'],
       explain: 'Bulan 5: 5/3 = 1,67, dibulatkan ke atas menjadi 2, jadi pilihan kedua "Q2".'
     }),
     f({
       title: 'Singkatan hari dari tanggal',
       story: 'WEEKDAY(tanggal, 2) memberi nomor hari dengan Senin = 1 sampai Minggu = 7.',
-      task: 'Di sel **B2**, tampilkan singkatan hari (Sen, Sel, Rab, Kam, Jum, Sab, Min) untuk tanggal di A2 memakai CHOOSE dan WEEKDAY.',
+      task: 'Di sel **B2**, tampilkan singkatan hari (Sen, Sel, Rab, Kam, Jum, Sab, Min) untuk tanggal di A2 menggunakan CHOOSE dan WEEKDAY.',
       sheets: [sheet('Hari', [['Tanggal', 'Hari'], [D('2025-06-15'), '']], { A: 'date' })],
       target: 'B2',
       expect: 'Min',
@@ -583,7 +583,7 @@ const switchChoose = {
     }),
     f({
       title: 'Harga setelah diskon dengan LET',
-      task: 'Di sel **C2**, hitung harga setelah diskon memakai **LET**: beri nama pada harga (A2) dan diskon (B2), lalu hitung `harga*(1-diskon)`.',
+      task: 'Di sel **C2**, hitung harga setelah diskon menggunakan **LET**: beri nama pada harga (A2) dan diskon (B2), lalu hitung `harga*(1-diskon)`.',
       sheets: [sheet('Diskon', [['Harga', 'Diskon', 'Bayar'], [200000, 0.15, '']], { A: 'rp', B: 'pct', C: 'rp' })],
       target: 'C2',
       resultFmt: 'rp',
@@ -591,12 +591,12 @@ const switchChoose = {
       solution: '=LET(harga,A2,diskon,B2,harga*(1-diskon))',
       mustUse: ['LET'],
       hints: ['LET dimulai dengan pasangan nama dan nilai. Hasil akhir ada di argumen paling belakang.', 'Dua pasangan: harga dengan A2, diskon dengan B2. Lalu rumus akhirnya.', 'Tulis: =LET(harga,A2,diskon,B2,harga*(1-diskon))'],
-      explain: 'Rumus menjadi seperti kalimat yang mudah dibaca. Pada rumus panjang, keuntungan ini terasa besar.'
+      explain: 'Rumus menjadi mudah dibaca seperti sebuah kalimat. Manfaat ini semakin terasa pada rumus yang panjang.'
     }),
     f({
       title: 'Hindari menulis hitungan dua kali',
-      story: 'Total belanja dipakai dua kali: untuk menghitung PPN 11% dan untuk dijumlahkan di akhir.',
-      task: 'Di sel **C2**, hitung total bayar = total + PPN 11%, dengan total = qty (A2) × harga (B2). Pakai LET agar "total" hanya dihitung sekali.',
+      story: 'Total belanja digunakan dua kali: untuk menghitung PPN 11% dan untuk dijumlahkan di akhir.',
+      task: 'Di sel **C2**, hitung total bayar = total + PPN 11%, dengan total = qty (A2) × harga (B2). Gunakan LET agar "total" hanya dihitung sekali.',
       sheets: [sheet('PPN', [['Qty', 'Harga', 'Total bayar'], [3, 150000, '']], { B: 'rp', C: 'rp' })],
       target: 'C2',
       resultFmt: 'rp',
@@ -604,12 +604,12 @@ const switchChoose = {
       solution: '=LET(total,A2*B2,ppn,total*0.11,total+ppn)',
       alt: ['=LET(total,A2*B2,total*1.11)'],
       mustUse: ['LET'],
-      hints: ['Beri nama pada total, lalu pada PPN yang bergantung pada total.', 'Nama yang sudah dibuat boleh dipakai di pasangan berikutnya.', 'Tulis: =LET(total,A2*B2,ppn,total*0.11,total+ppn)'],
+      hints: ['Beri nama pada total, lalu pada PPN yang bergantung pada total.', 'Nama yang sudah dibuat boleh digunakan di pasangan berikutnya.', 'Tulis: =LET(total,A2*B2,ppn,total*0.11,total+ppn)'],
       explain: '450.000 + 49.500 = 499.500. LET juga mempercepat hitungan karena total tidak dihitung ulang.'
     }),
     q({
-      title: 'Kapan SWITCH, kapan IFS?',
-      q: 'Kamu ingin mengubah nilai ujian (misalnya 87) menjadi huruf A/B/C berdasarkan **rentang** nilai. Pilih...',
+      title: 'Memilih antara SWITCH dan IFS',
+      q: 'Anda ingin mengubah nilai ujian (misalnya 87) menjadi huruf A/B/C berdasarkan **rentang** nilai. Pilih...',
       options: ['SWITCH, karena lebih ringkas', 'IFS atau IF bersarang, karena butuh perbandingan rentang', 'CHOOSE, karena ada banyak pilihan', 'LET, karena memberi nama'],
       answer: 1,
       explain: 'SWITCH hanya mengecek **kesamaan** (apakah sama dengan 87?). Untuk rentang (>= 85), gunakan IFS atau IF bersarang.'
@@ -617,9 +617,9 @@ const switchChoose = {
     q({
       title: 'Manfaat LET',
       q: 'Manakah yang BUKAN manfaat utama dari fungsi LET?',
-      options: ['Rumus lebih mudah dibaca', 'Hitungan yang sama tidak perlu ditulis berulang', 'Mengubah angka menjadi huruf besar', 'Bisa mempercepat perhitungan rumus panjang'],
+      options: ['Rumus lebih mudah dibaca', 'Hitungan yang sama tidak perlu ditulis berulang', 'Mengubah angka menjadi huruf besar', 'Dapat mempercepat perhitungan rumus panjang'],
       answer: 2,
-      explain: 'LET tidak mengubah huruf (itu tugas UPPER). LET dipakai untuk memberi nama pada hitungan agar rumus lebih rapi dan efisien.'
+      explain: 'LET tidak mengubah huruf (itu tugas UPPER). LET digunakan untuk memberi nama pada hitungan agar rumus lebih rapi dan efisien.'
     })
   ]
 };
@@ -628,28 +628,28 @@ const bersihkanData = {
   id: 'bersihkan-data',
   level: 4,
   icon: 'sparkles',
-  title: 'Membersihkan Data Berantakan',
-  tagline: 'Ubah data kotor menjadi data siap analisis',
-  why: 'Sebagian besar waktu analisis data habis untuk membersihkan data. Pengguna Excel yang andal tahu cara merapikannya dengan cepat dan aman.',
+  title: 'Pembersihan Data',
+  tagline: 'Ubah data yang tidak rapi menjadi data yang siap dianalisis dengan kombinasi fungsi teks.',
+  why: 'Sebagian besar waktu analisis data dihabiskan untuk membersihkan data. Pengguna Excel yang andal tahu cara merapikannya dengan cepat dan aman.',
   minutes: 16,
   lessons: [
     {
-      title: 'Masalah yang hampir selalu ada',
+      title: 'Masalah data yang paling sering ditemui',
       body: [
         steps(
-          '**Spasi liar** di awal, akhir, atau tengah teks: pakai TRIM',
-          '**Huruf besar-kecil acak**: pakai PROPER, UPPER, LOWER',
-          '**Angka tersimpan sebagai teks** ("Rp 1.500.000"): pakai SUBSTITUTE + VALUE',
-          '**Format campur** pada nomor telepon dan tanggal: pakai SUBSTITUTE bertingkat',
-          '**Data duplikat**: pakai COUNTIF atau UNIQUE'
+          '**Spasi berlebih** di awal, akhir, atau tengah teks: gunakan TRIM',
+          '**Huruf besar-kecil acak**: gunakan PROPER, UPPER, LOWER',
+          '**Angka tersimpan sebagai teks** ("Rp 1.500.000"): gunakan SUBSTITUTE + VALUE',
+          '**Format campur** pada nomor telepon dan tanggal: gunakan SUBSTITUTE bertingkat',
+          '**Data duplikat**: gunakan COUNTIF atau UNIQUE'
         ),
-        warn('Jangan pernah menimpa data asli. Selalu bersihkan di **kolom baru**, simpan data mentah apa adanya. Kalau ada yang salah, kamu masih punya aslinya.')
+        warn('Jangan menimpa data asli. Bersihkan data di **kolom baru** dan simpan data mentah apa adanya. Jika terjadi kesalahan, data aslinya masih tersedia.')
       ]
     },
     {
-      title: 'Merangkai pembersih',
+      title: 'Menggabungkan beberapa fungsi pembersih',
       body: [
-        p('Fungsi pembersih bisa **dirangkai**: hasil satu fungsi menjadi bahan fungsi berikutnya. Excel mengerjakan dari dalam ke luar.'),
+        p('Fungsi pembersih dapat **digabungkan**: hasil satu fungsi menjadi masukan bagi fungsi berikutnya. Excel mengerjakannya dari bagian terdalam ke luar.'),
         demo({
           rows: [['Mentah', '  sITI   aMINAH '], ['Bersih', '']],
           cell: 'B2',
@@ -660,7 +660,7 @@ const bersihkanData = {
           rows: [['Mentah', 'Rp 1.500.000'], ['Angka', '']],
           cell: 'B2',
           formula: '=VALUE(SUBSTITUTE(SUBSTITUTE(B1,"Rp ",""),".",""))',
-          caption: 'Hapus "Rp ", hapus titik pemisah ribuan, lalu ubah teks menjadi angka sungguhan.'
+          caption: 'Hapus "Rp ", hapus titik pemisah ribuan, lalu ubah teks menjadi angka yang dapat dihitung.'
         }),
         tip('Setelah rumus pembersih selesai, salin hasilnya dan tempel sebagai **Values** (Ctrl + Alt + V, lalu pilih Values) agar tidak lagi bergantung pada kolom mentah.')
       ]
@@ -668,31 +668,31 @@ const bersihkanData = {
   ],
   exercises: [
     f({
-      title: 'Nama berantakan jadi rapi',
+      title: 'Merapikan nama yang tidak konsisten',
       task: 'Di sel **B2**, rapikan nama di A2: hilangkan spasi berlebih **dan** ubah menjadi huruf awal besar.',
       sheets: [sheet('Nama', [['Mentah', 'Rapi'], ['  sITI   aMINAH ', '']])],
       target: 'B2',
       expect: 'Siti Aminah',
       solution: '=PROPER(TRIM(A2))',
       alt: ['=TRIM(PROPER(A2))'],
-      hints: ['Dua masalah: spasi dan huruf besar-kecil.', 'Pakai dua fungsi yang saling membungkus.', 'Tulis: =PROPER(TRIM(A2))'],
+      hints: ['Dua masalah: spasi dan huruf besar-kecil.', 'Gunakan dua fungsi yang saling bersarang.', 'Tulis: =PROPER(TRIM(A2))'],
       explain: 'Urutan kedua fungsi ini boleh ditukar. Hasilnya sama.'
     }),
     f({
-      title: 'Rupiah teks menjadi angka',
-      story: 'Data hasil ekspor sistem berbentuk teks "Rp 1.500.000", sehingga tidak bisa dijumlahkan.',
+      title: 'Mengubah teks rupiah menjadi angka',
+      story: 'Data hasil ekspor sistem berbentuk teks "Rp 1.500.000", sehingga tidak dapat dijumlahkan.',
       task: 'Di sel **B2**, ubah teks di A2 menjadi **angka 1500000**.',
       sheets: [sheet('Harga', [['Teks', 'Angka'], ['Rp 1.500.000', '']])],
       target: 'B2',
       expect: 1500000,
       solution: '=VALUE(SUBSTITUTE(SUBSTITUTE(A2,"Rp ",""),".",""))',
       mustUse: ['VALUE', 'SUBSTITUTE'],
-      hints: ['Buang bagian yang bukan angka: awalan "Rp " dan titik pemisah ribuan.', 'Dua SUBSTITUTE bersarang, lalu bungkus dengan VALUE.', 'Tulis: =VALUE(SUBSTITUTE(SUBSTITUTE(A2,"Rp ",""),".",""))'],
+      hints: ['Buang bagian yang bukan angka: awalan "Rp " dan titik pemisah ribuan.', 'Dua SUBSTITUTE bersarang, lalu gunakan VALUE.', 'Tulis: =VALUE(SUBSTITUTE(SUBSTITUTE(A2,"Rp ",""),".",""))'],
       parts: [['SUBSTITUTE(A2,"Rp ","")', 'Hapus awalan Rp'], ['SUBSTITUTE(...,".","")', 'Hapus titik pemisah ribuan'], ['VALUE(...)', 'Ubah teks "1500000" menjadi angka']],
-      explain: 'Setelah menjadi angka, nilainya bisa dijumlahkan, dirata-rata, dan diformat sesuka hati.'
+      explain: 'Setelah menjadi angka, nilainya dapat dijumlahkan, dirata-rata, dan diformat sesuai kebutuhan.'
     }),
     f({
-      title: 'Ambil kota dari alamat',
+      title: 'Mengambil nama kota dari alamat',
       task: 'Di sel **B2**, ambil **kota** (bagian sebelum tanda " - ") dari teks di A2.',
       sheets: [sheet('Alamat', [['Lokasi', 'Kota'], ['Jakarta - Selatan', '']])],
       target: 'B2',
@@ -703,7 +703,7 @@ const bersihkanData = {
       explain: 'FIND mencari posisi pembatas, LEFT memotong, TRIM merapikan sisa spasi.'
     }),
     f({
-      title: 'Seragamkan nomor telepon',
+      title: 'Menyeragamkan nomor telepon',
       story: 'Nomor masuk dalam format +62 812-3456-7890. Standar internal: 081234567890.',
       task: 'Di sel **B2**, ubah nomor di A2 ke format standar: ganti awalan "+62 " menjadi "0", lalu hapus semua tanda "-".',
       sheets: [sheet('Telepon', [['Mentah', 'Standar'], ['+62 812-3456-7890', '']])],
@@ -712,23 +712,23 @@ const bersihkanData = {
       solution: '=SUBSTITUTE(SUBSTITUTE(A2,"+62 ","0"),"-","")',
       mustUse: ['SUBSTITUTE'],
       hints: ['Dua penggantian berturut-turut.', 'SUBSTITUTE pertama: "+62 " menjadi "0". Yang kedua: "-" menjadi kosong.', 'Tulis: =SUBSTITUTE(SUBSTITUTE(A2,"+62 ","0"),"-","")'],
-      explain: 'SUBSTITUTE bisa bersarang berkali-kali untuk membereskan banyak variasi format sekaligus.'
+      explain: 'SUBSTITUTE dapat bersarang berkali-kali untuk membereskan banyak variasi format sekaligus.'
     }),
     f({
-      title: 'Teks campur angka',
-      story: 'Kolom hasil impor berisi angka, tapi sesekali terselip teks seperti "abc". Teks itu harus dianggap 0.',
-      task: 'Di sel **B2**, ubah isi A2 menjadi angka. Jika tidak bisa diubah (teks biasa), hasilkan **0**. Salin sampai B4.',
+      title: 'Teks yang tercampur dengan angka',
+      story: 'Kolom hasil impor berisi angka, tetapi sesekali terselip teks seperti "abc". Teks itu harus dianggap 0.',
+      task: 'Di sel **B2**, ubah isi A2 menjadi angka. Jika tidak dapat diubah (teks biasa), hasilkan **0**. Salin sampai B4.',
       sheets: [sheet('Impor', [['Mentah', 'Angka'], ['12', ''], ['abc', ''], ['30', '']])],
       target: 'B2',
       fillTo: 'B4',
       expect: [[12], [0], [30]],
       solution: '=IFERROR(VALUE(A2),0)',
       mustUse: ['IFERROR'],
-      hints: ['VALUE("abc") menghasilkan #VALUE!.', 'Lindungi VALUE dengan IFERROR.', 'Tulis: =IFERROR(VALUE(A2),0)'],
-      explain: 'IFERROR di sini memang pantas dipakai: kamu tahu persis error apa yang diharapkan dan sudah menentukan perlakuannya.'
+      hints: ['VALUE("abc") menghasilkan #VALUE!.', 'Gunakan IFERROR pada VALUE.', 'Tulis: =IFERROR(VALUE(A2),0)'],
+      explain: 'IFERROR di sini tepat digunakan: Anda tahu persis error apa yang diharapkan dan sudah menentukan penanganannya.'
     }),
     f({
-      title: 'Tandai data duplikat',
+      title: 'Menandai data duplikat',
       story: 'Kode "KD-01" dan "KD-02" muncul lebih dari sekali.',
       task: 'Di sel **B2**, tulis **"Duplikat"** jika kode di A2 muncul lebih dari sekali dalam A2:A6, selain itu **"Unik"**. Salin sampai B6.',
       sheets: [sheet('Kode', [['Kode', 'Status'], ['KD-01', ''], ['KD-02', ''], ['KD-01', ''], ['KD-03', ''], ['KD-02', '']])],
@@ -739,25 +739,25 @@ const bersihkanData = {
       shouldFail: ['=IF(COUNTIF(A2:A6,A2)>1,"Duplikat","Unik")'],
       mustUse: ['COUNTIF', 'COUNTIFS'],
       hints: ['Hitung berapa kali kode di baris ini muncul di seluruh daftar.', 'Jika hitungannya lebih dari 1, berarti duplikat. Kunci daftar dengan $.', 'Tulis: =IF(COUNTIF($A$2:$A$6,A2)>1,"Duplikat","Unik")'],
-      explain: 'COUNTIF + IF adalah cara klasik menandai duplikat tanpa menghapus apa pun, sehingga kamu bisa meninjau dulu.'
+      explain: 'COUNTIF + IF adalah cara klasik menandai duplikat tanpa menghapus apa pun, sehingga Anda dapat meninjaunya terlebih dahulu.'
     }),
     f({
-      title: 'Ambil nomor dari teks',
+      title: 'Mengambil nomor dari teks',
       task: 'Di sel **B2**, ambil **nomor order** sebagai angka dari teks "Order #4521" di A2 (bagian setelah tanda #).',
       sheets: [sheet('Order', [['Teks', 'Nomor'], ['Order #4521', '']])],
       target: 'B2',
       expect: 4521,
       solution: '=VALUE(MID(A2,FIND("#",A2)+1,10))',
       alt: ['=VALUE(TEXTAFTER(A2,"#"))', '=VALUE(RIGHT(A2,4))'],
-      hints: ['Cari posisi "#", lalu ambil semua teks sesudahnya.', 'MID menghasilkan teks. Bungkus dengan VALUE agar menjadi angka.', 'Tulis: =VALUE(MID(A2,FIND("#",A2)+1,10))'],
+      hints: ['Cari posisi "#", lalu ambil semua teks sesudahnya.', 'MID menghasilkan teks. Gunakan VALUE agar hasilnya menjadi angka.', 'Tulis: =VALUE(MID(A2,FIND("#",A2)+1,10))'],
       explain: 'MID(..., 10) mengambil sampai maksimal 10 karakter, jadi cukup untuk nomor apa pun. VALUE mengubah "4521" menjadi angka 4521.'
     }),
     q({
-      title: 'Aturan emas pembersihan data',
-      q: 'Manakah kebiasaan yang **paling aman** saat membersihkan data?',
+      title: 'Prinsip utama pembersihan data',
+      q: 'Manakah praktik yang **paling aman** saat membersihkan data?',
       options: ['Menimpa langsung data asli dengan hasil pembersihan', 'Membersihkan di kolom baru dan menyimpan data asli apa adanya', 'Menghapus baris yang terlihat aneh tanpa dicatat', 'Membersihkan manual sel per sel'],
       answer: 1,
-      explain: 'Simpan data mentah. Bersihkan dengan rumus di kolom baru. Kalau ada kesalahan, kamu bisa mengulang dari data asli, dan proses pembersihannya terdokumentasi lewat rumus.'
+      explain: 'Simpan data mentah. Bersihkan dengan rumus di kolom baru. Jika ada kesalahan, Anda dapat mengulang dari data asli, dan proses pembersihannya terdokumentasi lewat rumus.'
     })
   ]
 };

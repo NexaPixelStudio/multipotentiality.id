@@ -24,7 +24,7 @@ export default function ReferencePage({ query }) {
 
   useEffect(() => {
     document.title = 'Kamus Rumus - Belajar Excel';
-    return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
+    return () => { document.title = 'Belajar Excel dari Dasar hingga Mahir'; };
   }, []);
 
   const ctx = useMemo(() => createContext([SAMPLE_SHEET], { locale: p.locale, now: () => new Date(Date.UTC(2025, 5, 15)) }), [p.locale]);
@@ -58,19 +58,19 @@ export default function ReferencePage({ query }) {
         <IconBadge name="book-open" size={28} className="h-14 w-14" />
         <div>
         <h1 className="text-3xl font-extrabold">Kamus Rumus</h1>
-        <p className="mt-1 text-lg text-muted">{REFERENCE.length} fungsi Excel dijelaskan dengan bahasa sederhana. Setiap contoh dihitung langsung dari tabel contoh di bawah.</p>
+        <p className="mt-1 text-lg text-muted">{REFERENCE.length} fungsi Excel dilengkapi penjelasan dan contoh. Setiap hasil dihitung langsung dari tabel contoh di bawah.</p>
         </div>
       </header>
 
       <div className="card space-y-4 p-4 sm:p-5">
         <label className="relative block">
-          <span className="sr-only">Cari rumus</span>
+          <span className="sr-only">Cari fungsi</span>
           <Icon name="search" size={19} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
           <input
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Cari rumus atau kata kunci, misalnya: jumlah, rata-rata, tanggal, cari data..."
+            placeholder="Cari fungsi atau kata kunci, misalnya: jumlah, rata-rata, atau tanggal"
             className="w-full rounded-xl border border-line bg-bg py-3 pl-11 pr-4 text-base outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/20"
           />
         </label>
@@ -97,7 +97,7 @@ export default function ReferencePage({ query }) {
 
       <div>
         <button type="button" className="btn-soft" onClick={() => setShowData((s) => !s)} aria-expanded={showData}>
-          <Icon name="table" size={18} />{showData ? 'Sembunyikan' : 'Lihat'} tabel contoh yang dipakai
+          <Icon name="table" size={18} />{showData ? 'Sembunyikan' : 'Tampilkan'} tabel contoh
         </button>
         {showData && (
           <div className="card mt-3 overflow-hidden">
@@ -139,7 +139,7 @@ export default function ReferencePage({ query }) {
       {results.length === 0 && (
         <div className="card p-10 text-center">
           <span className="icon-badge mx-auto grid h-16 w-16 place-items-center rounded-3xl"><Icon name="search" size={30} /></span>
-          <p className="mt-3 font-semibold">Tidak ada yang cocok dengan “{q}”.</p>
+          <p className="mt-3 font-semibold">Tidak ditemukan hasil untuk “{q}”.</p>
           <p className="text-muted">Coba kata kunci lain, misalnya “jumlah” atau “tanggal”.</p>
         </div>
       )}

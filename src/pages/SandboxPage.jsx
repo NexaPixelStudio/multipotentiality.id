@@ -32,7 +32,7 @@ const PRESETS = {
       ['Jumlah qty', '=SUM(C2:C6)'],
       ['Qty minuman', '=SUMIF(B2:B6,"Minuman",C2:C6)'],
       ['Cari harga Roti', '=VLOOKUP("Roti",A2:D6,4,FALSE)'],
-      ['Status banyak/sedikit', '=IF(C2>=8,"Banyak","Sedikit")'],
+      ['Status banyak atau sedikit', '=IF(C2>=8,"Banyak","Sedikit")'],
       ['Urutkan qty', '=SORT(C2:C6,1,-1)'],
       ['Hanya minuman', '=FILTER(A2:A6,B2:B6="Minuman")']
     ]
@@ -51,13 +51,13 @@ const PRESETS = {
       ['Nilai akhir tertimbang', '=B2*0.2+C2*0.3+D2*0.5'],
       ['Rata-rata UAS', '=AVERAGE(D2:D6)'],
       ['Nilai UAS tertinggi', '=MAX(D2:D6)'],
-      ['Lulus / remedial', '=IF(AVERAGE(B2:D2)>=70,"Lulus","Remedial")'],
+      ['Lulus atau remedial', '=IF(AVERAGE(B2:D2)>=70,"Lulus","Remedial")'],
       ['Peringkat UAS', '=RANK(D2,$D$2:$D$6)'],
       ['Siswa UAS > 80', '=COUNTIF(D2:D6,">80")']
     ]
   },
   tanggal: {
-    label: 'Tanggal & jadwal',
+    label: 'Tanggal dan jadwal',
     rows: [
       ['Tugas', 'Mulai', 'Selesai', 'Durasi'],
       ['Desain', D('2025-06-02'), D('2025-06-13')],
@@ -84,7 +84,7 @@ const toKeyed = (rows) => {
   return o;
 };
 
-// Menyimpan rumus dalam gaya internal (koma pemisah, titik desimal) agar mesin bisa membacanya.
+// Menyimpan rumus dalam gaya internal (koma pemisah, titik desimal) agar mesin dapat membacanya.
 function canonicalize(text, locale) {
   if (locale !== 'id') return text;
   let out = '';
@@ -135,7 +135,7 @@ export default function SandboxPage() {
 
   useEffect(() => {
     document.title = 'Ruang Coba - Belajar Excel';
-    return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
+    return () => { document.title = 'Belajar Excel dari Dasar hingga Mahir'; };
   }, []);
 
   // sinkronkan draf dengan sel terpilih
@@ -255,7 +255,7 @@ export default function SandboxPage() {
       const v = evaluate(raw, ctx, SHEET, { locale: 'en', cur: { r: sel.r, c: sel.c } }).value;
       current = { ok: !(v instanceof XlError), value: v };
     } catch (e) {
-      current = { ok: false, message: e instanceof ParseError ? e.message : 'Rumus belum bisa dibaca.' };
+      current = { ok: false, message: e instanceof ParseError ? e.message : 'Rumus belum dapat dibaca.' };
     }
   }
   const draftIsFormula = draft.startsWith('=');
@@ -274,7 +274,7 @@ export default function SandboxPage() {
         <IconBadge name="flask" size={28} className="h-14 w-14" />
         <div>
           <h1 className="text-3xl font-extrabold">Ruang Coba</h1>
-          <p className="mt-1 text-lg text-muted">Lembar kerja bebas. Tidak ada nilai, tidak ada salah. Ketik rumus apa pun dan lihat hasilnya langsung.</p>
+          <p className="mt-1 text-lg text-muted">Lembar kerja bebas tanpa penilaian. Tulis rumus apa pun dan lihat hasilnya secara langsung.</p>
         </div>
       </header>
 
@@ -294,7 +294,7 @@ export default function SandboxPage() {
         inputRef={inputRef}
         label={addr(sel.r, sel.c)}
         locale={p.locale}
-        placeholder="Pilih sel, lalu ketik isi atau rumusnya. Tekan Enter untuk menyimpan."
+        placeholder="Pilih sel, lalu tulis isi atau rumusnya. Tekan Enter untuk menyimpan."
         onFocusChange={(f) => { setEditing(f); if (!f && live.current.dirty) setTimeout(() => commit(), 0); }}
       />
 
@@ -339,14 +339,14 @@ export default function SandboxPage() {
               <p className="text-sm">{ERROR_HELP[current.value.code]}</p>
             </>
           ) : (
-            <p className="font-semibold">Rumus di {addr(sel.r, sel.c)} bekerja. Lihat hasilnya di tabel.</p>
+            <p className="font-semibold">Rumus di {addr(sel.r, sel.c)} berhasil dihitung. Hasilnya ditampilkan pada tabel.</p>
           )}
         </section>
       )}
 
       <section className="card p-5" aria-labelledby="ideas">
-        <h2 id="ideas" className="text-lg font-bold">Coba rumus-rumus ini</h2>
-        <p className="text-sm text-muted">Klik sebuah contoh untuk memasukkannya ke sel terpilih ({addr(sel.r, sel.c)}), lalu ubah-ubah sendiri.</p>
+        <h2 id="ideas" className="text-lg font-bold">Contoh rumus untuk dicoba</h2>
+        <p className="text-sm text-muted">Klik sebuah contoh untuk memasukkannya ke sel terpilih ({addr(sel.r, sel.c)}), lalu ubah sesuai kebutuhan Anda.</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {PRESETS[preset].ideas.map(([label, f]) => (
             <button key={label} type="button" onClick={() => useIdea(f)} className="rounded-xl border border-line bg-surface px-3 py-2 text-left text-sm hover:bg-brand-soft">
@@ -355,7 +355,7 @@ export default function SandboxPage() {
             </button>
           ))}
         </div>
-        <p className="mt-4 text-sm text-muted">Lupa cara pakai sebuah fungsi? Buka <a className="font-semibold text-brand underline" href={href('kamus')}>Kamus Rumus</a>.</p>
+        <p className="mt-4 text-sm text-muted">Perlu penjelasan sebuah fungsi? Buka <a className="font-semibold text-brand underline" href={href('kamus')}>Kamus Rumus</a>.</p>
       </section>
     </div>
   );

@@ -6,11 +6,11 @@ import level5 from './level5.js';
 import extra from './extra.js';
 
 export const LEVELS = [
-  { id: 1, name: 'Pemula', icon: 'sprout', tone: 'emerald', desc: 'Belum pernah memakai Excel? Mulai dari sini. Kita kenalan pelan-pelan.' },
-  { id: 2, name: 'Dasar', icon: 'leaf', tone: 'teal', desc: 'Rumus yang dipakai hampir setiap hari di kantor: IF, COUNTIF, SUMIF, dan teks.' },
-  { id: 3, name: 'Menengah', icon: 'tree', tone: 'sky', desc: 'Naik kelas: syarat ganda, VLOOKUP, INDEX-MATCH, tanggal, dan statistik.' },
-  { id: 4, name: 'Mahir', icon: 'rocket', tone: 'violet', desc: 'Rumus modern dan array dinamis: XLOOKUP, FILTER, SORT, LET, dan pembersihan data.' },
-  { id: 5, name: 'Profesional', icon: 'trophy', tone: 'amber', desc: 'Rumus keuangan, lookup dua arah, dan studi kasus kerja nyata.' }
+  { id: 1, name: 'Dasar Excel', icon: 'sprout', tone: 'emerald', desc: 'Bangun fondasi Excel dengan memahami struktur lembar kerja, perhitungan dasar, fungsi utama, dan cara bekerja secara efisien.' },
+  { id: 2, name: 'Rumus Esensial', icon: 'leaf', tone: 'teal', desc: 'Kuasai rumus yang paling sering digunakan di pekerjaan: pembulatan, IF, COUNTIF, SUMIF, fungsi teks, dan penanganan error.' },
+  { id: 3, name: 'Analisis Data', icon: 'tree', tone: 'sky', desc: 'Gunakan syarat ganda, VLOOKUP, INDEX-MATCH, fungsi tanggal, dan statistik untuk menganalisis data dengan lebih akurat.' },
+  { id: 4, name: 'Rumus Lanjutan', icon: 'rocket', tone: 'violet', desc: 'Terapkan XLOOKUP, array dinamis, FILTER, SORT, dan LET, serta bersihkan data agar siap dianalisis.' },
+  { id: 5, name: 'Penerapan Profesional', icon: 'trophy', tone: 'amber', desc: 'Selesaikan kasus kerja nyata dengan fungsi keuangan, lookup dua arah, studi kasus, dan fitur lanjutan Excel.' }
 ];
 
 // soal tambahan ditaruh di akhir modul supaya nomor soal lama tidak bergeser

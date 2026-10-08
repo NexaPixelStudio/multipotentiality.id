@@ -78,15 +78,15 @@ function Dots({ module, current, done }) {
 
 const STATUS_TITLE = {
   wrong: ['help', 'Belum tepat'],
-  error: ['alert', 'Rumusmu menghasilkan error'],
-  syntax: ['pencil', 'Ada yang kurang pas di penulisan rumus'],
+  error: ['alert', 'Rumus Anda menghasilkan error'],
+  syntax: ['pencil', 'Penulisan rumus belum sesuai'],
   'unknown-fn': ['type', 'Nama fungsi tidak dikenal'],
   argcount: ['sliders', 'Jumlah argumen belum sesuai'],
-  mustuse: ['target', 'Coba pakai fungsi yang sedang dilatih'],
-  forbid: ['target', 'Coba cara lain'],
-  hardcode: ['link', 'Ambil data dari tabel'],
+  mustuse: ['target', 'Gunakan fungsi yang sedang dipelajari'],
+  forbid: ['target', 'Gunakan pendekatan lain'],
+  hardcode: ['link', 'Gunakan referensi sel, bukan angka langsung'],
   noequals: ['equal', 'Awali dengan tanda ='],
-  empty: ['pencil', 'Tulis rumusmu dulu']
+  empty: ['pencil', 'Tulis rumus terlebih dahulu']
 };
 
 function Feedback({ result, locale, ex }) {
@@ -100,12 +100,12 @@ function Feedback({ result, locale, ex }) {
       {(result.status === 'wrong' || result.status === 'error') && result.shown !== undefined && (
         <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
           <div className="rounded-lg bg-surface/70 px-3 py-2">
-            <dt className="text-xs font-semibold text-muted">Hasil rumusmu</dt>
+            <dt className="text-xs font-semibold text-muted">Hasil rumus Anda</dt>
             <dd className="font-mono font-semibold break-words">{result.shown || '(kosong)'}</dd>
           </div>
           {result.status === 'wrong' && (
             <div className="rounded-lg bg-surface/70 px-3 py-2">
-              <dt className="text-xs font-semibold text-muted">Yang diminta soal</dt>
+              <dt className="text-xs font-semibold text-muted">Hasil yang diharapkan</dt>
               <dd className="font-mono font-semibold break-words">{result.expectedShown}</dd>
             </div>
           )}
@@ -125,19 +125,19 @@ function Success({ ex, result, xp, locale, revealed, onNext, nav }) {
           {revealed
             ? <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-ok/15"><Icon name="eye" size={20} /></span>
             : <span className="check-draw grid h-9 w-9 flex-none place-items-center rounded-full bg-ok/15"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" /><path d="M8 12.4l3 3 5-6" /></svg></span>}
-          {revealed ? 'Ini jawabannya. Pelajari dulu, lalu lanjut.' : 'Benar! Kerja bagus.'}
+          {revealed ? 'Berikut jawabannya. Pelajari penjelasannya sebelum melanjutkan.' : 'Jawaban benar.'}
           {!revealed && xp > 0 && <span className="chip bg-surface text-ok">+{xp} XP</span>}
         </p>
-        {result?.shown !== undefined && !revealed && <p className="mt-1 text-sm text-ink">Hasil rumusmu: <strong className="font-mono">{result.shown}</strong></p>}
+        {result?.shown !== undefined && !revealed && <p className="mt-1 text-sm text-ink">Hasil rumus Anda: <strong className="font-mono">{result.shown}</strong></p>}
         {result?.note && <p className="mt-2 rounded-lg bg-surface/70 px-3 py-2 text-sm text-ink">{result.note}</p>}
       </div>
 
       <section className="card p-5">
-        <h3 className="mb-2 flex items-center gap-2 text-base font-bold"><Icon name="message" size={18} className="text-brand" />Kenapa begitu?</h3>
+        <h3 className="mb-2 flex items-center gap-2 text-base font-bold"><Icon name="message" size={18} className="text-brand" />Penjelasan</h3>
         <p className="leading-relaxed"><Rich text={ex.explain} locale={locale} /></p>
 
         <div className="mt-4 overflow-x-auto rounded-xl bg-sunken px-4 py-3">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">Salah satu rumus yang benar</p>
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">Contoh rumus yang benar</p>
           <code className="formula-input whitespace-nowrap font-semibold text-brand">{solutionShown}</code>
         </div>
 
@@ -268,7 +268,7 @@ function FormulaExercise({ ex, locale, p }) {
         <p className="text-lg font-semibold leading-snug"><Rich text={ex.task} locale={locale} /></p>
         {ex.fillTo && (
           <p className="mt-2 text-sm text-muted">
-            <Icon name="copy" size={15} className="mr-1.5 inline -translate-y-px text-brand" />Rumus ini akan <strong>disalin otomatis</strong> dari {ex.target} sampai {ex.fillTo}. Pastikan hasilnya benar di semua sel.
+            <Icon name="copy" size={15} className="mr-1.5 inline -translate-y-px text-brand" />Rumus akan <strong>disalin otomatis</strong> dari {ex.target} sampai {ex.fillTo}. Pastikan hasilnya benar di setiap sel.
           </p>
         )}
       </section>
@@ -310,7 +310,7 @@ function FormulaExercise({ ex, locale, p }) {
             }}
           />
         ))}
-        {tabs.length > 1 && tab !== t.sheet && <p className="border-t border-line bg-info-soft px-4 py-2 text-xs text-info">Kamu sedang melihat sheet lain. Klik sel di sini untuk menyisipkan alamatnya ke rumus (otomatis diberi nama sheet).</p>}
+        {tabs.length > 1 && tab !== t.sheet && <p className="border-t border-line bg-info-soft px-4 py-2 text-xs text-info">Anda sedang melihat sheet lain. Klik sel di sini untuk menyisipkan alamatnya ke rumus; nama sheet ditambahkan otomatis.</p>}
       </section>
       </div>
 
@@ -334,7 +334,7 @@ function FormulaExercise({ ex, locale, p }) {
           </p>
         )}
         {state === 'idle' && !input && (
-          <p className="text-xs text-muted">Tips: saat kursor ada di kotak rumus setelah tanda <code className="rounded bg-sunken px-1">=</code> atau <code className="rounded bg-sunken px-1">(</code>, kamu bisa <strong>mengklik atau menyeret sel</strong> di tabel untuk mengisi alamatnya. {locale === 'id' ? 'Pemisah argumen: titik koma (;).' : 'Pemisah argumen: koma (,).'}</p>
+          <p className="text-xs text-muted">Tips: saat kursor berada di kotak rumus setelah tanda <code className="rounded bg-sunken px-1">=</code> atau <code className="rounded bg-sunken px-1">(</code>, Anda dapat <strong>mengklik atau menyeret sel</strong> di tabel untuk mengisi alamatnya. {locale === 'id' ? 'Pemisah argumen: titik koma (;).' : 'Pemisah argumen: koma (,).'}</p>
         )}
 
         {state === 'idle' && (
@@ -357,7 +357,7 @@ function FormulaExercise({ ex, locale, p }) {
               <p className="text-[0.97rem]"><Rich text={localizeText(h, locale)} locale={locale} /></p>
             </div>
           ))}
-          {hints < 3 && <p className="text-xs text-muted">Petunjuk makin spesifik. Pakai seperlunya, XP berkurang sedikit tiap petunjuk.</p>}
+          {hints < 3 && <p className="text-xs text-muted">Petunjuk semakin spesifik. Gunakan seperlunya; setiap petunjuk mengurangi sedikit XP.</p>}
         </section>
       )}
 
@@ -427,7 +427,7 @@ function ChoiceExercise({ ex, locale, p }) {
 
       {!solved && picked !== null && wrong.includes(picked) && (
         <div role="alert" className="anim-shake rounded-2xl border border-bad/30 bg-bad-soft p-4">
-          <p className="flex items-center gap-2 font-bold text-bad"><Icon name="help" size={20} />Belum tepat. Coba pilihan lain.</p>
+          <p className="flex items-center gap-2 font-bold text-bad"><Icon name="help" size={20} />Belum tepat. Pilih jawaban lain.</p>
           {ex.whyNot?.[picked] && <p className="mt-1"><Rich text={ex.whyNot[picked]} locale={locale} /></p>}
         </div>
       )}
@@ -462,7 +462,7 @@ export default function ExercisePage({ moduleId, n }) {
 
   useEffect(() => {
     if (ex) document.title = `${ex.title} - ${m.title} - Belajar Excel`;
-    return () => { document.title = 'Belajar Excel dari Nol sampai Mahir'; };
+    return () => { document.title = 'Belajar Excel dari Dasar hingga Mahir'; };
   }, [ex, m]);
 
   if (!m || !ex) {

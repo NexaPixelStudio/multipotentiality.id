@@ -25,17 +25,17 @@ const multiSyarat = {
   id: 'multi-syarat',
   level: 3,
   icon: 'layers',
-  title: 'Syarat Ganda',
-  tagline: 'COUNTIFS, SUMIFS, AVERAGEIFS, MAXIFS, MINIFS',
-  why: 'Pertanyaan bisnis jarang hanya punya satu syarat: "omzet Laptop di Jakarta bulan Januari". Versi "S" dari fungsi bersyarat menjawabnya, dan ini salah satu kemampuan yang paling dicari di dunia kerja.',
+  title: 'Fungsi dengan Syarat Ganda',
+  tagline: 'Gunakan COUNTIFS, SUMIFS, AVERAGEIFS, MAXIFS, dan MINIFS untuk menganalisis data dengan beberapa kriteria sekaligus.',
+  why: 'Pertanyaan bisnis jarang hanya memiliki satu syarat, misalnya omzet produk Laptop di Jakarta pada bulan Januari. Fungsi berakhiran "S" dirancang untuk kasus seperti ini dan termasuk kemampuan yang paling sering dibutuhkan di dunia kerja.',
   minutes: 15,
   lessons: [
     {
-      title: 'Dari satu syarat ke banyak syarat',
+      title: 'Dari satu syarat ke beberapa syarat',
       body: [
-        p('Tambahkan huruf **S** (jamak) di akhir nama fungsi, dan kamu bisa memasang banyak syarat sekaligus. Semua syarat harus terpenuhi (seperti AND).'),
-        syntax('=SUMIFS(range_jumlah, range_syarat1, syarat1, range_syarat2, syarat2, ...)', [['range_jumlah', 'Kolom angka yang dijumlahkan (SELALU di posisi pertama pada SUMIFS)'], ['range_syarat1, syarat1', 'Pasangan pertama: kolom yang dicek + syaratnya'], ['range_syarat2, syarat2', 'Pasangan berikutnya, boleh sebanyak yang kamu mau']]),
-        warn('Urutan argumen **berbeda** dari SUMIF. Di SUMIF, range jumlah ada di belakang. Di SUMIFS, range jumlah ada di **depan**. Ini sumber kebingungan yang paling umum.'),
+        p('Dengan menambahkan huruf **S** (jamak) di akhir nama fungsi, Anda dapat memasang beberapa syarat sekaligus. Semua syarat harus terpenuhi (seperti AND).'),
+        syntax('=SUMIFS(range_jumlah, range_syarat1, syarat1, range_syarat2, syarat2, ...)', [['range_jumlah', 'Kolom angka yang dijumlahkan (SELALU di posisi pertama pada SUMIFS)'], ['range_syarat1, syarat1', 'Pasangan pertama: kolom yang dicek + syaratnya'], ['range_syarat2, syarat2', 'Pasangan berikutnya, dapat ditambahkan sesuai kebutuhan']]),
+        warn('Urutan argumen **berbeda** dari SUMIF. Di SUMIF, range jumlah ada di belakang. Di SUMIFS, range jumlah ada di **depan**. Perbedaan ini sering menimbulkan kebingungan.'),
         demo({
           rows: [['Wilayah', 'Produk', 'Omzet'], ['Jakarta', 'Laptop', 20], ['Jakarta', 'Mouse', 2], ['Bandung', 'Laptop', 10], ['Jakarta', 'Laptop', 10], ['Omzet Laptop Jakarta', '', '']],
           cell: 'C6',
@@ -45,7 +45,7 @@ const multiSyarat = {
       ]
     },
     {
-      title: 'Keluarga lengkapnya',
+      title: 'Daftar lengkap fungsi bersyarat ganda',
       body: [
         steps(
           '`COUNTIFS(range1, syarat1, range2, syarat2, ...)` : menghitung baris yang memenuhi semua syarat.',
@@ -54,14 +54,14 @@ const multiSyarat = {
           '`MAXIFS(nilai, range1, syarat1, ...)` : nilai terbesar yang memenuhi syarat.',
           '`MINIFS(nilai, range1, syarat1, ...)` : nilai terkecil yang memenuhi syarat.'
         ),
-        p('Semua range harus **berukuran sama** (jumlah baris yang sama). Kalau tidak, hasilnya #VALUE!.'),
+        p('Semua range harus **berukuran sama** (jumlah baris yang sama). Jika tidak, hasilnya #VALUE!.'),
         tip('Operator `<>` berarti "selain". Contoh `"<>Jakarta"` berarti semua wilayah kecuali Jakarta.')
       ]
     },
     {
       title: 'Syarat tanggal',
       body: [
-        p('Untuk menyaring rentang tanggal, gunakan dua syarat pada kolom tanggal yang sama: satu batas bawah, satu batas atas. Operatornya digabung dengan tanggal memakai `&`:'),
+        p('Untuk menyaring rentang tanggal, gunakan dua syarat pada kolom tanggal yang sama: satu batas bawah, satu batas atas. Operatornya digabung dengan tanggal menggunakan `&`:'),
         syntax('">="&DATE(2025,1,1)', [['">="', 'Operator sebagai teks'], ['&', 'disambung dengan'], ['DATE(2025,1,1)', 'tanggal 1 Januari 2025 (tersimpan sebagai angka)']]),
         p('Tanggal di Excel sebenarnya angka, jadi ">= tanggal" bekerja seperti ">= angka".')
       ]
@@ -89,9 +89,9 @@ const multiSyarat = {
       expect: 20750000,
       solution: '=SUMIFS(E2:E11,A2:A11,"Andi",B2:B11,"Jakarta")',
       mustUse: ['SUMIFS', 'SUMPRODUCT'],
-      hints: ['Range yang dijumlahkan ditulis lebih dulu di SUMIFS.', 'Lalu pasangan: kolom Sales + "Andi", kolom Wilayah + "Jakarta".', 'Tulis: =SUMIFS(E2:E11,A2:A11,"Andi",B2:B11,"Jakarta")'],
+      hints: ['Range yang dijumlahkan ditulis lebih dahulu di SUMIFS.', 'Lalu pasangan: kolom Sales + "Andi", kolom Wilayah + "Jakarta".', 'Tulis: =SUMIFS(E2:E11,A2:A11,"Andi",B2:B11,"Jakarta")'],
       parts: [['E2:E11', 'Yang dijumlahkan: Omzet'], ['A2:A11, "Andi"', 'syarat 1: sales Andi'], ['B2:B11, "Jakarta"', 'syarat 2: wilayah Jakarta']],
-      explain: 'Andi punya 3 transaksi, tapi hanya 2 di Jakarta: 20.000.000 + 750.000.'
+      explain: 'Andi punya 3 transaksi, tetapi hanya 2 di Jakarta: 20.000.000 + 750.000.'
     }),
     f({
       title: 'Laptop di luar Jakarta',
@@ -125,7 +125,7 @@ const multiSyarat = {
       expect: 9000000,
       solution: '=AVERAGEIFS(E2:E11,C2:C11,"Monitor",D2:D11,">=2")',
       mustUse: ['AVERAGEIFS'],
-      hints: ['Rata-rata dengan lebih dari satu syarat memakai AVERAGEIFS.', 'Range rata-rata (omzet) ditulis pertama, lalu pasangan syarat.', 'Tulis: =AVERAGEIFS(E2:E11,C2:C11,"Monitor",D2:D11,">=2")'],
+      hints: ['Rata-rata dengan lebih dari satu syarat menggunakan AVERAGEIFS.', 'Range rata-rata (omzet) ditulis pertama, lalu pasangan syarat.', 'Tulis: =AVERAGEIFS(E2:E11,C2:C11,"Monitor",D2:D11,">=2")'],
       explain: 'Monitor dengan qty >= 2 hanya dua transaksi: 6 juta dan 12 juta, rata-ratanya 9 juta. Transaksi Andi (qty 1) tidak ikut.'
     }),
     f({
@@ -137,8 +137,8 @@ const multiSyarat = {
       expect: 20000000,
       solution: '=MAXIFS(E2:E11,B2:B11,"Jakarta")',
       mustUse: ['MAXIFS'],
-      hints: ['Kamu mencari nilai terbesar, tapi hanya untuk baris Jakarta.', 'MAXIFS(nilai, kolom syarat, syarat).', 'Tulis: =MAXIFS(E2:E11,B2:B11,"Jakarta")'],
-      explain: 'MAXIFS menyaring baris dulu, baru mencari nilai maksimum. Tanpanya kamu harus memakai rumus array yang rumit.'
+      hints: ['Anda mencari nilai terbesar, tetapi hanya untuk baris Jakarta.', 'MAXIFS(nilai, kolom syarat, syarat).', 'Tulis: =MAXIFS(E2:E11,B2:B11,"Jakarta")'],
+      explain: 'MAXIFS menyaring baris terlebih dahulu, baru mencari nilai maksimum. Tanpa fungsi ini, Anda memerlukan rumus array yang lebih rumit.'
     }),
     f({
       title: 'Omzet terendah di Surabaya',
@@ -154,7 +154,7 @@ const multiSyarat = {
     }),
     f({
       title: 'Pengeluaran dalam rentang tanggal',
-      story: 'Kamu merekap pengeluaran makan hanya untuk Januari dan Februari 2025.',
+      story: 'Anda merekap pengeluaran makan hanya untuk Januari dan Februari 2025.',
       task: 'Di sel **C10**, jumlahkan pengeluaran kategori **Makan** dari **1 Januari 2025 sampai 28 Februari 2025**.',
       sheets: [sheet('Transaksi', [
         ['Tanggal', 'Kategori', 'Jumlah'],
@@ -174,13 +174,13 @@ const multiSyarat = {
       expect: 160000,
       solution: '=SUMIFS(C2:C8,B2:B8,"Makan",A2:A8,">="&DATE(2025,1,1),A2:A8,"<="&DATE(2025,2,28))',
       mustUse: ['SUMIFS', 'SUMPRODUCT'],
-      hints: ['Ada tiga syarat: kategori Makan, tanggal batas bawah, tanggal batas atas.', 'Kolom tanggal dipakai dua kali, masing-masing dengan operatornya. Sambung operator dan DATE dengan &.', 'Tulis: =SUMIFS(C2:C8,B2:B8,"Makan",A2:A8,">="&DATE(2025,1,1),A2:A8,"<="&DATE(2025,2,28))'],
+      hints: ['Ada tiga syarat: kategori Makan, tanggal batas bawah, tanggal batas atas.', 'Kolom tanggal digunakan dua kali, masing-masing dengan operatornya. Sambung operator dan DATE dengan &.', 'Tulis: =SUMIFS(C2:C8,B2:B8,"Makan",A2:A8,">="&DATE(2025,1,1),A2:A8,"<="&DATE(2025,2,28))'],
       parts: [['A2:A8, ">="&DATE(2025,1,1)', 'tanggal mulai 1 Januari 2025 atau lebih'], ['A2:A8, "<="&DATE(2025,2,28)', 'dan tanggal paling akhir 28 Februari 2025']],
       explain: 'Makan pada 5 Jan (50.000), 20 Jan (70.000), dan 3 Feb (40.000) = 160.000. Makan 1 Maret berada di luar rentang.'
     }),
     q({
       title: 'COUNTIF atau COUNTIFS?',
-      q: 'Kamu ingin menghitung transaksi yang **wilayahnya Jakarta DAN produknya Mouse**. Fungsi mana yang tepat?',
+      q: 'Anda ingin menghitung transaksi yang **wilayahnya Jakarta DAN produknya Mouse**. Fungsi mana yang tepat?',
       options: ['COUNTIF dengan dua kriteria dipisah koma', 'COUNTIFS dengan dua pasang range-syarat', 'COUNT dengan IF di dalamnya tanpa array', 'SUMIF dengan dua kriteria'],
       answer: 1,
       explain: '**COUNTIFS** dirancang untuk beberapa pasang range-syarat. COUNTIF hanya menerima satu pasang.',
@@ -189,10 +189,10 @@ const multiSyarat = {
     q({
       title: 'Range harus sama panjang',
       q: 'Rumus `=SUMIFS(E2:E11, B2:B10, "Jakarta")` menghasilkan `#VALUE!`. Penyebabnya...',
-      options: ['Kata Jakarta salah eja', 'Range jumlah (E2:E11) dan range syarat (B2:B10) beda ukuran', 'SUMIFS tidak bisa dipakai dengan teks', 'Seharusnya pakai SUMIF'],
+      options: ['Kata Jakarta salah eja', 'Range jumlah (E2:E11) dan range syarat (B2:B10) beda ukuran', 'SUMIFS tidak dapat digunakan dengan teks', 'Seharusnya gunakan SUMIF'],
       answer: 1,
       explain: 'Semua range di fungsi berakhiran S harus punya jumlah baris yang sama (E2:E11 adalah 10 baris, B2:B10 hanya 9).',
-      whyNot: ['Salah eja menghasilkan 0, bukan #VALUE!.', '', 'SUMIFS bisa memakai teks.', 'SUMIF juga tidak akan lebih baik di sini.']
+      whyNot: ['Salah eja menghasilkan 0, bukan #VALUE!.', '', 'SUMIFS dapat menggunakan teks.', 'SUMIF tidak akan menyelesaikan masalah ini.']
     })
   ]
 };
@@ -210,16 +210,16 @@ const vlookup = {
   id: 'vlookup',
   level: 3,
   icon: 'search',
-  title: 'VLOOKUP & HLOOKUP',
-  tagline: 'Mencari data di tabel lain secara otomatis',
-  why: 'Kamu punya daftar kode produk dan ingin harganya muncul sendiri. Itu pekerjaan VLOOKUP, salah satu fungsi paling terkenal dan paling berguna di Excel.',
+  title: 'VLOOKUP dan HLOOKUP',
+  tagline: 'Cari dan ambil data dari tabel lain secara otomatis menggunakan VLOOKUP dan HLOOKUP.',
+  why: 'Misalnya Anda memiliki daftar kode produk dan ingin harga tampil secara otomatis. Itulah fungsi VLOOKUP, salah satu fungsi yang paling banyak digunakan di Excel.',
   minutes: 16,
   lessons: [
     {
-      title: 'Seperti mencari nomor di buku telepon',
+      title: 'Cara kerja VLOOKUP',
       body: [
-        analogy('Di buku telepon, kamu mencari **nama** di daftar paling kiri, lalu membaca **nomor** yang ada di sampingnya. VLOOKUP melakukan hal yang sama: cari di kolom paling kiri sebuah tabel, lalu ambil isi dari kolom ke-sekian di baris yang sama.'),
-        syntax('=VLOOKUP(dicari, tabel, nomor_kolom, FALSE)', [['dicari', 'Nilai yang kamu cari, misalnya kode "P003"'], ['tabel', 'Seluruh tabel, dan kolom pertamanya adalah tempat mencari'], ['nomor_kolom', 'Kolom ke berapa (dihitung dari kolom pertama tabel) yang mau diambil'], ['FALSE', 'Cari yang persis sama. Hampir selalu ini yang kamu butuhkan']]),
+        analogy('Di buku telepon, Anda mencari **nama** di daftar paling kiri, lalu membaca **nomor** yang ada di sampingnya. VLOOKUP melakukan hal yang sama: cari di kolom paling kiri sebuah tabel, lalu ambil isi dari kolom ke-sekian di baris yang sama.'),
+        syntax('=VLOOKUP(dicari, tabel, nomor_kolom, FALSE)', [['dicari', 'Nilai yang Anda cari, misalnya kode "P003"'], ['tabel', 'Seluruh tabel, dan kolom pertamanya adalah tempat mencari'], ['nomor_kolom', 'Kolom ke berapa (dihitung dari kolom pertama tabel) yang akan diambil'], ['FALSE', 'Mencari yang persis sama. Pilihan ini yang paling sering dibutuhkan']]),
         demo({
           rows: [['Kode', 'Nama', 'Harga'], ['P001', 'Pulpen', 2500], ['P002', 'Buku', 8000], ['P003', 'Penggaris', 3500], ['Cari kode:', 'P002', '']],
           cell: 'C5',
@@ -229,12 +229,12 @@ const vlookup = {
       ]
     },
     {
-      title: 'Persis (FALSE) atau perkiraan (TRUE)?',
+      title: 'Pencocokan persis (FALSE) dan perkiraan (TRUE)',
       body: [
         p('Argumen keempat menentukan cara mencocokkan:'),
         steps(
-          '**FALSE** (atau 0) : harus **persis sama**. Dipakai untuk kode, ID, nama. Kalau tidak ketemu, hasilnya #N/A.',
-          '**TRUE** (atau 1, atau dikosongkan) : cari **nilai terdekat yang tidak melebihi**. Dipakai untuk tabel berjenjang seperti skala nilai atau komisi. Kolom pertama tabel **wajib terurut naik**.'
+          '**FALSE** (atau 0) : harus **persis sama**. Digunakan untuk kode, ID, nama. Jika tidak ditemukan, hasilnya #N/A.',
+          '**TRUE** (atau 1, atau dikosongkan) : cari **nilai terdekat yang tidak melebihi**. Digunakan untuk tabel berjenjang seperti skala nilai atau komisi. Kolom pertama tabel **wajib terurut naik**.'
         ),
         analogy('Skala nilai: 0 = E, 55 = D, 65 = C, 75 = B, 85 = A. Nilai 78 tidak ada persis di tabel. Dengan TRUE, Excel mundur ke batas terdekat di bawahnya (75), lalu mengambil "B".'),
         demo({
@@ -246,15 +246,15 @@ const vlookup = {
       ]
     },
     {
-      title: 'Aturan emas VLOOKUP',
+      title: 'Aturan penting dalam menggunakan VLOOKUP',
       body: [
         steps(
-          'Kolom yang dicari harus ada di **paling kiri** tabel. VLOOKUP tidak bisa mencari ke kiri.',
-          'Nomor kolom dihitung dari **kolom pertama tabel yang kamu pilih**, bukan dari kolom A lembar kerja.',
+          'Kolom yang dicari harus ada di **paling kiri** tabel. VLOOKUP tidak dapat mencari ke kiri.',
+          'Nomor kolom dihitung dari **kolom pertama tabel yang Anda pilih**, bukan dari kolom A lembar kerja.',
           'Kunci tabel dengan `$` (misalnya `$A$2:$D$6`) sebelum menyalin rumus ke bawah.',
           '#N/A biasanya berarti nilai yang dicari tidak ada persis, sering karena **spasi tersembunyi** atau salah ketik.'
         ),
-        p('**HLOOKUP** adalah kembarannya untuk tabel yang tersusun **mendatar** (judul di baris paling atas): `=HLOOKUP(dicari, tabel, nomor_baris, FALSE)`.')
+        p('**HLOOKUP** adalah versi untuk tabel yang tersusun **mendatar** (judul di baris paling atas): `=HLOOKUP(dicari, tabel, nomor_baris, FALSE)`.')
       ]
     }
   ],
@@ -269,7 +269,7 @@ const vlookup = {
       solution: '=VLOOKUP(G1,A2:D6,3,FALSE)',
       alt: ['=VLOOKUP(G1,A1:D6,3,0)'],
       mustUse: ['VLOOKUP'],
-      hints: ['Kolom Kode ada di paling kiri tabel, cocok untuk VLOOKUP.', 'Harga ada di kolom ke-3 dari tabel A:D. Pakai FALSE untuk pencocokan persis.', 'Tulis: =VLOOKUP(G1,A2:D6,3,FALSE)'],
+      hints: ['Kolom Kode ada di paling kiri tabel, cocok untuk VLOOKUP.', 'Harga ada di kolom ke-3 dari tabel A:D. Gunakan FALSE untuk pencocokan persis.', 'Tulis: =VLOOKUP(G1,A2:D6,3,FALSE)'],
       parts: [['G1', 'Kode yang dicari'], ['A2:D6', 'Tabel katalog'], ['3', 'Ambil kolom ke-3 (Harga)'], ['FALSE', 'Cari persis sama']],
       explain: 'Excel mencari P003 di kolom A, menemukannya di baris Penggaris, lalu mengambil isi kolom ke-3 dari baris itu: 3.500.'
     }),
@@ -281,7 +281,7 @@ const vlookup = {
       expect: 'Spidol',
       solution: '=VLOOKUP(G1,A2:D6,2,FALSE)',
       mustUse: ['VLOOKUP'],
-      hints: ['Sama seperti sebelumnya, tapi kolom yang diambil berbeda.', 'Nama ada di kolom ke-2 tabel.', 'Tulis: =VLOOKUP(G1,A2:D6,2,FALSE)'],
+      hints: ['Sama seperti sebelumnya, tetapi kolom yang diambil berbeda.', 'Nama ada di kolom ke-2 tabel.', 'Tulis: =VLOOKUP(G1,A2:D6,2,FALSE)'],
       explain: 'Hanya nomor kolomnya yang berubah. Tabel dan kode yang dicari sama.'
     }),
     f({
@@ -301,11 +301,11 @@ const vlookup = {
       mustUse: ['VLOOKUP'],
       hints: ['Tabelnya ada di sheet lain. Rujukan sheet lain ditulis NamaSheet!Range.', 'Kunci range dengan $ supaya tidak bergeser saat disalin ke bawah.', 'Tulis: =VLOOKUP(A2,Katalog!$A$2:$D$6,3,FALSE)'],
       parts: [['A2', 'Kode di baris ini (relatif)'], ['Katalog!$A$2:$D$6', 'Tabel di sheet Katalog (dikunci)'], ['3', 'Kolom Harga']],
-      explain: 'Tanpa $, tabel ikut bergeser ke bawah di setiap baris dan pelan-pelan kehilangan kode yang dicari, sehingga muncul #N/A.'
+      explain: 'Tanpa $, tabel ikut bergeser ke bawah pada setiap baris dan secara bertahap tidak lagi memuat kode yang dicari, sehingga muncul #N/A.'
     }),
     f({
       title: 'Total harga langsung',
-      story: 'Kali ini kolom Harga tidak ada. Kamu menghitung total langsung dalam satu rumus.',
+      story: 'Kali ini kolom Harga tidak ada. Anda menghitung total langsung dalam satu rumus.',
       task: 'Di sel **D2**, hitung **total** = qty × harga (harga diambil dari sheet Katalog dengan VLOOKUP). Salin sampai D5.',
       sheets: [
         sheet('Pesanan', [['Kode', 'Qty', null, 'Total'], ['P002', 5, null, ''], ['P005', 20, null, ''], ['P001', 10, null, ''], ['P004', 2, null, '']], { D: 'rp' }),
@@ -318,12 +318,12 @@ const vlookup = {
       solution: '=B2*VLOOKUP(A2,Katalog!$A$2:$D$6,3,FALSE)',
       mustUse: ['VLOOKUP'],
       hints: ['Hasil VLOOKUP adalah sebuah angka, jadi boleh dikali seperti angka biasa.', 'Qty (B2) dikali VLOOKUP untuk harga.', 'Tulis: =B2*VLOOKUP(A2,Katalog!$A$2:$D$6,3,FALSE)'],
-      explain: 'Fungsi yang menghasilkan angka bisa dipakai di dalam hitungan, persis seperti sel biasa.'
+      explain: 'Fungsi yang menghasilkan angka dapat digunakan di dalam hitungan, persis seperti sel biasa.'
     }),
     f({
       title: 'Grade dari skala nilai',
-      story: 'Skala ada di sheet "Skala" (A2:B6). Nilai 78 tidak ada persis di sana, jadi kamu butuh pencocokan perkiraan.',
-      task: 'Di sel **C2**, cari grade dari nilai di B2 memakai tabel di sheet **Skala**. Salin sampai C6.',
+      story: 'Skala ada di sheet "Skala" (A2:B6). Nilai 78 tidak ada persis di sana, jadi Anda butuh pencocokan perkiraan.',
+      task: 'Di sel **C2**, cari grade dari nilai di B2 menggunakan tabel di sheet **Skala**. Salin sampai C6.',
       sheets: [
         sheet('Nilai', [['Siswa', 'Nilai', 'Grade'], ['Ayu', 90, ''], ['Budi', 78, ''], ['Citra', 60, ''], ['Dedi', 40, ''], ['Eka', 85, '']]),
         sheet('Skala', [['Nilai min', 'Grade'], [0, 'E'], [55, 'D'], [65, 'C'], [75, 'B'], [85, 'A']])
@@ -335,7 +335,7 @@ const vlookup = {
       alt: ['=VLOOKUP(B2,Skala!$A$2:$B$6,2)'],
       shouldFail: ['=VLOOKUP(B2,Skala!$A$2:$B$6,2,FALSE)'],
       mustUse: ['VLOOKUP'],
-      hints: ['Nilai siswa jarang sama persis dengan batas di tabel.', 'Pakai pencocokan perkiraan (TRUE atau dikosongkan). Tabel sudah terurut naik.', 'Tulis: =VLOOKUP(B2,Skala!$A$2:$B$6,2,TRUE)'],
+      hints: ['Nilai siswa jarang sama persis dengan batas di tabel.', 'Gunakan pencocokan perkiraan (TRUE atau dikosongkan). Tabel sudah terurut naik.', 'Tulis: =VLOOKUP(B2,Skala!$A$2:$B$6,2,TRUE)'],
       parts: [['B2', 'Nilai siswa'], ['Skala!$A$2:$B$6', 'Tabel batas nilai'], ['2', 'Ambil kolom Grade'], ['TRUE', 'Cari batas terdekat yang tidak melebihi nilai']],
       explain: 'Dengan TRUE, Excel mundur ke batas terbesar yang tidak melebihi nilai. 78 mengikuti batas 75, hasilnya "B". Dengan FALSE, 78 dianggap tidak ditemukan (#N/A).'
     }),
@@ -353,41 +353,41 @@ const vlookup = {
       expect: [[0], [1050000], [2750000], [240000]],
       solution: '=B2*VLOOKUP(B2,Tarif!$A$2:$B$5,2,TRUE)',
       mustUse: ['VLOOKUP'],
-      hints: ['Cari dulu persentase komisi yang sesuai dengan omzet. Tabel berjenjang cocok dengan pencocokan perkiraan.', 'Hasil VLOOKUP dikalikan dengan omzet.', 'Tulis: =B2*VLOOKUP(B2,Tarif!$A$2:$B$5,2,TRUE)'],
+      hints: ['Cari persentase komisi yang sesuai dengan omzet terlebih dahulu. Tabel berjenjang cocok dengan pencocokan perkiraan.', 'Hasil VLOOKUP dikalikan dengan omzet.', 'Tulis: =B2*VLOOKUP(B2,Tarif!$A$2:$B$5,2,TRUE)'],
       explain: 'Omzet 30 juta berada di antara 25 juta dan 50 juta, jadi tarifnya 3,5%: 30.000.000 × 3,5% = 1.050.000.'
     }),
     q({
       title: 'Menghitung nomor kolom',
-      q: 'Tabelmu dipilih sebagai `B2:E6` (kolom B Nama, C Divisi, D Gaji, E Tunjangan). Untuk mengambil **Gaji**, nomor kolom di VLOOKUP adalah...',
+      q: 'Tabel Anda dipilih sebagai `B2:E6` (kolom B Nama, C Divisi, D Gaji, E Tunjangan). Untuk mengambil **Gaji**, nomor kolom di VLOOKUP adalah...',
       options: ['4', '3', '2', '5'],
       answer: 1,
-      explain: 'Nomor kolom dihitung dari **kolom pertama tabel yang kamu pilih**: B = 1, C = 2, **D = 3**, E = 4.',
-      whyNot: ['4 adalah posisi huruf D di alfabet, tapi VLOOKUP menghitung dari awal tabel.', '', 'Itu kolom Divisi.', 'Itu di luar... tabelnya hanya 4 kolom.']
+      explain: 'Nomor kolom dihitung dari **kolom pertama tabel yang Anda pilih**: B = 1, C = 2, **D = 3**, E = 4.',
+      whyNot: ['4 adalah posisi huruf D di alfabet, tetapi VLOOKUP menghitung dari awal tabel.', '', 'Itu kolom Divisi.', 'Nomor ini melebihi jumlah kolom; tabelnya hanya terdiri dari 4 kolom.']
     }),
     q({
       title: 'Mencari ke kiri',
-      q: 'Tabel punya kolom A = Kode dan B = Nama. Kamu ingin mencari **Kode berdasarkan Nama**. Kenapa VLOOKUP biasa tidak bisa?',
+      q: 'Tabel punya kolom A = Kode dan B = Nama. Anda ingin mencari **Kode berdasarkan Nama**. Mengapa VLOOKUP biasa tidak dapat melakukannya?',
       options: ['Karena Nama berupa teks', 'Karena VLOOKUP hanya mencari di kolom paling kiri tabel dan mengambil ke kanan', 'Karena butuh FALSE', 'Karena tabel harus terurut'],
       answer: 1,
-      explain: 'VLOOKUP hanya bisa mengambil data di sebelah **kanan** kolom pencarian. Untuk mencari ke kiri, gunakan INDEX + MATCH atau XLOOKUP (akan dipelajari nanti).'
+      explain: 'VLOOKUP hanya dapat mengambil data di sebelah **kanan** kolom pencarian. Untuk mencari ke kiri, gunakan INDEX + MATCH atau XLOOKUP (akan dipelajari nanti).'
     }),
     q({
-      title: 'Kenapa #N/A?',
-      q: 'Kode "P003" jelas ada di katalog, tapi `VLOOKUP(A2, katalog, 3, FALSE)` menghasilkan #N/A. Penyebab paling mungkin...',
-      options: ['Kode di A2 punya spasi tersembunyi di belakangnya ("P003 ")', 'Harga di katalog bukan angka', 'Angka 3 harus diganti 4', 'FALSE tidak boleh dipakai'],
+      title: 'Penyebab #N/A pada VLOOKUP',
+      q: 'Kode "P003" jelas ada di katalog, tetapi `VLOOKUP(A2, katalog, 3, FALSE)` menghasilkan #N/A. Penyebab paling mungkin...',
+      options: ['Kode di A2 punya spasi tersembunyi di belakangnya ("P003 ")', 'Harga di katalog bukan angka', 'Angka 3 harus diganti 4', 'FALSE tidak boleh digunakan'],
       answer: 0,
-      explain: 'Spasi tak terlihat membuat "P003 " berbeda dengan "P003". Solusi: bungkus dengan TRIM, misalnya `VLOOKUP(TRIM(A2), ...)`.'
+      explain: 'Spasi tak terlihat membuat "P003 " berbeda dengan "P003". Solusinya, gunakan TRIM, misalnya `VLOOKUP(TRIM(A2), ...)`.'
     }),
     f({
       title: 'HLOOKUP untuk tabel mendatar',
       story: 'Target tersusun mendatar: kuartal di baris 1, target di baris 2.',
-      task: 'Di sel **B5**, ambil target untuk kuartal yang tertulis di **B4** memakai **HLOOKUP**.',
+      task: 'Di sel **B6**, ambil target untuk kuartal yang tertulis di **B5** menggunakan **HLOOKUP**.',
       sheets: [sheet('Target', [['Kuartal', 'Q1', 'Q2', 'Q3', 'Q4'], ['Target', 100, 120, 150, 200], [null, null, null, null, null], [null, null, null, null, null], ['Kuartal dicari', 'Q3', null, null, null], ['Target', '', null, null, null]])],
       target: 'B6',
       expect: 150,
       solution: '=HLOOKUP(B5,A1:E2,2,FALSE)',
       mustUse: ['HLOOKUP'],
-      hints: ['HLOOKUP seperti VLOOKUP, tapi mencari di baris paling atas.', 'Nomor yang diberikan adalah nomor baris, bukan nomor kolom.', 'Tulis: =HLOOKUP(B5,A1:E2,2,FALSE)'],
+      hints: ['HLOOKUP seperti VLOOKUP, tetapi mencari di baris paling atas.', 'Nomor yang diberikan adalah nomor baris, bukan nomor kolom.', 'Tulis: =HLOOKUP(B5,A1:E2,2,FALSE)'],
       explain: 'HLOOKUP mencari "Q3" di baris pertama, lalu mengambil nilai di baris ke-2 pada kolom yang sama: 150.'
     })
   ]
@@ -406,16 +406,16 @@ const indexMatch = {
   id: 'index-match',
   level: 3,
   icon: 'crosshair',
-  title: 'INDEX & MATCH',
-  tagline: 'Duet pencarian yang lebih fleksibel dari VLOOKUP',
-  why: 'Banyak profesional lebih memilih INDEX-MATCH karena bisa mencari ke arah mana saja dan tidak rusak ketika kolom disisipkan.',
+  title: 'INDEX dan MATCH',
+  tagline: 'Gunakan kombinasi INDEX dan MATCH untuk pencarian data yang lebih fleksibel dibanding VLOOKUP.',
+  why: 'Banyak profesional memilih INDEX-MATCH karena dapat mencari ke arah mana pun dan tetap berfungsi ketika kolom disisipkan.',
   minutes: 14,
   lessons: [
     {
-      title: 'INDEX: menunjuk isi kotak ke-n',
+      title: 'INDEX: mengambil isi sel berdasarkan posisi',
       body: [
-        analogy('INDEX itu seperti rak surat bernomor. Kamu bilang "ambil surat di rak nomor 3", dan dia langsung menyerahkannya.'),
-        syntax('=INDEX(range, nomor_baris, [nomor_kolom])', [['range', 'Area data'], ['nomor_baris', 'Baris ke berapa di dalam range'], ['nomor_kolom', 'Kolom ke berapa (opsional, dipakai untuk range 2 dimensi)']]),
+        analogy('INDEX bekerja seperti rak surat bernomor: Anda menyebutkan "ambil surat di rak nomor 3", dan isinya langsung diberikan.'),
+        syntax('=INDEX(range, nomor_baris, [nomor_kolom])', [['range', 'Area data'], ['nomor_baris', 'Baris ke berapa di dalam range'], ['nomor_kolom', 'Kolom ke berapa (opsional, digunakan untuk range 2 dimensi)']]),
         demo({
           rows: [['Nama'], ['Rina'], ['Sandi'], ['Tari'], ['Ke-3:', '']],
           cell: 'B5',
@@ -425,10 +425,10 @@ const indexMatch = {
       ]
     },
     {
-      title: 'MATCH: mencari nomor urutnya',
+      title: 'MATCH: mencari posisi suatu nilai',
       body: [
-        p('INDEX butuh nomor. Dari mana nomornya? **MATCH** yang mencarinya.'),
-        syntax('=MATCH(dicari, range, 0)', [['dicari', 'Nilai yang kamu cari'], ['range', 'Satu kolom atau satu baris tempat mencari'], ['0', 'Cari yang persis sama (hampir selalu 0)']]),
+        p('INDEX memerlukan nomor posisi. **MATCH** bertugas menemukan nomor tersebut.'),
+        syntax('=MATCH(dicari, range, 0)', [['dicari', 'Nilai yang Anda cari'], ['range', 'Satu kolom atau satu baris tempat mencari'], ['0', 'Mencari yang persis sama (paling sering digunakan)']]),
         demo({
           rows: [['Nama'], ['Rina'], ['Sandi'], ['Tari'], ['Posisi "Sandi":', '']],
           cell: 'B5',
@@ -438,10 +438,10 @@ const indexMatch = {
       ]
     },
     {
-      title: 'Digabung: INDEX + MATCH',
+      title: 'Menggabungkan INDEX dan MATCH',
       body: [
-        p('Susun begini: **MATCH menemukan baris yang tepat, INDEX mengambil isinya.**'),
-        syntax('=INDEX(kolom_hasil, MATCH(dicari, kolom_pencarian, 0))', [['kolom_hasil', 'Kolom yang isinya mau diambil'], ['MATCH(...)', 'Mencari posisi baris dari nilai yang dicari']]),
+        p('Cara menyusunnya: **MATCH menemukan baris yang tepat, lalu INDEX mengambil isinya.**'),
+        syntax('=INDEX(kolom_hasil, MATCH(dicari, kolom_pencarian, 0))', [['kolom_hasil', 'Kolom yang isinya akan diambil'], ['MATCH(...)', 'Mencari posisi baris dari nilai yang dicari']]),
         demo({
           rows: [['Nama', 'Gaji'], ['Rina', 7500], ['Sandi', 9000], ['Tari', 6800], ['Gaji Sandi:', '']],
           cell: 'B5',
@@ -449,9 +449,9 @@ const indexMatch = {
           caption: 'MATCH menemukan Sandi di urutan 2. INDEX mengambil urutan ke-2 dari kolom Gaji: 9000.'
         }),
         steps(
-          '**Bisa mencari ke kiri**: kolom pencarian tidak harus paling kiri.',
-          '**Tahan banting**: kalau seseorang menyisipkan kolom baru, rumus tidak rusak (VLOOKUP rusak karena nomor kolomnya bergeser).',
-          '**Lebih jelas**: kamu menunjuk kolom hasil langsung, bukan menghitung nomor kolom.'
+          '**Dapat mencari ke kiri**: kolom pencarian tidak harus paling kiri.',
+          '**Lebih tahan perubahan**: jika kolom baru disisipkan, rumus tetap benar (VLOOKUP menjadi salah karena nomor kolomnya bergeser).',
+          '**Lebih jelas**: Anda menunjuk kolom hasil langsung, bukan menghitung nomor kolom.'
         )
       ]
     }
@@ -465,7 +465,7 @@ const indexMatch = {
       expect: 'Tari',
       solution: '=INDEX(B2:B6,3)',
       mustUse: ['INDEX'],
-      hints: ['Kamu mengambil isi dari sebuah daftar berdasarkan nomor urutnya.', 'INDEX(range, nomor).', 'Tulis: =INDEX(B2:B6,3)'],
+      hints: ['Anda mengambil isi dari sebuah daftar berdasarkan nomor urutnya.', 'INDEX(range, nomor).', 'Tulis: =INDEX(B2:B6,3)'],
       explain: 'Urutan ke-3 dari B2:B6 adalah baris ke-3 di range itu, yaitu "Tari".'
     }),
     f({
@@ -477,7 +477,7 @@ const indexMatch = {
       expect: 9500000,
       solution: '=INDEX(A2:D6,4,4)',
       mustUse: ['INDEX'],
-      hints: ['Untuk range yang punya baris dan kolom, INDEX butuh dua nomor.', 'Urutannya: baris dulu, baru kolom.', 'Tulis: =INDEX(A2:D6,4,4)'],
+      hints: ['Untuk range yang punya baris dan kolom, INDEX butuh dua nomor.', 'Urutannya: baris dahulu, baru kolom.', 'Tulis: =INDEX(A2:D6,4,4)'],
       explain: 'INDEX(range, baris, kolom) menunjuk satu sel di dalam range seperti koordinat.'
     }),
     f({
@@ -488,13 +488,13 @@ const indexMatch = {
       expect: 4,
       solution: '=MATCH("K04",A2:A6,0)',
       mustUse: ['MATCH'],
-      hints: ['Kamu tidak mengambil isinya, hanya mencari nomor urutnya.', 'MATCH(dicari, range, 0) dengan 0 untuk pencocokan persis.', 'Tulis: =MATCH("K04",A2:A6,0)'],
+      hints: ['Anda tidak mengambil isinya, hanya mencari nomor urutnya.', 'MATCH(dicari, range, 0) dengan 0 untuk pencocokan persis.', 'Tulis: =MATCH("K04",A2:A6,0)'],
       explain: 'K04 adalah ID keempat dalam daftar, jadi MATCH mengembalikan 4.'
     }),
     f({
       title: 'Gaji berdasarkan nama',
       story: 'Nama yang dicari ditulis di G1.',
-      task: 'Di sel **G2**, ambil **gaji** karyawan yang namanya tertulis di G1 memakai **INDEX + MATCH**.',
+      task: 'Di sel **G2**, ambil **gaji** karyawan yang namanya tertulis di G1 menggunakan **INDEX + MATCH**.',
       sheets: [sheet('Karyawan', karyawanRows.map((r, i) => (i === 0 ? [...r, null, null, 'Vina'] : r)), { D: 'rp' })],
       target: 'G2',
       resultFmt: 'rp',
@@ -507,20 +507,20 @@ const indexMatch = {
     }),
     f({
       title: 'Mencari ke kiri',
-      story: 'VLOOKUP tidak bisa mengambil kolom di sebelah kiri kolom pencarian. INDEX-MATCH bisa.',
+      story: 'VLOOKUP tidak dapat mengambil kolom di sebelah kiri kolom pencarian. INDEX-MATCH dapat.',
       task: 'Di sel **G2**, cari **ID** karyawan yang namanya tertulis di G1 (ID ada di kolom A, sebelah kiri Nama).',
       sheets: [sheet('Karyawan', karyawanRows.map((r, i) => (i === 0 ? [...r, null, null, 'Umar'] : r)), { D: 'rp' })],
       target: 'G2',
       expect: 'K04',
       solution: '=INDEX(A2:A6,MATCH(G1,B2:B6,0))',
       mustUse: ['INDEX', 'XLOOKUP'],
-      hints: ['Kolom hasil dan kolom pencarian boleh dipilih bebas di INDEX-MATCH.', 'Hasil dari kolom A, pencarian di kolom B.', 'Tulis: =INDEX(A2:A6,MATCH(G1,B2:B6,0))'],
+      hints: ['Kolom hasil dan kolom pencarian dapat dipilih bebas di INDEX-MATCH.', 'Hasil dari kolom A, pencarian di kolom B.', 'Tulis: =INDEX(A2:A6,MATCH(G1,B2:B6,0))'],
       explain: 'Inilah keunggulan utama INDEX-MATCH: arah pencarian tidak dibatasi.'
     }),
     f({
       title: 'Daftar gaji sekaligus',
-      story: 'Daftar nama yang ingin kamu cari gajinya ada di kolom F.',
-      task: 'Di sel **G2**, ambil gaji untuk nama di F2 memakai INDEX + MATCH. Salin sampai G4. Kunci range tabel dengan $.',
+      story: 'Daftar nama yang ingin Anda cari gajinya ada di kolom F.',
+      task: 'Di sel **G2**, ambil gaji untuk nama di F2 menggunakan INDEX + MATCH. Salin sampai G4. Kunci range tabel dengan $.',
       sheets: [sheet('Karyawan', karyawanRows.map((r, i) => (i === 0 ? [...r, null, 'Nama dicari', 'Gaji'] : i === 1 ? [...r, null, 'Sandi', ''] : i === 2 ? [...r, null, 'Rina', ''] : i === 3 ? [...r, null, 'Tari', ''] : r)), { D: 'rp', G: 'rp' })],
       target: 'G2',
       fillTo: 'G4',
@@ -530,7 +530,7 @@ const indexMatch = {
       shouldFail: ['=INDEX(D2:D6,MATCH(F2,B2:B6,0))'],
       mustUse: ['INDEX', 'XLOOKUP'],
       hints: ['Hanya nama yang dicari (F2) yang boleh bergeser saat disalin ke bawah.', 'Kunci kedua range (D2:D6 dan B2:B6) dengan $.', 'Tulis: =INDEX($D$2:$D$6,MATCH(F2,$B$2:$B$6,0))'],
-      explain: 'Kebiasaan penting: tabel sumber selalu dikunci dengan $, nilai yang dicari dibiarkan relatif.'
+      explain: 'Praktik penting: tabel sumber selalu dikunci dengan $, sedangkan nilai yang dicari dibiarkan relatif.'
     }),
     f({
       title: 'Siapa bergaji tertinggi?',
@@ -541,17 +541,17 @@ const indexMatch = {
       solution: '=INDEX(B2:B6,MATCH(MAX(D2:D6),D2:D6,0))',
       hints: ['Langkah 1: cari gaji tertinggi dengan MAX. Langkah 2: cari posisinya dengan MATCH. Langkah 3: ambil namanya dengan INDEX.', 'MATCH mencari hasil MAX di dalam kolom gaji.', 'Tulis: =INDEX(B2:B6,MATCH(MAX(D2:D6),D2:D6,0))'],
       parts: [['MAX(D2:D6)', 'Gaji tertinggi = 9.500.000'], ['MATCH(..., D2:D6, 0)', 'ada di urutan ke-4'], ['INDEX(B2:B6, 4)', 'nama urutan ke-4 = Umar']],
-      explain: 'Pola ini sangat sering dipakai untuk "siapa yang tertinggi/terendah". Fungsi bersarang dikerjakan dari dalam ke luar.'
+      explain: 'Pola ini sangat sering digunakan untuk "siapa yang tertinggi/terendah". Fungsi bersarang dikerjakan dari bagian terdalam ke luar.'
     }),
     q({
       title: 'Arti angka 0 di MATCH',
       q: 'Pada `=MATCH("Tari", B2:B6, 0)`, angka **0** di akhir berarti...',
       options: ['Cari persis sama', 'Mulai dari baris ke-0', 'Abaikan huruf besar', 'Jangan tampilkan hasil'],
       answer: 0,
-      explain: '**0** = pencocokan persis. Nilai 1 atau dikosongkan berarti "terdekat yang tidak melebihi" dan memerlukan data terurut. Hampir selalu pakai 0.'
+      explain: '**0** = pencocokan persis. Nilai 1 atau dikosongkan berarti "terdekat yang tidak melebihi" dan memerlukan data terurut. Untuk sebagian besar kasus, gunakan 0.'
     }),
     q({
-      title: 'Kenapa INDEX-MATCH lebih tahan banting?',
+      title: 'Ketahanan INDEX-MATCH terhadap perubahan kolom',
       q: 'Seseorang menyisipkan satu kolom baru di tengah tabel. Rumus mana yang tetap benar tanpa diedit?',
       options: ['VLOOKUP dengan nomor kolom tetap (misalnya 3)', 'INDEX-MATCH yang menunjuk kolom hasil langsung', 'Keduanya rusak', 'Keduanya tetap benar'],
       answer: 1,
@@ -565,16 +565,16 @@ const tanggal = {
   id: 'tanggal',
   level: 3,
   icon: 'calendar',
-  title: 'Tanggal & Waktu',
-  tagline: 'DATE, YEAR, MONTH, DATEDIF, EDATE, EOMONTH, NETWORKDAYS, TEXT',
-  why: 'Jatuh tempo faktur, masa kerja, umur, hari kerja, dan laporan bulanan semuanya bergantung pada tanggal. Excel punya banyak alat untuk itu.',
+  title: 'Tanggal dan Waktu',
+  tagline: 'Hitung jatuh tempo, masa kerja, umur, dan hari kerja dengan DATE, DATEDIF, EDATE, EOMONTH, NETWORKDAYS, dan TEXT.',
+  why: 'Jatuh tempo faktur, masa kerja, umur, hari kerja, dan laporan bulanan semuanya bergantung pada tanggal. Excel menyediakan banyak fungsi untuk mengolahnya.',
   minutes: 16,
   lessons: [
     {
-      title: 'Rahasia: tanggal itu sebenarnya angka',
+      title: 'Tanggal di Excel disimpan sebagai angka',
       body: [
         p('Excel menyimpan setiap tanggal sebagai **nomor urut hari**. Hari ke-1 adalah 1 Januari 1900. Tanggal 15 Januari 2025 adalah angka 45672.'),
-        analogy('Seperti kalender yang tiap harinya diberi nomor tiket berurutan. Karena berupa angka, kamu bisa **menambah** (+30 hari) dan **mengurangi** tanggal untuk mendapat selisih hari.'),
+        analogy('Bayangkan kalender yang setiap harinya diberi nomor urut. Karena berupa angka, tanggal dapat **ditambah** (misalnya +30 hari) dan **dikurangi** untuk mendapatkan selisih hari.'),
         demo({
           rows: [['Mulai', D('2025-01-15')], ['Selesai', D('2025-03-01')], ['Selisih hari', '']],
           fmt: { B: 'date' },
@@ -582,15 +582,15 @@ const tanggal = {
           formula: '=B2-B1',
           caption: 'Dua tanggal dikurangkan menghasilkan jumlah hari: 45 hari.'
         }),
-        tip('Kalau hasil perhitungan tanggal tampil sebagai angka aneh seperti 45672, ubah format selnya menjadi Date (Ctrl + 1). Sebaliknya, kalau selisih hari tampil sebagai tanggal, ubah formatnya ke General.')
+        tip('Jika hasil perhitungan tanggal tampil sebagai angka seperti 45672, ubah format selnya menjadi Date (Ctrl + 1). Sebaliknya, jika selisih hari tampil sebagai tanggal, ubah formatnya menjadi General.')
       ]
     },
     {
-      title: 'Memecah dan merakit tanggal',
+      title: 'Memecah dan menyusun tanggal',
       body: [
         steps(
           '`YEAR(tgl)`, `MONTH(tgl)`, `DAY(tgl)` : ambil tahun, bulan, atau hari.',
-          '`DATE(tahun, bulan, hari)` : rakit tanggal dari tiga angka.',
+          '`DATE(tahun, bulan, hari)` : susun tanggal dari tiga angka.',
           '`TODAY()` : tanggal hari ini (berubah otomatis setiap hari).',
           '`WEEKDAY(tgl)` : nomor hari dalam seminggu (1 = Minggu).'
         ),
@@ -601,17 +601,17 @@ const tanggal = {
           formula: '=YEAR(B1)',
           caption: 'Tahun dari 17 Agustus 2025 adalah 2025.'
         }),
-        warn('DATE otomatis "membetulkan" angka yang kelebihan. DATE(2025, 14, 1) menjadi 1 Februari 2026, karena bulan ke-14 berarti Februari tahun berikutnya.')
+        warn('DATE otomatis menyesuaikan angka yang melebihi batas. DATE(2025, 14, 1) menjadi 1 Februari 2026, karena bulan ke-14 berarti Februari tahun berikutnya.')
       ]
     },
     {
-      title: 'Alat bantu tanggal yang andal',
+      title: 'Fungsi tanggal yang sering digunakan',
       body: [
         steps(
           '`DATEDIF(mulai, selesai, "Y")` : selisih tahun penuh (umur). Unit lain: "M" bulan penuh, "D" hari.',
           '`EDATE(tgl, n)` : tanggal n bulan setelahnya (cocok untuk jatuh tempo bulanan).',
           '`EOMONTH(tgl, n)` : tanggal terakhir bulan, n bulan dari sekarang.',
-          '`NETWORKDAYS(mulai, selesai)` : hitung hari kerja (Senin–Jumat).',
+          '`NETWORKDAYS(mulai, selesai)` : hitung hari kerja (Senin sampai Jumat).',
           '`TEXT(tgl, "dddd")` : mengubah tanggal menjadi teks dalam format tertentu, misalnya nama hari.'
         ),
         demo({
@@ -621,13 +621,13 @@ const tanggal = {
           formula: '=DATEDIF(B1,B2,"Y")',
           caption: 'Ulang tahun ke-30 baru tiba Agustus, jadi umurnya masih 29 tahun penuh.'
         }),
-        tip('Kode format TEXT yang sering dipakai: "dd/mm/yyyy" menghasilkan 15/06/2025, "mmmm yyyy" menghasilkan Juni 2025, "dddd" menghasilkan Minggu, dan "mmm" menghasilkan Jun.')
+        tip('Kode format TEXT yang sering digunakan: "dd/mm/yyyy" menghasilkan 15/06/2025, "mmmm yyyy" menghasilkan Juni 2025, "dddd" menghasilkan Minggu, dan "mmm" menghasilkan Jun.')
       ]
     }
   ],
   exercises: [
     f({
-      title: 'Berapa hari proyek berjalan?',
+      title: 'Durasi proyek dalam hari',
       task: 'Di sel **B3**, hitung **selisih hari** antara tanggal mulai (B1) dan selesai (B2).',
       sheets: [sheet('Proyek', tglRows([['Mulai', D('2025-01-15')], ['Selesai', D('2025-03-01')], ['Durasi (hari)', '']]), { B: 'date' })],
       target: 'B3',
@@ -635,8 +635,8 @@ const tanggal = {
       solution: '=B2-B1',
       alt: ['=DAYS(B2,B1)'],
       wrongs: [{ value: -45, msg: 'Tanggalnya terbalik. Tanggal yang lebih akhir harus berada di depan tanda minus.' }],
-      hints: ['Tanggal adalah angka, jadi bisa dikurangkan.', 'Yang lebih akhir dikurangi yang lebih awal.', 'Tulis: =B2-B1'],
-      explain: 'Hasil pengurangan dua tanggal adalah jumlah hari di antaranya. Jika selnya tampil sebagai tanggal aneh, ubah formatnya jadi angka biasa.'
+      hints: ['Tanggal adalah angka, jadi dapat dikurangkan.', 'Yang lebih akhir dikurangi yang lebih awal.', 'Tulis: =B2-B1'],
+      explain: 'Hasil pengurangan dua tanggal adalah jumlah hari di antaranya. Jika selnya tampil sebagai tanggal, ubah formatnya menjadi angka biasa.'
     }),
     f({
       title: 'Tahun lahir',
@@ -646,7 +646,7 @@ const tanggal = {
       expect: 1995,
       solution: '=YEAR(B1)',
       mustUse: ['YEAR', 'TEXT'],
-      hints: ['Ada fungsi dengan nama yang sama dengan bagian yang kamu cari.', 'YEAR(tanggal).', 'Tulis: =YEAR(B1)'],
+      hints: ['Ada fungsi dengan nama yang sama dengan bagian yang Anda cari.', 'YEAR(tanggal).', 'Tulis: =YEAR(B1)'],
       explain: 'YEAR, MONTH, dan DAY memecah tanggal menjadi angka tahun, bulan, dan hari.'
     }),
     f({
@@ -661,7 +661,7 @@ const tanggal = {
       explain: 'MONTH sangat berguna untuk mengelompokkan data per bulan, misalnya dengan SUMIFS atau COUNTIFS pada kolom bantu.'
     }),
     f({
-      title: 'Merakit tanggal',
+      title: 'Menyusun tanggal',
       story: 'Tahun, bulan, dan tanggal tersimpan di tiga sel terpisah.',
       task: 'Di sel **D2**, gabungkan ketiganya menjadi **satu tanggal** yang utuh.',
       sheets: [sheet('Rakit', [['Tahun', 'Bulan', 'Hari', 'Tanggal'], [2025, 7, 20, '']], { D: 'date' })],
@@ -670,8 +670,8 @@ const tanggal = {
       expect: D('2025-07-20'),
       solution: '=DATE(A2,B2,C2)',
       mustUse: ['DATE'],
-      hints: ['Ada fungsi untuk merakit tanggal dari tiga angka.', 'DATE(tahun, bulan, hari), urutannya begitu.', 'Tulis: =DATE(A2,B2,C2)'],
-      explain: 'DATE menghasilkan tanggal sungguhan (angka seri), sehingga bisa dipakai untuk perhitungan tanggal lain.'
+      hints: ['Ada fungsi untuk menyusun tanggal dari tiga angka.', 'DATE(tahun, bulan, hari), urutannya begitu.', 'Tulis: =DATE(A2,B2,C2)'],
+      explain: 'DATE menghasilkan tanggal sungguhan (angka seri), sehingga dapat digunakan untuk perhitungan tanggal lain.'
     }),
     f({
       title: 'Umur dari tanggal lahir',
@@ -682,14 +682,14 @@ const tanggal = {
       expect: 29,
       solution: '=DATEDIF(B1,B2,"Y")',
       mustUse: ['DATEDIF'],
-      wrongs: [{ value: 30, msg: 'Selisih tahun kalender 2025 − 1995 = 30, tapi ulang tahunnya belum tiba. DATEDIF dengan "Y" menghitung tahun penuh.' }],
+      wrongs: [{ value: 30, msg: 'Selisih tahun kalender 2025 − 1995 = 30, tetapi ulang tahunnya belum tiba. DATEDIF dengan "Y" menghitung tahun penuh.' }],
       hints: ['Selisih tahun penuh sebaiknya tidak dihitung dengan pengurangan tahun biasa.', 'DATEDIF(mulai, selesai, "Y").', 'Tulis: =DATEDIF(B1,B2,"Y")'],
       parts: [['B1', 'Tanggal mulai (lahir)'], ['B2', 'Tanggal selesai (acuan)'], ['"Y"', 'Hitung tahun penuh']],
-      explain: 'Di dunia nyata, ganti B2 dengan TODAY() agar umur selalu terbarui otomatis.'
+      explain: 'Dalam pemakaian sehari-hari, ganti B2 dengan TODAY() agar umur selalu diperbarui secara otomatis.'
     }),
     f({
       title: 'Jatuh tempo 3 bulan',
-      story: 'Cicilan jatuh tempo tepat 3 bulan setelah tanggal kontrak. Jika tanggalnya tidak ada di bulan tujuan, Excel memakai tanggal terakhir bulan itu.',
+      story: 'Cicilan jatuh tempo tepat 3 bulan setelah tanggal kontrak. Jika tanggalnya tidak ada di bulan tujuan, Excel menggunakan tanggal terakhir bulan itu.',
       task: 'Di sel **B2**, hitung tanggal jatuh tempo: **3 bulan setelah** tanggal di B1.',
       sheets: [sheet('Kontrak', [['Tanggal kontrak', D('2025-01-31')], ['Jatuh tempo', '']], { B: 'date' })],
       target: 'B2',
@@ -709,31 +709,31 @@ const tanggal = {
       expect: D('2025-02-28'),
       solution: '=EOMONTH(B1,0)',
       mustUse: ['EOMONTH'],
-      hints: ['Kamu tidak perlu tahu apakah bulan itu 28, 30, atau 31 hari.', 'EOMONTH(tanggal, 0): angka 0 artinya bulan yang sama.', 'Tulis: =EOMONTH(B1,0)'],
+      hints: ['Anda tidak perlu tahu apakah bulan itu 28, 30, atau 31 hari.', 'EOMONTH(tanggal, 0): angka 0 artinya bulan yang sama.', 'Tulis: =EOMONTH(B1,0)'],
       explain: 'EOMONTH sudah tahu panjang tiap bulan, termasuk Februari tahun kabisat. Angka 1 akan menghasilkan akhir bulan berikutnya.'
     }),
     f({
       title: 'Hari kerja',
       story: '2 Juni 2025 adalah hari Senin dan 13 Juni 2025 adalah hari Jumat.',
-      task: 'Di sel **B3**, hitung **jumlah hari kerja** (Senin–Jumat) dari B1 sampai B2, kedua tanggal ikut dihitung.',
+      task: 'Di sel **B3**, hitung **jumlah hari kerja** (Senin sampai Jumat) dari B1 sampai B2, kedua tanggal ikut dihitung.',
       sheets: [sheet('Kerja', [['Mulai', D('2025-06-02')], ['Selesai', D('2025-06-13')], ['Hari kerja', '']], { B: 'date' })],
       target: 'B3',
       expect: 10,
       solution: '=NETWORKDAYS(B1,B2)',
       mustUse: ['NETWORKDAYS'],
-      wrongs: [{ value: 11, msg: 'Itu selisih hari + 1 (termasuk Sabtu dan Minggu). Kita hanya menghitung Senin–Jumat.' }],
+      wrongs: [{ value: 11, msg: 'Itu selisih hari + 1 (termasuk Sabtu dan Minggu). Soal ini hanya menghitung hari Senin sampai Jumat.' }],
       hints: ['Hari Sabtu dan Minggu tidak dihitung.', 'NETWORKDAYS(mulai, selesai).', 'Tulis: =NETWORKDAYS(B1,B2)'],
-      explain: 'Dua minggu kerja = 10 hari kerja. Argumen ketiga (opsional) bisa berisi daftar hari libur nasional.'
+      explain: 'Dua minggu kerja = 10 hari kerja. Argumen ketiga (opsional) dapat berisi daftar hari libur nasional.'
     }),
     f({
       title: 'Nama hari',
-      task: 'Di sel **B2**, tampilkan **nama hari** (misalnya Senin) dari tanggal di B1 memakai TEXT.',
+      task: 'Di sel **B2**, tampilkan **nama hari** (misalnya Senin) dari tanggal di B1 menggunakan TEXT.',
       sheets: [sheet('Hari', [['Tanggal', D('2025-06-15')], ['Hari', '']], { B: 'date' })],
       target: 'B2',
       expect: 'Minggu',
       solution: '=TEXT(B1,"dddd")',
       mustUse: ['TEXT'],
-      hints: ['Kamu mengubah tanggal menjadi teks dengan format tertentu.', 'Kode "dddd" menghasilkan nama hari lengkap.', 'Tulis: =TEXT(B1,"dddd")'],
+      hints: ['Anda mengubah tanggal menjadi teks dengan format tertentu.', 'Kode "dddd" menghasilkan nama hari lengkap.', 'Tulis: =TEXT(B1,"dddd")'],
       explain: 'TEXT(nilai, kode_format) mengubah angka atau tanggal menjadi teks. "ddd" memberi singkatannya (Min).'
     }),
     f({
@@ -745,7 +745,7 @@ const tanggal = {
       solution: '=TEXT(B1,"mmmm yyyy")',
       mustUse: ['TEXT'],
       hints: ['Gunakan TEXT lagi, dengan kode format yang berbeda.', '"mmmm" adalah nama bulan lengkap, "yyyy" adalah tahun 4 digit.', 'Tulis: =TEXT(B1,"mmmm yyyy")'],
-      explain: 'Kode format bisa digabung dengan spasi dan tanda baca. Cocok untuk judul laporan otomatis.'
+      explain: 'Kode format dapat digabung dengan spasi dan tanda baca. Cocok untuk judul laporan otomatis.'
     }),
     f({
       title: 'Tanggal jatuh tempo faktur',
@@ -756,15 +756,15 @@ const tanggal = {
       expect: D('2025-02-19'),
       solution: '=B1+30',
       alt: ['=B1+30*1'],
-      hints: ['Tanggal adalah angka, jadi bisa ditambah.', 'Tambahkan 30 ke tanggal.', 'Tulis: =B1+30'],
+      hints: ['Tanggal adalah angka, jadi dapat ditambah.', 'Tambahkan 30 ke tanggal.', 'Tulis: =B1+30'],
       explain: 'Menambah 30 ke tanggal berarti maju 30 hari. Ini berbeda dari EDATE yang maju per bulan.'
     }),
     q({
-      title: 'TODAY itu berubah',
-      q: 'Kamu menulis `=TODAY()` di sebuah sel hari ini. Besok file dibuka lagi. Apa yang tampil?',
+      title: 'Perilaku fungsi TODAY',
+      q: 'Anda menulis `=TODAY()` di sebuah sel hari ini. Besok file dibuka lagi. Apa yang tampil?',
       options: ['Tanggal hari ini saat file disimpan', 'Tanggal besok (selalu mengikuti hari sekarang)', 'Error karena tanggal berubah', 'Tanggal 1 Januari 1900'],
       answer: 1,
-      explain: 'TODAY() dihitung ulang setiap kali file dibuka atau berubah, jadi selalu menampilkan tanggal terbaru. Kalau butuh tanggal yang tetap, ketik tanggalnya langsung atau tekan **Ctrl + ;**.'
+      explain: 'TODAY() dihitung ulang setiap kali file dibuka atau berubah, jadi selalu menampilkan tanggal terbaru. Jika memerlukan tanggal yang tetap, ketik tanggalnya langsung atau tekan **Ctrl + ;**.'
     })
   ]
 };
@@ -773,22 +773,22 @@ const teksLanjut = {
   id: 'teks-lanjut',
   level: 3,
   icon: 'scissors',
-  title: 'Teks Lanjutan',
-  tagline: 'FIND, SEARCH, SUBSTITUTE, REPLACE, TEXT, TEXTJOIN, VALUE',
-  why: 'Data kotor dari sistem lain sering menyatu dalam satu kolom (nama + email, kode + kota). Dengan teks lanjutan, kamu bisa memotong dan merapikannya otomatis.',
+  title: 'Fungsi Teks Lanjutan',
+  tagline: 'Cari, ganti, pecah, dan gabungkan teks menggunakan FIND, SEARCH, SUBSTITUTE, REPLACE, TEXT, TEXTJOIN, dan VALUE.',
+  why: 'Data dari sistem lain sering menyatu dalam satu kolom, misalnya nama dan email atau kode dan kota. Fungsi teks lanjutan memungkinkan Anda memisahkan dan merapikannya secara otomatis.',
   minutes: 15,
   lessons: [
     {
-      title: 'FIND: mencari posisi sebuah karakter',
+      title: 'FIND: mencari posisi karakter',
       body: [
-        p('`FIND(yang_dicari, teks)` memberi tahu **nomor posisi** karakter pertama yang ditemukan. `SEARCH` sama, tapi tidak peduli huruf besar-kecil.'),
+        p('`FIND(yang_dicari, teks)` menghasilkan **nomor posisi** karakter pertama yang ditemukan. `SEARCH` sama, tetapi tidak peduli huruf besar-kecil.'),
         demo({
           rows: [['Email', 'rina@kantor.com'], ['Posisi @', '']],
           cell: 'B2',
           formula: '=FIND("@",B1)',
           caption: 'Tanda @ ada di posisi ke-5.'
         }),
-        analogy('FIND itu seperti penunjuk halaman. Dengan tahu "@ ada di huruf ke-5", kamu bisa menggunting teks tepat di titik itu memakai LEFT, MID, atau RIGHT.'),
+        analogy('FIND berfungsi seperti penanda halaman. Dengan mengetahui bahwa "@ ada di huruf ke-5", Anda dapat memotong teks tepat di titik itu menggunakan LEFT, MID, atau RIGHT.'),
         demo({
           rows: [['Email', 'rina@kantor.com'], ['Posisi @', 5], ['Username', '']],
           cell: 'B3',
@@ -801,16 +801,16 @@ const teksLanjut = {
       title: 'Mengganti isi teks',
       body: [
         steps(
-          '`SUBSTITUTE(teks, lama, baru)` : ganti **teks tertentu** di mana pun ia muncul.',
-          '`REPLACE(teks, mulai, panjang, baru)` : ganti **berdasarkan posisi**, tidak peduli isinya.'
+          '`SUBSTITUTE(teks, lama, baru)` : mengganti **teks tertentu** di mana pun teks itu muncul.',
+          '`REPLACE(teks, mulai, panjang, baru)` : mengganti **berdasarkan posisi**, apa pun isinya.'
         ),
         demo({
           rows: [['Telepon', '0812-3456-7890'], ['Bersih', '']],
           cell: 'B2',
           formula: '=SUBSTITUTE(B1,"-","")',
-          caption: 'Semua tanda "-" diganti dengan teks kosong, jadi hilang.'
+          caption: 'Semua tanda "-" diganti dengan teks kosong, sehingga hilang.'
         }),
-        tip('Menghapus teks = mengganti teks itu dengan "" (dua kutip tanpa isi).')
+        tip('Menghapus teks berarti menggantinya dengan "" (dua tanda kutip tanpa isi).')
       ]
     },
     {
@@ -819,7 +819,7 @@ const teksLanjut = {
         steps(
           '`TEXT(angka, "00000")` : mempertahankan angka nol di depan: 123 menjadi "00123".',
           '`TEXTJOIN(pemisah, abaikan_kosong, range)` : gabungkan banyak sel sekaligus dengan pemisah.',
-          '`VALUE(teks)` : ubah teks yang berisi angka menjadi angka sungguhan.',
+          '`VALUE(teks)` : ubah teks yang berisi angka menjadi angka yang sebenarnya.',
           '`REPT(teks, n)` : ulangi teks n kali.'
         ),
         demo({
@@ -840,7 +840,7 @@ const teksLanjut = {
       expect: 5,
       solution: '=FIND("@",A2)',
       alt: ['=SEARCH("@",A2)'],
-      hints: ['Kamu mencari nomor urut sebuah huruf di dalam teks.', 'FIND(yang dicari, teksnya).', 'Tulis: =FIND("@",A2)'],
+      hints: ['Anda mencari nomor urut sebuah huruf di dalam teks.', 'FIND(yang dicari, teksnya).', 'Tulis: =FIND("@",A2)'],
       explain: 'r-i-n-a berada di posisi 1 sampai 4, maka "@" ada di posisi 5.'
     }),
     f({
@@ -851,7 +851,7 @@ const teksLanjut = {
       expect: 'rina',
       solution: '=LEFT(A2,FIND("@",A2)-1)',
       alt: ['=TEXTBEFORE(A2,"@")'],
-      hints: ['Kamu perlu tahu di mana "@" berada, lalu mengambil semua huruf sebelumnya.', 'LEFT(teks, posisi@ − 1). Minus 1 agar @ tidak ikut terambil.', 'Tulis: =LEFT(A2,FIND("@",A2)-1)'],
+      hints: ['Anda perlu tahu di mana "@" berada, lalu mengambil semua huruf sebelumnya.', 'LEFT(teks, posisi@ − 1). Minus 1 agar @ tidak ikut terambil.', 'Tulis: =LEFT(A2,FIND("@",A2)-1)'],
       parts: [['FIND("@",A2)', 'posisi @ = 5'], ['-1', 'ambil sampai satu huruf sebelumnya = 4'], ['LEFT(A2, 4)', 'empat huruf pertama']],
       explain: 'Ini pola paling umum dalam memotong teks: FIND untuk mencari posisi, LEFT/MID/RIGHT untuk memotong.'
     }),
@@ -864,7 +864,7 @@ const teksLanjut = {
       solution: '=MID(A2,FIND("@",A2)+1,100)',
       alt: ['=RIGHT(A2,LEN(A2)-FIND("@",A2))', '=TEXTAFTER(A2,"@")'],
       hints: ['Mulai memotong tepat satu huruf setelah "@".', 'MID(teks, posisi@ + 1, panjang yang besar), atau RIGHT dengan panjang sisa.', 'Tulis: =MID(A2,FIND("@",A2)+1,100)'],
-      explain: 'Panjang 100 hanya angka "yang pasti cukup". MID berhenti sendiri di akhir teks.'
+      explain: 'Angka 100 hanya dipilih agar pasti cukup panjang. MID berhenti sendiri di akhir teks.'
     }),
     f({
       title: 'Nama depan',
@@ -885,12 +885,12 @@ const teksLanjut = {
       expect: '081234567890',
       solution: '=SUBSTITUTE(A2,"-","")',
       mustUse: ['SUBSTITUTE'],
-      hints: ['Kamu mengganti sebuah karakter dengan "tidak ada apa-apa".', 'SUBSTITUTE(teks, yang_lama, yang_baru). Pengganti kosong ditulis "".', 'Tulis: =SUBSTITUTE(A2,"-","")'],
+      hints: ['Anda mengganti sebuah karakter dengan "tidak ada apa-apa".', 'SUBSTITUTE(teks, yang_lama, yang_baru). Pengganti kosong ditulis "".', 'Tulis: =SUBSTITUTE(A2,"-","")'],
       explain: 'SUBSTITUTE mengganti semua kemunculan. Hasilnya tetap teks sehingga angka 0 di depan tidak hilang.'
     }),
     f({
       title: 'Menghitung jumlah kata',
-      story: 'Jumlah kata = jumlah spasi + 1. Jumlah spasi bisa dihitung dengan membandingkan panjang teks sebelum dan sesudah semua spasi dihapus.',
+      story: 'Jumlah kata = jumlah spasi + 1. Jumlah spasi dapat dihitung dengan membandingkan panjang teks sebelum dan sesudah semua spasi dihapus.',
       task: 'Di sel **B2**, hitung **jumlah kata** dalam kalimat di A2.',
       sheets: [sheet('Kata', [['Kalimat', 'Jumlah kata'], ['belajar excel itu mudah', '']])],
       target: 'B2',
@@ -912,19 +912,19 @@ const teksLanjut = {
       explain: 'Setiap "0" dalam kode format memaksa sebuah digit tampil, dan menambah nol di depan bila angkanya lebih pendek.'
     }),
     f({
-      title: 'Menggabung banyak nama',
+      title: 'Menggabungkan banyak nama',
       task: 'Di sel **B6**, gabungkan semua nama di A2:A5 menjadi satu teks dipisah **koma dan spasi** (", ").',
       sheets: [sheet('Tim', [['Anggota'], ['Ayu'], ['Budi'], ['Citra'], ['Dedi'], ['Daftar', '']])],
       target: 'B6',
       expect: 'Ayu, Budi, Citra, Dedi',
       solution: '=TEXTJOIN(", ",TRUE,A2:A5)',
       mustUse: ['TEXTJOIN', 'CONCAT', 'CONCATENATE'],
-      hints: ['Menyambung satu per satu dengan & akan panjang.', 'TEXTJOIN(pemisah, abaikan_kosong, range).', 'Tulis: =TEXTJOIN(", ",TRUE,A2:A5)'],
+      hints: ['Menyambung satu per satu dengan & akan terlalu panjang.', 'TEXTJOIN(pemisah, abaikan_kosong, range).', 'Tulis: =TEXTJOIN(", ",TRUE,A2:A5)'],
       parts: [['", "', 'Pemisah antar nama'], ['TRUE', 'Lewati sel kosong'], ['A2:A5', 'Daftar yang digabung']],
       explain: 'TEXTJOIN sangat menghemat waktu untuk daftar panjang. Argumen TRUE membuat sel kosong tidak menghasilkan koma ganda.'
     }),
     f({
-      title: 'Teks yang menyamar jadi angka',
+      title: 'Angka yang tersimpan sebagai teks',
       story: 'Dua angka hasil impor tersimpan sebagai teks. SUM akan mengabaikannya.',
       task: 'Di sel **C2**, jumlahkan angka di A2 dan B2 (keduanya sebenarnya teks) sehingga hasilnya menjadi **angka 4000**.',
       sheets: [sheet('Impor', [['Nilai A', 'Nilai B', 'Jumlah'], ['1500', '2500', '']])],
@@ -933,18 +933,18 @@ const teksLanjut = {
       solution: '=VALUE(A2)+VALUE(B2)',
       shouldFail: ['=SUM(A2:B2)'],
       hints: ['SUM(A2:B2) menghasilkan 0 karena isinya teks.', 'Ubah teks menjadi angka dengan VALUE, lalu jumlahkan.', 'Tulis: =VALUE(A2)+VALUE(B2)'],
-      explain: 'Angka teks sering muncul pada data impor dan ditandai rata kiri atau segitiga hijau kecil. VALUE mengubahnya menjadi angka sungguhan.'
+      explain: 'Angka teks sering muncul pada data impor dan ditandai rata kiri atau segitiga hijau kecil. VALUE mengubahnya menjadi angka yang dapat dihitung.'
     }),
     f({
-      title: 'Menyamarkan nomor',
+      title: 'Menyembunyikan sebagian nomor',
       story: 'Demi privasi, empat digit tengah nomor telepon diganti bintang.',
-      task: 'Di sel **B2**, ganti digit ke-5 sampai ke-8 dari nomor di A2 dengan "****" memakai REPLACE.',
+      task: 'Di sel **B2**, ganti digit ke-5 sampai ke-8 dari nomor di A2 dengan "****" menggunakan REPLACE.',
       sheets: [sheet('Privasi', [['Nomor', 'Disamarkan'], ['081234567890', '']])],
       target: 'B2',
       expect: '0812****7890',
       solution: '=REPLACE(A2,5,4,"****")',
       mustUse: ['REPLACE', 'SUBSTITUTE'],
-      hints: ['Kamu mengganti berdasarkan posisi, bukan berdasarkan isi.', 'REPLACE(teks, posisi_mulai, jumlah_huruf, teks_baru).', 'Tulis: =REPLACE(A2,5,4,"****")'],
+      hints: ['Anda mengganti berdasarkan posisi, bukan berdasarkan isi.', 'REPLACE(teks, posisi_mulai, jumlah_huruf, teks_baru).', 'Tulis: =REPLACE(A2,5,4,"****")'],
       explain: 'REPLACE cocok bila posisinya tetap dan isinya bervariasi. SUBSTITUTE cocok bila isinya tetap dan posisinya bervariasi.'
     })
   ]
@@ -954,15 +954,15 @@ const statistik = {
   id: 'statistik',
   level: 3,
   icon: 'bar-chart',
-  title: 'Statistik & Peringkat',
-  tagline: 'MEDIAN, MODE, LARGE, SMALL, RANK, STDEV',
-  why: 'Rata-rata sering menipu. Gaji satu direktur bisa menaikkan rata-rata satu perusahaan. Statistik dasar membantu kamu melihat angka dengan jujur.',
+  title: 'Statistik dan Peringkat',
+  tagline: 'Gunakan MEDIAN, MODE, LARGE, SMALL, RANK, dan STDEV untuk membaca sebaran data dan menentukan peringkat.',
+  why: 'Rata-rata dapat menyesatkan. Gaji seorang direktur, misalnya, dapat menaikkan rata-rata gaji satu perusahaan. Statistik dasar membantu Anda membaca data secara lebih akurat.',
   minutes: 14,
   lessons: [
     {
-      title: 'Rata-rata bisa menipu, median lebih jujur',
+      title: 'Rata-rata dan median',
       body: [
-        analogy('Bayangkan lima orang masuk warung, empat bergaji Rp 6 juta dan satu pemilik pabrik bergaji Rp 30 juta. "Rata-rata gaji" menjadi Rp 10,8 juta, padahal hampir semua orang di sana hanya bergaji 6 juta. **Median** (nilai tengah setelah diurutkan) tetap 6 juta, lebih mewakili.'),
+        analogy('Bayangkan lima orang di sebuah warung: empat orang bergaji Rp 6 juta dan satu pemilik pabrik bergaji Rp 30 juta. "Rata-rata gaji" menjadi Rp 10,8 juta, padahal hampir semua orang di sana hanya bergaji Rp 6 juta. **Median** (nilai tengah setelah diurutkan) tetap Rp 6 juta sehingga lebih mewakili.'),
         demo({
           rows: [['Gaji (juta)'], [6], [5.5], [30], [6.5], [6.2], ['Rata-rata', ''], ['Median', '']],
           cell: 'B7',
@@ -983,7 +983,7 @@ const statistik = {
         steps(
           '`LARGE(range, n)` : nilai terbesar ke-n. LARGE(...,1) = MAX.',
           '`SMALL(range, n)` : nilai terkecil ke-n.',
-          '`RANK(nilai, range)` : peringkat sebuah nilai. Urutan 1 = terbesar (kalau argumen ketiga dikosongkan).',
+          '`RANK(nilai, range)` : peringkat sebuah nilai. Urutan 1 = terbesar (jika argumen ketiga dikosongkan).',
           '`MODE(range)` : nilai yang paling sering muncul.'
         ),
         demo({
@@ -995,17 +995,17 @@ const statistik = {
       ]
     },
     {
-      title: 'Seberapa menyebar data? STDEV',
+      title: 'Sebaran data dengan STDEV',
       body: [
-        p('**Simpangan baku** (`STDEV.S`) mengukur seberapa jauh data biasanya menyebar dari rata-ratanya. Angka kecil = data seragam. Angka besar = data sangat bervariasi.'),
-        analogy('Dua kelas sama-sama rata-rata nilainya 75. Kelas A semua murid bernilai 74–76 (simpangan kecil). Kelas B ada yang 40 dan ada yang 100 (simpangan besar). Rata-rata sama, cerita beda.'),
-        tip('`SUBTOTAL(9, range)` sama dengan SUM, tapi hanya menjumlahkan baris yang **terlihat** setelah kamu memfilter tabel. Cocok untuk total di bawah tabel yang sering difilter.')
+        p('**Simpangan baku** (`STDEV.S`) mengukur seberapa jauh data biasanya menyebar dari rata-ratanya. Angka kecil berarti data seragam, sedangkan angka besar berarti data sangat bervariasi.'),
+        analogy('Dua kelas sama-sama rata-rata nilainya 75. Kelas A semua murid bernilai 74–76 (simpangan kecil). Kelas B ada yang 40 dan ada yang 100 (simpangan besar). Rata-ratanya sama, tetapi sebaran datanya berbeda.'),
+        tip('`SUBTOTAL(9, range)` sama dengan SUM, tetapi hanya menjumlahkan baris yang **terlihat** setelah Anda memfilter tabel. Cocok untuk total di bawah tabel yang sering difilter.')
       ]
     }
   ],
   exercises: [
     f({
-      title: 'Gaji tengah',
+      title: 'Median gaji',
       task: 'Di sel **B7**, cari **median** gaji pada B2:B6.',
       sheets: [sheet('Gaji', [['Karyawan', 'Gaji'], ['A', 6500000], ['B', 5500000], ['C', 30000000], ['D', 6000000], ['E', 6200000], ['Median', '']], { B: 'rp' })],
       target: 'B7',
@@ -1013,7 +1013,7 @@ const statistik = {
       expect: 6200000,
       solution: '=MEDIAN(B2:B6)',
       mustUse: ['MEDIAN'],
-      hints: ['Kamu mencari nilai yang berada tepat di tengah setelah data diurutkan.', 'Fungsi namanya sama dengan istilah statistiknya.', 'Tulis: =MEDIAN(B2:B6)'],
+      hints: ['Anda mencari nilai yang berada tepat di tengah setelah data diurutkan.', 'Fungsi namanya sama dengan istilah statistiknya.', 'Tulis: =MEDIAN(B2:B6)'],
       explain: 'Urutan: 5,5 / 6,0 / 6,2 / 6,5 / 30 juta. Nilai tengahnya 6,2 juta.'
     }),
     q({
@@ -1031,7 +1031,7 @@ const statistik = {
       expect: 92,
       solution: '=LARGE(B2:B7,2)',
       mustUse: ['LARGE'],
-      hints: ['MAX hanya memberi yang pertama. Kamu butuh yang kedua.', 'LARGE(range, n) dengan n = 2.', 'Tulis: =LARGE(B2:B7,2)'],
+      hints: ['MAX hanya memberi yang pertama. Anda butuh yang kedua.', 'LARGE(range, n) dengan n = 2.', 'Tulis: =LARGE(B2:B7,2)'],
       explain: 'LARGE(range, 1) sama dengan MAX. Ganti angka terakhirnya untuk mendapat ke-3, ke-4, dan seterusnya.'
     }),
     f({
@@ -1042,7 +1042,7 @@ const statistik = {
       expect: 78,
       solution: '=SMALL(B2:B7,2)',
       mustUse: ['SMALL'],
-      hints: ['Cermin dari LARGE.', 'SMALL(range, n).', 'Tulis: =SMALL(B2:B7,2)'],
+      hints: ['Kebalikan dari LARGE.', 'SMALL(range, n).', 'Tulis: =SMALL(B2:B7,2)'],
       explain: 'Urutan dari terendah: 60, 78, 85, 88, 92, 95. Yang kedua adalah 78.'
     }),
     f({
@@ -1068,7 +1068,7 @@ const statistik = {
       solution: '=MODE(B2:B8)',
       alt: ['=MODE.SNGL(B2:B8)'],
       mustUse: ['MODE', 'MODE.SNGL'],
-      hints: ['Yang dicari bukan rata-rata, tapi nilai yang paling sering muncul.', 'Fungsi namanya MODE.', 'Tulis: =MODE(B2:B8)'],
+      hints: ['Yang dicari bukan rata-rata, tetapi nilai yang paling sering muncul.', 'Fungsi namanya MODE.', 'Tulis: =MODE(B2:B8)'],
       explain: 'Ukuran 40 muncul tiga kali, lebih banyak dari 39 (dua kali).'
     }),
     f({
@@ -1080,8 +1080,8 @@ const statistik = {
       solution: '=ROUND(STDEV.S(B2:B9),2)',
       alt: ['=ROUND(STDEV(B2:B9),2)'],
       mustUse: ['STDEV.S', 'STDEV'],
-      hints: ['Ada fungsi statistik khusus untuk simpangan baku sampel.', 'Bungkus hasilnya dengan ROUND ke 2 desimal.', 'Tulis: =ROUND(STDEV.S(B2:B9),2)'],
-      explain: 'Rata-rata data adalah 5 dan sebarannya sekitar 2,14. Makin besar angka ini, makin tidak seragam datanya.'
+      hints: ['Ada fungsi statistik khusus untuk simpangan baku sampel.', 'Gunakan ROUND untuk membulatkan hasilnya ke 2 desimal.', 'Tulis: =ROUND(STDEV.S(B2:B9),2)'],
+      explain: 'Rata-rata data adalah 5 dan sebarannya sekitar 2,14. Semakin besar angka ini, semakin tidak seragam datanya.'
     }),
     f({
       title: 'Jumlah tiga nilai teratas',
@@ -1091,7 +1091,7 @@ const statistik = {
       expect: 275,
       solution: '=LARGE(B2:B7,1)+LARGE(B2:B7,2)+LARGE(B2:B7,3)',
       mustUse: ['LARGE'],
-      hints: ['Ambil nilai terbesar ke-1, ke-2, dan ke-3, lalu jumlahkan.', 'Pakai LARGE tiga kali yang dijumlahkan.', 'Tulis: =LARGE(B2:B7,1)+LARGE(B2:B7,2)+LARGE(B2:B7,3)'],
+      hints: ['Ambil nilai terbesar ke-1, ke-2, dan ke-3, lalu jumlahkan.', 'Gunakan LARGE tiga kali, lalu jumlahkan.', 'Tulis: =LARGE(B2:B7,1)+LARGE(B2:B7,2)+LARGE(B2:B7,3)'],
       explain: '95 + 92 + 88 = 275. Pola ini berguna untuk laporan "top N".'
     }),
     f({
@@ -1106,8 +1106,8 @@ const statistik = {
       explain: 'Rata-ratanya 83. Nilai yang lebih tinggi: 92, 85, 95, 88 = 4 siswa.'
     }),
     q({
-      title: 'Kapan pakai SUBTOTAL?',
-      q: 'Tabelmu sering difilter (misalnya hanya menampilkan wilayah Jakarta). Kamu ingin total di bawah tabel **mengikuti baris yang terlihat**. Pilih...',
+      title: 'Kapan menggunakan SUBTOTAL?',
+      q: 'Tabel Anda sering difilter (misalnya hanya menampilkan wilayah Jakarta). Anda ingin total di bawah tabel **mengikuti baris yang terlihat**. Pilih...',
       options: ['SUM', 'SUBTOTAL(9, range)', 'COUNT', 'ROUND'],
       answer: 1,
       explain: 'SUM menjumlahkan semua baris, termasuk yang tersembunyi oleh filter. **SUBTOTAL(9, ...)** hanya menjumlahkan baris yang terlihat.'

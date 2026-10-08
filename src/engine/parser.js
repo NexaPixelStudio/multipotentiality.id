@@ -74,7 +74,7 @@ export function tokenize(src, locale = 'id') {
           j += 1;
         }
       }
-      if (src[j] !== "'" || src[j + 1] !== '!') throw new ParseError('sheet', 'Nama sheet yang memakai spasi harus ditulis seperti \'Data Penjualan\'!A1.');
+      if (src[j] !== "'" || src[j + 1] !== '!') throw new ParseError('sheet', 'Nama sheet yang mengandung spasi harus ditulis seperti \'Data Penjualan\'!A1.');
       i = j + 2;
       const word = readWord(src, i);
       toks.push({ t: 'word', v: word, sheet: name });
@@ -105,7 +105,7 @@ export function tokenize(src, locale = 'id') {
       i += 1;
       continue;
     }
-    if (ch === '{' || ch === '}') throw new ParseError('array', 'Array konstanta {...} belum didukung di aplikasi latihan ini. Pakai range sel saja.');
+    if (ch === '{' || ch === '}') throw new ParseError('array', 'Array konstanta {...} belum didukung di latihan ini. Gunakan range sel sebagai gantinya.');
     throw new ParseError('char', `Karakter "${ch}" tidak dikenali di dalam rumus.`);
   }
   return toks;
@@ -129,7 +129,7 @@ export function parse(src, locale = 'id') {
   const text = String(src).trim();
   const body = text.startsWith('=') ? text.slice(1) : text;
   const toks = tokenize(body, locale);
-  if (!toks.length) throw new ParseError('empty', 'Setelah tanda = belum ada isinya.');
+  if (!toks.length) throw new ParseError('empty', 'Belum ada isi rumus setelah tanda =.');
   let p = 0;
   const peek = () => toks[p];
   const isOp = (v) => toks[p] && toks[p].t === 'op' && toks[p].v === v;
@@ -178,13 +178,13 @@ export function parse(src, locale = 'id') {
         return args;
       }
       if (!peek()) throw new ParseError('paren', 'Kurung buka "(" belum ditutup. Setiap "(" harus punya pasangan ")".');
-      throw new ParseError('missing-sep', 'Ada dua bagian rumus yang berdempetan. Pisahkan argumen dengan tanda ; (atau ,) dan hubungkan hitungan dengan operator seperti + - * /.');
+      throw new ParseError('missing-sep', 'Ada dua bagian rumus yang berdempetan. Pisahkan argumen dengan tanda ; (atau ,) dan hubungkan perhitungan dengan operator seperti + - * /.');
     }
   }
 
   function parsePrimary() {
     const tk = peek();
-    if (!tk) throw new ParseError('incomplete', 'Rumusnya belum selesai: setelah operator atau pemisah masih butuh nilai.');
+    if (!tk) throw new ParseError('incomplete', 'Rumus belum lengkap: setelah operator atau pemisah masih diperlukan sebuah nilai.');
     if (tk.t === 'num') {
       p += 1;
       return { t: 'num', v: tk.v };
@@ -203,7 +203,7 @@ export function parse(src, locale = 'id') {
       }
       if (tk.v === ')') throw new ParseError('paren-extra', 'Ada kurung tutup ")" yang tidak punya pasangan kurung buka.');
       if (tk.v === ',') throw new ParseError('incomplete', 'Ada pemisah argumen di tempat yang salah.');
-      throw new ParseError('operator', `Operator "${tk.v}" tidak bisa dipakai di sini. Setelah operator harus ada angka, sel, atau fungsi.`);
+      throw new ParseError('operator', `Operator "${tk.v}" tidak dapat digunakan di sini. Setelah operator harus ada angka, sel, atau fungsi.`);
     }
     // word
     p += 1;
@@ -243,7 +243,7 @@ export function parse(src, locale = 'id') {
   if (p < toks.length) {
     const tk = toks[p];
     if (tk.t === 'op' && tk.v === ')') throw new ParseError('paren-extra', 'Ada kurung tutup ")" yang berlebih.');
-    throw new ParseError('missing-sep', 'Ada bagian rumus yang berdempetan tanpa pemisah. Hubungkan dengan operator (+ - * /) atau pisahkan argumen dengan ; atau ,.');
+    throw new ParseError('missing-sep', 'Ada bagian rumus yang berdempetan tanpa pemisah. Hubungkan dengan operator (+ - * /) atau pisahkan argumen dengan tanda ; atau ,.');
   }
   return ast;
 }
